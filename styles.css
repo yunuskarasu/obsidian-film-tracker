@@ -1,0 +1,262 @@
+.film-tracker-suggestion-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: var(--size-4-2);
+}
+
+.film-tracker-suggestion-year {
+	flex-shrink: 0;
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+}
+
+.film-tracker-suggestion-original {
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+}
+
+.film-tracker-attribution {
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+}
+
+/* ---------- Film note layout: title and properties left, poster right ----------
+ *
+ * The poster element is added by the plugin as a sibling of Obsidian's
+ * properties widget, so both live in one container that can become a grid.
+ * The poster occupies the properties row only, and is stretched to that row's
+ * height, so its top and bottom line up exactly with the properties block.
+ *
+ * The image is absolutely positioned inside that stretched box, filling it
+ * edge to edge, with `object-fit: contain` scaling it to fit without
+ * distorting its own aspect ratio (see the comment on `.film-tracker-poster
+ * img` below for why `object-fit` and not a computed `width: auto`).
+ *
+ * --film-tracker-poster-width is therefore a column *cap*, not necessarily
+ * the rendered width: a poster narrower than its row (relative to the
+ * column) leaves a gutter next to it instead of being stretched to fill it.
+ *
+ * The live-preview selectors carry the .markdown-source-view.mod-cm6 prefix on
+ * purpose: Obsidian sets `display: flex` on .cm-sizer with that same
+ * three-class selector, and a less specific rule here silently loses, leaving
+ * the poster stacked at the bottom of the note. Reading view needs no prefix —
+ * Obsidian ships no CSS for .mod-header at all.
+ */
+
+body {
+	--film-tracker-poster-width: 280px;
+	--film-tracker-column-gap: 24px;
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout,
+.mod-header.film-tracker-layout {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) var(--film-tracker-poster-width);
+	column-gap: var(--film-tracker-column-gap);
+}
+
+/* Live preview keeps the whole body in .cm-contentContainer, which spans both
+   columns on its own row. The connections panel, when present, gets the row
+   between the properties and the body; when it is absent that row is simply
+   empty, so no extra rule is needed to collapse it. 1fr on the body's row
+   lets it fill the remaining height so clicking below the text still focuses
+   the editor. */
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout {
+	grid-template-rows: auto auto auto 1fr;
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .cm-contentContainer {
+	grid-column: 1 / -1;
+	grid-row: 4;
+	min-width: 0;
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-connections {
+	grid-column: 1 / -1;
+	grid-row: 3;
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .inline-title,
+.mod-header.film-tracker-layout > .inline-title {
+	grid-column: 1;
+	grid-row: 1;
+}
+
+/* Obsidian gives the properties widget `margin-block-end: 2rem`. In a grid,
+   `align-self: stretch` fills the area with the item's *margin* box, so that
+   margin sizes the row and the poster — which has no margin — ends up exactly
+   2rem taller than the properties. The spacing is moved off the row below, so
+   the row is the properties box and nothing else. */
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .metadata-container,
+.mod-header.film-tracker-layout > .metadata-container {
+	grid-column: 1;
+	grid-row: 2;
+	min-width: 0;
+	max-width: none;
+	margin-block-end: 0;
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .cm-contentContainer,
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-connections {
+	margin-block-start: 2rem;
+}
+
+.mod-header.film-tracker-layout {
+	margin-block-end: 2rem;
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-poster,
+.mod-header.film-tracker-layout > .film-tracker-poster {
+	grid-column: 2;
+	grid-row: 2;
+	align-self: stretch;
+	position: relative;
+	min-width: 0;
+}
+
+/* The properties container is transparent and carries `--metadata-padding` of
+   `var(--size-4-2) 0`, so its box starts 8px above the visible "Properties"
+   heading. Insetting the poster by the same token lines it up with what you
+   can actually see, symmetrically, without moving the bottom edge.
+ *
+ * The box is filled edge to edge (top/right/bottom/left, no explicit
+ * width/height) and `object-fit: contain` scales the image inside it. A
+ * plain `width: auto` derived from `height` looks equivalent on paper, but
+ * Obsidian's own base styles cap images at `max-width: 100%`, which clips
+ * that computed width back down to the column once a tall properties block
+ * (e.g. a wrapped cast list) pushes the row taller than the image's natural
+ * ratio allows — the height keeps growing, the width doesn't, and the poster
+ * stretches. `object-fit` reconciles a fixed box with the image's own ratio
+ * without ever computing a width the parent has to fight over. */
+.film-tracker-poster img {
+	position: absolute;
+	top: var(--size-4-2);
+	right: 0;
+	left: 0;
+	/* Obsidian's own image styling sets `height: auto` with enough weight to
+	   beat a plain (non-!important) declaration here, which drops the image
+	   back to its intrinsic size — ignoring this box entirely, since an
+	   absolutely positioned element isn't clipped by its container unless
+	   told to be. !important is the only reliable way to win that fight. */
+	height: calc(100% - 2 * var(--size-4-2)) !important;
+	width: 100% !important;
+	object-fit: contain;
+	object-position: top right;
+	display: block;
+	border-radius: var(--radius-s);
+}
+
+/* Two columns do not fit on a narrow window or on mobile: stack them as
+   title, poster, properties, body, with the poster back in normal flow. */
+@media (max-width: 800px) {
+	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout,
+	.mod-header.film-tracker-layout {
+		grid-template-columns: minmax(0, 1fr);
+	}
+
+	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout {
+		grid-template-rows: auto auto auto auto 1fr;
+	}
+
+	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-poster,
+	.mod-header.film-tracker-layout > .film-tracker-poster {
+		grid-column: 1;
+		grid-row: 2;
+		align-self: start;
+		position: static;
+		max-width: var(--film-tracker-poster-width);
+	}
+
+	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-poster img,
+	.mod-header.film-tracker-layout > .film-tracker-poster img {
+		position: static;
+		width: 100%;
+		height: auto;
+	}
+
+	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .metadata-container,
+	.mod-header.film-tracker-layout > .metadata-container {
+		grid-column: 1;
+		grid-row: 3;
+	}
+
+	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-connections {
+		grid-column: 1;
+		grid-row: 4;
+	}
+
+	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .cm-contentContainer {
+		grid-column: 1;
+		grid-row: 5;
+	}
+}
+
+/* ---------- Connections panel: films sharing a director, composer or cast
+ * member with the open note. In reading view it is inserted as the header's
+ * next sibling, outside any grid; in live preview it is a grid row of its
+ * own (see above). Either way it is rendered, never written to the file. */
+
+.markdown-preview-sizer > .film-tracker-connections {
+	margin: 1rem 0 2rem 0;
+}
+
+.film-tracker-connections-heading {
+	display: flex;
+	align-items: center;
+	gap: var(--size-4-1);
+	margin: 0 0 var(--size-4-2) 0;
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+	letter-spacing: 0.04em;
+	cursor: pointer;
+	user-select: none;
+}
+
+/* Same convention as Obsidian's own collapsible sections (e.g. Properties):
+   the icon points right while collapsed, and rotates to point down when
+   expanded. */
+.film-tracker-connections-collapse-icon {
+	display: flex;
+	flex-shrink: 0;
+	color: var(--text-faint);
+	transform: rotate(90deg);
+	transition: transform 100ms ease-in-out;
+}
+
+.film-tracker-connections-collapse-icon svg {
+	width: var(--icon-xs);
+	height: var(--icon-xs);
+}
+
+.film-tracker-connections.is-collapsed .film-tracker-connections-collapse-icon {
+	transform: rotate(0deg);
+}
+
+.film-tracker-connections.is-collapsed .film-tracker-connections-list {
+	display: none;
+}
+
+.film-tracker-connections-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-4-1);
+}
+
+.film-tracker-connections-shared {
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+}
+
+/* Pushed to the right edge of the heading row (e.g. "N% watched" next to
+   FILMOGRAPHY) — letter-spacing/uppercase styling is dropped since this is
+   a value, not a label. */
+.film-tracker-connections-progress {
+	margin-left: auto;
+	color: var(--text-faint);
+	letter-spacing: normal;
+	text-transform: none;
+}
