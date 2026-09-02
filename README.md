@@ -21,6 +21,19 @@ BRAT also handles updates: when a new release goes out, BRAT picks it up the sam
 2. Copy the **API Key (v3 auth)** value — the short one, not the long read access token.
 3. Paste it into **Settings → Film Tracker → TMDB API key**. Every user needs their own key — it's free and takes a minute.
 
+## Tips for a smooth start
+
+A handful of mistakes account for most of the confusion new users hit:
+
+- **Everyone needs their own TMDB API key.** It isn't bundled with the plugin and can't be shared — each person pastes their own free key into settings (see [Setup](#setup)). Without it, search silently returns nothing.
+- **Set `watch_date` to a Date property once.** Fresh out of the box it's plain text, so sorting by date won't work until you do the one-time [type change](#make-watch_date-a-date-property) on any note. Obsidian remembers it vault-wide after that.
+- **Don't set Film folder / Director folder after you've already added notes elsewhere.** Duplicate detection (by `tmdb_id`) only looks inside the currently configured folder, so changing the folder path mid-use can let the same film get added twice — pick your folders early, or move existing notes into the new folder yourself before continuing.
+- **Turning on Add cast / Add composers later doesn't back-fill old notes.** Those settings only apply going forward. Run **Refresh metadata from TMDB** on a note to pull in fields you enabled after creating it.
+- **Never delete or hand-edit `tmdb_id`.** It's the only thing Film Tracker uses to recognize "this note already exists" and to know what to refresh — renaming the file itself is safe, but losing `tmdb_id` isn't.
+- **Picking from search:** when a title has several versions (remakes, franchises), check the year shown next to each result before choosing — titles alone are often ambiguous.
+- **Letterboxd import runs once per file.** Films already in your vault (matched by `tmdb_id`) are skipped rather than duplicated, so re-running the same export after adding more notes by hand is safe — it only fills gaps.
+- **A blank poster/photo isn't necessarily a bug.** Some TMDB entries genuinely have no image; the note is still created with full metadata either way.
+
 ## Usage
 
 Run **Add film** from the command palette, or click the film icon in the ribbon and pick **Add film**. Type at least two characters, pick the right film, and the note is created and opened.
