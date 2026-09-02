@@ -6,14 +6,16 @@ Search for a film, pick it from the list, and Film Tracker creates a note contai
 
 ## Installing
 
-Film Tracker isn't in the Community Plugins store yet, so for now it installs through [BRAT](https://github.com/TfTHacker/obsidian42-brat) (Beta Reviewer's Auto-update Tool):
+Film Tracker is available in the Obsidian Community Plugins.
 
-1. Install **BRAT** from Community Plugins and enable it.
-2. Open BRAT's settings → **Add Beta plugin**.
-3. Enter `yunuskarasu/obsidian-film-tracker` as the repository and confirm.
-4. Enable **Film Tracker** under Community Plugins.
+1. Open **Settings → Community plugins**.
+2. Click **Browse** and search for **Film Tracker**.
+3. Click **Install**.
+4. Enable **Film Tracker** under Community plugins.
 
-BRAT also handles updates: when a new release goes out, BRAT picks it up the same way it installed the first one.
+### Updating
+
+Obsidian will notify you when a new version is available.
 
 ## Setup
 
