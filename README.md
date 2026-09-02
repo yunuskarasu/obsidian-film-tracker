@@ -4,12 +4,22 @@ Add a film to your Obsidian vault as a note with metadata and a poster.
 
 Search for a film, pick it from the list, and Film Tracker creates a note containing exactly two things: a frontmatter block with the film's metadata, and the poster. Nothing else. No rating, no review section, no template. What you write in the note is up to you.
 
+## Installing
+
+Film Tracker isn't in the Community Plugins store yet, so for now it installs through [BRAT](https://github.com/TfTHacker/obsidian42-brat) (Beta Reviewer's Auto-update Tool):
+
+1. Install **BRAT** from Community Plugins and enable it.
+2. Open BRAT's settings → **Add Beta plugin**.
+3. Enter `yunuskarasu/obsidian-film-tracker` as the repository and confirm.
+4. Enable **Film Tracker** under Community Plugins.
+
+BRAT also handles updates: when a new release goes out, BRAT picks it up the same way it installed the first one.
+
 ## Setup
 
-1. Install the plugin and enable it.
-2. Create a free TMDB account and open [your API settings](https://www.themoviedb.org/settings/api).
-3. Copy the **API Key (v3 auth)** value — the short one, not the long read access token.
-4. Paste it into **Settings → Film Tracker → TMDB API key**.
+1. Create a free TMDB account and open [your API settings](https://www.themoviedb.org/settings/api).
+2. Copy the **API Key (v3 auth)** value — the short one, not the long read access token.
+3. Paste it into **Settings → Film Tracker → TMDB API key**. Every user needs their own key — it's free and takes a minute.
 
 ## Usage
 
