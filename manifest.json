@@ -1,0 +1,9 @@
+{
+  "id": "film-tracker",
+  "name": "Film Tracker",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.7",
+  "description": "Add a film to your vault as a note with metadata and a poster.",
+  "author": "Yunus Eymen Karasu",
+  "isDesktopOnly": false
+}
