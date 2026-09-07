@@ -5,14 +5,14 @@ import {
 	isMangaOnlySeriesFrontmatter,
 	mangaMalIdFrom,
 	relinkMangaka,
+	removeMangaBlock,
+	replaceMangaBlock,
 	toggleMangaRead,
 } from "../src/manga-note";
 import type { MangaMetadata } from "../src/mal";
 
 const hxh: MangaMetadata = {
 	title: "Hunter x Hunter",
-	englishTitle: "Hunter x Hunter",
-	japaneseTitle: "HUNTER×HUNTER",
 	mediaType: "manga",
 	status: "currently_publishing",
 	year: 1998,
@@ -166,6 +166,130 @@ describe("applyMangaBlock", () => {
 		expect(applyMangaBlock("No frontmatter here.", hxh, null, neverResolved)).toBe(
 			"No frontmatter here.",
 		);
+	});
+});
+
+/**
+ * A Series note that already carries both sides, plus a property and a body
+ * the user owns — what "Change manga"/"Remove manga" have to leave alone
+ * while correcting a wrongly linked manga.
+ */
+const mergedSeriesNote = [
+	"---",
+	"title: Hunter x Hunter",
+	"english_title: Hunter x Hunter",
+	"episodes: 148",
+	'poster: "[[Attachments/Hunter x Hunter (2011).jpg]]"',
+	"mal_id: 11061",
+	"rating: 9",
+	"watched: true",
+	"manga:",
+	"  mal_id: 21",
+	"  title: Death Note",
+	"  media_type: manga",
+	"  status: finished",
+	"  year: 2003",
+	"  chapters: 108",
+	"  volumes: 12",
+	"  mangaka:",
+	"    - Tsugumi Ohba",
+	'  poster: "[[Attachments/Death Note (Manga).jpg]]"',
+	"  read: true",
+	"  note: bought volume 1",
+	"---",
+	"",
+	"My own thoughts.",
+	"",
+].join("\n");
+
+describe("replaceMangaBlock", () => {
+	it("swaps in the new manga's own data, in the canonical field order", () => {
+		const changed = replaceMangaBlock(mergedSeriesNote, hxh, "[[HxH (Manga).jpg]]", neverResolved);
+		expect(changed).toContain("  mal_id: 26");
+		expect(changed).toContain("  title: Hunter x Hunter");
+		expect(changed).toContain("  chapters: 400");
+		expect(changed).toContain("  volumes: 37");
+		expect(changed).toContain("    - Yoshihiro Togashi");
+		expect(changed).toContain('  poster: "[[HxH (Manga).jpg]]"');
+	});
+
+	it("carries nothing over from the manga that was replaced", () => {
+		const changed = replaceMangaBlock(mergedSeriesNote, hxh, "[[HxH (Manga).jpg]]", neverResolved);
+		expect(changed).not.toContain("Death Note");
+		expect(changed).not.toContain("Tsugumi Ohba");
+		expect(changed).not.toContain("note: bought volume 1");
+		// read describes the previous, wrong manga — it starts over at false.
+		expect(changed).toContain("  read: false");
+	});
+
+	it("leaves the anime side, its poster, watched, the user's own property and the body untouched", () => {
+		const changed = replaceMangaBlock(mergedSeriesNote, hxh, null, neverResolved);
+		expect(changed).toContain("title: Hunter x Hunter\n");
+		expect(changed).toContain("episodes: 148");
+		expect(changed).toContain('poster: "[[Attachments/Hunter x Hunter (2011).jpg]]"');
+		expect(changed).toContain("mal_id: 11061");
+		expect(changed).toContain("rating: 9");
+		expect(changed).toContain("watched: true");
+		expect(changed).toContain("My own thoughts.");
+	});
+
+	it("keeps the manga block where it already sat in the frontmatter", () => {
+		const withTrailingKey = mergedSeriesNote.replace("---\n\nMy own", "tags:\n  - series\n---\n\nMy own");
+		const changed = replaceMangaBlock(withTrailingKey, hxh, null, neverResolved);
+		expect(changed.indexOf("manga:")).toBeLessThan(changed.indexOf("tags:"));
+	});
+
+	it("links mangaka only when a note by that name already exists, the same as a refresh", () => {
+		expect(replaceMangaBlock(mergedSeriesNote, hxh, null, alwaysResolved)).toContain(
+			"    - \"[[Yoshihiro Togashi]]\"",
+		);
+		expect(replaceMangaBlock(mergedSeriesNote, hxh, null, neverResolved)).toContain(
+			"    - Yoshihiro Togashi",
+		);
+	});
+
+	it("returns the content unchanged when there is no frontmatter", () => {
+		expect(replaceMangaBlock("No frontmatter here.", hxh, null, neverResolved)).toBe(
+			"No frontmatter here.",
+		);
+	});
+});
+
+describe("removeMangaBlock", () => {
+	it("drops the whole manga block", () => {
+		const removed = removeMangaBlock(mergedSeriesNote);
+		expect(removed).not.toContain("manga:");
+		expect(removed).not.toContain("Death Note");
+		expect(removed).not.toContain("read: true");
+		expect(removed).not.toContain("note: bought volume 1");
+	});
+
+	it("leaves the anime side, its poster, watched, the user's own property and the body untouched", () => {
+		expect(removeMangaBlock(mergedSeriesNote)).toBe(
+			[
+				"---",
+				"title: Hunter x Hunter",
+				"english_title: Hunter x Hunter",
+				"episodes: 148",
+				'poster: "[[Attachments/Hunter x Hunter (2011).jpg]]"',
+				"mal_id: 11061",
+				"rating: 9",
+				"watched: true",
+				"---",
+				"",
+				"My own thoughts.",
+				"",
+			].join("\n"),
+		);
+	});
+
+	it("leaves a note with no manga block exactly as it is", () => {
+		const animeOnly = "---\ntitle: Hunter x Hunter\nmal_id: 11061\n---\n\nBody.\n";
+		expect(removeMangaBlock(animeOnly)).toBe(animeOnly);
+	});
+
+	it("returns the content unchanged when there is no frontmatter", () => {
+		expect(removeMangaBlock("No frontmatter here.")).toBe("No frontmatter here.");
 	});
 });
 

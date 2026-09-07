@@ -196,6 +196,53 @@ export function applyMangaBlock(
 }
 
 /**
+ * Replaces the whole `manga:` block with a different manga — the fix for a
+ * Series note that ended up linked to the wrong one. Unlike
+ * `applyMangaBlock`, nothing from the old block is carried over: `read`
+ * starts at false and the poster is the new manga's, because every one of
+ * those values described a different work. Sub-fields the user hand-added
+ * under `manga` go with it for the same reason.
+ *
+ * Everything outside the block is untouched — the anime fields, the note's
+ * own poster, `watched`, any property the user added, the body, and the
+ * position `manga:` already holds in the frontmatter.
+ */
+export function replaceMangaBlock(
+	content: string,
+	manga: MangaMetadata,
+	posterLink: string | null,
+	isResolved: (name: string) => boolean,
+): string {
+	const doc = parseFrontmatterBlocks(content);
+	if (doc === null) return content;
+
+	const mangakaNames = formatNames(
+		manga.mangaka.map((author) => author.name),
+		isResolved,
+	);
+	doc.blocks.set(BLOCK_KEY, buildBlockLines(manga, mangakaNames, posterLink, false));
+	if (!doc.order.includes(BLOCK_KEY)) doc.order.push(BLOCK_KEY);
+
+	return serializeFrontmatterBlocks(doc);
+}
+
+/**
+ * Drops the `manga:` block entirely, leaving an anime+manga Series note as
+ * the anime-only note it was before the merge. Only that one top-level key
+ * is removed: the anime fields, poster, `watched`, every other property and
+ * the body all stay exactly as they are.
+ */
+export function removeMangaBlock(content: string): string {
+	const doc = parseFrontmatterBlocks(content);
+	if (doc === null || !doc.blocks.has(BLOCK_KEY)) return content;
+
+	doc.blocks.delete(BLOCK_KEY);
+	doc.order = doc.order.filter((key) => key !== BLOCK_KEY);
+
+	return serializeFrontmatterBlocks(doc);
+}
+
+/**
  * Rewrites just the `manga.mangaka` list in place — the exact same
  * `formatNames`/`isResolved` rule `applyMangaBlock` already applies to a
  * freshly-fetched manga, without touching MAL or any other sub-field. Used

@@ -68,41 +68,6 @@ export function parseWikilink(value: unknown): string | null {
 }
 
 /**
- * Loosely normalizes a title for cross-checking whether an anime and a
- * manga are plausibly the same work: lowercased, trimmed, whitespace
- * collapsed, and a trailing `(YYYY)` year stripped — MAL sometimes bakes a
- * year into one adaptation's own title (e.g. a second anime adaptation)
- * without doing the same to its `alternative_titles`, which would
- * otherwise defeat an exact match. Other parenthetical suffixes (`(TV)`,
- * `(Movie)`) are left alone, since those can genuinely distinguish unrelated
- * records.
- */
-function normalizeTitleForMatch(title: string): string {
-	return title.trim().toLowerCase().replace(/\s+/g, " ").replace(/\s*\(\d{4}\)$/, "");
-}
-
-/**
- * True if any title in `a` exactly matches (after normalization) any title
- * in `b` — used to check whether an anime and a manga's title families
- * (title, English title, Japanese title) plausibly name the same work
- * before merging them into one Series note. Deliberately exact rather than
- * fuzzy: a false match merges two unrelated works into one note, which is
- * far worse than a false negative that just leaves the user to merge by
- * hand the way they always could.
- */
-export function titleFamiliesOverlap(
-	a: readonly (string | null | undefined)[],
-	b: readonly (string | null | undefined)[],
-): boolean {
-	const setA = new Set(
-		a.filter((title): title is string => !!title && title.trim() !== "").map(normalizeTitleForMatch),
-	);
-	return b.some(
-		(title) => !!title && title.trim() !== "" && setA.has(normalizeTitleForMatch(title)),
-	);
-}
-
-/**
  * Turns names into wikilinks, but only where a note by that name already
  * exists. Names already written as links are left alone.
  */
