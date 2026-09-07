@@ -153,7 +153,6 @@ describe("MANGA_DETAIL_FIELDS", () => {
 	it("requests every field toMangaMetadata reads", () => {
 		for (const field of [
 			"main_picture",
-			"alternative_titles",
 			"media_type",
 			"num_volumes",
 			"num_chapters",
@@ -181,7 +180,6 @@ function mangaDetails(overrides: Partial<MalMangaDetails> = {}): MalMangaDetails
 		id: 26,
 		title: "Hunter x Hunter",
 		main_picture: { medium: "https://example.com/m.jpg", large: "https://example.com/l.jpg" },
-		alternative_titles: { en: "Hunter x Hunter", ja: "HUNTER×HUNTER" },
 		media_type: "manga",
 		num_volumes: 37,
 		num_chapters: 400,
@@ -201,18 +199,6 @@ describe("toMangaMetadata", () => {
 		expect(manga.mediaType).toBe("manga");
 		expect(manga.status).toBe("currently_publishing");
 		expect(manga.malId).toBe(26);
-	});
-
-	it("maps the English and Japanese alternative titles, used only for Add-time matching, never persisted", () => {
-		const manga = toMangaMetadata(mangaDetails());
-		expect(manga.englishTitle).toBe("Hunter x Hunter");
-		expect(manga.japaneseTitle).toBe("HUNTER×HUNTER");
-	});
-
-	it("normalizes missing alternative titles to null", () => {
-		const manga = toMangaMetadata(mangaDetails({ alternative_titles: undefined }));
-		expect(manga.englishTitle).toBeNull();
-		expect(manga.japaneseTitle).toBeNull();
 	});
 
 	it("prefers the large picture and falls back to medium", () => {

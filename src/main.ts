@@ -33,6 +33,8 @@ import {
 	malIdFrom,
 	mangaMalIdFrom,
 	relinkMangaka,
+	removeMangaBlock,
+	replaceMangaBlock,
 } from "./manga-note";
 import {
 	buildMangakaFileName,
@@ -51,7 +53,6 @@ import {
 	relinkFrontmatter,
 	sanitizeFileName,
 	setWatchDate,
-	titleFamiliesOverlap,
 	type FilmMetadata,
 	type LinkOptions,
 } from "./note";
@@ -274,88 +275,6 @@ export default class FilmTrackerPlugin extends Plugin {
 	private isAnimeOnlySeries(file: TFile): boolean {
 		const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
 		return isAnimeOnlySeriesFrontmatter(frontmatter, this.isMangakaNote(file));
-	}
-
-	/**
-	 * Every manga-only Series note in the vault whose manga side's title
-	 * plausibly names the same work as `anime` — the candidate pool
-	 * `addAnime` may merge into, beyond just the active file. Only the
-	 * persisted `manga.title` is compared (the manga side's own English/
-	 * Japanese alternatives are never written to the note — see
-	 * `MangaMetadata`), so this direction is a little less rich than
-	 * `findAnimeOnlySeriesMatching`, but every concrete case this was built
-	 * for (e.g. Hunter x Hunter, Death Note) still matches correctly.
-	 */
-	private findMangaOnlySeriesMatching(anime: AnimeMetadata): TFile[] {
-		const prefix = folderPrefix(this.settings.animeFolder);
-		const animeTitles = [anime.title, anime.englishTitle, anime.japaneseTitle];
-		const matches: TFile[] = [];
-
-		for (const file of this.app.vault.getMarkdownFiles()) {
-			if (prefix !== "" && !file.path.startsWith(prefix)) continue;
-			if (!this.isMangaOnlySeries(file)) continue;
-
-			const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
-			const manga: unknown = frontmatter?.manga;
-			const mangaTitle: unknown =
-				typeof manga === "object" && manga !== null
-					? (manga as Record<string, unknown>).title
-					: undefined;
-			if (typeof mangaTitle !== "string") continue;
-
-			if (titleFamiliesOverlap(animeTitles, [mangaTitle])) matches.push(file);
-		}
-
-		return matches;
-	}
-
-	/**
-	 * Every anime-only Series note in the vault whose title plausibly names
-	 * the same work as `manga` — the candidate pool `addManga` may merge
-	 * into, beyond just the active file.
-	 */
-	private findAnimeOnlySeriesMatching(manga: MangaMetadata): TFile[] {
-		const prefix = folderPrefix(this.settings.animeFolder);
-		const mangaTitles = [manga.title, manga.englishTitle, manga.japaneseTitle];
-		const matches: TFile[] = [];
-
-		for (const file of this.app.vault.getMarkdownFiles()) {
-			if (prefix !== "" && !file.path.startsWith(prefix)) continue;
-			if (!this.isAnimeOnlySeries(file)) continue;
-
-			const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
-			const titles = [frontmatter?.title, frontmatter?.english_title, frontmatter?.japanese_title].filter(
-				(value): value is string => typeof value === "string",
-			);
-			if (titles.length === 0) continue;
-
-			if (titleFamiliesOverlap(mangaTitles, titles)) matches.push(file);
-		}
-
-		return matches;
-	}
-
-	/**
-	 * Resolves a candidate pool down to a single merge target, or `null` if
-	 * none should be used: exactly one candidate is the target outright; with
-	 * several, the currently active file is preferred if it's among them
-	 * (the clearest available signal of intent); otherwise the match is
-	 * ambiguous and nothing is merged — opening the right note and running
-	 * the command again always still works, exactly as before.
-	 */
-	private resolveMergeTarget(candidates: TFile[], active: TFile | null, label: string): TFile | null {
-		if (candidates.length === 0) return null;
-		if (candidates.length === 1) return candidates[0];
-
-		if (active !== null && candidates.some((file) => file.path === active.path)) {
-			return active;
-		}
-
-		const names = candidates.map((file) => file.basename).join(", ");
-		new Notice(
-			`Found more than one possible match for ${label}: ${names}. Open the right note and try again.`,
-		);
-		return null;
 	}
 
 	/**
@@ -617,6 +536,70 @@ export default class FilmTrackerPlugin extends Plugin {
 		new Notice(`Linked manga to ${file.basename}`);
 	}
 
+	/**
+	 * "Change manga" on the MANGA panel: pick a different manga for a Series
+	 * note whose manga side turned out to be the wrong one. Only the `manga:`
+	 * block is rewritten (see `replaceMangaBlock`) — the note is never
+	 * recreated, so the anime side, its poster, `watched`, the body and every
+	 * other property survive untouched.
+	 */
+	private startChangeManga(file: TFile): void {
+		if (this.settings.malClientId === "") {
+			new Notice("Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.");
+			return;
+		}
+		const client = new MalClient(this.settings.malClientId);
+		new MangaSearchModal(this.app, client, (result) => {
+			void this.changeManga(client, result, file);
+		}).open();
+	}
+
+	private async changeManga(
+		client: MalClient,
+		result: MangaSearchResult,
+		file: TFile,
+	): Promise<void> {
+		try {
+			const manga = await client.getManga(result.id);
+			// A fresh poster, not the one already on the note: that image is
+			// the previous (wrong) manga's cover.
+			const poster = await this.saveMangaPoster(
+				client,
+				manga,
+				sanitizeFileName(manga.title),
+				file.path,
+			);
+			const posterLink =
+				poster === null
+					? null
+					: this.app.fileManager.generateMarkdownLink(poster, file.path).replace(/^!/, "");
+			const isResolved = this.linkOptions(file.path).isResolved;
+
+			await this.app.vault.process(file, (content) =>
+				replaceMangaBlock(content, manga, posterLink, isResolved),
+			);
+			new Notice(`Changed the manga to ${manga.title}`);
+		} catch (error) {
+			if (error instanceof MalError) {
+				new Notice(error.message);
+				return;
+			}
+			console.error("Film + Anime-Manga Tracker: could not change the manga", error);
+			new Notice("Could not change the manga. See the console for details.");
+		}
+	}
+
+	/** "Remove manga" on the MANGA panel — drops the `manga:` block and nothing else. */
+	private async removeManga(file: TFile): Promise<void> {
+		let removed = false;
+		await this.app.vault.process(file, (content) => {
+			const next = removeMangaBlock(content);
+			removed = next !== content;
+			return next;
+		});
+		new Notice(removed ? `Removed the manga from ${file.basename}` : "This note has no manga.");
+	}
+
 	private async relinkAll(): Promise<void> {
 		let changed = 0;
 
@@ -663,6 +646,10 @@ export default class FilmTrackerPlugin extends Plugin {
 			this.app,
 			this.settings.showConnections,
 			this.settings.showFilmography,
+			{
+				change: (file) => this.startChangeManga(file),
+				remove: (file) => void this.removeManga(file),
+			},
 		);
 		this.layout = layout;
 		const refresh = () => layout.refresh();
@@ -857,11 +844,13 @@ export default class FilmTrackerPlugin extends Plugin {
 				return;
 			}
 
+			// Linking an anime to a manga is entirely manual: the open note is
+			// the user's choice of target, and nothing else in the vault is
+			// searched or guessed at. Any other note open, or none, means a new
+			// independent Series note.
 			const active = this.app.workspace.getActiveFile();
-			const candidates = this.findMangaOnlySeriesMatching(anime);
-			const target = this.resolveMergeTarget(candidates, active, anime.title);
-			if (target !== null) {
-				await this.mergeAnimeIntoNote(client, anime, target);
+			if (active !== null && this.isMangaOnlySeries(active)) {
+				await this.mergeAnimeIntoNote(client, anime, active);
 				return;
 			}
 
@@ -928,11 +917,11 @@ export default class FilmTrackerPlugin extends Plugin {
 				return;
 			}
 
+			// Manual in exactly the same way as `addAnime` � the open note is
+			// the only merge target ever considered.
 			const active = this.app.workspace.getActiveFile();
-			const candidates = this.findAnimeOnlySeriesMatching(manga);
-			const target = this.resolveMergeTarget(candidates, active, manga.title);
-			if (target !== null) {
-				await this.mergeMangaIntoNote(client, manga, target);
+			if (active !== null && this.isAnimeOnlySeries(active)) {
+				await this.mergeMangaIntoNote(client, manga, active);
 				return;
 			}
 

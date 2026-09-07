@@ -34,6 +34,17 @@ interface Poster {
 	alt: string;
 }
 
+/**
+ * The two corrections the MANGA panel offers for a Series note linked to the
+ * wrong manga. The panel only renders the buttons and reports the click —
+ * the note itself is always rewritten by `main.ts`, which owns MAL access
+ * and every write to the vault.
+ */
+export interface MangaPanelActions {
+	change: (file: TFile) => void;
+	remove: (file: TFile) => void;
+}
+
 interface MangaPanelInfo {
 	title: string;
 	mediaType: string | null;
@@ -67,11 +78,18 @@ export class FilmNoteLayout {
 	private readonly app: App;
 	private showConnections: boolean;
 	private showFilmography: boolean;
+	private readonly mangaActions: MangaPanelActions;
 
-	constructor(app: App, showConnections: boolean, showFilmography: boolean) {
+	constructor(
+		app: App,
+		showConnections: boolean,
+		showFilmography: boolean,
+		mangaActions: MangaPanelActions,
+	) {
 		this.app = app;
 		this.showConnections = showConnections;
 		this.showFilmography = showFilmography;
+		this.mangaActions = mangaActions;
 	}
 
 	setShowConnections(value: boolean): void {
@@ -264,6 +282,21 @@ export class FilmNoteLayout {
 		readToggle.appendText(" Read");
 		checkbox.addEventListener("change", () => {
 			void this.app.vault.process(file, (content) => toggleMangaRead(content));
+		});
+
+		const actions = details.createDiv({ cls: "film-tracker-manga-actions" });
+		this.renderMangaAction(actions, "Change manga", () => this.mangaActions.change(file));
+		this.renderMangaAction(actions, "Remove manga", () => this.mangaActions.remove(file));
+	}
+
+	private renderMangaAction(container: HTMLElement, label: string, onClick: () => void): void {
+		const button = container.createEl("button", {
+			cls: "film-tracker-manga-action",
+			text: label,
+		});
+		button.addEventListener("click", (event) => {
+			event.preventDefault();
+			onClick();
 		});
 	}
 

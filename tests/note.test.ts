@@ -7,7 +7,6 @@ import {
 	joinPath,
 	needsQuoting,
 	sanitizeFileName,
-	titleFamiliesOverlap,
 	yamlString,
 	type FilmMetadata,
 	type LinkOptions,
@@ -392,61 +391,5 @@ describe("folderPrefix", () => {
 
 		expect(animeNotePath.startsWith(animePrefix)).toBe(true);
 		expect(animeNotePath.startsWith(mangakaPrefix)).toBe(false);
-	});
-});
-
-/**
- * Real MAL data (verified live before writing this): the 2011 Hunter x
- * Hunter anime bakes "(2011)" into its own `title`, but not into its
- * `alternative_titles.en` — so a single-field comparison would silently
- * miss it. This is exactly the case that makes multi-field title-family
- * matching (rather than a single title check) necessary for the anime ↔
- * manga Series-merge candidate search.
- */
-describe("titleFamiliesOverlap", () => {
-	it("matches Hunter x Hunter manga against the 1999 anime (exact title match)", () => {
-		const manga = ["Hunter x Hunter", "Hunter x Hunter", "HUNTER×HUNTER"];
-		const anime1999 = ["Hunter x Hunter", "Hunter x Hunter", "HUNTER×HUNTER（ハンター×ハンター）"];
-		expect(titleFamiliesOverlap(manga, anime1999)).toBe(true);
-	});
-
-	it("matches Hunter x Hunter manga against the 2011 anime via the English alternative title, even though the anime's own title has a year baked in", () => {
-		const manga = ["Hunter x Hunter", "Hunter x Hunter", "HUNTER×HUNTER"];
-		const anime2011 = [
-			"Hunter x Hunter (2011)",
-			"Hunter x Hunter",
-			"HUNTER×HUNTER（ハンター×ハンター）",
-		];
-		expect(titleFamiliesOverlap(manga, anime2011)).toBe(true);
-	});
-
-	it("matches Death Note manga against Death Note anime", () => {
-		const mangaTitles = ["Death Note", "Death Note", "DEATH NOTE"];
-		const animeTitles = ["Death Note", "Death Note", "デスノート"];
-		expect(titleFamiliesOverlap(mangaTitles, animeTitles)).toBe(true);
-	});
-
-	it("never matches Death Note against JoJo's Bizarre Adventure (2012) in either direction", () => {
-		const deathNote = ["Death Note", "Death Note", "デスノート"];
-		const jojo2012 = [
-			"JoJo no Kimyou na Bouken (TV)",
-			"JoJo's Bizarre Adventure (2012)",
-			"ジョジョの奇妙な冒険",
-		];
-		expect(titleFamiliesOverlap(deathNote, jojo2012)).toBe(false);
-		expect(titleFamiliesOverlap(jojo2012, deathNote)).toBe(false);
-	});
-
-	it("is case- and whitespace-insensitive", () => {
-		expect(titleFamiliesOverlap(["  Death Note  "], ["death note"])).toBe(true);
-	});
-
-	it("ignores null, undefined and blank titles on either side", () => {
-		expect(titleFamiliesOverlap([null, "", "Death Note"], [undefined, "Death Note"])).toBe(true);
-		expect(titleFamiliesOverlap([null, ""], [undefined, ""])).toBe(false);
-	});
-
-	it("returns false for two empty families", () => {
-		expect(titleFamiliesOverlap([], [])).toBe(false);
 	});
 });

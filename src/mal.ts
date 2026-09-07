@@ -21,7 +21,7 @@ export const DETAIL_FIELDS =
  * Confirmed against real API responses before writing this.
  */
 export const MANGA_DETAIL_FIELDS =
-	"main_picture,alternative_titles,media_type,num_volumes,num_chapters,authors{node{id,first_name,last_name}},status,start_date";
+	"main_picture,media_type,num_volumes,num_chapters,authors{node{id,first_name,last_name}},status,start_date";
 
 /**
  * MAL's official API has no person-search endpoint (confirmed: `GET
@@ -99,14 +99,6 @@ export interface MangaAuthor {
 
 export interface MangaMetadata {
 	title: string;
-	/**
-	 * Not persisted to the `manga:` block (see `applyMangaBlock`) — used only
-	 * at Add-time to check whether an existing anime note's own title family
-	 * plausibly names the same work, the same way `AnimeMetadata`'s own
-	 * `englishTitle`/`japaneseTitle` already do for the reverse direction.
-	 */
-	englishTitle: string | null;
-	japaneseTitle: string | null;
 	mediaType: string | null;
 	chapters: number | null;
 	volumes: number | null;
@@ -142,7 +134,6 @@ export interface MalMangaDetails {
 	id: number;
 	title?: string;
 	main_picture?: MalPicture;
-	alternative_titles?: MalAlternativeTitles;
 	media_type?: string;
 	num_volumes?: number;
 	num_chapters?: number;
@@ -207,8 +198,6 @@ export function toMangaSearchResult(node: MalMangaSearchNode): MangaSearchResult
 export function toMangaMetadata(details: MalMangaDetails): MangaMetadata {
 	return {
 		title: details.title?.trim() ?? "",
-		englishTitle: details.alternative_titles?.en?.trim() || null,
-		japaneseTitle: details.alternative_titles?.ja?.trim() || null,
 		mediaType: details.media_type?.trim() || null,
 		chapters:
 			details.num_chapters !== undefined && details.num_chapters > 0

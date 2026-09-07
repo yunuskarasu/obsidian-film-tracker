@@ -331,6 +331,10 @@ That Read checkbox is the one place in Film + Anime-Manga Tracker that writes to
 
 Since a Series note can have its own top-level `poster` (the anime's) and a separate `manga.poster`, both are downloaded and kept independently — refreshing one side never overwrites the other's poster, or a poster that's already saved.
 
+The panel also carries **Change manga** and **Remove manga**, for when the wrong manga ended up on a note. **Change manga** opens the same search box **Add manga** uses and swaps in whatever you pick, poster included; **Remove manga** drops the manga side entirely. Both edit only the `manga:` block — the note is never recreated, so the anime side, its poster, `watched`, your own properties and the body are all left exactly as they are. Since the old `manga.read` and any sub-field you hand-added under `manga` described a different work, they don't survive the change.
+
+**Change manga** is also how you attach one manga to a second anime adaptation. **Add manga** won't do it: a manga MyAnimeList id that already sits on some Series note counts as a duplicate, so running **Add manga** for it again just opens that first note ("Already in your vault") rather than linking it a second time — the plugin never copies the same manga record into a second note. When you do want two adaptations pointing at the same manga (a remake, say), open the second anime's Series note, run **Add manga** for any manga at all as a placeholder, then use **Change manga** to swap it for the one you actually wanted. **Change manga** touches nothing but the `manga:` block, so the second note's anime side, poster, `watched` and body come through untouched.
+
 ### The MANGAGRAPHY panel
 
 Run **Add mangaka** with a manga or Series note open and it reads that note's own manga metadata to find the credited author(s) on MyAnimeList — there's no search box, since MyAnimeList has no way to search for a person by name. One author adds them straight away; more than one shows a quick pick list to choose from. The resulting note lives in the Mangaka folder, with the same two-column poster layout as a film or director note.
