@@ -64,7 +64,7 @@ export class FilmSearchModal extends SuggestModal<FilmSearchResult> {
 	private reportOnce(error: unknown): void {
 		const message = error instanceof TmdbError ? error.message : "TMDB search failed.";
 		if (!(error instanceof TmdbError)) {
-			console.error("Film, Anime & Manga Tracker: search failed", error);
+			console.error("Film + Anime-Manga Tracker: search failed", error);
 		}
 		if (message === this.lastErrorShown) return;
 		this.lastErrorShown = message;
