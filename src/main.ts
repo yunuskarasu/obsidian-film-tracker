@@ -384,7 +384,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 	private async refreshNote(file: TFile, tmdbId: number): Promise<void> {
 		if (this.settings.apiKey === "") {
-			new Notice("Set your TMDB API key in Film, Anime & Manga Tracker settings.");
+			new Notice("Set your TMDB API key in Film + Anime-Manga Tracker settings.");
 			return;
 		}
 
@@ -402,7 +402,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				new Notice(error.message);
 				return;
 			}
-			console.error("Film, Anime & Manga Tracker: could not refresh the film", error);
+			console.error("Film + Anime-Manga Tracker: could not refresh the film", error);
 			new Notice("Could not refresh the film. See the console for details.");
 		}
 	}
@@ -426,7 +426,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 	private async refreshDirectorNote(file: TFile, tmdbId: number): Promise<void> {
 		if (this.settings.apiKey === "") {
-			new Notice("Set your TMDB API key in Film, Anime & Manga Tracker settings.");
+			new Notice("Set your TMDB API key in Film + Anime-Manga Tracker settings.");
 			return;
 		}
 
@@ -444,7 +444,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				new Notice(error.message);
 				return;
 			}
-			console.error("Film, Anime & Manga Tracker: could not refresh the director", error);
+			console.error("Film + Anime-Manga Tracker: could not refresh the director", error);
 			new Notice("Could not refresh the director. See the console for details.");
 		}
 	}
@@ -468,7 +468,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 	private async refreshAnimeNote(file: TFile, malId: number): Promise<void> {
 		if (this.settings.malClientId === "") {
-			new Notice("Set your MyAnimeList client ID in Film, Anime & Manga Tracker settings.");
+			new Notice("Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.");
 			return;
 		}
 
@@ -486,7 +486,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				new Notice(error.message);
 				return;
 			}
-			console.error("Film, Anime & Manga Tracker: could not refresh the anime", error);
+			console.error("Film + Anime-Manga Tracker: could not refresh the anime", error);
 			new Notice("Could not refresh the anime. See the console for details.");
 		}
 	}
@@ -510,7 +510,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 	private async refreshMangaNote(file: TFile, mangaMalId: number): Promise<void> {
 		if (this.settings.malClientId === "") {
-			new Notice("Set your MyAnimeList client ID in Film, Anime & Manga Tracker settings.");
+			new Notice("Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.");
 			return;
 		}
 
@@ -529,7 +529,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				new Notice(error.message);
 				return;
 			}
-			console.error("Film, Anime & Manga Tracker: could not refresh the manga", error);
+			console.error("Film + Anime-Manga Tracker: could not refresh the manga", error);
 			new Notice("Could not refresh the manga. See the console for details.");
 		}
 	}
@@ -558,7 +558,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 	private async refreshMangakaNote(file: TFile, mangakaMalId: number): Promise<void> {
 		if (this.settings.malClientId === "") {
-			new Notice("Set your MyAnimeList client ID in Film, Anime & Manga Tracker settings.");
+			new Notice("Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.");
 			return;
 		}
 
@@ -576,7 +576,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				new Notice(error.message);
 				return;
 			}
-			console.error("Film, Anime & Manga Tracker: could not refresh the mangaka", error);
+			console.error("Film + Anime-Manga Tracker: could not refresh the mangaka", error);
 			new Notice("Could not refresh the mangaka. See the console for details.");
 		}
 	}
@@ -700,7 +700,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 	private startAddFilm(): void {
 		if (this.settings.apiKey === "") {
-			new Notice("Set your TMDB API key in Film, Anime & Manga Tracker settings.");
+			new Notice("Set your TMDB API key in Film + Anime-Manga Tracker settings.");
 			return;
 		}
 		const client = new TmdbClient(this.settings.apiKey);
@@ -724,7 +724,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				new Notice(error.message);
 				return;
 			}
-			console.error("Film, Anime & Manga Tracker: could not add the film", error);
+			console.error("Film + Anime-Manga Tracker: could not add the film", error);
 			new Notice("Could not add the film. See the console for details.");
 		}
 	}
@@ -778,7 +778,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 	private startAddDirector(): void {
 		if (this.settings.apiKey === "") {
-			new Notice("Set your TMDB API key in Film, Anime & Manga Tracker settings.");
+			new Notice("Set your TMDB API key in Film + Anime-Manga Tracker settings.");
 			return;
 		}
 		const client = new TmdbClient(this.settings.apiKey);
@@ -802,7 +802,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				new Notice(error.message);
 				return;
 			}
-			console.error("Film, Anime & Manga Tracker: could not add the director", error);
+			console.error("Film + Anime-Manga Tracker: could not add the director", error);
 			new Notice("Could not add the director. See the console for details.");
 		}
 	}
@@ -838,7 +838,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 	private startAddAnime(): void {
 		if (this.settings.malClientId === "") {
-			new Notice("Set your MyAnimeList client ID in Film, Anime & Manga Tracker settings.");
+			new Notice("Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.");
 			return;
 		}
 		const client = new MalClient(this.settings.malClientId);
@@ -871,7 +871,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				new Notice(error.message);
 				return;
 			}
-			console.error("Film, Anime & Manga Tracker: could not add the anime", error);
+			console.error("Film + Anime-Manga Tracker: could not add the anime", error);
 			new Notice("Could not add the anime. See the console for details.");
 		}
 	}
@@ -909,7 +909,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 	private startAddManga(): void {
 		if (this.settings.malClientId === "") {
-			new Notice("Set your MyAnimeList client ID in Film, Anime & Manga Tracker settings.");
+			new Notice("Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.");
 			return;
 		}
 		const client = new MalClient(this.settings.malClientId);
@@ -942,7 +942,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				new Notice(error.message);
 				return;
 			}
-			console.error("Film, Anime & Manga Tracker: could not add the manga", error);
+			console.error("Film + Anime-Manga Tracker: could not add the manga", error);
 			new Notice("Could not add the manga. See the console for details.");
 		}
 	}
@@ -988,7 +988,7 @@ export default class FilmTrackerPlugin extends Plugin {
 	 */
 	private async startAddMangaka(file: TFile, mangaMalId: number): Promise<void> {
 		if (this.settings.malClientId === "") {
-			new Notice("Set your MyAnimeList client ID in Film, Anime & Manga Tracker settings.");
+			new Notice("Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.");
 			return;
 		}
 
@@ -1014,7 +1014,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				new Notice(error.message);
 				return;
 			}
-			console.error("Film, Anime & Manga Tracker: could not add the mangaka", error);
+			console.error("Film + Anime-Manga Tracker: could not add the mangaka", error);
 			new Notice("Could not add the mangaka. See the console for details.");
 		}
 	}
@@ -1055,7 +1055,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				new Notice(error.message);
 				return;
 			}
-			console.error("Film, Anime & Manga Tracker: could not add the mangaka", error);
+			console.error("Film + Anime-Manga Tracker: could not add the mangaka", error);
 			new Notice("Could not add the mangaka. See the console for details.");
 		}
 	}
@@ -1134,7 +1134,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 	startImportFromLetterboxd(): void {
 		if (this.settings.apiKey === "") {
-			new Notice("Set your TMDB API key in Film, Anime & Manga Tracker settings.");
+			new Notice("Set your TMDB API key in Film + Anime-Manga Tracker settings.");
 			return;
 		}
 		new CsvFileModal(this.app, (file) => void this.beginLetterboxdImport(file)).open();
@@ -1233,7 +1233,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 		const cell = (value: string) => value.replace(/\|/g, "\\|");
 		const lines = [
-			"# Film, Anime & Manga Tracker Import Report",
+			"# Film + Anime-Manga Tracker Import Report",
 			"",
 			`Imported: ${imported}`,
 			`Skipped (already in vault): ${skipped}`,
@@ -1245,7 +1245,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			"",
 		];
 
-		await this.app.vault.create(this.availablePath("Film, Anime & Manga Tracker Import Report.md"), lines.join("\n"));
+		await this.app.vault.create(this.availablePath("Film + Anime-Manga Tracker Import Report.md"), lines.join("\n"));
 	}
 
 	private async savePoster(
@@ -1260,7 +1260,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			const path = await this.resolveImagePath(`${baseName}.jpg`, notePath, this.settings.posterFolder);
 			return await this.app.vault.createBinary(path, data);
 		} catch (error) {
-			console.error("Film, Anime & Manga Tracker: could not save the poster", error);
+			console.error("Film + Anime-Manga Tracker: could not save the poster", error);
 			return null;
 		}
 	}
@@ -1281,7 +1281,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			);
 			return await this.app.vault.createBinary(path, data);
 		} catch (error) {
-			console.error("Film, Anime & Manga Tracker: could not save the director photo", error);
+			console.error("Film + Anime-Manga Tracker: could not save the director photo", error);
 			return null;
 		}
 	}
@@ -1302,7 +1302,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			);
 			return await this.app.vault.createBinary(path, data);
 		} catch (error) {
-			console.error("Film, Anime & Manga Tracker: could not save the anime poster", error);
+			console.error("Film + Anime-Manga Tracker: could not save the anime poster", error);
 			return null;
 		}
 	}
@@ -1336,7 +1336,7 @@ export default class FilmTrackerPlugin extends Plugin {
 		const existing = this.app.vault.getAbstractFileByPath(path);
 		if (existing instanceof TFolder) return true;
 		if (existing) {
-			new Notice(`"${path}" is a file, not a folder. Check your Film, Anime & Manga Tracker settings.`);
+			new Notice(`"${path}" is a file, not a folder. Check your Film + Anime-Manga Tracker settings.`);
 			return false;
 		}
 
@@ -1403,7 +1403,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			);
 			return await this.app.vault.createBinary(path, data);
 		} catch (error) {
-			console.error("Film, Anime & Manga Tracker: could not save the manga poster", error);
+			console.error("Film + Anime-Manga Tracker: could not save the manga poster", error);
 			return null;
 		}
 	}
@@ -1424,7 +1424,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			);
 			return await this.app.vault.createBinary(path, data);
 		} catch (error) {
-			console.error("Film, Anime & Manga Tracker: could not save the mangaka photo", error);
+			console.error("Film + Anime-Manga Tracker: could not save the mangaka photo", error);
 			return null;
 		}
 	}

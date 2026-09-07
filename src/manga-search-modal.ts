@@ -51,7 +51,7 @@ export class MangaSearchModal extends SuggestModal<MangaSearchResult> {
 	private reportOnce(error: unknown): void {
 		const message = error instanceof MalError ? error.message : "MyAnimeList search failed.";
 		if (!(error instanceof MalError)) {
-			console.error("Film, Anime & Manga Tracker: manga search failed", error);
+			console.error("Film + Anime-Manga Tracker: manga search failed", error);
 		}
 		if (message === this.lastErrorShown) return;
 		this.lastErrorShown = message;

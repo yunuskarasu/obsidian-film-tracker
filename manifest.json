@@ -1,7 +1,7 @@
 {
   "id": "film-tracker",
-  "name": "Film, Anime & Manga Tracker",
-  "version": "2.0.0",
+  "name": "Film + Anime-Manga Tracker",
+  "version": "2.0.1",
   "minAppVersion": "1.5.7",
   "description": "Add films, anime and manga to your vault as notes with metadata and a poster.",
   "author": "Yunus Eymen Karasu",

@@ -1,10 +1,10 @@
-# Film, Anime & Manga Tracker
+# Film + Anime-Manga Tracker
 
 Add films, anime and manga to your Obsidian vault as notes with metadata and a poster.
 
-Search for a film, pick it from the list, and Film, Anime & Manga Tracker creates a note containing exactly two things: a frontmatter block with the film's metadata, and the poster. Nothing else. No rating, no review section, no template. What you write in the note is up to you.
+Search for a film, pick it from the list, and Film + Anime-Manga Tracker creates a note containing exactly two things: a frontmatter block with the film's metadata, and the poster. Nothing else. No rating, no review section, no template. What you write in the note is up to you.
 
-Anime and manga follow the same philosophy, sourced from MyAnimeList. The two even share a single note when they're the same series: search for either half and Film, Anime & Manga Tracker creates or merges into one **Series note**, with a separate panel below the properties for the manga side. See [Anime and manga](#anime-and-manga) for details.
+Anime and manga follow the same philosophy, sourced from MyAnimeList. The two even share a single note when they're the same series: search for either half and Film + Anime-Manga Tracker creates or merges into one **Series note**, with a separate panel below the properties for the manga side. See [Anime and manga](#anime-and-manga) for details.
 
 ## Design philosophy
 
@@ -16,12 +16,12 @@ The goal is narrower than that: keep a record of what you've seen, link the peop
 
 ## Installing
 
-Film, Anime & Manga Tracker is available in the Obsidian Community Plugins.
+Film + Anime-Manga Tracker is available in the Obsidian Community Plugins.
 
 1. Open **Settings → Community plugins**.
-2. Click **Browse** and search for **Film, Anime & Manga Tracker**.
+2. Click **Browse** and search for **Film + Anime-Manga Tracker**.
 3. Click **Install**.
-4. Enable **Film, Anime & Manga Tracker** under Community plugins.
+4. Enable **Film + Anime-Manga Tracker** under Community plugins.
 
 ### Updating
 
@@ -31,9 +31,9 @@ Obsidian will notify you when a new version is available.
 
 1. Create a free TMDB account and open [your API settings](https://www.themoviedb.org/settings/api).
 2. Copy the **API Key (v3 auth)** value — the short one, not the long read access token.
-3. Paste it into **Settings → Film, Anime & Manga Tracker → TMDB API key**. Every user needs their own key — it's free and takes a minute.
+3. Paste it into **Settings → Film + Anime-Manga Tracker → TMDB API key**. Every user needs their own key — it's free and takes a minute.
 
-For anime and manga, register a free app in your [MyAnimeList API config](https://myanimelist.net/apiconfig) and paste its **Client ID** into **Settings → Film, Anime & Manga Tracker → MyAnimeList client ID**. No OAuth, no redirect URI to configure — search and metadata only need the client ID.
+For anime and manga, register a free app in your [MyAnimeList API config](https://myanimelist.net/apiconfig) and paste its **Client ID** into **Settings → Film + Anime-Manga Tracker → MyAnimeList client ID**. No OAuth, no redirect URI to configure — search and metadata only need the client ID.
 
 ## Tips for a smooth start
 
@@ -43,12 +43,12 @@ A handful of mistakes account for most of the confusion new users hit:
 - **Set `watch_date` to a Date property once.** Fresh out of the box it's plain text, so sorting by date won't work until you do the one-time [type change](#make-watch_date-a-date-property) on any note. Obsidian remembers it vault-wide after that.
 - **Don't set Film folder / Director folder after you've already added notes elsewhere.** Duplicate detection (by `tmdb_id`) only looks inside the currently configured folder, so changing the folder path mid-use can let the same film get added twice — pick your folders early, or move existing notes into the new folder yourself before continuing.
 - **Turning on Add cast / Add composers later doesn't back-fill old notes.** Those settings only apply going forward. Run **Refresh metadata from TMDB** on a note to pull in fields you enabled after creating it.
-- **Never delete or hand-edit `tmdb_id`.** It's the only thing Film, Anime & Manga Tracker uses to recognize "this note already exists" and to know what to refresh — renaming the file itself is safe, but losing `tmdb_id` isn't.
+- **Never delete or hand-edit `tmdb_id`.** It's the only thing Film + Anime-Manga Tracker uses to recognize "this note already exists" and to know what to refresh — renaming the file itself is safe, but losing `tmdb_id` isn't.
 - **Picking from search:** when a title has several versions (remakes, franchises), check the year shown next to each result before choosing — titles alone are often ambiguous.
 - **Letterboxd import runs once per file.** Films already in your vault (matched by `tmdb_id`) are skipped rather than duplicated, so re-running the same export after adding more notes by hand is safe — it only fills gaps.
 - **A blank poster/photo isn't necessarily a bug.** Some TMDB entries genuinely have no image; the note is still created with full metadata either way.
 - **Anime and manga only merge into one note when you open the right note first.** There's no automatic matching — if you want a Series note with both, add one half, keep that note open, then run the other **Add** command (see [Anime and manga](#anime-and-manga)).
-- **Never delete or hand-edit `mal_id`, or the `manga` block's `mal_id`.** Same rule as `tmdb_id`: they're what Film, Anime & Manga Tracker uses to recognize a note and know what to refresh.
+- **Never delete or hand-edit `mal_id`, or the `manga` block's `mal_id`.** Same rule as `tmdb_id`: they're what Film + Anime-Manga Tracker uses to recognize a note and know what to refresh.
 
 ## Usage
 
@@ -81,11 +81,11 @@ Mangaka work a little differently: open the manga or Series note whose author yo
 1. On Letterboxd, go to **Settings → Import & Export → Export your data**, and unzip the download.
 2. Drag `diary.csv` into your vault (or `watched.csv` if you only want the list of films without watch dates).
 3. Run **Import from Letterboxd** from the command palette, or use the button in settings, and pick that file.
-4. Film, Anime & Manga Tracker searches TMDB for each entry and creates a note for anything not already in your vault — the same note, with the same two things, as adding a film by hand.
+4. Film + Anime-Manga Tracker searches TMDB for each entry and creates a note for anything not already in your vault — the same note, with the same two things, as adding a film by hand.
 
 From `diary.csv`, the **Watched Date** column fills in `watch_date` on notes it creates. Nothing else from the export is imported: **Rating**, **Tags** and **Rewatch** are your own commentary, not the plugin's, so they are never read.
 
-A film already in your vault (matched by `tmdb_id`) is skipped rather than duplicated; if it has no `watch_date` yet, the import fills that in from the diary entry. When a title in the CSV has no confident TMDB match, it is left out and listed, with the reason, in a **Film, Anime & Manga Tracker Import Report** note created at the end.
+A film already in your vault (matched by `tmdb_id`) is skipped rather than duplicated; if it has no `watch_date` yet, the import fills that in from the diary entry. When a title in the CSV has no confident TMDB match, it is left out and listed, with the reason, in a **Film + Anime-Manga Tracker Import Report** note created at the end.
 
 ## What gets written
 
@@ -113,8 +113,8 @@ That is the whole file. The body is left empty: the poster is rendered from the 
 
 - `title` is the English title. When TMDB has no English translation for a film, it falls back to the original title.
 - `original_title` is always the title in the film's own language.
-- `watch_date` is left empty on purpose. Film, Anime & Manga Tracker never fills it in — it is yours to complete when you have seen the film.
-- `watched` is a plain checkbox, separate from `watch_date`, for exactly the "I know I've seen it but don't remember when" case. Film, Anime & Manga Tracker never touches it after creation — tick or untick freely, it's yours.
+- `watch_date` is left empty on purpose. Film + Anime-Manga Tracker never fills it in — it is yours to complete when you have seen the film.
+- `watched` is a plain checkbox, separate from `watch_date`, for exactly the "I know I've seen it but don't remember when" case. Film + Anime-Manga Tracker never touches it after creation — tick or untick freely, it's yours.
 
 ### Director notes
 
@@ -133,9 +133,9 @@ tmdb_id: 8452
 ---
 ```
 
-Same philosophy as a film note: structured data and a photo, nothing else. The photo is written to the `poster` property on purpose — Film, Anime & Manga Tracker's layout renders any note carrying `tmdb_id` and `poster` beside its properties, so a director note gets the exact same two-column layout as a film note for free.
+Same philosophy as a film note: structured data and a photo, nothing else. The photo is written to the `poster` property on purpose — Film + Anime-Manga Tracker's layout renders any note carrying `tmdb_id` and `poster` beside its properties, so a director note gets the exact same two-column layout as a film note for free.
 
-`original_name` is a best-effort guess: TMDB doesn't tag alternate names by language, so Film, Anime & Manga Tracker infers the director's native writing system from `place_of_birth` (Russia → Cyrillic, Japan → Japanese, China → Chinese, and similarly for Korean, Arabic, Hebrew, Greek and Thai) and picks the first alternate name written in it. `aliases` then holds just `name` and `original_name` — not TMDB's full, noisy list of transliterations. For a director from a Latin-script country (France, Poland, Germany, …), or when nothing matches, `original_name` is left empty for you to fill in by hand, the same way `watch_date` is.
+`original_name` is a best-effort guess: TMDB doesn't tag alternate names by language, so Film + Anime-Manga Tracker infers the director's native writing system from `place_of_birth` (Russia → Cyrillic, Japan → Japanese, China → Chinese, and similarly for Korean, Arabic, Hebrew, Greek and Thai) and picks the first alternate name written in it. `aliases` then holds just `name` and `original_name` — not TMDB's full, noisy list of transliterations. For a director from a Latin-script country (France, Poland, Germany, …), or when nothing matches, `original_name` is left empty for you to fill in by hand, the same way `watch_date` is.
 
 ### Anime notes
 
@@ -159,7 +159,7 @@ watched: false
 ---
 ```
 
-Same philosophy as a film note: structured metadata and a poster, nothing else. `watched` is a plain checkbox Film, Anime & Manga Tracker sets once and never touches again — same role as a film's `watched`.
+Same philosophy as a film note: structured metadata and a poster, nothing else. `watched` is a plain checkbox Film + Anime-Manga Tracker sets once and never touches again — same role as a film's `watched`.
 
 When the same note also has a manga side, its metadata lives in a single nested `manga` property instead of being mixed into the fields above — see [Anime and manga](#anime-and-manga) for why, and for the panel that actually shows it.
 
@@ -206,7 +206,7 @@ The first time you add a film, open the note's properties, click the type icon n
 
 ## Behaviour worth knowing
 
-- **Duplicates.** If a note with the same `tmdb_id` already exists in the relevant folder (Film folder for films, Director folder for directors), Film, Anime & Manga Tracker opens it instead of creating a second one. It never overwrites a note you have written in.
+- **Duplicates.** If a note with the same `tmdb_id` already exists in the relevant folder (Film folder for films, Director folder for directors), Film + Anime-Manga Tracker opens it instead of creating a second one. It never overwrites a note you have written in.
 - **Missing posters.** If TMDB has no poster or photo, or the download fails, the note is still created with its metadata. The image is never worth losing the note over.
 - **File names.** Film notes are named `English Title (Year).md`; director notes are named after the person. Characters that are illegal in file names or that break wikilinks are removed, so `Face/Off` becomes `Face Off (1997)`.
 - **Layout.** In a note that has a `tmdb_id` or `mal_id` and a poster, the title and properties sit in a left column with the poster beside them, in both live preview and reading view. The poster is drawn from the `poster` property rather than embedded in the body, so the body stays empty and entirely yours. Narrow windows and mobile stack it vertically. To change the poster size, override `--film-tracker-poster-width` in a CSS snippet.
@@ -234,7 +234,7 @@ Turn on **Add cast** and **Link cast** and the same thing happens for actors —
 
 ### Connections
 
-Below a film's properties (and poster, if it has one), Film, Anime & Manga Tracker shows other films in your vault that share a director, a composer or a cast member — with the shared name next to each one. This works whether or not **Link cast**/**Link directors**/**Link composers** are on: it compares the names directly, not the links. Genres are deliberately left out — two films both being "Drama" is not a connection.
+Below a film's properties (and poster, if it has one), Film + Anime-Manga Tracker shows other films in your vault that share a director, a composer or a cast member — with the shared name next to each one. This works whether or not **Link cast**/**Link directors**/**Link composers** are on: it compares the names directly, not the links. Genres are deliberately left out — two films both being "Drama" is not a connection.
 
 This panel is rendered, not written to the note — it appears and disappears as your vault changes, and never touches the file.
 
@@ -325,9 +325,9 @@ The properties above `manga:` are the anime side — same fields, same rules as 
 
 ### The MANGA panel
 
-Obsidian's Properties view has no widget for a nested value like `manga:` — it would otherwise show up as a single property rendered as raw, unreadable JSON. Film, Anime & Manga Tracker hides that one row instead (only on notes that actually have a `manga` block — a `manga` property you've added yourself on some unrelated note is never touched) and shows the same data properly below the properties, in its own collapsible **MANGA** panel: title, media type, status, chapters, volumes, mangaka (linked, same as directors — see below), the manga's own poster, and a **Read** checkbox.
+Obsidian's Properties view has no widget for a nested value like `manga:` — it would otherwise show up as a single property rendered as raw, unreadable JSON. Film + Anime-Manga Tracker hides that one row instead (only on notes that actually have a `manga` block — a `manga` property you've added yourself on some unrelated note is never touched) and shows the same data properly below the properties, in its own collapsible **MANGA** panel: title, media type, status, chapters, volumes, mangaka (linked, same as directors — see below), the manga's own poster, and a **Read** checkbox.
 
-That Read checkbox is the one place in Film, Anime & Manga Tracker that writes to the note from a rendered panel rather than through Properties directly — ticking it flips `manga.read` and nothing else. Refreshing never touches it, the same guarantee `watched` and a film's `watch_date` already have.
+That Read checkbox is the one place in Film + Anime-Manga Tracker that writes to the note from a rendered panel rather than through Properties directly — ticking it flips `manga.read` and nothing else. Refreshing never touches it, the same guarantee `watched` and a film's `watch_date` already have.
 
 Since a Series note can have its own top-level `poster` (the anime's) and a separate `manga.poster`, both are downloaded and kept independently — refreshing one side never overwrites the other's poster, or a poster that's already saved.
 

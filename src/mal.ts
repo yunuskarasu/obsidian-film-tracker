@@ -318,7 +318,7 @@ export class MalClient {
 				headers: { "X-MAL-CLIENT-ID": this.clientId },
 			});
 		} catch (error) {
-			console.error("Film, Anime & Manga Tracker: MAL request failed", error);
+			console.error("Film + Anime-Manga Tracker: MAL request failed", error);
 			throw new MalError("Could not reach MyAnimeList. Check your internet connection.");
 		}
 	}
