@@ -16,6 +16,11 @@ export interface FilmTrackerSettings {
 	linkComposers: boolean;
 	showConnections: boolean;
 	showFilmography: boolean;
+	malClientId: string;
+	animeFolder: string;
+	animePosterFolder: string;
+	mangakaFolder: string;
+	mangakaPhotoFolder: string;
 }
 
 export const DEFAULT_SETTINGS: FilmTrackerSettings = {
@@ -33,6 +38,11 @@ export const DEFAULT_SETTINGS: FilmTrackerSettings = {
 	linkComposers: false,
 	showConnections: true,
 	showFilmography: true,
+	malClientId: "",
+	animeFolder: "Anime",
+	animePosterFolder: "",
+	mangakaFolder: "Mangaka",
+	mangakaPhotoFolder: "",
 };
 
 export const TMDB_ATTRIBUTION =
@@ -50,6 +60,8 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 		const { containerEl } = this;
 		containerEl.empty();
 
+		new Setting(containerEl).setName("🔑 API & Integrations").setHeading();
+
 		new Setting(containerEl)
 			.setName("TMDB API key")
 			.setDesc(this.apiKeyDescription())
@@ -63,6 +75,23 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					});
 			});
+
+		new Setting(containerEl)
+			.setName("MyAnimeList client ID")
+			.setDesc(this.malClientIdDescription())
+			.addText((text) => {
+				text.inputEl.type = "password";
+				text
+					.setPlaceholder("Paste your client ID")
+					.setValue(this.plugin.settings.malClientId)
+					.onChange(async (value) => {
+						this.plugin.settings.malClientId = value.trim();
+						await this.plugin.saveSettings();
+					});
+			});
+
+		new Setting(containerEl).setName("🎬 Cinema").setHeading();
+		new Setting(containerEl).setName("Folders").setHeading();
 
 		new Setting(containerEl)
 			.setName("Film folder")
@@ -115,6 +144,8 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					}),
 			);
+
+		new Setting(containerEl).setName("Film metadata").setHeading();
 
 		new Setting(containerEl)
 			.setName("Link directors")
@@ -197,6 +228,8 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 				}),
 			);
 
+		new Setting(containerEl).setName("Panels").setHeading();
+
 		new Setting(containerEl)
 			.setName("Show connections")
 			.setDesc(
@@ -223,6 +256,8 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 				}),
 			);
 
+		new Setting(containerEl).setName("Letterboxd").setHeading();
+
 		new Setting(containerEl)
 			.setName("Import from Letterboxd")
 			.setDesc(
@@ -234,6 +269,67 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 				button
 					.setButtonText("Import…")
 					.onClick(() => this.plugin.startImportFromLetterboxd()),
+			);
+
+		new Setting(containerEl).setName("🌸 Anime & Manga").setHeading();
+		new Setting(containerEl).setName("Folders").setHeading();
+
+		new Setting(containerEl)
+			.setName("Anime/manga folder")
+			.setDesc(
+				"Where new anime and manga notes are created (the same folder for both, since a Series note can hold either or both). Leave empty for the vault root.",
+			)
+			.addText((text) =>
+				text
+					.setPlaceholder("Anime")
+					.setValue(this.plugin.settings.animeFolder)
+					.onChange(async (value) => {
+						this.plugin.settings.animeFolder = value.trim();
+						await this.plugin.saveSettings();
+					}),
+			);
+
+		new Setting(containerEl)
+			.setName("Anime/manga poster folder")
+			.setDesc(
+				"Where anime and manga posters are saved — kept as two separate files (a Series note can show both). Leave empty to follow your attachment folder setting.",
+			)
+			.addText((text) =>
+				text
+					.setPlaceholder("Follow attachment settings")
+					.setValue(this.plugin.settings.animePosterFolder)
+					.onChange(async (value) => {
+						this.plugin.settings.animePosterFolder = value.trim();
+						await this.plugin.saveSettings();
+					}),
+			);
+
+		new Setting(containerEl)
+			.setName("Mangaka folder")
+			.setDesc(
+				"Where new mangaka notes are created. Kept separate from the anime/manga folder, the same way directors have their own folder apart from films. Leave empty for the vault root.",
+			)
+			.addText((text) =>
+				text
+					.setPlaceholder("Mangaka")
+					.setValue(this.plugin.settings.mangakaFolder)
+					.onChange(async (value) => {
+						this.plugin.settings.mangakaFolder = value.trim();
+						await this.plugin.saveSettings();
+					}),
+			);
+
+		new Setting(containerEl)
+			.setName("Mangaka photo folder")
+			.setDesc("Where mangaka photos are saved. Leave empty to follow your attachment folder setting.")
+			.addText((text) =>
+				text
+					.setPlaceholder("Follow attachment settings")
+					.setValue(this.plugin.settings.mangakaPhotoFolder)
+					.onChange(async (value) => {
+						this.plugin.settings.mangakaPhotoFolder = value.trim();
+						await this.plugin.saveSettings();
+					}),
 			);
 
 		containerEl.createEl("p", {
@@ -252,6 +348,19 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 		fragment.append(", then copy the ");
 		fragment.createEl("strong", { text: "API Key (v3 auth)" });
 		fragment.append(" value.");
+		return fragment;
+	}
+
+	private malClientIdDescription(): DocumentFragment {
+		const fragment = new DocumentFragment();
+		fragment.append("Register a free app in your ");
+		fragment.createEl("a", {
+			text: "MyAnimeList API config",
+			href: "https://myanimelist.net/apiconfig",
+		});
+		fragment.append(", then copy its ");
+		fragment.createEl("strong", { text: "Client ID" });
+		fragment.append(".");
 		return fragment;
 	}
 }
