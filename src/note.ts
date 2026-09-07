@@ -68,6 +68,41 @@ export function parseWikilink(value: unknown): string | null {
 }
 
 /**
+ * Loosely normalizes a title for cross-checking whether an anime and a
+ * manga are plausibly the same work: lowercased, trimmed, whitespace
+ * collapsed, and a trailing `(YYYY)` year stripped — MAL sometimes bakes a
+ * year into one adaptation's own title (e.g. a second anime adaptation)
+ * without doing the same to its `alternative_titles`, which would
+ * otherwise defeat an exact match. Other parenthetical suffixes (`(TV)`,
+ * `(Movie)`) are left alone, since those can genuinely distinguish unrelated
+ * records.
+ */
+function normalizeTitleForMatch(title: string): string {
+	return title.trim().toLowerCase().replace(/\s+/g, " ").replace(/\s*\(\d{4}\)$/, "");
+}
+
+/**
+ * True if any title in `a` exactly matches (after normalization) any title
+ * in `b` — used to check whether an anime and a manga's title families
+ * (title, English title, Japanese title) plausibly name the same work
+ * before merging them into one Series note. Deliberately exact rather than
+ * fuzzy: a false match merges two unrelated works into one note, which is
+ * far worse than a false negative that just leaves the user to merge by
+ * hand the way they always could.
+ */
+export function titleFamiliesOverlap(
+	a: readonly (string | null | undefined)[],
+	b: readonly (string | null | undefined)[],
+): boolean {
+	const setA = new Set(
+		a.filter((title): title is string => !!title && title.trim() !== "").map(normalizeTitleForMatch),
+	);
+	return b.some(
+		(title) => !!title && title.trim() !== "" && setA.has(normalizeTitleForMatch(title)),
+	);
+}
+
+/**
  * Turns names into wikilinks, but only where a note by that name already
  * exists. Names already written as links are left alone.
  */
@@ -354,4 +389,18 @@ export function setWatchDate(content: string, date: string): string {
 export function joinPath(folder: string, name: string): string {
 	const trimmed = folder.trim();
 	return normalizePath(trimmed === "" ? name : `${trimmed}/${name}`);
+}
+
+/**
+ * A trailing-slash path prefix for scoping an id lookup or a note-type check
+ * to one folder — empty means "match every path" (vault root). This is what
+ * keeps two note types that share the same frontmatter field name (film and
+ * director both use `tmdb_id`; anime and mangaka both use `mal_id`) from
+ * ever being mismatched for one another: each type's "does this file
+ * belong to me" check is scoped to its own folder via this prefix, never to
+ * frontmatter shape alone.
+ */
+export function folderPrefix(folder: string): string {
+	const trimmed = folder.trim();
+	return trimmed === "" ? "" : `${normalizePath(trimmed)}/`;
 }

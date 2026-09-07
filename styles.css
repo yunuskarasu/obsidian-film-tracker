@@ -260,3 +260,56 @@ body {
 	letter-spacing: normal;
 	text-transform: none;
 }
+
+/* Obsidian has no widget for a nested-object property, so the `manga` block
+ * would otherwise render as a raw, unreadable JSON-ish blob in the native
+ * Properties view. .film-tracker-has-manga is added only to the host of a
+ * Series note that actually has a manga block (see film-note-layout.ts), so
+ * this never hides an unrelated `manga` property on some other note. The
+ * data itself is untouched — this only stops Obsidian's own widget from
+ * rendering that one row; the MANGA panel below is the real, structured view. */
+.film-tracker-has-manga .metadata-property[data-property-key="manga"] {
+	display: none;
+}
+
+/* ---------- Manga panel: a Series note's manga side, shown alongside the
+ * anime Properties/poster rather than mixed into them. Same collapsible box
+ * as Connections/Filmography, never both on the same note. */
+
+.film-tracker-manga-body {
+	flex-direction: row;
+	align-items: flex-start;
+	gap: var(--size-4-3);
+}
+
+.film-tracker-manga-poster {
+	flex-shrink: 0;
+	width: 80px;
+}
+
+.film-tracker-manga-poster img {
+	display: block;
+	width: 100%;
+	height: auto;
+	border-radius: var(--radius-s);
+}
+
+.film-tracker-manga-details {
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-4-1);
+	min-width: 0;
+}
+
+.film-tracker-manga-title {
+	font-weight: var(--font-medium);
+}
+
+.film-tracker-manga-read {
+	display: flex;
+	align-items: center;
+	gap: var(--size-4-1);
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+	cursor: pointer;
+}

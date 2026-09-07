@@ -289,7 +289,7 @@ export class TmdbClient {
 		try {
 			return await requestUrl({ url, throw: false });
 		} catch (error) {
-			console.error("Film Tracker: TMDB request failed", error);
+			console.error("Film, Anime & Manga Tracker: TMDB request failed", error);
 			throw new TmdbError("Could not reach TMDB. Check your internet connection.");
 		}
 	}

@@ -17,7 +17,7 @@ export class ImportConfirmModal extends Modal {
 		contentEl.createEl("p", {
 			text:
 				`Found ${this.count} film${this.count === 1 ? "" : "s"} in this file. ` +
-				"Film Tracker will search TMDB for each one and create a note for anything " +
+				"Film, Anime & Manga Tracker will search TMDB for each one and create a note for anything " +
 				"not already in your vault. This can take a while for large exports.",
 		});
 

@@ -6,6 +6,13 @@ import {
 	type FilmographyEntry,
 	type FilmographyFilm,
 } from "./filmography";
+import {
+	findMangagraphy,
+	mangagraphyProgress,
+	type MangagraphyEntry,
+	type MangagraphyManga,
+} from "./mangagraphy";
+import { toggleMangaRead } from "./manga-note";
 import { parseWikilink } from "./note";
 
 const POSTER_CLASS = "film-tracker-poster";
@@ -13,10 +20,29 @@ const LAYOUT_CLASS = "film-tracker-layout";
 const POSTER_PATH_ATTR = "data-film-tracker-poster";
 const CONNECTIONS_CLASS = "film-tracker-connections";
 const MAX_CONNECTIONS = 20;
+/**
+ * Marks the same host element `LAYOUT_CLASS` lives on, scoping the CSS rule
+ * that hides the native `manga` property row (Obsidian has no widget for a
+ * nested object property, so it renders as raw JSON) to Series notes only —
+ * a note elsewhere in the vault with its own unrelated `manga` property is
+ * never touched, since this class is never added to its host.
+ */
+const MANGA_HOST_CLASS = "film-tracker-has-manga";
 
 interface Poster {
 	file: TFile;
 	alt: string;
+}
+
+interface MangaPanelInfo {
+	title: string;
+	mediaType: string | null;
+	status: string | null;
+	chapters: number | null;
+	volumes: number | null;
+	mangakaRaw: string[];
+	posterLinkpath: string | null;
+	read: boolean;
 }
 
 function extractNames(value: unknown): string[] {
@@ -73,6 +99,9 @@ export class FilmNoteLayout {
 		for (const el of Array.from(document.querySelectorAll(`.${LAYOUT_CLASS}`))) {
 			el.removeClass(LAYOUT_CLASS);
 		}
+		for (const el of Array.from(document.querySelectorAll(`.${MANGA_HOST_CLASS}`))) {
+			el.removeClass(MANGA_HOST_CLASS);
+		}
 	}
 
 	private applyTo(view: MarkdownView): void {
@@ -86,7 +115,7 @@ export class FilmNoteLayout {
 			}
 		}
 
-		this.applyRelatedPanel(view);
+		this.applyRelatedPanel(view, host);
 	}
 
 	private showPoster(host: HTMLElement, poster: Poster): void {
@@ -118,18 +147,39 @@ export class FilmNoteLayout {
 	 * the header and the body, so the panel is inserted as the header's next
 	 * sibling instead of living inside the same grid the poster uses.
 	 */
-	private applyRelatedPanel(view: MarkdownView): void {
+	private applyRelatedPanel(view: MarkdownView, host: HTMLElement | null): void {
 		const anchor = this.findConnectionsAnchor(view);
 		if (anchor === null) return;
 
 		const file = view.file;
 		if (file !== null) {
 			const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
+			const manga = frontmatter === undefined ? null : this.resolveMangaInfo(frontmatter);
+			if (manga !== null) {
+				host?.addClass(MANGA_HOST_CLASS);
+				this.applyMangaPanel(anchor, file, manga);
+				return;
+			}
+			host?.removeClass(MANGA_HOST_CLASS);
+
+			const mangaka = frontmatter === undefined ? null : this.resolveMangakaInfo(frontmatter);
+			if (mangaka !== null) {
+				this.applyMangagraphy(anchor, file, mangaka);
+				return;
+			}
+
+			if (frontmatter?.mal_id !== undefined) {
+				// Anime-only notes have no Connections/Filmography panel.
+				this.detachPanel(anchor);
+				return;
+			}
 			const director = frontmatter === undefined ? null : this.resolveDirectorInfo(frontmatter);
 			if (director !== null) {
 				this.applyFilmography(anchor, file, director);
 				return;
 			}
+		} else {
+			host?.removeClass(MANGA_HOST_CLASS);
 		}
 
 		this.applyConnections(anchor, view);
@@ -151,6 +201,96 @@ export class FilmNoteLayout {
 		this.renderConnections(this.ensurePanel(anchor), found.connections, found.sourcePath);
 	}
 
+	/** Reads the `manga` nested block straight from parsed frontmatter — no raw-text parsing needed for rendering. */
+	private resolveMangaInfo(frontmatter: Record<string, unknown>): MangaPanelInfo | null {
+		const manga = frontmatter.manga;
+		if (typeof manga !== "object" || manga === null) return null;
+		const block = manga as Record<string, unknown>;
+		if (typeof block.mal_id !== "number") return null;
+
+		return {
+			title: typeof block.title === "string" ? block.title : "",
+			mediaType: typeof block.media_type === "string" ? block.media_type : null,
+			status: typeof block.status === "string" ? block.status : null,
+			chapters: typeof block.chapters === "number" ? block.chapters : null,
+			volumes: typeof block.volumes === "number" ? block.volumes : null,
+			mangakaRaw: Array.isArray(block.mangaka)
+				? block.mangaka.filter((item): item is string => typeof item === "string")
+				: [],
+			posterLinkpath: parseWikilink(block.poster),
+			read: block.read === true,
+		};
+	}
+
+	private applyMangaPanel(anchor: HTMLElement, file: TFile, info: MangaPanelInfo): void {
+		const panel = this.ensurePanel(anchor);
+		const wasCollapsed = panel.hasClass("is-collapsed");
+		panel.empty();
+		panel.toggleClass("is-collapsed", wasCollapsed);
+		this.renderPanelHeading(panel, "MANGA");
+
+		const body = panel.createDiv({ cls: "film-tracker-connections-list film-tracker-manga-body" });
+
+		const posterFile = this.resolveLinkedFile(info.posterLinkpath, file.path);
+		if (posterFile !== null) {
+			body.createDiv({ cls: "film-tracker-manga-poster" }).createEl("img", {
+				attr: { src: this.app.vault.getResourcePath(posterFile), alt: `${info.title} poster` },
+			});
+		}
+
+		const details = body.createDiv({ cls: "film-tracker-manga-details" });
+		if (info.title !== "") {
+			details.createDiv({ text: info.title, cls: "film-tracker-manga-title" });
+		}
+
+		const meta = [info.mediaType, info.status].filter((value): value is string => value !== null);
+		if (info.volumes !== null) meta.push(`${info.volumes} volumes`);
+		if (info.chapters !== null) meta.push(`${info.chapters} chapters`);
+		if (meta.length > 0) {
+			details.createDiv({ text: meta.join(" · "), cls: "film-tracker-connections-shared" });
+		}
+
+		if (info.mangakaRaw.length > 0) {
+			const mangaka = details.createDiv({ cls: "film-tracker-manga-mangaka" });
+			info.mangakaRaw.forEach((raw, index) => {
+				if (index > 0) mangaka.appendText(", ");
+				this.renderNameOrLink(mangaka, raw, file.path);
+			});
+		}
+
+		const readToggle = details.createEl("label", { cls: "film-tracker-manga-read" });
+		const checkbox = readToggle.createEl("input", { attr: { type: "checkbox" } });
+		checkbox.checked = info.read;
+		readToggle.appendText(" Read");
+		checkbox.addEventListener("change", () => {
+			void this.app.vault.process(file, (content) => toggleMangaRead(content));
+		});
+	}
+
+	/** Renders a mangaka name as a clickable internal link when its wikilink currently resolves, plain text otherwise. */
+	private renderNameOrLink(container: HTMLElement, raw: string, sourcePath: string): void {
+		const linkpath = parseWikilink(raw);
+		const target = linkpath === null ? null : this.app.metadataCache.getFirstLinkpathDest(linkpath, sourcePath);
+		if (target === null) {
+			container.createSpan({ text: linkpath ?? raw });
+			return;
+		}
+		const link = container.createEl("a", {
+			cls: "internal-link film-tracker-connections-link",
+			text: target.basename,
+			href: target.path,
+		});
+		link.addEventListener("click", (event) => {
+			event.preventDefault();
+			void this.app.workspace.openLinkText(target.path, sourcePath, event.ctrlKey || event.metaKey);
+		});
+	}
+
+	private resolveLinkedFile(linkpath: string | null, sourcePath: string): TFile | null {
+		if (linkpath === null) return null;
+		return this.app.metadataCache.getFirstLinkpathDest(linkpath, sourcePath);
+	}
+
 	private applyFilmography(
 		anchor: HTMLElement,
 		file: TFile,
@@ -168,6 +308,22 @@ export class FilmNoteLayout {
 		}
 
 		this.renderFilmography(this.ensurePanel(anchor), films, file.path);
+	}
+
+	/**
+	 * No visibility setting of its own — mirrors the MANGA panel, which has
+	 * none either, rather than `showFilmography` (that toggle is specifically
+	 * about Director's own panel, and coupling it to a mangaka's panel would
+	 * be a confusing surprise for anyone who turns it off).
+	 */
+	private applyMangagraphy(anchor: HTMLElement, file: TFile, mangaka: { names: Set<string> }): void {
+		const mangas = this.computeMangagraphy(mangaka.names);
+		if (mangas.length === 0) {
+			this.detachPanel(anchor);
+			return;
+		}
+
+		this.renderMangagraphy(this.ensurePanel(anchor), mangas, file.path);
 	}
 
 	private detachPanel(anchor: HTMLElement): void {
@@ -208,6 +364,24 @@ export class FilmNoteLayout {
 		return { names };
 	}
 
+	/**
+	 * A mangaka note has `name` + `mal_id` but never `title` — an anime or
+	 * Series note always has `title`, even a manga-only one (see
+	 * `resolveMangaInfo`, checked earlier). No `aliases` set here: MAL's
+	 * `/people/{id}` gives no alternate-name equivalent to carry (confirmed —
+	 * `alternate_names` came back empty in testing), unlike TMDB for
+	 * directors.
+	 */
+	private resolveMangakaInfo(frontmatter: Record<string, unknown>): { names: Set<string> } | null {
+		if (frontmatter.title !== undefined) return null;
+		const malId: unknown = frontmatter.mal_id;
+		if (typeof malId !== "number") return null;
+		const name: unknown = frontmatter.name;
+		if (typeof name !== "string" || name.trim() === "") return null;
+
+		return { names: new Set([name.trim()]) };
+	}
+
 	private computeFilmography(names: Set<string>): FilmographyEntry[] {
 		const films = this.app.vault
 			.getMarkdownFiles()
@@ -229,6 +403,34 @@ export class FilmNoteLayout {
 			year: typeof year === "number" ? year : null,
 			watched: frontmatter.watched === true,
 			directors: extractNames(frontmatter.directors),
+		};
+	}
+
+	private computeMangagraphy(names: Set<string>): MangagraphyEntry[] {
+		const mangas = this.app.vault
+			.getMarkdownFiles()
+			.map((file) => this.mangagraphyMangaInfo(file))
+			.filter((info): info is MangagraphyManga => info !== null);
+
+		return findMangagraphy(names, mangas);
+	}
+
+	/** Reads the nested `manga` block the same way `resolveMangaInfo` does — a manga-only note and a merged Series note look identical here. */
+	private mangagraphyMangaInfo(file: TFile): MangagraphyManga | null {
+		const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
+		const manga: unknown = frontmatter?.manga;
+		if (typeof manga !== "object" || manga === null) return null;
+		const block = manga as Record<string, unknown>;
+		if (typeof block.mal_id !== "number") return null;
+
+		const title: unknown = block.title;
+		const year: unknown = block.year;
+		return {
+			path: file.path,
+			title: typeof title === "string" && title !== "" ? title : file.basename,
+			year: typeof year === "number" ? year : null,
+			read: block.read === true,
+			mangaka: extractNames(block.mangaka),
 		};
 	}
 
@@ -362,6 +564,46 @@ export class FilmNoteLayout {
 		}
 	}
 
+	private renderMangagraphy(
+		panel: HTMLElement,
+		mangas: MangagraphyEntry[],
+		sourcePath: string,
+	): void {
+		const wasCollapsed = panel.hasClass("is-collapsed");
+		panel.empty();
+		panel.toggleClass("is-collapsed", wasCollapsed);
+		const progress = mangagraphyProgress(mangas);
+		this.renderPanelHeading(
+			panel,
+			"MANGAGRAPHY",
+			progress === null ? undefined : `${progress}% read`,
+		);
+
+		const list = panel.createEl("ul", { cls: "film-tracker-connections-list" });
+		for (const manga of mangas) {
+			const item = list.createEl("li");
+			const link = item.createEl("a", {
+				cls: "internal-link film-tracker-connections-link",
+				text: manga.title,
+				href: manga.path,
+			});
+			link.addEventListener("click", (event) => {
+				event.preventDefault();
+				void this.app.workspace.openLinkText(
+					manga.path,
+					sourcePath,
+					event.ctrlKey || event.metaKey,
+				);
+			});
+			if (manga.year !== null) {
+				item.createSpan({
+					cls: "film-tracker-connections-shared",
+					text: ` — ${manga.year}`,
+				});
+			}
+		}
+	}
+
 	private findHost(view: MarkdownView): HTMLElement | null {
 		const selector =
 			view.getMode() === "preview" ? ".markdown-preview-sizer > .mod-header" : ".cm-sizer";
@@ -377,7 +619,10 @@ export class FilmNoteLayout {
 		if (frontmatter === undefined) return null;
 
 		const tmdbId: unknown = frontmatter.tmdb_id;
-		if (tmdbId === undefined || tmdbId === null) return null;
+		const malId: unknown = frontmatter.mal_id;
+		if ((tmdbId === undefined || tmdbId === null) && (malId === undefined || malId === null)) {
+			return null;
+		}
 
 		const linkpath = parseWikilink(frontmatter.poster);
 		if (linkpath === null) return null;
