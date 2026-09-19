@@ -1,5 +1,6 @@
 import { App, PluginSettingTab, SecretComponent, Setting, requireApiVersion } from "obsidian";
 import type FilmTrackerPlugin from "./main";
+import { keychainOf } from "./secrets";
 
 export interface FilmTrackerSettings {
 	/** The TMDB key as typed in — before Obsidian 1.11.4, which brought the keychain (see secrets.ts). */
@@ -76,8 +77,11 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 
 		// From Obsidian 1.11.4 on, the keys live in its keychain: the setting
 		// holds the name of the secret, picked or added right here. Before
-		// that, they are typed in and saved with the rest of the settings.
-		if (requireApiVersion("1.11.4")) {
+		// that — or wherever the keychain and its picker aren't really there,
+		// whatever the version says — they are typed in and saved with the
+		// rest of the settings.
+		const keychain = keychainOf(this.app);
+		if (requireApiVersion("1.11.4") && keychain !== null && typeof SecretComponent === "function") {
 			tmdbKey.setDesc(this.apiKeyDescription(true)).addComponent((el) =>
 				new SecretComponent(this.app, el)
 					.setValue(this.plugin.settings.apiKeySecretName)

@@ -8,11 +8,15 @@ export interface Keychain {
 }
 
 /**
- * Obsidian's keychain, which came in 1.11.4 — `null` on earlier versions,
- * where the keys stay in the plugin's settings as they always have.
+ * Obsidian's keychain, which came in 1.11.4. `null` on earlier versions, and
+ * on anything that reports the version without carrying the keychain itself —
+ * the version alone is not enough to go on — where the keys stay in the
+ * plugin's settings as they always have.
  */
 export function keychainOf(app: App): Keychain | null {
-	return requireApiVersion("1.11.4") ? app.secretStorage : null;
+	const keychain: Keychain | undefined = requireApiVersion("1.11.4") ? app.secretStorage : undefined;
+	const works = typeof keychain?.getSecret === "function" && typeof keychain.setSecret === "function";
+	return works && keychain !== undefined ? keychain : null;
 }
 
 export type ApiKey = "tmdb" | "mal";

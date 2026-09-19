@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
-import { isMissingHere, moveKeysToKeychain, readKey, type Keychain } from "../src/secrets";
+import type { App } from "obsidian";
+import { isMissingHere, keychainOf, moveKeysToKeychain, readKey, type Keychain } from "../src/secrets";
 import { DEFAULT_SETTINGS, type FilmTrackerSettings } from "../src/settings";
 
 /** An in-memory keychain; `broken` makes every write fail the way a locked OS keychain would. */
@@ -18,6 +19,22 @@ function fakeKeychain(secrets: Record<string, string> = {}, broken = false): Key
 function settings(overrides: Partial<FilmTrackerSettings>): FilmTrackerSettings {
 	return { ...DEFAULT_SETTINGS, ...overrides };
 }
+
+describe("keychainOf", () => {
+	/**
+	 * Regression: this trusted the version alone. Anything that reports 1.11.4
+	 * without carrying the keychain — a platform Obsidian hasn't brought it to
+	 * yet — handed back `undefined`, which every caller then read as "there is
+	 * a keychain", and each command died on `getSecret`.
+	 */
+	it("takes a keychain only when it is really there", () => {
+		expect(keychainOf({} as App)).toBeNull();
+		expect(keychainOf({ secretStorage: {} } as unknown as App)).toBeNull();
+		expect(keychainOf({ secretStorage: { getSecret: () => null } } as unknown as App)).toBeNull();
+		const real = fakeKeychain();
+		expect(keychainOf({ secretStorage: real } as unknown as App)).toBe(real);
+	});
+});
 
 describe("moveKeysToKeychain", () => {
 	it("moves typed-in keys into the keychain and out of the settings", () => {
