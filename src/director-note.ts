@@ -1,23 +1,18 @@
 import type { DirectorMetadata } from "./tmdb";
 import {
 	isEmptyValue,
+	listValues,
+	mergeAliases,
 	parseFrontmatterBlocks,
+	posterLine,
 	sanitizeFileName,
 	serializeFrontmatterBlocks,
+	yamlList,
 	yamlString,
 } from "./note";
 
 export function buildDirectorFileName(name: string): string {
 	return sanitizeFileName(name);
-}
-
-function yamlList(key: string, values: string[]): string[] {
-	if (values.length === 0) return [`${key}:`];
-	return [`${key}:`, ...values.map((value) => `  - ${yamlString(value)}`)];
-}
-
-function photoLine(photoLink: string | null): string {
-	return photoLink === null ? "poster:" : `poster: ${yamlString(photoLink)}`;
 }
 
 /** Fields the plugin owns: refreshing rewrites these and nothing else. */
@@ -75,7 +70,7 @@ export function buildDirectorFrontmatter(
 		...ownedLines("birthday", director),
 		...ownedLines("deathday", director),
 		...ownedLines("place_of_birth", director),
-		photoLine(photoLink),
+		posterLine(photoLink),
 		...ownedLines("tmdb_id", director),
 		"---",
 	];
@@ -99,11 +94,17 @@ export function buildDirectorNoteContent(
  * Rewrites the plugin-owned director fields from fresh API data. Any
  * property the user added, and the body, are preserved exactly, and so is
  * the order of the existing keys — same rule as a film note's refresh.
+ *
+ * `previous` works as it does for a film (see `refreshFrontmatter`): the
+ * aliases the user added are kept. What gets replaced is the old `name` and
+ * `original_name`, plus any of TMDB's `also_known_as` spellings — the full
+ * list an early version of the plugin wrote into `aliases`.
  */
 export function refreshDirectorFrontmatter(
 	content: string,
 	director: DirectorMetadata,
 	newPhotoLink: string | null = null,
+	previous?: Record<string, unknown>,
 ): string {
 	const doc = parseFrontmatterBlocks(content);
 	if (doc === null) return content;
@@ -113,8 +114,17 @@ export function refreshDirectorFrontmatter(
 		if (!doc.order.includes(key)) doc.order.push(key);
 	}
 
+	if (previous !== undefined) {
+		const aliases = mergeAliases(director.aliases, listValues(previous.aliases), [
+			...listValues(previous.name),
+			...listValues(previous.original_name),
+			...director.alsoKnownAs,
+		]);
+		doc.blocks.set("aliases", yamlList("aliases", aliases));
+	}
+
 	if (newPhotoLink !== null && isEmptyValue(doc.blocks.get("poster"))) {
-		doc.blocks.set("poster", [photoLine(newPhotoLink)]);
+		doc.blocks.set("poster", [posterLine(newPhotoLink)]);
 		if (!doc.order.includes("poster")) doc.order.push("poster");
 	}
 

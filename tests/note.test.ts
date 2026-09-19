@@ -3,13 +3,17 @@ import {
 	buildAliases,
 	buildFileName,
 	buildNoteContent,
-	folderPrefix,
+	chooseNotePath,
 	joinPath,
+	keepLinks,
+	listValues,
+	mergeAliases,
 	needsQuoting,
 	sanitizeFileName,
 	yamlString,
 	type FilmMetadata,
 	type LinkOptions,
+	type PathOccupant,
 } from "../src/note";
 
 const resolves = (...existing: string[]) => (name: string) => existing.includes(name);
@@ -103,6 +107,55 @@ describe("buildFileName", () => {
 
 	it("sanitizes the combined name", () => {
 		expect(buildFileName("Face/Off", 1997)).toBe("Face Off (1997)");
+	});
+
+	/** Regression: MAL's "Hunter x Hunter (2011)" used to become "Hunter x Hunter (2011) (2011)". */
+	it("writes the year once when the title already ends in it", () => {
+		expect(buildFileName("Hunter x Hunter (2011)", 2011)).toBe("Hunter x Hunter (2011)");
+		expect(buildFileName("Fruits Basket (2019) ", 2019)).toBe("Fruits Basket (2019)");
+	});
+
+	it("still appends the year when the title ends in a different one", () => {
+		expect(buildFileName("Hunter x Hunter (2011)", 2012)).toBe("Hunter x Hunter (2011) (2012)");
+	});
+});
+
+describe("chooseNotePath", () => {
+	const occupants = (held: Record<string, PathOccupant>) => (path: string) => held[path] ?? "free";
+
+	it("takes the first name when it's free", () => {
+		expect(chooseNotePath("Anime", ["Monster", "Monster (1994)"], occupants({}))).toEqual({
+			path: "Anime/Monster.md",
+		});
+	});
+
+	/** Regression: a same-named note of another work used to block the add and open that note instead. */
+	it("steps past a name another of the plugin's notes holds", () => {
+		const held = occupants({ "Anime/Monster.md": "plugin" });
+		expect(chooseNotePath("Anime", ["Monster", "Monster (1994)"], held)).toEqual({
+			path: "Anime/Monster (1994).md",
+		});
+	});
+
+	it("numbers the last name once every name is held by the plugin's notes", () => {
+		const held = occupants({ "Films/Home (2015).md": "plugin", "Films/Home (2015) 2.md": "plugin" });
+		expect(chooseNotePath("Films", ["Home (2015)"], held)).toEqual({ path: "Films/Home (2015) 3.md" });
+	});
+
+	it("reports a conflict when the user's own note holds a name", () => {
+		const held = occupants({ "Films/Stalker (1979).md": "other" });
+		expect(chooseNotePath("Films", ["Stalker (1979)"], held)).toEqual({
+			conflict: "Films/Stalker (1979).md",
+		});
+	});
+
+	it("steps over any occupant once it's numbering", () => {
+		const held = occupants({ "Films/Home (2015).md": "plugin", "Films/Home (2015) 2.md": "other" });
+		expect(chooseNotePath("Films", ["Home (2015)"], held)).toEqual({ path: "Films/Home (2015) 3.md" });
+	});
+
+	it("works at the vault root", () => {
+		expect(chooseNotePath("", ["Stalker (1979)"], occupants({}))).toEqual({ path: "Stalker (1979).md" });
 	});
 });
 
@@ -347,49 +400,62 @@ describe("joinPath", () => {
 	});
 });
 
-describe("folderPrefix", () => {
-	it("returns an empty string for the vault root, matching every path", () => {
-		expect(folderPrefix("")).toBe("");
-		expect(folderPrefix("   ")).toBe("");
+describe("listValues", () => {
+	it("reads a list of strings, trimmed and without blanks", () => {
+		expect(listValues([" La La Land ", "", "Aşıklar Şehri"])).toEqual(["La La Land", "Aşıklar Şehri"]);
 	});
 
-	it("returns a trailing-slash prefix for a real folder", () => {
-		expect(folderPrefix("Directors")).toBe("Directors/");
-		expect(folderPrefix("Mangaka")).toBe("Mangaka/");
+	it("treats a lone value as a one-item list", () => {
+		expect(listValues("La La Land")).toEqual(["La La Land"]);
 	});
 
-	it("normalizes stray slashes and whitespace the same way joinPath does", () => {
-		expect(folderPrefix("/Directors/")).toBe("Directors/");
-		expect(folderPrefix("  Mangaka  ")).toBe("Mangaka/");
+	it("keeps an item YAML read as a number or a boolean, as its text", () => {
+		expect(listValues(["La La Land", 2016, true])).toEqual(["La La Land", "2016", "true"]);
 	});
 
-	/**
-	 * The exact guarantee `isDirectorNote`/`isMangakaNote`/`findNoteByTmdbId`/
-	 * `findNoteByMalId` all lean on: two note types that share a frontmatter
-	 * field name (film/director both use `tmdb_id`; anime/mangaka both use
-	 * `mal_id`) never get mismatched for one another, because a path can
-	 * only start with one of two distinct, non-overlapping folder prefixes.
-	 */
-	it("never lets one folder's prefix match a path that belongs to a different, distinct folder", () => {
-		const directorPrefix = folderPrefix("Directors");
-		const mangakaPrefix = folderPrefix("Mangaka");
-		expect(directorPrefix).not.toBe(mangakaPrefix);
+	it("drops empty values and anything that isn't a scalar", () => {
+		expect(listValues(undefined)).toEqual([]);
+		expect(listValues(null)).toEqual([]);
+		expect(listValues([null, { a: 1 }, ["nested"]])).toEqual([]);
+	});
+});
 
-		const mangakaNotePath = "Mangaka/Yoshihiro Togashi.md";
-		const directorNotePath = "Directors/Christopher Nolan.md";
-
-		expect(mangakaNotePath.startsWith(mangakaPrefix)).toBe(true);
-		expect(mangakaNotePath.startsWith(directorPrefix)).toBe(false);
-		expect(directorNotePath.startsWith(directorPrefix)).toBe(true);
-		expect(directorNotePath.startsWith(mangakaPrefix)).toBe(false);
+describe("keepLinks", () => {
+	it("keeps each name the list had as a link, written exactly as it was", () => {
+		expect(keepLinks(["Damien Chazelle", "Drama"], ["[[People/Damien Chazelle|Chazelle]]", "Drama"])).toEqual([
+			"[[People/Damien Chazelle|Chazelle]]",
+			"Drama",
+		]);
 	});
 
-	it("treats the anime and mangaka folders the same way when they differ", () => {
-		const animePrefix = folderPrefix("Anime");
-		const mangakaPrefix = folderPrefix("Mangaka");
-		const animeNotePath = "Anime/Death Note (2006).md";
+	it("knows a link whatever case or heading it was written with", () => {
+		expect(keepLinks(["Damien Chazelle"], ["[[damien chazelle#Films]]"])).toEqual(["[[damien chazelle#Films]]"]);
+	});
 
-		expect(animeNotePath.startsWith(animePrefix)).toBe(true);
-		expect(animeNotePath.startsWith(mangakaPrefix)).toBe(false);
+	it("prefers the link the note had to the one just made", () => {
+		expect(keepLinks(["[[Damien Chazelle]]"], ["[[Damien Chazelle|DC]]"])).toEqual(["[[Damien Chazelle|DC]]"]);
+	});
+
+	it("changes nothing when nothing was linked, and drops a name no longer in the list", () => {
+		expect(keepLinks(["A", "B"], undefined)).toEqual(["A", "B"]);
+		expect(keepLinks(["A"], "A")).toEqual(["A"]);
+		expect(keepLinks(["B"], ["[[A]]"])).toEqual(["B"]);
+	});
+});
+
+describe("mergeAliases", () => {
+	it("puts the generated aliases first, then the user's own in their order", () => {
+		expect(mergeAliases(["Amélie"], ["Mine", "Amélie", "Also mine"], [])).toEqual([
+			"Amélie",
+			"Mine",
+			"Also mine",
+		]);
+	});
+
+	it("drops what the plugin generated before, and nothing else", () => {
+		expect(mergeAliases(["New Title"], ["Old Title", "Mine"], ["Old Title"])).toEqual([
+			"New Title",
+			"Mine",
+		]);
 	});
 });

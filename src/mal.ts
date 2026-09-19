@@ -33,6 +33,15 @@ export const MANGA_DETAIL_FIELDS =
  */
 export const PERSON_DETAIL_FIELDS = "first_name,last_name,birthday,main_picture";
 
+/**
+ * What a search hit carries besides `id` and `title` (the only fields MAL
+ * returns unasked): the type and the year are what tell same-titled entries
+ * apart in the picker — a TV series from its film, a light novel from the
+ * manga adapting it.
+ */
+export const ANIME_SEARCH_FIELDS = "start_season,media_type";
+export const MANGA_SEARCH_FIELDS = "start_date,media_type";
+
 export interface AnimeMetadata {
 	title: string;
 	englishTitle: string | null;
@@ -51,6 +60,7 @@ export interface AnimeSearchResult {
 	id: number;
 	title: string;
 	year: number | null;
+	mediaType: string | null;
 }
 
 export interface MalPicture {
@@ -76,6 +86,7 @@ export interface MalSearchNode {
 	title?: string;
 	main_picture?: MalPicture;
 	start_season?: { year?: number };
+	media_type?: string;
 }
 
 export interface MalAnimeDetails {
@@ -112,6 +123,8 @@ export interface MangaMetadata {
 export interface MangaSearchResult {
 	id: number;
 	title: string;
+	year: number | null;
+	mediaType: string | null;
 }
 
 export interface MalAuthorPerson {
@@ -128,6 +141,8 @@ export interface MalAuthor {
 export interface MalMangaSearchNode {
 	id: number;
 	title?: string;
+	start_date?: string;
+	media_type?: string;
 }
 
 export interface MalMangaDetails {
@@ -178,7 +193,47 @@ export function toAnimeSearchResult(node: MalSearchNode): AnimeSearchResult {
 		id: node.id,
 		title: node.title?.trim() ?? "",
 		year: node.start_season?.year ?? null,
+		mediaType: node.media_type?.trim() || null,
 	};
+}
+
+/** MAL's media types whose label isn't just the value with a capital letter. */
+const MEDIA_TYPE_LABELS: Record<string, string> = {
+	tv: "TV",
+	ova: "OVA",
+	ona: "ONA",
+	tv_special: "TV special",
+	cm: "CM",
+	pv: "PV",
+	one_shot: "One-shot",
+	oel: "OEL",
+};
+
+/**
+ * A MAL media type as the search pickers show it: "light_novel" becomes
+ * "Light novel", "tv" becomes "TV". A type not in the table loses its
+ * underscores and gains a capital letter, so one MAL adds later still reads
+ * fine.
+ */
+export function formatMediaType(value: string | null): string | null {
+	const key = value?.trim().toLowerCase() ?? "";
+	if (key === "") return null;
+	return MEDIA_TYPE_LABELS[key] ?? humanize(key);
+}
+
+/**
+ * A MAL status as the MANGA panel shows it: "currently_publishing" becomes
+ * "Currently publishing", "on_hiatus" becomes "On hiatus".
+ */
+export function formatStatus(value: string | null): string | null {
+	const key = value?.trim().toLowerCase() ?? "";
+	return key === "" ? null : humanize(key);
+}
+
+/** One of MAL's snake_case values as text: underscores become spaces, the first letter a capital. */
+function humanize(key: string): string {
+	const words = key.replace(/_/g, " ");
+	return words.charAt(0).toUpperCase() + words.slice(1);
 }
 
 function joinPersonName(person: { first_name?: string; last_name?: string } | undefined): string {
@@ -192,7 +247,12 @@ function toMangaAuthor(author: MalAuthor): MangaAuthor {
 }
 
 export function toMangaSearchResult(node: MalMangaSearchNode): MangaSearchResult {
-	return { id: node.id, title: node.title?.trim() ?? "" };
+	return {
+		id: node.id,
+		title: node.title?.trim() ?? "",
+		year: parseYearFromDate(node.start_date),
+		mediaType: node.media_type?.trim() || null,
+	};
 }
 
 export function toMangaMetadata(details: MalMangaDetails): MangaMetadata {
@@ -251,7 +311,7 @@ export class MalClient {
 		const params = new URLSearchParams({
 			q: query,
 			limit: "10",
-			fields: "start_season",
+			fields: ANIME_SEARCH_FIELDS,
 		});
 		const body = await this.getJson<{ data?: { node: MalSearchNode }[] }>(
 			`${API_BASE}/anime?${params.toString()}`,
@@ -268,7 +328,7 @@ export class MalClient {
 	}
 
 	async searchManga(query: string): Promise<MangaSearchResult[]> {
-		const params = new URLSearchParams({ q: query, limit: "10" });
+		const params = new URLSearchParams({ q: query, limit: "10", fields: MANGA_SEARCH_FIELDS });
 		const body = await this.getJson<{ data?: { node: MalMangaSearchNode }[] }>(
 			`${API_BASE}/manga?${params.toString()}`,
 		);

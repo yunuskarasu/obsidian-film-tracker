@@ -96,17 +96,41 @@ export function parseLetterboxdCsv(content: string): LetterboxdRow[] {
 }
 
 /**
- * Prefers the result whose year matches the diary entry; falls back to
- * TMDB's own top result when there is no year or nothing matches it.
+ * Letterboxd and TMDB can put the same film a year apart (a festival
+ * premiere against the general release), so a result within this many years
+ * of the export's own year still counts as that film.
+ */
+const YEAR_TOLERANCE = 1;
+
+/**
+ * Prefers the result whose year matches the export's, then one within
+ * `YEAR_TOLERANCE` of it. When the export gives a year and nothing is close
+ * to it, there is no confident match: `null`, so the film is listed in the
+ * import report instead of being created as some other film of the same
+ * name. With no year to check against, TMDB's own top result is used.
  */
 export function pickBestMatch(
 	results: FilmSearchResult[],
 	year: number | null,
 ): FilmSearchResult | null {
 	if (results.length === 0) return null;
-	if (year !== null) {
-		const exact = results.find((result) => result.year === year);
-		if (exact) return exact;
-	}
-	return results[0];
+	if (year === null) return results[0];
+
+	const exact = results.find((result) => result.year === year);
+	if (exact) return exact;
+
+	const near = results.find(
+		(result) => result.year !== null && Math.abs(result.year - year) <= YEAR_TOLERANCE,
+	);
+	return near ?? null;
+}
+
+/**
+ * Whether the films in an export were watched — the starting value of the
+ * import's "Mark as watched" toggle. diary.csv, watched.csv, ratings.csv
+ * and reviews.csv only list films the user has seen, but watchlist.csv has
+ * the same columns as watched.csv, so the file name is the only tell.
+ */
+export function isWatchedExport(fileName: string): boolean {
+	return /diary|watched|rating|review/i.test(fileName);
 }

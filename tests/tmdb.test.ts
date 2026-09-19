@@ -306,5 +306,13 @@ describe("toDirectorMetadata", () => {
 		expect(director.placeOfBirth).toBeNull();
 		expect(director.photoPath).toBeNull();
 		expect(director.aliases).toEqual(["Christopher Nolan"]);
+		expect(director.alsoKnownAs).toEqual([]);
+	});
+
+	it("carries TMDB's alternate spellings through, trimmed and without blanks", () => {
+		const director = toDirectorMetadata(
+			personDetails({ also_known_as: [" Christopher Edward Nolan ", "", "Кристофер Нолан"] }),
+		);
+		expect(director.alsoKnownAs).toEqual(["Christopher Edward Nolan", "Кристофер Нолан"]);
 	});
 });

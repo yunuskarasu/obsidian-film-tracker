@@ -67,6 +67,12 @@ export interface DirectorMetadata {
 	name: string;
 	originalName: string | null;
 	aliases: string[];
+	/**
+	 * TMDB's own alternate spellings. Never written to the note; a refresh
+	 * uses them to recognize spellings an old version of the plugin put in
+	 * `aliases`, as opposed to ones the user added (see `refreshDirectorFrontmatter`).
+	 */
+	alsoKnownAs: string[];
 	birthday: string | null;
 	deathday: string | null;
 	placeOfBirth: string | null;
@@ -195,6 +201,9 @@ export function toDirectorMetadata(details: TmdbPersonDetails): DirectorMetadata
 		name,
 		originalName,
 		aliases: buildAliases(name, originalName),
+		alsoKnownAs: (details.also_known_as ?? [])
+			.map((value) => value.trim())
+			.filter((value) => value !== ""),
 		birthday: details.birthday?.trim() || null,
 		deathday: details.deathday?.trim() || null,
 		placeOfBirth,
@@ -229,7 +238,12 @@ export function toFilmMetadata(details: TmdbMovieDetails): FilmMetadata {
 export class TmdbClient {
 	constructor(private readonly apiKey: string) {}
 
-	async search(query: string): Promise<FilmSearchResult[]> {
+	/**
+	 * `year` narrows the results to films TMDB lists as released that year —
+	 * the Letterboxd import passes it so a common title ("Home", "Mother")
+	 * isn't lost among dozens of namesakes.
+	 */
+	async search(query: string, year: number | null = null): Promise<FilmSearchResult[]> {
 		const params = new URLSearchParams({
 			api_key: this.apiKey,
 			query,
@@ -237,6 +251,7 @@ export class TmdbClient {
 			include_adult: "false",
 			page: "1",
 		});
+		if (year !== null) params.set("year", String(year));
 		const body = await this.getJson<{ results?: TmdbSearchItem[] }>(
 			`${API_BASE}/search/movie?${params.toString()}`,
 		);

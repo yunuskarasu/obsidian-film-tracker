@@ -5,3 +5,5 @@ data.json
 .DS_Store
 .backups/
 *.zip
+.agents/
+skills-lock.json

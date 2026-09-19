@@ -2,6 +2,7 @@ import type { MangakaMetadata } from "./mal";
 import {
 	isEmptyValue,
 	parseFrontmatterBlocks,
+	posterLine,
 	sanitizeFileName,
 	serializeFrontmatterBlocks,
 	yamlString,
@@ -9,10 +10,6 @@ import {
 
 export function buildMangakaFileName(name: string): string {
 	return sanitizeFileName(name);
-}
-
-function photoLine(photoLink: string | null): string {
-	return photoLink === null ? "poster:" : `poster: ${yamlString(photoLink)}`;
 }
 
 /**
@@ -43,7 +40,7 @@ export function buildMangakaFrontmatter(mangaka: MangakaMetadata, photoLink: str
 		"---",
 		...ownedLines("name", mangaka),
 		...ownedLines("birthday", mangaka),
-		photoLine(photoLink),
+		posterLine(photoLink),
 		...ownedLines("mal_id", mangaka),
 		"---",
 	];
@@ -79,7 +76,7 @@ export function refreshMangakaFrontmatter(
 	}
 
 	if (newPhotoLink !== null && isEmptyValue(doc.blocks.get("poster"))) {
-		doc.blocks.set("poster", [photoLine(newPhotoLink)]);
+		doc.blocks.set("poster", [posterLine(newPhotoLink)]);
 		if (!doc.order.includes("poster")) doc.order.push("poster");
 	}
 

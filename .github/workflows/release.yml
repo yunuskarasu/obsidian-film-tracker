@@ -1,0 +1,40 @@
+# Pushing a version tag (e.g. `git push origin 2.2.0`) builds the plugin and
+# opens a draft GitHub release with the three files Obsidian installs. The
+# draft is published by hand, after checking it and writing its notes.
+name: Release
+
+on:
+  push:
+    tags:
+      - "*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
+
+      # Obsidian finds a release by a tag equal to manifest.json's version, with
+      # no "v" in front — a tag like v2.0.0 is never offered to anyone.
+      - name: Check the tag matches manifest.json
+        run: |
+          version="$(node -p "require('./manifest.json').version")"
+          if [ "$GITHUB_REF_NAME" != "$version" ]; then
+            echo "Tag $GITHUB_REF_NAME does not match manifest.json version $version."
+            exit 1
+          fi
+
+      - name: Create a draft release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release create "$GITHUB_REF_NAME" main.js manifest.json styles.css --title "$GITHUB_REF_NAME" --draft

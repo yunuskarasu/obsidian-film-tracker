@@ -21,6 +21,13 @@
 	font-size: var(--font-ui-smaller);
 }
 
+/* The "Link to this note?" dialog's note that the work is already on other
+   notes: information, not a warning, so it stays quiet. */
+.film-tracker-link-also-in {
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+}
+
 /* ---------- Film note layout: title and properties left, poster right ----------
  *
  * The poster element is added by the plugin as a sibling of Obsidian's

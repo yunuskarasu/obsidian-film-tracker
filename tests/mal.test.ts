@@ -1,8 +1,12 @@
 import { describe, expect, it } from "vitest";
 import {
+	ANIME_SEARCH_FIELDS,
 	DETAIL_FIELDS,
 	MANGA_DETAIL_FIELDS,
+	MANGA_SEARCH_FIELDS,
 	PERSON_DETAIL_FIELDS,
+	formatMediaType,
+	formatStatus,
 	parseYearFromDate,
 	toAnimeMetadata,
 	toAnimeSearchResult,
@@ -133,15 +137,61 @@ describe("toAnimeSearchResult", () => {
 	}
 
 	it("maps a search hit to the fields the picker shows", () => {
-		expect(toAnimeSearchResult(searchNode())).toEqual({
+		expect(toAnimeSearchResult(searchNode({ media_type: "tv" }))).toEqual({
 			id: 16498,
 			title: "Shingeki no Kyojin",
 			year: 2013,
+			mediaType: "tv",
 		});
 	});
 
-	it("handles a hit with no start season", () => {
-		expect(toAnimeSearchResult(searchNode({ start_season: undefined })).year).toBeNull();
+	it("handles a hit with no start season or media type", () => {
+		const result = toAnimeSearchResult(searchNode({ start_season: undefined }));
+		expect(result.year).toBeNull();
+		expect(result.mediaType).toBeNull();
+	});
+});
+
+describe("search fields", () => {
+	it("ask for exactly what the search results read", () => {
+		expect(ANIME_SEARCH_FIELDS.split(",").sort()).toEqual(["media_type", "start_season"]);
+		expect(MANGA_SEARCH_FIELDS.split(",").sort()).toEqual(["media_type", "start_date"]);
+	});
+});
+
+describe("formatMediaType", () => {
+	it("labels MAL's media types the way the pickers show them", () => {
+		expect(formatMediaType("tv")).toBe("TV");
+		expect(formatMediaType("movie")).toBe("Movie");
+		expect(formatMediaType("ova")).toBe("OVA");
+		expect(formatMediaType("tv_special")).toBe("TV special");
+		expect(formatMediaType("manga")).toBe("Manga");
+		expect(formatMediaType("light_novel")).toBe("Light novel");
+		expect(formatMediaType("one_shot")).toBe("One-shot");
+	});
+
+	it("still reads fine for a type it has no label for", () => {
+		expect(formatMediaType("web_novel")).toBe("Web novel");
+	});
+
+	it("returns null when there is no type", () => {
+		expect(formatMediaType(null)).toBeNull();
+		expect(formatMediaType("  ")).toBeNull();
+	});
+});
+
+describe("formatStatus", () => {
+	it("turns MAL's snake_case statuses into text", () => {
+		expect(formatStatus("currently_publishing")).toBe("Currently publishing");
+		expect(formatStatus("finished")).toBe("Finished");
+		expect(formatStatus("on_hiatus")).toBe("On hiatus");
+		expect(formatStatus("not_yet_published")).toBe("Not yet published");
+		expect(formatStatus("finished_airing")).toBe("Finished airing");
+	});
+
+	it("returns null when there is no status", () => {
+		expect(formatStatus(null)).toBeNull();
+		expect(formatStatus("")).toBeNull();
 	});
 });
 
@@ -302,6 +352,20 @@ describe("toMangaSearchResult", () => {
 	}
 
 	it("maps a search hit to the fields the picker shows", () => {
-		expect(toMangaSearchResult(searchNode())).toEqual({ id: 26, title: "Hunter x Hunter" });
+		expect(toMangaSearchResult(searchNode({ start_date: "1998-03-03", media_type: "manga" }))).toEqual({
+			id: 26,
+			title: "Hunter x Hunter",
+			year: 1998,
+			mediaType: "manga",
+		});
+	});
+
+	it("handles a hit with no start date or media type", () => {
+		expect(toMangaSearchResult(searchNode())).toEqual({
+			id: 26,
+			title: "Hunter x Hunter",
+			year: null,
+			mediaType: null,
+		});
 	});
 });

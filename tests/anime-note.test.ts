@@ -28,6 +28,10 @@ describe("buildAnimeFileName", () => {
 	it("drops the year when it is null", () => {
 		expect(buildAnimeFileName("Shingeki no Kyojin", null)).toBe("Shingeki no Kyojin");
 	});
+
+	it("writes the year once when MAL's title already ends in it", () => {
+		expect(buildAnimeFileName("Hunter x Hunter (2011)", 2011)).toBe("Hunter x Hunter (2011)");
+	});
 });
 
 describe("buildAnimeNoteContent", () => {
@@ -110,6 +114,13 @@ describe("refreshAnimeFrontmatter", () => {
 		"My own thoughts about this anime.",
 		"",
 	].join("\n");
+
+	it("keeps a genre or studio the user linked", () => {
+		const linked = existingNote.replace("  - Wit Studio", '  - "[[Wit Studio]]"');
+		const updated = refreshAnimeFrontmatter(linked, aot, null, { genres: ["Action", "Drama"], studios: ["[[Wit Studio]]"] });
+		expect(updated).toContain('studios:\n  - "[[Wit Studio]]"\n');
+		expect(updated).toContain("genres:\n  - Action\n  - Drama\n");
+	});
 
 	it("rewrites only the plugin-owned fields, leaving watched and the body untouched", () => {
 		const updated = refreshAnimeFrontmatter(existingNote, { ...aot, episodes: 87, status: "currently_airing" });

@@ -1,15 +1,22 @@
 import type { MangaMetadata } from "./mal";
-import { formatNames, parseFrontmatterBlocks, serializeFrontmatterBlocks, yamlString } from "./note";
+import {
+	formatNames,
+	keepLinks,
+	parseFrontmatterBlocks,
+	posterLine,
+	serializeFrontmatterBlocks,
+	yamlList,
+	yamlScalar,
+} from "./note";
 
 const BLOCK_KEY = "manga";
 const INDENT = "  ";
 
 /**
  * Reads `manga.mal_id` out of a note's already-parsed frontmatter, if
- * present — the single source of truth `main.ts` uses to tell a manga-only
- * Series note, an anime+manga merge, and a plain anime-only note apart, and
- * the guard behind the "Add mangaka" command (it only runs when this
- * returns non-null for the active file).
+ * present — the manga side of a Series note, which `classifyNote` (see
+ * note-kind.ts) uses to tell a manga-only Series note, an anime+manga merge
+ * and a plain anime-only note apart.
  */
 export function mangaMalIdFrom(frontmatter: Record<string, unknown> | undefined): number | null {
 	const manga = frontmatter?.manga;
@@ -18,48 +25,13 @@ export function mangaMalIdFrom(frontmatter: Record<string, unknown> | undefined)
 	return typeof id === "number" ? id : null;
 }
 
-/** Reads a note's own top-level `mal_id` — an anime's own id, or a mangaka's own MAL person id (see `isAnimeOnlySeriesFrontmatter`). */
+/**
+ * Reads a note's own top-level `mal_id` — an anime's own id, or a mangaka's
+ * own MAL person id. Which of the two it is comes from `classifyNote`.
+ */
 export function malIdFrom(frontmatter: Record<string, unknown> | undefined): number | null {
 	const id: unknown = frontmatter?.mal_id;
 	return typeof id === "number" ? id : null;
-}
-
-/**
- * A not-yet-merged anime-only Series note: a top-level `mal_id`, no `manga`
- * block yet — but never a mangaka note. A mangaka note matches that exact
- * same shape, since it deliberately reuses the `mal_id` field name so it can
- * share `findNoteByMalId` with anime — so `isMangakaNote` (folder-scoped,
- * computed by the caller) rules it out here. This is what stops Add
- * anime/Add manga from ever merging into a mangaka note (a real bug: a
- * mangaka note's `mal_id` alone used to be enough to pass this check).
- */
-export function isAnimeOnlySeriesFrontmatter(
-	frontmatter: Record<string, unknown> | undefined,
-	isMangakaNote: boolean,
-): boolean {
-	return !isMangakaNote && malIdFrom(frontmatter) !== null && mangaMalIdFrom(frontmatter) === null;
-}
-
-/** A not-yet-merged manga-only Series note: a `manga` block, no top-level `mal_id` yet — never a mangaka note (see `isAnimeOnlySeriesFrontmatter`). */
-export function isMangaOnlySeriesFrontmatter(
-	frontmatter: Record<string, unknown> | undefined,
-	isMangakaNote: boolean,
-): boolean {
-	return !isMangakaNote && mangaMalIdFrom(frontmatter) !== null && malIdFrom(frontmatter) === null;
-}
-
-function scalarLine(key: string, value: string | number | null, indent = INDENT): string {
-	if (value === null) return `${indent}${key}:`;
-	return `${indent}${key}: ${typeof value === "number" ? value : yamlString(value)}`;
-}
-
-function listLines(key: string, values: string[], indent = INDENT): string[] {
-	if (values.length === 0) return [`${indent}${key}:`];
-	return [`${indent}${key}:`, ...values.map((value) => `${indent}  - ${yamlString(value)}`)];
-}
-
-function posterLine(posterLink: string | null): string {
-	return posterLink === null ? `${INDENT}poster:` : `${INDENT}poster: ${yamlString(posterLink)}`;
 }
 
 /** `read` is a real YAML boolean, written as a raw literal — never run through `yamlString`, which would quote it as text. */
@@ -76,8 +48,20 @@ function readSubValue(blockLines: string[] | undefined, key: string): string | n
 	return value === "" ? null : value;
 }
 
+/**
+ * The index of the block's own `read:` line. A `read:` nested deeper — under
+ * a sub-field the user added — is theirs and never counts.
+ */
+function readLineIndex(blockLines: string[]): number {
+	return blockLines.findIndex((line) => mangaSubKey(line) === "read");
+}
+
 function existingRead(blockLines: string[] | undefined): boolean {
-	return readSubValue(blockLines, "read") === "true";
+	if (blockLines === undefined) return false;
+	const index = readLineIndex(blockLines);
+	if (index === -1) return false;
+	const line = blockLines[index];
+	return /^true$/i.test(line.slice(line.indexOf(":") + 1).trim());
 }
 
 function existingPosterLine(blockLines: string[] | undefined): string | null {
@@ -135,15 +119,15 @@ function buildBlockLines(
 ): string[] {
 	return [
 		`${BLOCK_KEY}:`,
-		scalarLine("mal_id", manga.malId),
-		scalarLine("title", manga.title),
-		scalarLine("media_type", manga.mediaType),
-		scalarLine("status", manga.status),
-		scalarLine("year", manga.year),
-		scalarLine("chapters", manga.chapters),
-		scalarLine("volumes", manga.volumes),
-		...listLines("mangaka", mangakaNames),
-		posterLine(posterLink),
+		yamlScalar("mal_id", manga.malId, INDENT),
+		yamlScalar("title", manga.title, INDENT),
+		yamlScalar("media_type", manga.mediaType, INDENT),
+		yamlScalar("status", manga.status, INDENT),
+		yamlScalar("year", manga.year, INDENT),
+		yamlScalar("chapters", manga.chapters, INDENT),
+		yamlScalar("volumes", manga.volumes, INDENT),
+		...yamlList("mangaka", mangakaNames, INDENT),
+		posterLine(posterLink, INDENT),
 		readLine(read),
 	];
 }
@@ -166,15 +150,22 @@ export function applyMangaBlock(
 	manga: MangaMetadata,
 	newPosterLink: string | null,
 	isResolved: (name: string) => boolean,
+	previous?: Record<string, unknown>,
 ): string {
 	const doc = parseFrontmatterBlocks(content);
 	if (doc === null) return content;
 
 	const existingBlock = doc.blocks.get(BLOCK_KEY);
 	const read = existingRead(existingBlock);
-	const mangakaNames = formatNames(
-		manga.mangaka.map((author) => author.name),
-		isResolved,
+	const previousManga: unknown = previous?.manga;
+	const mangakaNames = keepLinks(
+		formatNames(
+			manga.mangaka.map((author) => author.name),
+			isResolved,
+		),
+		typeof previousManga === "object" && previousManga !== null
+			? (previousManga as Record<string, unknown>).mangaka
+			: undefined,
 	);
 	const preservedPoster = existingPosterLine(existingBlock);
 	const lines = buildBlockLines(manga, mangakaNames, null, read);
@@ -184,7 +175,7 @@ export function applyMangaBlock(
 		...(preservedPoster !== null
 			? lines.map((line) => (line.trim().startsWith("poster:") ? preservedPoster : line))
 			: newPosterLink !== null
-				? lines.map((line) => (line.trim().startsWith("poster:") ? posterLine(newPosterLink) : line))
+				? lines.map((line) => (line.trim().startsWith("poster:") ? posterLine(newPosterLink, INDENT) : line))
 				: lines),
 		...extra,
 	];
@@ -271,7 +262,7 @@ export function relinkMangaka(
 		if (key !== null) {
 			skipping = key === "mangaka";
 			if (skipping) {
-				rebuilt.push(...listLines("mangaka", formatNames(currentNames, isResolved)));
+				rebuilt.push(...yamlList("mangaka", formatNames(currentNames, isResolved), INDENT));
 				replaced = true;
 				continue;
 			}
@@ -284,16 +275,27 @@ export function relinkMangaka(
 	return serializeFrontmatterBlocks(doc);
 }
 
-/** Flips `manga.read` in place; every other sub-field, the rest of the frontmatter and the body are untouched. */
-export function toggleMangaRead(content: string): string {
+/**
+ * Sets `manga.read` — what the MANGA panel's Read checkbox writes, to every
+ * note that carries the same manga (see main.ts). An explicit value rather
+ * than a flip, so notes that disagreed end up agreeing, and two quick clicks
+ * can't leave the file and the checkbox out of step. Only the block's own
+ * `read:` line is written (see `readLineIndex`); a block that lost it gets it
+ * back. Every other sub-field, the rest of the frontmatter and the body are
+ * untouched.
+ */
+export function setMangaRead(content: string, read: boolean): string {
 	const doc = parseFrontmatterBlocks(content);
 	if (doc === null) return content;
 
 	const block = doc.blocks.get(BLOCK_KEY);
 	if (block === undefined) return content;
 
-	const next = !existingRead(block);
-	const updated = block.map((line) => (line.trim().startsWith("read:") ? readLine(next) : line));
+	const updated = [...block];
+	const index = readLineIndex(updated);
+	if (index === -1) updated.push(readLine(read));
+	else updated[index] = readLine(read);
+
 	doc.blocks.set(BLOCK_KEY, updated);
 	return serializeFrontmatterBlocks(doc);
 }

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { parseLetterboxdCsv, pickBestMatch } from "../src/letterboxd-import";
+import { isWatchedExport, parseLetterboxdCsv, pickBestMatch } from "../src/letterboxd-import";
 import type { FilmSearchResult } from "../src/tmdb";
 
 describe("parseLetterboxdCsv", () => {
@@ -88,8 +88,26 @@ describe("pickBestMatch", () => {
 		expect(pickBestMatch(results, 1972)).toEqual(results[1]);
 	});
 
-	it("falls back to the top result when no year matches", () => {
-		expect(pickBestMatch(results, 1999)).toEqual(results[0]);
+	it("accepts a result one year off, the way Letterboxd and TMDB sometimes disagree", () => {
+		expect(pickBestMatch(results, 1973)).toEqual(results[1]);
+		expect(pickBestMatch(results, 2003)).toEqual(results[0]);
+	});
+
+	it("prefers an exact year over one a year off, even further down the results", () => {
+		const nearFirst: FilmSearchResult[] = [
+			{ id: 3, title: "Solaris", originalTitle: "Солярис", year: 1971 },
+			{ id: 2, title: "Solaris", originalTitle: "Солярис", year: 1972 },
+		];
+		expect(pickBestMatch(nearFirst, 1972)).toEqual(nearFirst[1]);
+	});
+
+	/** Regression: this used to return TMDB's top result — a different film of the same name. */
+	it("returns null when every result is more than a year off", () => {
+		expect(pickBestMatch(results, 1999)).toBeNull();
+	});
+
+	it("never matches a result with no year when the export gives one", () => {
+		expect(pickBestMatch([{ id: 4, title: "Solaris", originalTitle: "Solaris", year: null }], 1972)).toBeNull();
 	});
 
 	it("falls back to the top result when the year is unknown", () => {
@@ -98,5 +116,18 @@ describe("pickBestMatch", () => {
 
 	it("returns null when there are no results", () => {
 		expect(pickBestMatch([], 2002)).toBeNull();
+	});
+});
+
+describe("isWatchedExport", () => {
+	it("is true for the exports that only list films you've seen", () => {
+		for (const name of ["diary", "watched", "ratings", "reviews", "Diary", "letterboxd-watched"]) {
+			expect(isWatchedExport(name)).toBe(true);
+		}
+	});
+
+	it("is false for a watchlist, and for a file it doesn't recognize", () => {
+		expect(isWatchedExport("watchlist")).toBe(false);
+		expect(isWatchedExport("films")).toBe(false);
 	});
 });

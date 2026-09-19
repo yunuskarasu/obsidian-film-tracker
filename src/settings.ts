@@ -1,8 +1,11 @@
-import { App, PluginSettingTab, Setting } from "obsidian";
+import { App, PluginSettingTab, SecretComponent, Setting, requireApiVersion } from "obsidian";
 import type FilmTrackerPlugin from "./main";
 
 export interface FilmTrackerSettings {
+	/** The TMDB key as typed in — before Obsidian 1.11.4, which brought the keychain (see secrets.ts). */
 	apiKey: string;
+	/** The keychain secret holding the TMDB key, from 1.11.4 on. */
+	apiKeySecretName: string;
 	filmFolder: string;
 	posterFolder: string;
 	directorFolder: string;
@@ -17,6 +20,7 @@ export interface FilmTrackerSettings {
 	showConnections: boolean;
 	showFilmography: boolean;
 	malClientId: string;
+	malClientIdSecretName: string;
 	animeFolder: string;
 	animePosterFolder: string;
 	mangakaFolder: string;
@@ -25,6 +29,7 @@ export interface FilmTrackerSettings {
 
 export const DEFAULT_SETTINGS: FilmTrackerSettings = {
 	apiKey: "",
+	apiKeySecretName: "",
 	filmFolder: "Films",
 	posterFolder: "",
 	directorFolder: "Directors",
@@ -39,11 +44,15 @@ export const DEFAULT_SETTINGS: FilmTrackerSettings = {
 	showConnections: true,
 	showFilmography: true,
 	malClientId: "",
+	malClientIdSecretName: "",
 	animeFolder: "Anime",
 	animePosterFolder: "",
 	mangakaFolder: "Mangaka",
 	mangakaPhotoFolder: "",
 };
+
+/** Added to a key's description once it lives in Obsidian's keychain. */
+const KEYCHAIN_NOTE = " It's kept in Obsidian's keychain on this device only: not in the vault, so it doesn't sync.";
 
 export const TMDB_ATTRIBUTION =
 	"This product uses the TMDB API but is not endorsed or certified by TMDB.";
@@ -62,10 +71,31 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 
 		new Setting(containerEl).setName("🔑 API & Integrations").setHeading();
 
-		new Setting(containerEl)
-			.setName("TMDB API key")
-			.setDesc(this.apiKeyDescription())
-			.addText((text) => {
+		const tmdbKey = new Setting(containerEl).setName("TMDB API key");
+		const malClientId = new Setting(containerEl).setName("MyAnimeList client ID");
+
+		// From Obsidian 1.11.4 on, the keys live in its keychain: the setting
+		// holds the name of the secret, picked or added right here. Before
+		// that, they are typed in and saved with the rest of the settings.
+		if (requireApiVersion("1.11.4")) {
+			tmdbKey.setDesc(this.apiKeyDescription(true)).addComponent((el) =>
+				new SecretComponent(this.app, el)
+					.setValue(this.plugin.settings.apiKeySecretName)
+					.onChange(async (value) => {
+						this.plugin.settings.apiKeySecretName = value;
+						await this.plugin.saveSettings();
+					}),
+			);
+			malClientId.setDesc(this.malClientIdDescription(true)).addComponent((el) =>
+				new SecretComponent(this.app, el)
+					.setValue(this.plugin.settings.malClientIdSecretName)
+					.onChange(async (value) => {
+						this.plugin.settings.malClientIdSecretName = value;
+						await this.plugin.saveSettings();
+					}),
+			);
+		} else {
+			tmdbKey.setDesc(this.apiKeyDescription(false)).addText((text) => {
 				text.inputEl.type = "password";
 				text
 					.setPlaceholder("Paste your key")
@@ -75,11 +105,7 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					});
 			});
-
-		new Setting(containerEl)
-			.setName("MyAnimeList client ID")
-			.setDesc(this.malClientIdDescription())
-			.addText((text) => {
+			malClientId.setDesc(this.malClientIdDescription(false)).addText((text) => {
 				text.inputEl.type = "password";
 				text
 					.setPlaceholder("Paste your client ID")
@@ -89,6 +115,7 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 						await this.plugin.saveSettings();
 					});
 			});
+		}
 
 		new Setting(containerEl).setName("🎬 Cinema").setHeading();
 		new Setting(containerEl).setName("Folders").setHeading();
@@ -263,7 +290,7 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 			.setDesc(
 				"Export your data from Letterboxd, unzip it, and drag diary.csv (or watched.csv) " +
 					"into your vault. This creates a note for each film not already in your vault, " +
-					"with watch_date filled in from diary.csv.",
+					"with watch_date filled in from diary.csv, and can mark the films as watched.",
 			)
 			.addButton((button) =>
 				button
@@ -338,7 +365,7 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 		});
 	}
 
-	private apiKeyDescription(): DocumentFragment {
+	private apiKeyDescription(inKeychain: boolean): DocumentFragment {
 		const fragment = new DocumentFragment();
 		fragment.append("Create a free key in your ");
 		fragment.createEl("a", {
@@ -348,10 +375,11 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 		fragment.append(", then copy the ");
 		fragment.createEl("strong", { text: "API Key (v3 auth)" });
 		fragment.append(" value.");
+		if (inKeychain) fragment.append(KEYCHAIN_NOTE);
 		return fragment;
 	}
 
-	private malClientIdDescription(): DocumentFragment {
+	private malClientIdDescription(inKeychain: boolean): DocumentFragment {
 		const fragment = new DocumentFragment();
 		fragment.append("Register a free app in your ");
 		fragment.createEl("a", {
@@ -361,6 +389,7 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 		fragment.append(", then copy its ");
 		fragment.createEl("strong", { text: "Client ID" });
 		fragment.append(".");
+		if (inKeychain) fragment.append(KEYCHAIN_NOTE);
 		return fragment;
 	}
 }

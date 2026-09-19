@@ -1,31 +1,19 @@
 import type { AnimeMetadata } from "./mal";
 import {
+	buildFileName,
 	isEmptyValue,
+	keepLinks,
 	parseFrontmatterBlocks,
-	sanitizeFileName,
+	posterLine,
 	serializeFrontmatterBlocks,
+	yamlList,
+	yamlScalar,
 	yamlString,
 } from "./note";
 
+/** Named the way a film note is — including a title that already carries its year (see `buildFileName`). */
 export function buildAnimeFileName(title: string, year: number | null): string {
-	return sanitizeFileName(year === null ? title : `${title} (${year})`);
-}
-
-function yamlList(key: string, values: string[]): string[] {
-	if (values.length === 0) return [`${key}:`];
-	return [`${key}:`, ...values.map((value) => `  - ${yamlString(value)}`)];
-}
-
-function yamlNumber(key: string, value: number | null): string {
-	return value === null ? `${key}:` : `${key}: ${value}`;
-}
-
-function yamlOptionalString(key: string, value: string | null): string {
-	return value === null ? `${key}:` : `${key}: ${yamlString(value)}`;
-}
-
-function posterLine(posterLink: string | null): string {
-	return posterLink === null ? "poster:" : `poster: ${yamlString(posterLink)}`;
+	return buildFileName(title, year);
 }
 
 /** Fields the plugin owns: refreshing rewrites these and nothing else. */
@@ -54,26 +42,27 @@ export const ANIME_OWNED_KEYS: readonly AnimeOwnedKey[] = [
 	"mal_id",
 ];
 
-function ownedLines(key: AnimeOwnedKey, anime: AnimeMetadata): string[] {
+/** `previous`, on a refresh, is the note's frontmatter before it: a genre or studio linked there stays linked (see `keepLinks`). */
+function ownedLines(key: AnimeOwnedKey, anime: AnimeMetadata, previous?: Record<string, unknown>): string[] {
 	switch (key) {
 		case "title":
 			return [`title: ${yamlString(anime.title)}`];
 		case "english_title":
-			return [yamlOptionalString("english_title", anime.englishTitle)];
+			return [yamlScalar("english_title", anime.englishTitle)];
 		case "japanese_title":
-			return [yamlOptionalString("japanese_title", anime.japaneseTitle)];
+			return [yamlScalar("japanese_title", anime.japaneseTitle)];
 		case "media_type":
-			return [yamlOptionalString("media_type", anime.mediaType)];
+			return [yamlScalar("media_type", anime.mediaType)];
 		case "episodes":
-			return [yamlNumber("episodes", anime.episodes)];
+			return [yamlScalar("episodes", anime.episodes)];
 		case "genres":
-			return yamlList("genres", anime.genres);
+			return yamlList("genres", keepLinks(anime.genres, previous?.genres));
 		case "studios":
-			return yamlList("studios", anime.studios);
+			return yamlList("studios", keepLinks(anime.studios, previous?.studios));
 		case "status":
-			return [yamlOptionalString("status", anime.status)];
+			return [yamlScalar("status", anime.status)];
 		case "year":
-			return [yamlNumber("year", anime.year)];
+			return [yamlScalar("year", anime.year)];
 		case "mal_id":
 			return [`mal_id: ${anime.malId}`];
 	}
@@ -151,6 +140,7 @@ export function refreshAnimeFrontmatter(
 	content: string,
 	anime: AnimeMetadata,
 	newPosterLink: string | null = null,
+	previous?: Record<string, unknown>,
 ): string {
 	const doc = parseFrontmatterBlocks(content);
 	if (doc === null) return content;
@@ -159,7 +149,7 @@ export function refreshAnimeFrontmatter(
 		if (key === "mal_id" && !doc.order.includes("poster")) {
 			setOwnedKey(doc, "poster", [posterLine(null)]);
 		}
-		setOwnedKey(doc, key, ownedLines(key, anime));
+		setOwnedKey(doc, key, ownedLines(key, anime, previous));
 	}
 
 	if (newPosterLink !== null && isEmptyValue(doc.blocks.get("poster"))) {

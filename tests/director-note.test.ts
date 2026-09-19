@@ -11,6 +11,7 @@ const nolan: DirectorMetadata = {
 	name: "Christopher Nolan",
 	originalName: null,
 	aliases: ["Christopher Nolan"],
+	alsoKnownAs: ["Christopher Edward Nolan"],
 	birthday: "1970-07-30",
 	deathday: null,
 	placeOfBirth: "London, England, UK",
@@ -23,6 +24,7 @@ const tarkovsky: DirectorMetadata = {
 	name: "Andrei Tarkovsky",
 	originalName: "Андрей Арсеньевич Тарковский",
 	aliases: ["Andrei Tarkovsky", "Андрей Арсеньевич Тарковский"],
+	alsoKnownAs: ["Andrei Tarkovskiy", "安德烈·塔尔科夫斯基", "Андрей Арсеньевич Тарковский"],
 	birthday: "1932-04-04",
 	deathday: "1986-12-29",
 	placeOfBirth: "Zavrazhye, USSR",
@@ -148,5 +150,61 @@ describe("refreshDirectorFrontmatter", () => {
 		expect(refreshDirectorFrontmatter("No frontmatter here.", tarkovsky)).toBe(
 			"No frontmatter here.",
 		);
+	});
+
+	/** `previous` is what Obsidian parsed from the note before the refresh, as main.ts passes it. */
+	describe("with the note's previous values", () => {
+		const withOwnAlias = existingNote.replace(
+			"  - Андрей Арсеньевич Тарковский\nbirthday",
+			"  - Андрей Арсеньевич Тарковский\n  - Tarkovski\nbirthday",
+		);
+		const previous = {
+			name: "Andrei Tarkovsky",
+			original_name: "Андрей Арсеньевич Тарковский",
+			aliases: ["Andrei Tarkovsky", "Андрей Арсеньевич Тарковский", "Tarkovski"],
+		};
+
+		it("keeps an alias the user added", () => {
+			const updated = refreshDirectorFrontmatter(withOwnAlias, tarkovsky, null, previous);
+			expect(updated).toContain(
+				"aliases:\n  - Andrei Tarkovsky\n  - Андрей Арсеньевич Тарковский\n  - Tarkovski\n",
+			);
+		});
+
+		it("replaces the old name when TMDB has since renamed the director", () => {
+			const renamed = withOwnAlias
+				.replace("name: Andrei Tarkovsky", "name: Andrey Tarkovsky")
+				.replace("aliases:\n  - Andrei Tarkovsky", "aliases:\n  - Andrey Tarkovsky");
+			const updated = refreshDirectorFrontmatter(renamed, tarkovsky, null, {
+				...previous,
+				name: "Andrey Tarkovsky",
+				aliases: ["Andrey Tarkovsky", "Андрей Арсеньевич Тарковский", "Tarkovski"],
+			});
+			expect(updated).toContain(
+				"aliases:\n  - Andrei Tarkovsky\n  - Андрей Арсеньевич Тарковский\n  - Tarkovski\n",
+			);
+			expect(updated).not.toContain("Andrey");
+		});
+
+		it("still trims TMDB's own spellings out of an old bloated list, but not the user's", () => {
+			const bloated = withOwnAlias.replace(
+				"  - Andrei Tarkovsky\n  - Андрей",
+				"  - Andrei Tarkovsky\n  - Andrei Tarkovskiy\n  - 安德烈·塔尔科夫斯基\n  - Андрей",
+			);
+			const updated = refreshDirectorFrontmatter(bloated, tarkovsky, null, {
+				...previous,
+				aliases: [
+					"Andrei Tarkovsky",
+					"Andrei Tarkovskiy",
+					"安德烈·塔尔科夫斯基",
+					"Андрей Арсеньевич Тарковский",
+					"Tarkovski",
+				],
+			});
+			expect(updated).toContain(
+				"aliases:\n  - Andrei Tarkovsky\n  - Андрей Арсеньевич Тарковский\n  - Tarkovski\n",
+			);
+			expect(updated).not.toContain("Andrei Tarkovskiy");
+		});
 	});
 });

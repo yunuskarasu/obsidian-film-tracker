@@ -12,8 +12,8 @@ import {
 	type MangagraphyEntry,
 	type MangagraphyManga,
 } from "./mangagraphy";
-import { toggleMangaRead } from "./manga-note";
-import { parseWikilink } from "./note";
+import { formatMediaType, formatStatus } from "./mal";
+import { parseLinkTarget, parseWikilink } from "./note";
 
 const POSTER_CLASS = "film-tracker-poster";
 const LAYOUT_CLASS = "film-tracker-layout";
@@ -34,26 +34,94 @@ interface Poster {
 	alt: string;
 }
 
+/** A film note as the Connections and Filmography panels read it. */
+type ScannedFilm = FilmNoteInfo & FilmographyFilm;
+
 /**
- * The two corrections the MANGA panel offers for a Series note linked to the
- * wrong manga. The panel only renders the buttons and reports the click —
- * the note itself is always rewritten by `main.ts`, which owns MAL access
- * and every write to the vault.
+ * The vault's films and manga, read once per `refresh` and shared by every
+ * open note: Connections, Filmography and Mangagraphy each need the whole
+ * list, and one refresh can redraw several notes.
+ */
+class VaultScan {
+	private readonly read: {
+		film: (file: TFile) => ScannedFilm | null;
+		manga: (file: TFile) => MangagraphyManga | null;
+	};
+	private readonly files: () => TFile[];
+	private filmList: ScannedFilm[] | null = null;
+	private mangaList: MangagraphyManga[] | null = null;
+
+	constructor(
+		files: () => TFile[],
+		read: { film: (file: TFile) => ScannedFilm | null; manga: (file: TFile) => MangagraphyManga | null },
+	) {
+		this.files = files;
+		this.read = read;
+	}
+
+	films(): ScannedFilm[] {
+		if (this.filmList === null) {
+			this.filmList = this.files()
+				.map(this.read.film)
+				.filter((film): film is ScannedFilm => film !== null);
+		}
+		return this.filmList;
+	}
+
+	mangas(): MangagraphyManga[] {
+		if (this.mangaList === null) {
+			this.mangaList = this.files()
+				.map(this.read.manga)
+				.filter((manga): manga is MangagraphyManga => manga !== null);
+		}
+		return this.mangaList;
+	}
+}
+
+/**
+ * What the MANGA panel's controls do. The panel only renders them and
+ * reports the click — every note is rewritten by `main.ts`, which owns MAL
+ * access and every write to the vault. That includes the Read checkbox: the
+ * same manga can sit on several Series notes, and `setRead` updates them all.
  */
 export interface MangaPanelActions {
 	change: (file: TFile) => void;
 	remove: (file: TFile) => void;
+	addAdaptation: (file: TFile) => void;
+	setRead: (file: TFile, read: boolean) => void;
 }
 
 interface MangaPanelInfo {
 	title: string;
 	mediaType: string | null;
+	year: number | null;
 	status: string | null;
 	chapters: number | null;
 	volumes: number | null;
 	mangakaRaw: string[];
 	posterLinkpath: string | null;
 	read: boolean;
+}
+
+/**
+ * The line under the MANGA panel's title: "Manga · 1998 · Currently
+ * publishing · 37 volumes · 390 chapters". Whatever MAL left blank is left
+ * out. The panel is the only place these show, since the nested `manga`
+ * property is hidden (see `MANGA_HOST_CLASS`).
+ */
+export function mangaSummary(
+	info: Pick<MangaPanelInfo, "mediaType" | "year" | "status" | "volumes" | "chapters">,
+): string {
+	const count = (n: number, noun: string) => `${n} ${n === 1 ? noun : `${noun}s`}`;
+	return [
+		formatMediaType(info.mediaType),
+		info.year === null ? null : String(info.year),
+		formatStatus(info.status),
+		info.volumes === null ? null : count(info.volumes, "volume"),
+		info.chapters === null ? null : count(info.chapters, "chapter"),
+	]
+		.filter((part): part is string => part !== null)
+		.join(" · ");
 }
 
 function extractNames(value: unknown): string[] {
@@ -79,6 +147,8 @@ export class FilmNoteLayout {
 	private showConnections: boolean;
 	private showFilmography: boolean;
 	private readonly mangaActions: MangaPanelActions;
+	/** Set once the plugin unloads: a refresh still scheduled after that must not draw anything back. */
+	private disposed = false;
 
 	constructor(
 		app: App,
@@ -101,28 +171,35 @@ export class FilmNoteLayout {
 	}
 
 	refresh(): void {
+		if (this.disposed) return;
+		const scan = new VaultScan(() => this.app.vault.getMarkdownFiles(), {
+			film: (file) => this.resolveFilmInfo(file),
+			manga: (file) => this.mangagraphyMangaInfo(file),
+		});
 		for (const leaf of this.app.workspace.getLeavesOfType("markdown")) {
 			const view = leaf.view;
-			if (view instanceof MarkdownView) this.applyTo(view);
+			if (view instanceof MarkdownView) this.applyTo(view, scan);
 		}
 	}
 
+	/**
+	 * Takes every poster and panel back out, in pop-out windows too — each
+	 * window has its own document, so the open notes' own containers are
+	 * searched as well as the main one.
+	 */
 	removeAll(): void {
-		for (const el of Array.from(document.querySelectorAll(`.${POSTER_CLASS}`))) {
-			el.detach();
-		}
-		for (const el of Array.from(document.querySelectorAll(`.${CONNECTIONS_CLASS}`))) {
-			el.detach();
-		}
-		for (const el of Array.from(document.querySelectorAll(`.${LAYOUT_CLASS}`))) {
-			el.removeClass(LAYOUT_CLASS);
-		}
-		for (const el of Array.from(document.querySelectorAll(`.${MANGA_HOST_CLASS}`))) {
-			el.removeClass(MANGA_HOST_CLASS);
+		this.disposed = true;
+		const roots: ParentNode[] = [document];
+		for (const leaf of this.app.workspace.getLeavesOfType("markdown")) roots.push(leaf.view.containerEl);
+
+		for (const root of roots) {
+			root.querySelectorAll(`.${POSTER_CLASS}, .${CONNECTIONS_CLASS}`).forEach((el) => el.detach());
+			root.querySelectorAll(`.${LAYOUT_CLASS}`).forEach((el) => el.removeClass(LAYOUT_CLASS));
+			root.querySelectorAll(`.${MANGA_HOST_CLASS}`).forEach((el) => el.removeClass(MANGA_HOST_CLASS));
 		}
 	}
 
-	private applyTo(view: MarkdownView): void {
+	private applyTo(view: MarkdownView, scan: VaultScan): void {
 		const host = this.findHost(view);
 		if (host !== null) {
 			const poster = this.resolvePoster(view);
@@ -133,7 +210,19 @@ export class FilmNoteLayout {
 			}
 		}
 
-		this.applyRelatedPanel(view, host);
+		this.applyRelatedPanel(view, host, scan);
+	}
+
+	/**
+	 * Whether `panel` already shows exactly what `signature` describes. A
+	 * refresh runs on every metadata change in the vault; rebuilding a panel
+	 * that hasn't changed would make it flicker and would drop whatever the
+	 * user is hovering or clicking — the Read checkbox, a link's preview.
+	 */
+	private unchanged(panel: HTMLElement, signature: string): boolean {
+		if (panel.dataset.filmTrackerSignature === signature) return true;
+		panel.dataset.filmTrackerSignature = signature;
+		return false;
 	}
 
 	private showPoster(host: HTMLElement, poster: Poster): void {
@@ -165,7 +254,7 @@ export class FilmNoteLayout {
 	 * the header and the body, so the panel is inserted as the header's next
 	 * sibling instead of living inside the same grid the poster uses.
 	 */
-	private applyRelatedPanel(view: MarkdownView, host: HTMLElement | null): void {
+	private applyRelatedPanel(view: MarkdownView, host: HTMLElement | null, scan: VaultScan): void {
 		const anchor = this.findConnectionsAnchor(view);
 		if (anchor === null) return;
 
@@ -182,7 +271,7 @@ export class FilmNoteLayout {
 
 			const mangaka = frontmatter === undefined ? null : this.resolveMangakaInfo(frontmatter);
 			if (mangaka !== null) {
-				this.applyMangagraphy(anchor, file, mangaka);
+				this.applyMangagraphy(anchor, file, mangaka, scan);
 				return;
 			}
 
@@ -193,23 +282,23 @@ export class FilmNoteLayout {
 			}
 			const director = frontmatter === undefined ? null : this.resolveDirectorInfo(frontmatter);
 			if (director !== null) {
-				this.applyFilmography(anchor, file, director);
+				this.applyFilmography(anchor, file, director, scan);
 				return;
 			}
 		} else {
 			host?.removeClass(MANGA_HOST_CLASS);
 		}
 
-		this.applyConnections(anchor, view);
+		this.applyConnections(anchor, view, scan);
 	}
 
-	private applyConnections(anchor: HTMLElement, view: MarkdownView): void {
+	private applyConnections(anchor: HTMLElement, view: MarkdownView, scan: VaultScan): void {
 		if (!this.showConnections) {
 			this.detachPanel(anchor);
 			return;
 		}
 
-		const found = this.connectionsFor(view.file);
+		const found = this.connectionsFor(view.file, scan);
 
 		if (found === null || found.connections.length === 0) {
 			this.detachPanel(anchor);
@@ -229,19 +318,29 @@ export class FilmNoteLayout {
 		return {
 			title: typeof block.title === "string" ? block.title : "",
 			mediaType: typeof block.media_type === "string" ? block.media_type : null,
+			year: typeof block.year === "number" ? block.year : null,
 			status: typeof block.status === "string" ? block.status : null,
 			chapters: typeof block.chapters === "number" ? block.chapters : null,
 			volumes: typeof block.volumes === "number" ? block.volumes : null,
 			mangakaRaw: Array.isArray(block.mangaka)
 				? block.mangaka.filter((item): item is string => typeof item === "string")
 				: [],
-			posterLinkpath: parseWikilink(block.poster),
+			posterLinkpath: parseLinkTarget(block.poster),
 			read: block.read === true,
 		};
 	}
 
 	private applyMangaPanel(anchor: HTMLElement, file: TFile, info: MangaPanelInfo): void {
 		const panel = this.ensurePanel(anchor);
+		// What the panel shows also depends on which links resolve right now:
+		// the poster, and a mangaka whose note has just been created.
+		const posterPath = this.resolveLinkedFile(info.posterLinkpath, file.path)?.path ?? null;
+		const mangakaTargets = info.mangakaRaw.map((raw) => {
+			const linkpath = parseWikilink(raw);
+			return linkpath === null ? null : (this.resolveLinkedFile(linkpath, file.path)?.path ?? null);
+		});
+		if (this.unchanged(panel, JSON.stringify(["manga", file.path, info, posterPath, mangakaTargets]))) return;
+
 		const wasCollapsed = panel.hasClass("is-collapsed");
 		panel.empty();
 		panel.toggleClass("is-collapsed", wasCollapsed);
@@ -261,11 +360,9 @@ export class FilmNoteLayout {
 			details.createDiv({ text: info.title, cls: "film-tracker-manga-title" });
 		}
 
-		const meta = [info.mediaType, info.status].filter((value): value is string => value !== null);
-		if (info.volumes !== null) meta.push(`${info.volumes} volumes`);
-		if (info.chapters !== null) meta.push(`${info.chapters} chapters`);
-		if (meta.length > 0) {
-			details.createDiv({ text: meta.join(" · "), cls: "film-tracker-connections-shared" });
+		const summary = mangaSummary(info);
+		if (summary !== "") {
+			details.createDiv({ text: summary, cls: "film-tracker-connections-shared" });
 		}
 
 		if (info.mangakaRaw.length > 0) {
@@ -281,10 +378,11 @@ export class FilmNoteLayout {
 		checkbox.checked = info.read;
 		readToggle.appendText(" Read");
 		checkbox.addEventListener("change", () => {
-			void this.app.vault.process(file, (content) => toggleMangaRead(content));
+			this.mangaActions.setRead(file, checkbox.checked);
 		});
 
 		const actions = details.createDiv({ cls: "film-tracker-manga-actions" });
+		this.renderMangaAction(actions, "Add adaptation", () => this.mangaActions.addAdaptation(file));
 		this.renderMangaAction(actions, "Change manga", () => this.mangaActions.change(file));
 		this.renderMangaAction(actions, "Remove manga", () => this.mangaActions.remove(file));
 	}
@@ -328,13 +426,14 @@ export class FilmNoteLayout {
 		anchor: HTMLElement,
 		file: TFile,
 		director: { names: Set<string> },
+		scan: VaultScan,
 	): void {
 		if (!this.showFilmography) {
 			this.detachPanel(anchor);
 			return;
 		}
 
-		const films = this.computeFilmography(director.names);
+		const films = findFilmography(director.names, scan.films());
 		if (films.length === 0) {
 			this.detachPanel(anchor);
 			return;
@@ -349,8 +448,13 @@ export class FilmNoteLayout {
 	 * about Director's own panel, and coupling it to a mangaka's panel would
 	 * be a confusing surprise for anyone who turns it off).
 	 */
-	private applyMangagraphy(anchor: HTMLElement, file: TFile, mangaka: { names: Set<string> }): void {
-		const mangas = this.computeMangagraphy(mangaka.names);
+	private applyMangagraphy(
+		anchor: HTMLElement,
+		file: TFile,
+		mangaka: { names: Set<string> },
+		scan: VaultScan,
+	): void {
+		const mangas = findMangagraphy(mangaka.names, scan.mangas());
 		if (mangas.length === 0) {
 			this.detachPanel(anchor);
 			return;
@@ -374,11 +478,13 @@ export class FilmNoteLayout {
 
 	private connectionsFor(
 		file: TFile | null,
+		scan: VaultScan,
 	): { connections: Connection[]; sourcePath: string } | null {
 		if (file === null) return null;
 		const current = this.resolveFilmInfo(file);
 		if (current === null) return null;
-		return { connections: this.computeConnections(file, current), sourcePath: file.path };
+		const others = scan.films().filter((film) => film.path !== file.path);
+		return { connections: findConnections(current, others).slice(0, MAX_CONNECTIONS), sourcePath: file.path };
 	}
 
 	/**
@@ -415,39 +521,6 @@ export class FilmNoteLayout {
 		return { names: new Set([name.trim()]) };
 	}
 
-	private computeFilmography(names: Set<string>): FilmographyEntry[] {
-		const films = this.app.vault
-			.getMarkdownFiles()
-			.map((file) => this.filmographyFilmInfo(file))
-			.filter((info): info is FilmographyFilm => info !== null);
-
-		return findFilmography(names, films);
-	}
-
-	private filmographyFilmInfo(file: TFile): FilmographyFilm | null {
-		const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
-		if (frontmatter?.tmdb_id === undefined) return null;
-
-		const title: unknown = frontmatter.title;
-		const year: unknown = frontmatter.year;
-		return {
-			path: file.path,
-			title: typeof title === "string" && title !== "" ? title : file.basename,
-			year: typeof year === "number" ? year : null,
-			watched: frontmatter.watched === true,
-			directors: extractNames(frontmatter.directors),
-		};
-	}
-
-	private computeMangagraphy(names: Set<string>): MangagraphyEntry[] {
-		const mangas = this.app.vault
-			.getMarkdownFiles()
-			.map((file) => this.mangagraphyMangaInfo(file))
-			.filter((info): info is MangagraphyManga => info !== null);
-
-		return findMangagraphy(names, mangas);
-	}
-
 	/** Reads the nested `manga` block the same way `resolveMangaInfo` does — a manga-only note and a merged Series note look identical here. */
 	private mangagraphyMangaInfo(file: TFile): MangagraphyManga | null {
 		const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
@@ -459,10 +532,12 @@ export class FilmNoteLayout {
 		const title: unknown = block.title;
 		const year: unknown = block.year;
 		return {
+			malId: block.mal_id,
 			path: file.path,
 			title: typeof title === "string" && title !== "" ? title : file.basename,
 			year: typeof year === "number" ? year : null,
 			read: block.read === true,
+			hasAnime: typeof frontmatter?.mal_id === "number",
 			mangaka: extractNames(block.mangaka),
 		};
 	}
@@ -477,25 +552,18 @@ export class FilmNoteLayout {
 		return anchor instanceof HTMLElement ? anchor : null;
 	}
 
-	private computeConnections(file: TFile, current: FilmNoteInfo): Connection[] {
-		const others = this.app.vault
-			.getMarkdownFiles()
-			.filter((candidate) => candidate.path !== file.path)
-			.map((candidate) => this.resolveFilmInfo(candidate))
-			.filter((info): info is FilmNoteInfo => info !== null);
-
-		return findConnections(current, others).slice(0, MAX_CONNECTIONS);
-	}
-
-	private resolveFilmInfo(file: TFile): FilmNoteInfo | null {
+	private resolveFilmInfo(file: TFile): ScannedFilm | null {
 		const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
 		const tmdbId: unknown = frontmatter?.tmdb_id;
 		if (frontmatter === undefined || tmdbId === undefined || tmdbId === null) return null;
 
 		const title: unknown = frontmatter.title;
+		const year: unknown = frontmatter.year;
 		return {
 			path: file.path,
 			title: typeof title === "string" && title !== "" ? title : file.basename,
+			year: typeof year === "number" ? year : null,
+			watched: frontmatter.watched === true,
 			directors: extractNames(frontmatter.directors),
 			cast: extractNames(frontmatter.cast),
 			composers: extractNames(frontmatter.composers),
@@ -529,6 +597,13 @@ export class FilmNoteLayout {
 		connections: Connection[],
 		sourcePath: string,
 	): void {
+		const shown = connections.map((connection) => [
+			connection.file.path,
+			connection.file.title,
+			connection.shared.map((credit) => credit.name),
+		]);
+		if (this.unchanged(panel, JSON.stringify(["connections", sourcePath, shown]))) return;
+
 		const wasCollapsed = panel.hasClass("is-collapsed");
 		panel.empty();
 		panel.toggleClass("is-collapsed", wasCollapsed);
@@ -562,6 +637,8 @@ export class FilmNoteLayout {
 		films: FilmographyEntry[],
 		sourcePath: string,
 	): void {
+		if (this.unchanged(panel, JSON.stringify(["filmography", sourcePath, films]))) return;
+
 		const wasCollapsed = panel.hasClass("is-collapsed");
 		panel.empty();
 		panel.toggleClass("is-collapsed", wasCollapsed);
@@ -602,6 +679,8 @@ export class FilmNoteLayout {
 		mangas: MangagraphyEntry[],
 		sourcePath: string,
 	): void {
+		if (this.unchanged(panel, JSON.stringify(["mangagraphy", sourcePath, mangas]))) return;
+
 		const wasCollapsed = panel.hasClass("is-collapsed");
 		panel.empty();
 		panel.toggleClass("is-collapsed", wasCollapsed);
@@ -615,26 +694,37 @@ export class FilmNoteLayout {
 		const list = panel.createEl("ul", { cls: "film-tracker-connections-list" });
 		for (const manga of mangas) {
 			const item = list.createEl("li");
-			const link = item.createEl("a", {
-				cls: "internal-link film-tracker-connections-link",
-				text: manga.title,
-				href: manga.path,
-			});
-			link.addEventListener("click", (event) => {
-				event.preventDefault();
-				void this.app.workspace.openLinkText(
-					manga.path,
-					sourcePath,
-					event.ctrlKey || event.metaKey,
-				);
-			});
+			const [primaryPath, ...otherPaths] = manga.paths;
+			this.renderPathLink(item, manga.title, primaryPath, sourcePath);
 			if (manga.year !== null) {
 				item.createSpan({
 					cls: "film-tracker-connections-shared",
 					text: ` — ${manga.year}`,
 				});
 			}
+			// The same manga on more than one Series note — one per
+			// adaptation — is listed once, with the other notes alongside.
+			if (otherPaths.length > 0) {
+				const others = item.createSpan({ cls: "film-tracker-connections-shared", text: " · also in " });
+				otherPaths.forEach((path, index) => {
+					if (index > 0) others.appendText(", ");
+					const file = this.app.vault.getFileByPath(path);
+					this.renderPathLink(others, file?.basename ?? path, path, sourcePath);
+				});
+			}
 		}
+	}
+
+	private renderPathLink(container: HTMLElement, text: string, path: string, sourcePath: string): void {
+		const link = container.createEl("a", {
+			cls: "internal-link film-tracker-connections-link",
+			text,
+			href: path,
+		});
+		link.addEventListener("click", (event) => {
+			event.preventDefault();
+			void this.app.workspace.openLinkText(path, sourcePath, event.ctrlKey || event.metaKey);
+		});
 	}
 
 	private findHost(view: MarkdownView): HTMLElement | null {
@@ -657,7 +747,7 @@ export class FilmNoteLayout {
 			return null;
 		}
 
-		const linkpath = parseWikilink(frontmatter.poster);
+		const linkpath = parseLinkTarget(frontmatter.poster);
 		if (linkpath === null) return null;
 
 		const target = this.app.metadataCache.getFirstLinkpathDest(linkpath, file.path);

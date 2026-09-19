@@ -1,13 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
 	applyMangaBlock,
-	isAnimeOnlySeriesFrontmatter,
-	isMangaOnlySeriesFrontmatter,
 	mangaMalIdFrom,
 	relinkMangaka,
 	removeMangaBlock,
 	replaceMangaBlock,
-	toggleMangaRead,
+	setMangaRead,
 } from "../src/manga-note";
 import type { MangaMetadata } from "../src/mal";
 
@@ -202,6 +200,16 @@ const mergedSeriesNote = [
 	"",
 ].join("\n");
 
+describe("applyMangaBlock: a mangaka already linked", () => {
+	it("stays linked on refresh even while the mangaka's note doesn't exist", () => {
+		const linked = applyMangaBlock("---\n---\n", hxh, null, alwaysResolved);
+		const refreshed = applyMangaBlock(linked, hxh, null, neverResolved, {
+			manga: { mangaka: ["[[Yoshihiro Togashi]]"] },
+		});
+		expect(refreshed).toContain('  mangaka:\n    - "[[Yoshihiro Togashi]]"\n');
+	});
+});
+
 describe("replaceMangaBlock", () => {
 	it("swaps in the new manga's own data, in the canonical field order", () => {
 		const changed = replaceMangaBlock(mergedSeriesNote, hxh, "[[HxH (Manga).jpg]]", neverResolved);
@@ -323,46 +331,27 @@ describe("mangaMalIdFrom", () => {
 	});
 });
 
-/**
- * Regression coverage for a real bug: a mangaka note (`name` + `mal_id`, no
- * `manga` block) matches the exact same frontmatter shape an anime-only
- * Series note has, since both deliberately use the top-level `mal_id`
- * field. Without the `isMangakaNote` guard, Add manga would merge a `manga:`
- * block straight into a mangaka note.
- */
-describe("isAnimeOnlySeriesFrontmatter / isMangaOnlySeriesFrontmatter", () => {
-	const mangakaNote = { name: "Hirohiko Araki", mal_id: 1868 };
-	const animeOnlySeries = { title: "Shingeki no Kyojin", mal_id: 16498 };
-	const mangaOnlySeries = { manga: { mal_id: 26 } };
-	const corruptedMangakaNote = { name: "Hirohiko Araki", mal_id: 1868, manga: { mal_id: 401 } };
+describe("the manga block on a note with Windows (CRLF) line endings", () => {
+	const crlf = [
+		"---",
+		"title: Hunter x Hunter",
+		"manga:",
+		"  mal_id: 26",
+		"  read: false",
+		"---",
+		"Body",
+		"",
+	].join("\r\n");
 
-	it("a mangaka note is never an Add manga merge target", () => {
-		expect(isAnimeOnlySeriesFrontmatter(mangakaNote, true)).toBe(false);
+	it("sets read and keeps the CRLF line endings", () => {
+		expect(setMangaRead(crlf, true)).toBe(crlf.replace("read: false", "read: true"));
 	});
 
-	it("a mangaka note is never an Add anime merge target", () => {
-		expect(isMangaOnlySeriesFrontmatter(mangakaNote, true)).toBe(false);
-	});
-
-	it("a real anime-only Series note can still be merged into by Add manga", () => {
-		expect(isAnimeOnlySeriesFrontmatter(animeOnlySeries, false)).toBe(true);
-	});
-
-	it("a real manga-only Series note can still be merged into by Add anime", () => {
-		expect(isMangaOnlySeriesFrontmatter(mangaOnlySeries, false)).toBe(true);
-	});
-
-	it("an anime-only Series note is never mistaken for a manga-only one", () => {
-		expect(isMangaOnlySeriesFrontmatter(animeOnlySeries, false)).toBe(false);
-	});
-
-	it("a manga-only Series note is never mistaken for an anime-only one", () => {
-		expect(isAnimeOnlySeriesFrontmatter(mangaOnlySeries, false)).toBe(false);
-	});
-
-	it("stays false for both even on an already-corrupted mangaka note with a stray manga block", () => {
-		expect(isAnimeOnlySeriesFrontmatter(corruptedMangakaNote, true)).toBe(false);
-		expect(isMangaOnlySeriesFrontmatter(corruptedMangakaNote, true)).toBe(false);
+	it("refreshes the block and keeps the CRLF line endings", () => {
+		const result = applyMangaBlock(crlf, hxh, null, neverResolved);
+		expect(result).toContain("  chapters: 400\r\n");
+		expect(result.replace(/\r\n/g, "")).not.toContain("\n");
+		expect(result.endsWith("---\r\nBody\r\n")).toBe(true);
 	});
 });
 
@@ -431,33 +420,62 @@ describe("relinkMangaka", () => {
 	});
 });
 
-describe("toggleMangaRead", () => {
-	it("flips read from false to true and back", () => {
+describe("setMangaRead", () => {
+	it("sets read to the value given, not a flip of what the file holds", () => {
 		const created = applyMangaBlock("---\n---\n", hxh, null, neverResolved);
 		expect(created).toContain("read: false");
 
-		const toggledOn = toggleMangaRead(created);
-		expect(toggledOn).toContain("read: true");
-
-		const toggledOff = toggleMangaRead(toggledOn);
-		expect(toggledOff).toContain("read: false");
+		const readOnce = setMangaRead(created, true);
+		expect(readOnce).toContain("read: true");
+		expect(setMangaRead(readOnce, true)).toBe(readOnce);
+		expect(setMangaRead(readOnce, false)).toBe(created);
 	});
 
 	it("leaves every other manga field and the body untouched", () => {
 		const created = applyMangaBlock("---\n---\n", hxh, "[[poster.jpg]]", neverResolved);
-		const toggled = toggleMangaRead(created + "My notes.\n");
-		expect(toggled).toContain("chapters: 400");
-		expect(toggled).toContain("volumes: 37");
-		expect(toggled).toContain('poster: "[[poster.jpg]]"');
-		expect(toggled).toContain("My notes.");
+		const read = setMangaRead(created + "My notes.\n", true);
+		expect(read).toContain("chapters: 400");
+		expect(read).toContain("volumes: 37");
+		expect(read).toContain('poster: "[[poster.jpg]]"');
+		expect(read).toContain("My notes.");
+	});
+
+	/** Regression: the old toggle rewrote every `read:` line, hoisting this one out of `progress` as a duplicate key. */
+	it("never touches a read: the user nested under a field of their own", () => {
+		const nested = ["---", "manga:", "  mal_id: 26", "  read: false", "  progress:", "    read: 12", "---", ""].join(
+			"\n",
+		);
+		expect(setMangaRead(nested, true)).toBe(nested.replace("  read: false", "  read: true"));
+	});
+
+	it("gives back a read line to a block that lost it", () => {
+		const note = ["---", "manga:", "  mal_id: 26", "  title: Hunter x Hunter", "---", ""].join("\n");
+		expect(setMangaRead(note, true)).toContain("  title: Hunter x Hunter\n  read: true\n---");
 	});
 
 	it("returns the content unchanged when there is no manga block", () => {
 		const note = "---\ntitle: Something\n---\n\nBody.\n";
-		expect(toggleMangaRead(note)).toBe(note);
+		expect(setMangaRead(note, true)).toBe(note);
 	});
 
 	it("returns the content unchanged when there is no frontmatter", () => {
-		expect(toggleMangaRead("No frontmatter here.")).toBe("No frontmatter here.");
+		expect(setMangaRead("No frontmatter here.", true)).toBe("No frontmatter here.");
+	});
+});
+
+describe("applyMangaBlock: which read counts", () => {
+	/** Regression: `read: True` is a YAML true, but a refresh used to reset it to false. */
+	it("keeps a read written as True", () => {
+		const note = ["---", "manga:", "  mal_id: 26", "  read: True", "---", ""].join("\n");
+		expect(applyMangaBlock(note, hxh, null, neverResolved)).toContain("  read: true");
+	});
+
+	it("never takes a read nested under the user's own field for the block's own", () => {
+		const note = ["---", "manga:", "  mal_id: 26", "  progress:", "    read: true", "  read: false", "---", ""].join(
+			"\n",
+		);
+		const refreshed = applyMangaBlock(note, hxh, null, neverResolved);
+		expect(refreshed).toContain("\n  read: false\n");
+		expect(refreshed).toContain("  progress:\n    read: true");
 	});
 });

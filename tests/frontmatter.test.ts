@@ -1,8 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
 	formatNames,
+	markWatched,
+	parseFrontmatterBlocks,
 	refreshFrontmatter,
 	relinkFrontmatter,
+	serializeFrontmatterBlocks,
 	setWatchDate,
 	type FilmMetadata,
 	type LinkOptions,
@@ -189,6 +192,160 @@ describe("refreshFrontmatter", () => {
 		const result = refreshFrontmatter(userNote, laLaLand);
 		expect(result).toContain("watch_date: 2024-03-01");
 		expect(result).toContain("rating: 8");
+	});
+});
+
+/** `previous` is what Obsidian parsed from the note before the refresh, as main.ts passes it. */
+describe("refreshFrontmatter: aliases the user added", () => {
+	const withOwnAlias = userNote.replace(
+		"tmdb_id: 313369",
+		"tmdb_id: 313369\naliases:\n  - La La Land\n  - Aşıklar Şehri",
+	);
+	const previous = {
+		title: "La La Land",
+		original_title: "La La Land",
+		aliases: ["La La Land", "Aşıklar Şehri"],
+	};
+
+	/** Regression: a refresh used to rebuild the list from TMDB alone, deleting this alias. */
+	it("keeps an alias the user added", () => {
+		const result = refreshFrontmatter(withOwnAlias, laLaLand, undefined, null, previous);
+		expect(result).toContain("aliases:\n  - La La Land\n  - Aşıklar Şehri\n");
+	});
+
+	it("still replaces the aliases it wrote itself when TMDB's titles have changed", () => {
+		const renamed = withOwnAlias.replace("aliases:\n  - La La Land", "aliases:\n  - Old Title");
+		const result = refreshFrontmatter(renamed, laLaLand, undefined, null, {
+			title: "Old Title",
+			original_title: "Old Title",
+			aliases: ["Old Title", "Aşıklar Şehri"],
+		});
+		expect(result).toContain("aliases:\n  - La La Land\n  - Aşıklar Şehri\n");
+		expect(result).not.toContain("Old Title");
+	});
+
+	it("writes an alias only once when the user's matches a generated one", () => {
+		// "La La Land" here isn't one the plugin wrote (the old titles were
+		// different), yet it equals the new title: it must not appear twice.
+		const result = refreshFrontmatter(withOwnAlias, laLaLand, undefined, null, {
+			...previous,
+			title: "Old Title",
+			original_title: "Old Original",
+		});
+		expect(result).toContain("aliases:\n  - La La Land\n  - Aşıklar Şehri\n");
+	});
+
+	it("keeps an alias YAML read as a number", () => {
+		const result = refreshFrontmatter(withOwnAlias, laLaLand, undefined, null, {
+			...previous,
+			aliases: ["La La Land", 2016],
+		});
+		expect(result).toContain('aliases:\n  - La La Land\n  - "2016"\n');
+	});
+});
+
+describe("refreshFrontmatter: links already in the note", () => {
+	const linked = userNote
+		.replace("  - Damien Chazelle", '  - "[[Damien Chazelle]]"')
+		.replace("  - Drama", '  - "[[Drama|Dram]]"');
+	const previous = { directors: ["[[Damien Chazelle]]"], genres: ["Comedy", "[[Drama|Dram]]", "Romance"] };
+
+	/** Regression: with "Link directors" off, a refresh wrote every director back as plain text. */
+	it("keeps them with the Link settings off", () => {
+		const result = refreshFrontmatter(linked, laLaLand, undefined, null, previous);
+		expect(result).toContain('directors:\n  - "[[Damien Chazelle]]"\n');
+		expect(result).toContain('genres:\n  - Comedy\n  - "[[Drama|Dram]]"\n  - Romance\n');
+	});
+
+	it("keeps one whose note doesn't exist yet with the setting on", () => {
+		const result = refreshFrontmatter(linked, laLaLand, linkDirectors(), null, previous);
+		expect(result).toContain('directors:\n  - "[[Damien Chazelle]]"\n');
+	});
+});
+
+describe("lines before the first property", () => {
+	const commented = userNote.replace("---\ntitle:", "---\n# Kept by hand, see README\n\ntitle:");
+
+	/** Regression: a comment above the first property was deleted by every rewrite. */
+	it("are read and written back as they are", () => {
+		const doc = parseFrontmatterBlocks(commented);
+		if (doc === null) throw new Error("The note should parse");
+		expect(doc.preamble).toEqual(["# Kept by hand, see README", ""]);
+		expect(serializeFrontmatterBlocks(doc)).toBe(commented);
+	});
+
+	it("survive a refresh and ticking watched", () => {
+		const refreshed = refreshFrontmatter(commented, laLaLand);
+		expect(refreshed.startsWith("---\n# Kept by hand, see README\n\ntitle: La La Land\n")).toBe(true);
+		expect(markWatched(commented).startsWith("---\n# Kept by hand, see README\n\ntitle:")).toBe(true);
+	});
+
+	it("keep their place in frontmatter that has nothing else yet", () => {
+		const doc = parseFrontmatterBlocks("---\n# empty for now\n---\nBody\n");
+		if (doc === null) throw new Error("The note should parse");
+		expect(serializeFrontmatterBlocks(doc)).toBe("---\n# empty for now\n---\nBody\n");
+	});
+});
+
+describe("frontmatter with Windows (CRLF) line endings", () => {
+	const crlfNote = userNote.replace(/\n/g, "\r\n");
+
+	/** Regression: a CRLF note used to parse as "no frontmatter", so every rewrite silently did nothing. */
+	it("reads the note and writes it back byte for byte", () => {
+		const doc = parseFrontmatterBlocks(crlfNote);
+		if (doc === null) throw new Error("A CRLF note should parse");
+		expect(doc.order).toContain("tmdb_id");
+		expect(serializeFrontmatterBlocks(doc)).toBe(crlfNote);
+	});
+
+	it("refreshes it, keeping CRLF line endings throughout", () => {
+		const result = refreshFrontmatter(crlfNote, laLaLand);
+		expect(result).toContain("runtime: 129\r\n");
+		expect(result.replace(/\r\n/g, "")).not.toContain("\n");
+		expect(result.endsWith("\r\nMy own notes about the film.\r\nSecond line.\r\n")).toBe(true);
+	});
+
+	it("fills in watch_date on it", () => {
+		const unwatched = crlfNote.replace("watch_date: 2024-03-01", "watch_date:");
+		expect(setWatchDate(unwatched, "2024-06-15")).toBe(crlfNote.replace("2024-03-01", "2024-06-15"));
+	});
+
+	it("never adds a carriage return to a note written with plain LF endings", () => {
+		expect(refreshFrontmatter(userNote, laLaLand)).not.toContain("\r");
+	});
+});
+
+describe("markWatched", () => {
+	const unwatched = userNote.replace("rating: 8", "rating: 8\nwatched: false");
+
+	it("ticks watched", () => {
+		expect(markWatched(unwatched)).toBe(unwatched.replace("watched: false", "watched: true"));
+	});
+
+	it("fills in an empty watched", () => {
+		const empty = unwatched.replace("watched: false", "watched:");
+		expect(markWatched(empty)).toContain("\nwatched: true\n");
+	});
+
+	it("leaves a note that is already ticked exactly as it is", () => {
+		const watched = unwatched.replace("watched: false", "watched: true");
+		expect(markWatched(watched)).toBe(watched);
+	});
+
+	it("adds watched to a note that predates the field", () => {
+		expect(markWatched(userNote)).toContain("rating: 8\nwatched: true\n---");
+	});
+
+	it("preserves the body and the user's own properties", () => {
+		const result = markWatched(unwatched);
+		expect(result).toContain("rating: 8");
+		expect(result).toContain("watch_date: 2024-03-01");
+		expect(result).toContain("My own notes about the film.");
+	});
+
+	it("returns notes without frontmatter untouched", () => {
+		const plain = "# Just a note\n\nNothing structured here.\n";
+		expect(markWatched(plain)).toBe(plain);
 	});
 });
 
