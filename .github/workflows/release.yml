@@ -1,6 +1,7 @@
 # Pushing a version tag (e.g. `git push origin 2.2.0`) builds the plugin and
-# opens a draft GitHub release with the three files Obsidian installs. The
-# draft is published by hand, after checking it and writing its notes.
+# publishes a GitHub release with the three files Obsidian installs, so the
+# update reaches everyone. Swap `--notes-file release-notes.md` for `--draft`
+# to go back to releases that are published by hand.
 name: Release
 
 on:
@@ -34,7 +35,22 @@ jobs:
             exit 1
           fi
 
-      - name: Create a draft release
+      # The release notes are this version's own section of the changelog.
+      - name: Read the release notes from the changelog
+        run: |
+          awk -v heading="## [$GITHUB_REF_NAME]" '
+            index($0, heading) == 1 { found = 1; next }
+            found && /^## \[/ { exit }
+            found { print }
+          ' CHANGELOG.md > release-notes.md
+          if [ ! -s release-notes.md ]; then
+            echo "CHANGELOG.md has no section for $GITHUB_REF_NAME."
+            exit 1
+          fi
+
+      - name: Publish the release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create "$GITHUB_REF_NAME" main.js manifest.json styles.css --title "$GITHUB_REF_NAME" --draft
+        run: |
+          gh release create "$GITHUB_REF_NAME" main.js manifest.json styles.css \
+            --title "$GITHUB_REF_NAME" --notes-file release-notes.md
