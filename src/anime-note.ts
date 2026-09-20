@@ -123,6 +123,7 @@ const ANIME_FIELD_ORDER: readonly string[] = [
 	"japanese_title",
 	"media_type",
 	"episodes",
+	"episodes_watched",
 	"genres",
 	"studios",
 	"status",
@@ -130,6 +131,7 @@ const ANIME_FIELD_ORDER: readonly string[] = [
 	"end_year",
 	"poster",
 	"mal_id",
+	"watch_date",
 	"watched",
 ];
 
@@ -171,6 +173,70 @@ function setOwnedKey(
 	if (doc.order.includes(key)) return;
 
 	doc.order.splice(insertionIndex(doc.order, key), 0, key);
+}
+
+/** A whole, non-negative count, or `null` for anything else a property might hold. */
+function count(value: unknown): number | null {
+	if (typeof value !== "number" || !Number.isFinite(value) || value < 0) return null;
+	return Math.floor(value);
+}
+
+/**
+ * How far through an anime the note says it is. `episodes_watched` is the
+ * user's own count — a refresh never rewrites it — and `episodes` is MAL's
+ * length, `null` while MAL doesn't know it (a currently airing series often
+ * has none).
+ */
+export interface AnimeProgress {
+	watched: number;
+	episodes: number | null;
+	done: boolean;
+}
+
+export function animeProgressOf(frontmatter: Record<string, unknown> | undefined): AnimeProgress {
+	const episodes = count(frontmatter?.episodes);
+	const watched = count(frontmatter?.episodes_watched) ?? 0;
+	return { watched, episodes, done: frontmatter?.watched === true };
+}
+
+/**
+ * Ticks `watched` and writes `watch_date`, adding either key where the note
+ * doesn't have it yet (see `insertionIndex`). An existing date is kept: the
+ * day something was first finished is the user's, and rewatching doesn't
+ * overwrite it. `episodes` — the note's own length, when MAL knows it — also
+ * completes the count, since finishing means every episode.
+ */
+export function markAnimeWatched(content: string, date: string | null, episodes: number | null): string {
+	const doc = parseFrontmatterBlocks(content);
+	if (doc === null) return content;
+
+	setOwnedKey(doc, "watched", ["watched: true"]);
+	if (date !== null && isEmptyValue(doc.blocks.get("watch_date"))) {
+		setOwnedKey(doc, "watch_date", [`watch_date: ${date}`]);
+	}
+	if (episodes !== null) setOwnedKey(doc, "episodes_watched", [yamlScalar("episodes_watched", episodes)]);
+
+	return serializeFrontmatterBlocks(doc);
+}
+
+/**
+ * Sets `episodes_watched`. Reaching the last episode finishes the anime off
+ * as `markAnimeWatched` would, so watching the final episode never leaves a
+ * note that is complete but unticked.
+ */
+export function setAnimeProgress(
+	content: string,
+	watched: number,
+	episodes: number | null,
+	date: string | null,
+): string {
+	if (episodes !== null && watched >= episodes) return markAnimeWatched(content, date, episodes);
+
+	const doc = parseFrontmatterBlocks(content);
+	if (doc === null) return content;
+
+	setOwnedKey(doc, "episodes_watched", [yamlScalar("episodes_watched", watched)]);
+	return serializeFrontmatterBlocks(doc);
 }
 
 /**

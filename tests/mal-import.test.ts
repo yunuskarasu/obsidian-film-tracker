@@ -45,7 +45,11 @@ const hxhManga: MangaMetadata = {
 	posterUrl: "https://cdn.example/hxh-manga.jpg",
 };
 
-const entry = <T>(work: T, listStatus: string | null): MalListEntry<T> => ({ work, listStatus });
+const entry = <T>(
+	work: T,
+	listStatus: string | null,
+	extra: Partial<MalListEntry<T>> = {},
+): MalListEntry<T> => ({ work, listStatus, progress: null, finishDate: null, ...extra });
 
 const EVERYTHING: MalListSelection = {
 	anime: true,
@@ -101,6 +105,44 @@ describe("importing a MyAnimeList list", () => {
 		expect(vault.frontmatter("Anime/Monster (2004).md")).toMatchObject({ mal_id: 19, watched: false });
 		expect(vault.frontmatter("Anime/Hunter x Hunter.md").manga).toMatchObject({ mal_id: 26, read: true });
 		expect(Notice.shown).toContain("Added 3, updated 0, skipped 0.");
+	});
+
+	it("brings the list's own progress and finishing date, not today's", async () => {
+		const vault = new FakeApp();
+		const client = fakeMal({
+			animeList: [
+				entry(hxh, "completed", { progress: 148, finishDate: "2019-04-07" }),
+				entry(monster, "watching", { progress: 30 }),
+			],
+			mangaList: [entry(hxhManga, "completed", { progress: 400, finishDate: "2018-01-02" })],
+		});
+		await importerFor(vault).run(client, "malfan", EVERYTHING, fakeProgress().progress);
+
+		expect(vault.frontmatter("Anime/Hunter x Hunter (2011).md")).toMatchObject({
+			watched: true,
+			watch_date: "2019-04-07",
+			episodes_watched: 148,
+		});
+		// Still watching: the count arrives, and nothing claims it is finished.
+		expect(vault.frontmatter("Anime/Monster (2004).md")).toMatchObject({
+			watched: false,
+			episodes_watched: 30,
+		});
+		expect(vault.frontmatter("Anime/Hunter x Hunter.md").manga).toMatchObject({
+			read: true,
+			read_date: "2018-01-02",
+		});
+	});
+
+	it("dates a note it already had from the list, not from the clock", async () => {
+		const vault = new FakeApp({ "Anime/Hunter x Hunter (2011).md": buildAnimeNoteContent(hxh, null) });
+		const client = fakeMal({ animeList: [entry(hxh, "completed", { finishDate: "2019-04-07" })] });
+		await importerFor(vault).run(client, "malfan", COMPLETED, fakeProgress().progress);
+
+		expect(vault.frontmatter("Anime/Hunter x Hunter (2011).md")).toMatchObject({
+			watched: true,
+			watch_date: "2019-04-07",
+		});
 	});
 
 	it("takes only the shelves that were picked", async () => {

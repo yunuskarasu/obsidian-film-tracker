@@ -69,8 +69,12 @@ function existingPosterLine(blockLines: string[] | undefined): string | null {
 	return value === null ? null : `${INDENT}poster: ${value}`;
 }
 
-/** Sub-fields under `manga:` that this plugin owns and rewrites on every refresh. */
-const MANGA_KNOWN_SUBKEYS = new Set([
+/**
+ * The order a freshly written `manga:` block puts its sub-fields in. A
+ * sub-field the block doesn't have yet is placed by this list, the same
+ * neighbour rule the anime side's fields follow.
+ */
+const MANGA_SUBKEY_ORDER: readonly string[] = [
 	"mal_id",
 	"title",
 	"media_type",
@@ -78,11 +82,16 @@ const MANGA_KNOWN_SUBKEYS = new Set([
 	"year",
 	"end_year",
 	"chapters",
+	"chapters_read",
 	"volumes",
 	"mangaka",
 	"poster",
 	"read",
-]);
+	"read_date",
+];
+
+/** Sub-fields under `manga:` that this plugin owns and rewrites on every refresh. */
+const MANGA_KNOWN_SUBKEYS = new Set(MANGA_SUBKEY_ORDER);
 
 /** Sub-key of one raw line inside a `manga:` block, the same one-level-deeper version of `topLevelKey` in note.ts: a line belongs to a new sub-field only if it sits exactly at the block's own indent and isn't a nested list item. */
 function mangaSubKey(line: string): string | null {
@@ -110,6 +119,37 @@ function unknownSubLines(blockLines: string[] | undefined): string[] {
 		if (keep) extra.push(line);
 	}
 	return extra;
+}
+
+/**
+ * Where a sub-field the block doesn't have yet goes: right before the first
+ * one that comes after it in `MANGA_SUBKEY_ORDER`, so `chapters_read` added
+ * to an older block lands beside `chapters` rather than at the end. A
+ * sub-field of the user's own is stepped over, never reordered.
+ */
+function subInsertionIndex(blockLines: string[], key: string): number {
+	const canonical = MANGA_SUBKEY_ORDER.indexOf(key);
+	if (canonical !== -1) {
+		for (let index = 1; index < blockLines.length; index += 1) {
+			const other = MANGA_SUBKEY_ORDER.indexOf(mangaSubKey(blockLines[index]) ?? "");
+			if (other > canonical) return index;
+		}
+	}
+	return blockLines.length;
+}
+
+/** Writes one sub-field's line, in place where it exists and in canonical order where it doesn't. `null` takes it out. */
+function setSubLine(blockLines: string[], key: string, line: string | null): string[] {
+	const lines = [...blockLines];
+	const index = lines.findIndex((raw) => mangaSubKey(raw) === key);
+	if (index !== -1) {
+		if (line === null) lines.splice(index, 1);
+		else lines[index] = line;
+		return lines;
+	}
+
+	if (line !== null) lines.splice(subInsertionIndex(lines, key), 0, line);
+	return lines;
 }
 
 function buildBlockLines(
@@ -173,7 +213,7 @@ export function applyMangaBlock(
 	const lines = buildBlockLines(manga, mangakaNames, null, read);
 	const extra = unknownSubLines(existingBlock);
 
-	const finalLines = [
+	let finalLines = [
 		...(preservedPoster !== null
 			? lines.map((line) => (line.trim().startsWith("poster:") ? preservedPoster : line))
 			: newPosterLink !== null
@@ -181,6 +221,13 @@ export function applyMangaBlock(
 				: lines),
 		...extra,
 	];
+
+	// How far the reader has got, and when they finished: theirs, like `read`,
+	// so a refresh carries them over rather than writing them fresh from MAL.
+	for (const key of ["chapters_read", "read_date"]) {
+		const value = readSubValue(existingBlock, key);
+		if (value !== null) finalLines = setSubLine(finalLines, key, `${INDENT}${key}: ${value}`);
+	}
 
 	doc.blocks.set(BLOCK_KEY, finalLines);
 	if (!doc.order.includes(BLOCK_KEY)) doc.order.push(BLOCK_KEY);
@@ -283,21 +330,90 @@ export function relinkMangaka(
  * than a flip, so notes that disagreed end up agreeing, and two quick clicks
  * can't leave the file and the checkbox out of step. Only the block's own
  * `read:` line is written (see `readLineIndex`); a block that lost it gets it
- * back. Every other sub-field, the rest of the frontmatter and the body are
- * untouched.
+ * back. Ticking also fills in `read_date` and `chapters_read` where the
+ * caller supplies them, and unticking clears the date — a finishing date
+ * describes something that is no longer true. Every other sub-field, the rest
+ * of the frontmatter and the body are untouched.
  */
-export function setMangaRead(content: string, read: boolean): string {
+export function setMangaRead(content: string, read: boolean, options: MangaReadOptions = {}): string {
 	const doc = parseFrontmatterBlocks(content);
 	if (doc === null) return content;
 
 	const block = doc.blocks.get(BLOCK_KEY);
 	if (block === undefined) return content;
 
-	const updated = [...block];
-	const index = readLineIndex(updated);
-	if (index === -1) updated.push(readLine(read));
-	else updated[index] = readLine(read);
+	let updated = setSubLine(block, "read", readLine(read));
+	if (read) {
+		// An existing date is the day it was first finished — kept, the way a
+		// film's `watch_date` is, so rereading doesn't overwrite it.
+		const date = options.date ?? null;
+		if (date !== null && readSubValue(updated, "read_date") === null) {
+			updated = setSubLine(updated, "read_date", `${INDENT}read_date: ${date}`);
+		}
+		const chapters = options.chapters ?? null;
+		if (chapters !== null) {
+			updated = setSubLine(updated, "chapters_read", yamlScalar("chapters_read", chapters, INDENT));
+		}
+	} else {
+		// Unticked again: a finishing date describes something that is no
+		// longer true. How far the reader got is left alone.
+		updated = setSubLine(updated, "read_date", null);
+	}
 
 	doc.blocks.set(BLOCK_KEY, updated);
+	return serializeFrontmatterBlocks(doc);
+}
+
+/** What `setMangaRead` writes beside `read` when it is being ticked. */
+export interface MangaReadOptions {
+	/** The day it was finished, written to `read_date` — but never over one already there. */
+	date?: string | null;
+	/** The manga's length: given, finishing it fills `chapters_read` in too. */
+	chapters?: number | null;
+}
+
+/**
+ * How far through a manga the note says it is. `chapters_read` is the
+ * reader's own count, which a refresh carries over untouched, and `chapters`
+ * is MAL's length — `null` for anything still being published.
+ */
+export interface MangaProgress {
+	read: number;
+	chapters: number | null;
+	done: boolean;
+}
+
+export function mangaProgressOf(frontmatter: Record<string, unknown> | undefined): MangaProgress {
+	const manga = frontmatter?.manga;
+	const block = typeof manga === "object" && manga !== null ? (manga as Record<string, unknown>) : {};
+	const count = (value: unknown) =>
+		typeof value === "number" && Number.isFinite(value) && value >= 0 ? Math.floor(value) : null;
+	return {
+		read: count(block.chapters_read) ?? 0,
+		chapters: count(block.chapters),
+		done: block.read === true,
+	};
+}
+
+/**
+ * Sets `chapters_read`. Reaching the last chapter marks the manga read as
+ * well, so the chapter that finishes it never leaves the note complete but
+ * unticked. The caller syncs that across every note carrying this manga.
+ */
+export function setMangaProgress(
+	content: string,
+	read: number,
+	chapters: number | null,
+	date: string | null,
+): string {
+	if (chapters !== null && read >= chapters) return setMangaRead(content, true, { date, chapters });
+
+	const doc = parseFrontmatterBlocks(content);
+	if (doc === null) return content;
+
+	const block = doc.blocks.get(BLOCK_KEY);
+	if (block === undefined) return content;
+
+	doc.blocks.set(BLOCK_KEY, setSubLine(block, "chapters_read", yamlScalar("chapters_read", read, INDENT)));
 	return serializeFrontmatterBlocks(doc);
 }

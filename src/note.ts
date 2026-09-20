@@ -468,6 +468,16 @@ export function relinkFrontmatter(
 }
 
 /**
+ * Today, written the way a date property holds it. The device's own day, not
+ * UTC's: someone watching a film at eleven at night should get that evening's
+ * date, not tomorrow's.
+ */
+export function today(now: Date = new Date()): string {
+	const pad = (value: number) => String(value).padStart(2, "0");
+	return `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}`;
+}
+
+/**
  * Fills in `watch_date` when it is empty; an existing one is never
  * overwritten, the same rule the poster follows on refresh.
  */

@@ -1,4 +1,5 @@
 import { MarkdownView, setIcon, type App, type TFile } from "obsidian";
+import { animeProgressOf } from "./anime-note";
 import { findConnections, type Connection, type FilmNoteInfo } from "./connections";
 import {
 	filmographyProgress,
@@ -14,6 +15,7 @@ import {
 } from "./mangagraphy";
 import { formatMediaType, formatStatus } from "./mal";
 import { parseLinkTarget, parseWikilink } from "./note";
+import { classifyNote } from "./note-kind";
 
 const POSTER_CLASS = "film-tracker-poster";
 const LAYOUT_CLASS = "film-tracker-layout";
@@ -28,6 +30,7 @@ const MAX_CONNECTIONS = 20;
  * never touched, since this class is never added to its host.
  */
 const MANGA_HOST_CLASS = "film-tracker-has-manga";
+const PROGRESS_CLASS = "film-tracker-progress";
 
 interface Poster {
 	file: TFile;
@@ -89,6 +92,43 @@ export interface MangaPanelActions {
 	remove: (file: TFile) => void;
 	addAdaptation: (file: TFile) => void;
 	setRead: (file: TFile, read: boolean) => void;
+	/** "+1 chapter" beside the Read checkbox — the same command the palette offers. */
+	readChapter: (file: TFile) => void;
+	/** The buttons under an anime or film note's poster. */
+	watchEpisode: (file: TFile) => void;
+	watchedToday: (file: TFile) => void;
+}
+
+/**
+ * What to draw under a note's poster: how far through the episodes it is, and
+ * which of the two buttons are worth offering. `null` for a note this doesn't
+ * apply to — a director, a mangaka, a manga-only Series note.
+ */
+export interface WatchControls {
+	label: string | null;
+	percent: string | null;
+	canWatchEpisode: boolean;
+	canMarkWatched: boolean;
+}
+
+export function watchControlsFor(frontmatter: Record<string, unknown> | undefined): WatchControls | null {
+	const kind = classifyNote(frontmatter);
+	if (kind === null) return null;
+
+	const watched = frontmatter?.watched === true;
+	if (kind.kind === "film") {
+		return { label: null, percent: null, canWatchEpisode: false, canMarkWatched: !watched };
+	}
+	if (kind.kind !== "series" || kind.animeMalId === null) return null;
+
+	const progress = animeProgressOf(frontmatter);
+	const complete = progress.episodes !== null && progress.watched >= progress.episodes;
+	return {
+		label: progressLabel(progress.watched, progress.episodes, "episode"),
+		percent: progressPercent(progress.watched, progress.episodes),
+		canWatchEpisode: !complete,
+		canMarkWatched: !watched,
+	};
 }
 
 interface MangaPanelInfo {
@@ -98,10 +138,12 @@ interface MangaPanelInfo {
 	endYear: number | null;
 	status: string | null;
 	chapters: number | null;
+	chaptersRead: number | null;
 	volumes: number | null;
 	mangakaRaw: string[];
 	posterLinkpath: string | null;
 	read: boolean;
+	readDate: string | null;
 }
 
 /**
@@ -132,6 +174,35 @@ export function mangaSummary(
 	]
 		.filter((part): part is string => part !== null)
 		.join(" · ");
+}
+
+/**
+ * How far through something the note is: "48 / 148 episodes", or "48
+ * episodes" while MAL doesn't know the length. `null` when nothing has been
+ * watched or read yet — an untouched note shows no bar at all.
+ */
+export function progressLabel(done: number, total: number | null, noun: string): string | null {
+	if (done <= 0) return null;
+	if (total === null) return `${done} ${done === 1 ? noun : `${noun}s`}`;
+	return `${done} / ${total} ${noun}s`;
+}
+
+/** The share of the bar to fill, as a percentage, or `null` when the length is unknown. */
+function progressPercent(done: number, total: number | null): string | null {
+	if (total === null || total <= 0) return null;
+	return `${Math.round((Math.min(done, total) / total) * 100)}%`;
+}
+
+/**
+ * The count, with a filled bar under it where the length is known. The fill
+ * is a CSS variable rather than an inline width, so the styling stays in
+ * styles.css where a theme can reach it.
+ */
+function renderProgressBar(container: HTMLElement, label: string, percent: string | null): void {
+	container.createDiv({ cls: "film-tracker-progress-label", text: label });
+	if (percent === null) return;
+	const track = container.createDiv({ cls: "film-tracker-progress-track" });
+	track.createDiv({ cls: "film-tracker-progress-fill" }).setCssProps({ "--film-tracker-progress": percent });
 }
 
 function extractNames(value: unknown): string[] {
@@ -217,6 +288,7 @@ export class FilmNoteLayout {
 				this.clear(host);
 			} else {
 				this.showPoster(host, poster);
+				this.showWatchProgress(host, view.file);
 			}
 		}
 
@@ -249,6 +321,43 @@ export class FilmNoteLayout {
 		container.createEl("img", {
 			attr: { src: this.app.vault.getResourcePath(poster.file), alt: poster.alt },
 		});
+	}
+
+	/**
+	 * The bar under an anime note's poster — "48 / 148 episodes". It lives
+	 * inside the poster's own container, so it goes wherever the poster goes
+	 * and is taken away with it; a note that has watched nothing yet, or no
+	 * `episodes_watched` at all, shows none.
+	 */
+	private showWatchProgress(host: HTMLElement, file: TFile | null): void {
+		const container = host.querySelector(`.${POSTER_CLASS}`);
+		if (!(container instanceof HTMLElement)) return;
+
+		const controls =
+			file === null ? null : watchControlsFor(this.app.metadataCache.getFileCache(file)?.frontmatter);
+
+		const existing = container.querySelector(`.${PROGRESS_CLASS}`);
+		const nothingToShow =
+			controls === null || (controls.label === null && !controls.canWatchEpisode && !controls.canMarkWatched);
+		if (file === null || controls === null || nothingToShow) {
+			existing?.detach();
+			return;
+		}
+		const signature = JSON.stringify(controls);
+		if (existing instanceof HTMLElement && existing.dataset.filmTrackerSignature === signature) return;
+
+		existing?.detach();
+		const wrap = container.createDiv({ cls: PROGRESS_CLASS });
+		wrap.dataset.filmTrackerSignature = signature;
+		if (controls.label !== null) renderProgressBar(wrap, controls.label, controls.percent);
+
+		const buttons = wrap.createDiv({ cls: "film-tracker-progress-actions" });
+		if (controls.canWatchEpisode) {
+			this.renderMangaAction(buttons, "+1 episode", () => this.mangaActions.watchEpisode(file));
+		}
+		if (controls.canMarkWatched) {
+			this.renderMangaAction(buttons, "Watched today", () => this.mangaActions.watchedToday(file));
+		}
 	}
 
 	private clear(host: HTMLElement): void {
@@ -332,12 +441,14 @@ export class FilmNoteLayout {
 			endYear: typeof block.end_year === "number" ? block.end_year : null,
 			status: typeof block.status === "string" ? block.status : null,
 			chapters: typeof block.chapters === "number" ? block.chapters : null,
+			chaptersRead: typeof block.chapters_read === "number" ? block.chapters_read : null,
 			volumes: typeof block.volumes === "number" ? block.volumes : null,
 			mangakaRaw: Array.isArray(block.mangaka)
 				? block.mangaka.filter((item): item is string => typeof item === "string")
 				: [],
 			posterLinkpath: parseLinkTarget(block.poster),
 			read: block.read === true,
+			readDate: typeof block.read_date === "string" && block.read_date.trim() !== "" ? block.read_date : null,
 		};
 	}
 
@@ -384,13 +495,26 @@ export class FilmNoteLayout {
 			});
 		}
 
-		const readToggle = details.createEl("label", { cls: "film-tracker-manga-read" });
+		const chapterLabel = progressLabel(info.chaptersRead ?? 0, info.chapters, "chapter");
+		if (chapterLabel !== null) {
+			const progress = details.createDiv({ cls: PROGRESS_CLASS });
+			renderProgressBar(progress, chapterLabel, progressPercent(info.chaptersRead ?? 0, info.chapters));
+		}
+
+		const readRow = details.createDiv({ cls: "film-tracker-manga-read-row" });
+		const readToggle = readRow.createEl("label", { cls: "film-tracker-manga-read" });
 		const checkbox = readToggle.createEl("input", { attr: { type: "checkbox" } });
 		checkbox.checked = info.read;
-		readToggle.appendText(" Read");
+		readToggle.appendText(info.read && info.readDate !== null ? ` Read on ${info.readDate}` : " Read");
 		checkbox.addEventListener("change", () => {
 			this.mangaActions.setRead(file, checkbox.checked);
 		});
+
+		// Nothing left to count once the last chapter is in.
+		const chaptersLeft = info.chapters === null || (info.chaptersRead ?? 0) < info.chapters;
+		if (!info.read && chaptersLeft) {
+			this.renderMangaAction(readRow, "+1 chapter", () => this.mangaActions.readChapter(file));
+		}
 
 		const actions = details.createDiv({ cls: "film-tracker-manga-actions" });
 		this.renderMangaAction(actions, "Add adaptation", () => this.mangaActions.addAdaptation(file));

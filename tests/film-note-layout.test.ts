@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { mangaSummary } from "../src/film-note-layout";
+import { mangaSummary, progressLabel, watchControlsFor } from "../src/film-note-layout";
 import { parseLinkTarget, parseWikilink } from "../src/note";
 
 describe("mangaSummary", () => {
@@ -36,6 +36,63 @@ describe("mangaSummary", () => {
 		expect(
 			mangaSummary({ mediaType: "manhwa", year: null, endYear: null, status: null, volumes: null, chapters: 120 }),
 		).toBe("Manhwa · 120 chapters");
+	});
+});
+
+describe("progressLabel", () => {
+	it("counts against the length when MAL knows it", () => {
+		expect(progressLabel(48, 148, "episode")).toBe("48 / 148 episodes");
+	});
+
+	it("stands on its own while the length is unknown", () => {
+		expect(progressLabel(12, null, "chapter")).toBe("12 chapters");
+		expect(progressLabel(1, null, "episode")).toBe("1 episode");
+	});
+
+	it("shows nothing before anything has been watched or read", () => {
+		expect(progressLabel(0, 148, "episode")).toBeNull();
+	});
+});
+
+describe("watchControlsFor", () => {
+	const anime = { mal_id: 11061, media_type: "tv", episodes: 148, studios: ["Madhouse"], watched: false };
+
+	it("offers both buttons on an anime nobody has started", () => {
+		expect(watchControlsFor(anime)).toMatchObject({
+			label: null,
+			canWatchEpisode: true,
+			canMarkWatched: true,
+		});
+	});
+
+	it("shows how far through it is once episodes are counted", () => {
+		expect(watchControlsFor({ ...anime, episodes_watched: 48 })).toMatchObject({
+			label: "48 / 148 episodes",
+			percent: "32%",
+			canWatchEpisode: true,
+		});
+	});
+
+	it("stops offering episodes once the last one is watched", () => {
+		expect(watchControlsFor({ ...anime, episodes_watched: 148, watched: true })).toMatchObject({
+			canWatchEpisode: false,
+			canMarkWatched: false,
+		});
+	});
+
+	it("gives a film the watched button and no episodes", () => {
+		expect(watchControlsFor({ tmdb_id: 1398, watched: false })).toMatchObject({
+			label: null,
+			canWatchEpisode: false,
+			canMarkWatched: true,
+		});
+	});
+
+	it("leaves a director, a mangaka and a manga-only note alone", () => {
+		expect(watchControlsFor({ tmdb_id: 8452, name: "Andrei Tarkovsky" })).toBeNull();
+		expect(watchControlsFor({ mal_id: 1893, name: "Yoshihiro Togashi" })).toBeNull();
+		expect(watchControlsFor({ manga: { mal_id: 26 } })).toBeNull();
+		expect(watchControlsFor(undefined)).toBeNull();
 	});
 });
 

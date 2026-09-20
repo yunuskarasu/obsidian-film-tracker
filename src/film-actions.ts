@@ -11,6 +11,7 @@ import {
 	refreshFrontmatter,
 	relinkFrontmatter,
 	setWatchDate,
+	today,
 	type FilmMetadata,
 	type LinkOptions,
 } from "./note";
@@ -246,6 +247,25 @@ export class FilmActions {
 		} else {
 			new Notice(`Added ${director.name}. TMDB has no photo for this person.`);
 		}
+	}
+
+	/**
+	 * "Mark as watched today" on a film note: `watched`, and `watch_date`
+	 * unless the note already has one — the day it was first seen is the
+	 * user's, so a rewatch doesn't write over it.
+	 */
+	async markWatchedToday(file: TFile): Promise<void> {
+		const frontmatter = this.notes.frontmatterOf(file);
+		const alreadyWatched = frontmatter?.watched === true;
+		const date = today();
+		const readable = await this.notes.rewriteFrontmatter(file, (content) =>
+			setWatchDate(markWatched(content), date),
+		);
+		if (!readable) return;
+
+		new Notice(
+			alreadyWatched ? `${file.basename} was already watched.` : `Marked ${file.basename} as watched today.`,
+		);
 	}
 
 	/** "Relink directors and genres": no network, just names turned into links where notes now exist. */

@@ -75,6 +75,10 @@ Mangaka work a little differently: open the manga or Series note whose author yo
 | **Add mangaka** | Reads the active manga/Series note's credited author(s) from MyAnimeList and creates (or updates) their note. Requires a manga or Series note to be open — see [Anime and manga](#anime-and-manga). |
 | **Refresh metadata from TMDB** | Re-fetch the film or director and rewrite only the fields the plugin owns. Your `watch_date`, your body text, any property you added, any alias you added, any link already in a list (a director, a genre) and any comment above the first property are left exactly as they were. Only appears on film or director notes. |
 | **Refresh anime/manga metadata from MAL** | Re-fetches whichever side(s) the note has and rewrites only the fields the plugin owns. `watched`, `read`, your body text, any property you added, any link already in a list (a genre, a studio, a mangaka) and any comment above the first property are left exactly as they were. On a mangaka note, refreshes their name, birthday and photo instead. Only appears on anime, manga or mangaka notes. |
+| **Mark as watched today** | Ticks `watched` on the film or anime note you have open and writes today into `watch_date`. A date already there is kept — the day you first saw it. Only appears on film and anime notes. Also a **Watched today** button under the poster, and an entry on the note's right-click menu. |
+| **Mark manga as read today** | The manga side of the same thing: `read`, `read_date` and the full chapter count, on every note carrying that manga. Only appears on notes with a manga side. |
+| **Watch one more episode** | `episodes_watched` up by one. The last episode also ticks `watched` and dates it. Only appears on anime notes. Also a **+1 episode** button under the poster. |
+| **Read one more chapter** | `chapters_read` up by one, on every note carrying that manga. The last chapter also ticks `read`. Only appears on notes with a manga side. Also a **+1 chapter** button on the MANGA panel. |
 | **Relink directors and genres** | Turn plain names into `[[wikilinks]]` wherever a note by that name now exists. No network calls, so it runs in a second. |
 | **Import from Letterboxd** | Bulk-create notes from a Letterboxd export. See below. |
 | **Import from MyAnimeList** | Bulk-create notes from a public MyAnimeList list, marking what you have completed. See below. |
@@ -169,6 +173,7 @@ english_title: Hunter x Hunter
 japanese_title: ハンター×ハンター
 media_type: tv
 episodes: 148
+episodes_watched: 148
 genres:
   - Action
   - Adventure
@@ -179,11 +184,14 @@ year: 2011
 end_year: 2014
 poster: "[[Attachments/Hunter x Hunter.jpg]]"
 mal_id: 11061
-watched: false
+watch_date: 2026-04-02
+watched: true
 ---
 ```
 
 Same philosophy as a film note: structured metadata and a poster, nothing else. `watched` is a plain checkbox Film + Anime-Manga Tracker sets once and never touches again — same role as a film's `watched`.
+
+`episodes_watched` and `watch_date` are yours: **Watch one more episode** counts up, **Mark as watched today** fills both in, and a refresh from MyAnimeList never touches either. A note you have not started has neither. The poster carries a small bar showing how far through the episodes you are, with **+1 episode** and **Watched today** under it; both disappear once there is nothing left to mark. All four commands are on the note's own menus too — right-click in the editor, the tab's menu, or the file explorer.
 
 `year` and `end_year` are the years it started and finished, as MyAnimeList has them. Something still running has no `end_year`, and neither has anything MyAnimeList never gave an end date. Both are years rather than full dates: MyAnimeList often knows only the year for older works.
 
@@ -356,13 +364,13 @@ manga:
 ---
 ```
 
-The properties above `manga:` are the anime side — same fields, same rules as any [anime note](#anime-notes). `watched` (anime) and `manga.read` are independent: watching the anime never touches `read`, and finishing the manga never touches `watched`.
+The properties above `manga:` are the anime side — same fields, same rules as any [anime note](#anime-notes). `watched` (anime) and `manga.read` are independent: watching the anime never touches `read`, and finishing the manga never touches `watched`. The manga side keeps its own `chapters_read` and `read_date`, written by **Read one more chapter** and **Mark manga as read today** and carried over by every refresh — the same way the anime side keeps `episodes_watched` and `watch_date`.
 
 ### The MANGA panel
 
-Obsidian's Properties view has no widget for a nested value like `manga:` — it would otherwise show up as a single property rendered as raw, unreadable JSON. Film + Anime-Manga Tracker hides that one row instead (only on notes that actually have a `manga` block — a `manga` property you've added yourself on some unrelated note is never touched) and shows the same data properly below the properties, in its own collapsible **MANGA** panel: the title, a line with type, year and status ("Manga · 1998 · Currently publishing") followed by the volume and chapter counts when MyAnimeList has them, mangaka (linked, same as directors — see below), the manga's own poster, and a **Read** checkbox.
+Obsidian's Properties view has no widget for a nested value like `manga:` — it would otherwise show up as a single property rendered as raw, unreadable JSON. Film + Anime-Manga Tracker hides that one row instead (only on notes that actually have a `manga` block — a `manga` property you've added yourself on some unrelated note is never touched) and shows the same data properly below the properties, in its own collapsible **MANGA** panel: the title, a line with type, year and status ("Manga · 1998 · Currently publishing") followed by the volume and chapter counts when MyAnimeList has them, mangaka (linked, same as directors — see below), the manga's own poster, how far through the chapters you are, a **Read** checkbox and a **+1 chapter** button.
 
-That Read checkbox is the one place in Film + Anime-Manga Tracker that writes to the note from a rendered panel rather than through Properties directly — ticking it sets `manga.read` and nothing else, on every note that carries the same manga (see [Adaptations](#adaptations)). Refreshing never touches it, the same guarantee `watched` and a film's `watch_date` already have.
+That Read checkbox is the one place in Film + Anime-Manga Tracker that writes to the note from a rendered panel rather than through Properties directly — ticking it sets `manga.read`, today's `manga.read_date` and the full `manga.chapters_read`, on every note that carries the same manga (see [Adaptations](#adaptations)). Refreshing never touches it, the same guarantee `watched` and a film's `watch_date` already have.
 
 Since a Series note can have its own top-level `poster` (the anime's) and a separate `manga.poster`, both are downloaded and kept independently — refreshing one side never overwrites the other's poster, or a poster that's already saved.
 

@@ -1,5 +1,12 @@
 import { Notice, type App, type TFile } from "obsidian";
-import { buildAnimeFileName, buildAnimeNoteContent, refreshAnimeFrontmatter } from "./anime-note";
+import {
+	animeProgressOf,
+	buildAnimeFileName,
+	buildAnimeNoteContent,
+	markAnimeWatched,
+	refreshAnimeFrontmatter,
+	setAnimeProgress,
+} from "./anime-note";
 import type { ConfirmAnswer, ConfirmRequest } from "./confirm-modal";
 import type { LinkChoice } from "./link-confirm-modal";
 import type {
@@ -13,13 +20,16 @@ import type {
 } from "./mal";
 import {
 	applyMangaBlock,
+	mangaProgressOf,
 	relinkMangaka,
 	removeMangaBlock,
 	replaceMangaBlock,
+	setMangaProgress,
 	setMangaRead,
+	type MangaReadOptions,
 } from "./manga-note";
 import { buildMangakaFileName, buildMangakaNoteContent, refreshMangakaFrontmatter } from "./mangaka-note";
-import { buildFileName, markWatched, parseWikilink, sanitizeFileName } from "./note";
+import { buildFileName, markWatched, parseWikilink, sanitizeFileName, today } from "./note";
 import { isAnimeOnlySeries, isMangaOnlySeries } from "./note-kind";
 import type { FilmTrackerSettings } from "./settings";
 import {
@@ -33,6 +43,16 @@ import {
 function mangaRead(frontmatter: Record<string, unknown> | undefined): boolean {
 	const manga: unknown = frontmatter?.manga;
 	return typeof manga === "object" && manga !== null && (manga as Record<string, unknown>).read === true;
+}
+
+/**
+ * How far someone else's list says they got, for a note being written from
+ * it: the count, and the day they finished. Either can be missing — MAL only
+ * has a finishing date where the user filled one in.
+ */
+export interface ImportedProgress {
+	count: number | null;
+	date: string | null;
 }
 
 /** The dialogs the anime and manga flows need, supplied by the plugin (see main.ts). */
@@ -357,7 +377,12 @@ export class AnimeActions {
 	async createAnimeNote(
 		client: MalClient,
 		anime: AnimeMetadata,
-		options: { manga?: MangaMetadata | null; watched?: boolean; open?: boolean } = {},
+		options: {
+			manga?: MangaMetadata | null;
+			watched?: boolean;
+			open?: boolean;
+			progress?: ImportedProgress;
+		} = {},
 	): Promise<NoteResult> {
 		const manga = options.manga ?? null;
 		const open = options.open !== false;
@@ -379,8 +404,14 @@ export class AnimeActions {
 		const posterLink = poster ? this.notes.imageLink(poster, notePath) : null;
 
 		let content = buildAnimeNoteContent(anime, posterLink);
-		if (options.watched === true || sameAnime.some((note) => this.notes.frontmatterOf(note)?.watched === true)) {
+		const progress = options.progress;
+		if (options.watched === true) {
+			// Straight off someone's list: their own finishing date, not today's.
+			content = markAnimeWatched(content, progress?.date ?? null, anime.episodes);
+		} else if (sameAnime.some((note) => this.notes.frontmatterOf(note)?.watched === true)) {
 			content = markWatched(content);
+		} else if (progress?.count != null) {
+			content = setAnimeProgress(content, progress.count, anime.episodes, progress.date ?? null);
 		}
 		if (manga !== null) {
 			const mangaPosterLink = await this.mangaPosterLink(client, manga, null, notePath);
@@ -446,7 +477,7 @@ export class AnimeActions {
 	async createMangaNote(
 		client: MalClient,
 		manga: MangaMetadata,
-		options: { read?: boolean; open?: boolean } = {},
+		options: { read?: boolean; open?: boolean; progress?: ImportedProgress } = {},
 	): Promise<NoteResult> {
 		const open = options.open !== false;
 
@@ -461,8 +492,13 @@ export class AnimeActions {
 
 		const posterLink = await this.mangaPosterLink(client, manga, null, notePath);
 		let content = applyMangaBlock("---\n---\n", manga, posterLink, this.notes.isResolved(notePath));
-		if (options.read === true || this.isMangaReadElsewhere(manga.malId, null)) {
-			content = setMangaRead(content, true);
+		const progress = options.progress;
+		if (options.read === true) {
+			content = setMangaRead(content, true, { date: progress?.date ?? null, chapters: manga.chapters });
+		} else if (this.isMangaReadElsewhere(manga.malId, null)) {
+			content = setMangaRead(content, true, { date: null });
+		} else if (progress?.count != null) {
+			content = setMangaProgress(content, progress.count, manga.chapters, progress.date ?? null);
 		}
 		const note = await this.app.vault.create(notePath, content);
 		if (!open) return "created";
@@ -524,13 +560,87 @@ export class AnimeActions {
 	 * Series notes — one per adaptation — but it is read once, so `read` is
 	 * set on every note that carries it, not only the one on screen.
 	 */
-	async syncMangaRead(file: TFile, read: boolean): Promise<void> {
+	async syncMangaRead(file: TFile, read: boolean, options: MangaReadOptions = {}): Promise<void> {
+		const progress = mangaProgressOf(this.notes.frontmatterOf(file));
+		// Ticked by hand: finished today, and every chapter of it. An importer
+		// knows better on both counts and says so itself.
+		const date = options.date === undefined ? today() : options.date;
+		const chapters = options.chapters === undefined ? progress.chapters : options.chapters;
+		await this.writeToMangaNotes(file, (content) =>
+			setMangaRead(content, read, { date, chapters: read ? chapters : null }),
+		);
+	}
+
+	/**
+	 * The same manga sits on one note per adaptation, and it is read once, so
+	 * everything about the reading — `read`, the date, the chapter count — is
+	 * written to every note carrying it, not only the one on screen.
+	 */
+	private async writeToMangaNotes(file: TFile, rewrite: (content: string) => string): Promise<void> {
 		const mangaMalId = this.notes.seriesMangaIdOf(file);
 		const notes = mangaMalId === null ? [] : this.notes.findNotes({ kind: "manga", malId: mangaMalId });
 		if (!notes.some((note) => note.path === file.path)) notes.push(file);
 		for (const note of notes) {
-			await this.notes.rewriteFrontmatter(note, (content) => setMangaRead(content, read));
+			await this.notes.rewriteFrontmatter(note, rewrite);
 		}
+	}
+
+	/**
+	 * "Mark as watched today" on the anime side: `watched`, and `watch_date`
+	 * unless the note already has one. A note already ticked says so rather
+	 * than pretending something happened.
+	 */
+	async markWatchedToday(file: TFile): Promise<void> {
+		const progress = animeProgressOf(this.notes.frontmatterOf(file));
+		const date = today();
+		if (!(await this.notes.rewriteFrontmatter(file, (content) => markAnimeWatched(content, date, progress.episodes)))) {
+			return;
+		}
+		new Notice(
+			progress.done
+				? `${file.basename} was already watched.`
+				: `Marked ${file.basename} as watched today.`,
+		);
+	}
+
+	/** "Mark as read today" on the manga side — `read` and `read_date`, across every note carrying it. */
+	async markReadToday(file: TFile): Promise<void> {
+		const progress = mangaProgressOf(this.notes.frontmatterOf(file));
+		await this.syncMangaRead(file, true);
+		new Notice(progress.done ? "That manga was already read." : "Marked the manga as read today.");
+	}
+
+	/**
+	 * "Watch one more episode": `episodes_watched` up by one, and the last
+	 * episode finishes the anime off (see `setAnimeProgress`).
+	 */
+	async watchOneMoreEpisode(file: TFile): Promise<void> {
+		const progress = animeProgressOf(this.notes.frontmatterOf(file));
+		if (progress.episodes !== null && progress.watched >= progress.episodes) {
+			new Notice(`${file.basename} is already fully watched.`);
+			return;
+		}
+
+		const watched = progress.watched + 1;
+		const date = today();
+		if (!(await this.notes.rewriteFrontmatter(file, (content) => setAnimeProgress(content, watched, progress.episodes, date)))) {
+			return;
+		}
+		new Notice(`Episode ${watched}${progress.episodes === null ? "" : ` of ${progress.episodes}`} watched.`);
+	}
+
+	/** "Read one more chapter" — the manga side of `watchOneMoreEpisode`, written to every note carrying the manga. */
+	async readOneMoreChapter(file: TFile): Promise<void> {
+		const progress = mangaProgressOf(this.notes.frontmatterOf(file));
+		if (progress.chapters !== null && progress.read >= progress.chapters) {
+			new Notice("That manga is already fully read.");
+			return;
+		}
+
+		const read = progress.read + 1;
+		const date = today();
+		await this.writeToMangaNotes(file, (content) => setMangaProgress(content, read, progress.chapters, date));
+		new Notice(`Chapter ${read}${progress.chapters === null ? "" : ` of ${progress.chapters}`} read.`);
 	}
 
 	/**

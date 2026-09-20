@@ -2,6 +2,19 @@
 
 All notable changes to Film + Anime-Manga Tracker are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.4.0] - 2026-09-20
+
+### Added
+
+- **Mark as watched today**, and **Mark manga as read today**. One command ticks the note in the editor and dates it: a film or an anime gets `watched` and `watch_date`, a manga gets `read` and `read_date` on every note carrying it. A date already there is kept, since that is the day you first saw it.
+- **Watch one more episode** and **Read one more chapter**, counting `episodes_watched` and `chapters_read` up by one. The last episode or chapter also ticks the note off and dates it. An anime note's poster carries a bar showing how far through it you are, and the MANGA panel shows the same for chapters.
+- The MyAnimeList import brings your progress with it: how many episodes or chapters your list says you got through, and the day your list says you finished — not the day of the import.
+- The same four commands without the command palette: **+1 episode** and **Watched today** under an anime note's poster, **+1 chapter** beside the MANGA panel's Read checkbox, and all four on the note's own menus — right-click in the editor, the tab's menu, or the file explorer. A film note gets **Watched today** under its poster too. Each one only appears where the note has that side, and a button disappears once there is nothing left for it to mark.
+
+### Changed
+
+- `package.json` describes the plugin the way `manifest.json` does, now that it is not only about films.
+
 ## [2.3.0] - 2026-09-20
 
 ### Added
@@ -99,6 +112,7 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 - Relinking of directors and genres.
 - Import from Letterboxd.
 
+[2.4.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.3.0...2.4.0
 [2.3.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.0.1...2.1.0

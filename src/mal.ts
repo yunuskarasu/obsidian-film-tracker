@@ -190,6 +190,10 @@ export interface MalListEntry<T> {
 	work: T;
 	/** MAL's own value — "completed", "watching", "plan_to_watch" … — or `null` when the entry has none. */
 	listStatus: string | null;
+	/** Episodes watched or chapters read, as the list has them; `null` when it says nothing. */
+	progress: number | null;
+	/** The day the list says it was finished ("2019-04-07"), or `null` — MAL only has one where the user filled it in. */
+	finishDate: string | null;
 }
 
 export interface MalListPage<T> {
@@ -198,15 +202,30 @@ export interface MalListPage<T> {
 	nextOffset: number | null;
 }
 
+interface MalListStatus {
+	status?: string;
+	num_episodes_watched?: number;
+	num_chapters_read?: number;
+	finish_date?: string;
+}
+
 interface MalListResponse<N> {
-	data?: { node: N; list_status?: { status?: string } }[];
+	data?: { node: N; list_status?: MalListStatus }[];
 	paging?: { next?: string };
+}
+
+/** Episodes watched or chapters read — whichever of the two this list is about. */
+function listProgress(status: MalListStatus | undefined): number | null {
+	const value = status?.num_episodes_watched ?? status?.num_chapters_read;
+	return typeof value === "number" && Number.isFinite(value) && value > 0 ? Math.floor(value) : null;
 }
 
 function toListPage<N, T>(body: MalListResponse<N>, offset: number, map: (node: N) => T): MalListPage<T> {
 	const entries = (body.data ?? []).map((entry) => ({
 		work: map(entry.node),
 		listStatus: entry.list_status?.status?.trim() || null,
+		progress: listProgress(entry.list_status),
+		finishDate: entry.list_status?.finish_date?.trim() || null,
 	}));
 	// A `next` link with nothing on the page would ask for the same offset for ever.
 	const more = body.paging?.next !== undefined && entries.length > 0;

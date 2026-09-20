@@ -1,5 +1,6 @@
 import { Notice, type App, type TFile } from "obsidian";
-import type { AnimeActions, NoteResult } from "./anime-actions";
+import type { AnimeActions, ImportedProgress, NoteResult } from "./anime-actions";
+import { animeProgressOf, markAnimeWatched } from "./anime-note";
 import { writeImportReport, type ImportFailure } from "./import-report";
 import type { ImportProgress } from "./letterboxd-importer";
 import {
@@ -10,11 +11,15 @@ import {
 	type MalListPage,
 	type MangaMetadata,
 } from "./mal";
-import { markWatched } from "./note";
 import type { VaultNotes } from "./vault-notes";
 
 /** Kept well under MyAnimeList's rate limit while an import works through a long list. */
 const IMPORT_DELAY_MS = 250;
+
+/** What a list entry says about how far its owner got — see `ImportedProgress`. */
+function progressOf(entry: MalListEntry<unknown>): ImportedProgress {
+	return { count: entry.progress, date: entry.finishDate };
+}
 
 /**
  * The shelves the dialog offers. MAL names the same shelf differently for
@@ -201,10 +206,17 @@ export class MalListImporter {
 	private async addAnime(client: MalClient, entry: MalListEntry<AnimeMetadata>): Promise<Outcome> {
 		const completed = entry.listStatus === "completed";
 		const existing = this.notes.findNote({ kind: "anime", malId: entry.work.malId });
-		if (existing !== null) return this.tickWatched(existing, completed);
+		if (existing !== null) return this.tickWatched(existing, entry, completed);
 
 		const anime = await this.filledIn(entry.work, (id) => client.getAnime(id));
-		return this.added(await this.anime.createAnimeNote(client, anime, { watched: completed, open: false }), anime.title);
+		return this.added(
+			await this.anime.createAnimeNote(client, anime, {
+				watched: completed,
+				open: false,
+				progress: progressOf(entry),
+			}),
+			anime.title,
+		);
 	}
 
 	private async addManga(client: MalClient, entry: MalListEntry<MangaMetadata>): Promise<Outcome> {
@@ -212,13 +224,21 @@ export class MalListImporter {
 		const existing = this.notes.findNote({ kind: "manga", malId: entry.work.malId });
 		if (existing !== null) {
 			if (!completed || isRead(this.notes.frontmatterOf(existing))) return "skipped";
-			// Read is kept in step across every note carrying this manga.
-			await this.anime.syncMangaRead(existing, true);
+			// Read is kept in step across every note carrying this manga, with
+			// the day the list says it was finished rather than today.
+			await this.anime.syncMangaRead(existing, true, { date: entry.finishDate });
 			return "updated";
 		}
 
 		const manga = await this.filledIn(entry.work, (id) => client.getManga(id));
-		return this.added(await this.anime.createMangaNote(client, manga, { read: completed, open: false }), manga.title);
+		return this.added(
+			await this.anime.createMangaNote(client, manga, {
+				read: completed,
+				open: false,
+				progress: progressOf(entry),
+			}),
+			manga.title,
+		);
 	}
 
 	/**
@@ -233,10 +253,17 @@ export class MalListImporter {
 		return work.mediaType === null ? fetch(work.malId) : work;
 	}
 
-	/** A note already in the vault: ticked as watched if the list says it's done. */
-	private async tickWatched(note: TFile, completed: boolean): Promise<Outcome> {
+	/** A note already in the vault: ticked as watched, with the list's own date and count, if the list says it's done. */
+	private async tickWatched(
+		note: TFile,
+		entry: MalListEntry<AnimeMetadata>,
+		completed: boolean,
+	): Promise<Outcome> {
 		if (!completed || this.notes.frontmatterOf(note)?.watched === true) return "skipped";
-		await this.notes.rewriteFrontmatter(note, markWatched);
+		const episodes = animeProgressOf(this.notes.frontmatterOf(note)).episodes;
+		await this.notes.rewriteFrontmatter(note, (content) =>
+			markAnimeWatched(content, entry.finishDate, episodes),
+		);
 		return "updated";
 	}
 

@@ -120,6 +120,14 @@ body {
 	align-self: stretch;
 	position: relative;
 	min-width: 0;
+	/* A column, so the watch controls can sit under the image and the image
+	   takes whatever height is left. They used to be hidden: the image was
+	   positioned absolutely over the whole box, which paints above anything
+	   in normal flow, so the bar only showed in source mode where the box
+	   collapses to the image's own height. */
+	display: flex;
+	flex-direction: column;
+	padding-block-start: var(--size-4-2);
 }
 
 /* The properties container is transparent and carries `--metadata-padding` of
@@ -127,31 +135,34 @@ body {
    heading. Insetting the poster by the same token lines it up with what you
    can actually see, symmetrically, without moving the bottom edge.
  *
- * The box is filled edge to edge (top/right/bottom/left, no explicit
- * width/height) and `object-fit: contain` scales the image inside it. A
- * plain `width: auto` derived from `height` looks equivalent on paper, but
- * Obsidian's own base styles cap images at `max-width: 100%`, which clips
- * that computed width back down to the column once a tall properties block
- * (e.g. a wrapped cast list) pushes the row taller than the image's natural
- * ratio allows — the height keeps growing, the width doesn't, and the poster
- * stretches. `object-fit` reconciles a fixed box with the image's own ratio
- * without ever computing a width the parent has to fight over. */
+ * The image is one item of that column: the column's full width, and its own
+ * height, so the bar and the buttons sit right under the picture rather than
+ * under the empty space a grown box would leave. It gives way only when the
+ * row is shorter than the picture, and `object-fit` keeps the ratio when it
+ * does. A height-derived `width: auto` would not: Obsidian's base styles cap
+ * images at `max-width: 100%`, which clips that computed width back down to
+ * the column once a tall properties block (e.g. a wrapped cast list) pushes
+ * the row taller than the image's ratio allows — the height keeps growing,
+ * the width doesn't, and the poster stretches. */
 .film-tracker-poster img {
-	position: absolute;
-	top: var(--size-4-2);
-	right: 0;
-	left: 0;
-	/* Obsidian's own image styling sets `height: auto` with enough weight to
-	   beat a plain (non-!important) declaration here, which drops the image
-	   back to its intrinsic size — ignoring this box entirely, since an
-	   absolutely positioned element isn't clipped by its container unless
-	   told to be. !important is the only reliable way to win that fight. */
-	height: calc(100% - 2 * var(--size-4-2)) !important;
+	/* Obsidian's own image styling sets `width`/`height` with enough weight
+	   to beat a plain declaration here, which would drop the image back to
+	   its intrinsic size and ignore the column; !important is the only
+	   reliable way to win that fight. */
+	flex: 0 1 auto;
+	min-height: 0;
+	height: auto !important;
 	width: 100% !important;
 	object-fit: contain;
 	object-position: top right;
 	display: block;
 	border-radius: var(--radius-s);
+}
+
+/* The bar and buttons under the poster keep their own height; only the image
+   gives way when the row is short. */
+.film-tracker-poster > .film-tracker-progress {
+	flex: 0 0 auto;
 }
 
 /* Two columns do not fit on a narrow window or on mobile: stack them as
@@ -177,9 +188,9 @@ body {
 
 	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-poster img,
 	.mod-header.film-tracker-layout > .film-tracker-poster img {
-		position: static;
-		width: 100%;
-		height: auto;
+		flex: 0 0 auto;
+		width: 100% !important;
+		height: auto !important;
 	}
 
 	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .metadata-container,
@@ -283,21 +294,29 @@ body {
  * anime Properties/poster rather than mixed into them. Same collapsible box
  * as Connections/Filmography, never both on the same note. */
 
+/* Both columns are as tall as the taller of the two, so the cover and the
+   button row end on the same line. */
 .film-tracker-manga-body {
 	flex-direction: row;
-	align-items: flex-start;
+	align-items: stretch;
 	gap: var(--size-4-3);
 }
 
+/* The cover's width is fixed and its height follows from the image's own
+   ratio — the only way round the circle where a height taken from the text
+   beside it would decide a width that then decides how tall that text is. The
+   bottom edges still line up: the details column stretches to the same height
+   and pushes its buttons down to meet the cover (see below). */
 .film-tracker-manga-poster {
-	flex-shrink: 0;
-	width: 80px;
+	flex: 0 0 auto;
+	width: 110px;
 }
 
 .film-tracker-manga-poster img {
 	display: block;
-	width: 100%;
-	height: auto;
+	width: 100% !important;
+	height: auto !important;
+	max-width: none;
 	border-radius: var(--radius-s);
 }
 
@@ -321,15 +340,64 @@ body {
 	cursor: pointer;
 }
 
+/* `margin-top: auto` takes the leftover height, so the buttons sit on the
+   bottom edge of the row — level with the bottom of the cover beside them. */
 .film-tracker-manga-actions {
 	display: flex;
 	flex-wrap: wrap;
 	gap: var(--size-4-1);
-	margin-top: var(--size-4-1);
+	margin-top: auto;
+	padding-top: var(--size-4-1);
 }
 
 .film-tracker-manga-action {
 	padding: var(--size-2-1) var(--size-4-2);
 	font-size: var(--font-ui-smaller);
 	box-shadow: none;
+}
+
+/* ---------- Progress: episodes watched under an anime note's poster, and
+ * chapters read on the MANGA panel. The bar is only drawn where the length
+ * is known; without one the count stands on its own. */
+
+.film-tracker-progress {
+	margin-top: var(--size-4-2);
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-2-1);
+}
+
+.film-tracker-progress-label {
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+}
+
+.film-tracker-progress-track {
+	height: 4px;
+	border-radius: var(--radius-s);
+	background-color: var(--background-modifier-border);
+	overflow: hidden;
+}
+
+.film-tracker-progress-fill {
+	width: var(--film-tracker-progress, 0%);
+	height: 100%;
+	border-radius: var(--radius-s);
+	background-color: var(--interactive-accent);
+}
+
+/* The buttons beside the progress: "+1 episode" and "Watched today" under a
+   poster, "+1 chapter" beside the Read checkbox. Same look as the MANGA
+   panel's own buttons. */
+
+.film-tracker-progress-actions,
+.film-tracker-manga-read-row {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--size-4-2);
+}
+
+.film-tracker-progress-actions:empty {
+	display: none;
 }

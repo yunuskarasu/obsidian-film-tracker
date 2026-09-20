@@ -1,4 +1,4 @@
-import { Menu, Notice, Plugin, debounce, type TFile } from "obsidian";
+import { Menu, Notice, Plugin, TFile, debounce } from "obsidian";
 import { AnimeActions } from "./anime-actions";
 import { ConfirmModal } from "./confirm-modal";
 import { FilmActions } from "./film-actions";
@@ -12,6 +12,7 @@ import { MalClient } from "./mal";
 import { MalImportModal } from "./mal-import-modal";
 import { MalListImporter } from "./mal-importer";
 import { MangakaPickerModal } from "./mangaka-picker-modal";
+import type { NoteKind } from "./note-kind";
 import { openAnimeSearch, openDirectorSearch, openFilmSearch, openMangaSearch } from "./search-modal";
 import { isMissingHere, keychainOf, moveKeysToKeychain, readKey, type ApiKey } from "./secrets";
 import { DEFAULT_SETTINGS, FilmTrackerSettingTab, type FilmTrackerSettings } from "./settings";
@@ -115,6 +116,44 @@ export default class FilmTrackerPlugin extends Plugin {
 		});
 
 		this.addCommand({
+			id: "watched-today",
+			name: "Mark as watched today",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				const film = note?.kind.kind === "film";
+				const anime = note?.kind.kind === "series" && note.kind.animeMalId !== null;
+				if (note === null || !(film || anime)) return false;
+				if (!checking) {
+					void (film ? this.films.markWatchedToday(note.file) : this.anime.markWatchedToday(note.file));
+				}
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "read-today",
+			name: "Mark manga as read today",
+			checkCallback: (checking) => this.onMangaSide(checking, (file) => this.anime.markReadToday(file)),
+		});
+
+		this.addCommand({
+			id: "watch-episode",
+			name: "Watch one more episode",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || note.kind.kind !== "series" || note.kind.animeMalId === null) return false;
+				if (!checking) void this.anime.watchOneMoreEpisode(note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "read-chapter",
+			name: "Read one more chapter",
+			checkCallback: (checking) => this.onMangaSide(checking, (file) => this.anime.readOneMoreChapter(file)),
+		});
+
+		this.addCommand({
 			id: "relink-film-notes",
 			name: "Relink directors and genres",
 			callback: () => void this.films.relinkAll(),
@@ -200,6 +239,68 @@ export default class FilmTrackerPlugin extends Plugin {
 		this.layout?.refresh();
 	}
 
+	/** A film note goes to TMDB's side of the plugin, an anime note to MAL's; both write the same two fields. */
+	private async watchedToday(file: TFile): Promise<void> {
+		const kind = this.notes.kindOf(file);
+		if (kind?.kind === "film") await this.films.markWatchedToday(file);
+		else if (kind?.kind === "series" && kind.animeMalId !== null) await this.anime.markWatchedToday(file);
+	}
+
+	/**
+	 * The same four commands on a note's own menus — right-click in the editor,
+	 * the tab's ⋮ menu, or the file explorer — so watching an episode doesn't
+	 * have to go through the command palette. Only what the note actually has
+	 * is offered.
+	 */
+	private addNoteMenuItems(menu: Menu, file: TFile | null): void {
+		const kind = file === null ? null : this.notes.kindOf(file);
+		if (file === null || kind === null) return;
+
+		const entries: { title: string; icon: string; run: () => void }[] = [];
+		const anime = kind.kind === "series" && kind.animeMalId !== null;
+		if (kind.kind === "film" || anime) {
+			entries.push({ title: "Mark as watched today", icon: "check", run: () => void this.watchedToday(file) });
+		}
+		if (anime) {
+			entries.push({
+				title: "Watch one more episode",
+				icon: "play",
+				run: () => void this.anime.watchOneMoreEpisode(file),
+			});
+		}
+		if (kind.kind === "series" && kind.mangaMalId !== null) {
+			entries.push({
+				title: "Mark manga as read today",
+				icon: "check",
+				run: () => void this.anime.markReadToday(file),
+			});
+			entries.push({
+				title: "Read one more chapter",
+				icon: "book-open",
+				run: () => void this.anime.readOneMoreChapter(file),
+			});
+		}
+
+		for (const entry of entries) {
+			menu.addItem((item) => item.setTitle(entry.title).setIcon(entry.icon).onClick(entry.run));
+		}
+	}
+
+	/** The note in the editor and what it is, for the commands that only apply to one kind of note. */
+	private activeNote(): { file: TFile; kind: NoteKind } | null {
+		const file = this.app.workspace.getActiveFile();
+		const kind = file === null ? null : this.notes.kindOf(file);
+		return file === null || kind === null ? null : { file, kind };
+	}
+
+	/** A command that needs the manga side of the note in the editor. */
+	private onMangaSide(checking: boolean, run: (file: TFile) => Promise<void>): boolean {
+		const note = this.activeNote();
+		if (note === null || note.kind.kind !== "series" || note.kind.mangaMalId === null) return false;
+		if (!checking) void run(note.file);
+		return true;
+	}
+
 	/** A TMDB client, or `null` once the user has been pointed at the missing key. */
 	private tmdb(): TmdbClient | null {
 		const key = this.key("tmdb", "TMDB API key");
@@ -235,10 +336,24 @@ export default class FilmTrackerPlugin extends Plugin {
 				remove: (file) => void this.anime.removeManga(file),
 				addAdaptation: (file) => this.startAddAdaptation(file),
 				setRead: (file, read) => void this.anime.syncMangaRead(file, read),
+				readChapter: (file) => void this.anime.readOneMoreChapter(file),
+				watchEpisode: (file) => void this.anime.watchOneMoreEpisode(file),
+				watchedToday: (file) => void this.watchedToday(file),
 			},
 		);
 		this.layout = layout;
 		const refresh = () => layout.refresh();
+
+		this.registerEvent(
+			this.app.workspace.on("file-menu", (menu, file) => {
+				this.addNoteMenuItems(menu, file instanceof TFile ? file : null);
+			}),
+		);
+		this.registerEvent(
+			this.app.workspace.on("editor-menu", (menu, _editor, info) => {
+				this.addNoteMenuItems(menu, info.file ?? null);
+			}),
+		);
 
 		// Opening a note, switching tabs or modes: redraw at once, so the
 		// poster never appears a beat after the note itself.

@@ -1,7 +1,7 @@
 {
   "name": "obsidian-film-tracker",
-  "version": "2.3.0",
-  "description": "Add a film to your vault as a note with metadata and a poster.",
+  "version": "2.4.0",
+  "description": "Add films, anime and manga to your vault as notes with metadata and a poster.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
