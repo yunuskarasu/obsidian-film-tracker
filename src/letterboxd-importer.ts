@@ -1,5 +1,6 @@
 import { Notice, type App } from "obsidian";
 import type { FilmActions } from "./film-actions";
+import { writeImportReport, type ImportFailure } from "./import-report";
 import { pickBestMatch, type LetterboxdRow } from "./letterboxd-import";
 import { markWatched, setWatchDate } from "./note";
 import type { FilmSearchResult, TmdbClient } from "./tmdb";
@@ -7,12 +8,6 @@ import type { VaultNotes } from "./vault-notes";
 
 /** Kept well under TMDB's rate limit while an import works through a long list. */
 const IMPORT_DELAY_MS = 250;
-
-interface ImportFailure {
-	name: string;
-	year: number | null;
-	reason: string;
-}
 
 /** What the import shows while it runs — `ImportProgressModal` in the app. */
 export interface ImportProgress {
@@ -83,7 +78,7 @@ export class LetterboxdImporter {
 				else skipped += 1;
 			} catch (error) {
 				const reason = error instanceof Error ? error.message : "Unexpected error.";
-				failures.push({ name: row.name, year: row.year, reason });
+				failures.push({ name: row.name, detail: row.year === null ? "" : String(row.year), reason });
 			}
 
 			if (i < rows.length - 1) await delay(IMPORT_DELAY_MS);
@@ -91,7 +86,16 @@ export class LetterboxdImporter {
 
 		const cancelled = progress.isCancelled();
 		progress.close();
-		await this.writeReport(imported, skipped, failures);
+		await writeImportReport(this.app, this.notes, {
+			intro: "Imported from Letterboxd.",
+			counts: [
+				["Imported", imported],
+				["Skipped (already in vault)", skipped],
+				["Not matched", failures.length],
+			],
+			detailColumn: "Year",
+			failures,
+		});
 
 		new Notice(
 			`Imported ${imported}, skipped ${skipped} duplicate${skipped === 1 ? "" : "s"}, ` +
@@ -159,26 +163,4 @@ export class LetterboxdImporter {
 		return pickBestMatch(await client.search(row.name), row.year);
 	}
 
-	private async writeReport(imported: number, skipped: number, failures: ImportFailure[]): Promise<void> {
-		if (failures.length === 0) return;
-
-		const cell = (value: string) => value.replace(/\|/g, "\\|");
-		const lines = [
-			"# Film + Anime-Manga Tracker Import Report",
-			"",
-			`Imported: ${imported}`,
-			`Skipped (already in vault): ${skipped}`,
-			`Not matched: ${failures.length}`,
-			"",
-			"| Name | Year | Reason |",
-			"| --- | --- | --- |",
-			...failures.map((f) => `| ${cell(f.name)} | ${f.year ?? ""} | ${cell(f.reason)} |`),
-			"",
-		];
-
-		await this.app.vault.create(
-			this.notes.availablePath("Film + Anime-Manga Tracker Import Report.md"),
-			lines.join("\n"),
-		);
-	}
 }

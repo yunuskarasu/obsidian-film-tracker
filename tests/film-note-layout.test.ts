@@ -8,6 +8,7 @@ describe("mangaSummary", () => {
 			mangaSummary({
 				mediaType: "manga",
 				year: 1998,
+				endYear: null,
 				status: "currently_publishing",
 				volumes: 38,
 				chapters: null,
@@ -15,17 +16,26 @@ describe("mangaSummary", () => {
 		).toBe("Manga · 1998 · Currently publishing · 38 volumes");
 	});
 
+	it("shows the years a finished work ran, and one year when it ran inside one", () => {
+		const manga = { mediaType: "manga", status: "finished", volumes: null, chapters: null };
+		expect(mangaSummary({ ...manga, year: 1990, endYear: 1994 })).toBe("Manga · 1990–1994 · Finished");
+		expect(mangaSummary({ ...manga, year: 1990, endYear: 1990 })).toBe("Manga · 1990 · Finished");
+		expect(mangaSummary({ ...manga, year: null, endYear: 1994 })).toBe("Manga · 1994 · Finished");
+	});
+
 	it("uses the singular for a count of one", () => {
 		expect(
-			mangaSummary({ mediaType: "one_shot", year: 2003, status: "finished", volumes: 1, chapters: 1 }),
+			mangaSummary({ mediaType: "one_shot", year: 2003, endYear: 2003, status: "finished", volumes: 1, chapters: 1 }),
 		).toBe("One-shot · 2003 · Finished · 1 volume · 1 chapter");
 	});
 
 	it("leaves out whatever MAL left blank", () => {
-		expect(mangaSummary({ mediaType: null, year: null, status: null, volumes: null, chapters: null })).toBe("");
-		expect(mangaSummary({ mediaType: "manhwa", year: null, status: null, volumes: null, chapters: 120 })).toBe(
-			"Manhwa · 120 chapters",
-		);
+		expect(
+			mangaSummary({ mediaType: null, year: null, endYear: null, status: null, volumes: null, chapters: null }),
+		).toBe("");
+		expect(
+			mangaSummary({ mediaType: "manhwa", year: null, endYear: null, status: null, volumes: null, chapters: 120 }),
+		).toBe("Manhwa · 120 chapters");
 	});
 });
 

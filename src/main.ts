@@ -9,6 +9,8 @@ import { isWatchedExport, parseLetterboxdCsv, type LetterboxdRow } from "./lette
 import { LetterboxdImporter } from "./letterboxd-importer";
 import { LinkConfirmModal } from "./link-confirm-modal";
 import { MalClient } from "./mal";
+import { MalImportModal } from "./mal-import-modal";
+import { MalListImporter } from "./mal-importer";
 import { MangakaPickerModal } from "./mangaka-picker-modal";
 import { openAnimeSearch, openDirectorSearch, openFilmSearch, openMangaSearch } from "./search-modal";
 import { isMissingHere, keychainOf, moveKeysToKeychain, readKey, type ApiKey } from "./secrets";
@@ -39,6 +41,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			}),
 	});
 	private readonly importer = new LetterboxdImporter(this.app, this.notes, this.films);
+	private readonly malImporter = new MalListImporter(this.app, this.notes, this.anime);
 
 	async onload(): Promise<void> {
 		await this.loadSettings();
@@ -121,6 +124,12 @@ export default class FilmTrackerPlugin extends Plugin {
 			id: "import-letterboxd",
 			name: "Import from Letterboxd",
 			callback: () => this.startImportFromLetterboxd(),
+		});
+
+		this.addCommand({
+			id: "import-mal",
+			name: "Import from MyAnimeList",
+			callback: () => this.startImportFromMal(),
 		});
 
 		this.addRibbonIcon("film", "Add film, anime or manga", (evt) => {
@@ -313,11 +322,25 @@ export default class FilmTrackerPlugin extends Plugin {
 		new CsvFileModal(this.app, (file) => void this.beginLetterboxdImport(client, file)).open();
 	}
 
-	/** Only one import runs at a time (see `LetterboxdImporter.running`); a second is turned away. */
+	/** Only one import runs at a time, of either kind; a second is turned away. */
 	private importRunning(): boolean {
-		if (!this.importer.running) return false;
-		new Notice("A Letterboxd import is already running.");
+		if (!this.importer.running && !this.malImporter.running) return false;
+		new Notice("An import is already running.");
 		return true;
+	}
+
+	/** "Import from MyAnimeList": a note for everything on a public MAL list (see `MalListImporter`). */
+	startImportFromMal(): void {
+		if (this.importRunning()) return;
+		const client = this.mal();
+		if (client === null) return;
+		new MalImportModal(this.app, (userName, selection) => {
+			// Asked again: another import may have started while this dialog was open.
+			if (this.importRunning()) return;
+			const progress = new ImportProgressModal(this.app, "Importing from MyAnimeList…");
+			progress.open();
+			void this.malImporter.run(client, userName, selection, progress);
+		}).open();
 	}
 
 	private async beginLetterboxdImport(client: TmdbClient, file: TFile): Promise<void> {
@@ -339,7 +362,7 @@ export default class FilmTrackerPlugin extends Plugin {
 		new ImportConfirmModal(this.app, rows.length, isWatchedExport(file.basename), (markAsWatched) => {
 			// Asked again: another import may have started while this dialog was open.
 			if (this.importRunning()) return;
-			const progress = new ImportProgressModal(this.app);
+			const progress = new ImportProgressModal(this.app, "Importing from Letterboxd…");
 			progress.open();
 			void this.importer.run(client, rows, markAsWatched, progress);
 		}).open();

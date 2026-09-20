@@ -16,6 +16,7 @@ const aot: AnimeMetadata = {
 	studios: ["Wit Studio"],
 	status: "finished_airing",
 	year: 2013,
+	endYear: 2013,
 	malId: 16498,
 	posterUrl: "https://example.com/poster.jpg",
 };
@@ -52,6 +53,7 @@ describe("buildAnimeNoteContent", () => {
 				"  - Wit Studio",
 				"status: finished_airing",
 				"year: 2013",
+				"end_year: 2013",
 				'poster: "[[Attachments/Attack on Titan.jpg]]"',
 				"mal_id: 16498",
 				"watched: false",
@@ -106,6 +108,7 @@ describe("refreshAnimeFrontmatter", () => {
 		"  - Wit Studio",
 		"status: finished_airing",
 		"year: 2013",
+		"end_year: 2013",
 		'poster: "[[Attachments/Attack on Titan.jpg]]"',
 		"mal_id: 16498",
 		"watched: true",
@@ -168,6 +171,23 @@ describe("refreshAnimeFrontmatter", () => {
 		expect(updated).toContain("rating: 9");
 	});
 
+	// A note written before a field existed — end_year, added in 2.3.0 — gets
+	// it where a new note would have it, not tacked on at the end.
+	it("puts a field the note doesn't have yet in its canonical place", () => {
+		const older = existingNote.replace("end_year: 2013\n", "");
+		const updated = refreshAnimeFrontmatter(older, aot);
+		expect(updated).toContain("\nyear: 2013\nend_year: 2013\nposter:");
+	});
+
+	it("puts it there on a note carrying a manga block too", () => {
+		const older = existingNote
+			.replace("end_year: 2013\n", "")
+			.replace("watched: true", "watched: true\nmanga:\n  mal_id: 26\n  read: true");
+		const updated = refreshAnimeFrontmatter(older, aot);
+		expect(updated).toContain("\nyear: 2013\nend_year: 2013\nposter:");
+		expect(updated).toContain("\nwatched: true\nmanga:\n");
+	});
+
 	it("returns the content unchanged when there is no frontmatter", () => {
 		expect(refreshAnimeFrontmatter("No frontmatter here.", aot)).toBe("No frontmatter here.");
 	});
@@ -202,6 +222,7 @@ describe("refreshAnimeFrontmatter", () => {
 					"  - Wit Studio",
 					"status: finished_airing",
 					"year: 2013",
+					"end_year: 2013",
 					'poster: "[[Attachments/Attack on Titan.jpg]]"',
 					"mal_id: 16498",
 					"watched: false",

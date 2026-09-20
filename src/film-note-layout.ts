@@ -95,6 +95,7 @@ interface MangaPanelInfo {
 	title: string;
 	mediaType: string | null;
 	year: number | null;
+	endYear: number | null;
 	status: string | null;
 	chapters: number | null;
 	volumes: number | null;
@@ -104,18 +105,27 @@ interface MangaPanelInfo {
 }
 
 /**
+ * The years a work ran: "1990–1994", or just the one year when it is still
+ * running, finished inside that year, or MAL only knows the one.
+ */
+function years(year: number | null, endYear: number | null): string | null {
+	if (year === null) return endYear === null ? null : String(endYear);
+	return endYear === null || endYear === year ? String(year) : `${year}–${endYear}`;
+}
+
+/**
  * The line under the MANGA panel's title: "Manga · 1998 · Currently
  * publishing · 37 volumes · 390 chapters". Whatever MAL left blank is left
  * out. The panel is the only place these show, since the nested `manga`
  * property is hidden (see `MANGA_HOST_CLASS`).
  */
 export function mangaSummary(
-	info: Pick<MangaPanelInfo, "mediaType" | "year" | "status" | "volumes" | "chapters">,
+	info: Pick<MangaPanelInfo, "mediaType" | "year" | "endYear" | "status" | "volumes" | "chapters">,
 ): string {
 	const count = (n: number, noun: string) => `${n} ${n === 1 ? noun : `${noun}s`}`;
 	return [
 		formatMediaType(info.mediaType),
-		info.year === null ? null : String(info.year),
+		years(info.year, info.endYear),
 		formatStatus(info.status),
 		info.volumes === null ? null : count(info.volumes, "volume"),
 		info.chapters === null ? null : count(info.chapters, "chapter"),
@@ -319,6 +329,7 @@ export class FilmNoteLayout {
 			title: typeof block.title === "string" ? block.title : "",
 			mediaType: typeof block.media_type === "string" ? block.media_type : null,
 			year: typeof block.year === "number" ? block.year : null,
+			endYear: typeof block.end_year === "number" ? block.end_year : null,
 			status: typeof block.status === "string" ? block.status : null,
 			chapters: typeof block.chapters === "number" ? block.chapters : null,
 			volumes: typeof block.volumes === "number" ? block.volumes : null,

@@ -51,10 +51,28 @@ export class TFile extends TAbstractFile {
 
 export class TFolder extends TAbstractFile {}
 
-/** Only for modules that declare a settings tab; the tests never open one. */
-export class PluginSettingTab {}
+/** Only for modules that declare a settings tab; the tests never open one. Keeps `app`, which the tab reads. */
+export class PluginSettingTab {
+	readonly app: unknown;
+
+	constructor(app: unknown) {
+		this.app = app;
+	}
+}
 export class Setting {}
 export class SecretComponent {}
+
+/** Subclassed by the folder suggester in settings.ts, never instantiated here. */
+export class AbstractInputSuggest {
+	constructor(
+		readonly app: unknown,
+		readonly inputEl: unknown,
+	) {}
+
+	setValue(_value: string): void {}
+
+	close(): void {}
+}
 
 /** The tests run as the newest Obsidian; secrets.ts takes its keychain as an argument. */
 export function requireApiVersion(): boolean {

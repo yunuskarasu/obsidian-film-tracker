@@ -27,6 +27,7 @@ export type AnimeOwnedKey =
 	| "studios"
 	| "status"
 	| "year"
+	| "end_year"
 	| "mal_id";
 
 export const ANIME_OWNED_KEYS: readonly AnimeOwnedKey[] = [
@@ -39,6 +40,7 @@ export const ANIME_OWNED_KEYS: readonly AnimeOwnedKey[] = [
 	"studios",
 	"status",
 	"year",
+	"end_year",
 	"mal_id",
 ];
 
@@ -63,6 +65,8 @@ function ownedLines(key: AnimeOwnedKey, anime: AnimeMetadata, previous?: Record<
 			return [yamlScalar("status", anime.status)];
 		case "year":
 			return [yamlScalar("year", anime.year)];
+		case "end_year":
+			return [yamlScalar("end_year", anime.endYear)];
 		case "mal_id":
 			return [`mal_id: ${anime.malId}`];
 	}
@@ -80,6 +84,7 @@ export function buildAnimeFrontmatter(anime: AnimeMetadata, posterLink: string |
 		...ownedLines("studios", anime),
 		...ownedLines("status", anime),
 		...ownedLines("year", anime),
+		...ownedLines("end_year", anime),
 		posterLine(posterLink),
 		...ownedLines("mal_id", anime),
 		"watched: false",
@@ -99,19 +104,63 @@ export function buildAnimeNoteContent(anime: AnimeMetadata, rawPosterLink: strin
 }
 
 /**
- * The manga block's own top-level key (see manga-note.ts). When this
- * function merges anime fields onto a manga-only Series note, every new key
- * is inserted right before it, so the merged note ends up in the same
- * canonical order as an anime-first note (manga block last) regardless of
- * which side was added first.
+ * The manga block's own top-level key (see manga-note.ts). It always stays
+ * last: when anime fields are merged onto a manga-only Series note, a new key
+ * with nowhere else to go is inserted right before it, so the merged note ends
+ * up in the same canonical order as an anime-first note regardless of which
+ * side was added first.
  */
 const MANGA_BLOCK_KEY = "manga";
 
 /**
+ * The order a brand-new anime note writes its fields in — `poster` and
+ * `watched` included, which `ANIME_OWNED_KEYS` leaves out because a refresh
+ * only ever seeds them, never rewrites them.
+ */
+const ANIME_FIELD_ORDER: readonly string[] = [
+	"title",
+	"english_title",
+	"japanese_title",
+	"media_type",
+	"episodes",
+	"genres",
+	"studios",
+	"status",
+	"year",
+	"end_year",
+	"poster",
+	"mal_id",
+	"watched",
+];
+
+/**
+ * Where a key the note doesn't have yet belongs: right after the nearest
+ * field before it in `ANIME_FIELD_ORDER` that the note does have, or failing
+ * that right before the nearest field after it. A note written before
+ * `end_year` existed therefore gets it beside `year` rather than at the end.
+ * Anything else goes before the `manga` block, or last.
+ */
+function insertionIndex(order: string[], key: string): number {
+	const canonical = ANIME_FIELD_ORDER.indexOf(key);
+	if (canonical !== -1) {
+		for (let before = canonical - 1; before >= 0; before -= 1) {
+			const at = order.indexOf(ANIME_FIELD_ORDER[before]);
+			if (at !== -1) return at + 1;
+		}
+		for (let after = canonical + 1; after < ANIME_FIELD_ORDER.length; after += 1) {
+			const at = order.indexOf(ANIME_FIELD_ORDER[after]);
+			if (at !== -1) return at;
+		}
+	}
+
+	const mangaIndex = order.indexOf(MANGA_BLOCK_KEY);
+	return mangaIndex === -1 ? order.length : mangaIndex;
+}
+
+/**
  * Sets an owned key's lines. A key that already exists in `doc.order` is
- * left exactly where it is (refreshing an existing anime note never
- * reorders anything); a brand-new key is inserted right before the `manga`
- * block if one is present, otherwise appended at the end.
+ * left exactly where it is — refreshing an existing anime note never reorders
+ * anything — and a brand-new key is placed by `insertionIndex`.
  */
 function setOwnedKey(
 	doc: { order: string[]; blocks: Map<string, string[]> },
@@ -121,9 +170,7 @@ function setOwnedKey(
 	doc.blocks.set(key, lines);
 	if (doc.order.includes(key)) return;
 
-	const mangaIndex = doc.order.indexOf(MANGA_BLOCK_KEY);
-	if (mangaIndex === -1) doc.order.push(key);
-	else doc.order.splice(mangaIndex, 0, key);
+	doc.order.splice(insertionIndex(doc.order, key), 0, key);
 }
 
 /**

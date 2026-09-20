@@ -77,6 +77,7 @@ Mangaka work a little differently: open the manga or Series note whose author yo
 | **Refresh anime/manga metadata from MAL** | Re-fetches whichever side(s) the note has and rewrites only the fields the plugin owns. `watched`, `read`, your body text, any property you added, any link already in a list (a genre, a studio, a mangaka) and any comment above the first property are left exactly as they were. On a mangaka note, refreshes their name, birthday and photo instead. Only appears on anime, manga or mangaka notes. |
 | **Relink directors and genres** | Turn plain names into `[[wikilinks]]` wherever a note by that name now exists. No network calls, so it runs in a second. |
 | **Import from Letterboxd** | Bulk-create notes from a Letterboxd export. See below. |
+| **Import from MyAnimeList** | Bulk-create notes from a public MyAnimeList list, marking what you have completed. See below. |
 
 ## Importing from Letterboxd
 
@@ -91,6 +92,19 @@ From `diary.csv`, the **Watched Date** column fills in `watch_date` on notes it 
 A film already in your vault (matched by `tmdb_id`) is skipped rather than duplicated; if it has no `watch_date` yet, the import fills that in from the diary entry, and with **mark these films as watched** on it ticks `watched` (it never unticks it). Letterboxd and TMDB sometimes put a film a year apart, so a result within a year of the export's year still counts. When a title in the CSV has no TMDB match that close, it is left out rather than guessed and listed, with the reason, in a **Film + Anime-Manga Tracker Import Report** note created at the end.
 
 Closing the progress window, with Esc or its close button, stops the import the same way **Cancel** does; what was imported by then stays. Only one import runs at a time: starting a second while one is running just tells you so.
+
+## Importing from MyAnimeList
+
+1. Run **Import from MyAnimeList**, or use the button in settings.
+2. Type the MyAnimeList username whose list to read — your own, usually.
+3. Choose the anime list, the manga list, or both, and which shelves to take: **Completed** and **Watching or reading** to start with, and **On hold**, **Dropped** and **Plan to watch or read** if you want them too.
+4. Film + Anime-Manga Tracker reads the list a hundred entries at a time and writes a note for each one, with its poster.
+
+What you have **completed** arrives ticked: an anime as `watched`, a manga as `read` — and `read` is set on every note carrying that manga, the way the Read checkbox does. Anything already in your vault is recognized by its MyAnimeList id, wherever its note lives, and is never written a second time; a completed entry whose note isn't ticked yet gets ticked, and nothing is ever unticked.
+
+Nothing is matched by title, so there is no guessing. What can still go wrong is a name: when a note of your own already has the name an entry would take, that entry is left out and listed in the **Film + Anime-Manga Tracker Import Report** note written at the end. Closing the progress window stops the import, the same as **Cancel**, and only one import runs at a time.
+
+The list has to be public. That's a MyAnimeList setting (**Account settings → My List → List visibility**), not something the plugin can change: MyAnimeList only shares a private list with the account that owns it, which would need signing in.
 
 ## What gets written
 
@@ -162,6 +176,7 @@ studios:
   - Madhouse
 status: finished_airing
 year: 2011
+end_year: 2014
 poster: "[[Attachments/Hunter x Hunter.jpg]]"
 mal_id: 11061
 watched: false
@@ -169,6 +184,8 @@ watched: false
 ```
 
 Same philosophy as a film note: structured metadata and a poster, nothing else. `watched` is a plain checkbox Film + Anime-Manga Tracker sets once and never touches again — same role as a film's `watched`.
+
+`year` and `end_year` are the years it started and finished, as MyAnimeList has them. Something still running has no `end_year`, and neither has anything MyAnimeList never gave an end date. Both are years rather than full dates: MyAnimeList often knows only the year for older works.
 
 When the same note also has a manga side, its metadata lives in a single nested `manga` property instead of being mixed into the fields above — see [Anime and manga](#anime-and-manga) for why, and for the panel that actually shows it.
 
@@ -212,6 +229,8 @@ The first time you add a film, open the note's properties, click the type icon n
 | Anime/manga poster folder | empty | Where anime and manga posters are saved (as two separate files). Empty follows your normal attachment folder setting. |
 | Mangaka folder | `Mangaka` | Where mangaka notes are created. Kept separate from the anime/manga folder, the same way directors have their own folder apart from films. Empty means the vault root. |
 | Mangaka photo folder | empty | Where mangaka photos are saved. Empty follows your normal attachment folder setting. |
+
+On Obsidian 1.13 or later these settings appear in Obsidian's own settings search, and each folder setting suggests the folders in your vault as you type. On earlier versions the plugin draws the same settings itself, with the same folder suggestions.
 
 ## Behaviour worth knowing
 
@@ -317,6 +336,7 @@ studios:
   - Madhouse
 status: finished_airing
 year: 2011
+end_year: 2014
 poster: "[[Attachments/Hunter x Hunter.jpg]]"
 mal_id: 11061
 watched: false
@@ -326,6 +346,7 @@ manga:
   media_type: manga
   status: currently_publishing
   year: 1998
+  end_year:
   chapters: 400
   volumes: 37
   mangaka:

@@ -8,7 +8,7 @@ const API_BASE = "https://api.myanimelist.net/v2";
  * always returned regardless of this list.
  */
 export const DETAIL_FIELDS =
-	"main_picture,alternative_titles,media_type,num_episodes,genres,studios,status,start_date";
+	"main_picture,alternative_titles,media_type,num_episodes,genres,studios,status,start_date,end_date";
 
 /**
  * The `authors{node{id,first_name,last_name}}` nested-field syntax is
@@ -17,11 +17,12 @@ export const DETAIL_FIELDS =
  * additionally surfaces the author's own MAL person id (MAL's default
  * `authors` selector omits it otherwise) — the only way to find a mangaka's
  * id at all, since MAL's API has no standalone person-search endpoint.
- * `start_date` is requested the same way anime's own `year` already is.
+ * `start_date` and `end_date` are requested the same way the anime side
+ * asks for its own years.
  * Confirmed against real API responses before writing this.
  */
 export const MANGA_DETAIL_FIELDS =
-	"main_picture,media_type,num_volumes,num_chapters,authors{node{id,first_name,last_name}},status,start_date";
+	"main_picture,media_type,num_volumes,num_chapters,authors{node{id,first_name,last_name}},status,start_date,end_date";
 
 /**
  * MAL's official API has no person-search endpoint (confirmed: `GET
@@ -52,6 +53,8 @@ export interface AnimeMetadata {
 	studios: string[];
 	status: string | null;
 	year: number | null;
+	/** The year it finished, when MAL has one — a work still running has none. */
+	endYear: number | null;
 	malId: number;
 	posterUrl: string | null;
 }
@@ -100,6 +103,7 @@ export interface MalAnimeDetails {
 	studios?: MalStudio[];
 	status?: string;
 	start_date?: string;
+	end_date?: string;
 }
 
 /** A manga's author as mapped from MAL's `authors` list — `malId` is `null` only if MAL's response is missing the id, which real testing never showed. */
@@ -115,6 +119,7 @@ export interface MangaMetadata {
 	volumes: number | null;
 	status: string | null;
 	year: number | null;
+	endYear: number | null;
 	mangaka: MangaAuthor[];
 	malId: number;
 	posterUrl: string | null;
@@ -155,6 +160,7 @@ export interface MalMangaDetails {
 	authors?: MalAuthor[];
 	status?: string;
 	start_date?: string;
+	end_date?: string;
 }
 
 export interface MalPersonDetails {
@@ -172,15 +178,50 @@ export interface MangakaMetadata {
 	photoUrl: string | null;
 }
 
+/**
+ * How much of a list one request asks for. MAL allows more, but a smaller
+ * page comes back quickly, which is what lets a cancelled import stop soon
+ * after it is asked to.
+ */
+const LIST_PAGE_SIZE = 100;
+
+/** One entry of someone's list: the work itself, and what their list says about it. */
+export interface MalListEntry<T> {
+	work: T;
+	/** MAL's own value — "completed", "watching", "plan_to_watch" … — or `null` when the entry has none. */
+	listStatus: string | null;
+}
+
+export interface MalListPage<T> {
+	entries: MalListEntry<T>[];
+	/** Where the next page starts, or `null` at the end of the list. */
+	nextOffset: number | null;
+}
+
+interface MalListResponse<N> {
+	data?: { node: N; list_status?: { status?: string } }[];
+	paging?: { next?: string };
+}
+
+function toListPage<N, T>(body: MalListResponse<N>, offset: number, map: (node: N) => T): MalListPage<T> {
+	const entries = (body.data ?? []).map((entry) => ({
+		work: map(entry.node),
+		listStatus: entry.list_status?.status?.trim() || null,
+	}));
+	// A `next` link with nothing on the page would ask for the same offset for ever.
+	const more = body.paging?.next !== undefined && entries.length > 0;
+	return { entries, nextOffset: more ? offset + entries.length : null };
+}
+
 export class MalError extends Error {}
 
 function cleanNames(values: ({ name?: string } | undefined)[]): string[] {
 	return values.map((value) => value?.name?.trim() ?? "").filter((name) => name !== "");
 }
 
-export function parseYearFromDate(startDate: string | undefined): number | null {
-	if (!startDate) return null;
-	const year = Number(startDate.slice(0, 4));
+export function parseYearFromDate(date: string | undefined): number | null {
+	if (!date) return null;
+	const year = Number(date.slice(0, 4));
 	return Number.isInteger(year) && year > 0 ? year : null;
 }
 
@@ -269,6 +310,7 @@ export function toMangaMetadata(details: MalMangaDetails): MangaMetadata {
 				: null,
 		status: details.status?.trim() || null,
 		year: parseYearFromDate(details.start_date),
+		endYear: parseYearFromDate(details.end_date),
 		mangaka: (details.authors ?? []).map(toMangaAuthor).filter((author) => author.name !== ""),
 		malId: details.id,
 		posterUrl: bestPicture(details.main_picture),
@@ -299,6 +341,7 @@ export function toAnimeMetadata(details: MalAnimeDetails): AnimeMetadata {
 		studios: cleanNames(details.studios ?? []),
 		status: details.status?.trim() || null,
 		year: parseYearFromDate(details.start_date),
+		endYear: parseYearFromDate(details.end_date),
 		malId: details.id,
 		posterUrl: bestPicture(details.main_picture),
 	};
@@ -351,6 +394,45 @@ export class MalClient {
 		return toMangakaMetadata(details);
 	}
 
+	/**
+	 * A page of someone's public anime list. The works' own fields are asked
+	 * for alongside `list_status`, so a list costs one request per hundred
+	 * entries rather than one per entry — where MAL answers without them, the
+	 * import fills the entry in with `getAnime`.
+	 */
+	async animeListPage(userName: string, offset: number): Promise<MalListPage<AnimeMetadata>> {
+		const body = await this.listJson<MalAnimeDetails>(userName, "animelist", DETAIL_FIELDS, offset);
+		return toListPage(body, offset, toAnimeMetadata);
+	}
+
+	/** A page of someone's public manga list — see `animeListPage`. */
+	async mangaListPage(userName: string, offset: number): Promise<MalListPage<MangaMetadata>> {
+		const body = await this.listJson<MalMangaDetails>(userName, "mangalist", MANGA_DETAIL_FIELDS, offset);
+		return toListPage(body, offset, toMangaMetadata);
+	}
+
+	private async listJson<N>(
+		userName: string,
+		path: "animelist" | "mangalist",
+		fields: string,
+		offset: number,
+	): Promise<MalListResponse<N>> {
+		const params = new URLSearchParams({
+			fields: `list_status,${fields}`,
+			limit: String(LIST_PAGE_SIZE),
+			offset: String(offset),
+			// Without this, MAL leaves everything it marks as adult out of the list.
+			nsfw: "true",
+		});
+		return this.getJson<MalListResponse<N>>(
+			`${API_BASE}/users/${encodeURIComponent(userName)}/${path}?${params.toString()}`,
+			{
+				403: `${userName}'s list on MyAnimeList isn't public.`,
+				404: `MyAnimeList has no user called "${userName}".`,
+			},
+		);
+	}
+
 	async downloadImage(url: string): Promise<ArrayBuffer> {
 		const response = await this.request(url);
 		if (response.status !== 200) {
@@ -372,8 +454,10 @@ export class MalClient {
 		}
 	}
 
-	private async getJson<T>(url: string): Promise<T> {
+	private async getJson<T>(url: string, errors: Record<number, string> = {}): Promise<T> {
 		const response = await this.request(url);
+		const known = errors[response.status];
+		if (known !== undefined) throw new MalError(known);
 		if (response.status === 401) throw new MalError("Invalid MyAnimeList client ID.");
 		if (response.status === 429) {
 			throw new MalError("MyAnimeList rate limit reached. Try again in a moment.");

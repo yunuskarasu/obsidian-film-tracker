@@ -70,10 +70,16 @@ export class ImportConfirmModal extends Modal {
 export class ImportProgressModal extends Modal {
 	private statusEl: HTMLElement | null = null;
 	private cancelled = false;
+	private readonly heading: string;
+
+	constructor(app: App, heading: string) {
+		super(app);
+		this.heading = heading;
+	}
 
 	onOpen(): void {
 		const { contentEl } = this;
-		contentEl.createEl("h2", { text: "Importing from Letterboxd…" });
+		contentEl.createEl("h2", { text: this.heading });
 		this.statusEl = contentEl.createEl("p", { text: "Starting…" });
 
 		new Setting(contentEl).addButton((button) =>

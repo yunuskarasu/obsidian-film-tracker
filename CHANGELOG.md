@@ -2,6 +2,18 @@
 
 All notable changes to Film + Anime-Manga Tracker are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.3.0] - 2026-09-20
+
+### Added
+
+- **Import from MyAnimeList.** A note for everything on a public MyAnimeList list: type the username, pick the anime list, the manga list or both, and which shelves to take. What you have completed arrives `watched` or `read`, and a manga's `read` is set on every note carrying it. Entries are recognized by their MyAnimeList id, so nothing already in your vault is written twice — a completed entry whose note isn't ticked yet gets ticked. Closing the progress window stops the import, and only one import runs at a time.
+- **The years a work ran.** Anime and manga notes get `end_year` beside `year`, and the MANGA panel reads them as a range: "Manga · 1990–1994 · Finished". Something still running has no end year. Years rather than full dates, since that is often all MyAnimeList has.
+
+### Changed
+
+- The settings are described rather than drawn, which puts them in Obsidian's own settings search on 1.13 and later, and gives every folder setting a list of your vault's folders to pick from. Earlier versions get the same settings, and the same folder suggestions, drawn by the plugin.
+- Settings headings read as sentences ("🔑 API & integrations"), and each section names what it belongs to ("🎬 Cinema: folders").
+
 ## [2.2.0] - 2026-09-20
 
 ### Added
@@ -87,7 +99,7 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 - Relinking of directors and genres.
 - Import from Letterboxd.
 
-[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.2.0...HEAD
+[2.3.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.1.0...2.2.0
 [2.1.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.0.1...2.1.0
 [2.0.1]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/v2.0.0...2.0.1

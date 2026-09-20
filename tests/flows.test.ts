@@ -51,6 +51,7 @@ const hxhManga: MangaMetadata = {
 	mediaType: "manga",
 	status: "currently_publishing",
 	year: 1998,
+	endYear: null,
 	chapters: null,
 	volumes: null,
 	mangaka: [{ name: "Yoshihiro Togashi", malId: 1893 }],
@@ -68,6 +69,7 @@ const hxh2011: AnimeMetadata = {
 	studios: ["Madhouse"],
 	status: "finished_airing",
 	year: 2011,
+	endYear: 2014,
 	malId: 11061,
 	posterUrl: "https://cdn.example/hxh-2011.jpg",
 };

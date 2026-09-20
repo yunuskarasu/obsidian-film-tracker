@@ -1,6 +1,6 @@
 {
   "name": "obsidian-film-tracker",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Add a film to your vault as a note with metadata and a poster.",
   "main": "main.js",
   "scripts": {

@@ -57,6 +57,9 @@ function mangaTitleOf(frontmatter: Record<string, unknown> | undefined): string 
 	return typeof title === "string" && title.trim() !== "" ? title : "the manga";
 }
 
+/** What became of a note a command was asked to create. */
+export type NoteResult = "created" | "conflict" | "no-folder";
+
 /** How a dialog says where a deleted file goes. */
 const DELETED_FILES = `It's deleted the way Obsidian's "Deleted files" setting says.`;
 
@@ -346,18 +349,26 @@ export class AnimeActions {
 	 * `watched` follow the same rule when the anime is already on another
 	 * note (it adapts more than one manga).
 	 */
-	private async createAnimeNote(
+	/**
+	 * A Series note for an anime, with a manga's block in it when one is
+	 * given. `open` is what a list import turns off: it wants the note
+	 * written, not opened and announced one by one.
+	 */
+	async createAnimeNote(
 		client: MalClient,
 		anime: AnimeMetadata,
-		manga: MangaMetadata | null = null,
-	): Promise<void> {
+		options: { manga?: MangaMetadata | null; watched?: boolean; open?: boolean } = {},
+	): Promise<NoteResult> {
+		const manga = options.manga ?? null;
+		const open = options.open !== false;
+
 		const target = await this.notes.newNotePath(this.settings().animeFolder, [
 			buildAnimeFileName(anime.title, anime.year),
 		]);
-		if (target === null) return;
+		if (target === null) return "no-folder";
 		if ("conflict" in target) {
-			await this.notes.openConflict(target.conflict);
-			return;
+			if (open) await this.notes.openConflict(target.conflict);
+			return "conflict";
 		}
 		const notePath = target.path;
 
@@ -368,7 +379,7 @@ export class AnimeActions {
 		const posterLink = poster ? this.notes.imageLink(poster, notePath) : null;
 
 		let content = buildAnimeNoteContent(anime, posterLink);
-		if (sameAnime.some((note) => this.notes.frontmatterOf(note)?.watched === true)) {
+		if (options.watched === true || sameAnime.some((note) => this.notes.frontmatterOf(note)?.watched === true)) {
 			content = markWatched(content);
 		}
 		if (manga !== null) {
@@ -378,6 +389,7 @@ export class AnimeActions {
 		}
 
 		const note = await this.app.vault.create(notePath, content);
+		if (!open) return "created";
 		await this.notes.openNote(note);
 
 		if (manga !== null) {
@@ -389,6 +401,7 @@ export class AnimeActions {
 		} else {
 			new Notice(`Added ${anime.title}. MyAnimeList has no poster for this anime.`);
 		}
+		return "created";
 	}
 
 	/**
@@ -430,19 +443,29 @@ export class AnimeActions {
 	 * linked into it later — and takes the year only when another work
 	 * already holds that name (a light novel and its manga often share one).
 	 */
-	private async createMangaNote(client: MalClient, manga: MangaMetadata): Promise<void> {
+	async createMangaNote(
+		client: MalClient,
+		manga: MangaMetadata,
+		options: { read?: boolean; open?: boolean } = {},
+	): Promise<NoteResult> {
+		const open = options.open !== false;
+
 		const names = [sanitizeFileName(manga.title), buildFileName(manga.title, manga.year)];
 		const target = await this.notes.newNotePath(this.settings().animeFolder, [...new Set(names)]);
-		if (target === null) return;
+		if (target === null) return "no-folder";
 		if ("conflict" in target) {
-			await this.notes.openConflict(target.conflict);
-			return;
+			if (open) await this.notes.openConflict(target.conflict);
+			return "conflict";
 		}
 		const notePath = target.path;
 
 		const posterLink = await this.mangaPosterLink(client, manga, null, notePath);
-		const content = applyMangaBlock("---\n---\n", manga, posterLink, this.notes.isResolved(notePath));
+		let content = applyMangaBlock("---\n---\n", manga, posterLink, this.notes.isResolved(notePath));
+		if (options.read === true || this.isMangaReadElsewhere(manga.malId, null)) {
+			content = setMangaRead(content, true);
+		}
 		const note = await this.app.vault.create(notePath, content);
+		if (!open) return "created";
 		await this.notes.openNote(note);
 
 		if (posterLink) {
@@ -452,6 +475,7 @@ export class AnimeActions {
 		} else {
 			new Notice(`Added ${manga.title}. MyAnimeList has no poster for this manga.`);
 		}
+		return "created";
 	}
 
 	/**
@@ -491,7 +515,7 @@ export class AnimeActions {
 				return;
 			}
 
-			await this.createAnimeNote(client, anime, manga);
+			await this.createAnimeNote(client, anime, { manga });
 		});
 	}
 

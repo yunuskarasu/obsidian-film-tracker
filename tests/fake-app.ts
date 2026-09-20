@@ -5,7 +5,16 @@ import { parse } from "yaml";
 import { TFile as StubFile, TFolder as StubFolder } from "./obsidian-stub";
 import type { ConfirmAnswer, ConfirmRequest } from "../src/confirm-modal";
 import type { LinkChoice } from "../src/link-confirm-modal";
-import { MalError, type AnimeMetadata, type MalClient, type MangaAuthor, type MangaMetadata, type MangakaMetadata } from "../src/mal";
+import {
+	MalError,
+	type AnimeMetadata,
+	type MalClient,
+	type MalListEntry,
+	type MalListPage,
+	type MangaAuthor,
+	type MangaMetadata,
+	type MangakaMetadata,
+} from "../src/mal";
 import { DEFAULT_SETTINGS, type FilmTrackerSettings } from "../src/settings";
 import {
 	TmdbError,
@@ -243,11 +252,24 @@ export function fakeTmdb(data: {
 	return client as unknown as TmdbClient & { calls: string[] };
 }
 
+/** One page of a fixture list, the way MAL hands them over. */
+function listPage<T>(entries: MalListEntry<T>[], offset: number, size: number): MalListPage<T> {
+	const page = entries.slice(offset, offset + size);
+	const next = offset + page.length;
+	return { entries: page, nextOffset: next < entries.length ? next : null };
+}
+
 /** A MyAnimeList client answering from fixtures, recording every request it gets. */
 export function fakeMal(data: {
 	anime?: AnimeMetadata[];
 	manga?: MangaMetadata[];
 	people?: MangakaMetadata[];
+	animeList?: MalListEntry<AnimeMetadata>[];
+	mangaList?: MalListEntry<MangaMetadata>[];
+	/** How many entries fit on a page, so paging can be exercised. */
+	pageSize?: number;
+	/** Thrown instead of a list page — a private list, say. */
+	listError?: Error;
 }): MalClient & { calls: string[] } {
 	const calls: string[] = [];
 	const client = {
@@ -269,6 +291,16 @@ export function fakeMal(data: {
 			const person = data.people?.find((p) => p.malId === id);
 			if (person === undefined) throw new MalError("MyAnimeList request failed (HTTP 404).");
 			return person;
+		},
+		animeListPage: async (userName: string, offset: number) => {
+			calls.push(`animeList ${userName} ${offset}`);
+			if (data.listError) throw data.listError;
+			return listPage(data.animeList ?? [], offset, data.pageSize ?? 100);
+		},
+		mangaListPage: async (userName: string, offset: number) => {
+			calls.push(`mangaList ${userName} ${offset}`);
+			if (data.listError) throw data.listError;
+			return listPage(data.mangaList ?? [], offset, data.pageSize ?? 100);
 		},
 		downloadImage: async (url: string) => {
 			calls.push(`download ${url}`);

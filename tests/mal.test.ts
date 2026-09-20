@@ -36,6 +36,7 @@ describe("DETAIL_FIELDS", () => {
 			"studios",
 			"status",
 			"start_date",
+			"end_date",
 		]) {
 			expect(requested.has(field)).toBe(true);
 		}
@@ -208,6 +209,7 @@ describe("MANGA_DETAIL_FIELDS", () => {
 			"num_chapters",
 			"status",
 			"start_date",
+			"end_date",
 		]) {
 			expect(MANGA_DETAIL_FIELDS).toContain(field);
 		}
@@ -241,6 +243,26 @@ function mangaDetails(overrides: Partial<MalMangaDetails> = {}): MalMangaDetails
 		...overrides,
 	};
 }
+
+describe("the years a work ran", () => {
+	it("reads the start and end years, leaving the end open while it runs", () => {
+		expect(toAnimeMetadata(details({ start_date: "2013-04-07", end_date: "2013-09-29" }))).toMatchObject({
+			year: 2013,
+			endYear: 2013,
+		});
+		expect(toAnimeMetadata(details({ end_date: undefined })).endYear).toBeNull();
+		expect(toMangaMetadata(mangaDetails({ start_date: "1990-12-03", end_date: "1994-07-25" }))).toMatchObject({
+			year: 1990,
+			endYear: 1994,
+		});
+		expect(toMangaMetadata(mangaDetails()).endYear).toBeNull();
+	});
+
+	/** MAL gives some older works a year alone, and dates are the only thing this reads. */
+	it("reads a year MAL gives without a month or day", () => {
+		expect(toMangaMetadata(mangaDetails({ end_date: "1994" })).endYear).toBe(1994);
+	});
+});
 
 describe("toMangaMetadata", () => {
 	it("maps title, media type, status and the MAL id through", () => {
