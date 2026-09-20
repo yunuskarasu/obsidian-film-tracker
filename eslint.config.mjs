@@ -8,7 +8,9 @@ import { DEFAULT_BRANDS } from "eslint-plugin-obsidianmd/dist/lib/rules/ui/brand
 import { DEFAULT_ACRONYMS } from "eslint-plugin-obsidianmd/dist/lib/rules/ui/acronyms.js";
 
 export default tseslint.config(
-	{ ignores: ["main.js", "node_modules/", ".agents/", ".backups/", "**/*.mjs", "**/*.mts"] },
+	// Nothing that ships lives in a dot directory, and the tools that keep
+	// their settings in one are not this project's code to lint.
+	{ ignores: ["main.js", "node_modules/", ".*/", "**/*.mjs", "**/*.mts"] },
 	js.configs.recommended,
 	tseslint.configs.recommended,
 	obsidianmd.configs.recommended,
