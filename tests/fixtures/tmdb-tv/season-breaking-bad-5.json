@@ -1,0 +1,87 @@
+{
+	"season_number": 5,
+	"name": "Season 5",
+	"air_date": "2012-07-15",
+	"episodes": [
+		{
+			"season_number": 5,
+			"episode_number": 1,
+			"air_date": "2012-07-15"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 2,
+			"air_date": "2012-07-22"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 3,
+			"air_date": "2012-07-29"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 4,
+			"air_date": "2012-08-05"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 5,
+			"air_date": "2012-08-12"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 6,
+			"air_date": "2012-08-19"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 7,
+			"air_date": "2012-08-26"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 8,
+			"air_date": "2012-09-02"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 9,
+			"air_date": "2013-08-11"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 10,
+			"air_date": "2013-08-18"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 11,
+			"air_date": "2013-08-25"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 12,
+			"air_date": "2013-09-01"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 13,
+			"air_date": "2013-09-08"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 14,
+			"air_date": "2013-09-15"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 15,
+			"air_date": "2013-09-22"
+		},
+		{
+			"season_number": 5,
+			"episode_number": 16,
+			"air_date": "2013-09-29"
+		}
+	]
+}

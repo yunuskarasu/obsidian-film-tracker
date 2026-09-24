@@ -1,0 +1,161 @@
+{
+	"id": 46648,
+	"name": "True Detective",
+	"original_name": "True Detective",
+	"original_language": "en",
+	"origin_country": [
+		"US"
+	],
+	"first_air_date": "2014-01-12",
+	"last_air_date": "2024-02-18",
+	"status": "Returning Series",
+	"type": "Scripted",
+	"poster_path": "/zYqVTiHK5ZajYcNzAW7qWte5NWS.jpg",
+	"genres": [
+		{
+			"id": 18,
+			"name": "Drama"
+		},
+		{
+			"id": 9648,
+			"name": "Mystery"
+		}
+	],
+	"created_by": [
+		{
+			"id": 1281190,
+			"name": "Nic Pizzolatto"
+		},
+		{
+			"id": 964037,
+			"name": "Issa López"
+		}
+	],
+	"networks": [
+		{
+			"id": 49,
+			"name": "HBO"
+		}
+	],
+	"number_of_episodes": 30,
+	"number_of_seasons": 4,
+	"last_episode_to_air": {
+		"season_number": 4,
+		"episode_number": 6,
+		"air_date": "2024-02-18"
+	},
+	"next_episode_to_air": null,
+	"seasons": [
+		{
+			"season_number": 0,
+			"name": "Specials",
+			"episode_count": 5,
+			"air_date": "2014-01-07",
+			"poster_path": "/ediivefJokEcDp27A2OOrKTBmkv.jpg"
+		},
+		{
+			"season_number": 1,
+			"name": "Season 1",
+			"episode_count": 8,
+			"air_date": "2014-01-12",
+			"poster_path": "/gf5PFAwzcrRjd26zqcumqeMZV0W.jpg"
+		},
+		{
+			"season_number": 2,
+			"name": "Season 2",
+			"episode_count": 8,
+			"air_date": "2015-06-21",
+			"poster_path": "/owTL3WTY4Yax2qClnwbaDsOO72r.jpg"
+		},
+		{
+			"season_number": 3,
+			"name": "Season 3",
+			"episode_count": 8,
+			"air_date": "2019-01-13",
+			"poster_path": "/qnD7ExuaBF4QdcgxlB1B1HyLxXA.jpg"
+		},
+		{
+			"season_number": 4,
+			"name": "Night Country",
+			"episode_count": 6,
+			"air_date": "2024-01-14",
+			"poster_path": "/ezO4g1e8ljZQnEhi2NHDlVzdWFX.jpg"
+		}
+	],
+	"aggregate_credits": {
+		"cast": [
+			{
+				"id": 10297,
+				"name": "Matthew McConaughey",
+				"order": 0,
+				"total_episode_count": 8
+			},
+			{
+				"id": 72466,
+				"name": "Colin Farrell",
+				"order": 4,
+				"total_episode_count": 8
+			},
+			{
+				"id": 932967,
+				"name": "Mahershala Ali",
+				"order": 7,
+				"total_episode_count": 8
+			},
+			{
+				"id": 57755,
+				"name": "Woody Harrelson",
+				"order": 9,
+				"total_episode_count": 8
+			},
+			{
+				"id": 4937,
+				"name": "Vince Vaughn",
+				"order": 10,
+				"total_episode_count": 8
+			},
+			{
+				"id": 10822,
+				"name": "Stephen Dorff",
+				"order": 11,
+				"total_episode_count": 8
+			},
+			{
+				"id": 11705,
+				"name": "Michelle Monaghan",
+				"order": 12,
+				"total_episode_count": 8
+			},
+			{
+				"id": 53714,
+				"name": "Rachel McAdams",
+				"order": 13,
+				"total_episode_count": 8
+			},
+			{
+				"id": 37158,
+				"name": "Carmen Ejogo",
+				"order": 14,
+				"total_episode_count": 8
+			},
+			{
+				"id": 167566,
+				"name": "Michael Potts",
+				"order": 15,
+				"total_episode_count": 8
+			},
+			{
+				"id": 60900,
+				"name": "Taylor Kitsch",
+				"order": 16,
+				"total_episode_count": 8
+			},
+			{
+				"id": 59233,
+				"name": "Scoot McNairy",
+				"order": 17,
+				"total_episode_count": 8
+			}
+		]
+	}
+}

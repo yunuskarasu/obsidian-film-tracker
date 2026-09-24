@@ -1,0 +1,82 @@
+{
+	"season_number": 37,
+	"name": "Season 37",
+	"air_date": "2025-09-28",
+	"episodes": [
+		{
+			"season_number": 37,
+			"episode_number": 1,
+			"air_date": "2025-09-28"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 2,
+			"air_date": "2025-10-05"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 3,
+			"air_date": "2025-10-19"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 4,
+			"air_date": "2025-10-26"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 5,
+			"air_date": "2025-11-02"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 6,
+			"air_date": "2025-11-09"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 7,
+			"air_date": "2025-11-16"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 8,
+			"air_date": "2025-11-23"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 9,
+			"air_date": "2025-11-30"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 10,
+			"air_date": "2025-12-07"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 11,
+			"air_date": "2025-12-14"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 12,
+			"air_date": "2025-12-28"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 13,
+			"air_date": "2026-01-04"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 14,
+			"air_date": "2026-02-15"
+		},
+		{
+			"season_number": 37,
+			"episode_number": 15,
+			"air_date": "2026-02-15"
+		}
+	]
+}

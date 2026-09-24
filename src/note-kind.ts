@@ -13,12 +13,24 @@ import { malIdFrom, mangaMalIdFrom } from "./manga-note";
  * of the plugin has written a person note (director, mangaka) with `name`,
  * a film with `directors`, and an anime with `media_type`, `episodes` and
  * `studios` — that is what tells them apart.
+ *
+ * A TV series note carries `tmdb_tv_id`, never `tmdb_id`: TMDB numbers
+ * films and shows separately, so a show's id is very often some film's id
+ * too, and a note read as a film would be refreshed with that film's data.
+ * It is only a TV series when it carries neither `tmdb_id` nor an anime's
+ * `mal_id` — a note someone gave both keeps the meaning it has always had,
+ * and every version before TV series existed skips these notes entirely.
+ *
+ * A TV series note can hold a `manga` block as well, the same one a Series
+ * note holds: the manga side belongs to the work, not to where its episodes
+ * were read from.
  */
 export type NoteKind =
 	| { kind: "film"; tmdbId: number }
 	| { kind: "director"; tmdbId: number }
 	| { kind: "series"; animeMalId: number | null; mangaMalId: number | null }
-	| { kind: "mangaka"; malId: number };
+	| { kind: "mangaka"; malId: number }
+	| { kind: "tv"; tmdbTvId: number; mangaMalId: number | null };
 
 type Frontmatter = Record<string, unknown> | undefined;
 
@@ -27,6 +39,11 @@ const ANIME_KEYS = ["media_type", "episodes", "studios"];
 
 function tmdbIdFrom(frontmatter: Frontmatter): number | null {
 	const id: unknown = frontmatter?.tmdb_id;
+	return typeof id === "number" ? id : null;
+}
+
+function tmdbTvIdFrom(frontmatter: Frontmatter): number | null {
+	const id: unknown = frontmatter?.tmdb_tv_id;
 	return typeof id === "number" ? id : null;
 }
 
@@ -47,6 +64,8 @@ export function classifyNote(frontmatter: Frontmatter): NoteKind | null {
 	}
 
 	const mangaMalId = mangaMalIdFrom(frontmatter);
+	const tmdbTvId = tmdbTvIdFrom(frontmatter);
+	if (malId === null && tmdbTvId !== null) return { kind: "tv", tmdbTvId, mangaMalId };
 	if (malId === null && mangaMalId === null) return null;
 	return { kind: "series", animeMalId: malId, mangaMalId };
 }
@@ -64,7 +83,8 @@ export type NoteRef =
 	| { kind: "anime"; malId: number }
 	| { kind: "manga"; malId: number }
 	| { kind: "pair"; animeMalId: number; mangaMalId: number }
-	| { kind: "mangaka"; malId: number };
+	| { kind: "mangaka"; malId: number }
+	| { kind: "tv"; tmdbTvId: number };
 
 /**
  * Whether `note` is the one `ref` names. The kind has to match as well as the
@@ -81,7 +101,9 @@ export function matchesRef(note: NoteKind | null, ref: NoteRef): boolean {
 		case "anime":
 			return note.kind === "series" && note.animeMalId === ref.malId;
 		case "manga":
-			return note.kind === "series" && note.mangaMalId === ref.malId;
+			// The same manga can sit on a Series note and on a TV series note:
+			// which catalogue the episodes came from says nothing about it.
+			return (note.kind === "series" || note.kind === "tv") && note.mangaMalId === ref.malId;
 		case "pair":
 			return (
 				note.kind === "series" &&
@@ -90,6 +112,8 @@ export function matchesRef(note: NoteKind | null, ref: NoteRef): boolean {
 			);
 		case "mangaka":
 			return note.kind === "mangaka" && note.malId === ref.malId;
+		case "tv":
+			return note.kind === "tv" && note.tmdbTvId === ref.tmdbTvId;
 	}
 }
 
@@ -98,6 +122,15 @@ export function isAnimeOnlySeries(
 	note: NoteKind | null,
 ): note is Series & { animeMalId: number; mangaMalId: null } {
 	return note?.kind === "series" && note.animeMalId !== null && note.mangaMalId === null;
+}
+
+/** A note Add manga may write its block into: a Series note with no manga, or a TV series with none. */
+export function takesMangaBlock(note: NoteKind | null): note is
+	| (Series & { animeMalId: number; mangaMalId: null })
+	| { kind: "tv"; tmdbTvId: number; mangaMalId: null } {
+	if (note === null) return false;
+	if (note.kind === "tv") return note.mangaMalId === null;
+	return isAnimeOnlySeries(note);
 }
 
 /** A Series note with its manga side and no anime yet: the only note Add anime merges into. */

@@ -64,24 +64,41 @@ body {
 }
 
 /* Live preview keeps the whole body in .cm-contentContainer, which spans both
-   columns on its own row. The connections panel, when present, gets the row
-   between the properties and the body; when it is absent that row is simply
-   empty, so no extra rule is needed to collapse it. 1fr on the body's row
-   lets it fill the remaining height so clicking below the text still focuses
-   the editor. */
+   columns on its own row. Between the properties and the body sits one row per
+   panel — a TV note has its seasons and its connections, a person note their
+   films and their series — each pinned to its own row so two of them can never
+   land in the same cell and paint over each other. A row with no panel in it is
+   simply empty, so nothing has to collapse it. 1fr on the body's row lets it
+   fill the remaining height so clicking below the text still focuses the
+   editor. */
 .markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout {
-	grid-template-rows: auto auto auto 1fr;
+	grid-template-rows: auto auto auto auto auto auto 1fr;
 }
 
 .markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .cm-contentContainer {
 	grid-column: 1 / -1;
-	grid-row: 4;
+	grid-row: 7;
 	min-width: 0;
 }
 
 .markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-connections {
 	grid-column: 1 / -1;
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-seasons {
 	grid-row: 3;
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-manga {
+	grid-row: 4;
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-main {
+	grid-row: 5;
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-shows {
+	grid-row: 6;
 }
 
 .markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .inline-title,
@@ -107,6 +124,13 @@ body {
 .markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .cm-contentContainer,
 .markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-connections {
 	margin-block-start: 2rem;
+}
+
+/* Two panels belong together more than a panel and the body do. */
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-manga:not(:first-of-type),
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-main:not(:first-of-type),
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-shows {
+	margin-block-start: 1rem;
 }
 
 .mod-header.film-tracker-layout {
@@ -174,7 +198,7 @@ body {
 	}
 
 	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout {
-		grid-template-rows: auto auto auto auto 1fr;
+		grid-template-rows: auto auto auto auto auto auto auto 1fr;
 	}
 
 	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-poster,
@@ -201,12 +225,27 @@ body {
 
 	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-connections {
 		grid-column: 1;
+	}
+
+	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-seasons {
 		grid-row: 4;
+	}
+
+	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-manga {
+		grid-row: 5;
+	}
+
+	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-main {
+		grid-row: 6;
+	}
+
+	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-shows {
+		grid-row: 7;
 	}
 
 	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .cm-contentContainer {
 		grid-column: 1;
-		grid-row: 5;
+		grid-row: 8;
 	}
 }
 
@@ -217,6 +256,11 @@ body {
 
 .markdown-preview-sizer > .film-tracker-connections {
 	margin: 1rem 0 2rem 0;
+}
+
+/* A panel following another one: the 2rem below the first is enough. */
+.markdown-preview-sizer > .film-tracker-connections + .film-tracker-connections {
+	margin-top: 0;
 }
 
 .film-tracker-connections-heading {
@@ -354,6 +398,50 @@ body {
 	padding: var(--size-2-1) var(--size-4-2);
 	font-size: var(--font-ui-smaller);
 	box-shadow: none;
+}
+
+/* ---------- Seasons panel: a TV note keeps its seasons in the note itself,
+ * and they are where what was watched is recorded. Obsidian has no widget for
+ * a list of objects either, so the raw row is hidden (the same idea as the
+ * manga block above) and this panel is the readable view of it. */
+
+.film-tracker-has-seasons .metadata-property[data-property-key="seasons"] {
+	display: none;
+}
+
+.film-tracker-seasons {
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-4-2);
+}
+
+/* The checkbox, then the season with its bar, then "+1" out on the right. */
+.film-tracker-season {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--size-4-2);
+}
+
+.film-tracker-season-tick {
+	padding-top: 2px;
+}
+
+.film-tracker-season-details {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.film-tracker-season-title {
+	font-size: var(--font-ui-smaller);
+}
+
+/* The bar belongs to the season right above it, closer than under a poster. */
+.film-tracker-season .film-tracker-progress {
+	margin-top: var(--size-2-1);
+}
+
+.film-tracker-season-actions {
+	flex: 0 0 auto;
 }
 
 /* ---------- Progress: episodes watched under an anime note's poster, and

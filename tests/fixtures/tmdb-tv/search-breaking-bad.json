@@ -1,0 +1,19 @@
+{
+	"results": [
+		{
+			"id": 1396,
+			"name": "Breaking Bad",
+			"original_name": "Breaking Bad",
+			"original_language": "en",
+			"origin_country": [
+				"US"
+			],
+			"first_air_date": "2008-01-20",
+			"genre_ids": [
+				18,
+				80
+			],
+			"poster_path": "/anFx9aTOOYqgS3v7x3R84Kz67ly.jpg"
+		}
+	]
+}

@@ -4,8 +4,12 @@ export interface MangagraphyManga {
 	title: string;
 	year: number | null;
 	read: boolean;
-	/** Whether the note also has an anime side — a manga-only note is the manga's own, so it's linked first. */
-	hasAnime: boolean;
+	/**
+	 * Whether the note carries an adaptation as well — an anime, or a TV
+	 * series from TMDB. A note with only the manga on it is the manga's own,
+	 * so that is the one the title links to.
+	 */
+	adapted: boolean;
 	mangaka: string[];
 }
 
@@ -24,7 +28,7 @@ export interface MangagraphyEntry {
 }
 
 function linkOrder(a: MangagraphyManga, b: MangagraphyManga): number {
-	return Number(a.hasAnime) - Number(b.hasAnime) || a.path.localeCompare(b.path);
+	return Number(a.adapted) - Number(b.adapted) || a.path.localeCompare(b.path);
 }
 
 /**

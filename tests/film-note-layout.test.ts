@@ -1,5 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { mangaSummary, progressLabel, watchControlsFor } from "../src/film-note-layout";
+import {
+	mangaSummary,
+	posterLinkpathOf,
+	progressLabel,
+	seasonAndEpisode,
+	seasonSummary,
+	watchControlsFor,
+} from "../src/film-note-layout";
 import { parseLinkTarget, parseWikilink } from "../src/note";
 
 describe("mangaSummary", () => {
@@ -150,5 +157,78 @@ describe("parseLinkTarget", () => {
 		expect(parseLinkTarget(1398)).toBeNull();
 		expect(parseLinkTarget("[]()")).toBeNull();
 		expect(parseLinkTarget("https://image.tmdb.org/t/p/w500/x.jpg")).toBeNull();
+	});
+});
+
+describe("a TV note's own bar", () => {
+	const note = (seasons: unknown[], watched = false) => ({
+		title: "Breaking Bad",
+		tmdb_tv_id: 1396,
+		watched,
+		seasons,
+	});
+
+	it("says where the note is, in seasons and episodes", () => {
+		const controls = watchControlsFor(
+			note([
+				{ season: 1, episodes: 7, watched: 7 },
+				{ season: 2, episodes: 13, watched: 5 },
+			]),
+		);
+		expect(controls).toEqual({
+			label: "S2E5 · 12 / 20 episodes",
+			percent: "60%",
+			canWatchEpisode: true,
+			canMarkWatched: true,
+		});
+	});
+
+	it("offers nothing more to watch once every aired episode is in", () => {
+		const controls = watchControlsFor(note([{ season: 1, episodes: 7, watched: 7 }], true));
+		expect(controls).toMatchObject({ label: "S1E7 · 7 / 7 episodes", canWatchEpisode: false, canMarkWatched: false });
+	});
+
+	it("shows no bar on a note nothing has been watched of yet", () => {
+		expect(watchControlsFor(note([{ season: 1, episodes: 7, watched: 0 }]))).toMatchObject({
+			label: null,
+			canWatchEpisode: true,
+		});
+	});
+
+	it("writes a season as a viewer counts it", () => {
+		expect(seasonAndEpisode({ season: 3, episode: 6 })).toBe("S3E6");
+		expect(seasonAndEpisode(null)).toBeNull();
+	});
+});
+
+describe("seasonSummary", () => {
+	const season = { season: 4, name: null, year: 2024, episodes: 6, watched: 0, watchDate: null, extra: {} };
+
+	it("reads the season, its year and its length", () => {
+		expect(seasonSummary(season)).toBe("Season 4 · 2024 · 6 episodes");
+	});
+
+	it("adds a name that says more than the number, and leaves out what TMDB has not got", () => {
+		expect(seasonSummary({ ...season, name: "Night Country" })).toBe("Season 4 · Night Country · 2024 · 6 episodes");
+		expect(seasonSummary({ ...season, year: null, episodes: 1 })).toBe("Season 4 · 1 episode");
+	});
+});
+
+/** Regression: a TV note showed no poster at all, since the rule read `tmdb_id`/`mal_id` directly. */
+describe("posterLinkpathOf", () => {
+	it("finds the poster of every note the plugin owns", () => {
+		const poster = '[[Poster.jpg]]';
+		expect(posterLinkpathOf({ title: "A film", directors: [], tmdb_id: 1398, poster })).toBe("Poster.jpg");
+		expect(posterLinkpathOf({ name: "A director", tmdb_id: 8452, poster })).toBe("Poster.jpg");
+		expect(posterLinkpathOf({ title: "An anime", media_type: "tv", episodes: 12, studios: [], mal_id: 1, poster })).toBe(
+			"Poster.jpg",
+		);
+		expect(posterLinkpathOf({ title: "A show", tmdb_tv_id: 1396, seasons: [], poster })).toBe("Poster.jpg");
+	});
+
+	it("leaves every other note alone, and a note with no poster of its own", () => {
+		expect(posterLinkpathOf({ title: "Meeting notes", poster: "[[Poster.jpg]]" })).toBeNull();
+		expect(posterLinkpathOf({ title: "A show", tmdb_tv_id: 1396, poster: "" })).toBeNull();
+		expect(posterLinkpathOf(undefined)).toBeNull();
 	});
 });

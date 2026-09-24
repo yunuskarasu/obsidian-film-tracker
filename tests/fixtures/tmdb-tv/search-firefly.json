@@ -1,0 +1,20 @@
+{
+	"results": [
+		{
+			"id": 1437,
+			"name": "Firefly",
+			"original_name": "Firefly",
+			"original_language": "en",
+			"origin_country": [
+				"US"
+			],
+			"first_air_date": "2002-09-20",
+			"genre_ids": [
+				18,
+				10759,
+				10765
+			],
+			"poster_path": "/vZcKsy4sGAvWMVqLluwYuoi11Kj.jpg"
+		}
+	]
+}

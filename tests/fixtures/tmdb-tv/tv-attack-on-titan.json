@@ -1,0 +1,164 @@
+{
+	"id": 1429,
+	"name": "Attack on Titan",
+	"original_name": "進撃の巨人",
+	"original_language": "ja",
+	"origin_country": [
+		"JP"
+	],
+	"first_air_date": "2013-04-07",
+	"last_air_date": "2022-04-04",
+	"status": "Ended",
+	"type": "Scripted",
+	"poster_path": "/hTP1DtLGFamjfu8WqjnuQdP1n4i.jpg",
+	"genres": [
+		{
+			"id": 16,
+			"name": "Animation"
+		},
+		{
+			"id": 10765,
+			"name": "Sci-Fi & Fantasy"
+		},
+		{
+			"id": 10759,
+			"name": "Action & Adventure"
+		}
+	],
+	"created_by": [],
+	"networks": [
+		{
+			"id": 94,
+			"name": "MBS"
+		},
+		{
+			"id": 469,
+			"name": "NHK G"
+		},
+		{
+			"id": 614,
+			"name": "Tokyo MX"
+		}
+	],
+	"number_of_episodes": 87,
+	"number_of_seasons": 4,
+	"last_episode_to_air": {
+		"season_number": 4,
+		"episode_number": 28,
+		"air_date": "2022-04-04"
+	},
+	"next_episode_to_air": null,
+	"seasons": [
+		{
+			"season_number": 0,
+			"name": "Specials",
+			"episode_count": 37,
+			"air_date": "2013-07-07",
+			"poster_path": "/no3dkH44ywREi0la8tw4TnA1GxN.jpg"
+		},
+		{
+			"season_number": 1,
+			"name": "Season 1",
+			"episode_count": 25,
+			"air_date": "2013-04-07",
+			"poster_path": "/gC78bsXhdU2PwT3FkLcn8R5YcHb.jpg"
+		},
+		{
+			"season_number": 2,
+			"name": "Season 2",
+			"episode_count": 12,
+			"air_date": "2017-04-01",
+			"poster_path": "/2fhK0wbFixskgRyuq6YvaMn75et.jpg"
+		},
+		{
+			"season_number": 3,
+			"name": "Season 3",
+			"episode_count": 22,
+			"air_date": "2018-07-23",
+			"poster_path": "/ynow2o9v0G341PLv1chCRDufCgc.jpg"
+		},
+		{
+			"season_number": 4,
+			"name": "The Final Season",
+			"episode_count": 28,
+			"air_date": "2020-12-07",
+			"poster_path": "/sfbSjGlLHsvFQrMUSNR9RrwZgV1.jpg"
+		}
+	],
+	"aggregate_credits": {
+		"cast": [
+			{
+				"id": 90135,
+				"name": "Marina Inoue",
+				"order": 0,
+				"total_episode_count": 87
+			},
+			{
+				"id": 119145,
+				"name": "Hiro Shimono",
+				"order": 1,
+				"total_episode_count": 87
+			},
+			{
+				"id": 149894,
+				"name": "Yuki Kaji",
+				"order": 3,
+				"total_episode_count": 87
+			},
+			{
+				"id": 553959,
+				"name": "Kisho Taniyama",
+				"order": 5,
+				"total_episode_count": 87
+			},
+			{
+				"id": 1224288,
+				"name": "Yui Ishikawa",
+				"order": 7,
+				"total_episode_count": 87
+			},
+			{
+				"id": 1123401,
+				"name": "Yu Kobayashi",
+				"order": 8,
+				"total_episode_count": 87
+			},
+			{
+				"id": 84508,
+				"name": "Takehito Koyasu",
+				"order": 138,
+				"total_episode_count": 69
+			},
+			{
+				"id": 1253008,
+				"name": "Yoshimasa Hosoya",
+				"order": 9,
+				"total_episode_count": 55
+			},
+			{
+				"id": 81243,
+				"name": "Romi Park",
+				"order": 4,
+				"total_episode_count": 51
+			},
+			{
+				"id": 93801,
+				"name": "Hiroshi Kamiya",
+				"order": 5,
+				"total_episode_count": 50
+			},
+			{
+				"id": 1241498,
+				"name": "Daisuke Ono",
+				"order": 544,
+				"total_episode_count": 38
+			},
+			{
+				"id": 1253731,
+				"name": "Shiori Mikami",
+				"order": 307,
+				"total_episode_count": 31
+			}
+		]
+	}
+}

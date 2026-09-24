@@ -1,0 +1,125 @@
+{
+	"id": 87108,
+	"name": "Chernobyl",
+	"original_name": "Chernobyl",
+	"original_language": "en",
+	"origin_country": [
+		"US"
+	],
+	"first_air_date": "2019-05-06",
+	"last_air_date": "2019-06-03",
+	"status": "Ended",
+	"type": "Miniseries",
+	"poster_path": "/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg",
+	"genres": [
+		{
+			"id": 18,
+			"name": "Drama"
+		}
+	],
+	"created_by": [
+		{
+			"id": 35796,
+			"name": "Craig Mazin"
+		}
+	],
+	"networks": [
+		{
+			"id": 49,
+			"name": "HBO"
+		}
+	],
+	"number_of_episodes": 5,
+	"number_of_seasons": 1,
+	"last_episode_to_air": {
+		"season_number": 1,
+		"episode_number": 5,
+		"air_date": "2019-06-03"
+	},
+	"next_episode_to_air": null,
+	"seasons": [
+		{
+			"season_number": 1,
+			"name": "Miniseries",
+			"episode_count": 5,
+			"air_date": "2019-05-06",
+			"poster_path": "/hlLXt2tOPT6RRnjiUmoxyG1LTFi.jpg"
+		}
+	],
+	"aggregate_credits": {
+		"cast": [
+			{
+				"id": 15440,
+				"name": "Jared Harris",
+				"order": 0,
+				"total_episode_count": 5
+			},
+			{
+				"id": 1640,
+				"name": "Stellan Skarsgård",
+				"order": 1,
+				"total_episode_count": 5
+			},
+			{
+				"id": 1639,
+				"name": "Emily Watson",
+				"order": 2,
+				"total_episode_count": 5
+			},
+			{
+				"id": 52888,
+				"name": "Paul Ritter",
+				"order": 3,
+				"total_episode_count": 5
+			},
+			{
+				"id": 1498158,
+				"name": "Jessie Buckley",
+				"order": 4,
+				"total_episode_count": 5
+			},
+			{
+				"id": 1435230,
+				"name": "Adam Nagaitis",
+				"order": 5,
+				"total_episode_count": 5
+			},
+			{
+				"id": 5421,
+				"name": "Sam Troughton",
+				"order": 6,
+				"total_episode_count": 5
+			},
+			{
+				"id": 589652,
+				"name": "Robert Emms",
+				"order": 7,
+				"total_episode_count": 5
+			},
+			{
+				"id": 96279,
+				"name": "Con O'Neill",
+				"order": 8,
+				"total_episode_count": 5
+			},
+			{
+				"id": 1643,
+				"name": "Adrian Rawlins",
+				"order": 9,
+				"total_episode_count": 5
+			},
+			{
+				"id": 122589,
+				"name": "Alan Williams",
+				"order": 10,
+				"total_episode_count": 5
+			},
+			{
+				"id": 93236,
+				"name": "David Dencik",
+				"order": 11,
+				"total_episode_count": 5
+			}
+		]
+	}
+}

@@ -1,3 +1,14 @@
+import { parse } from "yaml";
+
+/**
+ * Obsidian parses a note's properties itself; in tests the `yaml` package stands
+ * in for it. Both reject the same malformed YAML, which is what the code
+ * under test cares about.
+ */
+export function parseYaml(text: string): unknown {
+	return parse(text) as unknown;
+}
+
 export function normalizePath(path: string): string {
 	return path
 		.replace(/\\/g, "/")

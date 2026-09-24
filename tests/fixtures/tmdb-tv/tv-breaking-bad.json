@@ -1,0 +1,164 @@
+{
+	"id": 1396,
+	"name": "Breaking Bad",
+	"original_name": "Breaking Bad",
+	"original_language": "en",
+	"origin_country": [
+		"US"
+	],
+	"first_air_date": "2008-01-20",
+	"last_air_date": "2013-09-29",
+	"status": "Ended",
+	"type": "Scripted",
+	"poster_path": "/anFx9aTOOYqgS3v7x3R84Kz67ly.jpg",
+	"genres": [
+		{
+			"id": 18,
+			"name": "Drama"
+		},
+		{
+			"id": 80,
+			"name": "Crime"
+		}
+	],
+	"created_by": [
+		{
+			"id": 66633,
+			"name": "Vince Gilligan"
+		}
+	],
+	"networks": [
+		{
+			"id": 174,
+			"name": "AMC"
+		}
+	],
+	"number_of_episodes": 62,
+	"number_of_seasons": 5,
+	"last_episode_to_air": {
+		"season_number": 5,
+		"episode_number": 16,
+		"air_date": "2013-09-29"
+	},
+	"next_episode_to_air": null,
+	"seasons": [
+		{
+			"season_number": 0,
+			"name": "Specials",
+			"episode_count": 9,
+			"air_date": "2009-02-17",
+			"poster_path": "/4RaIvSQgHHHPfaI1jFqaMR8UJWM.jpg"
+		},
+		{
+			"season_number": 1,
+			"name": "Season 1",
+			"episode_count": 7,
+			"air_date": "2008-01-20",
+			"poster_path": "/1BP4xYv9ZG4ZVHkL7ocOziBbSYH.jpg"
+		},
+		{
+			"season_number": 2,
+			"name": "Season 2",
+			"episode_count": 13,
+			"air_date": "2009-03-08",
+			"poster_path": "/e3oGYpoTUhOFK0BJfloru5ZmGV.jpg"
+		},
+		{
+			"season_number": 3,
+			"name": "Season 3",
+			"episode_count": 13,
+			"air_date": "2010-03-21",
+			"poster_path": "/ffP8Q8ew048YofHRnFVM18B2fPG.jpg"
+		},
+		{
+			"season_number": 4,
+			"name": "Season 4",
+			"episode_count": 13,
+			"air_date": "2011-07-17",
+			"poster_path": "/5ewrnKp4TboU4hTLT5cWO350mHj.jpg"
+		},
+		{
+			"season_number": 5,
+			"name": "Season 5",
+			"episode_count": 16,
+			"air_date": "2012-07-15",
+			"poster_path": "/r3z70vunihrAkjILQKWHX0G2xzO.jpg"
+		}
+	],
+	"aggregate_credits": {
+		"cast": [
+			{
+				"id": 17419,
+				"name": "Bryan Cranston",
+				"order": 0,
+				"total_episode_count": 62
+			},
+			{
+				"id": 84497,
+				"name": "Aaron Paul",
+				"order": 1,
+				"total_episode_count": 62
+			},
+			{
+				"id": 134531,
+				"name": "Anna Gunn",
+				"order": 2,
+				"total_episode_count": 62
+			},
+			{
+				"id": 209674,
+				"name": "RJ Mitte",
+				"order": 3,
+				"total_episode_count": 62
+			},
+			{
+				"id": 14329,
+				"name": "Dean Norris",
+				"order": 4,
+				"total_episode_count": 62
+			},
+			{
+				"id": 1217934,
+				"name": "Betsy Brandt",
+				"order": 5,
+				"total_episode_count": 62
+			},
+			{
+				"id": 59410,
+				"name": "Bob Odenkirk",
+				"order": 7,
+				"total_episode_count": 43
+			},
+			{
+				"id": 783,
+				"name": "Jonathan Banks",
+				"order": 9,
+				"total_episode_count": 36
+			},
+			{
+				"id": 61535,
+				"name": "Steven Michael Quezada",
+				"order": 8,
+				"total_episode_count": 33
+			},
+			{
+				"id": 4808,
+				"name": "Giancarlo Esposito",
+				"order": 6,
+				"total_episode_count": 28
+			},
+			{
+				"id": 82945,
+				"name": "Charles Baker",
+				"order": 656,
+				"total_episode_count": 15
+			},
+			{
+				"id": 20379,
+				"name": "Christopher Cousins",
+				"order": 604,
+				"total_episode_count": 13
+			}
+		]
+	}
+}

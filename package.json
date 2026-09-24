@@ -1,7 +1,7 @@
 {
   "name": "obsidian-film-tracker",
-  "version": "2.4.0",
-  "description": "Add films, anime and manga to your vault as notes with metadata and a poster.",
+  "version": "3.0.0",
+  "description": "Add films, TV series, anime and manga to your vault as notes with metadata and a poster.",
   "main": "main.js",
   "scripts": {
     "dev": "node esbuild.config.mjs",
@@ -21,16 +21,16 @@
   "license": "MIT",
   "devDependencies": {
     "@eslint/js": "^9.39.4",
-    "@types/node": "^22.15.17",
-    "esbuild": "0.25.5",
-    "eslint": "^9.39.4",
+    "@types/node": "^24.13.6",
+    "esbuild": "0.28.2",
+    "eslint": "^10.11.0",
     "eslint-plugin-obsidianmd": "^0.4.0",
-    "globals": "^17.6.0",
+    "globals": "^17.12.0",
     "jiti": "^2.6.1",
     "obsidian": "1.13.1",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.59.1",
-    "vitest": "^3.2.4",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.70.1",
+    "vitest": "^5.0.1",
     "yaml": "^2.9.1"
   }
 }

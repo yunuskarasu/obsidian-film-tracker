@@ -1,0 +1,52 @@
+{
+	"season_number": 1,
+	"name": "Season 1",
+	"air_date": "2023-01-15",
+	"episodes": [
+		{
+			"season_number": 1,
+			"episode_number": 1,
+			"air_date": "2023-01-15"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 2,
+			"air_date": "2023-01-22"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 3,
+			"air_date": "2023-01-29"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 4,
+			"air_date": "2023-02-05"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 5,
+			"air_date": "2023-02-12"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 6,
+			"air_date": "2023-02-19"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 7,
+			"air_date": "2023-02-26"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 8,
+			"air_date": "2023-03-05"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 9,
+			"air_date": "2023-03-12"
+		}
+	]
+}

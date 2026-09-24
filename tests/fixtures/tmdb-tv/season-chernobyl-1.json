@@ -1,0 +1,32 @@
+{
+	"season_number": 1,
+	"name": "Miniseries",
+	"air_date": "2019-05-06",
+	"episodes": [
+		{
+			"season_number": 1,
+			"episode_number": 1,
+			"air_date": "2019-05-06"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 2,
+			"air_date": "2019-05-13"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 3,
+			"air_date": "2019-05-20"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 4,
+			"air_date": "2019-05-27"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 5,
+			"air_date": "2019-06-03"
+		}
+	]
+}

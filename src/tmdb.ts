@@ -1,5 +1,15 @@
 import { requestUrl } from "obsidian";
 import { buildAliases, type FilmMetadata } from "./note";
+import {
+	seasonToCount,
+	toTvMetadata,
+	toTvSearchResult,
+	type TmdbTvDetails,
+	type TmdbTvSearchItem,
+	type TmdbTvSeasonDetails,
+	type TvMetadata,
+	type TvSearchResult,
+} from "./tmdb-tv";
 
 const API_BASE = "https://api.themoviedb.org/3";
 const POSTER_BASE = "https://image.tmdb.org/t/p/w500";
@@ -290,6 +300,46 @@ export class TmdbClient {
 			`${API_BASE}/person/${id}?${params.toString()}`,
 		);
 		return toDirectorMetadata(details);
+	}
+
+	async searchTv(query: string): Promise<TvSearchResult[]> {
+		const params = new URLSearchParams({
+			api_key: this.apiKey,
+			query,
+			language: LANGUAGE,
+			include_adult: "false",
+			page: "1",
+		});
+		const body = await this.getJson<{ results?: TmdbTvSearchItem[] }>(
+			`${API_BASE}/search/tv?${params.toString()}`,
+		);
+		return (body.results ?? []).map(toTvSearchResult);
+	}
+
+	/**
+	 * The show, with how much of it has aired as of `today` (the device's own
+	 * day). One request, and a second only for a running show whose summary
+	 * can't say how far its latest season has got (see `seasonToCount`).
+	 * `details` is TMDB's answer as it came, for the checks that need more
+	 * than the note keeps.
+	 */
+	async getTv(id: number, today: string): Promise<{ show: TvMetadata; details: TmdbTvDetails }> {
+		const params = new URLSearchParams({
+			api_key: this.apiKey,
+			language: LANGUAGE,
+			append_to_response: "aggregate_credits",
+		});
+		const details = await this.getJson<TmdbTvDetails>(`${API_BASE}/tv/${id}?${params.toString()}`);
+
+		const toCount = seasonToCount(details, today);
+		let counted: TmdbTvSeasonDetails | null = null;
+		if (toCount !== null) {
+			const seasonParams = new URLSearchParams({ api_key: this.apiKey, language: LANGUAGE });
+			counted = await this.getJson<TmdbTvSeasonDetails>(
+				`${API_BASE}/tv/${id}/season/${toCount}?${seasonParams.toString()}`,
+			);
+		}
+		return { show: toTvMetadata(details, today, counted), details };
 	}
 
 	async downloadImage(imagePath: string): Promise<ArrayBuffer> {

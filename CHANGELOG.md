@@ -2,6 +2,38 @@
 
 All notable changes to Film + Anime-Manga Tracker are recorded here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [3.0.0] - 2026-09-24
+
+3.0 marks TV series joining films and anime-manga. Nothing breaks: notes and settings from 2.x carry over as they are.
+
+### Added
+
+- **TV series, from TMDB.** **Add TV series** searches TMDB's shows and writes one note per show: creators, networks, the years it ran, its status, and a line for each season that has aired. The seasons live in the note and are where watching is recorded — the episode counts above them are written from the seasons.
+- **The SEASONS panel**, under a TV note's properties: a checkbox that ticks a whole season off and dates it, a bar for each season, and **+1** for one more episode. Under the poster, the bar reads "S3E6 · 25 / 62 episodes", with **+1 episode** — which counts into the earliest season with something left — and **Watched today**.
+- A TV series is only ticked off by itself once a show that has **ended** is fully watched. A show still running stays unticked however much of it has aired: being caught up is not being finished.
+- Anime is on TMDB too, under TV. A search result that looks like anime says so, and adding a work the vault already tracks on the other side — an anime note here, a TV note there — asks first rather than quietly writing a second note.
+- **A TV series note can hold a manga.** Open a series, run **Add manga**, and link it in: the MANGA panel, the Read checkbox, **+1 chapter**, **Add mangaka** and a refresh from MyAnimeList all work there, while the episodes keep coming from TMDB season by season. A note like that shows SEASONS, MANGA and CONNECTIONS, each in its own box.
+- Search results say which catalogue they came from — "MAL · Anime · TV · 2013 · episode by episode" beside "TMDB · TV series · 2013 · seasons, cast and crew" — so a work both of them have is a choice between what they give rather than between two names.
+- `watch_start` on TV series and anime notes: the day you started, left empty and never written to by the plugin, beside the `watch_date` it fills in when you finish. Something watched over weeks has two dates, and only one of them is the plugin's to know.
+- **TV series folder** and **TV series poster folder** settings, and a **TV series: metadata** group of its own: **Link creators**, and a series' own **Link genres**, **Add cast**, **Cast count** and **Link cast**. A film's settings no longer decide what a series note is written with.
+- Films and TV series see each other in **Connections**: the same person directing one and creating the other is a connection worth showing. A TV note gets that panel under its seasons, so it has both.
+- A person note lists the **TV series** they created, in its own box under their filmography, each with its own share watched.
+- **Relink directors and genres** covers TV series notes too; a show's creators follow the **Link directors** setting.
+- Each panel can be turned off on its own: **Show connections**, **Show filmography**, **Show seasons** and **Show TV series**.
+
+- **Remove anime**, the other half of **Remove manga**: it takes the anime's properties off a Series note and leaves everything else — the manga, the properties you added, the body — exactly where they are. A poster no other note uses can go with it. On the command palette and the note's own menus.
+
+### Changed
+
+- **Add adaptation** now pairs the manga with the anime on the note it was run from, the way **Add anime** does. It used to hand the pairing to whichever other note already had that anime, which wrote the adaptation somewhere the user was not.
+- Watching an anime is watching it once: **Watch one more episode** and **Mark as watched today** write `episodes_watched`, `watched` and `watch_date` to every note carrying that anime, the way a chapter has always been written to every note carrying the manga. A note that was already further along is never taken back.
+- **Relink directors and genres** counts every note it changed, films and series together ("Relinked 3 notes").
+- New anime notes are written with `watch_date` from the start, beside `watch_start`, rather than only once something is watched. A refresh never adds either to an anime note you already have.
+- The poster and the panels are drawn again when reading view discards them: switching to reading view, or scrolling a long note far enough, used to take them away until something else redrew them.
+- Episodes that have only been announced are never counted. TMDB gave The Simpsons 803 episodes on the day two of them were still to air; the note says 801.
+
 ## [2.4.0] - 2026-09-20
 
 ### Added
@@ -112,6 +144,8 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 - Relinking of directors and genres.
 - Import from Letterboxd.
 
+[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.4.0...3.0.0
 [2.4.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.3.0...2.4.0
 [2.3.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.2.0...2.3.0
 [2.2.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.1.0...2.2.0

@@ -1,0 +1,37 @@
+{
+	"season_number": 13,
+	"name": "Flux",
+	"air_date": "2021-10-31",
+	"episodes": [
+		{
+			"season_number": 13,
+			"episode_number": 1,
+			"air_date": "2021-10-31"
+		},
+		{
+			"season_number": 13,
+			"episode_number": 2,
+			"air_date": "2021-11-07"
+		},
+		{
+			"season_number": 13,
+			"episode_number": 3,
+			"air_date": "2021-11-14"
+		},
+		{
+			"season_number": 13,
+			"episode_number": 4,
+			"air_date": "2021-11-21"
+		},
+		{
+			"season_number": 13,
+			"episode_number": 5,
+			"air_date": "2021-11-28"
+		},
+		{
+			"season_number": 13,
+			"episode_number": 6,
+			"air_date": "2021-12-05"
+		}
+	]
+}

@@ -1,0 +1,57 @@
+{
+	"season_number": 2,
+	"name": "Season 2",
+	"air_date": "2025-01-16",
+	"episodes": [
+		{
+			"season_number": 2,
+			"episode_number": 1,
+			"air_date": "2025-01-16"
+		},
+		{
+			"season_number": 2,
+			"episode_number": 2,
+			"air_date": "2025-01-23"
+		},
+		{
+			"season_number": 2,
+			"episode_number": 3,
+			"air_date": "2025-01-30"
+		},
+		{
+			"season_number": 2,
+			"episode_number": 4,
+			"air_date": "2025-02-06"
+		},
+		{
+			"season_number": 2,
+			"episode_number": 5,
+			"air_date": "2025-02-13"
+		},
+		{
+			"season_number": 2,
+			"episode_number": 6,
+			"air_date": "2025-02-20"
+		},
+		{
+			"season_number": 2,
+			"episode_number": 7,
+			"air_date": "2025-02-27"
+		},
+		{
+			"season_number": 2,
+			"episode_number": 8,
+			"air_date": "2025-03-06"
+		},
+		{
+			"season_number": 2,
+			"episode_number": 9,
+			"air_date": "2025-03-13"
+		},
+		{
+			"season_number": 2,
+			"episode_number": 10,
+			"air_date": "2025-03-20"
+		}
+	]
+}

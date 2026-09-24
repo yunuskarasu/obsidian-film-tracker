@@ -27,8 +27,7 @@ function fakePlugin(overrides: Partial<FilmTrackerSettings> = {}) {
 		saveSettings: async () => {
 			saves.push(1);
 		},
-		setShowConnections: (value: boolean) => panels.push(`connections ${String(value)}`),
-		setShowFilmography: (value: boolean) => panels.push(`filmography ${String(value)}`),
+		refreshPanels: () => panels.push("refreshed"),
 	};
 	return { plugin, saves, panels };
 }
@@ -75,6 +74,8 @@ describe("the setting definitions", () => {
 			"posterFolder",
 			"directorFolder",
 			"directorPhotoFolder",
+			"tvFolder",
+			"tvPosterFolder",
 			"animeFolder",
 			"animePosterFolder",
 			"mangakaFolder",
@@ -103,11 +104,13 @@ describe("saving a setting", () => {
 	it("redraws the panels when one of theirs is switched", async () => {
 		const { plugin, panels } = fakePlugin();
 		const tab = tabFor(plugin);
-		await tab.setControlValue("showConnections", false);
-		await tab.setControlValue("showFilmography", true);
+		for (const key of ["showConnections", "showFilmography", "showSeasons", "showTvSeries"]) {
+			await tab.setControlValue(key, false);
+		}
 		await tab.setControlValue("linkGenres", true);
 
-		expect(panels).toEqual(["connections false", "filmography true"]);
+		// Every panel setting redraws; nothing else does.
+		expect(panels).toEqual(["refreshed", "refreshed", "refreshed", "refreshed"]);
 		expect(plugin.settings.linkGenres).toBe(true);
 	});
 

@@ -268,23 +268,22 @@ export class FilmActions {
 		);
 	}
 
-	/** "Relink directors and genres": no network, just names turned into links where notes now exist. */
+	/**
+	 * "Relink directors and genres": no network, just names turned into links
+	 * where notes now exist. Film and TV notes both, since a show's creators
+	 * are the same people, on the same notes, as a film's directors.
+	 */
 	async relinkAll(): Promise<void> {
-		const settings = this.settings();
 		let changed = 0;
 
 		for (const file of this.app.vault.getMarkdownFiles()) {
-			if (this.notes.kindOf(file)?.kind !== "film") continue;
+			const kind = this.notes.kindOf(file)?.kind;
+			if (kind !== "film" && kind !== "tv") continue;
 			const frontmatter = this.notes.frontmatterOf(file);
 			if (frontmatter === undefined) continue;
 
-			const values = {
-				directors: settings.linkDirectors ? names(frontmatter.directors) : undefined,
-				genres: settings.linkGenres ? names(frontmatter.genres) : undefined,
-				cast: settings.linkCast ? names(frontmatter.cast) : undefined,
-				composers: settings.linkComposers ? names(frontmatter.composers) : undefined,
-			};
 			const isResolved = this.notes.isResolved(file.path);
+			const values = this.relinkValues(kind, frontmatter);
 
 			let touched = false;
 			await this.app.vault.process(file, (content) => {
@@ -295,6 +294,29 @@ export class FilmActions {
 			if (touched) changed += 1;
 		}
 
-		new Notice(changed === 1 ? "Relinked 1 film note." : `Relinked ${changed} film notes.`);
+		new Notice(changed === 1 ? "Relinked 1 note." : `Relinked ${changed} notes.`);
+	}
+
+	/** Which lists this note's own settings say to link; a list left out is not touched. */
+	private relinkValues(
+		kind: "film" | "tv",
+		frontmatter: Record<string, unknown>,
+	): Partial<Record<"directors" | "creators" | "genres" | "cast" | "composers", string[]>> {
+		const settings = this.settings();
+		// Each kind follows its own settings, the same ones it was written with
+		// (see `FilmActions.linkOptions` and `TvActions.linkOptions`).
+		if (kind === "tv") {
+			return {
+				creators: settings.linkCreators ? names(frontmatter.creators) : undefined,
+				genres: settings.linkTvGenres ? names(frontmatter.genres) : undefined,
+				cast: settings.linkTvCast ? names(frontmatter.cast) : undefined,
+			};
+		}
+		return {
+			directors: settings.linkDirectors ? names(frontmatter.directors) : undefined,
+			genres: settings.linkGenres ? names(frontmatter.genres) : undefined,
+			cast: settings.linkCast ? names(frontmatter.cast) : undefined,
+			composers: settings.linkComposers ? names(frontmatter.composers) : undefined,
+		};
 	}
 }

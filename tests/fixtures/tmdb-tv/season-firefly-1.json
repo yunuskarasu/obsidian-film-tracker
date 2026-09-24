@@ -1,0 +1,62 @@
+{
+	"season_number": 1,
+	"name": "Season 1",
+	"air_date": "2002-09-20",
+	"episodes": [
+		{
+			"season_number": 1,
+			"episode_number": 1,
+			"air_date": "2002-09-20"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 2,
+			"air_date": "2002-09-27"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 3,
+			"air_date": "2002-10-04"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 4,
+			"air_date": "2002-10-18"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 5,
+			"air_date": "2002-10-25"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 6,
+			"air_date": "2002-11-01"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 7,
+			"air_date": "2002-11-08"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 8,
+			"air_date": "2002-11-15"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 9,
+			"air_date": "2002-12-06"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 10,
+			"air_date": "2002-12-13"
+		},
+		{
+			"season_number": 1,
+			"episode_number": 11,
+			"air_date": "2002-12-20"
+		}
+	]
+}

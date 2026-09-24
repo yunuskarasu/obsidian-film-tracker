@@ -1,0 +1,117 @@
+{
+	"season_number": 3,
+	"name": "Season 3",
+	"air_date": "2018-07-23",
+	"episodes": [
+		{
+			"season_number": 3,
+			"episode_number": 1,
+			"air_date": "2018-07-23"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 2,
+			"air_date": "2018-07-30"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 3,
+			"air_date": "2018-08-06"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 4,
+			"air_date": "2018-08-13"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 5,
+			"air_date": "2018-08-20"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 6,
+			"air_date": "2018-08-27"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 7,
+			"air_date": "2018-09-03"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 8,
+			"air_date": "2018-09-10"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 9,
+			"air_date": "2018-09-17"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 10,
+			"air_date": "2018-09-24"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 11,
+			"air_date": "2018-10-08"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 12,
+			"air_date": "2018-10-15"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 13,
+			"air_date": "2019-04-29"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 14,
+			"air_date": "2019-05-06"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 15,
+			"air_date": "2019-05-13"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 16,
+			"air_date": "2019-05-20"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 17,
+			"air_date": "2019-05-27"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 18,
+			"air_date": "2019-06-03"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 19,
+			"air_date": "2019-06-10"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 20,
+			"air_date": "2019-06-17"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 21,
+			"air_date": "2019-06-24"
+		},
+		{
+			"season_number": 3,
+			"episode_number": 22,
+			"air_date": "2019-07-01"
+		}
+	]
+}

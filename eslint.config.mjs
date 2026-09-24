@@ -31,7 +31,7 @@ export default tseslint.config(
 				{
 					enforceCamelCaseLower: true,
 					brands: [...DEFAULT_BRANDS, "Film + Anime-Manga Tracker", "MyAnimeList", "Letterboxd"],
-					acronyms: [...DEFAULT_ACRONYMS, "TMDB", "MAL"],
+					acronyms: [...DEFAULT_ACRONYMS, "TMDB", "MAL", "TV"],
 				},
 			],
 		},

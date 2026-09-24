@@ -1,0 +1,399 @@
+{
+	"id": 456,
+	"name": "The Simpsons",
+	"original_name": "The Simpsons",
+	"original_language": "en",
+	"origin_country": [
+		"US"
+	],
+	"first_air_date": "1989-12-17",
+	"last_air_date": "2026-02-15",
+	"status": "Returning Series",
+	"type": "Scripted",
+	"poster_path": "/uWpG7GqfKGQqX4YMAo3nv5OrglV.jpg",
+	"genres": [
+		{
+			"id": 16,
+			"name": "Animation"
+		},
+		{
+			"id": 35,
+			"name": "Comedy"
+		}
+	],
+	"created_by": [
+		{
+			"id": 5741,
+			"name": "Matt Groening"
+		}
+	],
+	"networks": [
+		{
+			"id": 19,
+			"name": "FOX"
+		}
+	],
+	"number_of_episodes": 803,
+	"number_of_seasons": 38,
+	"last_episode_to_air": {
+		"season_number": 37,
+		"episode_number": 15,
+		"air_date": "2026-02-15"
+	},
+	"next_episode_to_air": {
+		"season_number": 38,
+		"episode_number": 1,
+		"air_date": "2026-09-27"
+	},
+	"seasons": [
+		{
+			"season_number": 0,
+			"name": "Specials",
+			"episode_count": 82,
+			"air_date": "1987-04-15",
+			"poster_path": "/oICoFoPJuEk5VJbEP2HYLEmEQi3.jpg"
+		},
+		{
+			"season_number": 1,
+			"name": "Season 1",
+			"episode_count": 13,
+			"air_date": "1989-12-17",
+			"poster_path": "/t544zSFUNyvmyeP4sHotlcEX3zH.jpg"
+		},
+		{
+			"season_number": 2,
+			"name": "Season 2",
+			"episode_count": 22,
+			"air_date": "1990-10-11",
+			"poster_path": "/bRyDlUQQafSoIT052jpjLBMe8TH.jpg"
+		},
+		{
+			"season_number": 3,
+			"name": "Season 3",
+			"episode_count": 24,
+			"air_date": "1991-09-19",
+			"poster_path": "/9ghmIhWJJuTx3UHyfVVBXQoUGvI.jpg"
+		},
+		{
+			"season_number": 4,
+			"name": "Season 4",
+			"episode_count": 22,
+			"air_date": "1992-09-24",
+			"poster_path": "/voqu5a4drV1CXMjjZ0Mkw35n26l.jpg"
+		},
+		{
+			"season_number": 5,
+			"name": "Season 5",
+			"episode_count": 22,
+			"air_date": "1993-09-30",
+			"poster_path": "/9O7tIcS2KZk1ukMq3aOvoj8KIJZ.jpg"
+		},
+		{
+			"season_number": 6,
+			"name": "Season 6",
+			"episode_count": 25,
+			"air_date": "1994-09-04",
+			"poster_path": "/qD20BnTxIdF1rcnX4BARmFshzKA.jpg"
+		},
+		{
+			"season_number": 7,
+			"name": "Season 7",
+			"episode_count": 25,
+			"air_date": "1995-09-17",
+			"poster_path": "/blCeZS6BmN3wwmF40fuCZSeFwbB.jpg"
+		},
+		{
+			"season_number": 8,
+			"name": "Season 8",
+			"episode_count": 25,
+			"air_date": "1996-10-27",
+			"poster_path": "/xLebCxRHSwXBW39a4OLmMSGChLs.jpg"
+		},
+		{
+			"season_number": 9,
+			"name": "Season 9",
+			"episode_count": 25,
+			"air_date": "1997-09-21",
+			"poster_path": "/6PTYyLD8bSiNZf1PFdCQ9JyiIFW.jpg"
+		},
+		{
+			"season_number": 10,
+			"name": "Season 10",
+			"episode_count": 23,
+			"air_date": "1998-08-23",
+			"poster_path": "/A77xKuxA13aXA1mQd6YLAaTIErK.jpg"
+		},
+		{
+			"season_number": 11,
+			"name": "Season 11",
+			"episode_count": 22,
+			"air_date": "1999-09-26",
+			"poster_path": "/7lgnlOENoCdub15UijLKTHawyhm.jpg"
+		},
+		{
+			"season_number": 12,
+			"name": "Season 12",
+			"episode_count": 21,
+			"air_date": "2000-11-01",
+			"poster_path": "/jfxiyjRLoQq9LavlFNRBgjuweg5.jpg"
+		},
+		{
+			"season_number": 13,
+			"name": "Season 13",
+			"episode_count": 22,
+			"air_date": "2001-11-06",
+			"poster_path": "/xflc3aV1SbP2bGeZNuu4AG6cIqH.jpg"
+		},
+		{
+			"season_number": 14,
+			"name": "Season 14",
+			"episode_count": 22,
+			"air_date": "2002-11-03",
+			"poster_path": "/9IowK57TpeO09D4B46jd4J3wjPO.jpg"
+		},
+		{
+			"season_number": 15,
+			"name": "Season 15",
+			"episode_count": 22,
+			"air_date": "2003-11-02",
+			"poster_path": "/bmMwmEfwmziKzWP2jiU0GMw8yKd.jpg"
+		},
+		{
+			"season_number": 16,
+			"name": "Season 16",
+			"episode_count": 21,
+			"air_date": "2004-11-07",
+			"poster_path": "/ifjiG1gHGRyYmNDWRb9Ul9VCfEn.jpg"
+		},
+		{
+			"season_number": 17,
+			"name": "Season 17",
+			"episode_count": 22,
+			"air_date": "2005-09-11",
+			"poster_path": "/evIWfK3hKFIExETjv6L2YS9J8fw.jpg"
+		},
+		{
+			"season_number": 18,
+			"name": "Season 18",
+			"episode_count": 22,
+			"air_date": "2006-09-10",
+			"poster_path": "/kwb8AZAHyhn96dzn17mtTV3l8dl.jpg"
+		},
+		{
+			"season_number": 19,
+			"name": "Season 19",
+			"episode_count": 20,
+			"air_date": "2007-09-23",
+			"poster_path": "/nLKZJ1ozVvYFtaOynzkShE8wN4k.jpg"
+		},
+		{
+			"season_number": 20,
+			"name": "Season 20",
+			"episode_count": 21,
+			"air_date": "2008-09-28",
+			"poster_path": "/2CUdLX4K8fMlcdVPHUbciTYt4ri.jpg"
+		},
+		{
+			"season_number": 21,
+			"name": "Season 21",
+			"episode_count": 23,
+			"air_date": "2009-09-27",
+			"poster_path": "/fEykf9XN4Cn5tJ17pOD2PObdjoc.jpg"
+		},
+		{
+			"season_number": 22,
+			"name": "Season 22",
+			"episode_count": 22,
+			"air_date": "2010-09-26",
+			"poster_path": "/xUZeYO9NPkmXCcuRrr8PgXzk2Qd.jpg"
+		},
+		{
+			"season_number": 23,
+			"name": "Season 23",
+			"episode_count": 22,
+			"air_date": "2011-09-25",
+			"poster_path": "/wlQnKb3pHBxtMivCjcvM8TDpBbv.jpg"
+		},
+		{
+			"season_number": 24,
+			"name": "Season 24",
+			"episode_count": 22,
+			"air_date": "2012-09-30",
+			"poster_path": "/qGPFl3X6ukZ6fBQRiLxueLWQh9y.jpg"
+		},
+		{
+			"season_number": 25,
+			"name": "Season 25",
+			"episode_count": 22,
+			"air_date": "2013-09-29",
+			"poster_path": "/iwlh2yoia66MCaZEqybsLSt3OHa.jpg"
+		},
+		{
+			"season_number": 26,
+			"name": "Season 26",
+			"episode_count": 22,
+			"air_date": "2014-09-28",
+			"poster_path": "/9bGpb3vWygBogXpQBnTodFWaQte.jpg"
+		},
+		{
+			"season_number": 27,
+			"name": "Season 27",
+			"episode_count": 22,
+			"air_date": "2015-09-27",
+			"poster_path": "/aw26dkO0PnxD0EfYWXCMUQLFNbI.jpg"
+		},
+		{
+			"season_number": 28,
+			"name": "Season 28",
+			"episode_count": 22,
+			"air_date": "2016-09-25",
+			"poster_path": "/j4GZ2oH5PEWEyZkwuZ41OYLb30W.jpg"
+		},
+		{
+			"season_number": 29,
+			"name": "Season 29",
+			"episode_count": 21,
+			"air_date": "2017-10-01",
+			"poster_path": "/93JeevhHA93SpHZ5hxqJyOtB5Wf.jpg"
+		},
+		{
+			"season_number": 30,
+			"name": "Season 30",
+			"episode_count": 23,
+			"air_date": "2018-09-30",
+			"poster_path": "/l18xQsO27KFJwsj35JaAsG95dN7.jpg"
+		},
+		{
+			"season_number": 31,
+			"name": "Season 31",
+			"episode_count": 22,
+			"air_date": "2019-09-29",
+			"poster_path": "/1y2zzQhnAuFpRNovNMHWlubOaxw.jpg"
+		},
+		{
+			"season_number": 32,
+			"name": "Season 32",
+			"episode_count": 22,
+			"air_date": "2020-09-27",
+			"poster_path": "/ifvEta1mmPGLu3E6lFnPSJAyBhh.jpg"
+		},
+		{
+			"season_number": 33,
+			"name": "Season 33",
+			"episode_count": 22,
+			"air_date": "2021-09-26",
+			"poster_path": "/sjg9DQMgZzUA0Uqfw7eL89gFXOr.jpg"
+		},
+		{
+			"season_number": 34,
+			"name": "Season 34",
+			"episode_count": 22,
+			"air_date": "2022-09-25",
+			"poster_path": "/2C6Tuxep3eLeFB1vny8FIVXFIDz.jpg"
+		},
+		{
+			"season_number": 35,
+			"name": "Season 35",
+			"episode_count": 18,
+			"air_date": "2023-10-01",
+			"poster_path": "/s7EtmSmdN6ENGwJFfzu9Bn9cgSW.jpg"
+		},
+		{
+			"season_number": 36,
+			"name": "Season 36",
+			"episode_count": 18,
+			"air_date": "2024-09-29",
+			"poster_path": "/dl0S3pJSQUyBLPAOefMMujbtp4O.jpg"
+		},
+		{
+			"season_number": 37,
+			"name": "Season 37",
+			"episode_count": 15,
+			"air_date": "2025-09-28",
+			"poster_path": "/nRdwZjv3TJZm6Vht76BWiUaQpLQ.jpg"
+		},
+		{
+			"season_number": 38,
+			"name": "Season 38",
+			"episode_count": 2,
+			"air_date": "2026-09-27",
+			"poster_path": "/tnPBA5xCCR3EWgap15STjiD4MvO.jpg"
+		}
+	],
+	"aggregate_credits": {
+		"cast": [
+			{
+				"id": 198,
+				"name": "Dan Castellaneta",
+				"order": 0,
+				"total_episode_count": 803
+			},
+			{
+				"id": 199,
+				"name": "Julie Kavner",
+				"order": 1,
+				"total_episode_count": 803
+			},
+			{
+				"id": 200,
+				"name": "Nancy Cartwright",
+				"order": 2,
+				"total_episode_count": 803
+			},
+			{
+				"id": 5586,
+				"name": "Yeardley Smith",
+				"order": 3,
+				"total_episode_count": 803
+			},
+			{
+				"id": 5587,
+				"name": "Hank Azaria",
+				"order": 4,
+				"total_episode_count": 803
+			},
+			{
+				"id": 6008,
+				"name": "Harry Shearer",
+				"order": 6,
+				"total_episode_count": 803
+			},
+			{
+				"id": 6009,
+				"name": "Pamela Hayden",
+				"order": 1723,
+				"total_episode_count": 390
+			},
+			{
+				"id": 34983,
+				"name": "Tress MacNeille",
+				"order": 1790,
+				"total_episode_count": 322
+			},
+			{
+				"id": 6036,
+				"name": "Marcia Wallace",
+				"order": 1278,
+				"total_episode_count": 179
+			},
+			{
+				"id": 6007,
+				"name": "Maggie Roswell",
+				"order": 1531,
+				"total_episode_count": 174
+			},
+			{
+				"id": 1216346,
+				"name": "Chris Edgerly",
+				"order": 1837,
+				"total_episode_count": 143
+			},
+			{
+				"id": 156910,
+				"name": "Karl Wiedergott",
+				"order": 1723,
+				"total_episode_count": 110
+			}
+		]
+	}
+}

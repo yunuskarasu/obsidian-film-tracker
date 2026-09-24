@@ -22,6 +22,8 @@ import {
 	type FilmSearchResult,
 	type TmdbClient,
 } from "../src/tmdb";
+import type { AlreadyTrackedChoice } from "../src/already-tracked-modal";
+import type { TmdbTvDetails, TvMetadata, TvSearchResult } from "../src/tmdb-tv";
 import type { FilmMetadata } from "../src/note";
 
 function fileName(path: string): string {
@@ -40,7 +42,15 @@ const FRONTMATTER = /^---\n([\s\S]*?)\n?---(?:\n|$)/;
 function frontmatterOf(content: string): Record<string, unknown> | undefined {
 	const match = content.replace(/\r\n/g, "\n").match(FRONTMATTER);
 	if (match === null) return undefined;
-	const parsed: unknown = parse(match[1]);
+
+	let parsed: unknown;
+	try {
+		parsed = parse(match[1]);
+	} catch {
+		// Properties YAML rejects: Obsidian's cache simply has none for that
+		// note, rather than the read throwing at whoever asked for it.
+		return undefined;
+	}
 	return typeof parsed === "object" && parsed !== null ? (parsed as Record<string, unknown>) : undefined;
 }
 
@@ -55,6 +65,25 @@ function bodyLinks(content: string): { links: { link: string }[]; embeds: { link
 	const embeds = wikilinks(body.match(/!\[\[[^\]]*\]\]/g)?.join(" ") ?? "");
 	const links = wikilinks(body.replace(/!\[\[[^\]]*\]\]/g, ""));
 	return { links: links.map((link) => ({ link })), embeds: embeds.map((link) => ({ link })) };
+}
+
+/**
+ * The `[[links]]` in a note's properties, keyed the way Obsidian keys them:
+ * `poster` for a top-level property, `manga.poster` for one inside a block.
+ */
+function frontmatterLinks(content: string): { key: string; link: string }[] {
+	const match = FRONTMATTER.exec(content.replace(/\r\n/g, "\n"));
+	if (match === null) return [];
+	const result: { key: string; link: string }[] = [];
+	let parent: string | null = null;
+	for (const line of match[0].split("\n")) {
+		const key = /^(\s*)([^\s:#][^:]*):/.exec(line);
+		if (key === null) continue;
+		if (key[1] === "") parent = key[2];
+		const name = key[1] === "" ? key[2] : `${parent}.${key[2]}`;
+		for (const link of wikilinks(line)) result.push({ key: name, link });
+	}
+	return result;
 }
 
 /**
@@ -176,7 +205,7 @@ export class FakeApp {
 			},
 			getFileCache: (file: TFile) => {
 				const content = this.notes.get(file.path);
-				return content === undefined ? null : { frontmatter: frontmatterOf(content), ...bodyLinks(content) };
+				return content === undefined ? null : { frontmatter: frontmatterOf(content), frontmatterLinks: frontmatterLinks(content), ...bodyLinks(content) };
 			},
 			getFirstLinkpathDest: (linkpath: string) => {
 				const hit = resolve(linkpath);
@@ -224,6 +253,10 @@ export function fakeTmdb(data: {
 	films?: FilmMetadata[];
 	people?: DirectorMetadata[];
 	search?: (query: string, year: number | null) => FilmSearchResult[];
+	shows?: TvMetadata[];
+	/** TMDB's answer as it came, for the checks that read more than the note keeps (anime, say). */
+	showDetails?: (show: TvMetadata) => TmdbTvDetails;
+	searchTv?: (query: string) => TvSearchResult[];
 }): TmdbClient & { calls: string[] } {
 	const calls: string[] = [];
 	const client = {
@@ -243,6 +276,16 @@ export function fakeTmdb(data: {
 		search: async (query: string, year: number | null = null) => {
 			calls.push(`search ${query} ${year ?? ""}`.trim());
 			return data.search?.(query, year) ?? [];
+		},
+		getTv: async (id: number, today: string) => {
+			calls.push(`getTv ${id} ${today}`);
+			const show = data.shows?.find((item) => item.tmdbTvId === id);
+			if (show === undefined) throw new TmdbError("TMDB request failed (HTTP 404).");
+			return { show, details: data.showDetails?.(show) ?? { id } };
+		},
+		searchTv: async (query: string) => {
+			calls.push(`searchTv ${query}`);
+			return data.searchTv?.(query) ?? [];
 		},
 		downloadImage: async (path: string) => {
 			calls.push(`download ${path}`);
@@ -314,9 +357,15 @@ export function fakeMal(data: {
  * The anime dialogs, answered in advance: every "Link to this note?" gets
  * `choice`, and every "Remove the manga?"-style question gets `answer`.
  */
-export function fakeUi(choice: LinkChoice | null, answer: ConfirmAnswer = { option: false }) {
+export function fakeUi(
+	choice: LinkChoice | null,
+	answer: ConfirmAnswer = { option: false },
+	/** The answer to "Already in your vault as …", when a test puts both sides of a work in the vault. */
+	tracked: AlreadyTrackedChoice | null = "add",
+) {
 	const asked: { workTitle: string; side: string; noteName: string; alsoIn: string[] }[] = [];
 	const confirmed: ConfirmRequest[] = [];
+	const alsoTracked: { title: string; noteNames: string[]; side: string }[] = [];
 	const ui = {
 		confirmLink: async (workTitle: string, side: "anime" | "manga", noteName: string, alsoIn: string[]) => {
 			asked.push({ workTitle, side, noteName, alsoIn });
@@ -327,6 +376,10 @@ export function fakeUi(choice: LinkChoice | null, answer: ConfirmAnswer = { opti
 			confirmed.push(request);
 			return answer;
 		},
+		alsoTracked: async (title: string, noteNames: string[], side: string) => {
+			alsoTracked.push({ title, noteNames, side });
+			return tracked;
+		},
 	};
-	return { ui, asked, confirmed };
+	return { ui, asked, confirmed, alsoTracked };
 }

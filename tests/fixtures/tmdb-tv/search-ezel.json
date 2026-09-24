@@ -1,0 +1,32 @@
+{
+	"results": [
+		{
+			"id": 32519,
+			"name": "Ezel",
+			"original_name": "Ezel",
+			"original_language": "tr",
+			"origin_country": [
+				"TR"
+			],
+			"first_air_date": "2009-09-28",
+			"genre_ids": [
+				80,
+				18,
+				10759
+			],
+			"poster_path": "/ex1K2iIwgxuzv54w89BrOJMqpTd.jpg"
+		},
+		{
+			"id": 37081,
+			"name": "Op 3 ezels",
+			"original_name": "Op 3 ezels",
+			"original_language": "en",
+			"origin_country": [
+				"NL"
+			],
+			"first_air_date": "2009-12-08",
+			"genre_ids": [],
+			"poster_path": null
+		}
+	]
+}

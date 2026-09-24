@@ -5,8 +5,11 @@ import {
 	buildAnimeNoteContent,
 	markAnimeWatched,
 	refreshAnimeFrontmatter,
+	removeAnimeFields,
 	setAnimeProgress,
 } from "./anime-note";
+import type { AlreadyTrackedChoice, TrackedSide } from "./already-tracked-modal";
+import { animeTitles, looksLikeSameWork, tvNoteTitles } from "./anime-match";
 import type { ConfirmAnswer, ConfirmRequest } from "./confirm-modal";
 import type { LinkChoice } from "./link-confirm-modal";
 import type {
@@ -30,7 +33,7 @@ import {
 } from "./manga-note";
 import { buildMangakaFileName, buildMangakaNoteContent, refreshMangakaFrontmatter } from "./mangaka-note";
 import { buildFileName, markWatched, parseWikilink, sanitizeFileName, today } from "./note";
-import { isAnimeOnlySeries, isMangaOnlySeries } from "./note-kind";
+import { isAnimeOnlySeries, isMangaOnlySeries, takesMangaBlock, type NoteRef } from "./note-kind";
 import type { FilmTrackerSettings } from "./settings";
 import {
 	mangaPoster,
@@ -68,6 +71,8 @@ export interface AnimeUi {
 	pickMangaka(candidates: MangaAuthor[], onPick: (author: MangaAuthor) => void): void;
 	/** Asks before something is deleted — see `ConfirmModal`. */
 	confirm(request: ConfirmRequest): Promise<ConfirmAnswer>;
+	/** "Already in your vault as a TV series" — see `AlreadyTrackedModal`; `null` when dismissed. */
+	alsoTracked(title: string, noteNames: string[], side: TrackedSide): Promise<AlreadyTrackedChoice | null>;
 }
 
 /** What a Series note's manga is called in a dialog: its title, or "the manga" when that's missing. */
@@ -97,11 +102,19 @@ export class AnimeActions {
 		this.ui = ui;
 	}
 
-	/** "Refresh anime/manga metadata from MAL": both sides of a Series note, or a mangaka note. */
+	/**
+	 * "Refresh anime/manga metadata from MAL": both sides of a Series note, a
+	 * mangaka note, or the manga side of a TV series note — the episodes there
+	 * come from TMDB, but its manga is still MyAnimeList's.
+	 */
 	async refresh(client: MalClient, file: TFile): Promise<void> {
 		const note = this.notes.kindOf(file);
 		if (note?.kind === "mangaka") {
 			await this.refreshMangaka(client, file, note.malId);
+			return;
+		}
+		if (note?.kind === "tv") {
+			if (note.mangaMalId !== null) await this.refreshManga(client, file, note.mangaMalId);
 			return;
 		}
 		if (note?.kind !== "series") return;
@@ -358,21 +371,45 @@ export class AnimeActions {
 				return;
 			}
 
+			// TMDB lists anime among its TV shows, so the same work may already
+			// be on a TV note, counted from the other catalogue.
+			const tvNotes = this.tvNotesFor(anime);
+			if (tvNotes.length > 0) {
+				const choice = await this.ui.alsoTracked(
+					anime.title,
+					tvNotes.map((note) => note.basename),
+					"tv",
+				);
+				if (choice === null) return;
+				if (choice === "open") {
+					await this.notes.openNote(tvNotes[0]);
+					return;
+				}
+			}
+
 			await this.createAnimeNote(client, anime);
 		});
 	}
 
+	/** The TV notes that look like this anime — titles are all the two catalogues share. */
+	private tvNotesFor(anime: AnimeMetadata): TFile[] {
+		const titles = animeTitles(anime);
+		return this.app.vault.getMarkdownFiles().filter((file) => {
+			if (this.notes.kindOf(file)?.kind !== "tv") return false;
+			return looksLikeSameWork(titles, tvNoteTitles(this.notes.frontmatterOf(file)));
+		});
+	}
+
 	/**
+	 * A Series note for an anime, with a manga's block in it when one is
+	 * given. `open` is what a list import turns off: it wants the note
+	 * written, not opened and announced one by one.
+	 *
 	 * `manga` is what Add adaptation passes: the new note gets that manga's
 	 * block as well, with its poster reused from the note the adaptation was
 	 * added from and `read` in step with it. The anime's own poster and
 	 * `watched` follow the same rule when the anime is already on another
 	 * note (it adapts more than one manga).
-	 */
-	/**
-	 * A Series note for an anime, with a manga's block in it when one is
-	 * given. `open` is what a list import turns off: it wants the note
-	 * written, not opened and announced one by one.
 	 */
 	async createAnimeNote(
 		client: MalClient,
@@ -445,12 +482,27 @@ export class AnimeActions {
 		await reportFailures("add the manga", async () => {
 			const manga = await client.getManga(result.id);
 
+			// The note in the editor takes the manga when it has room for one:
+			// an anime Series note, or a TV series note (see `takesMangaBlock`).
 			const target = this.notes.visibleNote();
 			const targetKind = target === null ? null : this.notes.kindOf(target);
-			if (target !== null && isAnimeOnlySeries(targetKind)) {
-				const pair = { animeMalId: targetKind.animeMalId, mangaMalId: manga.malId };
+			if (target !== null && takesMangaBlock(targetKind)) {
 				const others = this.notes.findNotes({ kind: "manga", malId: manga.malId });
-				const choice = await this.confirmLink(target, pair, manga.title, "manga", others);
+				const choice =
+					targetKind.kind === "tv"
+						? await this.ui.confirmLink(
+								manga.title,
+								"manga",
+								target.basename,
+								others.map((note) => note.basename),
+							)
+						: await this.confirmLink(
+								target,
+								{ animeMalId: targetKind.animeMalId, mangaMalId: manga.malId },
+								manga.title,
+								"manga",
+								others,
+							);
 				if (choice === null) return;
 				if (choice === "link") {
 					await this.mergeMangaIntoNote(client, manga, target);
@@ -516,10 +568,12 @@ export class AnimeActions {
 
 	/**
 	 * "Add adaptation" on the MANGA panel: pairs this note's manga with
-	 * another anime in one step — a remake, another series, a film. The anime
-	 * keeps a single note where it can: its existing anime-only note gets the
-	 * manga. Failing that, a manga-only note takes the anime in, and anything
-	 * else gets a new Series note for the pairing.
+	 * another anime in one step — a remake, another series, a film. A
+	 * manga-only note it was run from takes the anime in itself, even when the
+	 * anime already has a note elsewhere: one anime can sit on a note per
+	 * manga it adapts, and its watching is shared between them. Failing that,
+	 * the anime's existing anime-only note gets the manga, and anything else
+	 * gets a new Series note for the pairing.
 	 */
 	async addAdaptation(
 		client: MalClient,
@@ -537,14 +591,18 @@ export class AnimeActions {
 				return;
 			}
 
-			const animeOnly = this.notes
-				.findNotes({ kind: "anime", malId: anime.malId })
-				.find((note) => isAnimeOnlySeries(this.notes.kindOf(note)));
-			if (animeOnly === undefined && isMangaOnlySeries(this.notes.kindOf(source))) {
+			// The note the command was run from comes first: someone on a
+			// manga note asking for its adaptation means that note, the same as
+			// Add anime does. Only when it can't take an anime — it already has
+			// one — does the pairing go somewhere else.
+			if (isMangaOnlySeries(this.notes.kindOf(source))) {
 				await this.mergeAnimeIntoNote(client, anime, source);
 				return;
 			}
 
+			const animeOnly = this.notes
+				.findNotes({ kind: "anime", malId: anime.malId })
+				.find((note) => isAnimeOnlySeries(this.notes.kindOf(note)));
 			const manga = await client.getManga(mangaMalId);
 			if (animeOnly !== undefined) {
 				await this.mergeMangaIntoNote(client, manga, animeOnly);
@@ -576,13 +634,41 @@ export class AnimeActions {
 	 * everything about the reading — `read`, the date, the chapter count — is
 	 * written to every note carrying it, not only the one on screen.
 	 */
-	private async writeToMangaNotes(file: TFile, rewrite: (content: string) => string): Promise<void> {
-		const mangaMalId = this.notes.seriesMangaIdOf(file);
-		const notes = mangaMalId === null ? [] : this.notes.findNotes({ kind: "manga", malId: mangaMalId });
+	private async writeToMangaNotes(file: TFile, rewrite: (content: string, note: TFile) => string): Promise<boolean> {
+		const mangaMalId = this.notes.mangaIdOf(file);
+		return this.writeToAll(file, mangaMalId === null ? null : { kind: "manga", malId: mangaMalId }, rewrite);
+	}
+
+	/**
+	 * The same for the anime side: one anime can sit on a note per manga it
+	 * adapts (a part of a long series, say), and watching an episode of it is
+	 * watching that episode, whichever of those notes is on screen.
+	 */
+	private async writeToAnimeNotes(file: TFile, rewrite: (content: string, note: TFile) => string): Promise<boolean> {
+		const note = this.notes.kindOf(file);
+		const malId = note?.kind === "series" ? note.animeMalId : null;
+		return this.writeToAll(file, malId === null ? null : { kind: "anime", malId }, rewrite);
+	}
+
+	/**
+	 * Every note `ref` names, and the one in hand even when it names none.
+	 * `rewrite` is told which note it is writing, so a count can be kept from
+	 * going down on a note that was further along. Returns whether the note in
+	 * hand could be read — when it couldn't, nothing was written to it.
+	 */
+	private async writeToAll(
+		file: TFile,
+		ref: NoteRef | null,
+		rewrite: (content: string, note: TFile) => string,
+	): Promise<boolean> {
+		const notes = ref === null ? [] : this.notes.findNotes(ref);
 		if (!notes.some((note) => note.path === file.path)) notes.push(file);
+		let readable = true;
 		for (const note of notes) {
-			await this.notes.rewriteFrontmatter(note, rewrite);
+			const ok = await this.notes.rewriteFrontmatter(note, (content) => rewrite(content, note));
+			if (note.path === file.path) readable = ok;
 		}
+		return readable;
 	}
 
 	/**
@@ -593,7 +679,7 @@ export class AnimeActions {
 	async markWatchedToday(file: TFile): Promise<void> {
 		const progress = animeProgressOf(this.notes.frontmatterOf(file));
 		const date = today();
-		if (!(await this.notes.rewriteFrontmatter(file, (content) => markAnimeWatched(content, date, progress.episodes)))) {
+		if (!(await this.writeToAnimeNotes(file, (content) => markAnimeWatched(content, date, progress.episodes)))) {
 			return;
 		}
 		new Notice(
@@ -623,9 +709,14 @@ export class AnimeActions {
 
 		const watched = progress.watched + 1;
 		const date = today();
-		if (!(await this.notes.rewriteFrontmatter(file, (content) => setAnimeProgress(content, watched, progress.episodes, date)))) {
-			return;
-		}
+		// Another note carrying the anime may be further along — its episodes
+		// were counted apart before 3.0 — and is never taken back.
+		const written = await this.writeToAnimeNotes(file, (content, note) =>
+			note.path !== file.path && animeProgressOf(this.notes.frontmatterOf(note)).watched >= watched
+				? content
+				: setAnimeProgress(content, watched, progress.episodes, date),
+		);
+		if (!written) return;
 		new Notice(`Episode ${watched}${progress.episodes === null ? "" : ` of ${progress.episodes}`} watched.`);
 	}
 
@@ -683,6 +774,57 @@ export class AnimeActions {
 	}
 
 	/**
+	 * "Remove anime": drops the anime's own properties and nothing else, once
+	 * the user confirms. The manga side, every property the user added and the
+	 * whole body of the note stay exactly as they are — a note that ends up
+	 * with neither side is simply a note of the user's own again.
+	 */
+	async removeAnime(file: TFile): Promise<void> {
+		const note = this.notes.kindOf(file);
+		if (note?.kind !== "series" || note.animeMalId === null) {
+			new Notice("This note has no anime.");
+			return;
+		}
+
+		const frontmatter = this.notes.frontmatterOf(file);
+		const title = typeof frontmatter?.title === "string" && frontmatter.title.trim() !== "" ? frontmatter.title : "the anime";
+		const poster = this.notes.unusedAnimePoster(file);
+		const rest =
+			note.mangaMalId === null
+				? "The note has no manga, so what's left is a plain note the plugin no longer tracks."
+				: "The manga and the rest of the note stay as they are.";
+		const answer = await this.ui.confirm({
+			title: "Remove the anime?",
+			message: `This removes ${title} from ${file.basename}: only its anime properties are deleted. ${rest}`,
+			confirmLabel: "Remove",
+			option:
+				poster === null
+					? undefined
+					: { name: "Also delete its poster", desc: `No other note uses ${poster.name}. ${DELETED_FILES}` },
+		});
+		if (answer === null) return;
+
+		let removed = false;
+		const readable = await this.notes.rewriteFrontmatter(file, (content) => {
+			const next = removeAnimeFields(content);
+			removed = next !== content;
+			return next;
+		});
+		if (!readable) return;
+		if (!removed) {
+			new Notice("This note has no anime.");
+			return;
+		}
+
+		const posterDeleted = answer.option && poster !== null && (await this.notes.deleteFile(poster));
+		new Notice(
+			posterDeleted
+				? `Removed the anime and its poster from ${file.basename}`
+				: `Removed the anime from ${file.basename}`,
+		);
+	}
+
+	/**
 	 * "Remove manga" on the MANGA panel: drops the `manga:` block and nothing
 	 * else, once the user confirms. When no other note uses the manga's
 	 * poster, the same dialog offers to delete it as well.
@@ -695,9 +837,12 @@ export class AnimeActions {
 		}
 
 		const poster = this.notes.unusedMangaPoster(file);
-		const rest = isMangaOnlySeries(this.notes.kindOf(file))
+		const note = this.notes.kindOf(file);
+		const rest = isMangaOnlySeries(note)
 			? "The note has no anime, so what's left is a plain note the plugin no longer tracks."
-			: "The anime and the rest of the note stay as they are.";
+			: note?.kind === "tv"
+				? "The series, its seasons and the rest of the note stay as they are."
+				: "The anime and the rest of the note stay as they are.";
 		const answer = await this.ui.confirm({
 			title: "Remove the manga?",
 			message: `This removes ${mangaTitleOf(frontmatter)} from ${file.basename}: only its manga properties are deleted. ${rest}`,
@@ -810,7 +955,7 @@ export class AnimeActions {
 	private async relinkMangakaAcrossVault(mangakaName: string, skip: TFile): Promise<void> {
 		for (const file of this.app.vault.getMarkdownFiles()) {
 			if (file.path === skip.path) continue;
-			if (this.notes.seriesMangaIdOf(file) === null) continue;
+			if (this.notes.mangaIdOf(file) === null) continue;
 
 			const manga: unknown = this.notes.frontmatterOf(file)?.manga;
 			const mangaka: unknown =

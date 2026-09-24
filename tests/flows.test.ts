@@ -306,6 +306,29 @@ describe("Add adaptation", () => {
 		expect(vault.frontmatter("Anime/Hunter x Hunter (1999).md").manga).toMatchObject({ mal_id: 26 });
 	});
 
+	/**
+	 * Regression: the pairing used to go to whichever anime-only note already
+	 * had that anime, so someone on a manga note — one part of a long series,
+	 * say — got the adaptation written somewhere else entirely.
+	 */
+	it("still links into the note it was added from when the anime is on another note", async () => {
+		const vault = new FakeApp({
+			"Anime/Hunter x Hunter.md": mangaOnly,
+			"Anime/Hunter x Hunter (2011).md": animeOnly(hxh2011),
+		});
+		await anime(vault).actions.addAdaptation(
+			fakeMal({ anime: [hxh2011], manga: [hxhManga] }),
+			{ id: 11061, title: "", year: null, mediaType: null },
+			vault.file("Anime/Hunter x Hunter.md"),
+			26,
+		);
+
+		expect(vault.frontmatter("Anime/Hunter x Hunter.md")).toMatchObject({ mal_id: 11061, manga: { mal_id: 26 } });
+		// The other note keeps the anime and gains no manga.
+		expect(vault.frontmatter("Anime/Hunter x Hunter (2011).md").manga).toBeUndefined();
+		expect(vault.notes.size).toBe(2);
+	});
+
 	it("links the anime into the manga-only note it was added from", async () => {
 		const vault = new FakeApp({ "Anime/Hunter x Hunter.md": mangaOnly });
 		await anime(vault).actions.addAdaptation(fakeMal({ anime: [hxh2011], manga: [hxhManga] }), { id: 11061, title: "", year: null, mediaType: null }, vault.file("Anime/Hunter x Hunter.md"), 26);

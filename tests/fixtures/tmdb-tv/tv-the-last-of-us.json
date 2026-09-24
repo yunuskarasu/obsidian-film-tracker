@@ -1,0 +1,136 @@
+{
+	"id": 100088,
+	"name": "The Last of Us",
+	"original_name": "The Last of Us",
+	"original_language": "en",
+	"origin_country": [
+		"US"
+	],
+	"first_air_date": "2023-01-15",
+	"last_air_date": "2025-05-25",
+	"status": "Returning Series",
+	"type": "Scripted",
+	"poster_path": "/dmo6TYuuJgaYinXBPjrgG9mB5od.jpg",
+	"genres": [
+		{
+			"id": 18,
+			"name": "Drama"
+		}
+	],
+	"created_by": [
+		{
+			"id": 1295692,
+			"name": "Neil Druckmann"
+		},
+		{
+			"id": 35796,
+			"name": "Craig Mazin"
+		}
+	],
+	"networks": [
+		{
+			"id": 49,
+			"name": "HBO"
+		}
+	],
+	"number_of_episodes": 16,
+	"number_of_seasons": 2,
+	"last_episode_to_air": {
+		"season_number": 2,
+		"episode_number": 7,
+		"air_date": "2025-05-25"
+	},
+	"next_episode_to_air": null,
+	"seasons": [
+		{
+			"season_number": 1,
+			"name": "Season 1",
+			"episode_count": 9,
+			"air_date": "2023-01-15",
+			"poster_path": "/mb75VyQbh1QzhBt0C3Li4SxVevr.jpg"
+		},
+		{
+			"season_number": 2,
+			"name": "Season 2",
+			"episode_count": 7,
+			"air_date": "2025-04-13",
+			"poster_path": "/dmo6TYuuJgaYinXBPjrgG9mB5od.jpg"
+		}
+	],
+	"aggregate_credits": {
+		"cast": [
+			{
+				"id": 1668004,
+				"name": "Bella Ramsey",
+				"order": 1,
+				"total_episode_count": 16
+			},
+			{
+				"id": 1253360,
+				"name": "Pedro Pascal",
+				"order": 164,
+				"total_episode_count": 12
+			},
+			{
+				"id": 111016,
+				"name": "Gabriel Luna",
+				"order": 2,
+				"total_episode_count": 9
+			},
+			{
+				"id": 1428070,
+				"name": "Isabela Merced",
+				"order": 3,
+				"total_episode_count": 7
+			},
+			{
+				"id": 2569691,
+				"name": "Young Mazino",
+				"order": 4,
+				"total_episode_count": 7
+			},
+			{
+				"id": 210773,
+				"name": "Rutina Wesley",
+				"order": 567,
+				"total_episode_count": 5
+			},
+			{
+				"id": 1151408,
+				"name": "Samuel Hoeksema",
+				"order": 571,
+				"total_episode_count": 4
+			},
+			{
+				"id": 1773397,
+				"name": "Danny Ramirez",
+				"order": 577,
+				"total_episode_count": 4
+			},
+			{
+				"id": 31512,
+				"name": "Robert John Burke",
+				"order": 580,
+				"total_episode_count": 4
+			},
+			{
+				"id": 30084,
+				"name": "Anna Torv",
+				"order": 523,
+				"total_episode_count": 3
+			},
+			{
+				"id": 1397605,
+				"name": "Lamar Johnson",
+				"order": 565,
+				"total_episode_count": 3
+			},
+			{
+				"id": 481337,
+				"name": "Kaitlyn Dever",
+				"order": 576,
+				"total_episode_count": 3
+			}
+		]
+	}
+}

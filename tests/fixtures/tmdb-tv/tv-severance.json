@@ -1,0 +1,154 @@
+{
+	"id": 95396,
+	"name": "Severance",
+	"original_name": "Severance",
+	"original_language": "en",
+	"origin_country": [
+		"US"
+	],
+	"first_air_date": "2022-02-17",
+	"last_air_date": "2025-03-20",
+	"status": "Returning Series",
+	"type": "Scripted",
+	"poster_path": "/pPHpeI2X1qEd1CS1SeyrdhZ4qnT.jpg",
+	"genres": [
+		{
+			"id": 18,
+			"name": "Drama"
+		},
+		{
+			"id": 9648,
+			"name": "Mystery"
+		},
+		{
+			"id": 10765,
+			"name": "Sci-Fi & Fantasy"
+		}
+	],
+	"created_by": [
+		{
+			"id": 3442409,
+			"name": "Dan Erickson"
+		}
+	],
+	"networks": [
+		{
+			"id": 2552,
+			"name": "Apple TV"
+		}
+	],
+	"number_of_episodes": 19,
+	"number_of_seasons": 3,
+	"last_episode_to_air": {
+		"season_number": 2,
+		"episode_number": 10,
+		"air_date": "2025-03-20"
+	},
+	"next_episode_to_air": null,
+	"seasons": [
+		{
+			"season_number": 0,
+			"name": "Specials",
+			"episode_count": 1,
+			"air_date": "2021-12-15",
+			"poster_path": "/f3E2o8DbW9QSzu31yY3Q1av5JO7.jpg"
+		},
+		{
+			"season_number": 1,
+			"name": "Season 1",
+			"episode_count": 9,
+			"air_date": "2022-02-17",
+			"poster_path": "/lFf6LLrQjYldcZItzOkGmMMigP7.jpg"
+		},
+		{
+			"season_number": 2,
+			"name": "Season 2",
+			"episode_count": 10,
+			"air_date": "2025-01-16",
+			"poster_path": "/Rb7sga832Cyqvafd7CqOzbwdK4.jpg"
+		},
+		{
+			"season_number": 3,
+			"name": "Season 3",
+			"episode_count": 0,
+			"air_date": null,
+			"poster_path": null
+		}
+	],
+	"aggregate_credits": {
+		"cast": [
+			{
+				"id": 36801,
+				"name": "Adam Scott",
+				"order": 0,
+				"total_episode_count": 19
+			},
+			{
+				"id": 973497,
+				"name": "Britt Lower",
+				"order": 1,
+				"total_episode_count": 19
+			},
+			{
+				"id": 2028037,
+				"name": "Tramell Tillman",
+				"order": 2,
+				"total_episode_count": 19
+			},
+			{
+				"id": 1838225,
+				"name": "Zach Cherry",
+				"order": 3,
+				"total_episode_count": 19
+			},
+			{
+				"id": 1569165,
+				"name": "Jen Tullock",
+				"order": 4,
+				"total_episode_count": 19
+			},
+			{
+				"id": 94797,
+				"name": "Dichen Lachman",
+				"order": 6,
+				"total_episode_count": 19
+			},
+			{
+				"id": 1241,
+				"name": "John Turturro",
+				"order": 8,
+				"total_episode_count": 19
+			},
+			{
+				"id": 4690,
+				"name": "Christopher Walken",
+				"order": 9,
+				"total_episode_count": 19
+			},
+			{
+				"id": 4687,
+				"name": "Patricia Arquette",
+				"order": 10,
+				"total_episode_count": 19
+			},
+			{
+				"id": 87070,
+				"name": "Michael Chernus",
+				"order": 5,
+				"total_episode_count": 13
+			},
+			{
+				"id": 3905451,
+				"name": "Sarah Bock",
+				"order": 7,
+				"total_episode_count": 10
+			},
+			{
+				"id": 3442851,
+				"name": "Sydney Cole Alexander",
+				"order": 515,
+				"total_episode_count": 7
+			}
+		]
+	}
+}

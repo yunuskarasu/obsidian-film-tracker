@@ -31,6 +31,16 @@ export interface FilmTrackerSettings {
 	linkComposers: boolean;
 	showConnections: boolean;
 	showFilmography: boolean;
+	showSeasons: boolean;
+	showTvSeries: boolean;
+	tvFolder: string;
+	tvPosterFolder: string;
+	/** A show's own metadata settings, kept apart from a film's: the two are watched differently. */
+	linkCreators: boolean;
+	linkTvGenres: boolean;
+	addTvCast: boolean;
+	tvCastCount: number;
+	linkTvCast: boolean;
 	malClientId: string;
 	malClientIdSecretName: string;
 	animeFolder: string;
@@ -55,6 +65,15 @@ export const DEFAULT_SETTINGS: FilmTrackerSettings = {
 	linkComposers: false,
 	showConnections: true,
 	showFilmography: true,
+	showSeasons: true,
+	showTvSeries: true,
+	tvFolder: "TV",
+	tvPosterFolder: "",
+	linkCreators: true,
+	linkTvGenres: false,
+	addTvCast: false,
+	tvCastCount: 5,
+	linkTvCast: false,
 	malClientId: "",
 	malClientIdSecretName: "",
 	animeFolder: "Anime",
@@ -217,12 +236,12 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 				items: [
 					{
 						name: "Show connections",
-						desc: "Below a film's properties, list other films in your vault that share a director, composer or cast member.",
+						desc: "Below a film's or TV series' properties, list other films and series in your vault that share a director, creator, composer or cast member.",
 						control: { type: "toggle", key: "showConnections" },
 					},
 					{
 						name: "Show filmography",
-						desc: "Below a director's properties, list their films in your vault, linked directly.",
+						desc: "Below a person's properties, list their films in your vault, linked directly.",
 						control: { type: "toggle", key: "showFilmography" },
 					},
 				],
@@ -260,6 +279,79 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 								button.setButtonText("Import…").onClick(() => this.plugin.startImportFromMal()),
 							);
 						},
+					},
+				],
+			},
+			{
+				type: "group",
+				heading: "📺 TV series: folders",
+				items: [
+					{
+						name: "TV series folder",
+						desc: "Where new TV series notes are created. Leave empty for the vault root.",
+						control: { type: "folder", key: "tvFolder", placeholder: "TV" },
+					},
+					{
+						name: "TV series poster folder",
+						desc: "Where TV series posters are saved. Leave empty to follow your attachment folder setting.",
+						control: { type: "folder", key: "tvPosterFolder", placeholder: FOLLOW_ATTACHMENTS },
+					},
+				],
+			},
+			{
+				type: "group",
+				heading: "📺 TV series: metadata",
+				items: [
+					{
+						name: "Link creators",
+						desc: "Write a series' creators as [[wikilinks]] when a note with that name already exists, so the series shows up in their backlinks. A creator is to a series what a director is to a film, and they share the same notes.",
+						control: { type: "toggle", key: "linkCreators" },
+					},
+					{
+						name: "Link genres",
+						desc: "The same for a series' genres. Off by default: genre notes become very busy hubs.",
+						aliases: ["TV genres"],
+						control: { type: "toggle", key: "linkTvGenres" },
+					},
+					{
+						name: "Add cast",
+						desc: "Write a cast property with the series' top-billed actors, counted across every season.",
+						aliases: ["TV cast"],
+						control: { type: "toggle", key: "addTvCast" },
+					},
+					{
+						name: "Cast count",
+						desc: "How many top-billed actors to include on a series. Only used when add cast is on.",
+						aliases: ["TV cast count"],
+						control: {
+							type: "number",
+							key: "tvCastCount",
+							min: 1,
+							defaultValue: DEFAULT_SETTINGS.tvCastCount,
+							placeholder: String(DEFAULT_SETTINGS.tvCastCount),
+						},
+					},
+					{
+						name: "Link cast",
+						desc: "Write a series' cast as [[wikilinks]] when a note with that name already exists.",
+						aliases: ["TV cast links"],
+						control: { type: "toggle", key: "linkTvCast" },
+					},
+				],
+			},
+			{
+				type: "group",
+				heading: "📺 TV series: panels",
+				items: [
+					{
+						name: "Show seasons",
+						desc: "Below a TV series' properties, list its seasons with a checkbox and a bar for each — where watching a series is recorded.",
+						control: { type: "toggle", key: "showSeasons" },
+					},
+					{
+						name: "Show TV series",
+						desc: "Below a person's properties, list the TV series they created that are in your vault, in their own group under the filmography.",
+						control: { type: "toggle", key: "showTvSeries" },
 					},
 				],
 			},
@@ -306,13 +398,12 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 		return this.plugin.settings[key as keyof FilmTrackerSettings];
 	}
 
-	/** Saves a setting the user changed, and redraws the panels when one of theirs is turned off. */
+	/** Saves a setting the user changed, and redraws the panels when one of theirs was the setting. */
 	async setControlValue(key: string, value: unknown): Promise<void> {
 		const settings = this.plugin.settings as unknown as Record<string, unknown>;
 		settings[key] = typeof value === "string" ? value.trim() : value;
 		await this.plugin.saveSettings();
-		if (key === "showConnections") this.plugin.setShowConnections(value === true);
-		if (key === "showFilmography") this.plugin.setShowFilmography(value === true);
+		if (key.startsWith("show")) this.plugin.refreshPanels();
 	}
 
 	/**

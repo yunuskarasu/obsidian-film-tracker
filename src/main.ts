@@ -1,5 +1,10 @@
 import { Menu, Notice, Plugin, TFile, debounce } from "obsidian";
 import { AnimeActions } from "./anime-actions";
+import {
+	AlreadyTrackedModal,
+	type AlreadyTrackedChoice,
+	type TrackedSide,
+} from "./already-tracked-modal";
 import { ConfirmModal } from "./confirm-modal";
 import { FilmActions } from "./film-actions";
 import { FilmNoteLayout } from "./film-note-layout";
@@ -13,11 +18,33 @@ import { MalImportModal } from "./mal-import-modal";
 import { MalListImporter } from "./mal-importer";
 import { MangakaPickerModal } from "./mangaka-picker-modal";
 import type { NoteKind } from "./note-kind";
-import { openAnimeSearch, openDirectorSearch, openFilmSearch, openMangaSearch } from "./search-modal";
+import {
+	openAnimeSearch,
+	openDirectorSearch,
+	openFilmSearch,
+	openMangaSearch,
+	openTvSearch,
+} from "./search-modal";
 import { isMissingHere, keychainOf, moveKeysToKeychain, readKey, type ApiKey } from "./secrets";
 import { DEFAULT_SETTINGS, FilmTrackerSettingTab, type FilmTrackerSettings } from "./settings";
 import { TmdbClient } from "./tmdb";
+import { TvActions } from "./tv-actions";
 import { VaultNotes } from "./vault-notes";
+
+/** The notes "Mark as watched today" applies to: a film, a TV series, or a Series note's anime side. */
+function canWatch(kind: NoteKind): boolean {
+	return kind.kind === "film" || kind.kind === "tv" || (kind.kind === "series" && kind.animeMalId !== null);
+}
+
+/** The notes episodes are counted on: a TV series, or a Series note's anime side. */
+function hasEpisodes(kind: NoteKind): boolean {
+	return kind.kind === "tv" || (kind.kind === "series" && kind.animeMalId !== null);
+}
+
+/** The notes with a manga side: a Series note's, or a TV series note's. */
+function hasManga(kind: NoteKind): boolean {
+	return (kind.kind === "series" || kind.kind === "tv") && kind.mangaMalId !== null;
+}
 
 /**
  * The plugin itself: commands, the ribbon menu, the settings tab and the note
@@ -40,6 +67,10 @@ export default class FilmTrackerPlugin extends Plugin {
 			new Promise((resolve) => {
 				new ConfirmModal(this.app, request, resolve).open();
 			}),
+		alsoTracked: (title, noteNames, side) => this.askAlsoTracked(title, noteNames, side),
+	});
+	private readonly tv = new TvActions(this.app, this.notes, () => this.settings, {
+		alsoTracked: (title, noteNames, side) => this.askAlsoTracked(title, noteNames, side),
 	});
 	private readonly importer = new LetterboxdImporter(this.app, this.notes, this.films);
 	private readonly malImporter = new MalListImporter(this.app, this.notes, this.anime);
@@ -53,6 +84,12 @@ export default class FilmTrackerPlugin extends Plugin {
 			id: "add-film",
 			name: "Add film",
 			callback: () => this.startAddFilm(),
+		});
+
+		this.addCommand({
+			id: "add-tv",
+			name: "Add TV series",
+			callback: () => this.startAddTv(),
 		});
 
 		this.addCommand({
@@ -78,7 +115,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			name: "Add mangaka",
 			checkCallback: (checking) => {
 				const file = this.app.workspace.getActiveFile();
-				const mangaMalId = file === null ? null : this.notes.seriesMangaIdOf(file);
+				const mangaMalId = file === null ? null : this.notes.mangaIdOf(file);
 				if (file === null || mangaMalId === null) return false;
 				if (!checking) this.startAddMangaka(file, mangaMalId);
 				return true;
@@ -90,11 +127,13 @@ export default class FilmTrackerPlugin extends Plugin {
 			name: "Refresh metadata from TMDB",
 			checkCallback: (checking) => {
 				const file = this.app.workspace.getActiveFile();
-				const kind = file === null ? undefined : this.notes.kindOf(file)?.kind;
-				if (file === null || (kind !== "film" && kind !== "director")) return false;
+				const note = file === null ? null : this.notes.kindOf(file);
+				const kind = note?.kind;
+				if (file === null || (kind !== "film" && kind !== "director" && kind !== "tv")) return false;
 				if (!checking) {
 					const client = this.tmdb();
-					if (client !== null) void this.films.refresh(client, file);
+					if (client !== null && note?.kind === "tv") void this.tv.refresh(client, file, note.tmdbTvId);
+					else if (client !== null) void this.films.refresh(client, file);
 				}
 				return true;
 			},
@@ -105,8 +144,11 @@ export default class FilmTrackerPlugin extends Plugin {
 			name: "Refresh anime/manga metadata from MAL",
 			checkCallback: (checking) => {
 				const file = this.app.workspace.getActiveFile();
-				const kind = file === null ? undefined : this.notes.kindOf(file)?.kind;
-				if (file === null || (kind !== "series" && kind !== "mangaka")) return false;
+				const note = file === null ? null : this.notes.kindOf(file);
+				// A TV series note only belongs here once it has a manga side.
+				const mal =
+					note?.kind === "series" || note?.kind === "mangaka" || (note?.kind === "tv" && note.mangaMalId !== null);
+				if (file === null || !mal) return false;
 				if (!checking) {
 					const client = this.mal();
 					if (client !== null) void this.anime.refresh(client, file);
@@ -120,12 +162,8 @@ export default class FilmTrackerPlugin extends Plugin {
 			name: "Mark as watched today",
 			checkCallback: (checking) => {
 				const note = this.activeNote();
-				const film = note?.kind.kind === "film";
-				const anime = note?.kind.kind === "series" && note.kind.animeMalId !== null;
-				if (note === null || !(film || anime)) return false;
-				if (!checking) {
-					void (film ? this.films.markWatchedToday(note.file) : this.anime.markWatchedToday(note.file));
-				}
+				if (note === null || !canWatch(note.kind)) return false;
+				if (!checking) void this.watchedToday(note.file);
 				return true;
 			},
 		});
@@ -141,8 +179,8 @@ export default class FilmTrackerPlugin extends Plugin {
 			name: "Watch one more episode",
 			checkCallback: (checking) => {
 				const note = this.activeNote();
-				if (note === null || note.kind.kind !== "series" || note.kind.animeMalId === null) return false;
-				if (!checking) void this.anime.watchOneMoreEpisode(note.file);
+				if (note === null || !hasEpisodes(note.kind)) return false;
+				if (!checking) void this.watchOneMoreEpisode(note.file);
 				return true;
 			},
 		});
@@ -151,6 +189,17 @@ export default class FilmTrackerPlugin extends Plugin {
 			id: "read-chapter",
 			name: "Read one more chapter",
 			checkCallback: (checking) => this.onMangaSide(checking, (file) => this.anime.readOneMoreChapter(file)),
+		});
+
+		this.addCommand({
+			id: "remove-anime",
+			name: "Remove anime",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || note.kind.kind !== "series" || note.kind.animeMalId === null) return false;
+				if (!checking) void this.anime.removeAnime(note.file);
+				return true;
+			},
 		});
 
 		this.addCommand({
@@ -171,13 +220,19 @@ export default class FilmTrackerPlugin extends Plugin {
 			callback: () => this.startImportFromMal(),
 		});
 
-		this.addRibbonIcon("film", "Add film, anime or manga", (evt) => {
+		this.addRibbonIcon("film", "Add film, TV series, anime or manga", (evt) => {
 			const menu = new Menu();
 			menu.addItem((item) =>
 				item
 					.setTitle("Add film")
 					.setIcon("film")
 					.onClick(() => this.startAddFilm()),
+			);
+			menu.addItem((item) =>
+				item
+					.setTitle("Add TV series")
+					.setIcon("monitor")
+					.onClick(() => this.startAddTv()),
 			);
 			menu.addItem((item) =>
 				item
@@ -199,7 +254,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			);
 
 			const activeFile = this.app.workspace.getActiveFile();
-			const mangaMalId = activeFile === null ? null : this.notes.seriesMangaIdOf(activeFile);
+			const mangaMalId = activeFile === null ? null : this.notes.mangaIdOf(activeFile);
 			menu.addItem((item) => {
 				item.setTitle("Add mangaka").setIcon("user").setDisabled(mangaMalId === null);
 				if (activeFile !== null && mangaMalId !== null) {
@@ -229,21 +284,24 @@ export default class FilmTrackerPlugin extends Plugin {
 		await this.saveData(this.settings);
 	}
 
-	setShowConnections(value: boolean): void {
-		this.layout?.setShowConnections(value);
+	/** Draws the note panels again, after a setting that decides which of them are shown. */
+	refreshPanels(): void {
 		this.layout?.refresh();
 	}
 
-	setShowFilmography(value: boolean): void {
-		this.layout?.setShowFilmography(value);
-		this.layout?.refresh();
-	}
-
-	/** A film note goes to TMDB's side of the plugin, an anime note to MAL's; both write the same two fields. */
+	/** A film or TV note goes to TMDB's side of the plugin, an anime note to MAL's; all of them write the same two fields. */
 	private async watchedToday(file: TFile): Promise<void> {
 		const kind = this.notes.kindOf(file);
 		if (kind?.kind === "film") await this.films.markWatchedToday(file);
+		else if (kind?.kind === "tv") await this.tv.markWatchedToday(file);
 		else if (kind?.kind === "series" && kind.animeMalId !== null) await this.anime.markWatchedToday(file);
+	}
+
+	/** "+1 episode": on a TV note it counts into the earliest season with something left. */
+	private async watchOneMoreEpisode(file: TFile): Promise<void> {
+		const kind = this.notes.kindOf(file);
+		if (kind?.kind === "tv") await this.tv.watchOneMoreEpisode(file);
+		else if (kind?.kind === "series" && kind.animeMalId !== null) await this.anime.watchOneMoreEpisode(file);
 	}
 
 	/**
@@ -257,18 +315,24 @@ export default class FilmTrackerPlugin extends Plugin {
 		if (file === null || kind === null) return;
 
 		const entries: { title: string; icon: string; run: () => void }[] = [];
-		const anime = kind.kind === "series" && kind.animeMalId !== null;
-		if (kind.kind === "film" || anime) {
+		if (canWatch(kind)) {
 			entries.push({ title: "Mark as watched today", icon: "check", run: () => void this.watchedToday(file) });
 		}
-		if (anime) {
+		if (hasEpisodes(kind)) {
 			entries.push({
 				title: "Watch one more episode",
 				icon: "play",
-				run: () => void this.anime.watchOneMoreEpisode(file),
+				run: () => void this.watchOneMoreEpisode(file),
 			});
 		}
-		if (kind.kind === "series" && kind.mangaMalId !== null) {
+		if (kind.kind === "series" && kind.animeMalId !== null) {
+			entries.push({
+				title: "Remove anime",
+				icon: "trash-2",
+				run: () => void this.anime.removeAnime(file),
+			});
+		}
+		if (hasManga(kind)) {
 			entries.push({
 				title: "Mark manga as read today",
 				icon: "check",
@@ -296,7 +360,7 @@ export default class FilmTrackerPlugin extends Plugin {
 	/** A command that needs the manga side of the note in the editor. */
 	private onMangaSide(checking: boolean, run: (file: TFile) => Promise<void>): boolean {
 		const note = this.activeNote();
-		if (note === null || note.kind.kind !== "series" || note.kind.mangaMalId === null) return false;
+		if (note === null || !hasManga(note.kind)) return false;
 		if (!checking) void run(note.file);
 		return true;
 	}
@@ -329,15 +393,16 @@ export default class FilmTrackerPlugin extends Plugin {
 	private setUpLayout(): void {
 		const layout = new FilmNoteLayout(
 			this.app,
-			this.settings.showConnections,
-			this.settings.showFilmography,
+			() => this.settings,
 			{
 				change: (file) => this.startChangeManga(file),
 				remove: (file) => void this.anime.removeManga(file),
 				addAdaptation: (file) => this.startAddAdaptation(file),
 				setRead: (file, read) => void this.anime.syncMangaRead(file, read),
 				readChapter: (file) => void this.anime.readOneMoreChapter(file),
-				watchEpisode: (file) => void this.anime.watchOneMoreEpisode(file),
+				watchEpisode: (file) => void this.watchOneMoreEpisode(file),
+				watchSeason: (file, season) => void this.tv.watchOneMoreOfSeason(file, season),
+				setSeasonWatched: (file, season, watched) => void this.tv.setSeasonWatched(file, season, watched),
 				watchedToday: (file) => void this.watchedToday(file),
 			},
 		);
@@ -355,11 +420,50 @@ export default class FilmTrackerPlugin extends Plugin {
 			}),
 		);
 
-		// Opening a note, switching tabs or modes: redraw at once, so the
-		// poster never appears a beat after the note itself.
-		this.registerEvent(this.app.workspace.on("layout-change", refresh));
-		this.registerEvent(this.app.workspace.on("active-leaf-change", refresh));
-		this.registerEvent(this.app.workspace.on("file-open", refresh));
+		/**
+		 * Opening a note, switching tabs or switching modes: redraw at once,
+		 * so the poster never appears a beat after the note itself — and then
+		 * twice more, shortly after. Switching to reading view (Ctrl+E) builds
+		 * a container of its own, and the event arrives before it exists: the
+		 * first redraw finds nothing to draw into, and without these the
+		 * poster and the panels stayed away until something else — a metadata
+		 * change — happened to redraw them.
+		 */
+		const refreshQuick = debounce(refresh, 50, false);
+		const refreshLater = debounce(refresh, 400, false);
+		this.register(() => {
+			refreshQuick.cancel();
+			refreshLater.cancel();
+		});
+		const redraw = () => {
+			refresh();
+			refreshQuick();
+			refreshLater();
+		};
+		/**
+		 * Reading view discards parts of a long note as it scrolls away, and
+		 * takes the poster and the panels with it (see `redrawIfMissing`).
+		 * The check runs at most once per frame rather than on a timer: a
+		 * delayed one drew them back visibly late, a blink on the way up.
+		 * Finding everything in place costs two DOM queries, so the frames
+		 * where nothing was lost — almost all of them — do no work.
+		 */
+		let queuedFrame: number | null = null;
+		const checkAfterScroll = () => {
+			if (queuedFrame !== null) return;
+			queuedFrame = window.requestAnimationFrame(() => {
+				queuedFrame = null;
+				layout.redrawIfMissing();
+			});
+		};
+		this.register(() => {
+			if (queuedFrame !== null) window.cancelAnimationFrame(queuedFrame);
+		});
+		this.registerDomEvent(document, "scroll", checkAfterScroll, true);
+
+		this.registerEvent(this.app.workspace.on("layout-change", redraw));
+		this.registerEvent(this.app.workspace.on("active-leaf-change", redraw));
+		this.registerEvent(this.app.workspace.on("file-open", redraw));
 
 		/**
 		 * Metadata changes arrive in bursts — every save of any note fires
@@ -386,6 +490,23 @@ export default class FilmTrackerPlugin extends Plugin {
 		const client = this.tmdb();
 		if (client === null) return;
 		openFilmSearch(this.app, client, (result) => void this.films.addFilm(client, result));
+	}
+
+	/** "Already in your vault as an anime / a TV series": the same question, whichever side is being added. */
+	private askAlsoTracked(
+		title: string,
+		noteNames: string[],
+		side: TrackedSide,
+	): Promise<AlreadyTrackedChoice | null> {
+		return new Promise((resolve) => {
+			new AlreadyTrackedModal(this.app, title, noteNames, side, resolve).open();
+		});
+	}
+
+	private startAddTv(): void {
+		const client = this.tmdb();
+		if (client === null) return;
+		openTvSearch(this.app, client, (result) => void this.tv.addTv(client, result));
 	}
 
 	private startAddDirector(): void {
@@ -423,7 +544,7 @@ export default class FilmTrackerPlugin extends Plugin {
 	private startAddAdaptation(file: TFile): void {
 		const client = this.mal();
 		if (client === null) return;
-		const mangaMalId = this.notes.seriesMangaIdOf(file);
+		const mangaMalId = this.notes.mangaIdOf(file);
 		if (mangaMalId === null) return;
 		openAnimeSearch(this.app, client, (result) => {
 			void this.anime.addAdaptation(client, result, file, mangaMalId);

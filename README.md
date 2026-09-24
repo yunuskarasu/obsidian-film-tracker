@@ -1,8 +1,10 @@
 # Film + Anime-Manga Tracker
 
-Add films, anime and manga to your Obsidian vault as notes with metadata and a poster.
+Add films, TV series, anime and manga to your Obsidian vault as notes with metadata and a poster.
 
 Search for a film, pick it from the list, and Film + Anime-Manga Tracker creates a note containing exactly two things: a frontmatter block with the film's metadata, and the poster. Nothing else. No rating, no review section, no template. What you write in the note is up to you.
+
+TV series work the same way, also from TMDB: one note per show, with its seasons kept in the note itself and a SEASONS panel to tick them off as you watch. See [TV series](#tv-series).
 
 Anime and manga follow the same philosophy, sourced from MyAnimeList. The two even share a single note when they're the same series: search for either half and Film + Anime-Manga Tracker creates or merges into one **Series note**, with a separate panel below the properties for the manga side. See [Anime and manga](#anime-and-manga) for details.
 
@@ -58,6 +60,8 @@ Run **Add film** from the command palette, or click the film icon in the ribbon 
 
 Search works in any language: typing `Amelie`, `Amélie`, or `Le Fabuleux Destin d'Amélie Poulain` all find the same film.
 
+TV series work the same way: run **Add TV series**, search, and pick the show. The note holds the whole series — every season that has aired, with its own episode count — so there is nothing to pick twice and nothing to keep in step by hand. See [TV series](#tv-series).
+
 Directors work the same way: run **Add director**, or click the ribbon icon and pick **Add director**. The note gets the director's name, birthday, place of birth and a photo — nothing else, same philosophy as a film note.
 
 Anime and manga work the same way too: run **Add anime** or **Add manga**, search MyAnimeList, pick a result. Each result shows its type and year next to the title (TV, Movie, Manga, Light novel…), since MyAnimeList often has several entries sharing one title. See [Anime and manga](#anime-and-manga) for how the two combine into one Series note.
@@ -69,17 +73,19 @@ Mangaka work a little differently: open the manga or Series note whose author yo
 | Command | What it does |
 | --- | --- |
 | **Add film** | Search TMDB and create the note. |
+| **Add TV series** | Search TMDB and create the note, with a line for each season that has aired. See [TV series](#tv-series). |
 | **Add director** | Search TMDB for a person and create a director note: name, birthday, place of birth and a photo. |
 | **Add anime** | Search MyAnimeList and create a Series note — or, after asking, link into the manga-only note open in the editor. |
-| **Add manga** | Search MyAnimeList and create a Series note — or, after asking, link into the anime-only note open in the editor. |
+| **Add manga** | Search MyAnimeList and create a Series note — or, after asking, link into the note open in the editor, whether that is an anime note with no manga or a TV series note. |
 | **Add mangaka** | Reads the active manga/Series note's credited author(s) from MyAnimeList and creates (or updates) their note. Requires a manga or Series note to be open — see [Anime and manga](#anime-and-manga). |
-| **Refresh metadata from TMDB** | Re-fetch the film or director and rewrite only the fields the plugin owns. Your `watch_date`, your body text, any property you added, any alias you added, any link already in a list (a director, a genre) and any comment above the first property are left exactly as they were. Only appears on film or director notes. |
-| **Refresh anime/manga metadata from MAL** | Re-fetches whichever side(s) the note has and rewrites only the fields the plugin owns. `watched`, `read`, your body text, any property you added, any link already in a list (a genre, a studio, a mangaka) and any comment above the first property are left exactly as they were. On a mangaka note, refreshes their name, birthday and photo instead. Only appears on anime, manga or mangaka notes. |
-| **Mark as watched today** | Ticks `watched` on the film or anime note you have open and writes today into `watch_date`. A date already there is kept — the day you first saw it. Only appears on film and anime notes. Also a **Watched today** button under the poster, and an entry on the note's right-click menu. |
+| **Refresh metadata from TMDB** | Re-fetch the film, TV series or director and rewrite only the fields the plugin owns. On a TV series it brings in seasons that have started since, and new episodes of the season you are on, without touching what you have watched. Your `watch_date`, your body text, any property you added, any alias you added, any link already in a list (a director, a genre) and any comment above the first property are left exactly as they were. Only appears on film or director notes. |
+| **Refresh anime/manga metadata from MAL** | On a TV series note, refreshes its manga side. Otherwise re-fetches whichever side(s) the note has and rewrites only the fields the plugin owns. `watched`, `read`, your body text, any property you added, any link already in a list (a genre, a studio, a mangaka) and any comment above the first property are left exactly as they were. On a mangaka note, refreshes their name, birthday and photo instead. Only appears on anime, manga or mangaka notes. |
+| **Mark as watched today** | Ticks `watched` on the film, TV or anime note you have open and writes today into `watch_date`. A date already there is kept — the day you first saw it. On a TV series it also fills in every season that has aired. Only appears on film, TV and anime notes. Also a **Watched today** button under the poster, and an entry on the note's right-click menu. |
 | **Mark manga as read today** | The manga side of the same thing: `read`, `read_date` and the full chapter count, on every note carrying that manga. Only appears on notes with a manga side. |
-| **Watch one more episode** | `episodes_watched` up by one. The last episode also ticks `watched` and dates it. Only appears on anime notes. Also a **+1 episode** button under the poster. |
+| **Watch one more episode** | `episodes_watched` up by one. On a TV series it counts into the earliest season with something left, and the SEASONS panel has a **+1** for each season on its own. The last episode also ticks `watched` and dates it — on a TV series only once the show has ended. Only appears on TV and anime notes. Also a **+1 episode** button under the poster. |
 | **Read one more chapter** | `chapters_read` up by one, on every note carrying that manga. The last chapter also ticks `read`. Only appears on notes with a manga side. Also a **+1 chapter** button on the MANGA panel. |
-| **Relink directors and genres** | Turn plain names into `[[wikilinks]]` wherever a note by that name now exists. No network calls, so it runs in a second. |
+| **Remove anime** | Takes the anime off a Series note: its own properties and nothing else. The manga side, every property you added and the whole body stay as they are, and a poster no other note uses can be deleted along with it. Only appears on notes with an anime. Also on the note's right-click menu. |
+| **Relink directors and genres** | Turn plain names into `[[wikilinks]]` wherever a note by that name now exists, on film and TV series notes — a show's creators follow the **Link directors** setting. No network calls, so it runs in a second. |
 | **Import from Letterboxd** | Bulk-create notes from a Letterboxd export. See below. |
 | **Import from MyAnimeList** | Bulk-create notes from a public MyAnimeList list, marking what you have completed. See below. |
 
@@ -184,6 +190,7 @@ year: 2011
 end_year: 2014
 poster: "[[Attachments/Hunter x Hunter.jpg]]"
 mal_id: 11061
+watch_start:
 watch_date: 2026-04-02
 watched: true
 ---
@@ -191,7 +198,7 @@ watched: true
 
 Same philosophy as a film note: structured metadata and a poster, nothing else. `watched` is a plain checkbox Film + Anime-Manga Tracker sets once and never touches again — same role as a film's `watched`.
 
-`episodes_watched` and `watch_date` are yours: **Watch one more episode** counts up, **Mark as watched today** fills both in, and a refresh from MyAnimeList never touches either. A note you have not started has neither. The poster carries a small bar showing how far through the episodes you are, with **+1 episode** and **Watched today** under it; both disappear once there is nothing left to mark. All four commands are on the note's own menus too — right-click in the editor, the tab's menu, or the file explorer.
+`episodes_watched` and `watch_date` are yours: **Watch one more episode** counts up, **Mark as watched today** fills both in, and a refresh from MyAnimeList never touches either. `watch_start` — the day you started — is yours alone: the plugin makes room for it and never writes it, since only you know when you began. The poster carries a small bar showing how far through the episodes you are, with **+1 episode** and **Watched today** under it; both disappear once there is nothing left to mark. All four commands are on the note's own menus too — right-click in the editor, the tab's menu, or the file explorer.
 
 `year` and `end_year` are the years it started and finished, as MyAnimeList has them. Something still running has no `end_year`, and neither has anything MyAnimeList never gave an end date. Both are years rather than full dates: MyAnimeList often knows only the year for older works.
 
@@ -230,8 +237,17 @@ The first time you add a film, open the note's properties, click the type icon n
 | Link cast | off | The same wikilink behaviour, for cast. |
 | Add composers | off | Write a `composers` property with the film's original score composer. |
 | Link composers | off | The same wikilink behaviour, for composers. |
-| Show connections | on | Below a film's properties, list other films in your vault that share a director, composer or cast member. |
-| Show filmography | on | Below a director's properties, list their films in your vault, linked directly. |
+| Link creators | on | Write a series' creators as wikilinks when a note by that name exists. A series' own setting, apart from **Link directors**. |
+| Link genres (TV series) | off | The same for a series' genres. |
+| Add cast (TV series) | off | Write a `cast` property with the series' top-billed actors, across every season. |
+| Cast count (TV series) | 5 | How many of them. Only used when its **Add cast** is on. |
+| Link cast (TV series) | off | The same wikilink behaviour, for a series' cast. |
+| Show connections | on | Below a film's or TV series' properties, list other films and series in your vault that share a director, creator, composer or cast member. |
+| Show filmography | on | Below a person's properties, list their films in your vault, linked directly. |
+| Show seasons | on | Below a TV series' properties, list its seasons with a checkbox and a bar for each. |
+| Show TV series | on | Below a person's properties, list the series they created, under the filmography. |
+| TV series folder | `TV` | Where TV series notes are created. Empty means the vault root. |
+| TV series poster folder | empty | Where TV series posters are saved. Empty follows your normal attachment folder setting. |
 | MyAnimeList client ID | empty | Your personal client ID. Required for Add anime / Add manga. On Obsidian 1.11.4 or later, kept in Obsidian's keychain like the TMDB key. |
 | Anime/manga folder | `Anime` | Where notes are created. Shared by both, since a Series note can hold either or both. Empty means the vault root. |
 | Anime/manga poster folder | empty | Where anime and manga posters are saved (as two separate files). Empty follows your normal attachment folder setting. |
@@ -275,15 +291,19 @@ Turn on **Add cast** and **Link cast** and the same thing happens for actors —
 
 ### Connections
 
-Below a film's properties (and poster, if it has one), Film + Anime-Manga Tracker shows other films in your vault that share a director, a composer or a cast member — with the shared name next to each one. This works whether or not **Link cast**/**Link directors**/**Link composers** are on: it compares the names directly, not the links. Genres are deliberately left out — two films both being "Drama" is not a connection.
+Below a film's or a TV series' properties (and poster, if it has one), Film + Anime-Manga Tracker shows other films and series in your vault that share a director, a creator, a composer or a cast member — with the shared name next to each one. A film and a series count as connected when the same person directed one and created the other. This works whether or not **Link cast**/**Link directors**/**Link composers** are on: it compares the names directly, not the links. Genres are deliberately left out — two films both being "Drama" is not a connection.
 
 This panel is rendered, not written to the note — it appears and disappears as your vault changes, and never touches the file.
 
 ### Filmography
 
-A director note gets the same panel, labeled **Filmography** instead: every film in your vault whose `directors` credits that person — matched against `name` and `aliases` (so both the English and native-language spelling work), oldest first, linked directly. Like Connections, it is rendered rather than written to the note, and a note only ever shows one or the other, never both.
+A person note gets the same panel, labeled **Filmography** instead: every film in your vault whose `directors` credits that person — matched against `name` and `aliases` (so both the English and native-language spelling work), oldest first, linked directly. Like Connections, it is rendered rather than written to the note.
 
-The heading also shows what share of those films have `watched` ticked, e.g. "FILMOGRAPHY · 90% watched" — computed from the films already in your vault, not TMDB's full catalog for that director, and equally rendered-only: nothing is written to the director note.
+Under it, **TV series** lists the series in your vault whose `creators` credits them, in a box of its own. Two lists rather than one, because a percentage over both would say nothing: a five-season series and a film are not the same unit.
+
+Each heading shows what share of that list has `watched` ticked, e.g. "FILMOGRAPHY · 90% watched" — computed from what is already in your vault, not TMDB's full catalog for that person, and equally rendered-only: nothing is written to the note.
+
+Every one of these panels can be turned off on its own in settings: **Show connections**, **Show filmography**, **Show TV series** and **Show seasons**.
 
 ### Queries worth keeping
 
@@ -323,6 +343,72 @@ SORT watch_date DESC
 ````
 
 If you use **Bases** (Obsidian 1.9+), point a new base at the `Films` folder and set the card image to the `poster` property to get a poster wall.
+
+## TV series
+
+One note per show. The seasons live in the note, as a line each, and they are the only record of what you have watched: the counts above them are written from the seasons, never the other way round.
+
+```yaml
+---
+title: Breaking Bad
+original_title: Breaking Bad
+aliases:
+  - Breaking Bad
+year: 2008
+end_year: 2013
+creators:
+  - Vince Gilligan
+genres:
+  - Drama
+  - Crime
+networks:
+  - AMC
+status: Ended
+episodes: 62
+episodes_watched: 20
+poster: "[[Breaking Bad (2008).jpg]]"
+tmdb_tv_id: 1396
+watch_start:
+watch_date:
+watched: false
+seasons:
+  - { season: 1, year: 2008, episodes: 7, watched: 7, watch_date: 2026-09-01 }
+  - { season: 2, year: 2009, episodes: 13, watched: 13, watch_date: 2026-09-10 }
+  - { season: 3, year: 2010, episodes: 13, watched: 0 }
+  - { season: 4, year: 2011, episodes: 13, watched: 0 }
+  - { season: 5, year: 2012, episodes: 16, watched: 0 }
+---
+```
+
+- `episodes` counts what has **aired**, not what has been announced: a season listed with episodes still to come only counts the ones that are out.
+- `episodes_watched` is the sum of the seasons, rewritten on every change. Edit the seasons, not this.
+- `seasons` holds one line per season that has at least one episode out. Specials (TMDB's "season 0") are left out. A season name that says more than its number is kept ("Night Country").
+- `watch_start` is left empty and never written to: a series is watched over weeks, and the day you started is yours to fill in. `watch_date` is the day you finished, written when the last episode of a show that has ended goes in — or when you say **Mark as watched today**.
+- `creators`, `genres` and `cast` follow the **TV series** settings, not the film ones: a cast list that is right for a film is often not what you want on a series that ran for years.
+- `tmdb_tv_id` is TMDB's id for the **show**. It is deliberately not `tmdb_id`: TMDB numbers films and shows separately, and the same number is usually both.
+- `watched` is ticked for you only when a show that has **ended** is fully watched. A show still running never ticks itself off, however much of it you have seen — being caught up is not the same as being finished. **Mark as watched today** ticks it whenever you say so.
+
+### The SEASONS panel
+
+Below the properties, each season gets a row: a checkbox that ticks the whole season off (and dates it), a bar showing how far into it you are, and **+1** for one more episode. Unticking a season sets it back to nothing and takes the show's own tick off with it.
+
+Under the poster, the bar reads where you are the way a viewer counts: "S3E6 · 25 / 62 episodes", with **+1 episode** and **Watched today** beside it. **+1 episode** goes into the earliest season with something left, so a show watched in order needs nothing else.
+
+Obsidian has no widget for a list like `seasons`, so the raw property row is hidden on TV notes and the panel is the view of it. The data is untouched, and the note is still an ordinary Markdown file.
+
+A TV note shows **Connections** as well, in its own box under the seasons: other films and series sharing a creator, a composer or a cast member. A show's creators are the same people, on the same notes, as a film's directors — **Add director** writes them, and they show up in that person's [Filmography](#filmography) under **TV series**.
+
+### The manga a series adapts
+
+A TV series note can hold a manga, the same block a Series note holds: open the series, run **Add manga**, and answer **Link to this note**. The manga side keeps everything it has elsewhere — the MANGA panel, the Read checkbox, **+1 chapter**, **Add mangaka**, and a refresh from MyAnimeList — while the episodes go on coming from TMDB, season by season.
+
+That is what makes a long-running anime work well here: TMDB has its seasons in one place, MyAnimeList has its manga, and the note holds both. A note like that shows three boxes under its properties: **SEASONS**, **MANGA**, then **CONNECTIONS**.
+
+**Refresh metadata from TMDB** rewrites the series; **Refresh anime/manga metadata from MAL** rewrites the manga. Neither touches the other's half.
+
+### Anime on TMDB
+
+TMDB lists anime among its TV shows, where a show is every season at once with its cast and crew; MyAnimeList has each season as an entry of its own, with the manga beside it. Every search result says which catalogue it came from, so the choice is between what the two give rather than between two names — and either way the manga can sit on the note (see above). If you add one anyway, and the work is already in your vault as an anime note, you are asked first — and the same question comes up the other way round, adding an anime the vault already has as a TV series. Neither is refused: the two are simply counted separately, from two catalogues that share no ids.
 
 ## Anime and manga
 
@@ -382,7 +468,9 @@ The old manga's poster file stays in your vault unless you say otherwise. When n
 
 One manga can have several anime — a remake (*Hunter x Hunter* 1999 and 2011), a second series, a film — and one anime can adapt more than one manga (*Cowboy Bebop* has two manga of its own). Each pairing gets a Series note of its own, so the same manga, or the same anime, can sit on several notes:
 
-- **Add adaptation** on the MANGA panel pairs that note's manga with another anime in one step. Pick the anime and the plugin keeps it on a single note where it can: the anime's existing anime-only note gets the manga. Failing that, a manga-only note takes the anime in, and otherwise the pairing gets a new Series note.
+What happens to one of those notes happens to them all: reading a chapter, and watching an episode, are counted once and written to every note carrying that manga or that anime. **Add adaptation** pairs the work with the note it was run from, the same note **Add anime** and **Add manga** offer.
+
+- **Add adaptation** on the MANGA panel pairs that note's manga with another anime in one step. The pairing goes on the note you ran it from when that note can take an anime; a note that already has one hands it to the anime's own anime-only note, or to a new Series note when there is none.
 - The long way works too: with an anime-only note open, **Add manga** links a manga into it even when that manga is already on another note (and **Add anime** the same way into a manga-only note). The **Link to this note?** dialog tells you where else it already is.
 - A work arriving on another note comes in step with the notes it's already on: the same poster file (never a second download), a manga already **Read** elsewhere arrives read, an anime already `watched` elsewhere arrives watched. From then on, **Read** is kept in step across every note carrying that manga; `watched` is an ordinary property of each note, yours to tick.
 - A pairing only ever has one note: asking for the same anime and manga together again opens the note that already pairs them.

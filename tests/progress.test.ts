@@ -241,6 +241,44 @@ describe("one more episode or chapter", () => {
 		expect(Notice.shown).toContain("Episode 1 watched.");
 	});
 
+	/**
+	 * One anime can sit on a note per manga it adapts — one for each part of a
+	 * long series — and watching an episode of it is watching that episode,
+	 * whichever of those notes is on screen.
+	 */
+	it("writes an episode to every note carrying the anime", async () => {
+		const vault = new FakeApp({
+			"Anime/Part 1.md": applyMangaBlock(buildAnimeNoteContent({ ...hxh, episodes: 2 }, null), berserk, null, () => false),
+			"Anime/Part 2.md": buildAnimeNoteContent({ ...hxh, episodes: 2 }, null),
+		});
+		const anime = animeActions(vault);
+
+		await anime.watchOneMoreEpisode(vault.file("Anime/Part 1.md"));
+		for (const path of ["Anime/Part 1.md", "Anime/Part 2.md"]) {
+			expect(vault.frontmatter(path)).toMatchObject({ episodes_watched: 1, watched: false });
+		}
+
+		// Finishing it finishes it everywhere, with the same date.
+		await anime.watchOneMoreEpisode(vault.file("Anime/Part 2.md"));
+		for (const path of ["Anime/Part 1.md", "Anime/Part 2.md"]) {
+			expect(vault.frontmatter(path)).toMatchObject({ episodes_watched: 2, watched: true, watch_date: TODAY });
+		}
+		// The manga on the first note is untouched by any of it.
+		expect(vault.frontmatter("Anime/Part 1.md").manga).toMatchObject({ read: false });
+	});
+
+	it("marks every note carrying the anime watched today", async () => {
+		const vault = new FakeApp({
+			"Anime/Part 1.md": buildAnimeNoteContent(hxh, null),
+			"Anime/Part 2.md": buildAnimeNoteContent(hxh, null),
+		});
+		await animeActions(vault).markWatchedToday(vault.file("Anime/Part 1.md"));
+
+		for (const path of ["Anime/Part 1.md", "Anime/Part 2.md"]) {
+			expect(vault.frontmatter(path)).toMatchObject({ watched: true, watch_date: TODAY });
+		}
+	});
+
 	it("writes a chapter to every note carrying the manga", async () => {
 		const vault = new FakeApp({
 			"Anime/Berserk (1997).md": applyMangaBlock(buildAnimeNoteContent(hxh, null), berserk, null, () => false),

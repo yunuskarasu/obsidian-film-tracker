@@ -12,6 +12,7 @@ import {
 	type PersonSearchResult,
 	type TmdbClient,
 } from "./tmdb";
+import type { TvSearchResult } from "./tmdb-tv";
 
 const DEBOUNCE_MS = 300;
 const MIN_QUERY_LENGTH = 2;
@@ -105,6 +106,17 @@ function yearText(year: number | null): string | null {
 	return year === null ? null : String(year);
 }
 
+/**
+ * Where a result comes from, said outright at the start of its line. The two
+ * catalogues hold different things — a MyAnimeList entry is one season with
+ * its manga, a TMDB show is every season with its cast — so a result that
+ * exists in both is a real choice, and hiding which is which would only make
+ * it harder.
+ */
+function source(name: "TMDB" | "MAL", ...rest: (string | null)[]): (string | null)[] {
+	return [name, ...rest];
+}
+
 export function openFilmSearch(app: App, client: TmdbClient, onPick: (film: FilmSearchResult) => void): void {
 	new ApiSearchModal(
 		app,
@@ -116,8 +128,39 @@ export function openFilmSearch(app: App, client: TmdbClient, onPick: (film: Film
 				renderRow(
 					el,
 					film.title,
-					[yearText(film.year)],
+					source("TMDB", "Film", yearText(film.year)),
 					film.originalTitle !== film.title ? film.originalTitle : undefined,
+				),
+			service: "TMDB",
+		},
+		onPick,
+	).open();
+}
+
+/**
+ * TMDB lists anime among its TV shows as well, where a show is every season
+ * at once with its cast and crew; MyAnimeList has each season as an entry of
+ * its own, with the manga beside it. A result that exists both ways says so,
+ * so the choice is between what the two give rather than between two names.
+ */
+export function openTvSearch(app: App, client: TmdbClient, onPick: (show: TvSearchResult) => void): void {
+	new ApiSearchModal(
+		app,
+		{
+			placeholder: "Search for a TV series…",
+			emptyText: "No TV series found.",
+			search: (query) => client.searchTv(query),
+			render: (show, el) =>
+				renderRow(
+					el,
+					show.title,
+					source(
+						"TMDB",
+						"TV series",
+						yearText(show.year),
+						show.looksLikeAnime ? "anime — Add anime has it season by season, with its manga" : "seasons, cast and crew",
+					),
+					show.originalTitle !== show.title ? show.originalTitle : undefined,
 				),
 			service: "TMDB",
 		},
@@ -136,7 +179,7 @@ export function openDirectorSearch(
 			placeholder: "Search for a director…",
 			emptyText: "No people found.",
 			search: (query) => client.searchPerson(query),
-			render: (person, el) => renderRow(el, person.name, [person.department]),
+			render: (person, el) => renderRow(el, person.name, source("TMDB", person.department)),
 			service: "TMDB",
 		},
 		onPick,
@@ -156,7 +199,11 @@ export function openAnimeSearch(
 			emptyText: "No anime found.",
 			search: (query) => client.search(query),
 			render: (anime, el) =>
-				renderRow(el, anime.title, [formatMediaType(anime.mediaType), yearText(anime.year)]),
+				renderRow(
+					el,
+					anime.title,
+					source("MAL", "Anime", formatMediaType(anime.mediaType), yearText(anime.year), "episode by episode"),
+				),
 			service: "MyAnimeList",
 		},
 		onPick,
@@ -180,7 +227,7 @@ export function openMangaSearch(
 			emptyText: "No manga found.",
 			search: (query) => client.searchManga(query),
 			render: (manga, el) =>
-				renderRow(el, manga.title, [formatMediaType(manga.mediaType), yearText(manga.year)]),
+				renderRow(el, manga.title, source("MAL", formatMediaType(manga.mediaType), yearText(manga.year))),
 			service: "MyAnimeList",
 		},
 		onPick,

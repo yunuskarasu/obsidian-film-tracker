@@ -1,11 +1,11 @@
 import { MarkdownView, setIcon, type App, type TFile } from "obsidian";
 import { animeProgressOf } from "./anime-note";
-import { findConnections, type Connection, type FilmNoteInfo } from "./connections";
+import { findConnections, type Connection, type WorkNoteInfo } from "./connections";
 import {
 	filmographyProgress,
 	findFilmography,
 	type FilmographyEntry,
-	type FilmographyFilm,
+	type FilmographyWork,
 } from "./filmography";
 import {
 	findMangagraphy,
@@ -16,6 +16,8 @@ import {
 import { formatMediaType, formatStatus } from "./mal";
 import { parseLinkTarget, parseWikilink } from "./note";
 import { classifyNote } from "./note-kind";
+import type { FilmTrackerSettings } from "./settings";
+import { tvProgressOf, type TvSeasonEntry } from "./tv-note";
 
 const POSTER_CLASS = "film-tracker-poster";
 const LAYOUT_CLASS = "film-tracker-layout";
@@ -31,14 +33,33 @@ const MAX_CONNECTIONS = 20;
  */
 const MANGA_HOST_CLASS = "film-tracker-has-manga";
 const PROGRESS_CLASS = "film-tracker-progress";
+/**
+ * The same idea as `MANGA_HOST_CLASS` for a TV note's `seasons` block: a list
+ * of objects has no widget of its own either, and the SEASONS panel below is
+ * the readable view of it.
+ */
+const SEASONS_HOST_CLASS = "film-tracker-has-seasons";
 
 interface Poster {
 	file: TFile;
 	alt: string;
 }
 
-/** A film note as the Connections and Filmography panels read it. */
-type ScannedFilm = FilmNoteInfo & FilmographyFilm;
+/** A film or TV series note as the Connections, Filmography and TV series panels read it. */
+type ScannedWork = WorkNoteInfo & FilmographyWork & { kind: "film" | "tv" };
+
+/**
+ * The panels a note can have, in the order they are drawn. A TV note can have
+ * three of them — its seasons, its manga, then what it shares with the rest
+ * of the vault — and a person note two, their films and their series, so each
+ * keeps a box of its own. `main` is the single box every other note has.
+ */
+const PANEL_SLOTS = ["seasons", "manga", "main", "shows"] as const;
+type PanelSlot = (typeof PANEL_SLOTS)[number];
+
+function panelClass(slot: PanelSlot): string {
+	return `film-tracker-panel-${slot}`;
+}
 
 /**
  * The vault's films and manga, read once per `refresh` and shared by every
@@ -47,28 +68,33 @@ type ScannedFilm = FilmNoteInfo & FilmographyFilm;
  */
 class VaultScan {
 	private readonly read: {
-		film: (file: TFile) => ScannedFilm | null;
+		work: (file: TFile) => ScannedWork | null;
 		manga: (file: TFile) => MangagraphyManga | null;
 	};
 	private readonly files: () => TFile[];
-	private filmList: ScannedFilm[] | null = null;
+	private workList: ScannedWork[] | null = null;
 	private mangaList: MangagraphyManga[] | null = null;
 
 	constructor(
 		files: () => TFile[],
-		read: { film: (file: TFile) => ScannedFilm | null; manga: (file: TFile) => MangagraphyManga | null },
+		read: { work: (file: TFile) => ScannedWork | null; manga: (file: TFile) => MangagraphyManga | null },
 	) {
 		this.files = files;
 		this.read = read;
 	}
 
-	films(): ScannedFilm[] {
-		if (this.filmList === null) {
-			this.filmList = this.files()
-				.map(this.read.film)
-				.filter((film): film is ScannedFilm => film !== null);
+	/** Films and TV series together: Connections compares them against each other. */
+	works(): ScannedWork[] {
+		if (this.workList === null) {
+			this.workList = this.files()
+				.map(this.read.work)
+				.filter((work): work is ScannedWork => work !== null);
 		}
-		return this.filmList;
+		return this.workList;
+	}
+
+	worksOfKind(kind: "film" | "tv"): ScannedWork[] {
+		return this.works().filter((work) => work.kind === kind);
 	}
 
 	mangas(): MangagraphyManga[] {
@@ -82,10 +108,11 @@ class VaultScan {
 }
 
 /**
- * What the MANGA panel's controls do. The panel only renders them and
- * reports the click — every note is rewritten by `main.ts`, which owns MAL
- * access and every write to the vault. That includes the Read checkbox: the
- * same manga can sit on several Series notes, and `setRead` updates them all.
+ * What the panels' and the poster's own controls do. A panel only renders
+ * them and reports the click — every note is rewritten by `main.ts`, which
+ * owns API access and every write to the vault. That includes the Read
+ * checkbox: the same manga can sit on several Series notes, and `setRead`
+ * updates them all.
  */
 export interface MangaPanelActions {
 	change: (file: TFile) => void;
@@ -94,9 +121,13 @@ export interface MangaPanelActions {
 	setRead: (file: TFile, read: boolean) => void;
 	/** "+1 chapter" beside the Read checkbox — the same command the palette offers. */
 	readChapter: (file: TFile) => void;
-	/** The buttons under an anime or film note's poster. */
+	/** The buttons under an anime, film or TV note's poster. */
 	watchEpisode: (file: TFile) => void;
 	watchedToday: (file: TFile) => void;
+	/** "+1" on one season of a TV note, on the SEASONS panel. */
+	watchSeason: (file: TFile, season: number) => void;
+	/** That panel's own checkbox: a season watched in full, or back to nothing. */
+	setSeasonWatched: (file: TFile, season: number, watched: boolean) => void;
 }
 
 /**
@@ -119,6 +150,16 @@ export function watchControlsFor(frontmatter: Record<string, unknown> | undefine
 	if (kind.kind === "film") {
 		return { label: null, percent: null, canWatchEpisode: false, canMarkWatched: !watched };
 	}
+	if (kind.kind === "tv") {
+		const progress = tvProgressOf(frontmatter);
+		const count = progressLabel(progress.watched, progress.episodes, "episode");
+		return {
+			label: count === null ? null : [seasonAndEpisode(progress.position), count].filter((part) => part !== null).join(" · "),
+			percent: progressPercent(progress.watched, progress.episodes),
+			canWatchEpisode: progress.more,
+			canMarkWatched: !watched,
+		};
+	}
 	if (kind.kind !== "series" || kind.animeMalId === null) return null;
 
 	const progress = animeProgressOf(frontmatter);
@@ -129,6 +170,30 @@ export function watchControlsFor(frontmatter: Record<string, unknown> | undefine
 		canWatchEpisode: !complete,
 		canMarkWatched: !watched,
 	};
+}
+
+/**
+ * The poster a note's own properties point at, or `null` for a note this
+ * plugin doesn't own. Which notes those are is `classifyNote`'s answer and
+ * nothing else: reading the id keys here meant a TV note — which carries
+ * neither `tmdb_id` nor `mal_id` — never showed its poster at all.
+ */
+export function posterLinkpathOf(frontmatter: Record<string, unknown> | undefined): string | null {
+	if (classifyNote(frontmatter) === null) return null;
+	return parseLinkTarget(frontmatter?.poster);
+}
+
+/** Where a TV note stands, in the form a viewer counts in: "S3E6". */
+export function seasonAndEpisode(position: { season: number; episode: number } | null): string | null {
+	return position === null ? null : `S${position.season}E${position.episode}`;
+}
+
+/** A season's own line in the SEASONS panel: "Season 4 · Night Country · 2024 · 6 episodes". */
+export function seasonSummary(season: TvSeasonEntry): string {
+	const count = `${season.episodes} ${season.episodes === 1 ? "episode" : "episodes"}`;
+	return [`Season ${season.season}`, season.name, season.year === null ? null : String(season.year), count]
+		.filter((part): part is string => part !== null)
+		.join(" · ");
 }
 
 interface MangaPanelInfo {
@@ -225,36 +290,21 @@ function extractNames(value: unknown): string[] {
  */
 export class FilmNoteLayout {
 	private readonly app: App;
-	private showConnections: boolean;
-	private showFilmography: boolean;
+	private readonly settings: () => FilmTrackerSettings;
 	private readonly mangaActions: MangaPanelActions;
 	/** Set once the plugin unloads: a refresh still scheduled after that must not draw anything back. */
 	private disposed = false;
 
-	constructor(
-		app: App,
-		showConnections: boolean,
-		showFilmography: boolean,
-		mangaActions: MangaPanelActions,
-	) {
+	constructor(app: App, settings: () => FilmTrackerSettings, mangaActions: MangaPanelActions) {
 		this.app = app;
-		this.showConnections = showConnections;
-		this.showFilmography = showFilmography;
+		this.settings = settings;
 		this.mangaActions = mangaActions;
-	}
-
-	setShowConnections(value: boolean): void {
-		this.showConnections = value;
-	}
-
-	setShowFilmography(value: boolean): void {
-		this.showFilmography = value;
 	}
 
 	refresh(): void {
 		if (this.disposed) return;
 		const scan = new VaultScan(() => this.app.vault.getMarkdownFiles(), {
-			film: (file) => this.resolveFilmInfo(file),
+			work: (file) => this.resolveWorkInfo(file),
 			manga: (file) => this.mangagraphyMangaInfo(file),
 		});
 		for (const leaf of this.app.workspace.getLeavesOfType("markdown")) {
@@ -277,6 +327,7 @@ export class FilmNoteLayout {
 			root.querySelectorAll(`.${POSTER_CLASS}, .${CONNECTIONS_CLASS}`).forEach((el) => el.detach());
 			root.querySelectorAll(`.${LAYOUT_CLASS}`).forEach((el) => el.removeClass(LAYOUT_CLASS));
 			root.querySelectorAll(`.${MANGA_HOST_CLASS}`).forEach((el) => el.removeClass(MANGA_HOST_CLASS));
+			root.querySelectorAll(`.${SEASONS_HOST_CLASS}`).forEach((el) => el.removeClass(SEASONS_HOST_CLASS));
 		}
 	}
 
@@ -293,6 +344,37 @@ export class FilmNoteLayout {
 		}
 
 		this.applyRelatedPanel(view, host, scan);
+		view.contentEl.dataset.filmTrackerDrawn = String(this.drawnIn(view));
+	}
+
+	/** How many of this plugin's own elements the view holds right now. */
+	private drawnIn(view: MarkdownView): number {
+		return view.contentEl.querySelectorAll(`.${POSTER_CLASS}, .${CONNECTIONS_CLASS}`).length;
+	}
+
+	/**
+	 * Draws again if something drawn before has since been taken out of the
+	 * page. Reading view builds and discards the note as it is scrolled, and
+	 * the poster and the panels are inserted beside its header rather than
+	 * being part of it — scrolling to the bottom of a long note dropped them,
+	 * and scrolling back only brought Obsidian's own part of it back.
+	 *
+	 * The check is a count of elements, so it costs nothing on the scroll
+	 * events that find everything in place; only a real loss reads the vault.
+	 */
+	redrawIfMissing(): void {
+		if (this.disposed) return;
+
+		for (const leaf of this.app.workspace.getLeavesOfType("markdown")) {
+			const view = leaf.view;
+			if (!(view instanceof MarkdownView)) continue;
+
+			const drawn = Number(view.contentEl.dataset.filmTrackerDrawn ?? "0");
+			if (drawn > 0 && this.drawnIn(view) < drawn) {
+				this.refresh();
+				return;
+			}
+		}
 	}
 
 	/**
@@ -378,53 +460,71 @@ export class FilmNoteLayout {
 		if (anchor === null) return;
 
 		const file = view.file;
-		if (file !== null) {
-			const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
-			const manga = frontmatter === undefined ? null : this.resolveMangaInfo(frontmatter);
-			if (manga !== null) {
-				host?.addClass(MANGA_HOST_CLASS);
-				this.applyMangaPanel(anchor, file, manga);
-				return;
-			}
+		if (file === null) {
 			host?.removeClass(MANGA_HOST_CLASS);
-
-			const mangaka = frontmatter === undefined ? null : this.resolveMangakaInfo(frontmatter);
-			if (mangaka !== null) {
-				this.applyMangagraphy(anchor, file, mangaka, scan);
-				return;
-			}
-
-			if (frontmatter?.mal_id !== undefined) {
-				// Anime-only notes have no Connections/Filmography panel.
-				this.detachPanel(anchor);
-				return;
-			}
-			const director = frontmatter === undefined ? null : this.resolveDirectorInfo(frontmatter);
-			if (director !== null) {
-				this.applyFilmography(anchor, file, director, scan);
-				return;
-			}
-		} else {
-			host?.removeClass(MANGA_HOST_CLASS);
+			host?.removeClass(SEASONS_HOST_CLASS);
+			this.detachPanelsExcept(anchor, []);
+			return;
 		}
 
+		const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
+		const manga = frontmatter === undefined ? null : this.resolveMangaInfo(frontmatter);
+		const kind = classifyNote(frontmatter);
+		host?.toggleClass(MANGA_HOST_CLASS, manga !== null);
+		host?.toggleClass(SEASONS_HOST_CLASS, kind?.kind === "tv");
+
+		if (kind?.kind === "tv") {
+			// A TV note can have all three: its seasons, the manga it adapts,
+			// and what it shares with the rest of the vault. Each keeps its own
+			// box, in that order.
+			this.detachPanelsExcept(anchor, ["seasons", "manga", "main"]);
+			this.applySeasonsPanel(anchor, file, frontmatter ?? {});
+			if (manga !== null) this.applyMangaPanel(anchor, file, manga);
+			else this.panelOf(anchor, "manga")?.detach();
+			this.applyConnections(anchor, view, scan);
+			return;
+		}
+
+		if (manga !== null) {
+			this.detachPanelsExcept(anchor, ["manga"]);
+			this.applyMangaPanel(anchor, file, manga);
+			return;
+		}
+
+		const mangaka = frontmatter === undefined ? null : this.resolveMangakaInfo(frontmatter);
+		if (mangaka !== null) {
+			this.detachPanelsExcept(anchor, ["main"]);
+			this.applyMangagraphy(anchor, file, mangaka, scan);
+			return;
+		}
+
+		if (frontmatter?.mal_id !== undefined) {
+			// Anime-only notes have none of these panels.
+			this.detachPanelsExcept(anchor, []);
+			return;
+		}
+
+		const person = frontmatter === undefined ? null : this.resolveDirectorInfo(frontmatter);
+		if (person !== null) {
+			// Their films, then the series they created, each in its own box.
+			this.detachPanelsExcept(anchor, ["main", "shows"]);
+			this.applyFilmography(anchor, file, person, scan);
+			return;
+		}
+
+		this.detachPanelsExcept(anchor, ["main"]);
 		this.applyConnections(anchor, view, scan);
 	}
 
 	private applyConnections(anchor: HTMLElement, view: MarkdownView, scan: VaultScan): void {
-		if (!this.showConnections) {
-			this.detachPanel(anchor);
-			return;
-		}
-
-		const found = this.connectionsFor(view.file, scan);
+		const found = this.settings().showConnections ? this.connectionsFor(view.file, scan) : null;
 
 		if (found === null || found.connections.length === 0) {
-			this.detachPanel(anchor);
+			this.panelOf(anchor, "main")?.detach();
 			return;
 		}
 
-		this.renderConnections(this.ensurePanel(anchor), found.connections, found.sourcePath);
+		this.renderConnections(this.ensurePanel(anchor, "main"), found.connections, found.sourcePath);
 	}
 
 	/** Reads the `manga` nested block straight from parsed frontmatter — no raw-text parsing needed for rendering. */
@@ -453,7 +553,7 @@ export class FilmNoteLayout {
 	}
 
 	private applyMangaPanel(anchor: HTMLElement, file: TFile, info: MangaPanelInfo): void {
-		const panel = this.ensurePanel(anchor);
+		const panel = this.ensurePanel(anchor, "manga");
 		// What the panel shows also depends on which links resolve right now:
 		// the poster, and a mangaka whose note has just been created.
 		const posterPath = this.resolveLinkedFile(info.posterLinkpath, file.path)?.path ?? null;
@@ -522,6 +622,66 @@ export class FilmNoteLayout {
 		this.renderMangaAction(actions, "Remove manga", () => this.mangaActions.remove(file));
 	}
 
+	/**
+	 * The SEASONS panel: one row per season, with how much of it has been
+	 * watched, a checkbox that ticks the whole season off and a "+1". The
+	 * seasons are where a TV note keeps what was watched, so this is the
+	 * panel that writes it — the bar under the poster only reads them.
+	 */
+	private applySeasonsPanel(anchor: HTMLElement, file: TFile, frontmatter: Record<string, unknown>): void {
+		const progress = tvProgressOf(frontmatter);
+		if (!this.settings().showSeasons || progress.seasons.length === 0) {
+			this.panelOf(anchor, "seasons")?.detach();
+			return;
+		}
+
+		const panel = this.ensurePanel(anchor, "seasons");
+		if (this.unchanged(panel, JSON.stringify(["seasons", file.path, progress]))) return;
+
+		const wasCollapsed = panel.hasClass("is-collapsed");
+		panel.empty();
+		panel.toggleClass("is-collapsed", wasCollapsed);
+		this.renderPanelHeading(
+			panel,
+			"SEASONS",
+			progressLabel(progress.watched, progress.episodes, "episode") ?? undefined,
+		);
+
+		const list = panel.createDiv({ cls: "film-tracker-connections-list film-tracker-seasons" });
+		for (const season of progress.seasons) {
+			this.renderSeasonRow(list, file, season);
+		}
+	}
+
+	private renderSeasonRow(list: HTMLElement, file: TFile, season: TvSeasonEntry): void {
+		const complete = season.watched >= season.episodes;
+		const row = list.createDiv({ cls: "film-tracker-season" });
+
+		const toggle = row.createEl("label", { cls: "film-tracker-manga-read film-tracker-season-tick" });
+		const checkbox = toggle.createEl("input", { attr: { type: "checkbox" } });
+		checkbox.checked = complete;
+		checkbox.addEventListener("change", () => {
+			this.mangaActions.setSeasonWatched(file, season.season, checkbox.checked);
+		});
+
+		const details = row.createDiv({ cls: "film-tracker-season-details" });
+		details.createDiv({ cls: "film-tracker-season-title", text: seasonSummary(season) });
+		const label = progressLabel(season.watched, season.episodes, "episode");
+		if (label !== null) {
+			renderProgressBar(
+				details.createDiv({ cls: PROGRESS_CLASS }),
+				complete && season.watchDate !== null ? `${label} · ${season.watchDate}` : label,
+				progressPercent(season.watched, season.episodes),
+			);
+		}
+
+		if (!complete) {
+			this.renderMangaAction(row.createDiv({ cls: "film-tracker-season-actions" }), "+1", () =>
+				this.mangaActions.watchSeason(file, season.season),
+			);
+		}
+	}
+
 	private renderMangaAction(container: HTMLElement, label: string, onClick: () => void): void {
 		const button = container.createEl("button", {
 			cls: "film-tracker-manga-action",
@@ -557,24 +717,40 @@ export class FilmNoteLayout {
 		return this.app.metadataCache.getFirstLinkpathDest(linkpath, sourcePath);
 	}
 
+	/**
+	 * A person note's own works: the films they directed, and under them the
+	 * TV series they created. Two lists rather than one, since a percentage
+	 * over both would say nothing — a five-season series and a film are not
+	 * the same unit.
+	 */
 	private applyFilmography(
 		anchor: HTMLElement,
 		file: TFile,
-		director: { names: Set<string> },
+		person: { names: Set<string> },
 		scan: VaultScan,
 	): void {
-		if (!this.showFilmography) {
-			this.detachPanel(anchor);
+		const settings = this.settings();
+		this.applyWorkList(anchor, "main", "FILMOGRAPHY", settings.showFilmography, person, file, scan, "film");
+		this.applyWorkList(anchor, "shows", "TV SERIES", settings.showTvSeries, person, file, scan, "tv");
+	}
+
+	private applyWorkList(
+		anchor: HTMLElement,
+		slot: PanelSlot,
+		heading: string,
+		shown: boolean,
+		person: { names: Set<string> },
+		file: TFile,
+		scan: VaultScan,
+		kind: "film" | "tv",
+	): void {
+		const works = shown ? findFilmography(person.names, scan.worksOfKind(kind)) : [];
+		if (works.length === 0) {
+			this.panelOf(anchor, slot)?.detach();
 			return;
 		}
 
-		const films = findFilmography(director.names, scan.films());
-		if (films.length === 0) {
-			this.detachPanel(anchor);
-			return;
-		}
-
-		this.renderFilmography(this.ensurePanel(anchor), films, file.path);
+		this.renderFilmography(this.ensurePanel(anchor, slot), heading, works, file.path);
 	}
 
 	/**
@@ -591,23 +767,39 @@ export class FilmNoteLayout {
 	): void {
 		const mangas = findMangagraphy(mangaka.names, scan.mangas());
 		if (mangas.length === 0) {
-			this.detachPanel(anchor);
+			this.panelOf(anchor, "main")?.detach();
 			return;
 		}
 
-		this.renderMangagraphy(this.ensurePanel(anchor), mangas, file.path);
+		this.renderMangagraphy(this.ensurePanel(anchor, "main"), mangas, file.path);
 	}
 
-	private detachPanel(anchor: HTMLElement): void {
-		anchor.parentElement?.querySelector(`:scope > .${CONNECTIONS_CLASS}`)?.detach();
+	/** Takes away every panel this note doesn't have, so nothing is left behind from the last one. */
+	private detachPanelsExcept(anchor: HTMLElement, kept: PanelSlot[]): void {
+		for (const slot of PANEL_SLOTS) {
+			if (!kept.includes(slot)) this.panelOf(anchor, slot)?.detach();
+		}
 	}
 
-	private ensurePanel(anchor: HTMLElement): HTMLElement {
-		const existing = anchor.parentElement?.querySelector(`:scope > .${CONNECTIONS_CLASS}`);
-		if (existing instanceof HTMLElement) return existing;
+	private panelOf(anchor: HTMLElement, slot: PanelSlot): HTMLElement | null {
+		const found = anchor.parentElement?.querySelector(`:scope > .${panelClass(slot)}`);
+		return found instanceof HTMLElement ? found : null;
+	}
 
-		const panel = createDiv({ cls: CONNECTIONS_CLASS });
-		anchor.insertAdjacentElement("afterend", panel);
+	/**
+	 * The box for one slot, created where its order says: after the last panel
+	 * that comes before it, or right after the properties when it is the first.
+	 */
+	private ensurePanel(anchor: HTMLElement, slot: PanelSlot): HTMLElement {
+		const existing = this.panelOf(anchor, slot);
+		if (existing !== null) return existing;
+
+		const panel = createDiv({ cls: `${CONNECTIONS_CLASS} ${panelClass(slot)}` });
+		let after: HTMLElement = anchor;
+		for (const before of PANEL_SLOTS.slice(0, PANEL_SLOTS.indexOf(slot))) {
+			after = this.panelOf(anchor, before) ?? after;
+		}
+		after.insertAdjacentElement("afterend", panel);
 		return panel;
 	}
 
@@ -616,9 +808,9 @@ export class FilmNoteLayout {
 		scan: VaultScan,
 	): { connections: Connection[]; sourcePath: string } | null {
 		if (file === null) return null;
-		const current = this.resolveFilmInfo(file);
+		const current = this.resolveWorkInfo(file);
 		if (current === null) return null;
-		const others = scan.films().filter((film) => film.path !== file.path);
+		const others = scan.works().filter((work) => work.path !== file.path);
 		return { connections: findConnections(current, others).slice(0, MAX_CONNECTIONS), sourcePath: file.path };
 	}
 
@@ -672,7 +864,7 @@ export class FilmNoteLayout {
 			title: typeof title === "string" && title !== "" ? title : file.basename,
 			year: typeof year === "number" ? year : null,
 			read: block.read === true,
-			hasAnime: typeof frontmatter?.mal_id === "number",
+			adapted: typeof frontmatter?.mal_id === "number" || typeof frontmatter?.tmdb_tv_id === "number",
 			mangaka: extractNames(block.mangaka),
 		};
 	}
@@ -687,19 +879,29 @@ export class FilmNoteLayout {
 		return anchor instanceof HTMLElement ? anchor : null;
 	}
 
-	private resolveFilmInfo(file: TFile): ScannedFilm | null {
+	/**
+	 * A film or TV series note, read once for every panel that compares works.
+	 * `credits` is who made it — a film's directors, a series' creators — which
+	 * is what a person note's own lists match against.
+	 */
+	private resolveWorkInfo(file: TFile): ScannedWork | null {
 		const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
-		const tmdbId: unknown = frontmatter?.tmdb_id;
-		if (frontmatter === undefined || tmdbId === undefined || tmdbId === null) return null;
+		const kind = classifyNote(frontmatter)?.kind;
+		if (frontmatter === undefined || (kind !== "film" && kind !== "tv")) return null;
 
 		const title: unknown = frontmatter.title;
 		const year: unknown = frontmatter.year;
+		const directors = extractNames(frontmatter.directors);
+		const creators = extractNames(frontmatter.creators);
 		return {
+			kind,
 			path: file.path,
 			title: typeof title === "string" && title !== "" ? title : file.basename,
 			year: typeof year === "number" ? year : null,
 			watched: frontmatter.watched === true,
-			directors: extractNames(frontmatter.directors),
+			directors,
+			creators,
+			credits: kind === "film" ? directors : creators,
 			cast: extractNames(frontmatter.cast),
 			composers: extractNames(frontmatter.composers),
 		};
@@ -769,20 +971,17 @@ export class FilmNoteLayout {
 
 	private renderFilmography(
 		panel: HTMLElement,
+		heading: string,
 		films: FilmographyEntry[],
 		sourcePath: string,
 	): void {
-		if (this.unchanged(panel, JSON.stringify(["filmography", sourcePath, films]))) return;
+		if (this.unchanged(panel, JSON.stringify([heading, sourcePath, films]))) return;
 
 		const wasCollapsed = panel.hasClass("is-collapsed");
 		panel.empty();
 		panel.toggleClass("is-collapsed", wasCollapsed);
 		const progress = filmographyProgress(films);
-		this.renderPanelHeading(
-			panel,
-			"FILMOGRAPHY",
-			progress === null ? undefined : `${progress}% watched`,
-		);
+		this.renderPanelHeading(panel, heading, progress === null ? undefined : `${progress}% watched`);
 
 		const list = panel.createEl("ul", { cls: "film-tracker-connections-list" });
 		for (const film of films) {
@@ -876,13 +1075,7 @@ export class FilmNoteLayout {
 		const frontmatter = this.app.metadataCache.getFileCache(file)?.frontmatter;
 		if (frontmatter === undefined) return null;
 
-		const tmdbId: unknown = frontmatter.tmdb_id;
-		const malId: unknown = frontmatter.mal_id;
-		if ((tmdbId === undefined || tmdbId === null) && (malId === undefined || malId === null)) {
-			return null;
-		}
-
-		const linkpath = parseLinkTarget(frontmatter.poster);
+		const linkpath = posterLinkpathOf(frontmatter);
 		if (linkpath === null) return null;
 
 		const target = this.app.metadataCache.getFirstLinkpathDest(linkpath, file.path);

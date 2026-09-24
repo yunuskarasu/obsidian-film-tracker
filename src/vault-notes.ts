@@ -64,10 +64,14 @@ export class VaultNotes {
 		return classifyNote(this.frontmatterOf(file));
 	}
 
-	/** The MAL id of a Series note's manga side — what Add mangaka reads the authors from. */
-	seriesMangaIdOf(file: TFile): number | null {
+	/**
+	 * The MAL id of a note's manga side — what Add mangaka reads the authors
+	 * from, and what the Read commands write across. A TV series note can
+	 * carry one as well as a Series note can.
+	 */
+	mangaIdOf(file: TFile): number | null {
 		const note = this.kindOf(file);
-		return note?.kind === "series" ? note.mangaMalId : null;
+		return note?.kind === "series" || note?.kind === "tv" ? note.mangaMalId : null;
 	}
 
 	frontmatterOf(file: TFile): Record<string, unknown> | undefined {
@@ -157,14 +161,46 @@ export class VaultNotes {
 	}
 
 	/**
+	 * The anime poster on `file` when nothing else uses it — what Remove
+	 * anime offers to delete. Anything else means another note links or
+	 * embeds it or has it as a poster, or `file` uses it anywhere but its
+	 * own `poster` — the manga side included.
+	 */
+	unusedAnimePoster(file: TFile): TFile | null {
+		return this.unusedPoster(file, topLevelPoster, mangaPoster, (link) => link.key !== "poster");
+	}
+
+	/**
 	 * The manga poster on `file` when nothing else uses it — what Remove
 	 * manga and Change manga offer to delete. Anything else means another
 	 * note links or embeds it, has it as a poster (another adaptation sharing
 	 * the file, say), or `file` uses it outside its `manga` block.
 	 */
 	unusedMangaPoster(file: TFile): TFile | null {
-		const image = this.posterFile(file, mangaPoster);
+		return this.unusedPoster(
+			file,
+			mangaPoster,
+			topLevelPoster,
+			(link) => link.key !== "manga" && !link.key.startsWith("manga."),
+		);
+	}
+
+	/**
+	 * The image `poster` points at, when nothing else in the vault — and
+	 * nothing else in this note — points at it too. `otherPoster` is the
+	 * note's other side, which may well share the image; `ownLinkIsElsewhere`
+	 * says which of this note's own frontmatter links count as another use:
+	 * the property being removed is not one of them.
+	 */
+	private unusedPoster(
+		file: TFile,
+		poster: (frontmatter: Record<string, unknown>) => unknown,
+		otherPoster: (frontmatter: Record<string, unknown>) => unknown,
+		ownLinkIsElsewhere: (link: { key: string }) => boolean,
+	): TFile | null {
+		const image = this.posterFile(file, poster);
 		if (image === null) return null;
+		if (this.posterFile(file, otherPoster)?.path === image.path) return null;
 		const { metadataCache } = this.app;
 		const isImage = (candidate: TFile | null) => candidate?.path === image.path;
 
@@ -182,12 +218,11 @@ export class VaultNotes {
 		const ownLinks = [
 			...(cache?.links ?? []),
 			...(cache?.embeds ?? []),
-			...(cache?.frontmatterLinks ?? []).filter((link) => link.key !== "manga" && !link.key.startsWith("manga.")),
+			...(cache?.frontmatterLinks ?? []).filter(ownLinkIsElsewhere),
 		];
-		const usedHere =
-			isImage(this.posterFile(file, topLevelPoster)) ||
-			ownLinks.some((link) => isImage(metadataCache.getFirstLinkpathDest(getLinkpath(link.link), file.path)));
-		return usedHere ? null : image;
+		return ownLinks.some((link) => isImage(metadataCache.getFirstLinkpathDest(getLinkpath(link.link), file.path)))
+			? null
+			: image;
 	}
 
 	/**

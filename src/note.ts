@@ -453,7 +453,7 @@ export function refreshFrontmatter(
  */
 export function relinkFrontmatter(
 	content: string,
-	values: Partial<Record<"directors" | "genres" | "cast" | "composers", string[]>>,
+	values: Partial<Record<"directors" | "creators" | "genres" | "cast" | "composers", string[]>>,
 	isResolved: (name: string) => boolean,
 ): string {
 	const doc = parseFrontmatterBlocks(content);

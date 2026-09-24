@@ -1,12 +1,15 @@
-export interface FilmNoteInfo {
+/** A film or a TV series note, as the Connections panel reads it. */
+export interface WorkNoteInfo {
 	path: string;
 	title: string;
 	directors: string[];
+	/** A TV series' own, from `created_by`: what a director is to a film. */
+	creators: string[];
 	cast: string[];
 	composers: string[];
 }
 
-export type SharedRole = "director" | "composer" | "cast";
+export type SharedRole = "director" | "creator" | "composer" | "cast";
 
 export interface SharedCredit {
 	name: string;
@@ -14,29 +17,34 @@ export interface SharedCredit {
 }
 
 export interface Connection {
-	file: FilmNoteInfo;
+	file: WorkNoteInfo;
 	shared: SharedCredit[];
 }
 
 /**
- * Director and composer are checked before cast on purpose: a film is far
- * more likely to share a large cast than a director or composer, so when a
- * name matches on more than one role the rarer, more meaningful one wins.
+ * Director, creator and composer are checked before cast on purpose: a work
+ * is far more likely to share a large cast than the person who made it, so
+ * when a name matches on more than one role the rarer, more meaningful one
+ * wins.
  */
-function creditsOf(film: FilmNoteInfo): SharedCredit[] {
+function creditsOf(work: WorkNoteInfo): SharedCredit[] {
 	return [
-		...film.directors.map((name) => ({ name, role: "director" as const })),
-		...film.composers.map((name) => ({ name, role: "composer" as const })),
-		...film.cast.map((name) => ({ name, role: "cast" as const })),
+		...work.directors.map((name) => ({ name, role: "director" as const })),
+		...work.creators.map((name) => ({ name, role: "creator" as const })),
+		...work.composers.map((name) => ({ name, role: "composer" as const })),
+		...work.cast.map((name) => ({ name, role: "cast" as const })),
 	];
 }
 
 /**
- * Films that share a director, a composer or a cast member with `current`,
- * most shared names first. Genres are deliberately not compared — two films
- * sharing "Drama" is not a connection, it is noise.
+ * Works that share a director, a creator, a composer or a cast member with
+ * `current`, most shared names first. Films and TV series are compared
+ * against each other as well as among themselves: the same person directs a
+ * film and creates a series, and that is exactly the connection worth
+ * seeing. Genres are deliberately not compared — two works sharing "Drama"
+ * is not a connection, it is noise.
  */
-export function findConnections(current: FilmNoteInfo, others: FilmNoteInfo[]): Connection[] {
+export function findConnections(current: WorkNoteInfo, others: WorkNoteInfo[]): Connection[] {
 	const currentNames = new Set(creditsOf(current).map((credit) => credit.name));
 	const connections: Connection[] = [];
 

@@ -56,6 +56,8 @@ describe("buildAnimeNoteContent", () => {
 				"end_year: 2013",
 				'poster: "[[Attachments/Attack on Titan.jpg]]"',
 				"mal_id: 16498",
+				"watch_start:",
+				"watch_date:",
 				"watched: false",
 				"---",
 				"",
@@ -131,6 +133,16 @@ describe("refreshAnimeFrontmatter", () => {
 		expect(updated).toContain("status: currently_airing");
 		expect(updated).toContain("watched: true");
 		expect(updated).toContain("My own thoughts about this anime.");
+	});
+
+	it("gives a note from before 3.0 nothing new: same data in, the same note out", () => {
+		// Refreshed with exactly what the note already says, a 2.x note comes
+		// back byte for byte — no `watch_start` or `watch_date` added to it.
+		expect(refreshAnimeFrontmatter(existingNote, aot)).toBe(existingNote);
+		expect(refreshAnimeFrontmatter(existingNote.replace(/\n/g, "\r\n"), aot)).toBe(existingNote.replace(/\n/g, "\r\n"));
+		// Even one whose `watched` line the user deleted gets only that back.
+		const noWatched = existingNote.replace("watched: true\n", "");
+		expect(refreshAnimeFrontmatter(noWatched, aot)).toBe(existingNote.replace("watched: true", "watched: false"));
 	});
 
 	it("never touches a manga block already merged onto this Series note", () => {
@@ -225,6 +237,8 @@ describe("refreshAnimeFrontmatter", () => {
 					"end_year: 2013",
 					'poster: "[[Attachments/Attack on Titan.jpg]]"',
 					"mal_id: 16498",
+					"watch_start:",
+					"watch_date:",
 					"watched: false",
 					"manga:",
 					"  mal_id: 26",

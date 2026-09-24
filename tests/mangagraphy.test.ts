@@ -9,7 +9,7 @@ import {
 let nextMalId = 1;
 
 function manga(overrides: Partial<MangagraphyManga> & { path: string; title: string }): MangagraphyManga {
-	return { malId: nextMalId++, year: null, read: false, hasAnime: false, mangaka: [], ...overrides };
+	return { malId: nextMalId++, year: null, read: false, adapted: false, mangaka: [], ...overrides };
 }
 
 function entry(overrides: Partial<MangagraphyEntry> & { title: string }): MangagraphyEntry {
@@ -88,11 +88,14 @@ describe("findMangagraphy", () => {
 			path: "Anime/Hunter x Hunter (1999).md",
 			title: "Hunter x Hunter",
 			year: 1998,
-			hasAnime: true,
+			adapted: true,
 			mangaka: ["Yoshihiro Togashi"],
 		});
 		const on2011 = { ...on1999, path: "Anime/Hunter x Hunter (2011).md" };
-		const mangaOnly = { ...on1999, path: "Anime/Hunter x Hunter.md", hasAnime: false };
+		const mangaOnly = { ...on1999, path: "Anime/Hunter x Hunter.md", adapted: false };
+		// A TV series note carries an adaptation too, so it never takes the
+		// manga's own note's place at the front of the list.
+		const onTv = { ...on1999, path: "TV/Hunter x Hunter (2011).md", adapted: true };
 
 		it("lists it once, with every note that carries it", () => {
 			const result = findMangagraphy(names, [on2011, on1999]);
@@ -103,6 +106,11 @@ describe("findMangagraphy", () => {
 		it("links the manga's own manga-only note first, when there is one", () => {
 			const result = findMangagraphy(names, [on1999, on2011, mangaOnly]);
 			expect(result[0].paths[0]).toBe("Anime/Hunter x Hunter.md");
+		});
+
+		it("never lets a TV series note take that place", () => {
+			const result = findMangagraphy(names, [onTv, mangaOnly]);
+			expect(result[0].paths).toEqual(["Anime/Hunter x Hunter.md", "TV/Hunter x Hunter (2011).md"]);
 		});
 
 		it("counts it as read when any of its notes says so", () => {

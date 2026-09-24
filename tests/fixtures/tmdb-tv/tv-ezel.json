@@ -1,0 +1,148 @@
+{
+	"id": 32519,
+	"name": "Ezel",
+	"original_name": "Ezel",
+	"original_language": "tr",
+	"origin_country": [
+		"TR"
+	],
+	"first_air_date": "2009-09-28",
+	"last_air_date": "2011-06-20",
+	"status": "Ended",
+	"type": "Scripted",
+	"poster_path": "/ex1K2iIwgxuzv54w89BrOJMqpTd.jpg",
+	"genres": [
+		{
+			"id": 80,
+			"name": "Crime"
+		},
+		{
+			"id": 18,
+			"name": "Drama"
+		},
+		{
+			"id": 10759,
+			"name": "Action & Adventure"
+		}
+	],
+	"created_by": [
+		{
+			"id": 1809742,
+			"name": "Pınar Bulut"
+		},
+		{
+			"id": 213242,
+			"name": "Kerem Deren"
+		}
+	],
+	"networks": [
+		{
+			"id": 36,
+			"name": "atv"
+		},
+		{
+			"id": 750,
+			"name": "Show TV"
+		}
+	],
+	"number_of_episodes": 71,
+	"number_of_seasons": 2,
+	"last_episode_to_air": {
+		"season_number": 2,
+		"episode_number": 38,
+		"air_date": "2011-06-20"
+	},
+	"next_episode_to_air": null,
+	"seasons": [
+		{
+			"season_number": 1,
+			"name": "Season 1",
+			"episode_count": 33,
+			"air_date": "2009-09-28",
+			"poster_path": "/hqa2HP1w4q0QjdcFNQCB08tH7vq.jpg"
+		},
+		{
+			"season_number": 2,
+			"name": "Season 2",
+			"episode_count": 38,
+			"air_date": "2010-09-13",
+			"poster_path": "/qWy3xFqHd15wIqNHQTQPEZSBb22.jpg"
+		}
+	],
+	"aggregate_credits": {
+		"cast": [
+			{
+				"id": 99315,
+				"name": "Kenan İmirzalıoğlu",
+				"order": 0,
+				"total_episode_count": 71
+			},
+			{
+				"id": 113869,
+				"name": "Cansu Dere",
+				"order": 1,
+				"total_episode_count": 71
+			},
+			{
+				"id": 46066,
+				"name": "Yiğit Özşener",
+				"order": 2,
+				"total_episode_count": 71
+			},
+			{
+				"id": 1251889,
+				"name": "Barış Falay",
+				"order": 3,
+				"total_episode_count": 71
+			},
+			{
+				"id": 1251887,
+				"name": "Sarp Akkaya",
+				"order": 5,
+				"total_episode_count": 71
+			},
+			{
+				"id": 20728,
+				"name": "Tuncel Kurtiz",
+				"order": 6,
+				"total_episode_count": 71
+			},
+			{
+				"id": 1251892,
+				"name": "Güray Kip",
+				"order": 7,
+				"total_episode_count": 71
+			},
+			{
+				"id": 1251893,
+				"name": "Bade Işcil",
+				"order": 8,
+				"total_episode_count": 71
+			},
+			{
+				"id": 1238865,
+				"name": "Burçin Terzioğlu",
+				"order": 9,
+				"total_episode_count": 71
+			},
+			{
+				"id": 120876,
+				"name": "Sedef Avci",
+				"order": 10,
+				"total_episode_count": 71
+			},
+			{
+				"id": 1251886,
+				"name": "Nurhan Özenen",
+				"order": 12,
+				"total_episode_count": 71
+			},
+			{
+				"id": 145344,
+				"name": "Salih Kalyon",
+				"order": 13,
+				"total_episode_count": 71
+			}
+		]
+	}
+}

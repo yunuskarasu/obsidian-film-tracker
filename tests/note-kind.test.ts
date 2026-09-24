@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { classifyNote, isAnimeOnlySeries, isMangaOnlySeries, matchesRef } from "../src/note-kind";
+import {
+	classifyNote,
+	isAnimeOnlySeries,
+	isMangaOnlySeries,
+	matchesRef,
+	takesMangaBlock,
+} from "../src/note-kind";
 
 /** Each note type's frontmatter as the plugin writes it, cut down to the fields that matter here. */
 const film = {
@@ -24,6 +30,14 @@ const animeOnly = {
 const mangaOnly = { manga: { mal_id: 26, title: "Hunter x Hunter" } };
 const series = { ...animeOnly, manga: { mal_id: 26, title: "Hunter x Hunter" } };
 const mangaka = { name: "Yoshihiro Togashi", birthday: "1966-04-27", mal_id: 1893 };
+/** Breaking Bad is show 1396 on TMDB; film 1396 is a different work entirely. */
+const tv = {
+	title: "Breaking Bad",
+	creators: ["Vince Gilligan"],
+	episodes: 62,
+	tmdb_tv_id: 1396,
+	seasons: [{ season: 1, episodes: 7, watched: 0 }],
+};
 
 describe("classifyNote", () => {
 	it("tells a film and a director apart by their own properties", () => {
@@ -64,12 +78,52 @@ describe("classifyNote", () => {
 		expect(classifyNote({ ...mangaka, manga: { mal_id: 401 } })).toEqual({ kind: "mangaka", malId: 1893 });
 	});
 
+	it("reads a TV series note by its own id", () => {
+		expect(classifyNote(tv)).toEqual({ kind: "tv", tmdbTvId: 1396, mangaMalId: null });
+	});
+
+	it("keeps a TV series a TV series when the user adds a name or directors to it", () => {
+		expect(classifyNote({ ...tv, name: "BB" })).toEqual({ kind: "tv", tmdbTvId: 1396, mangaMalId: null });
+		expect(classifyNote({ ...tv, directors: ["Vince Gilligan"] })).toEqual({ kind: "tv", tmdbTvId: 1396, mangaMalId: null });
+	});
+
+	it("reads a TV series note that also holds a manga", () => {
+		// The manga side belongs to the work, not to where the episodes came from.
+		expect(classifyNote({ ...tv, manga: { mal_id: 23390, title: "Shingeki no Kyojin" } })).toEqual({
+			kind: "tv",
+			tmdbTvId: 1396,
+			mangaMalId: 23390,
+		});
+	});
+
+	it("leaves every note that also carries an older id exactly what it was", () => {
+		// Hand-merged notes: the kinds that existed first keep their meaning,
+		// so no note the plugin already knew changes kind with this version.
+		expect(classifyNote({ ...film, tmdb_tv_id: 1396 })).toEqual({ kind: "film", tmdbId: 1398 });
+		expect(classifyNote({ ...director, tmdb_tv_id: 1396 })).toEqual({ kind: "director", tmdbId: 8452 });
+		expect(classifyNote({ ...animeOnly, tmdb_tv_id: 1396 })).toEqual({
+			kind: "series",
+			animeMalId: 11061,
+			mangaMalId: null,
+		});
+		// A manga block is the one thing the two share, so a note with one and
+		// a show's id is a TV series with its manga — a combination no note
+		// written before this version can have.
+		expect(classifyNote({ ...mangaOnly, tmdb_tv_id: 1396 })).toEqual({
+			kind: "tv",
+			tmdbTvId: 1396,
+			mangaMalId: 26,
+		});
+		expect(classifyNote({ ...mangaka, tmdb_tv_id: 1396 })).toEqual({ kind: "mangaka", malId: 1893 });
+	});
+
 	it("ignores notes the plugin didn't create, and ids that aren't numbers", () => {
 		expect(classifyNote(undefined)).toBeNull();
 		expect(classifyNote({})).toBeNull();
 		expect(classifyNote({ title: "Meeting notes", tags: ["work"] })).toBeNull();
 		expect(classifyNote({ ...film, tmdb_id: "1398" })).toBeNull();
 		expect(classifyNote({ ...animeOnly, mal_id: "11061" })).toBeNull();
+		expect(classifyNote({ ...tv, tmdb_tv_id: "1396" })).toBeNull();
 	});
 });
 
@@ -98,6 +152,22 @@ describe("matchesRef", () => {
 		expect(matchesRef(classifyNote(series), { kind: "manga", malId: 11061 })).toBe(false);
 		expect(matchesRef(classifyNote(series), { kind: "anime", malId: 11061 })).toBe(true);
 		expect(matchesRef(classifyNote(mangaOnly), { kind: "anime", malId: 26 })).toBe(false);
+	});
+
+	it("finds a manga on a TV series note as readily as on a Series note", () => {
+		const withManga = classifyNote({ ...tv, manga: { mal_id: 23390 } });
+		expect(matchesRef(withManga, { kind: "manga", malId: 23390 })).toBe(true);
+		expect(matchesRef(withManga, { kind: "manga", malId: 26 })).toBe(false);
+		expect(matchesRef(withManga, { kind: "anime", malId: 23390 })).toBe(false);
+	});
+
+	it("never takes a TV series for a film, or a film for a TV series, with the same numeric id", () => {
+		const filmWithShowsId = { ...film, tmdb_id: 1396 };
+		expect(matchesRef(classifyNote(filmWithShowsId), { kind: "tv", tmdbTvId: 1396 })).toBe(false);
+		expect(matchesRef(classifyNote(tv), { kind: "film", tmdbId: 1396 })).toBe(false);
+		expect(matchesRef(classifyNote(tv), { kind: "director", tmdbId: 1396 })).toBe(false);
+		expect(matchesRef(classifyNote(tv), { kind: "tv", tmdbTvId: 1396 })).toBe(true);
+		expect(matchesRef(classifyNote(tv), { kind: "tv", tmdbTvId: 1398 })).toBe(false);
 	});
 
 	it("matches nothing for a note that isn't the plugin's", () => {
@@ -146,8 +216,17 @@ describe("isAnimeOnlySeries / isMangaOnlySeries", () => {
 		expect(isMangaOnlySeries(corrupted)).toBe(false);
 	});
 
+	it("a TV series with no manga takes one, and one that has it does not", () => {
+		expect(takesMangaBlock(classifyNote(tv))).toBe(true);
+		expect(takesMangaBlock(classifyNote({ ...tv, manga: { mal_id: 23390 } }))).toBe(false);
+		expect(takesMangaBlock(classifyNote(animeOnly))).toBe(true);
+		expect(takesMangaBlock(classifyNote(series))).toBe(false);
+		expect(takesMangaBlock(classifyNote(mangaka))).toBe(false);
+		expect(takesMangaBlock(null)).toBe(false);
+	});
+
 	it("films, directors and notes the plugin didn't create take neither", () => {
-		for (const note of [classifyNote(film), classifyNote(director), null]) {
+		for (const note of [classifyNote(film), classifyNote(director), classifyNote(tv), null]) {
 			expect(isAnimeOnlySeries(note)).toBe(false);
 			expect(isMangaOnlySeries(note)).toBe(false);
 		}

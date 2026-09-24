@@ -87,6 +87,10 @@ export function buildAnimeFrontmatter(anime: AnimeMetadata, posterLink: string |
 		...ownedLines("end_year", anime),
 		posterLine(posterLink),
 		...ownedLines("mal_id", anime),
+		// Both left empty: the day you started is yours to write, and the day
+		// you finished is filled in when you finish it.
+		"watch_start:",
+		"watch_date:",
 		"watched: false",
 		"---",
 	];
@@ -101,6 +105,39 @@ export function buildAnimeFrontmatter(anime: AnimeMetadata, posterLink: string |
 export function buildAnimeNoteContent(anime: AnimeMetadata, rawPosterLink: string | null): string {
 	const link = rawPosterLink === null ? null : rawPosterLink.replace(/^!/, "");
 	return `${buildAnimeFrontmatter(anime, link)}\n`;
+}
+
+/**
+ * Everything an anime note holds that the plugin wrote: what a refresh
+ * rewrites, plus the poster and the watching it seeds. Taking these out is
+ * what **Remove anime** does — a key the user added, the manga block and the
+ * body are not in the list and are never touched.
+ */
+const ANIME_NOTE_KEYS: readonly string[] = [
+	...ANIME_OWNED_KEYS,
+	"poster",
+	"episodes_watched",
+	"watch_start",
+	"watch_date",
+	"watched",
+];
+
+/**
+ * Takes the anime off a note: its own properties and nothing else. A note
+ * that also carries a manga keeps it, and so does everything the user wrote
+ * — other properties, the body, the file itself.
+ */
+export function removeAnimeFields(content: string): string {
+	const doc = parseFrontmatterBlocks(content);
+	if (doc === null) return content;
+
+	let removed = false;
+	for (const key of ANIME_NOTE_KEYS) {
+		if (!doc.blocks.delete(key)) continue;
+		removed = true;
+		doc.order = doc.order.filter((other) => other !== key);
+	}
+	return removed ? serializeFrontmatterBlocks(doc) : content;
 }
 
 /**
@@ -131,6 +168,7 @@ const ANIME_FIELD_ORDER: readonly string[] = [
 	"end_year",
 	"poster",
 	"mal_id",
+	"watch_start",
 	"watch_date",
 	"watched",
 ];
@@ -257,6 +295,8 @@ export function refreshAnimeFrontmatter(
 ): string {
 	const doc = parseFrontmatterBlocks(content);
 	if (doc === null) return content;
+	// No `mal_id` yet: the anime is being merged onto this note right now.
+	const animeIsNew = !doc.order.includes("mal_id");
 
 	for (const key of ANIME_OWNED_KEYS) {
 		if (key === "mal_id" && !doc.order.includes("poster")) {
@@ -269,6 +309,12 @@ export function refreshAnimeFrontmatter(
 		doc.blocks.set("poster", [posterLine(newPosterLink)]);
 	}
 
+	// Only an anime new to this note — merged onto a manga — is given the
+	// empty dates a brand-new note has. A note that already had its anime
+	// keeps exactly the fields it had: a refresh never adds `watch_start` or
+	// `watch_date` to it, the same as before 3.0.
+	if (animeIsNew && !doc.order.includes("watch_start")) setOwnedKey(doc, "watch_start", ["watch_start:"]);
+	if (animeIsNew && !doc.order.includes("watch_date")) setOwnedKey(doc, "watch_date", ["watch_date:"]);
 	if (!doc.order.includes("watched")) {
 		setOwnedKey(doc, "watched", ["watched: false"]);
 	}

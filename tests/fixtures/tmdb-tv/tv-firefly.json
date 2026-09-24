@@ -1,0 +1,140 @@
+{
+	"id": 1437,
+	"name": "Firefly",
+	"original_name": "Firefly",
+	"original_language": "en",
+	"origin_country": [
+		"US"
+	],
+	"first_air_date": "2002-09-20",
+	"last_air_date": "2002-12-20",
+	"status": "Canceled",
+	"type": "Scripted",
+	"poster_path": "/vZcKsy4sGAvWMVqLluwYuoi11Kj.jpg",
+	"genres": [
+		{
+			"id": 18,
+			"name": "Drama"
+		},
+		{
+			"id": 10759,
+			"name": "Action & Adventure"
+		},
+		{
+			"id": 10765,
+			"name": "Sci-Fi & Fantasy"
+		}
+	],
+	"created_by": [
+		{
+			"id": 12891,
+			"name": "Joss Whedon"
+		}
+	],
+	"networks": [
+		{
+			"id": 19,
+			"name": "FOX"
+		}
+	],
+	"number_of_episodes": 11,
+	"number_of_seasons": 1,
+	"last_episode_to_air": {
+		"season_number": 1,
+		"episode_number": 11,
+		"air_date": "2002-12-20"
+	},
+	"next_episode_to_air": null,
+	"seasons": [
+		{
+			"season_number": 0,
+			"name": "Specials",
+			"episode_count": 12,
+			"air_date": "2003-06-28",
+			"poster_path": "/6GgGAyMB7KVocw6QoLi2Ke4kJZE.jpg"
+		},
+		{
+			"season_number": 1,
+			"name": "Season 1",
+			"episode_count": 11,
+			"air_date": "2002-09-20",
+			"poster_path": "/qpjgUjjj3gQTzkQgcHXVBaP51Qf.jpg"
+		}
+	],
+	"aggregate_credits": {
+		"cast": [
+			{
+				"id": 51797,
+				"name": "Nathan Fillion",
+				"order": 0,
+				"total_episode_count": 11
+			},
+			{
+				"id": 9576,
+				"name": "Gina Torres",
+				"order": 1,
+				"total_episode_count": 11
+			},
+			{
+				"id": 21088,
+				"name": "Alan Tudyk",
+				"order": 2,
+				"total_episode_count": 11
+			},
+			{
+				"id": 54882,
+				"name": "Morena Baccarin",
+				"order": 3,
+				"total_episode_count": 11
+			},
+			{
+				"id": 2059,
+				"name": "Adam Baldwin",
+				"order": 4,
+				"total_episode_count": 11
+			},
+			{
+				"id": 72092,
+				"name": "Jewel Staite",
+				"order": 5,
+				"total_episode_count": 11
+			},
+			{
+				"id": 55148,
+				"name": "Sean Maher",
+				"order": 6,
+				"total_episode_count": 11
+			},
+			{
+				"id": 54881,
+				"name": "Summer Glau",
+				"order": 8,
+				"total_episode_count": 11
+			},
+			{
+				"id": 74570,
+				"name": "Ron Glass",
+				"order": 9,
+				"total_episode_count": 11
+			},
+			{
+				"id": 84707,
+				"name": "Michael Fairman",
+				"order": 7,
+				"total_episode_count": 2
+			},
+			{
+				"id": 149640,
+				"name": "Jeff Ricketts",
+				"order": 540,
+				"total_episode_count": 2
+			},
+			{
+				"id": 155825,
+				"name": "Dennis Cockrum",
+				"order": 541,
+				"total_episode_count": 2
+			}
+		]
+	}
+}
