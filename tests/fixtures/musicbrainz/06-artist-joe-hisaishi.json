@@ -1,0 +1,169 @@
+{
+	"id": "44c64a30-1d58-49c5-b314-6e02fba49526",
+	"name": "久石譲",
+	"sort-name": "Hisaishi, Joe",
+	"type": "Person",
+	"country": "JP",
+	"disambiguation": "composer & musical director",
+	"life-span": {
+		"begin": "1950-12-06",
+		"end": null
+	},
+	"aliases": [
+		{
+			"name": "Jo Hisaishi",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Joe Hisaichi",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Joe Hisaish",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Joe Hisaishi",
+			"locale": "en",
+			"primary": true
+		},
+		{
+			"name": "Joe Hisaishi",
+			"locale": "fr",
+			"primary": true
+		},
+		{
+			"name": "Joe Hisashi",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Joe Isaishi",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Jou Hisaishi",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Jô Hisaishi",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Jō Hisaishi",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "久石 譲",
+			"locale": "ja",
+			"primary": false
+		},
+		{
+			"name": "久石譲",
+			"locale": "ja",
+			"primary": true
+		},
+		{
+			"name": "久石譲",
+			"locale": "zh",
+			"primary": true
+		},
+		{
+			"name": "久石譲",
+			"locale": "zh_Hans",
+			"primary": true
+		},
+		{
+			"name": "久石讓",
+			"locale": "zh_Hant",
+			"primary": true
+		},
+		{
+			"name": "久石让",
+			"locale": "zh_Hans",
+			"primary": false
+		},
+		{
+			"name": "藤泽守",
+			"locale": "zh_Hans",
+			"primary": false
+		},
+		{
+			"name": "藤澤 守",
+			"locale": "ja",
+			"primary": false
+		},
+		{
+			"name": "藤澤守",
+			"locale": "ja",
+			"primary": false
+		},
+		{
+			"name": "藤澤守",
+			"locale": "zh_Hant",
+			"primary": false
+		},
+		{
+			"name": "히사이시 조",
+			"locale": "ko",
+			"primary": true
+		}
+	],
+	"genres": [
+		{
+			"name": "cinematic classical",
+			"count": 1
+		},
+		{
+			"name": "classical",
+			"count": 4
+		},
+		{
+			"name": "concerto",
+			"count": 1
+		},
+		{
+			"name": "contemporary classical",
+			"count": 1
+		},
+		{
+			"name": "japanese classical",
+			"count": 1
+		},
+		{
+			"name": "orchestral",
+			"count": 1
+		},
+		{
+			"name": "symphony",
+			"count": 1
+		}
+	],
+	"relations": [
+		{
+			"type": "free streaming",
+			"url": {
+				"resource": "https://www.deezer.com/artist/66582"
+			}
+		},
+		{
+			"type": "IMDb",
+			"url": {
+				"resource": "https://www.imdb.com/name/nm0386749/"
+			}
+		},
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q275900"
+			}
+		}
+	]
+}

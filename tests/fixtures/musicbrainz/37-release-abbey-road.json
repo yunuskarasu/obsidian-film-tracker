@@ -1,0 +1,168 @@
+{
+	"id": "05e77dbd-1c4f-4e5e-8461-caac6e5fbae7",
+	"date": "1969-09-26",
+	"country": "GB",
+	"status": "Official",
+	"media": [
+		{
+			"position": 1,
+			"format": "12\" Vinyl",
+			"track-count": 17,
+			"tracks": [
+				{
+					"position": 1,
+					"title": "Come Together",
+					"length": 261000,
+					"recording": {
+						"title": "Come Together",
+						"length": 259066
+					}
+				},
+				{
+					"position": 2,
+					"title": "Something",
+					"length": 183000,
+					"recording": {
+						"title": "Something",
+						"length": 183000
+					}
+				},
+				{
+					"position": 3,
+					"title": "Maxwell’s Silver Hammer",
+					"length": 207000,
+					"recording": {
+						"title": "Maxwell’s Silver Hammer",
+						"length": 207000
+					}
+				},
+				{
+					"position": 4,
+					"title": "Oh! Darling",
+					"length": 207000,
+					"recording": {
+						"title": "Oh! Darling",
+						"length": 207000
+					}
+				},
+				{
+					"position": 5,
+					"title": "Octopus’s Garden",
+					"length": 171000,
+					"recording": {
+						"title": "Octopus’s Garden",
+						"length": 171000
+					}
+				},
+				{
+					"position": 6,
+					"title": "I Want You (She’s So Heavy)",
+					"length": 467000,
+					"recording": {
+						"title": "I Want You (She’s So Heavy)",
+						"length": 467000
+					}
+				},
+				{
+					"position": 7,
+					"title": "Here Comes the Sun",
+					"length": 186000,
+					"recording": {
+						"title": "Here Comes the Sun",
+						"length": 186000
+					}
+				},
+				{
+					"position": 8,
+					"title": "Because",
+					"length": 166000,
+					"recording": {
+						"title": "Because",
+						"length": 166000
+					}
+				},
+				{
+					"position": 9,
+					"title": "You Never Give Me Your Money",
+					"length": 242000,
+					"recording": {
+						"title": "You Never Give Me Your Money",
+						"length": 242000
+					}
+				},
+				{
+					"position": 10,
+					"title": "Sun King",
+					"length": 146000,
+					"recording": {
+						"title": "Sun King",
+						"length": 146173
+					}
+				},
+				{
+					"position": 11,
+					"title": "Mean Mr Mustard",
+					"length": 66000,
+					"recording": {
+						"title": "Mean Mr. Mustard",
+						"length": 66000
+					}
+				},
+				{
+					"position": 12,
+					"title": "Polythene Pam",
+					"length": 73000,
+					"recording": {
+						"title": "Polythene Pam",
+						"length": 73000
+					}
+				},
+				{
+					"position": 13,
+					"title": "She Came In Through the Bathroom Window",
+					"length": 118000,
+					"recording": {
+						"title": "She Came In Through the Bathroom Window",
+						"length": 118000
+					}
+				},
+				{
+					"position": 14,
+					"title": "Golden Slumbers",
+					"length": 92000,
+					"recording": {
+						"title": "Golden Slumbers",
+						"length": 92000
+					}
+				},
+				{
+					"position": 15,
+					"title": "Carry That Weight",
+					"length": 97000,
+					"recording": {
+						"title": "Carry That Weight",
+						"length": 97000
+					}
+				},
+				{
+					"position": 16,
+					"title": "The End",
+					"length": 140000,
+					"recording": {
+						"title": "The End",
+						"length": 140000
+					}
+				},
+				{
+					"position": 17,
+					"title": "Her Majesty",
+					"length": 23000,
+					"recording": {
+						"title": "Her Majesty",
+						"length": 23000
+					}
+				}
+			]
+		}
+	]
+}

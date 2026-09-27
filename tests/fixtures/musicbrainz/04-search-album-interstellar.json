@@ -1,0 +1,610 @@
+{
+	"release-groups": [
+		{
+			"id": "108e7159-3284-4bef-9a04-20fb5c7b51cc",
+			"title": "Interstellar Suite",
+			"first-release-date": "2022-12-16",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Live"
+			],
+			"score": 100,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				}
+			]
+		},
+		{
+			"id": "537d6004-3afe-4079-a3e4-48c3aa7fb77c",
+			"title": "Hans Zimmer Medley",
+			"first-release-date": "2022-04-30",
+			"primary-type": "Single",
+			"score": 98,
+			"artist-credit": [
+				{
+					"name": "Alexandr Misko",
+					"joinphrase": " & ",
+					"artist": {
+						"id": "bf20775b-54b5-4bcf-9d05-c1906988a474",
+						"name": "Alexandr Misko",
+						"sort-name": "Misko, Alexandr"
+					}
+				},
+				{
+					"name": "Alexander Boldachev",
+					"artist": {
+						"id": "e10c45ec-87b5-41bf-8453-b59a88083777",
+						"name": "Alexander Boldachev",
+						"sort-name": "Boldachev, Alexander",
+						"disambiguation": "harpist/composer"
+					}
+				}
+			]
+		},
+		{
+			"id": "54291cc2-4390-46cb-905f-071571e48e77",
+			"title": "Overture (with Hans Zimmer)",
+			"first-release-date": "2016-01-10",
+			"primary-type": "Single",
+			"score": 88,
+			"artist-credit": [
+				{
+					"name": "Davide Anselmi",
+					"artist": {
+						"id": "30d0edef-1f44-4c7e-b4ad-24b0aa5e41de",
+						"name": "Davide Anselmi",
+						"sort-name": "Anselmi, Davide",
+						"disambiguation": "Compositore"
+					}
+				}
+			]
+		},
+		{
+			"id": "1cd88c05-f884-48ce-9f85-7ff8dc68cc90",
+			"title": "Hans Zimmer: A Selection",
+			"first-release-date": "2021-09-22",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			],
+			"score": 88,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				}
+			]
+		},
+		{
+			"id": "7880c50e-82c7-43a2-9c33-3ea1fd5fab24",
+			"title": "Hans Zimmer: The Classics",
+			"first-release-date": "2017-01-13",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation",
+				"Soundtrack"
+			],
+			"score": 88,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				}
+			]
+		},
+		{
+			"id": "96542e5b-2a91-4919-9fc9-e14775c7573e",
+			"title": "Film Music: Hans Zimmer",
+			"first-release-date": "2020-12-18",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			],
+			"score": 88,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"joinphrase": " & ",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				},
+				{
+					"name": "Various Artists",
+					"artist": {
+						"id": "89ad4ac3-39f7-470e-963a-56509c546377",
+						"name": "Various Artists",
+						"sort-name": "Various Artists",
+						"disambiguation": "add compilations to this artist"
+					}
+				}
+			]
+		},
+		{
+			"id": "4513c7b9-854e-457f-81d6-3dbeb001beb8",
+			"title": "Interstellar: Original Motion Picture Soundtrack",
+			"first-release-date": "2014-11-17",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"score": 84,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				}
+			]
+		},
+		{
+			"id": "3f40d5fc-151b-39a6-be41-8220b96830b2",
+			"title": "Film Music of Hans Zimmer",
+			"first-release-date": "2007-06-26",
+			"primary-type": "Album",
+			"score": 79,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"joinphrase": "; ",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				},
+				{
+					"name": "The City of Prague Philharmonic Orchestra",
+					"joinphrase": " & ",
+					"artist": {
+						"id": "d8451fb8-74d0-4509-a242-6f683641234b",
+						"name": "The City of Prague Philharmonic Orchestra",
+						"sort-name": "City of Prague Philharmonic Orchestra, The"
+					}
+				},
+				{
+					"name": "Crouch End Festival Chorus",
+					"artist": {
+						"id": "58710ddb-ec23-435d-9f9e-422e5a73497e",
+						"name": "Crouch End Festival Chorus",
+						"sort-name": "Crouch End Festival Chorus"
+					}
+				}
+			]
+		},
+		{
+			"id": "0bc7c877-f051-4dc7-b1a5-90601e89af25",
+			"title": "The Best of Hans Zimmer",
+			"first-release-date": "2011-02-07",
+			"primary-type": "Album",
+			"score": 79,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"joinphrase": "; ",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				},
+				{
+					"name": "The City of Prague Philharmonic Orchestra",
+					"artist": {
+						"id": "d8451fb8-74d0-4509-a242-6f683641234b",
+						"name": "The City of Prague Philharmonic Orchestra",
+						"sort-name": "City of Prague Philharmonic Orchestra, The"
+					}
+				}
+			]
+		},
+		{
+			"id": "625a9ed0-ff33-446c-a7ce-87415dc50e96",
+			"title": "Wielcy Kompozytorzy Filmowi: Hans Zimmer",
+			"first-release-date": "2009",
+			"primary-type": "Album",
+			"score": 79,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"joinphrase": "; ",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				},
+				{
+					"name": "City of Prague Philharmonic Orchestra",
+					"joinphrase": " & ",
+					"artist": {
+						"id": "d8451fb8-74d0-4509-a242-6f683641234b",
+						"name": "The City of Prague Philharmonic Orchestra",
+						"sort-name": "City of Prague Philharmonic Orchestra, The"
+					}
+				},
+				{
+					"name": "Crouch End Festival Chorus",
+					"artist": {
+						"id": "58710ddb-ec23-435d-9f9e-422e5a73497e",
+						"name": "Crouch End Festival Chorus",
+						"sort-name": "Crouch End Festival Chorus"
+					}
+				}
+			]
+		},
+		{
+			"id": "2f521bb9-f254-46f9-9d8d-30d6e268ec4f",
+			"title": "Hans Zimmer: Epic Movie Soundtracks",
+			"first-release-date": "2021-03-27",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			],
+			"score": 79,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				}
+			]
+		},
+		{
+			"id": "cb49dea6-96f8-4e87-9aa5-aee0524c3ccb",
+			"title": "Interstellar: Complete Motion Picture Score Promotional Edition",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"score": 78,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				}
+			]
+		},
+		{
+			"id": "ef46add5-9456-400e-b1e2-b9a7be50e6ad",
+			"title": "Day One (From \"Interstellar\")",
+			"first-release-date": "2024-10-11",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"score": 75,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"joinphrase": "; ",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				},
+				{
+					"name": "Hayato Sumino",
+					"artist": {
+						"id": "32b4ec52-3489-4077-bc71-8e84991f976b",
+						"name": "角野隼斗",
+						"sort-name": "Sumino, Hayato",
+						"disambiguation": "Japanese pianist and composer"
+					}
+				}
+			]
+		},
+		{
+			"id": "a2d5ce7a-406c-448f-9cc2-a53c41ef36de",
+			"title": "Interstellar (Main Theme)",
+			"first-release-date": "2026-09-04",
+			"primary-type": "Single",
+			"score": 73,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"joinphrase": ", ",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				},
+				{
+					"name": "Chris Craker",
+					"joinphrase": " & ",
+					"artist": {
+						"id": "9938ddab-2990-4b07-b06a-44f89790fa45",
+						"name": "Chris Craker",
+						"sort-name": "Craker, Chris",
+						"disambiguation": "UK musician, producer, engineer and label manager"
+					}
+				},
+				{
+					"name": "Dan Lambert",
+					"artist": {
+						"id": "4f2a8515-dec4-4cb8-8258-b5f6e8179cef",
+						"name": "Dan Lambert",
+						"sort-name": "Lambert, Dan",
+						"disambiguation": "pianist"
+					}
+				}
+			]
+		},
+		{
+			"id": "1bd1bf24-4ae7-492a-924e-b06aa16f9c0b",
+			"title": "The Hans Zimmer Collection Volume Two",
+			"first-release-date": "2018-03-16",
+			"primary-type": "Album",
+			"score": 72,
+			"artist-credit": [
+				{
+					"name": "Geek Music",
+					"artist": {
+						"id": "078f737f-a8ff-4dd7-84f0-eb786aa833b6",
+						"name": "Geek Music",
+						"sort-name": "Geek Music"
+					}
+				}
+			]
+		},
+		{
+			"id": "7970241d-cba0-42dc-8d0e-f011d361f207",
+			"title": "The Hans Zimmer Collection Volume One",
+			"first-release-date": "2018-03-16",
+			"primary-type": "Album",
+			"score": 72,
+			"artist-credit": [
+				{
+					"name": "Geek Music",
+					"artist": {
+						"id": "078f737f-a8ff-4dd7-84f0-eb786aa833b6",
+						"name": "Geek Music",
+						"sort-name": "Geek Music"
+					}
+				}
+			]
+		},
+		{
+			"id": "2e079759-6c17-4ed0-9ddf-d4d960a4ecae",
+			"title": "Hans Zimmer: Soundtrack to the Movies",
+			"first-release-date": "2022-09-14",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			],
+			"score": 72,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				}
+			]
+		},
+		{
+			"id": "cd22dcc5-e613-4a74-8e24-3ecbbedd5117",
+			"title": "Work From Home With Hans Zimmer",
+			"first-release-date": "2020-04-01",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			],
+			"score": 72,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				}
+			]
+		},
+		{
+			"id": "5f616fc2-6439-4a9b-aaf5-19cfac033311",
+			"title": "Opus Interstellar (ANGEMI Remix)",
+			"first-release-date": "2017-08-18",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			],
+			"score": 71,
+			"artist-credit": [
+				{
+					"name": "Angemi",
+					"joinphrase": ", ",
+					"artist": {
+						"id": "d47de9e5-f7e6-4ba5-b30f-a51729a7379a",
+						"name": "Angemi",
+						"sort-name": "Angemi",
+						"disambiguation": "Italian EDM DJ/producer Ninni Angemi"
+					}
+				},
+				{
+					"name": "Eric Prydz",
+					"joinphrase": " & ",
+					"artist": {
+						"id": "35dac7d2-0b1f-470f-9a5a-c53c8821f6d6",
+						"name": "Eric Prydz",
+						"sort-name": "Prydz, Eric"
+					}
+				},
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				}
+			]
+		},
+		{
+			"id": "bdc6b91e-8496-41f0-bf67-8f101a04be4f",
+			"title": "Zimmer",
+			"first-release-date": "2008-09-20",
+			"score": 69,
+			"artist-credit": [
+				{
+					"name": "Challenge",
+					"artist": {
+						"id": "e4f27583-fb27-475a-ac84-281d4da04aae",
+						"name": "Challenge",
+						"sort-name": "Pete Herbert, Tim Paris",
+						"disambiguation": "Electronic music group"
+					}
+				}
+			]
+		},
+		{
+			"id": "fe34fc9d-b0d7-4b4d-934b-c59213053a56",
+			"title": "Zimmer",
+			"first-release-date": "2020-03-06",
+			"primary-type": "Single",
+			"score": 69,
+			"artist-credit": [
+				{
+					"name": "Schimmerling",
+					"artist": {
+						"id": "f0ac7107-a4d6-4270-a7d9-927793749c2c",
+						"name": "Schimmerling",
+						"sort-name": "Schimmerling"
+					}
+				}
+			]
+		},
+		{
+			"id": "14fc5861-e2b5-4842-8ba6-03da10e75f09",
+			"title": "Zimmer",
+			"first-release-date": "2013-04-10",
+			"primary-type": "Album",
+			"score": 69,
+			"artist-credit": [
+				{
+					"name": "Fabels",
+					"artist": {
+						"id": "6cf8128c-11dc-4595-8615-729aa1c90a25",
+						"name": "Fabels",
+						"sort-name": "Fabels"
+					}
+				}
+			]
+		},
+		{
+			"id": "35074ca1-2124-4b83-9366-d1e0a43d1d51",
+			"title": "Zimmer",
+			"first-release-date": "2019-09-27",
+			"primary-type": "Album",
+			"score": 69,
+			"artist-credit": [
+				{
+					"name": "Zimmer",
+					"artist": {
+						"id": "47179c18-27e6-4f69-b11b-95406d171256",
+						"name": "Zimmer",
+						"sort-name": "Zimmer",
+						"disambiguation": "French DJ and producer"
+					}
+				}
+			]
+		},
+		{
+			"id": "f3081fd0-8257-4fea-9864-c0c978c53bb7",
+			"title": "Best of Hanz Zimmer",
+			"first-release-date": "2000-08-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			],
+			"score": 67,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				}
+			]
+		},
+		{
+			"id": "6b3986f9-1782-4afe-a1fd-f310f5229183",
+			"title": "LIVE",
+			"first-release-date": "2023-03-03",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			],
+			"score": 66,
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"joinphrase": " & ",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans",
+						"disambiguation": "German score composer"
+					}
+				},
+				{
+					"name": "The Disruptive Collective",
+					"artist": {
+						"id": "8927cee6-63c0-4fc3-9ddb-3262f8f5051e",
+						"name": "The Disruptive Collective",
+						"sort-name": "Disruptive Collective, The"
+					}
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,526 @@
+{
+	"release-group-count": 261,
+	"release-groups": [
+		{
+			"id": "03c1a06c-a6dc-4693-9634-0ea121c61511",
+			"title": "Joe Hisaishi: Viola Saga: Movement 1 (Pt. 1)",
+			"first-release-date": "2024-05-24",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "04af5e5c-c00a-4884-b7e8-c0dda8c45e69",
+			"title": "TV Drama \"Onna Nobunaga\" Original Soundtrack",
+			"first-release-date": "2013-04-03",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "06cd47b4-7b53-4c1e-a980-fe9bc9cdf5ad",
+			"title": "かぐや姫の物語 音源",
+			"first-release-date": "2013-11-20",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "08c42c02-b7c4-4284-8318-9ebfbb481770",
+			"title": "Leviathan: Soundtrack From the Netflix Series",
+			"first-release-date": "2025-07-10",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "0a9b804f-8a28-4a31-b7ed-179a708ae832",
+			"title": "Joe Hisaishi Presents Music Future VII",
+			"first-release-date": "2025-11-19",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "0f9af112-9ae5-4f5a-86a2-b8aff1da4cc2",
+			"title": "The Desert Music: ⅢA. slow",
+			"first-release-date": "2025-07-18",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "1a9963af-4697-44fc-8789-8f7c757ed052",
+			"title": "Merry-Go-Round of Life (from 'Howl’s Moving Castle')",
+			"first-release-date": "2023-03-31",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "1c045550-b55a-4ca2-9067-728aeb06d12a",
+			"title": "真夏の夜の悪夢",
+			"first-release-date": "2006-12-20",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "1d079e3d-8158-4994-935b-e64838317ab4",
+			"title": "Ask Me Why (II)",
+			"first-release-date": "2026-08-14",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "1d83467c-8c00-4662-b290-94841b5608b4",
+			"title": "The Tale of The Princess Kaguya For Female Three-Part Chorus",
+			"first-release-date": "2015-01-21",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "20ad48ba-8cb2-4a34-9076-e7a80efd7996",
+			"title": "The End of the World",
+			"first-release-date": "2016-07-13",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "23c6f778-17a3-4211-bef4-749b2f6b4fed",
+			"title": "Mother’s Broom (from ’Kiki’s Delivery Service’)",
+			"first-release-date": "2023-04-14",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "27958d43-2bd9-4190-8182-07d6d14e687b",
+			"title": "Joe Hisaishi in Budokan 25 Years With Miyazaki Animation",
+			"first-release-date": "2009-07-03",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "2ac80cb5-eecf-4361-9412-52db37b09977",
+			"title": "Ark",
+			"first-release-date": "2026-09-11",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "311fda0e-b775-47bd-ac01-aaa6eb073406",
+			"title": "A Wish to the Moon",
+			"first-release-date": "2003-06-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "453adf72-a840-4008-9349-bcef106c4700",
+			"title": "YouTube - Joe Hisaishi Concert",
+			"first-release-date": "",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "4eaa9fed-bcfa-4966-9221-85ad228821a6",
+			"title": "「花戦さ」オリジナル・サウンドトラック",
+			"first-release-date": "2017-05-31",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "58bec67d-99b9-4b0f-8bc8-a016bdd4e12a",
+			"title": "Vermeer & Escher",
+			"first-release-date": "2012-02-15",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "59a159a3-9dfa-426e-b6f1-d69f5d273761",
+			"title": "Mládí",
+			"first-release-date": "2024-12-06",
+			"primary-type": "EP",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "59bc3436-6153-46dd-8de9-ff047170e535",
+			"title": "坂の上の雲 オリジナル・サウンドトラック 総集編",
+			"first-release-date": "2012-02-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "5c8f4ef4-19a4-4f36-93fa-d720a7283392",
+			"title": "宮崎駿與久石讓的音樂旅程",
+			"first-release-date": "2011-04-01",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "61e7592c-e630-4dec-a2d1-fbd8c168e2a2",
+			"title": "久石譲 in 武道館 〜宮崎アニメと共に歩んだ25年間〜",
+			"first-release-date": "2008",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "67e3fc3b-f23c-4fd9-a329-ba993c6b0af9",
+			"title": "バレエ音楽「春の祭典」（1947年版）",
+			"first-release-date": "2020-02-19",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "6fa8801b-6b28-4bf5-8d9b-f6747d82091d",
+			"title": "めいとこねこバス サウンドトラック",
+			"first-release-date": "2002-10-02",
+			"primary-type": "EP",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "716c647f-3825-4e44-9269-091a2bf1e5ae",
+			"title": "映画『サイレントラブ』オリジナル・サウンドトラック",
+			"first-release-date": "2024-01-24",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "749a95e9-5c09-4e8f-88f6-a78f2079696a",
+			"title": "Harp Concerto: Movement 2",
+			"first-release-date": "2026-06-26",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "7d8a88de-56df-45ec-942f-f885825ec70c",
+			"title": "Soul Snatcher: Original Soundtrack",
+			"first-release-date": "2021-02-19",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "7e992b82-25f2-361a-8213-ef83b66f0815",
+			"title": "Symphonic Best Selection",
+			"first-release-date": "1992-09-09",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "827e7941-f040-4672-821d-a8f9e71a32cb",
+			"title": "The Best of Cinema Music",
+			"first-release-date": "2011-09-07",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "89005db8-63b2-44a4-8523-f984fefce9ec",
+			"title": "東京家族 オリジナル・サウンドトラック",
+			"first-release-date": "2013-01-16",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "8a991253-3380-474f-afd0-20e10d4a389c",
+			"title": "Joe Hisaishi: Viola Saga: Movement 2",
+			"first-release-date": "2024-04-05",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "94276272-1f98-41cf-bf8f-5f85724f6a53",
+			"title": "Joe Hisaishi: Viola Saga: Movement 2 (Pt. 1)",
+			"first-release-date": "2024-04-19",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "951cc570-4a05-487a-a443-ec11e51146c1",
+			"title": "二ノ国 白き聖灰の女王 オリジナル・サウンドトラック",
+			"first-release-date": "2013-03-28",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "9c06b4ab-6822-4456-8074-2a91150762e8",
+			"title": "風立ちぬ サウンドトラック",
+			"first-release-date": "2013-07-16",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "9e93d8f8-343c-42ae-98de-e4bc2bdb7501",
+			"title": "光之奇旅",
+			"first-release-date": "2022-06-07",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "9fff3d63-e466-461c-8f35-755ca54fd7f6",
+			"title": "「小さいおうち」オリジナル・サウンドトラック",
+			"first-release-date": "2014-01-20",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "a0afb930-af66-49f3-83e6-586271353544",
+			"title": "Symphonic Suite “Princess Mononoke” 2021",
+			"first-release-date": "2022-07-20",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "a16b67a9-4bb8-4c70-8553-c07f016fe59e",
+			"title": "柘榴坂の仇討 オリジナルサウンド・トラック",
+			"first-release-date": "2014-09-17",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "aa157c08-64f5-46e9-be07-86af1f695f8e",
+			"title": "風の谷のナウシカ ドラマ編 風の神さま",
+			"first-release-date": "1989-02-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Spokenword"
+			]
+		},
+		{
+			"id": "af8ec67c-a97b-4929-a314-1686f09a67a9",
+			"title": "映画『二ノ国』オリジナル・サウンドトラック",
+			"first-release-date": "2019-08-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "b9ab98ff-c179-4643-822a-56ecab7bb32e",
+			"title": "NHK「驚異の小宇宙・人体」テーマ曲",
+			"first-release-date": "1989-04-21",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "bb0a84b4-4fda-48c6-a77c-ccdba1e016ab",
+			"title": "A Town with an Ocean View (from ’Kiki’s Delivery Service’)",
+			"first-release-date": "2023-05-19",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "bb38e4b6-213d-4f9c-9167-fd5798fb6335",
+			"title": "懺悔",
+			"first-release-date": "2013-10-16",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "bddb81c9-67c6-3b02-a452-eeeb178383e2",
+			"title": "Dolls",
+			"first-release-date": "2002-10-02",
+			"primary-type": "EP",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "bec518e1-f7ff-4fc8-831d-8203e3338ace",
+			"title": "A Big Bold Beautiful Journey: Original Motion Picture Soundtrack",
+			"first-release-date": "2025-09-19",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "c0a44acb-63b4-459e-a694-51252e8cd1f2",
+			"title": "The End of the World (Version for Soprano): Ⅲ. D.e.a.d",
+			"first-release-date": "2025-06-27",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "c350bba6-0791-4a19-ac94-47646ed39e72",
+			"title": "二ノ国II レヴァナントキングダム オリジナルサウンドトラック",
+			"first-release-date": "2018-06-06",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "c7a68ac7-a624-4b0b-9677-961edc4bda63",
+			"title": "天地明察",
+			"first-release-date": "2012-09-12",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "cda0b486-81e9-4f12-833d-b7b070beab70",
+			"title": "「海獣の子供」 (オリジナル・サウンドトラック)",
+			"first-release-date": "2019-06-05",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "d3a8cc97-f923-4008-bc84-2d56bcfdbe9d",
+			"title": "映画 羊と鋼の森 オリジナル・サウンドトラック SPECIAL",
+			"first-release-date": "2018-06-06",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "d3ea65db-b778-424b-97ac-9449e710e432",
+			"title": "魔女の宅急便 ドラマ編",
+			"first-release-date": "1989-09-25",
+			"primary-type": "Other",
+			"secondary-types": [
+				"Audio drama"
+			]
+		},
+		{
+			"id": "d706bb3a-65be-4ec0-9cac-d6f41e452ad5",
+			"title": "君たちはどう生きるか サウンドトラック",
+			"first-release-date": "2023-08-09",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "dafa3fdf-f9ae-458c-82d0-2557367ae935",
+			"title": "妻よ薔薇のように (家族はつらいよIII) オリジナル・サウンドトラック",
+			"first-release-date": "2018-05-23",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "df26e661-c401-44b7-b90f-2b1b3d85ac18",
+			"title": "TBS系 日曜劇場「この世界の片隅に」オリジナル・サウンドトラック",
+			"first-release-date": "2018-08-29",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "ecc26b81-edb0-42a0-9f75-212d6cb7ad73",
+			"title": "Summer",
+			"first-release-date": "2024-10-24",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "ef66d68c-35b8-4f81-a8de-5b736349b713",
+			"title": "SUPER ORCHESTRA NIGHT 2001",
+			"first-release-date": "2002-07-26",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "f47140b9-5e0b-46ab-8532-4c8d86e8abca",
+			"title": "Symphonic Suite \"Kiki's Delivery Service\"",
+			"first-release-date": "2020-08-19",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "f5219a79-3bae-49de-be58-27573ae4788d",
+			"title": "Piano and Cello Transcriptions",
+			"first-release-date": "2024-09-06",
+			"primary-type": "EP",
+			"secondary-types": []
+		},
+		{
+			"id": "f7fad1da-5601-43d6-9ffc-ccd09c44fdb8",
+			"title": "かぐや姫の物語 サウンドトラック",
+			"first-release-date": "2013-11-20",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "fa23616e-5d58-4261-a630-4c3b6a4c2c76",
+			"title": "Spirited Away Suite",
+			"first-release-date": "2019-07-31",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "fa713a8d-0191-45b4-a0ef-03e1d48341ee",
+			"title": "奇跡のリンゴ オリジナル・サウンドトラック",
+			"first-release-date": "2013-06-05",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		}
+	]
+}

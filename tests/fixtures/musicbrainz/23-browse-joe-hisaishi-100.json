@@ -1,0 +1,911 @@
+{
+	"release-group-count": 261,
+	"release-groups": [
+		{
+			"id": "01213168-23d5-40e3-9b5d-837e9b05f753",
+			"title": "オリジナルサウンドトラック －青春の彷徨－",
+			"first-release-date": "1986-03-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "02646df1-dc07-4a12-9096-9805c486c151",
+			"title": "NHK Special \"More The Universe Within - Human Body\": Soundtrack II",
+			"first-release-date": "1990-12-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "06925aff-0cdf-4a37-bc25-9ee8d725a0b4",
+			"title": "炎のアルペンローゼ シンフォニー編",
+			"first-release-date": "2000-04-26",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "08717172-0599-4934-b16f-1e28edd2c857",
+			"title": "Symphonies No. 7 & No. 8",
+			"first-release-date": "2018-09-19",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "094c3b7d-1e98-4172-b683-e7b7c87fe7a2",
+			"title": "いっしょに歌おう！大きな声で となりのトトロ ソング＆カラオケ",
+			"first-release-date": "1999-12-01",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "0bae605e-7165-41ed-a127-49ca1c2ab899",
+			"title": "炎のアルペンローゼ Vol.1 音楽編",
+			"first-release-date": "2000-04-26",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "0d879a4b-76ce-441f-b734-e02967f92fb4",
+			"title": "Ghibli Best Stories",
+			"first-release-date": "2014-03-12",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "0e510de9-94ee-4f71-bb35-d2072891f5bc",
+			"title": "太王四神記 オリジナル・サウンドトラック Vol.1",
+			"first-release-date": "2007-10-17",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "0fbeaaa6-fdb0-41f0-962c-239889c884c1",
+			"title": "Melodyphony",
+			"first-release-date": "2010-10-27",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "1129e61d-db24-4cc4-b362-392a2e0d406b",
+			"title": "タスマニア物語 オリジナル サウンドトラック",
+			"first-release-date": "1990-07-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "14974895-db97-4afe-a614-c0720ea032ee",
+			"title": "Studio Ghibli Soundtracks",
+			"first-release-date": "2020-08-01",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "16df9148-d358-3b3f-965d-4255479f5439",
+			"title": "Brother",
+			"first-release-date": "2000-12-05",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "1aa911a3-446e-4403-b89a-5951f58ab199",
+			"title": "Hisaishi Meets Miyazaki Films",
+			"first-release-date": "2006-09-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation",
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "1e9d8fd1-a342-41ae-a62d-95481362015b",
+			"title": "NHK Special The Universe Within: Human Body Part 3 Gene & DNA Vol. 2",
+			"first-release-date": "1999",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "1eb375dc-9af5-40a0-b87a-75dc8da7acd5",
+			"title": "ラ・フォリア：パン種とタマゴ姫サウンドトラック",
+			"first-release-date": "2010-11-20",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "20b814f4-1743-4ae0-9df6-cca0113e63bc",
+			"title": "「男たちの大和/YAMATO」サウンドトラック",
+			"first-release-date": "2005-12-14",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "2202f2ce-30bc-38ed-adbd-f0ecef3e6732",
+			"title": "Kids Return",
+			"first-release-date": "1996-06-26",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "2260e6aa-ab48-4c8f-9225-6c8b243246b0",
+			"title": "Songs of Hope: The Essential Joe Hisaishi Vol. 2",
+			"first-release-date": "2021-08-20",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "24af3987-9e3c-4ee9-b8c1-ded7e19aada5",
+			"title": "空想美術館",
+			"first-release-date": "2003-10-22",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation",
+				"Live"
+			]
+		},
+		{
+			"id": "27378505-c218-4e30-9d87-06c762a0765f",
+			"title": "The Universe Within II: The Human Brain & Mind Vol. 1 & 2",
+			"first-release-date": "1999-04-28",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "2c39a3e2-3dac-31b9-893e-3ecd8d71b4ac",
+			"title": "私は貝になりたい",
+			"first-release-date": "2008-11-19",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "33205be6-3235-4d43-b95f-1ba404d96336",
+			"title": "青之绘卷",
+			"first-release-date": "",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "36bc90a1-0cfc-4757-9010-341e45353f3c",
+			"title": "Garasu no Kuni no Miyazaki Anime no Sekai",
+			"first-release-date": "1993-09-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "375997a1-7179-3547-9722-24b029366452",
+			"title": "となりのトトロ サウンドブック",
+			"first-release-date": "1988-09-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "388b3cf7-0b32-30f4-a298-325fda6e649f",
+			"title": "Sonatine",
+			"first-release-date": "1993-06-03",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "3e6aec66-c9fd-4e1d-b275-5fde305b1b16",
+			"title": "漂流教室 ~オリジナル・サウンドトラック~ (The Drifting Classroom)",
+			"first-release-date": "1987-07",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "3e9958ab-a0a7-487a-beab-cb6b0938536b",
+			"title": "彩之绘卷",
+			"first-release-date": "",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "3fa798ab-76b4-45cb-a906-2aaedb820d75",
+			"title": "ウルルの森の物語",
+			"first-release-date": "2009-12-16",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "40762a87-389e-4077-b17d-8b2ca69b67b0",
+			"title": "Complete Symphonies",
+			"first-release-date": "2023-07-19",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "4088843b-a546-38c5-a437-4c99dfe43778",
+			"title": "Best of Joe Hisaishi",
+			"first-release-date": "",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "40e64c87-f335-43a2-950f-1a097f15a749",
+			"title": "赤之绘卷",
+			"first-release-date": "",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "459cb69b-4ff6-4add-aaaf-b693e32c2872",
+			"title": "はつ恋",
+			"first-release-date": "2000-03-08",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "464c5f95-7877-3701-92a3-292de7cbe7c5",
+			"title": "ハウルの動く城 サウンドトラック",
+			"first-release-date": "2004-11-19",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "510af893-9ef4-473a-b8f8-edeb5afbd4e6",
+			"title": "NHK Special \"The Universe Within - Human Body II\": Soundtrack Vol. 1 Nou to Kokoro",
+			"first-release-date": "1993-12-17",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "56b3e32b-3383-3090-85dd-1815b0d925f9",
+			"title": "となりのトトロ サウンドトラック集",
+			"first-release-date": "1988-05-01",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "6058442a-e611-3a9d-8291-9ab55ebcae8a",
+			"title": "壬生義士伝",
+			"first-release-date": "2002-12-26",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "60775b50-0e14-498c-be43-e2c5a4f85e16",
+			"title": "NHK Special The Universe Within: Human Body Part 2 The Human Brain & Mind Special Issue",
+			"first-release-date": "1994-07-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "6083cc9a-550b-34eb-a464-fc9536039298",
+			"title": "parasite EVE",
+			"first-release-date": "1997-02-01",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "6437a7bc-20bf-4ed7-ba69-c106f63d55a0",
+			"title": "魔女の宅急便 ヴォーカル編 カラオケ",
+			"first-release-date": "1990-06-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "672a3e66-9680-3bf2-8f61-16292e0fb67e",
+			"title": "太陽照常升起",
+			"first-release-date": "2007-09-20",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "686736fe-28fe-4601-a4da-533c00942cad",
+			"title": "二ノ国 漆黒の魔導士 オリジナル・サウンドトラック",
+			"first-release-date": "2011-02-09",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "6c0aea4d-dde6-40df-bf79-b3d4e7cf2c07",
+			"title": "NHKスペシャル「驚異の小宇宙・人体III〜遺伝子・DNA」サウンドトラック Vol.②",
+			"first-release-date": "1999-08-04",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "6d673d7d-dbf6-4396-a354-b435f0f17d05",
+			"title": "太王四神記 オリジナル・サウンドトラック Vol.2",
+			"first-release-date": "2008-01-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "6e20dfc1-6931-405f-9606-f65afc495c23",
+			"title": "天空の城ラピュタ ドラマ編 光よ甦れ!",
+			"first-release-date": "1989-02-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "6f03386b-8abf-4265-aaa1-47bf04274580",
+			"title": "ヴィナス戦記 オリジナル・サウンドトラック",
+			"first-release-date": "1988-12-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "709010fd-d965-4989-9b2c-25fd4d3f09c7",
+			"title": "スタジオジブリ「宮崎駿&久石譲」サントラBOX",
+			"first-release-date": "2014-07-16",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation",
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "73b0f776-298c-4435-853f-e1bf567728b8",
+			"title": "Spirited Away - Famous Music of Anime",
+			"first-release-date": "2014",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "7b942a64-30ff-4be2-a8d4-aad601a09da5",
+			"title": "Ghibli and Nostalgic Moments",
+			"first-release-date": "2023-12-07",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "7d891f0f-9694-4c0f-ac0d-bc81a55525a8",
+			"title": "Merry-Go-Round Studio Ghibli Music",
+			"first-release-date": "2024-07-31",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "824e9851-dc55-4d38-8221-b77f1682d9aa",
+			"title": "悪人 Original Soundtrack",
+			"first-release-date": "2010-09-01",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "84d1257e-af62-4174-965d-92a16ea2ba6c",
+			"title": "坂の上の雲",
+			"first-release-date": "2009-11-18",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "86bb31c1-c6f6-30d9-9277-28954ca4f4a0",
+			"title": "サウンドトラック 天空の城ラピュタ —飛行石の謎—",
+			"first-release-date": "1986-09-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "8b7481e2-7aaf-4012-b598-41acc57835eb",
+			"title": "Symphonies No. 2 & No. 5",
+			"first-release-date": "2018-04-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "8b855b34-65e4-37c8-9e27-bc095d2d3b81",
+			"title": "NOKTO DE LA GALAKSIA FERVOJO",
+			"first-release-date": "1996-07-20",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "91eb7dff-19e8-48d9-a9f8-10331473fdf6",
+			"title": "A Chinese Tall Story",
+			"first-release-date": "2005-12-22",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "921d5dcb-36e2-3bb0-9036-be6a64abfe94",
+			"title": "HANA‐BI",
+			"first-release-date": "1998-01-01",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "9749ead0-138a-4cd7-b4b6-e75b1ec0dc06",
+			"title": "One Summer's Day: Studio Ghibli favourites for solo piano by Joe Hisaishi",
+			"first-release-date": "2021-04-09",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation",
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "99f89f84-cc8a-49ef-9f48-58bd1b5acc8b",
+			"title": "Complete Symphonies",
+			"first-release-date": "2019-07-24",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "9e6692b4-425a-4980-bfcb-c18f1849080c",
+			"title": "水の旅人〜侍KIDS〜オリジナル・サウンドトラック",
+			"first-release-date": "1993-08-04",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "a06af99c-6bd4-4514-a4fb-00950d46c323",
+			"title": "この愛の物語 オリジナル・サウンドトラック",
+			"first-release-date": "1987-10-05",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "a0aeccd0-6558-49fb-9598-ba81a0e7e246",
+			"title": "Dream Songs: The Essential Joe Hisaishi",
+			"first-release-date": "2020-02-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "a40c6c17-058d-4d57-b41e-88ea836dc217",
+			"title": "NHK Special \"The Universe Within - Human Body\": Soundtrack",
+			"first-release-date": "1989-05-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "a7eefc2e-76a1-3e0d-b5f8-83a824f37644",
+			"title": "Piano Stories Best '88-'08",
+			"first-release-date": "2008-04-16",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "a9782942-7ccc-33b0-b2cd-1b79e761b9b3",
+			"title": "Le Mécano de la General",
+			"first-release-date": "2004",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "ac75b658-009c-4743-aa29-c8823d01d2e8",
+			"title": "Studio Ghibli: Anime Music",
+			"first-release-date": "2023-09-27",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation",
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "ad9b4a20-1dc2-43ca-91c0-bff438fb56d8",
+			"title": "時雨の記 サウンドトラック",
+			"first-release-date": "1998-10-31",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "aef2b315-c613-36db-b147-5845096a151f",
+			"title": "崖の上のポニョ",
+			"first-release-date": "2008-07-16",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "b0701a74-cce4-46f2-a392-72eadad32ef4",
+			"title": "Hayao Miyazaki - Princess Mononoke / Spirited Away",
+			"first-release-date": "2004",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation",
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "b13f8663-df1b-32e6-a4d3-cbd9625d694d",
+			"title": "Le Petit Poucet",
+			"first-release-date": "2001-10-15",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "b5214056-61b0-4dcb-8608-5aeba00345ec",
+			"title": "早春物語 オリジナル・サウンドトラック",
+			"first-release-date": "1989-07-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "b7a6574e-3f9a-3b57-8bde-560d1d44d8dc",
+			"title": "Quartet",
+			"first-release-date": "2001-09-27",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "bb1e9800-aeaa-40d4-a911-0ece9db12125",
+			"title": "ふたり",
+			"first-release-date": "1991",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "bb39d393-c153-4d03-b6b4-1677ae69c39d",
+			"title": "Symphonies no. 1 & no. 3 \"Eroica\"",
+			"first-release-date": "2017-10-18",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "bed3f876-7278-47f8-93ec-87cbe7cf7457",
+			"title": "Studio Ghibli Official B-Sides and Rarities Album",
+			"first-release-date": "2022-09-24",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "bfcb72c4-e574-4498-8bc1-ea8c8c6d4852",
+			"title": "Sunny et l'éléphant",
+			"first-release-date": "2008-12-04",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "c51f5e25-f22d-37ba-a187-f8323f8e8110",
+			"title": "紅の豚 サウンドトラック",
+			"first-release-date": "1992-07-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "c71cbb44-9878-4d4a-be3a-8c6667dcb768",
+			"title": "久石譲經典名曲集",
+			"first-release-date": "2008",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "c71f8130-4a6e-4404-88db-299d6a446a4c",
+			"title": "恋人たちの時刻 オリジナル・サウンドトラック",
+			"first-release-date": "1987-03-05",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "c861e848-4fa4-49b2-a9ef-88b9746f1cd6",
+			"title": "NHK Special \"The Universe Within - Human Body II\": Soundtrack Vol. 2 Nou to Kokoro",
+			"first-release-date": "1994-03-18",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "cfc3749b-f989-4f4d-8bf8-f2224b11ca4c",
+			"title": "Wの悲劇 (オリジナル・サウンドトラッ)",
+			"first-release-date": "1984-12-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "d07bcbcb-7e14-32a8-816b-64409e308486",
+			"title": "風の谷のナウシカ サウンドトラック",
+			"first-release-date": "1984-03-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "d3dca9af-c409-4c56-8c99-6ae0f54f22c9",
+			"title": "ANIMEX 1300 Song Collection No.9 愛してナイト ヒット曲集 ～Yakko, I Love You～",
+			"first-release-date": "2005-04-27",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "d95dfa2c-dd2d-3191-8fc1-fed1c3eb70bd",
+			"title": "マリと子犬の物語",
+			"first-release-date": "2007-12-05",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "dc1e64df-ae52-32b7-b3f2-de665bd913b1",
+			"title": "A Scene at the Sea",
+			"first-release-date": "1991-10-09",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "dc1f9d7d-9a98-3f2c-83aa-c16dbb4a9ae1",
+			"title": "千と千尋の神隠し サウンドトラック",
+			"first-release-date": "2001-07-18",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "e03e464b-2f59-4b7a-be3b-25f826390325",
+			"title": "驚異の小宇宙「人体II」 サウンドトラック Vol.2 脳と心",
+			"first-release-date": "1996-03-17",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "e26730a3-edca-465c-8520-b25117b0aa8c",
+			"title": "Welcome To Dongmakgol (Original Sound Track)",
+			"first-release-date": "2005-09-13",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "e2feccc7-063c-3190-9377-f36bdaf09eba",
+			"title": "菊次郎の夏",
+			"first-release-date": "1999-05-26",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "e47dc672-baf0-3742-afd6-203837548307",
+			"title": "川の流れのように [As the River Flows]",
+			"first-release-date": "2000-04-29",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "e5314f83-f01d-483d-9443-97ad22d21279",
+			"title": "坂の上の雲 オリジナル・サウンドトラック 3",
+			"first-release-date": "2011-11-09",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "e78312b5-4499-4bd2-be34-9fa0c62e20c6",
+			"title": "坂の上の雲 Vol.2",
+			"first-release-date": "2010-11-17",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "e8ac2921-1efb-3542-8ff2-f04bc7f6397c",
+			"title": "おくりびと",
+			"first-release-date": "2008-09-10",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "ecfd7a40-f0c6-42ce-aee8-fe61eaa0ef88",
+			"title": "機甲創世記モスピーダ",
+			"first-release-date": "1983-12-05",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "ecfe5c89-7699-49ec-a054-1b7fc2aea465",
+			"title": "NHK Special The Universe Within: Human Body Part 3 Gene & DNA Vol. 1",
+			"first-release-date": "1999",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "f29a21e7-5a2c-367f-a2e3-01e201724556",
+			"title": "Castle in the Sky",
+			"first-release-date": "2002-10-02",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "f2fb9668-c182-3171-9ef8-cf3721f35e1f",
+			"title": "もののけ姫 サウンドトラック",
+			"first-release-date": "1997-07-02",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "f4206679-7c54-3e04-b573-453fdabc17de",
+			"title": "魔女の宅急便 サントラ音楽集",
+			"first-release-date": "1989-08-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "fa17af25-1147-43dd-a006-fc066d7b2233",
+			"title": "魔境遊撃隊",
+			"first-release-date": "1985-11-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "fa753dc1-f64e-367f-a955-b187f678755c",
+			"title": "オリジナル・ビデオ・アニメーション ロボット・カーニバル ～オリジナル・サウンドトラック～ CDスペシャル",
+			"first-release-date": "1987-03-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		},
+		{
+			"id": "ff7e73c9-3141-3565-ba97-6637b7877a98",
+			"title": "崖の上のポニョ イメージアルバム",
+			"first-release-date": "2008-03-05",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			]
+		}
+	]
+}

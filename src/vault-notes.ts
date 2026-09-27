@@ -1,5 +1,6 @@
 import { MarkdownView, Notice, TFile, TFolder, getLinkpath, normalizePath, type App } from "obsidian";
 import { MalError } from "./mal";
+import { MusicBrainzError } from "./musicbrainz";
 import {
 	chooseNotePath,
 	joinPath,
@@ -30,15 +31,15 @@ export function noteName(notePath: string): string {
 }
 
 /**
- * Runs one action of the plugin, turning a failure into a Notice: TMDB's or
- * MyAnimeList's own message for an API error, a pointer to the console for
+ * Runs one action of the plugin, turning a failure into a Notice: TMDB's,
+ * MyAnimeList's or MusicBrainz's own message for an API error, a pointer to the console for
  * anything unexpected. `what` completes "Could not …".
  */
 export async function reportFailures(what: string, action: () => Promise<void>): Promise<void> {
 	try {
 		await action();
 	} catch (error) {
-		if (error instanceof TmdbError || error instanceof MalError) {
+		if (error instanceof TmdbError || error instanceof MalError || error instanceof MusicBrainzError) {
 			new Notice(error.message);
 			return;
 		}
@@ -153,6 +154,17 @@ export class VaultNotes {
 		return null;
 	}
 
+	/**
+	 * Whether the note's `poster` links to a file that isn't in the vault —
+	 * deleted, say. Refresh fills such a poster in as if it were empty. A
+	 * web address or anything else that isn't a link never counts.
+	 */
+	posterMissing(note: TFile): boolean {
+		const frontmatter = this.frontmatterOf(note);
+		const linkpath = frontmatter === undefined ? null : parseLinkTarget(frontmatter.poster);
+		return linkpath !== null && this.app.metadataCache.getFirstLinkpathDest(linkpath, note.path) === null;
+	}
+
 	/** The image a note's poster property — `poster` reads it — links to, if it exists. */
 	private posterFile(note: TFile, poster: (frontmatter: Record<string, unknown>) => unknown): TFile | null {
 		const frontmatter = this.frontmatterOf(note);
@@ -167,6 +179,15 @@ export class VaultNotes {
 	 * own `poster` — the manga side included.
 	 */
 	unusedAnimePoster(file: TFile): TFile | null {
+		return this.unusedTopLevelPoster(file);
+	}
+
+	/**
+	 * The image a note's own `poster` shows — an anime's, an artist's photo —
+	 * when nothing else uses it: what can be offered for deletion once the note
+	 * shows another, or none.
+	 */
+	unusedTopLevelPoster(file: TFile): TFile | null {
 		return this.unusedPoster(file, topLevelPoster, mangaPoster, (link) => link.key !== "poster");
 	}
 

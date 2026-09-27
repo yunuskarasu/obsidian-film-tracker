@@ -1,0 +1,168 @@
+{
+	"id": "22638e35-336a-448c-9232-fc7670263687",
+	"date": "1998-05-21",
+	"country": "JP",
+	"status": "Official",
+	"media": [
+		{
+			"position": 1,
+			"format": "CD",
+			"track-count": 17,
+			"tracks": [
+				{
+					"position": 1,
+					"title": "Tank!",
+					"length": 210333,
+					"recording": {
+						"title": "Tank!",
+						"length": 210333
+					}
+				},
+				{
+					"position": 2,
+					"title": "RUSH",
+					"length": 214160,
+					"recording": {
+						"title": "RUSH",
+						"length": 214160
+					}
+				},
+				{
+					"position": 3,
+					"title": "SPOKEY DOKEY",
+					"length": 245000,
+					"recording": {
+						"title": "SPOKEY DOKEY",
+						"length": 245000
+					}
+				},
+				{
+					"position": 4,
+					"title": "BAD DOG NO BISCUITS",
+					"length": 250373,
+					"recording": {
+						"title": "BAD DOG NO BISCUITS",
+						"length": 250373
+					}
+				},
+				{
+					"position": 5,
+					"title": "CAT BLUES",
+					"length": 157293,
+					"recording": {
+						"title": "CAT BLUES",
+						"length": 157000
+					}
+				},
+				{
+					"position": 6,
+					"title": "COSMOS",
+					"length": 97000,
+					"recording": {
+						"title": "COSMOS",
+						"length": 97000
+					}
+				},
+				{
+					"position": 7,
+					"title": "SPACE LION",
+					"length": 431373,
+					"recording": {
+						"title": "SPACE LION",
+						"length": 431000
+					}
+				},
+				{
+					"position": 8,
+					"title": "WALTZ for ZIZI",
+					"length": 209400,
+					"recording": {
+						"title": "WALTZ for ZIZI",
+						"length": 209400
+					}
+				},
+				{
+					"position": 9,
+					"title": "PIANO BLACK",
+					"length": 167893,
+					"recording": {
+						"title": "PIANO BLACK",
+						"length": 167893
+					}
+				},
+				{
+					"position": 10,
+					"title": "POT CITY",
+					"length": 134040,
+					"recording": {
+						"title": "POT CITY",
+						"length": 134027
+					}
+				},
+				{
+					"position": 11,
+					"title": "TOO GOOD TOO BAD",
+					"length": 154800,
+					"recording": {
+						"title": "TOO GOOD TOO BAD",
+						"length": 154800
+					}
+				},
+				{
+					"position": 12,
+					"title": "CAR 24",
+					"length": 169293,
+					"recording": {
+						"title": "CAR 24",
+						"length": 169293
+					}
+				},
+				{
+					"position": 13,
+					"title": "The EGG and I",
+					"length": 162600,
+					"recording": {
+						"title": "The EGG and I",
+						"length": 162600
+					}
+				},
+				{
+					"position": 14,
+					"title": "FELT TIP PEN",
+					"length": 162466,
+					"recording": {
+						"title": "FELT TIP PEN",
+						"length": 160400
+					}
+				},
+				{
+					"position": 15,
+					"title": "RAIN",
+					"length": 203466,
+					"recording": {
+						"title": "RAIN",
+						"length": 203466
+					}
+				},
+				{
+					"position": 16,
+					"title": "DIGGING MY POTATO",
+					"length": 144573,
+					"recording": {
+						"title": "DIGGING MY POTATO",
+						"length": 144560
+					}
+				},
+				{
+					"position": 17,
+					"title": "MEMORY",
+					"length": 91933,
+					"recording": {
+						"title": "MEMORY",
+						"length": 91266
+					}
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,47 @@
+{
+	"id": "c60fcd45-9420-30aa-98e5-2bffb894021a",
+	"title": "First Love",
+	"first-release-date": "1999-03-10",
+	"primary-type": "Album",
+	"secondary-types": [],
+	"artist-credit": [
+		{
+			"name": "宇多田ヒカル",
+			"joinphrase": "",
+			"artist": {
+				"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+				"name": "宇多田ヒカル",
+				"sort-name": "Utada, Hikaru",
+				"country": "JP",
+				"type": "Person",
+				"disambiguation": "Japanese-American singer-songwriter"
+			}
+		}
+	],
+	"genres": [
+		{
+			"name": "contemporary r&b",
+			"count": 1
+		},
+		{
+			"name": "dance-pop",
+			"count": 1
+		},
+		{
+			"name": "j-pop",
+			"count": 2
+		},
+		{
+			"name": "pop soul",
+			"count": 1
+		}
+	],
+	"relations": [
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q645514"
+			}
+		}
+	]
+}

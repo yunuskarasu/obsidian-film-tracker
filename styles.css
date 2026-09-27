@@ -295,7 +295,8 @@ body {
 	transform: rotate(0deg);
 }
 
-.film-tracker-connections.is-collapsed .film-tracker-connections-list {
+.film-tracker-connections.is-collapsed .film-tracker-connections-list,
+.film-tracker-connections.is-collapsed .film-tracker-panel-actions {
 	display: none;
 }
 
@@ -442,6 +443,105 @@ body {
 
 .film-tracker-season-actions {
 	flex: 0 0 auto;
+}
+
+/* ---------- Tracklist panel: an album keeps its tracks in the note, one
+ * line each. The raw row is hidden like a TV note's seasons, and this panel
+ * is the readable view of it: number, title, and the length out on the right. */
+
+.film-tracker-has-tracks .metadata-property[data-property-key="tracks"] {
+	display: none;
+}
+
+.film-tracker-tracks {
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-2-1);
+}
+
+.film-tracker-track {
+	display: flex;
+	align-items: baseline;
+	gap: var(--size-4-2);
+	font-size: var(--font-ui-smaller);
+}
+
+.film-tracker-track-number {
+	flex: 0 0 2ch;
+	text-align: right;
+	color: var(--text-muted);
+	font-variant-numeric: tabular-nums;
+}
+
+.film-tracker-track-title {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.film-tracker-track-length {
+	flex: 0 0 auto;
+	color: var(--text-muted);
+	font-variant-numeric: tabular-nums;
+}
+
+.film-tracker-track-disc {
+	margin-top: var(--size-4-2);
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+	font-weight: var(--font-semibold);
+}
+
+.film-tracker-track-disc:first-child {
+	margin-top: 0;
+}
+
+/* "Change photo": the photos on offer side by side, each with its source
+ * and whom it credits. */
+
+.film-tracker-photo-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+	gap: var(--size-4-3);
+}
+
+.film-tracker-photo-choice {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: var(--size-2-2);
+	height: auto;
+	padding: var(--size-2-2);
+	white-space: normal;
+	text-align: left;
+}
+
+.film-tracker-photo-choice img {
+	width: 100%;
+	aspect-ratio: 1;
+	object-fit: cover;
+	border-radius: var(--radius-s);
+}
+
+.film-tracker-photo-source {
+	font-size: var(--font-ui-smaller);
+	font-weight: var(--font-semibold);
+}
+
+.film-tracker-photo-credit {
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+}
+
+/* DISCOGRAPHY: a line for an artist with no albums in the vault yet, and the
+ * "Add album…" button under the list. */
+
+.film-tracker-empty {
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+}
+
+.film-tracker-panel-actions {
+	margin-top: var(--size-4-2);
 }
 
 /* ---------- Progress: episodes watched under an anime note's poster, and

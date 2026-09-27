@@ -24,13 +24,20 @@ import { malIdFrom, mangaMalIdFrom } from "./manga-note";
  * A TV series note can hold a `manga` block as well, the same one a Series
  * note holds: the manga side belongs to the work, not to where its episodes
  * were read from.
+ *
+ * Artist and album notes carry MusicBrainz's ids, `mb_artist_id` and
+ * `mb_album_id` — text, never a number — and are only read as such when the
+ * note carries none of the ids above: a note that has one keeps the meaning
+ * it has always had.
  */
 export type NoteKind =
 	| { kind: "film"; tmdbId: number }
 	| { kind: "director"; tmdbId: number }
 	| { kind: "series"; animeMalId: number | null; mangaMalId: number | null }
 	| { kind: "mangaka"; malId: number }
-	| { kind: "tv"; tmdbTvId: number; mangaMalId: number | null };
+	| { kind: "tv"; tmdbTvId: number; mangaMalId: number | null }
+	| { kind: "artist"; mbArtistId: string }
+	| { kind: "album"; mbAlbumId: string };
 
 type Frontmatter = Record<string, unknown> | undefined;
 
@@ -66,8 +73,21 @@ export function classifyNote(frontmatter: Frontmatter): NoteKind | null {
 	const mangaMalId = mangaMalIdFrom(frontmatter);
 	const tmdbTvId = tmdbTvIdFrom(frontmatter);
 	if (malId === null && tmdbTvId !== null) return { kind: "tv", tmdbTvId, mangaMalId };
-	if (malId === null && mangaMalId === null) return null;
+	if (malId === null && mangaMalId === null) return musicKindOf(frontmatter);
 	return { kind: "series", animeMalId: malId, mangaMalId };
+}
+
+/** A MusicBrainz id as the note keeps it: text, never blank. */
+function mbIdFrom(value: unknown): string | null {
+	return typeof value === "string" && value.trim() !== "" ? value.trim() : null;
+}
+
+function musicKindOf(frontmatter: Record<string, unknown>): NoteKind | null {
+	const album = mbIdFrom(frontmatter.mb_album_id);
+	if (album !== null) return { kind: "album", mbAlbumId: album };
+	const artist = mbIdFrom(frontmatter.mb_artist_id);
+	if (artist !== null) return { kind: "artist", mbArtistId: artist };
+	return null;
 }
 
 type Series = Extract<NoteKind, { kind: "series" }>;
@@ -84,7 +104,9 @@ export type NoteRef =
 	| { kind: "manga"; malId: number }
 	| { kind: "pair"; animeMalId: number; mangaMalId: number }
 	| { kind: "mangaka"; malId: number }
-	| { kind: "tv"; tmdbTvId: number };
+	| { kind: "tv"; tmdbTvId: number }
+	| { kind: "artist"; mbArtistId: string }
+	| { kind: "album"; mbAlbumId: string };
 
 /**
  * Whether `note` is the one `ref` names. The kind has to match as well as the
@@ -114,6 +136,10 @@ export function matchesRef(note: NoteKind | null, ref: NoteRef): boolean {
 			return note.kind === "mangaka" && note.malId === ref.malId;
 		case "tv":
 			return note.kind === "tv" && note.tmdbTvId === ref.tmdbTvId;
+		case "artist":
+			return note.kind === "artist" && note.mbArtistId === ref.mbArtistId;
+		case "album":
+			return note.kind === "album" && note.mbAlbumId === ref.mbAlbumId;
 	}
 }
 
@@ -138,4 +164,35 @@ export function isMangaOnlySeries(
 	note: NoteKind | null,
 ): note is Series & { animeMalId: null; mangaMalId: number } {
 	return note?.kind === "series" && note.mangaMalId !== null && note.animeMalId === null;
+}
+
+/*
+ * What each kind of note can do, asked the same way everywhere — the command
+ * palette, the note menus and the buttons under a poster. A new kind of note
+ * answers these here rather than in every place that offers a command.
+ */
+
+/** A note with an anime on it: a Series note's anime side. */
+export function hasAnime(kind: NoteKind | null): kind is Series & { animeMalId: number } {
+	return kind?.kind === "series" && kind.animeMalId !== null;
+}
+
+/** The notes "Mark as watched today" applies to: a film, a TV series, or a Series note's anime side. */
+export function canWatch(kind: NoteKind | null): boolean {
+	return kind?.kind === "film" || kind?.kind === "tv" || hasAnime(kind);
+}
+
+/** The notes episodes are counted on: a TV series, or a Series note's anime side. */
+export function hasEpisodes(kind: NoteKind | null): boolean {
+	return kind?.kind === "tv" || hasAnime(kind);
+}
+
+/** The notes "Mark as listened today" applies to: an album. */
+export function canListen(kind: NoteKind | null): boolean {
+	return kind?.kind === "album";
+}
+
+/** The notes with a manga side: a Series note's, or a TV series note's. */
+export function hasManga(kind: NoteKind | null): boolean {
+	return (kind?.kind === "series" || kind?.kind === "tv") && kind.mangaMalId !== null;
 }

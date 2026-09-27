@@ -1,0 +1,250 @@
+{
+	"releases": [
+		{
+			"id": "22638e35-336a-448c-9232-fc7670263687",
+			"date": "1998-05-21",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 17
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "329c23ec-d2a1-4583-afee-bd9309135dc5",
+			"date": "2014-08-13",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 17
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "37c7232b-5d67-4608-bde3-93e271075270",
+			"date": "2012-12-21",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 17
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "6edfd41d-ae4f-40a1-8022-aac1e25f25f7",
+			"date": "2020-12-04",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "12\" Vinyl",
+					"track-count": 10
+				},
+				{
+					"position": 2,
+					"format": "12\" Vinyl",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "745b472b-f3a3-4de9-b7fd-9e7257315353",
+			"date": "1998",
+			"country": "TW",
+			"status": "Bootleg",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 17
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "7e5097b0-a803-479b-9940-49858be6e9fc",
+			"date": "2022-06-10",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "12\" Vinyl",
+					"track-count": 10
+				},
+				{
+					"position": 2,
+					"format": "12\" Vinyl",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "944bdbd6-72be-48cd-8f4a-d4647eaf0334",
+			"date": "2003",
+			"country": "TW",
+			"status": "Bootleg",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 17
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "a2dbb5fa-4637-4b7f-a2d7-98ef711f62f3",
+			"date": "2007",
+			"country": "TW",
+			"status": "Bootleg",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 17
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "b72eda24-5712-48d5-b180-77bcce2f8c90",
+			"date": "2020-07-24",
+			"country": null,
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 17
+				}
+			],
+			"relations": [
+				{
+					"type": "free streaming",
+					"url": {
+						"resource": "https://www.deezer.com/album/157805572"
+					}
+				}
+			]
+		},
+		{
+			"id": "cb53f5ed-0b13-49de-9844-b539a2eb1f2d",
+			"date": "2013-07-02",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 17
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "d0ab840f-5dbb-4a36-bf59-b7ad76ab47bd",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "12\" Vinyl",
+					"track-count": 10
+				},
+				{
+					"position": 2,
+					"format": "12\" Vinyl",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "f0f21ea8-0fd3-4e99-a7b9-70000f1c094a",
+			"date": "2020-11-06",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "12\" Vinyl",
+					"track-count": 10
+				},
+				{
+					"position": 2,
+					"format": "12\" Vinyl",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "f52b3fd7-be2c-4716-af6d-0038457b65d7",
+			"date": "2014-08-13",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 17
+				}
+			],
+			"relations": []
+		}
+	]
+}

@@ -1,0 +1,72 @@
+{
+	"releases": [
+		{
+			"id": "05ceafad-ef32-4c16-a17e-089c07134f98",
+			"date": "1991",
+			"country": "DE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 13
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "8d8e1e8f-1092-4790-a3ea-d20092d247f7",
+			"date": "1991",
+			"country": "TR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 13
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "da625a37-0cbb-4d66-bb86-e6c8caaa38c8",
+			"date": "1981-04-09",
+			"country": "XW",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 9
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "ffabc318-d9fa-4fd3-bed0-ac9a0a9384ac",
+			"date": "1981",
+			"country": "TR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "12\" Vinyl",
+					"track-count": 9
+				}
+			],
+			"relations": []
+		}
+	]
+}

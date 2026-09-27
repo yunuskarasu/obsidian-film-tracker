@@ -1,0 +1,480 @@
+{
+	"release-groups": [
+		{
+			"id": "b1392450-e666-3926-a536-22c65f834433",
+			"title": "OK Computer",
+			"first-release-date": "1997-05-21",
+			"primary-type": "Album",
+			"score": 100,
+			"artist-credit": [
+				{
+					"name": "Radiohead",
+					"artist": {
+						"id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+						"name": "Radiohead",
+						"sort-name": "Radiohead"
+					}
+				}
+			]
+		},
+		{
+			"id": "a5e4bd1a-63c9-4dfc-9e63-ed0c3dc049be",
+			"title": "Ok Computer",
+			"first-release-date": "2021-08-20",
+			"primary-type": "Single",
+			"score": 74,
+			"artist-credit": [
+				{
+					"name": "Lemaitre",
+					"joinphrase": " & ",
+					"artist": {
+						"id": "7bc012a7-c5cc-4e7a-9ca6-15db02bbcde4",
+						"name": "Lemaitre",
+						"sort-name": "Lemaitre",
+						"disambiguation": "Oslo‐based, Norwegian indie‐electronica duo"
+					}
+				},
+				{
+					"name": "RebMoe",
+					"artist": {
+						"id": "481ae6c0-d3cc-4ae7-9995-5850fbf15479",
+						"name": "RebMoe",
+						"sort-name": "RebMoe"
+					}
+				}
+			]
+		},
+		{
+			"id": "f2be2b07-bc65-3210-8c61-56533162cbeb",
+			"title": "Strung Out on OK Computer: The String Quartet Tribute to Radiohead",
+			"first-release-date": "2001-10-23",
+			"primary-type": "Album",
+			"score": 65,
+			"artist-credit": [
+				{
+					"name": "Vitamin String Quartet",
+					"joinphrase": " feat. ",
+					"artist": {
+						"id": "56cfe6aa-b464-43d2-bec7-8ec52f313e7d",
+						"name": "Vitamin String Quartet",
+						"sort-name": "Vitamin String Quartet"
+					}
+				},
+				{
+					"name": "The Section",
+					"artist": {
+						"id": "2b5929bc-ffbf-496b-a66f-90dae13cbfe7",
+						"name": "The Section Quartet",
+						"sort-name": "Section Quartet, The"
+					}
+				}
+			]
+		},
+		{
+			"id": "53f59e5b-adc9-4c36-a724-cf3aeab69b38",
+			"title": "Computer K.O.",
+			"first-release-date": "1997",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			],
+			"score": 64,
+			"artist-credit": [
+				{
+					"name": "Radiohead",
+					"artist": {
+						"id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+						"name": "Radiohead",
+						"sort-name": "Radiohead"
+					}
+				}
+			]
+		},
+		{
+			"id": "60b9bffe-5959-3de1-ac79-63581b541323",
+			"title": "Leftover Computer",
+			"first-release-date": "1997",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			],
+			"score": 64,
+			"artist-credit": [
+				{
+					"name": "Radiohead",
+					"artist": {
+						"id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+						"name": "Radiohead",
+						"sort-name": "Radiohead"
+					}
+				}
+			]
+		},
+		{
+			"id": "873cb3ff-6467-3b2a-8bce-63b4a6ba8591",
+			"title": "Idiot Computer",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			],
+			"score": 64,
+			"artist-credit": [
+				{
+					"name": "Radiohead",
+					"artist": {
+						"id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+						"name": "Radiohead",
+						"sort-name": "Radiohead"
+					}
+				}
+			]
+		},
+		{
+			"id": "186bdef9-b6de-4e32-857e-45ab5ce109fd",
+			"title": "Outside Computer",
+			"first-release-date": "2022-06-21",
+			"primary-type": "Album",
+			"score": 63,
+			"artist-credit": [
+				{
+					"name": "OK Vancouver OK",
+					"artist": {
+						"id": "4e7f228d-5955-423f-82a6-5a843397ab40",
+						"name": "OK Vancouver OK",
+						"sort-name": "OK Vancouver OK"
+					}
+				}
+			]
+		},
+		{
+			"id": "afe72a58-1de1-4ebf-a671-97a7b5069003",
+			"title": "OK MTV",
+			"first-release-date": "1997",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			],
+			"score": 61,
+			"artist-credit": [
+				{
+					"name": "Radiohead",
+					"artist": {
+						"id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+						"name": "Radiohead",
+						"sort-name": "Radiohead"
+					}
+				}
+			]
+		},
+		{
+			"id": "9ee00cb6-9fc9-40f4-9ef7-aa321cac9040",
+			"title": "OK OUTTAKES",
+			"first-release-date": "2024-11-15",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation",
+				"Demo"
+			],
+			"score": 61,
+			"artist-credit": [
+				{
+					"name": "Radiohead",
+					"artist": {
+						"id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+						"name": "Radiohead",
+						"sort-name": "Radiohead"
+					}
+				}
+			]
+		},
+		{
+			"id": "3b55129d-276c-4c42-8327-e47ba94f2ddf",
+			"title": "OK Computer (8-bit)",
+			"first-release-date": "2012-04-11",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Remix"
+			],
+			"score": 57,
+			"artist-credit": [
+				{
+					"name": "Quinton Sung",
+					"artist": {
+						"id": "318d1a3b-7323-4b59-8e7f-e16ddf8acacc",
+						"name": "Quinton Sung",
+						"sort-name": "Sung, Quinton"
+					}
+				}
+			]
+		},
+		{
+			"id": "8cf63c7f-3d59-4b97-900c-ccd78445a766",
+			"title": "OK Computer Part 2",
+			"first-release-date": "2018-07-06",
+			"primary-type": "Album",
+			"score": 57,
+			"artist-credit": [
+				{
+					"name": "ShitLips",
+					"artist": {
+						"id": "e2638eb1-1b9b-4e16-8607-e5d934745d4c",
+						"name": "ShitLips",
+						"sort-name": "ShitLips"
+					}
+				}
+			]
+		},
+		{
+			"id": "0023289d-6560-4732-8dbc-d232ed5f5950",
+			"title": "Ok Computer Però Trap",
+			"first-release-date": "2019-06-14",
+			"primary-type": "EP",
+			"score": 57,
+			"artist-credit": [
+				{
+					"name": "Pippo Sowlo",
+					"artist": {
+						"id": "3cdfe413-413a-4ae3-913e-a6923db5c315",
+						"name": "Pippo Sowlo",
+						"sort-name": "Pippo Sowlo"
+					}
+				}
+			]
+		},
+		{
+			"id": "6c5a2f5b-8959-4e8e-8342-78b3e9ff72ce",
+			"title": "Alexa Play OK Computer",
+			"first-release-date": "2020-12-18",
+			"primary-type": "Single",
+			"score": 57,
+			"artist-credit": [
+				{
+					"name": "Us3r",
+					"artist": {
+						"id": "89148a39-cb43-4115-b493-b5c1058b6e0e",
+						"name": "US3R",
+						"sort-name": "US3R"
+					}
+				}
+			]
+		},
+		{
+			"id": "48b69eec-852d-3ddb-9200-7585f8425534",
+			"title": "OK Computer Turns 10",
+			"first-release-date": "2007-06-22",
+			"primary-type": "Album",
+			"score": 57,
+			"artist-credit": [
+				{
+					"name": "Various Artists",
+					"artist": {
+						"id": "89ad4ac3-39f7-470e-963a-56509c546377",
+						"name": "Various Artists",
+						"sort-name": "Various Artists",
+						"disambiguation": "add compilations to this artist"
+					}
+				}
+			]
+		},
+		{
+			"id": "96a67a1d-1012-3ed0-8135-10150442d36a",
+			"title": "Mojo_Presents_OK_Computer",
+			"first-release-date": "2008-02",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			],
+			"score": 57,
+			"artist-credit": [
+				{
+					"name": "Various Artists",
+					"artist": {
+						"id": "89ad4ac3-39f7-470e-963a-56509c546377",
+						"name": "Various Artists",
+						"sort-name": "Various Artists",
+						"disambiguation": "add compilations to this artist"
+					}
+				}
+			]
+		},
+		{
+			"id": "32e804ba-8e1f-3641-95ed-11b62d0c9157",
+			"title": "Radiohead",
+			"first-release-date": "1998",
+			"primary-type": "Single",
+			"score": 55,
+			"artist-credit": [
+				{
+					"name": "X-Dream",
+					"artist": {
+						"id": "635da8c0-f19a-41b9-8764-fd80306b4159",
+						"name": "X-Dream",
+						"sort-name": "X-Dream",
+						"disambiguation": "German goa trance/psy-trance/techno group"
+					}
+				}
+			]
+		},
+		{
+			"id": "d5eb0376-6f0f-4b28-b5d1-4584b9be8d75",
+			"title": "Radiohead",
+			"first-release-date": "2007-10-22",
+			"primary-type": "Album",
+			"score": 55,
+			"artist-credit": [
+				{
+					"name": "In Rainbows",
+					"artist": {
+						"id": "a6606aaa-6027-4d6d-8bea-0e8ee816b8f1",
+						"name": "In Rainbows",
+						"sort-name": "In Rainbows",
+						"disambiguation": "reggaeton remixes of Radiohead"
+					}
+				}
+			]
+		},
+		{
+			"id": "cfd8769b-62d3-4e94-b8fe-badfa9d14e79",
+			"title": "Radiohead",
+			"first-release-date": "2019-04-01",
+			"primary-type": "Single",
+			"score": 55,
+			"artist-credit": [
+				{
+					"name": "Blarg",
+					"artist": {
+						"id": "bc27c66a-8958-498e-aa8b-e75220d0a208",
+						"name": "Blarg",
+						"sort-name": "Blarg"
+					}
+				}
+			]
+		},
+		{
+			"id": "59f25ce9-ae14-43c7-a09e-3a911060043a",
+			"title": "Radiohead",
+			"first-release-date": "1992",
+			"primary-type": "EP",
+			"score": 55,
+			"artist-credit": [
+				{
+					"name": "Radiohead",
+					"artist": {
+						"id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+						"name": "Radiohead",
+						"sort-name": "Radiohead"
+					}
+				}
+			]
+		},
+		{
+			"id": "79659bfe-1392-4ad4-935f-60fa3cf602dd",
+			"title": "Radiohead",
+			"first-release-date": "1991",
+			"primary-type": "Other",
+			"secondary-types": [
+				"Demo"
+			],
+			"score": 55,
+			"artist-credit": [
+				{
+					"name": "Radiohead",
+					"artist": {
+						"id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+						"name": "Radiohead",
+						"sort-name": "Radiohead"
+					}
+				}
+			]
+		},
+		{
+			"id": "02ded2ae-c622-4dec-8c4f-f80e456970c2",
+			"title": "Radiohead",
+			"first-release-date": "2020-05-28",
+			"primary-type": "Single",
+			"score": 55,
+			"artist-credit": [
+				{
+					"name": "Terri-Anne",
+					"artist": {
+						"id": "964555ed-87e1-4d58-8dc9-abeab84b9cfc",
+						"name": "Terri-Anne",
+						"sort-name": "Terri-Anne",
+						"disambiguation": "DJ/producer"
+					}
+				}
+			]
+		},
+		{
+			"id": "bbffc20a-016a-4ca5-836f-1b4bb9a16c0f",
+			"title": "radiohead",
+			"first-release-date": "2023-03-17",
+			"primary-type": "Single",
+			"score": 55,
+			"artist-credit": [
+				{
+					"name": "Nightly",
+					"artist": {
+						"id": "5fce6bcd-be89-4aa5-aa86-6d4e382d2621",
+						"name": "Nightly",
+						"sort-name": "Nightly",
+						"disambiguation": "Nashville alt pop band, “<3”"
+					}
+				}
+			]
+		},
+		{
+			"id": "a1f6f924-b1f8-4460-a770-8a3fea59156a",
+			"title": "Radiohead",
+			"first-release-date": "1997",
+			"primary-type": "Single",
+			"score": 55,
+			"artist-credit": [
+				{
+					"name": "Cage",
+					"artist": {
+						"id": "8e0c435a-d7e0-43c4-a99d-808c6a47e1b4",
+						"name": "Cage",
+						"sort-name": "Cage",
+						"disambiguation": "New York-based hip hop artist Chris Palko"
+					}
+				}
+			]
+		},
+		{
+			"id": "89bbac22-8be9-40ca-a85f-bbf81d4a131d",
+			"title": "Radiohead",
+			"first-release-date": "1994",
+			"primary-type": "Album",
+			"score": 55,
+			"artist-credit": [
+				{
+					"name": "Wesley Willis",
+					"artist": {
+						"id": "b0a16d0c-3d99-487d-be88-902131ad03d3",
+						"name": "Wesley Willis",
+						"sort-name": "Willis, Wesley"
+					}
+				}
+			]
+		},
+		{
+			"id": "8031b782-84f1-449c-b2be-bb00e98de547",
+			"title": "“Radiohead”",
+			"first-release-date": "2026-09-03",
+			"primary-type": "Single",
+			"score": 55,
+			"artist-credit": [
+				{
+					"name": "off the menu",
+					"artist": {
+						"id": "f4f9a551-b1c0-482b-be3c-86cb18679d04",
+						"name": "off the menu",
+						"sort-name": "off the menu",
+						"disambiguation": "South Korean band"
+					}
+				}
+			]
+		}
+	]
+}

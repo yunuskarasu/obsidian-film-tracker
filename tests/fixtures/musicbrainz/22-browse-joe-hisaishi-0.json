@@ -1,0 +1,743 @@
+{
+	"release-group-count": 261,
+	"release-groups": [
+		{
+			"id": "00b482be-c8e9-4908-b014-5c72c4923552",
+			"title": "Symphony no. 3 “Metaphysica” & Harp Concerto",
+			"first-release-date": "2026-07-24",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "0b069536-ad30-4f2a-962c-0b09c08c9890",
+			"title": "ガラスの国の宮崎アニメの世界",
+			"first-release-date": "1993-09-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "1256cda9-2980-460a-9826-5f2f9d043286",
+			"title": "Joe Hisaishi Presents Music Future V",
+			"first-release-date": "2021-10-20",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "190d238a-3af6-4136-909b-45319c03b94f",
+			"title": "Minima_Rhythm II",
+			"first-release-date": "2015-08-05",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "1cf2d544-1c21-3c10-be40-7eeaa61bf247",
+			"title": "Works I",
+			"first-release-date": "1997-10-15",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "1ed051d1-cb52-42fb-9a8c-4840c17782ad",
+			"title": "風の谷のナウシカ Best Collection",
+			"first-release-date": "1986-11-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "2197c855-7e84-44c3-acd7-15b63a4e97c5",
+			"title": "Joe Hisaishi Conducts",
+			"first-release-date": "2025-08-08",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "24311b08-b5f0-4514-a97c-defe7faba880",
+			"title": "Joe Hisaishi Presents Music Future IV",
+			"first-release-date": "2019-11-20",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "282c13b9-aa57-3a96-8663-89f3f96737f2",
+			"title": "CURVED MUSIC 2",
+			"first-release-date": "2003-01-29",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "28b06683-f2bd-4427-978e-aff63502dd01",
+			"title": "宮崎駿アニメBOX",
+			"first-release-date": "1989-12-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "28b3d55e-1c56-36b8-96b7-2dca6a5ac339",
+			"title": "Perfect of Animage",
+			"first-release-date": "1991-01-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "2996d7b1-6e7a-31af-b05a-d086dc1ed572",
+			"title": "紅の豚: イメージアルバム",
+			"first-release-date": "1992-05-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "2bc76b9d-9ed5-43bd-b4e7-0fd43a0a2079",
+			"title": "Symphonic Suite Castle in the Sky",
+			"first-release-date": "2018-08-01",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "2ddb30ee-f711-36d0-b718-88703340749b",
+			"title": "My Lost City",
+			"first-release-date": "1992-02-12",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "2f7f4df9-68cb-3b8b-9441-5625228a4006",
+			"title": "Works III",
+			"first-release-date": "2005-07-27",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "2fa40dc4-e8d2-4f80-bc08-6075de7d7259",
+			"title": "Jo Hisaishi - Complete Best Selection",
+			"first-release-date": "2001-12-12",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "2fe9ea82-70d4-4611-b37b-8b957c8e49bb",
+			"title": "吉祥天女",
+			"first-release-date": "1984-12-21",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "33024b3f-353c-3f85-b18c-59289a654ed7",
+			"title": "風の谷のナウシカ イメージアルバム 鳥の人",
+			"first-release-date": "1983-11-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "338242e4-c2d7-4f15-b519-103a99299bdc",
+			"title": "Joe Hisaishi Presents Music Future III",
+			"first-release-date": "2018-11-21",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "37554dd0-dd1d-4fbe-b673-f86b7ea4c8eb",
+			"title": "Piano Transcriptions",
+			"first-release-date": "2019-12-13",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "38a499f3-33b5-445f-8a6e-32a74bb818d2",
+			"title": "イメージアルバム アリオン -風・荒野- (Arion - Image Album)",
+			"first-release-date": "1985-10-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "39af2162-afdf-4065-be5f-cf34a6dec066",
+			"title": "Pretender",
+			"first-release-date": "1989-09-21",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "3ab09e2a-d753-349d-a6dd-64bd866b1532",
+			"title": "となりのトトロ イメージ・ソング集",
+			"first-release-date": "1987-11-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "3d687c60-29fe-377e-ad14-1d855b564ab0",
+			"title": "Private",
+			"first-release-date": "2004-06-21",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "3ece9e65-e335-44f3-b5ce-ef5b839b24e1",
+			"title": "Digital Trip 1800 ARION SYNTHESIZER FANTASY",
+			"first-release-date": "1993-10-21",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "471b3647-8a5a-4c84-abd4-77b3aea47268",
+			"title": "風の盆",
+			"first-release-date": "2002-11-23",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "48ec057c-43f1-4dd4-8cf4-03afe2b8994b",
+			"title": "RAKUEN_MALDIVES",
+			"first-release-date": "2006-04-26",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "49ace225-6f2d-4a75-a566-c0b35fab69d7",
+			"title": "The Universe Within, Vol.1 & 2",
+			"first-release-date": "1999-04-28",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "4cf9dc77-e409-428f-8f35-7c14af9b7990",
+			"title": "Joe Hisaishi in Vienna: Symphony No. 2 & Viola Saga",
+			"first-release-date": "2024-06-28",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "512ae51b-2cc1-35dc-aa82-5b36a0bc3eba",
+			"title": "Animage Best Symphony",
+			"first-release-date": "1991-02-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "51c9bfe8-4604-3acc-918e-0b3cda387778",
+			"title": "Arion Symphonic Suite",
+			"first-release-date": "1986-04-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "54927637-f8b3-310c-b2d1-650e55599676",
+			"title": "I Am",
+			"first-release-date": "1991-02-27",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "58393d74-7069-44df-a3fd-50f68d698425",
+			"title": "Roman Trip シンデレラ迷宮",
+			"first-release-date": "1984-03",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "5ad51b26-3f9a-4a52-9186-f2e3f259f83e",
+			"title": "Symphony No. 9 \"Choral\"",
+			"first-release-date": "2019-01-23",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "5d47d2a9-e52d-43c1-a43f-7d7e8ac8c989",
+			"title": "α-Bet-City",
+			"first-release-date": "1985",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "5eb27854-d1e7-321d-bb35-3b802a476b7b",
+			"title": "B+1: Joe Hisaishi, Original Movie's Sound Track Themes",
+			"first-release-date": "1992",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "6313892a-ad1f-498c-b2b7-06d2b6eebc29",
+			"title": "殿堂TWIN 8 機甲創世紀モスピーダ ＜Vol.I～III＞",
+			"first-release-date": "1999-06-23",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "64b3311c-86f3-3a03-8983-2b0d28eafee9",
+			"title": "風の谷のナウシカ シンフォニー 風の伝説",
+			"first-release-date": "1984-02-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "6519c749-2c05-3a14-908b-c801b18eefa9",
+			"title": "Works II",
+			"first-release-date": "1999-09-22",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "69ab54b4-b57b-37fc-beea-58900584b8c3",
+			"title": "となりのトトロ: オーケストラストーリーズ",
+			"first-release-date": "2002-10-23",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "6d0d4d3b-e8a2-3c7a-8456-569b5c4cf05c",
+			"title": "もののけ姫 イメージアルバム",
+			"first-release-date": "1996-07-22",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "6e0e8183-2b97-4d7a-94a8-637d3427c4cc",
+			"title": "A Symphonic Celebration: Music From the Studio Ghibli Films of Hayao Miyazaki",
+			"first-release-date": "2023-06-30",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "75b1794c-8234-3f42-9947-c2828ff33584",
+			"title": "宮崎アニメ The Best",
+			"first-release-date": "1993-12-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "75ee188e-f4a2-378d-93e2-91e024029312",
+			"title": "風の谷のナウシカ ハイテックシリーズ",
+			"first-release-date": "1989-10-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "78d4062c-eeab-37e7-b17f-51616d58d817",
+			"title": "Best Selection",
+			"first-release-date": "1999-12-22",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "796fe935-2fed-3cbd-9044-09ae3f84e2ed",
+			"title": "illusion",
+			"first-release-date": "1988-12-21",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "7caf8d72-6bf3-3437-b38e-ad9bc129ebdc",
+			"title": "天空の城ラピュタ イメージアルバム 空から降って来た少女",
+			"first-release-date": "1986-05-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "7e60ec7c-1545-47ba-bbcf-a1ebee96da68",
+			"title": "Original Sound Track Piano Volume 1",
+			"first-release-date": "1994-06-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "849bbc6a-91ce-4e10-81d6-1b2f5e4d8cd1",
+			"title": "銀河鉄道の夜",
+			"first-release-date": "1996-07-20",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "84cd66c0-eb3c-445f-8a0c-8e4e46d0ea1d",
+			"title": "Joe Hisaishi Presents Music Future II",
+			"first-release-date": "2017-11-22",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "85130d71-976c-3985-8ad0-66907e327682",
+			"title": "Piano Stories",
+			"first-release-date": "1988-07-21",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "85218db6-d726-3131-9424-b2283c3c7999",
+			"title": "ハウルの動く城 イメージ交響組曲",
+			"first-release-date": "2004-01-21",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "8681afd7-57f0-4f46-ac64-0ee828688bb5",
+			"title": "DIAMOND COLLECTION アニメ・ザ・ムービー",
+			"first-release-date": "1988-06-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "8bd1f43c-37fe-32f7-a95e-b201f51cc83b",
+			"title": "Piano Stories II",
+			"first-release-date": "1996-10-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "8ce1be8d-1cc4-4214-9ccc-01db77255c73",
+			"title": "パリのアメリカ人",
+			"first-release-date": "2005-11-30",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "91c9fcb1-91a8-480a-bf70-e5cf995cc363",
+			"title": "NHKスペシャル「驚異の小宇宙・人体III〜遺伝子・DNA」サウンドトラック Vol.①",
+			"first-release-date": "1999-04-28",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "9294dabc-0cb7-4924-ab6a-bd7b149ee215",
+			"title": "Studio Ghibli Piano Collection",
+			"first-release-date": "2023-05-23",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "96349f2d-df18-46f6-a8bb-816f45a940bf",
+			"title": "Animage Complete Collection",
+			"first-release-date": "1992-11-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "965b26b6-1f1e-4e78-abac-5fc6097c7663",
+			"title": "紅の豚ドラマ編",
+			"first-release-date": "1992-09-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "9b62e1ee-e3b0-3f9a-b830-cb720bd57708",
+			"title": "となりのトトロ ハイテックシリーズ",
+			"first-release-date": "1990-01-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "9c0c5af8-672d-4ee5-a70f-fa64dd67b70a",
+			"title": "Etude: A Wish to the Moon",
+			"first-release-date": "2003-03-12",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "9ecc18e2-abaa-45a2-af2b-b60399db8da3",
+			"title": "Zoids Battle Music",
+			"first-release-date": "1987",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "9f7e918d-55dc-383e-9bd3-d146cdfa339e",
+			"title": "交響組曲 もののけ姫",
+			"first-release-date": "1998-07-08",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "a3788fc6-d381-483c-a97c-877bf1701ea7",
+			"title": "J9 SPECIAL ROCK SHOW & CURTAIN CALL",
+			"first-release-date": "1987-08-05",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "a3c5e2df-2c8b-3d27-a14d-7e238bd1600f",
+			"title": "千と千尋の神隠し イメージアルバム",
+			"first-release-date": "2001-04-04",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "a6f784a7-f9b7-48b7-ae90-81bde0460c68",
+			"title": "Howl’s Moving Castle – Famous Music of Anime",
+			"first-release-date": "2009",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "a7951bdf-037c-4aba-95aa-be8b928a3b2a",
+			"title": "Minima_Rhythm IV",
+			"first-release-date": "2021-07-07",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "a861d747-3c9b-4786-a114-e4f45850c220",
+			"title": "The Boy and the Heron: Symphonic Suite for Piano and Orchestra",
+			"first-release-date": "2026-11-06",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "ac258487-f103-42d6-98c9-04a8afa539c7",
+			"title": "Joe Hisaishi for Guitar Solo",
+			"first-release-date": "2014-04-23",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "acb34db1-d33c-3847-86de-ac66cfdf939f",
+			"title": "Freedom PIANO STORIES 4",
+			"first-release-date": "2005-01-26",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "ad556225-82b0-4ac2-b8ef-7d2bce484f7c",
+			"title": "Minima_Rhythm",
+			"first-release-date": "2009-08-12",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "b3c68bd8-28ac-307d-a210-d31ea0acd8ea",
+			"title": "Nostalgia Piano Stories III",
+			"first-release-date": "1998-10-14",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "b3e7d5ab-7262-3e7a-851c-301be6aaf2cc",
+			"title": "ENCORE",
+			"first-release-date": "2002-03-06",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "b48eb7d7-3aff-37c5-87ed-c79f1ac4f484",
+			"title": "天空の城ラピュタ シンフォニー編 大樹",
+			"first-release-date": "1987-01-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "b71c6c29-e524-3962-9bd4-1183e27a8e15",
+			"title": "天空の城ラピュタ ハイテックシリーズ",
+			"first-release-date": "1989-11-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "b95354ac-229f-373b-8349-bd88e9abd41c",
+			"title": "魔女の宅急便 イメージ・アルバム",
+			"first-release-date": "1989-04-10",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "bd72c46f-8ba8-4a81-93a1-7489f8303b07",
+			"title": "Minima_Rhythm III",
+			"first-release-date": "2017-08-02",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "be00f877-f973-4881-a3fd-153ea1830cc9",
+			"title": "Symphony No. 1",
+			"first-release-date": "2020-07-22",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "be06c4d0-b21c-4736-91ba-73a39ea30b53",
+			"title": "Another Piano Stories 〜The End of the World〜",
+			"first-release-date": "2009-02-18",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "befb4466-652d-4b41-99df-c3dfaeef577b",
+			"title": "WORKS IV -Dream of W.D.O.-",
+			"first-release-date": "2014-10-08",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "c0443d65-e770-3019-8071-eaefb1b2560f",
+			"title": "joe hisaishi meets kitano films",
+			"first-release-date": "2001-06-21",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "c27dcf9f-312a-37f7-98da-837e5ceac56c",
+			"title": "MELODY Blvd.",
+			"first-release-date": "1995-01-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "c47dc5d1-ba16-4366-ab8d-743946be1998",
+			"title": "Joe Hisaishi Presents Music Future 2015",
+			"first-release-date": "2016-10-21",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "ce9ed813-5d5d-4e99-ad49-d6180ac59933",
+			"title": "NHKスペシャル「驚異の小宇宙・人体」サウンドトラック Special Issue The Universe Within",
+			"first-release-date": "1991-07-01",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "ceb4540c-629c-3564-a90d-30f1dfa7d116",
+			"title": "Asian X.T.C.",
+			"first-release-date": "2006-10-04",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "cfc1b26b-7115-3415-a8e7-cf8d338c8848",
+			"title": "ワールド・ドリーム",
+			"first-release-date": "2004-06-16",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "d0745767-5820-4ea4-982d-7685c18b7d09",
+			"title": "Joe Hisaishi Presents Music Future VI",
+			"first-release-date": "2022-11-23",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "d3ccdaa6-c49d-434d-9da5-90c8acca70e6",
+			"title": "風立ちぬ 音源",
+			"first-release-date": "2013-07-17",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "d425777b-e82e-411d-8a0c-6d861b46c7a4",
+			"title": "千と千尋の神隠し メモリアルBOX",
+			"first-release-date": "2003-04-09",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "d86ae225-65e7-4971-a614-eec5f7855553",
+			"title": "BIRTH",
+			"first-release-date": "1983-05-01",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "dbb76da2-51bc-3683-abc2-dce322b26472",
+			"title": "魔女の宅急便 ヴォーカルアルバム",
+			"first-release-date": "1989-11-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "de6191ca-8107-3042-952e-2625d736b09f",
+			"title": "地上の楽園",
+			"first-release-date": "1994-07-27",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "e17a7d38-bd5e-4f54-b904-2be630ca677d",
+			"title": "W.D.O. BEST",
+			"first-release-date": "2007",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "e1e583cb-b889-441b-bcc9-cf5d37244253",
+			"title": "Symphony No.7 ”Unfinished\" & No. 8 \"The Great\"",
+			"first-release-date": "2024-07-24",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "ed34706b-be69-3fd8-bc85-f07a9ab99e3a",
+			"title": "Curved Music",
+			"first-release-date": "1986-09-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "efd6d761-ff76-484f-9726-c6db9f539a86",
+			"title": "Digital Fantasia",
+			"first-release-date": "1984-09-21",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "f17ed75f-1e90-48a9-be05-ef3f9689adab",
+			"title": "銀河疾風サスライガー音楽集",
+			"first-release-date": "2009-10-23",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "f1c3d3ff-ff55-38bd-a860-fee62c676062",
+			"title": "魔女の宅急便 ハイテックシリーズ",
+			"first-release-date": "1989-12-21",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "f796098c-c9d7-4680-ae3c-7f92ae2b7a2f",
+			"title": "The Best Collection",
+			"first-release-date": "2006-06-07",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "f8cfa181-8ff6-464b-aa82-ec216fcde49c",
+			"title": "Original Sound Track Piano Volume 2",
+			"first-release-date": "1994-08-25",
+			"primary-type": "Album",
+			"secondary-types": []
+		}
+	]
+}

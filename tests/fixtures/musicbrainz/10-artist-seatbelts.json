@@ -1,0 +1,65 @@
+{
+	"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+	"name": "シートベルツ",
+	"sort-name": "Seatbelts, The",
+	"type": "Group",
+	"country": "JP",
+	"disambiguation": "Japanese space jazz band",
+	"life-span": {
+		"begin": "1998",
+		"end": null
+	},
+	"aliases": [
+		{
+			"name": "SEATBELTS",
+			"locale": "en",
+			"primary": false
+		},
+		{
+			"name": "Seat Belts",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "The Seatbelts",
+			"locale": "en",
+			"primary": true
+		}
+	],
+	"genres": [
+		{
+			"name": "contemporary jazz",
+			"count": 1
+		},
+		{
+			"name": "instrumental jazz",
+			"count": 1
+		},
+		{
+			"name": "jazz",
+			"count": 1
+		},
+		{
+			"name": "space rock",
+			"count": 1
+		},
+		{
+			"name": "vocal jazz",
+			"count": 1
+		}
+	],
+	"relations": [
+		{
+			"type": "free streaming",
+			"url": {
+				"resource": "https://www.deezer.com/artist/14444749"
+			}
+		},
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q982783"
+			}
+		}
+	]
+}

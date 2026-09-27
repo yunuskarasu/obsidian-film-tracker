@@ -1,0 +1,87 @@
+{
+	"id": "9162580e-5df4-32de-80cc-f45a8d8a9b1d",
+	"title": "Abbey Road",
+	"first-release-date": "1969-09-26",
+	"primary-type": "Album",
+	"secondary-types": [],
+	"artist-credit": [
+		{
+			"name": "The Beatles",
+			"joinphrase": "",
+			"artist": {
+				"id": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+				"name": "The Beatles",
+				"sort-name": "Beatles, The",
+				"country": "GB",
+				"type": "Group",
+				"disambiguation": "UK rock band, “The Fab Four”"
+			}
+		}
+	],
+	"genres": [
+		{
+			"name": "ambient",
+			"count": 1
+		},
+		{
+			"name": "art pop",
+			"count": 1
+		},
+		{
+			"name": "art rock",
+			"count": 1
+		},
+		{
+			"name": "classic rock",
+			"count": 4
+		},
+		{
+			"name": "dance",
+			"count": 1
+		},
+		{
+			"name": "jazz",
+			"count": 1
+		},
+		{
+			"name": "merseybeat",
+			"count": 1
+		},
+		{
+			"name": "pop",
+			"count": 10
+		},
+		{
+			"name": "pop rock",
+			"count": 13
+		},
+		{
+			"name": "progressive pop",
+			"count": 1
+		},
+		{
+			"name": "psychedelic",
+			"count": 4
+		},
+		{
+			"name": "psychedelic pop",
+			"count": 1
+		},
+		{
+			"name": "psychedelic rock",
+			"count": 4
+		},
+		{
+			"name": "rock",
+			"count": 25
+		}
+	],
+	"relations": [
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q173643"
+			}
+		}
+	]
+}

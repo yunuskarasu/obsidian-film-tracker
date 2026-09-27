@@ -1,12 +1,8 @@
 import { describe, expect, it } from "vitest";
-import {
-	mangaSummary,
-	posterLinkpathOf,
-	progressLabel,
-	seasonAndEpisode,
-	seasonSummary,
-	watchControlsFor,
-} from "../src/film-note-layout";
+import { progressLabel } from "../src/panels/kit";
+import { mangaSummary } from "../src/panels/manga-panel";
+import { posterLinkpathOf, seasonAndEpisode, watchControlsFor } from "../src/panels/poster";
+import { seasonSummary } from "../src/panels/seasons-panel";
 import { parseLinkTarget, parseWikilink } from "../src/note";
 
 describe("mangaSummary", () => {
@@ -101,6 +97,29 @@ describe("watchControlsFor", () => {
 		expect(watchControlsFor({ manga: { mal_id: 26 } })).toBeNull();
 		expect(watchControlsFor(undefined)).toBeNull();
 	});
+
+	it("keeps an album's button, which counts every listen", () => {
+		const album = { title: "OK Computer", mb_album_id: "b1392450", listened: false, listen_count: 0 };
+		expect(watchControlsFor(album)).toEqual({
+			label: null,
+			percent: null,
+			canWatchEpisode: false,
+			canMarkWatched: true,
+			markText: "Listened today",
+			canChangePhoto: false,
+		});
+		expect(watchControlsFor({ ...album, listened: true, listen_count: 1 })).toMatchObject({ label: "Listened once", canMarkWatched: true });
+		expect(watchControlsFor({ ...album, listened: true, listen_count: 7 })).toMatchObject({ label: "Listened 7 times" });
+	});
+
+	it("gives an artist the Change photo button and nothing to watch", () => {
+		expect(watchControlsFor({ name: "Radiohead", mb_artist_id: "a74b1b7f" })).toMatchObject({
+			label: null,
+			canWatchEpisode: false,
+			canMarkWatched: false,
+			canChangePhoto: true,
+		});
+	});
 });
 
 describe("parseWikilink", () => {
@@ -180,6 +199,8 @@ describe("a TV note's own bar", () => {
 			percent: "60%",
 			canWatchEpisode: true,
 			canMarkWatched: true,
+			markText: "Watched today",
+			canChangePhoto: false,
 		});
 	});
 

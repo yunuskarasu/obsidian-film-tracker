@@ -1,0 +1,35 @@
+{
+	"id": "6422322e-c901-3de0-ad38-3645f8bae359",
+	"title": "Gülümse",
+	"first-release-date": "1991-05-29",
+	"primary-type": "Album",
+	"secondary-types": [],
+	"artist-credit": [
+		{
+			"name": "Sezen Aksu",
+			"joinphrase": "",
+			"artist": {
+				"id": "635e2a34-a566-47c4-b61d-fa5d203856aa",
+				"name": "Sezen Aksu",
+				"sort-name": "Aksu, Sezen",
+				"country": "TR",
+				"type": "Person",
+				"disambiguation": ""
+			}
+		}
+	],
+	"genres": [
+		{
+			"name": "pop",
+			"count": 1
+		}
+	],
+	"relations": [
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q6097541"
+			}
+		}
+	]
+}

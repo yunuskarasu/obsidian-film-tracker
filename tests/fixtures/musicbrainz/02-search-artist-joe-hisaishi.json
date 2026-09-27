@@ -1,0 +1,173 @@
+{
+	"artists": [
+		{
+			"id": "44c64a30-1d58-49c5-b314-6e02fba49526",
+			"name": "久石譲",
+			"sort-name": "Hisaishi, Joe",
+			"type": "Person",
+			"country": "JP",
+			"disambiguation": "composer & musical director",
+			"score": 100,
+			"life-span": {
+				"begin": "1950-12-06"
+			}
+		},
+		{
+			"id": "538718d6-f0cb-4c8a-a985-8c9e1ede0a4b",
+			"name": "BANDIT",
+			"sort-name": "Bandit",
+			"disambiguation": "Featured in Joe Hisaishi's PRETENDER",
+			"score": 59,
+			"life-span": {}
+		},
+		{
+			"id": "c182a5fb-93a1-454b-81ca-0a1fa01bab6c",
+			"name": "Yui Hisaishi",
+			"sort-name": "Hisaishi, Yui",
+			"type": "Person",
+			"country": "US",
+			"disambiguation": "United States musician",
+			"score": 56,
+			"life-span": {}
+		},
+		{
+			"id": "2f43e416-f1bf-4f04-8853-a0019aa12441",
+			"name": "Joe Pass",
+			"sort-name": "Pass, Joe",
+			"type": "Person",
+			"country": "US",
+			"disambiguation": "jazz guitarist",
+			"score": 55,
+			"life-span": {
+				"begin": "1929-01-13",
+				"end": "1994-05-23"
+			}
+		},
+		{
+			"id": "ced028ce-e2d1-448f-8cf1-eaa75cd2eddf",
+			"name": "久石譲アンサンブル",
+			"sort-name": "Hisaishi, Joe, Ensemble",
+			"type": "Group",
+			"country": "JP",
+			"score": 54,
+			"life-span": {}
+		},
+		{
+			"id": "32f2d6bd-c22b-42cf-a7bc-0c4b48cd2bcb",
+			"name": "Joe Cocker",
+			"sort-name": "Cocker, Joe",
+			"type": "Person",
+			"country": "GB",
+			"score": 53,
+			"life-span": {
+				"begin": "1944-05-20",
+				"end": "2014-12-22"
+			}
+		},
+		{
+			"id": "475b7312-4fcb-49a4-8bcc-cf3a679b255a",
+			"name": "Joe Dassin",
+			"sort-name": "Dassin, Joe",
+			"type": "Person",
+			"country": "FR",
+			"score": 51,
+			"life-span": {
+				"begin": "1938-11-05",
+				"end": "1980-08-20"
+			}
+		},
+		{
+			"id": "07f6d469-38f3-46da-9cfa-2f532422b84e",
+			"name": "Joe Jackson",
+			"sort-name": "Jackson, Joe",
+			"type": "Person",
+			"disambiguation": "English musician",
+			"score": 51,
+			"life-span": {
+				"begin": "1954-08-11"
+			}
+		},
+		{
+			"id": "984f8239-8fe1-4683-9c54-10ffb14439e9",
+			"name": "Joe Bonamassa",
+			"sort-name": "Bonamassa, Joe",
+			"type": "Person",
+			"country": "US",
+			"score": 51,
+			"life-span": {
+				"begin": "1977-05-08"
+			}
+		},
+		{
+			"id": "d6864f27-532d-4912-af81-d710d58b1f01",
+			"name": "Joe",
+			"sort-name": "Joe",
+			"type": "Person",
+			"country": "US",
+			"disambiguation": "American R&B singer",
+			"score": 51,
+			"life-span": {
+				"begin": "1973-07-05"
+			}
+		},
+		{
+			"id": "29762c82-bb92-4acd-b1fb-09cc4da250d2",
+			"name": "Joe Satriani",
+			"sort-name": "Satriani, Joe",
+			"type": "Person",
+			"country": "US",
+			"score": 51,
+			"life-span": {
+				"begin": "1956-07-15"
+			}
+		},
+		{
+			"id": "02e81a75-461f-4b9d-b635-9cc916cef9c0",
+			"name": "Joe Budden",
+			"sort-name": "Budden, Joe",
+			"type": "Person",
+			"country": "US",
+			"score": 50,
+			"life-span": {
+				"begin": "1980-08-31"
+			}
+		},
+		{
+			"id": "9988c063-8ac2-416d-937c-c5959cd5be4d",
+			"name": "Joe Barrett",
+			"sort-name": "Barrett, Joe",
+			"type": "Person",
+			"country": "US",
+			"disambiguation": "actor, voice actor",
+			"score": 49,
+			"life-span": {
+				"begin": "1950-11-30"
+			}
+		},
+		{
+			"id": "bb25e0ba-fd11-4d2a-8ec3-f5674f67c874",
+			"name": "Joe Tex",
+			"sort-name": "Tex, Joe",
+			"type": "Person",
+			"country": "US",
+			"disambiguation": "American southern soul musician",
+			"score": 49,
+			"life-span": {
+				"begin": "1935-08-08",
+				"end": "1982-08-13"
+			}
+		},
+		{
+			"id": "b123ba15-c4a5-4281-8117-2e57f8f02496",
+			"name": "Big Joe Turner",
+			"sort-name": "Turner, Big Joe",
+			"type": "Person",
+			"country": "US",
+			"score": 48,
+			"life-span": {
+				"begin": "1911-05-18",
+				"end": "1985-11-24"
+			}
+		}
+	]
+}

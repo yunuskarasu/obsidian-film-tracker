@@ -1,0 +1,22 @@
+{
+	"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+	"name": "シートベルツ",
+	"sort-name": "Seatbelts, The",
+	"aliases": [
+		{
+			"name": "SEATBELTS",
+			"locale": "en",
+			"primary": false
+		},
+		{
+			"name": "Seat Belts",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "The Seatbelts",
+			"locale": "en",
+			"primary": true
+		}
+	]
+}

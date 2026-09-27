@@ -6,6 +6,8 @@ Search for a film, pick it from the list, and Film + Anime-Manga Tracker creates
 
 TV series work the same way, also from TMDB: one note per show, with its seasons kept in the note itself and a SEASONS panel to tick them off as you watch. See [TV series](#tv-series).
 
+Albums and artists work the same way too, from MusicBrainz, with no key to set up. See [Music](#music).
+
 Anime and manga follow the same philosophy, sourced from MyAnimeList. The two even share a single note when they're the same series: search for either half and Film + Anime-Manga Tracker creates or merges into one **Series note**, with a separate panel below the properties for the manga side. See [Anime and manga](#anime-and-manga) for details.
 
 ## Design philosophy
@@ -66,6 +68,8 @@ Directors work the same way: run **Add director**, or click the ribbon icon and 
 
 Anime and manga work the same way too: run **Add anime** or **Add manga**, search MyAnimeList, pick a result. Each result shows its type and year next to the title (TV, Movie, Manga, Light novel…), since MyAnimeList often has several entries sharing one title. See [Anime and manga](#anime-and-manga) for how the two combine into one Series note.
 
+Music works the same way, with no key: run **Add album** or **Add artist**, search MusicBrainz, and pick. See [Music](#music).
+
 Mangaka work a little differently: open the manga or Series note whose author you want to add, then run **Add mangaka** — it reads that note's own manga metadata to find the author on MyAnimeList directly, rather than opening a search box. One credited author adds straight away; more than one shows a quick pick list. See [Anime and manga](#anime-and-manga) for the MANGAGRAPHY panel it unlocks.
 
 ### Commands
@@ -75,11 +79,16 @@ Mangaka work a little differently: open the manga or Series note whose author yo
 | **Add film** | Search TMDB and create the note. |
 | **Add TV series** | Search TMDB and create the note, with a line for each season that has aired. See [TV series](#tv-series). |
 | **Add director** | Search TMDB for a person and create a director note: name, birthday, place of birth and a photo. |
+| **Add album** | Search MusicBrainz and create the album's note, with its tracks and cover. The first row of the search browses an artist's own albums instead. See [Music](#music). |
+| **Add artist** | Search MusicBrainz and create the artist's note, with a credited photo. Creates none of their albums. |
+| **Change artist photo** | Shows every photo on offer for the artist you have open — Deezer's, and those Wikimedia Commons files under the artist — side by side, with a picture from your vault or from a web address as two more ways. The one you pick becomes the note's. The old photo is only deleted if you say so, and only offered when no other note uses it. Only appears on artist notes. Also a **Change photo** button under the photo, and an entry on the note's right-click menu. |
 | **Add anime** | Search MyAnimeList and create a Series note — or, after asking, link into the manga-only note open in the editor. |
 | **Add manga** | Search MyAnimeList and create a Series note — or, after asking, link into the note open in the editor, whether that is an anime note with no manga or a TV series note. |
 | **Add mangaka** | Reads the active manga/Series note's credited author(s) from MyAnimeList and creates (or updates) their note. Requires a manga or Series note to be open — see [Anime and manga](#anime-and-manga). |
 | **Refresh metadata from TMDB** | Re-fetch the film, TV series or director and rewrite only the fields the plugin owns. On a TV series it brings in seasons that have started since, and new episodes of the season you are on, without touching what you have watched. Your `watch_date`, your body text, any property you added, any alias you added, any link already in a list (a director, a genre) and any comment above the first property are left exactly as they were. Only appears on film or director notes. |
 | **Refresh anime/manga metadata from MAL** | On a TV series note, refreshes its manga side. Otherwise re-fetches whichever side(s) the note has and rewrites only the fields the plugin owns. `watched`, `read`, your body text, any property you added, any link already in a list (a genre, a studio, a mangaka) and any comment above the first property are left exactly as they were. On a mangaka note, refreshes their name, birthday and photo instead. Only appears on anime, manga or mangaka notes. |
+| **Refresh music metadata from MusicBrainz** | Re-fetch the album or artist and rewrite only the fields the plugin owns. `listened`, `listen_date`, `listen_count`, the cover or photo already there, a key you added to a track, your own properties and the body stay as they are. Only appears on album and artist notes. |
+| **Mark as listened today** | Ticks `listened` on the album you have open, writes today into `listen_date` the first time, and counts one more in `listen_count` every time. Only appears on album notes. Also a **Listened today** button under the cover, and an entry on the note's right-click menu. |
 | **Mark as watched today** | Ticks `watched` on the film, TV or anime note you have open and writes today into `watch_date`. A date already there is kept — the day you first saw it. On a TV series it also fills in every season that has aired. Only appears on film, TV and anime notes. Also a **Watched today** button under the poster, and an entry on the note's right-click menu. |
 | **Mark manga as read today** | The manga side of the same thing: `read`, `read_date` and the full chapter count, on every note carrying that manga. Only appears on notes with a manga side. |
 | **Watch one more episode** | `episodes_watched` up by one. On a TV series it counts into the earliest season with something left, and the SEASONS panel has a **+1** for each season on its own. The last episode also ticks `watched` and dates it — on a TV series only once the show has ended. Only appears on TV and anime notes. Also a **+1 episode** button under the poster. |
@@ -253,6 +262,14 @@ The first time you add a film, open the note's properties, click the type icon n
 | Anime/manga poster folder | empty | Where anime and manga posters are saved (as two separate files). Empty follows your normal attachment folder setting. |
 | Mangaka folder | `Mangaka` | Where mangaka notes are created. Kept separate from the anime/manga folder, the same way directors have their own folder apart from films. Empty means the vault root. |
 | Mangaka photo folder | empty | Where mangaka photos are saved. Empty follows your normal attachment folder setting. |
+| Artist folder | `Music/Artists` | Where artist notes are created. Empty means the vault root. |
+| Album folder | `Music/Albums` | Where album notes are created. Empty means the vault root. |
+| Album cover folder | `Music/Pics/Covers` | Where album covers are saved. Empty follows your normal attachment folder setting. |
+| Artist photo folder | `Music/Pics/Artists` | Where artist photos are saved. Empty follows your normal attachment folder setting. |
+| Link artists | on | Write an album's artists as wikilinks when a note by that name exists. |
+| Link genres (music) | off | The same for an album's genres. |
+| Show tracklist | on | Below an album's properties, list its tracks. |
+| Show discography | on | Below an artist's properties, list their albums in your vault, with a button to add another. |
 
 On Obsidian 1.13 or later these settings appear in Obsidian's own settings search, and each folder setting suggests the folders in your vault as you type. On earlier versions the plugin draws the same settings itself, with the same folder suggestions.
 
@@ -410,6 +427,79 @@ That is what makes a long-running anime work well here: TMDB has its seasons in 
 
 TMDB lists anime among its TV shows, where a show is every season at once with its cast and crew; MyAnimeList has each season as an entry of its own, with the manga beside it. Every search result says which catalogue it came from, so the choice is between what the two give rather than between two names — and either way the manga can sit on the note (see above). If you add one anyway, and the work is already in your vault as an anime note, you are asked first — and the same question comes up the other way round, adding an anime the vault already has as a TV series. Neither is refused: the two are simply counted separately, from two catalogues that share no ids.
 
+## Music
+
+Albums and artists, from [MusicBrainz](https://musicbrainz.org) — the open music encyclopedia. No key and no account: it works as soon as the plugin is installed.
+
+Each note is its own: **Add album** writes the album and nothing else, and **Add artist** writes the artist and nothing else. An album names its artists — as links, once their notes exist — but never creates one, and an artist note never creates their albums.
+
+### Album notes
+
+```yaml
+---
+title: OK Computer
+artists:
+  - "[[Radiohead]]"
+year: 1997
+album_type: Album
+genres:
+  - alternative rock
+  - art rock
+runtime: 53
+tracks_count: 12
+poster: "[[OK Computer (1997).jpg]]"
+mb_album_id: b1392450-e666-3926-a536-22c65f834433
+listened: true
+listen_date: 2026-09-24
+listen_count: 3
+tracks:
+  - { n: 1, title: Airbag, length: "4:44" }
+  - { n: 2, title: Paranoid Android, length: "6:27" }
+---
+```
+
+- An album is the work, not one pressing of it: OK Computer has 39 releases on MusicBrainz. The track list is read from one that came out on the album's first day — the standard edition, not a deluxe one released alongside it.
+- `album_type` says what it is: Album, EP, Single, Soundtrack, Live, Compilation.
+- `listened`, `listen_date` and `listen_count` are yours. **Listened today** ticks the album, writes the date the first time, and counts one more listen every time — an album is meant to be played again. A refresh never touches them.
+- `tracks` holds one line per track, with `disc` on an album of more than one. Under the properties, the TRACKLIST panel is the readable view of it. A key you add to a track's line is kept.
+- The cover comes from the album's own page on Deezer, found through the links MusicBrainz keeps — the edition with the album's own number of tracks, not a deluxe one. An album Deezer doesn't have (many soundtracks, older records) gets its cover from the [Cover Art Archive](https://coverartarchive.org) instead, and failing that from Deezer's search, but only for an album whose title and artist match exactly. No cover is better than the wrong one.
+
+### Finding an album
+
+**Add album** searches MusicBrainz. A soundtrack, an EP or an album with a title in another script is often not near the top of that search — "Interstellar" finds a live suite before the soundtrack — so the first row of every search is **Browse an artist's albums instead…**: pick the artist, then the album from their own list, oldest first and filtered as you type. The artist's note isn't created for it. An artist note has the same list behind the **Add album…** button on its DISCOGRAPHY panel.
+
+### Artist notes
+
+```yaml
+---
+name: Joe Hisaishi
+original_name: 久石譲
+aliases:
+  - Joe Hisaishi
+  - 久石譲
+type: Person
+country: JP
+born: 1950-12-06
+died:
+genres:
+  - classical
+  - cinematic classical
+poster: "[[Joe Hisaishi.jpg]]"
+photo_credit: Deezer
+mb_artist_id: 44c64a30-1d58-49c5-b314-6e02fba49526
+---
+```
+
+- The note is named in English. MusicBrainz names an artist in their own script — 久石譲 — and the note takes the English name, so that a film's `composers: [[Joe Hisaishi]]` and an album's `artists` both find it. Both names go in `aliases`, and the original in `original_name`.
+- A person has `born` and `died`; a group has `formed` and `disbanded`.
+- The photo is the artist's own press photo from their page on Deezer, found through the link MusicBrainz keeps — so it is the right artist, never a namesake. For an artist without one, it comes from [Wikimedia Commons](https://commons.wikimedia.org), whose photos mostly ask to be credited: `photo_credit` says where the photo came from, and for Commons who took it and its licence (`citykane · CC BY 2.0`).
+- Don't like it? **Change photo**, under the photo, shows every photo on offer side by side — Deezer's, and up to eight from the artist's category on Commons, each with whom it credits — and the one you pick replaces it. **Choose from your vault…** links a picture you already have, as it is; **From a web address…** downloads the picture at an address you paste and credits the site. The old photo is kept unless you say otherwise.
+- Under the properties, DISCOGRAPHY lists the artist's albums already in your vault, matched on every name in the note, with how many you have listened to.
+
+### Being a good guest
+
+MusicBrainz is run by a non-profit and asks every app for two things: at most one request a second, and a name it can reach the app's author by. The plugin does both — it waits its turn between requests and introduces itself as `FilmTracker/<version> ( https://github.com/yunuskarasu/obsidian-film-tracker )` — nothing about you. That is why adding an album takes a few seconds: it is several requests at MusicBrainz's pace.
+
 ## Anime and manga
 
 An anime and a manga of the same series don't have to live in two separate notes. **Add anime** and **Add manga** are independent — either can come first — but when you want them combined, open the note that already has one side in the editor and run the other command. Film + Anime-Manga Tracker asks **Link to this note?**: link it, or keep it as a separate note. Only the note in the active editor tab is ever offered — not one you looked at earlier while Graph view or a canvas has the focus. There's no automatic matching (MyAnimeList's own anime↔manga relation data turned out to be empty via the official API even for very well-known pairs, so guessing was dropped in favor of this simple, explicit rule).
@@ -501,3 +591,5 @@ npm run build # typecheck + production bundle
 This product uses the TMDB API but is not endorsed or certified by TMDB.
 
 Anime and manga metadata and posters come from the [MyAnimeList API](https://myanimelist.net/apiconfig/references/api/v2).
+
+Music metadata comes from [MusicBrainz](https://musicbrainz.org). Album covers come from [Deezer](https://www.deezer.com) or the [Cover Art Archive](https://coverartarchive.org), and artist photos from Deezer or [Wikimedia Commons](https://commons.wikimedia.org), each credited in the note's own `photo_credit`.

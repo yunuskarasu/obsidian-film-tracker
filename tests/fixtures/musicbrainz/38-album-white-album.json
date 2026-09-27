@@ -1,0 +1,83 @@
+{
+	"id": "055be730-dcad-31bf-b550-45ba9c202aa3",
+	"title": "The Beatles",
+	"first-release-date": "1968-11-22",
+	"primary-type": "Album",
+	"secondary-types": [],
+	"artist-credit": [
+		{
+			"name": "The Beatles",
+			"joinphrase": "",
+			"artist": {
+				"id": "b10bbbfc-cf9e-42e0-be17-e2c3e1d2600d",
+				"name": "The Beatles",
+				"sort-name": "Beatles, The",
+				"country": "GB",
+				"type": "Group",
+				"disambiguation": "UK rock band, “The Fab Four”"
+			}
+		}
+	],
+	"genres": [
+		{
+			"name": "art rock",
+			"count": 2
+		},
+		{
+			"name": "beat music",
+			"count": 1
+		},
+		{
+			"name": "blues rock",
+			"count": 2
+		},
+		{
+			"name": "experimental",
+			"count": 5
+		},
+		{
+			"name": "folk",
+			"count": 1
+		},
+		{
+			"name": "folk rock",
+			"count": 2
+		},
+		{
+			"name": "hard rock",
+			"count": 5
+		},
+		{
+			"name": "merseybeat",
+			"count": 1
+		},
+		{
+			"name": "pop",
+			"count": 10
+		},
+		{
+			"name": "pop rock",
+			"count": 6
+		},
+		{
+			"name": "psychedelic",
+			"count": 3
+		},
+		{
+			"name": "psychedelic rock",
+			"count": 1
+		},
+		{
+			"name": "rock",
+			"count": 23
+		}
+	],
+	"relations": [
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q3295515"
+			}
+		}
+	]
+}

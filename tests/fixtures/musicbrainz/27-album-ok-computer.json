@@ -1,0 +1,83 @@
+{
+	"id": "b1392450-e666-3926-a536-22c65f834433",
+	"title": "OK Computer",
+	"first-release-date": "1997-05-21",
+	"primary-type": "Album",
+	"secondary-types": [],
+	"artist-credit": [
+		{
+			"name": "Radiohead",
+			"joinphrase": "",
+			"artist": {
+				"id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+				"name": "Radiohead",
+				"sort-name": "Radiohead",
+				"country": "GB",
+				"type": "Group",
+				"disambiguation": ""
+			}
+		}
+	],
+	"genres": [
+		{
+			"name": "alternative rock",
+			"count": 25
+		},
+		{
+			"name": "art rock",
+			"count": 13
+		},
+		{
+			"name": "britpop",
+			"count": 1
+		},
+		{
+			"name": "electronic",
+			"count": 2
+		},
+		{
+			"name": "experimental",
+			"count": 3
+		},
+		{
+			"name": "experimental rock",
+			"count": 2
+		},
+		{
+			"name": "indie rock",
+			"count": 2
+		},
+		{
+			"name": "leftfield",
+			"count": 2
+		},
+		{
+			"name": "neo-psychedelia",
+			"count": 1
+		},
+		{
+			"name": "pop rock",
+			"count": 2
+		},
+		{
+			"name": "post-britpop",
+			"count": 3
+		},
+		{
+			"name": "rock",
+			"count": 13
+		},
+		{
+			"name": "space rock revival",
+			"count": 3
+		}
+	],
+	"relations": [
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q202996"
+			}
+		}
+	]
+}

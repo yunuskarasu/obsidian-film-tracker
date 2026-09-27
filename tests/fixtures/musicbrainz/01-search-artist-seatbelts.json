@@ -1,0 +1,50 @@
+{
+	"artists": [
+		{
+			"id": "9ca6c1a7-9580-40fb-ba0a-88d32cb88c9e",
+			"name": "Seatbelts",
+			"sort-name": "Seatbelts",
+			"type": "Group",
+			"country": "GB",
+			"disambiguation": "rock band from Liverpool, UK",
+			"score": 100,
+			"life-span": {}
+		},
+		{
+			"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+			"name": "シートベルツ",
+			"sort-name": "Seatbelts, The",
+			"type": "Group",
+			"country": "JP",
+			"disambiguation": "Japanese space jazz band",
+			"score": 93,
+			"life-span": {
+				"begin": "1998"
+			}
+		},
+		{
+			"id": "af67bfd5-26c2-4d66-a77a-5c66b43b8faa",
+			"name": "The Seatbelts",
+			"sort-name": "Seatbelts, The",
+			"type": "Group",
+			"country": "US",
+			"disambiguation": "US rock band",
+			"score": 85,
+			"life-span": {
+				"begin": "1976"
+			}
+		},
+		{
+			"id": "5ffb73c0-b739-4231-ba22-f8d361be1d45",
+			"name": "菅野よう子",
+			"sort-name": "Kanno, Yōko",
+			"type": "Person",
+			"country": "JP",
+			"disambiguation": "Japanese composer, arranger & musician",
+			"score": 69,
+			"life-span": {
+				"begin": "1964-03-19"
+			}
+		}
+	]
+}

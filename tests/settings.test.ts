@@ -80,6 +80,10 @@ describe("the setting definitions", () => {
 			"animePosterFolder",
 			"mangakaFolder",
 			"mangakaPhotoFolder",
+			"artistFolder",
+			"albumFolder",
+			"albumCoverFolder",
+			"artistPhotoFolder",
 		]);
 	});
 

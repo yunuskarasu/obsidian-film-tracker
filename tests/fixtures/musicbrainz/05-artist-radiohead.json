@@ -1,0 +1,139 @@
+{
+	"id": "a74b1b7f-71a5-4011-9441-d0b5e4122711",
+	"name": "Radiohead",
+	"sort-name": "Radiohead",
+	"type": "Group",
+	"country": "GB",
+	"disambiguation": "",
+	"life-span": {
+		"begin": "1991",
+		"end": null
+	},
+	"aliases": [
+		{
+			"name": "Radio Head",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Radiohead & Thom Yorke",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "r/head",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "レディオヘッド",
+			"locale": "ja",
+			"primary": true
+		},
+		{
+			"name": "电台司令",
+			"locale": "zh",
+			"primary": true
+		}
+	],
+	"genres": [
+		{
+			"name": "alternative rock",
+			"count": 42
+		},
+		{
+			"name": "ambient pop",
+			"count": 1
+		},
+		{
+			"name": "art pop",
+			"count": 3
+		},
+		{
+			"name": "art rock",
+			"count": 29
+		},
+		{
+			"name": "britpop",
+			"count": 1
+		},
+		{
+			"name": "chamber pop",
+			"count": 1
+		},
+		{
+			"name": "crossover prog",
+			"count": 1
+		},
+		{
+			"name": "electronic",
+			"count": 13
+		},
+		{
+			"name": "electronic rock",
+			"count": 1
+		},
+		{
+			"name": "electronica",
+			"count": 2
+		},
+		{
+			"name": "experimental",
+			"count": 2
+		},
+		{
+			"name": "experimental rock",
+			"count": 14
+		},
+		{
+			"name": "idm",
+			"count": 1
+		},
+		{
+			"name": "indie rock",
+			"count": 4
+		},
+		{
+			"name": "indietronica",
+			"count": 1
+		},
+		{
+			"name": "post-britpop",
+			"count": 2
+		},
+		{
+			"name": "post-grunge",
+			"count": 1
+		},
+		{
+			"name": "rock",
+			"count": 18
+		}
+	],
+	"relations": [
+		{
+			"type": "free streaming",
+			"url": {
+				"resource": "https://www.deezer.com/artist/323887691"
+			}
+		},
+		{
+			"type": "free streaming",
+			"url": {
+				"resource": "https://www.deezer.com/artist/399"
+			}
+		},
+		{
+			"type": "IMDb",
+			"url": {
+				"resource": "https://www.imdb.com/name/nm1955602/"
+			}
+		},
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q44190"
+			}
+		}
+	]
+}

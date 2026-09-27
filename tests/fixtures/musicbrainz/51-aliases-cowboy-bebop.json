@@ -1,0 +1,72 @@
+{
+	"id": "5ffb73c0-b739-4231-ba22-f8d361be1d45",
+	"name": "菅野よう子",
+	"sort-name": "Kanno, Yōko",
+	"aliases": [
+		{
+			"name": "Ghost In The Shell",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "KANNO Youko",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Kanno Yoko",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Yoko Kanno",
+			"locale": "en",
+			"primary": true
+		},
+		{
+			"name": "Yoko Kanno & The Seatbelts",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Yoko Kanno and The Seatbelts",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Yoko Kano",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "かんの ようこ",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "菅野 よう子",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "菅野　よう子",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "菅野ようこ",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "菅野よう子",
+			"locale": "ja",
+			"primary": true
+		},
+		{
+			"name": "菅野洋子",
+			"locale": "ja",
+			"primary": false
+		}
+	]
+}

@@ -1,0 +1,292 @@
+{
+	"id": "a882c9f9-b920-30ad-8cd0-3ea2d6fedd60",
+	"date": "1968-11-22",
+	"country": "GB",
+	"status": "Official",
+	"media": [
+		{
+			"position": 1,
+			"format": "12\" Vinyl",
+			"track-count": 17,
+			"tracks": [
+				{
+					"position": 1,
+					"title": "Back in the U.S.S.R.",
+					"length": 163306,
+					"recording": {
+						"title": "Back in the U.S.S.R.",
+						"length": 163306
+					}
+				},
+				{
+					"position": 2,
+					"title": "Dear Prudence",
+					"length": 236360,
+					"recording": {
+						"title": "Dear Prudence",
+						"length": 236360
+					}
+				},
+				{
+					"position": 3,
+					"title": "Glass Onion",
+					"length": 137973,
+					"recording": {
+						"title": "Glass Onion",
+						"length": 137973
+					}
+				},
+				{
+					"position": 4,
+					"title": "Ob‐La‐Di, Ob‐La‐Da",
+					"length": 188826,
+					"recording": {
+						"title": "Ob‐La‐Di, Ob‐La‐Da",
+						"length": 188960
+					}
+				},
+				{
+					"position": 5,
+					"title": "Wild Honey Pie",
+					"length": 52906,
+					"recording": {
+						"title": "Wild Honey Pie",
+						"length": 52960
+					}
+				},
+				{
+					"position": 6,
+					"title": "The Continuing Story of Bungalow Bill",
+					"length": 194066,
+					"recording": {
+						"title": "The Continuing Story of Bungalow Bill",
+						"length": 194066
+					}
+				},
+				{
+					"position": 7,
+					"title": "While My Guitar Gently Weeps",
+					"length": 285293,
+					"recording": {
+						"title": "While My Guitar Gently Weeps",
+						"length": 285293
+					}
+				},
+				{
+					"position": 8,
+					"title": "Happiness Is a Warm Gun",
+					"length": 163466,
+					"recording": {
+						"title": "Happiness Is a Warm Gun",
+						"length": 163466
+					}
+				},
+				{
+					"position": 9,
+					"title": "Martha My Dear",
+					"length": 148733,
+					"recording": {
+						"title": "Martha My Dear",
+						"length": 148733
+					}
+				},
+				{
+					"position": 10,
+					"title": "I’m So Tired",
+					"length": 123306,
+					"recording": {
+						"title": "I’m So Tired",
+						"length": 123306
+					}
+				},
+				{
+					"position": 11,
+					"title": "Blackbird",
+					"length": 138266,
+					"recording": {
+						"title": "Blackbird",
+						"length": 138266
+					}
+				},
+				{
+					"position": 12,
+					"title": "Piggies",
+					"length": 124333,
+					"recording": {
+						"title": "Piggies",
+						"length": 124333
+					}
+				},
+				{
+					"position": 13,
+					"title": "Rocky Raccoon",
+					"length": 212893,
+					"recording": {
+						"title": "Rocky Raccoon",
+						"length": 212893
+					}
+				},
+				{
+					"position": 14,
+					"title": "Don’t Pass Me By",
+					"length": 230400,
+					"recording": {
+						"title": "Don’t Pass Me By",
+						"length": 230400
+					}
+				},
+				{
+					"position": 15,
+					"title": "Why Don’t We Do It in the Road?",
+					"length": 101440,
+					"recording": {
+						"title": "Why Don’t We Do It in the Road?",
+						"length": 101440
+					}
+				},
+				{
+					"position": 16,
+					"title": "I Will",
+					"length": 106026,
+					"recording": {
+						"title": "I Will",
+						"length": 106026
+					}
+				},
+				{
+					"position": 17,
+					"title": "Julia",
+					"length": 174200,
+					"recording": {
+						"title": "Julia",
+						"length": 174200
+					}
+				}
+			]
+		},
+		{
+			"position": 2,
+			"format": "12\" Vinyl",
+			"track-count": 13,
+			"tracks": [
+				{
+					"position": 1,
+					"title": "Birthday",
+					"length": 164853,
+					"recording": {
+						"title": "Birthday",
+						"length": 163080
+					}
+				},
+				{
+					"position": 2,
+					"title": "Yer Blues",
+					"length": 241760,
+					"recording": {
+						"title": "Yer Blues",
+						"length": 241160
+					}
+				},
+				{
+					"position": 3,
+					"title": "Mother Nature’s Son",
+					"length": 169080,
+					"recording": {
+						"title": "Mother Nature’s Son",
+						"length": 168040
+					}
+				},
+				{
+					"position": 4,
+					"title": "Everybody’s Got Something to Hide Except Me and My Monkey",
+					"length": 146586,
+					"recording": {
+						"title": "Everybody’s Got Something to Hide Except Me and My Monkey",
+						"length": 145000
+					}
+				},
+				{
+					"position": 5,
+					"title": "Sexy Sadie",
+					"length": 197093,
+					"recording": {
+						"title": "Sexy Sadie",
+						"length": 195373
+					}
+				},
+				{
+					"position": 6,
+					"title": "Helter Skelter",
+					"length": 270973,
+					"recording": {
+						"title": "Helter Skelter",
+						"length": 270000
+					}
+				},
+				{
+					"position": 7,
+					"title": "Long, Long, Long",
+					"length": 185493,
+					"recording": {
+						"title": "Long, Long, Long",
+						"length": 185493
+					}
+				},
+				{
+					"position": 8,
+					"title": "Revolution 1",
+					"length": 256106,
+					"recording": {
+						"title": "Revolution 1",
+						"length": 256000
+					}
+				},
+				{
+					"position": 9,
+					"title": "Honey Pie",
+					"length": 162466,
+					"recording": {
+						"title": "Honey Pie",
+						"length": 161333
+					}
+				},
+				{
+					"position": 10,
+					"title": "Savoy Truffle",
+					"length": 175640,
+					"recording": {
+						"title": "Savoy Truffle",
+						"length": 174906
+					}
+				},
+				{
+					"position": 11,
+					"title": "Cry Baby Cry",
+					"length": 193000,
+					"recording": {
+						"title": "Cry Baby Cry",
+						"length": 191000
+					}
+				},
+				{
+					"position": 12,
+					"title": "Revolution 9",
+					"length": 493746,
+					"recording": {
+						"title": "Revolution 9",
+						"length": 493746
+					}
+				},
+				{
+					"position": 13,
+					"title": "Good Night",
+					"length": 191800,
+					"recording": {
+						"title": "Good Night",
+						"length": 191800
+					}
+				}
+			]
+		}
+	]
+}

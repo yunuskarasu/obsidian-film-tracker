@@ -1,0 +1,123 @@
+{
+	"id": "4202c672-402d-3629-8078-e51bdaf1b77a",
+	"date": "1999-03-10",
+	"country": "JP",
+	"status": "Official",
+	"media": [
+		{
+			"position": 1,
+			"format": "CD",
+			"track-count": 12,
+			"tracks": [
+				{
+					"position": 1,
+					"title": "Automatic -Album Edit-",
+					"length": 327933,
+					"recording": {
+						"title": "Automatic -Album Edit-",
+						"length": 328000
+					}
+				},
+				{
+					"position": 2,
+					"title": "Movin' on without you",
+					"length": 278293,
+					"recording": {
+						"title": "Movin’ on without you",
+						"length": 278293
+					}
+				},
+				{
+					"position": 3,
+					"title": "In My Room",
+					"length": 259160,
+					"recording": {
+						"title": "In My Room",
+						"length": 259000
+					}
+				},
+				{
+					"position": 4,
+					"title": "First Love",
+					"length": 257853,
+					"recording": {
+						"title": "First Love",
+						"length": 257893
+					}
+				},
+				{
+					"position": 5,
+					"title": "甘いワナ 〜 Paint It, Black",
+					"length": 301920,
+					"recording": {
+						"title": "甘いワナ 〜 Paint It, Black",
+						"length": 302000
+					}
+				},
+				{
+					"position": 6,
+					"title": "time will tell",
+					"length": 327760,
+					"recording": {
+						"title": "time will tell",
+						"length": 327426
+					}
+				},
+				{
+					"position": 7,
+					"title": "Never Let Go",
+					"length": 237840,
+					"recording": {
+						"title": "Never Let Go",
+						"length": 237800
+					}
+				},
+				{
+					"position": 8,
+					"title": "B&C -Album Version-",
+					"length": 260826,
+					"recording": {
+						"title": "B&C -Album Version-",
+						"length": 260826
+					}
+				},
+				{
+					"position": 9,
+					"title": "Another Chance",
+					"length": 322093,
+					"recording": {
+						"title": "Another Chance",
+						"length": 322000
+					}
+				},
+				{
+					"position": 10,
+					"title": "Interlude",
+					"length": 17226,
+					"recording": {
+						"title": "Interlude",
+						"length": 17000
+					}
+				},
+				{
+					"position": 11,
+					"title": "Give Me A Reason",
+					"length": 387373,
+					"recording": {
+						"title": "Give Me A Reason",
+						"length": 384826
+					}
+				},
+				{
+					"position": 12,
+					"title": "Automatic -Johnny Vicious Remix-",
+					"length": 276306,
+					"recording": {
+						"title": "Automatic -Johnny Vicious Remix-",
+						"length": 276306
+					}
+				}
+			]
+		}
+	]
+}

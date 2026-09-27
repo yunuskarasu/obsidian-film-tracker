@@ -1,0 +1,86 @@
+{
+	"id": "0383dadf-2a4e-4d10-a46a-e9e041da8eb3",
+	"name": "Queen",
+	"sort-name": "Queen",
+	"type": "Group",
+	"country": "GB",
+	"disambiguation": "UK rock group",
+	"life-span": {
+		"begin": "1970-06-27",
+		"end": null
+	},
+	"aliases": [
+		{
+			"name": "クイーン",
+			"locale": "ja",
+			"primary": true
+		},
+		{
+			"name": "皇后乐队",
+			"locale": "zh_Hans_CN",
+			"primary": true
+		}
+	],
+	"genres": [
+		{
+			"name": "art rock",
+			"count": 15
+		},
+		{
+			"name": "baroque pop",
+			"count": 1
+		},
+		{
+			"name": "classic rock",
+			"count": 7
+		},
+		{
+			"name": "disco",
+			"count": 1
+		},
+		{
+			"name": "glam rock",
+			"count": 24
+		},
+		{
+			"name": "hard rock",
+			"count": 21
+		},
+		{
+			"name": "pop rock",
+			"count": 11
+		},
+		{
+			"name": "progressive rock",
+			"count": 5
+		},
+		{
+			"name": "rock",
+			"count": 43
+		},
+		{
+			"name": "symphonic rock",
+			"count": 6
+		}
+	],
+	"relations": [
+		{
+			"type": "free streaming",
+			"url": {
+				"resource": "https://www.deezer.com/artist/412"
+			}
+		},
+		{
+			"type": "IMDb",
+			"url": {
+				"resource": "https://www.imdb.com/name/nm1277102/"
+			}
+		},
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q15862"
+			}
+		}
+	]
+}

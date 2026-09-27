@@ -1,0 +1,806 @@
+{
+	"releases": [
+		{
+			"id": "0b6b4ba0-d36f-47bd-b4ea-6a5b91842d29",
+			"date": "1997-07-01",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "0c324f3a-dcbb-4f09-b33a-c03c676b4044",
+			"date": "2016-05-13",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "16f227a1-fa4a-4d7e-bba2-6a8ca18c33a8",
+			"date": "1997",
+			"country": null,
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "175d6ac9-7185-357c-af04-5887dc3ea788",
+			"date": "2006-09-06",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "1834eae1-741b-3c03-9ca5-0df3decb43ea",
+			"date": "1997-05-21",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "1c16cd42-472f-47cc-9848-d081d0737a7c",
+			"date": "1999",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "2629071c-1d8f-43f1-be99-712d931e3bf1",
+			"date": "2017-07-07",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 11
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "30702389-5c67-4438-9ea0-2351c8de0f1d",
+			"date": "2016-04-01",
+			"country": "XW",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 12
+				}
+			],
+			"relations": [
+				{
+					"type": "free streaming",
+					"url": {
+						"resource": "https://www.deezer.com/album/14879699"
+					}
+				}
+			]
+		},
+		{
+			"id": "3c8cbdc8-555f-3987-8f03-6baf9488d1b0",
+			"date": "1997",
+			"country": "AR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "425d8db9-88a3-31e2-bd23-b1a967626dd5",
+			"date": "1997-06-16",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "4b3d18cc-8937-36f4-8de0-481088be58e6",
+			"date": "1997-06-17",
+			"country": "CA",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "5048852c-1b89-4acf-989e-2df6598c4e1e",
+			"date": "2017-06-23",
+			"country": "GB",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "12\" Vinyl",
+					"track-count": 6
+				},
+				{
+					"position": 2,
+					"format": "12\" Vinyl",
+					"track-count": 6
+				},
+				{
+					"position": 3,
+					"format": "12\" Vinyl",
+					"track-count": 11
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "51df2038-5682-303e-9d87-7aeb99660433",
+			"date": "2008",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "12\" Vinyl",
+					"track-count": 6
+				},
+				{
+					"position": 2,
+					"format": "12\" Vinyl",
+					"track-count": 6
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "52709206-8816-3c12-9ff6-f957f2f1eecf",
+			"date": "1997-06-16",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "52e7fc61-fcf3-4b46-ac72-38e9644bf982",
+			"date": "1997",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 3
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "541a0976-ca45-3c0f-89e5-26bc376f58d1",
+			"date": "1997-06-16",
+			"country": "GB",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "12\" Vinyl",
+					"track-count": 6
+				},
+				{
+					"position": 2,
+					"format": "12\" Vinyl",
+					"track-count": 6
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "6a09041b-0f79-3278-88d9-0552dd28d37f",
+			"date": "1997-07-01",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "7169a92a-4dc1-42bb-9a21-c1c9223b68a8",
+			"date": "2009-03-24",
+			"country": "CA",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 15
+				},
+				{
+					"position": 3,
+					"format": "DVD-Video",
+					"track-count": 6
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "839966ab-7612-447c-b805-2a36b3e18aa5",
+			"date": "2017-06-23",
+			"country": "GB",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "12\" Vinyl",
+					"track-count": 6
+				},
+				{
+					"position": 2,
+					"format": "12\" Vinyl",
+					"track-count": 6
+				},
+				{
+					"position": 3,
+					"format": "12\" Vinyl",
+					"track-count": 11
+				},
+				{
+					"position": 4,
+					"format": "Cassette",
+					"track-count": 43
+				},
+				{
+					"position": 5,
+					"format": "Download Card",
+					"track-count": 23
+				},
+				{
+					"position": 6,
+					"format": "Download Card",
+					"track-count": 2
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "83becfd2-0a58-4d5b-9214-55ecc17c928d",
+			"date": "2016-05-01",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "8e2b5322-f9a6-4ab7-b3f4-f65e7ddbc9e4",
+			"date": "2017-06-22",
+			"country": "XW",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 23
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "943aa9da-7dc7-4a4a-a95e-2ffa707b6858",
+			"date": "2016",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "12\" Vinyl",
+					"track-count": 6
+				},
+				{
+					"position": 2,
+					"format": "12\" Vinyl",
+					"track-count": 6
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "9c1e5e9e-9f40-4cd8-94a4-785fa5d0b613",
+			"date": "1997",
+			"country": "PL",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Cassette",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "9eff0482-170f-3e93-8c65-73ce18e10ee7",
+			"date": "2009-03-23",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 15
+				},
+				{
+					"position": 3,
+					"format": "DVD-Video",
+					"track-count": 6
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "a1ed87aa-2079-4e42-bbeb-6309b3b68674",
+			"date": "2017-06-23",
+			"country": "XW",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 12
+				},
+				{
+					"position": 2,
+					"format": "Digital Media",
+					"track-count": 11
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "a64e09a7-2f26-4d7a-8505-f2561ad3299b",
+			"date": "1997-06-16",
+			"country": "GB",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "MiniDisc",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "a736eb98-ba6b-3e42-ad80-a65f648910a3",
+			"date": "2009-04-01",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 15
+				},
+				{
+					"position": 3,
+					"format": "DVD-Video",
+					"track-count": 6
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "a95ea77a-e7b1-4116-b647-8210f472b3e8",
+			"date": "2017-06-23",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 11
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "ab2c2726-a2c4-4f4d-a207-c1985c3f9a1b",
+			"date": "1997",
+			"country": "CA",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "ad0e6676-3e55-4bd6-a9ed-7f6424fd46f6",
+			"date": "1997-06-16",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "bdf93ecb-85e8-3505-98f7-e2e8c5052723",
+			"date": "2009-03-23",
+			"country": "GB",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 15
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "c7569949-0f67-4682-a0d8-75c4290c52dc",
+			"date": "1997-06-16",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "d339ba4d-0e44-4d2d-bc7a-b8078c072da9",
+			"date": "2016-05-01",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "d4635a34-caf5-3b35-9a5b-d805f1126633",
+			"date": "2009-03-24",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 15
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "d6dc018d-5caa-4e6f-8e9d-d889fcd585f4",
+			"date": "2017-06-23",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 11
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "d7881c68-914a-4da3-8a7d-be89f0201307",
+			"date": "2017-06-23",
+			"country": "XW",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 12
+				},
+				{
+					"position": 2,
+					"format": "Digital Media",
+					"track-count": 11
+				}
+			],
+			"relations": [
+				{
+					"type": "free streaming",
+					"url": {
+						"resource": "https://www.deezer.com/album/43197211"
+					}
+				}
+			]
+		},
+		{
+			"id": "e16cda60-6e6d-4a32-8d7c-e12d9aeb72de",
+			"date": "1997",
+			"country": "AU",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "e8c3ff98-75f0-383f-a7d1-35db67661d89",
+			"date": "2009-04-01",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 12
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 15
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "fba5f8fe-c6c8-4511-8562-c9febf482674",
+			"date": "1997-06-16",
+			"country": "GB",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Cassette",
+					"track-count": 12
+				}
+			],
+			"relations": []
+		}
+	]
+}

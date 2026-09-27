@@ -1,0 +1,82 @@
+{
+	"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+	"name": "宇多田ヒカル",
+	"sort-name": "Utada, Hikaru",
+	"aliases": [
+		{
+			"name": "Cubic U",
+			"locale": "en",
+			"primary": false
+		},
+		{
+			"name": "Cubic U (Utada Hikaru)",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Hikaru Utada",
+			"locale": "en",
+			"primary": true
+		},
+		{
+			"name": "Hikaru Utada",
+			"locale": "en",
+			"primary": false
+		},
+		{
+			"name": "Hikaru Utada",
+			"locale": "lt",
+			"primary": true
+		},
+		{
+			"name": "Hikki",
+			"locale": "en",
+			"primary": false
+		},
+		{
+			"name": "Utada",
+			"locale": "en",
+			"primary": false
+		},
+		{
+			"name": "Utada Hikaru",
+			"locale": "en_PH",
+			"primary": true
+		},
+		{
+			"name": "‰F‘½“cƒqƒJƒ‹",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "ヒッキー",
+			"locale": "ja",
+			"primary": false
+		},
+		{
+			"name": "宇多田ヒカル",
+			"locale": "ja",
+			"primary": true
+		},
+		{
+			"name": "宇多田光",
+			"locale": "ja",
+			"primary": false
+		},
+		{
+			"name": "宇多田光",
+			"locale": "zh_Hans",
+			"primary": true
+		},
+		{
+			"name": "宇多田光",
+			"locale": "zh_Hant_TW",
+			"primary": false
+		},
+		{
+			"name": "우타다히카루",
+			"locale": "ko",
+			"primary": false
+		}
+	]
+}

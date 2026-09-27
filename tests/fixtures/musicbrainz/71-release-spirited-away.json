@@ -1,0 +1,204 @@
+{
+	"id": "7a16f215-079e-4c55-abda-06f9a4228b6a",
+	"date": "2001-07-18",
+	"country": "JP",
+	"status": "Official",
+	"media": [
+		{
+			"position": 1,
+			"format": "CD",
+			"track-count": 21,
+			"tracks": [
+				{
+					"position": 1,
+					"title": "あの夏へ",
+					"length": 189800,
+					"recording": {
+						"title": "あの夏へ",
+						"length": 189800
+					}
+				},
+				{
+					"position": 2,
+					"title": "とおり道",
+					"length": 127533,
+					"recording": {
+						"title": "とおり道",
+						"length": 127533
+					}
+				},
+				{
+					"position": 3,
+					"title": "誰もいない料理店",
+					"length": 195693,
+					"recording": {
+						"title": "誰もいない料理店",
+						"length": 195693
+					}
+				},
+				{
+					"position": 4,
+					"title": "夜来る",
+					"length": 120400,
+					"recording": {
+						"title": "夜来る",
+						"length": 120400
+					}
+				},
+				{
+					"position": 5,
+					"title": "竜の少年",
+					"length": 132466,
+					"recording": {
+						"title": "竜の少年",
+						"length": 132466
+					}
+				},
+				{
+					"position": 6,
+					"title": "ボイラー虫",
+					"length": 153533,
+					"recording": {
+						"title": "ボイラー虫",
+						"length": 153533
+					}
+				},
+				{
+					"position": 7,
+					"title": "神さま達",
+					"length": 180373,
+					"recording": {
+						"title": "神さま達",
+						"length": 180373
+					}
+				},
+				{
+					"position": 8,
+					"title": "湯婆婆",
+					"length": 210066,
+					"recording": {
+						"title": "湯婆婆",
+						"length": 210066
+					}
+				},
+				{
+					"position": 9,
+					"title": "湯屋の朝",
+					"length": 122426,
+					"recording": {
+						"title": "湯屋の朝",
+						"length": 122426
+					}
+				},
+				{
+					"position": 10,
+					"title": "あの日の川",
+					"length": 193000,
+					"recording": {
+						"title": "あの日の川",
+						"length": 193000
+					}
+				},
+				{
+					"position": 11,
+					"title": "仕事はつらいぜ",
+					"length": 146933,
+					"recording": {
+						"title": "仕事はつらいぜ",
+						"length": 146933
+					}
+				},
+				{
+					"position": 12,
+					"title": "おクサレ神",
+					"length": 241533,
+					"recording": {
+						"title": "おクサレ神",
+						"length": 241533
+					}
+				},
+				{
+					"position": 13,
+					"title": "千の勇気",
+					"length": 165240,
+					"recording": {
+						"title": "千の勇気",
+						"length": 165240
+					}
+				},
+				{
+					"position": 14,
+					"title": "底なし穴",
+					"length": 78800,
+					"recording": {
+						"title": "底なし穴",
+						"length": 78800
+					}
+				},
+				{
+					"position": 15,
+					"title": "カオナシ",
+					"length": 227400,
+					"recording": {
+						"title": "カオナシ",
+						"length": 227400
+					}
+				},
+				{
+					"position": 16,
+					"title": "6番目の駅",
+					"length": 218226,
+					"recording": {
+						"title": "6番目の駅",
+						"length": 218226
+					}
+				},
+				{
+					"position": 17,
+					"title": "湯婆婆狂乱",
+					"length": 98040,
+					"recording": {
+						"title": "湯婆婆狂乱",
+						"length": 98026
+					}
+				},
+				{
+					"position": 18,
+					"title": "沼の底の家",
+					"length": 89760,
+					"recording": {
+						"title": "沼の底の家",
+						"length": 89773
+					}
+				},
+				{
+					"position": 19,
+					"title": "ふたたび",
+					"length": 293600,
+					"recording": {
+						"title": "ふたたび",
+						"length": 293600
+					}
+				},
+				{
+					"position": 20,
+					"title": "帰る日",
+					"length": 200666,
+					"recording": {
+						"title": "帰る日",
+						"length": 200666
+					}
+				},
+				{
+					"position": 21,
+					"title": "いつも何度でも",
+					"length": 215440,
+					"recording": {
+						"title": "いつも何度でも",
+						"length": 215440
+					}
+				}
+			]
+		}
+	]
+}

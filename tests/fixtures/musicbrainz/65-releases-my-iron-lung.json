@@ -1,0 +1,283 @@
+{
+	"releases": [
+		{
+			"id": "0255b87a-deda-4110-ac95-560c2f61bd33",
+			"date": "1994",
+			"country": "NL",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 2
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "1023d70a-7e68-4aaf-9b5d-03616a3b2023",
+			"date": "1996",
+			"country": "NL",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 4
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "13c58395-5df0-4db3-8513-5c2d87bfbd7c",
+			"date": "1994-09-26",
+			"country": "GB",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 4
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "20b2dd9a-cee1-4767-8bc1-5b3b08cfcae5",
+			"date": "1994-09-24",
+			"country": "GB",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 8
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "25ed1744-b53f-4901-bb31-4666494ca126",
+			"date": "",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 8
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "2ac8f2a5-88b6-4346-90b9-6d4af5db0190",
+			"date": "1994-09-26",
+			"country": "GB",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Cassette",
+					"track-count": 4
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "38568244-60ac-4029-981c-293c1ce00907",
+			"date": "1994",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 8
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "47200511-4174-4424-911c-111a03805a9e",
+			"date": "1994",
+			"country": "CA",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 5
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "4c3d7dbf-df78-497a-9cce-5c1999d946e7",
+			"date": "1995",
+			"country": "FR",
+			"status": "Promotion",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 1
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "50c71901-5902-4d70-8634-520205e06bd2",
+			"date": "1994-09-26",
+			"country": "GB",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 4
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "74906ca9-51db-4389-ad1d-3c1da6640bde",
+			"date": "",
+			"country": "AU",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 8
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "88b44566-d7c1-4123-a667-2c7cc2f89143",
+			"date": "1994-09-26",
+			"country": "GB",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Vinyl",
+					"track-count": 4
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "bc9ceb91-2af5-4659-a7e2-7cf61b3ecd8b",
+			"date": "2016-05-13",
+			"country": "XW",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 7
+				}
+			],
+			"relations": [
+				{
+					"type": "free streaming",
+					"url": {
+						"resource": "https://www.deezer.com/album/14880813"
+					}
+				}
+			]
+		},
+		{
+			"id": "ef5c3b7e-b163-3b3e-b943-a9ee0fe8e6b1",
+			"date": "1994",
+			"country": "FR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 8
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "f3bebb74-1df4-407e-bfe4-0671a8fc46fc",
+			"date": "",
+			"country": "CA",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 8
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "fb3f2423-9b6f-3522-8056-ab1c64687922",
+			"date": "2006-08",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 8
+				}
+			],
+			"relations": []
+		}
+	]
+}

@@ -1,0 +1,147 @@
+{
+	"releases": [
+		{
+			"id": "02545e2e-4dfa-4d4f-9429-31bfaf0fbe53",
+			"date": "",
+			"country": "XW",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 10
+				}
+			],
+			"relations": [
+				{
+					"type": "free streaming",
+					"url": {
+						"resource": "https://www.deezer.com/album/6275191"
+					}
+				}
+			]
+		},
+		{
+			"id": "25f654c3-f7ec-4f96-97e5-398deff6534e",
+			"date": "1991-05-29",
+			"country": "TR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Cassette",
+					"track-count": 10
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "54e67b99-bb72-48d9-82ea-178d3c1ccead",
+			"date": "2013",
+			"country": "TR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 10
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "59db420d-f78c-49f8-8c73-e1a96e6f4d66",
+			"date": "1991-07-16",
+			"country": "TR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 10
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "71b3d38d-542d-46ea-b39d-d710f7388907",
+			"date": "2006",
+			"country": "TR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 10
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "94402af0-4060-44e9-b58f-74a8624a5d9a",
+			"date": "2004",
+			"country": "TR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 9
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "a7113983-9e7a-378c-9e29-7de1a128e689",
+			"date": "1992",
+			"country": "DE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 10
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "daf0d855-f4d3-4390-b23c-eeedde4df8e8",
+			"date": "2001",
+			"country": "TR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 10
+				}
+			],
+			"relations": []
+		}
+	]
+}

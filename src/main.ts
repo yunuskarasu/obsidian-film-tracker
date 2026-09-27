@@ -17,9 +17,16 @@ import { MalClient } from "./mal";
 import { MalImportModal } from "./mal-import-modal";
 import { MalListImporter } from "./mal-importer";
 import { MangakaPickerModal } from "./mangaka-picker-modal";
-import type { NoteKind } from "./note-kind";
+import { ImageUrlModal, PhotoPickerModal, VaultImageModal } from "./photo-picker-modal";
+import type { AlbumSearchResult } from "./music";
+import { MusicActions } from "./music-actions";
+import { MusicBrainzClient } from "./musicbrainz";
+import { canListen, canWatch, hasAnime, hasEpisodes, hasManga, type NoteKind } from "./note-kind";
 import {
+	openAlbumSearch,
 	openAnimeSearch,
+	openArtistAlbums,
+	openArtistSearch,
 	openDirectorSearch,
 	openFilmSearch,
 	openMangaSearch,
@@ -31,25 +38,11 @@ import { TmdbClient } from "./tmdb";
 import { TvActions } from "./tv-actions";
 import { VaultNotes } from "./vault-notes";
 
-/** The notes "Mark as watched today" applies to: a film, a TV series, or a Series note's anime side. */
-function canWatch(kind: NoteKind): boolean {
-	return kind.kind === "film" || kind.kind === "tv" || (kind.kind === "series" && kind.animeMalId !== null);
-}
-
-/** The notes episodes are counted on: a TV series, or a Series note's anime side. */
-function hasEpisodes(kind: NoteKind): boolean {
-	return kind.kind === "tv" || (kind.kind === "series" && kind.animeMalId !== null);
-}
-
-/** The notes with a manga side: a Series note's, or a TV series note's. */
-function hasManga(kind: NoteKind): boolean {
-	return (kind.kind === "series" || kind.kind === "tv") && kind.mangaMalId !== null;
-}
-
 /**
  * The plugin itself: commands, the ribbon menu, the settings tab and the note
  * layout. What the commands actually do lives in `FilmActions` (TMDB),
- * `AnimeActions` (MyAnimeList) and `LetterboxdImporter`; this class opens
+ * `AnimeActions` (MyAnimeList), `TvActions` (TMDB's TV side),
+ * `MusicActions` (MusicBrainz) and the two importers; this class opens
  * the search boxes and dialogs and hands them the user's choices.
  */
 export default class FilmTrackerPlugin extends Plugin {
@@ -71,6 +64,24 @@ export default class FilmTrackerPlugin extends Plugin {
 	});
 	private readonly tv = new TvActions(this.app, this.notes, () => this.settings, {
 		alsoTracked: (title, noteNames, side) => this.askAlsoTracked(title, noteNames, side),
+	});
+	private readonly music = new MusicActions(this.app, this.notes, () => this.settings, {
+		pickPhoto: (artistName, candidates) =>
+			new Promise((resolve) => {
+				new PhotoPickerModal(this.app, artistName, candidates, resolve).open();
+			}),
+		pickVaultImage: () =>
+			new Promise((resolve) => {
+				new VaultImageModal(this.app, resolve).open();
+			}),
+		askImageUrl: () =>
+			new Promise((resolve) => {
+				new ImageUrlModal(this.app, resolve).open();
+			}),
+		confirm: (request) =>
+			new Promise((resolve) => {
+				new ConfirmModal(this.app, request, resolve).open();
+			}),
 	});
 	private readonly importer = new LetterboxdImporter(this.app, this.notes, this.films);
 	private readonly malImporter = new MalListImporter(this.app, this.notes, this.anime);
@@ -108,6 +119,18 @@ export default class FilmTrackerPlugin extends Plugin {
 			id: "add-manga",
 			name: "Add manga",
 			callback: () => this.startAddManga(),
+		});
+
+		this.addCommand({
+			id: "add-artist",
+			name: "Add artist",
+			callback: () => this.startAddArtist(),
+		});
+
+		this.addCommand({
+			id: "add-album",
+			name: "Add album",
+			callback: () => this.startAddAlbum(),
 		});
 
 		this.addCommand({
@@ -158,6 +181,39 @@ export default class FilmTrackerPlugin extends Plugin {
 		});
 
 		this.addCommand({
+			id: "refresh-music-metadata",
+			name: "Refresh music metadata from MusicBrainz",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || (note.kind.kind !== "artist" && note.kind.kind !== "album")) return false;
+				if (!checking) void this.music.refresh(this.musicbrainz(), note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "change-artist-photo",
+			name: "Change artist photo",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || note.kind.kind !== "artist") return false;
+				if (!checking) void this.music.changePhoto(this.musicbrainz(), note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "listened-today",
+			name: "Mark as listened today",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || !canListen(note.kind)) return false;
+				if (!checking) void this.music.markListenedToday(note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
 			id: "watched-today",
 			name: "Mark as watched today",
 			checkCallback: (checking) => {
@@ -196,7 +252,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			name: "Remove anime",
 			checkCallback: (checking) => {
 				const note = this.activeNote();
-				if (note === null || note.kind.kind !== "series" || note.kind.animeMalId === null) return false;
+				if (note === null || !hasAnime(note.kind)) return false;
 				if (!checking) void this.anime.removeAnime(note.file);
 				return true;
 			},
@@ -220,7 +276,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			callback: () => this.startImportFromMal(),
 		});
 
-		this.addRibbonIcon("film", "Add film, TV series, anime or manga", (evt) => {
+		this.addRibbonIcon("film", "Add film, TV series, anime, manga or music", (evt) => {
 			const menu = new Menu();
 			menu.addItem((item) =>
 				item
@@ -261,6 +317,19 @@ export default class FilmTrackerPlugin extends Plugin {
 					item.onClick(() => this.startAddMangaka(activeFile, mangaMalId));
 				}
 			});
+			menu.addSeparator();
+			menu.addItem((item) =>
+				item
+					.setTitle("Add album")
+					.setIcon("disc")
+					.onClick(() => this.startAddAlbum()),
+			);
+			menu.addItem((item) =>
+				item
+					.setTitle("Add artist")
+					.setIcon("mic")
+					.onClick(() => this.startAddArtist()),
+			);
 
 			menu.showAtMouseEvent(evt);
 		});
@@ -289,19 +358,24 @@ export default class FilmTrackerPlugin extends Plugin {
 		this.layout?.refresh();
 	}
 
-	/** A film or TV note goes to TMDB's side of the plugin, an anime note to MAL's; all of them write the same two fields. */
+	/**
+	 * The button under a poster: a film or TV note goes to TMDB's side of the
+	 * plugin, an anime note to MAL's, and an album is listened to rather than
+	 * watched (see `MusicActions.markListenedToday`).
+	 */
 	private async watchedToday(file: TFile): Promise<void> {
 		const kind = this.notes.kindOf(file);
-		if (kind?.kind === "film") await this.films.markWatchedToday(file);
+		if (canListen(kind)) await this.music.markListenedToday(file);
+		else if (kind?.kind === "film") await this.films.markWatchedToday(file);
 		else if (kind?.kind === "tv") await this.tv.markWatchedToday(file);
-		else if (kind?.kind === "series" && kind.animeMalId !== null) await this.anime.markWatchedToday(file);
+		else if (hasAnime(kind)) await this.anime.markWatchedToday(file);
 	}
 
 	/** "+1 episode": on a TV note it counts into the earliest season with something left. */
 	private async watchOneMoreEpisode(file: TFile): Promise<void> {
 		const kind = this.notes.kindOf(file);
 		if (kind?.kind === "tv") await this.tv.watchOneMoreEpisode(file);
-		else if (kind?.kind === "series" && kind.animeMalId !== null) await this.anime.watchOneMoreEpisode(file);
+		else if (hasAnime(kind)) await this.anime.watchOneMoreEpisode(file);
 	}
 
 	/**
@@ -315,6 +389,20 @@ export default class FilmTrackerPlugin extends Plugin {
 		if (file === null || kind === null) return;
 
 		const entries: { title: string; icon: string; run: () => void }[] = [];
+		if (canListen(kind)) {
+			entries.push({
+				title: "Mark as listened today",
+				icon: "headphones",
+				run: () => void this.music.markListenedToday(file),
+			});
+		}
+		if (kind.kind === "artist") {
+			entries.push({
+				title: "Change photo",
+				icon: "image",
+				run: () => void this.music.changePhoto(this.musicbrainz(), file),
+			});
+		}
 		if (canWatch(kind)) {
 			entries.push({ title: "Mark as watched today", icon: "check", run: () => void this.watchedToday(file) });
 		}
@@ -325,7 +413,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				run: () => void this.watchOneMoreEpisode(file),
 			});
 		}
-		if (kind.kind === "series" && kind.animeMalId !== null) {
+		if (hasAnime(kind)) {
 			entries.push({
 				title: "Remove anime",
 				icon: "trash-2",
@@ -371,6 +459,11 @@ export default class FilmTrackerPlugin extends Plugin {
 		return key === null ? null : new TmdbClient(key);
 	}
 
+	/** MusicBrainz needs no key, only the plugin's name and version in every request. */
+	private musicbrainz(): MusicBrainzClient {
+		return new MusicBrainzClient(this.manifest.version);
+	}
+
 	/** A MyAnimeList client, or `null` once the user has been pointed at the missing client ID. */
 	private mal(): MalClient | null {
 		const clientId = this.key("mal", "MyAnimeList client ID");
@@ -404,6 +497,8 @@ export default class FilmTrackerPlugin extends Plugin {
 				watchSeason: (file, season) => void this.tv.watchOneMoreOfSeason(file, season),
 				setSeasonWatched: (file, season, watched) => void this.tv.setSeasonWatched(file, season, watched),
 				watchedToday: (file) => void this.watchedToday(file),
+				addAlbumByArtist: (file) => this.startAddAlbumOf(file),
+				changePhoto: (file) => void this.music.changePhoto(this.musicbrainz(), file),
 			},
 		);
 		this.layout = layout;
@@ -525,6 +620,33 @@ export default class FilmTrackerPlugin extends Plugin {
 		const client = this.mal();
 		if (client === null) return;
 		openMangaSearch(this.app, client, (result) => void this.anime.addManga(client, result));
+	}
+
+	private startAddArtist(): void {
+		const client = this.musicbrainz();
+		openArtistSearch(this.app, client, (result) => void this.music.addArtist(client, result));
+	}
+
+	/**
+	 * "Add album": the search, and from its first row an artist's own list of
+	 * albums — found through the artist, whose note is never created for it.
+	 */
+	private startAddAlbum(): void {
+		const client = this.musicbrainz();
+		const add = (album: AlbumSearchResult) => void this.music.addAlbum(client, album);
+		openAlbumSearch(this.app, client, add, () => {
+			openArtistSearch(this.app, client, (artist) => void openArtistAlbums(this.app, client, artist, add));
+		});
+	}
+
+	/** DISCOGRAPHY's "Add album…": the albums of the artist whose note it is. */
+	private startAddAlbumOf(file: TFile): void {
+		const id = this.music.artistIdOf(file);
+		if (id === null) return;
+		const client = this.musicbrainz();
+		const name: unknown = this.notes.frontmatterOf(file)?.name;
+		const artist = { id, name: typeof name === "string" && name.trim() !== "" ? name.trim() : file.basename };
+		void openArtistAlbums(this.app, client, artist, (album) => void this.music.addAlbum(client, album));
 	}
 
 	private startAddMangaka(file: TFile, mangaMalId: number): void {

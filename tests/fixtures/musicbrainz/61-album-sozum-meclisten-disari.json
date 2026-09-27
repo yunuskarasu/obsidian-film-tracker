@@ -1,0 +1,59 @@
+{
+	"id": "45de09ae-7838-4888-a694-dfd2c7a84992",
+	"title": "Sözüm Meclisten Dışarı",
+	"first-release-date": "1981-04-09",
+	"primary-type": "Album",
+	"secondary-types": [],
+	"artist-credit": [
+		{
+			"name": "Barış Manço",
+			"joinphrase": " & ",
+			"artist": {
+				"id": "33736d61-e2a2-4070-88dd-ad2e173d174c",
+				"name": "Barış Manço",
+				"sort-name": "Manço, Barış",
+				"country": "TR",
+				"type": "Person",
+				"disambiguation": ""
+			}
+		},
+		{
+			"name": "Kurtalan Ekspres",
+			"joinphrase": "",
+			"artist": {
+				"id": "1b8f7609-795b-46d3-a949-1efed3652e40",
+				"name": "Kurtalan Ekspres",
+				"sort-name": "Kurtalan Ekspres",
+				"country": "TR",
+				"type": "Group",
+				"disambiguation": ""
+			}
+		}
+	],
+	"genres": [
+		{
+			"name": "anatolian rock",
+			"count": 1
+		},
+		{
+			"name": "folk rock",
+			"count": 1
+		},
+		{
+			"name": "progressive rock",
+			"count": 1
+		},
+		{
+			"name": "rock",
+			"count": 1
+		}
+	],
+	"relations": [
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q6098325"
+			}
+		}
+	]
+}

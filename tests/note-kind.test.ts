@@ -1,6 +1,11 @@
 import { describe, expect, it } from "vitest";
 import {
+	canListen,
+	canWatch,
 	classifyNote,
+	hasAnime,
+	hasEpisodes,
+	hasManga,
 	isAnimeOnlySeries,
 	isMangaOnlySeries,
 	matchesRef,
@@ -230,5 +235,67 @@ describe("isAnimeOnlySeries / isMangaOnlySeries", () => {
 			expect(isAnimeOnlySeries(note)).toBe(false);
 			expect(isMangaOnlySeries(note)).toBe(false);
 		}
+	});
+});
+
+describe("what each kind of note can do", () => {
+	const film = { kind: "film", tmdbId: 1 } as const;
+	const director = { kind: "director", tmdbId: 2 } as const;
+	const anime = { kind: "series", animeMalId: 3, mangaMalId: null } as const;
+	const mangaOnly = { kind: "series", animeMalId: null, mangaMalId: 4 } as const;
+	const both = { kind: "series", animeMalId: 3, mangaMalId: 4 } as const;
+	const mangaka = { kind: "mangaka", malId: 5 } as const;
+	const tv = { kind: "tv", tmdbTvId: 6, mangaMalId: null } as const;
+	const tvManga = { kind: "tv", tmdbTvId: 6, mangaMalId: 4 } as const;
+	const all = [film, director, anime, mangaOnly, both, mangaka, tv, tvManga, null];
+	const which = (can: (kind: (typeof all)[number]) => boolean) => all.map(can);
+
+	it("watches films, TV series and anime", () => {
+		expect(which(canWatch)).toEqual([true, false, true, false, true, false, true, true, false]);
+	});
+
+	it("counts episodes on TV series and anime", () => {
+		expect(which(hasEpisodes)).toEqual([false, false, true, false, true, false, true, true, false]);
+	});
+
+	it("reads manga on Series and TV notes that carry one", () => {
+		expect(which(hasManga)).toEqual([false, false, false, true, true, false, false, true, false]);
+	});
+
+	it("finds the anime on a Series note only", () => {
+		expect(which(hasAnime)).toEqual([false, false, true, false, true, false, false, false, false]);
+	});
+});
+
+describe("music notes", () => {
+	it("reads an album and an artist by their MusicBrainz ids", () => {
+		expect(classifyNote({ title: "OK Computer", mb_album_id: "b139" })).toEqual({ kind: "album", mbAlbumId: "b139" });
+		expect(classifyNote({ name: "Radiohead", mb_artist_id: "a74b" })).toEqual({ kind: "artist", mbArtistId: "a74b" });
+	});
+
+	it("never lets a MusicBrainz id change what a note already was", () => {
+		expect(classifyNote({ title: "Stalker", directors: [], tmdb_id: 1398, mb_album_id: "x" })?.kind).toBe("film");
+		expect(classifyNote({ name: "Andrei Tarkovsky", tmdb_id: 8452, mb_artist_id: "x" })?.kind).toBe("director");
+		expect(classifyNote({ title: "AoT", media_type: "tv", episodes: 25, studios: [], mal_id: 1, mb_album_id: "x" })?.kind).toBe("series");
+		expect(classifyNote({ title: "Breaking Bad", tmdb_tv_id: 1396, mb_album_id: "x" })?.kind).toBe("tv");
+	});
+
+	it("reads nothing into a blank or numeric id", () => {
+		expect(classifyNote({ mb_album_id: "" })).toBeNull();
+		expect(classifyNote({ mb_artist_id: 42 })).toBeNull();
+	});
+
+	it("tells an album apart from every other note when one is looked for", () => {
+		const album = { kind: "album", mbAlbumId: "b139" } as const;
+		expect(matchesRef(album, { kind: "album", mbAlbumId: "b139" })).toBe(true);
+		expect(matchesRef(album, { kind: "album", mbAlbumId: "other" })).toBe(false);
+		expect(matchesRef(album, { kind: "artist", mbArtistId: "b139" })).toBe(false);
+	});
+
+	it("is listened to, never watched", () => {
+		expect(canListen({ kind: "album", mbAlbumId: "b139" })).toBe(true);
+		expect(canWatch({ kind: "album", mbAlbumId: "b139" })).toBe(false);
+		expect(canListen({ kind: "artist", mbArtistId: "a74b" })).toBe(false);
+		expect(canListen({ kind: "film", tmdbId: 1 })).toBe(false);
 	});
 });

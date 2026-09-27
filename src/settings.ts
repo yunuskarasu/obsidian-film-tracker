@@ -47,6 +47,15 @@ export interface FilmTrackerSettings {
 	animePosterFolder: string;
 	mangakaFolder: string;
 	mangakaPhotoFolder: string;
+	/** Music has settings of its own, apart from films' and series': it links different people. */
+	artistFolder: string;
+	albumFolder: string;
+	albumCoverFolder: string;
+	artistPhotoFolder: string;
+	linkArtists: boolean;
+	linkMusicGenres: boolean;
+	showTracklist: boolean;
+	showDiscography: boolean;
 }
 
 export const DEFAULT_SETTINGS: FilmTrackerSettings = {
@@ -80,6 +89,14 @@ export const DEFAULT_SETTINGS: FilmTrackerSettings = {
 	animePosterFolder: "",
 	mangakaFolder: "Mangaka",
 	mangakaPhotoFolder: "",
+	artistFolder: "Music/Artists",
+	albumFolder: "Music/Albums",
+	albumCoverFolder: "Music/Pics/Covers",
+	artistPhotoFolder: "Music/Pics/Artists",
+	linkArtists: true,
+	linkMusicGenres: false,
+	showTracklist: true,
+	showDiscography: true,
 };
 
 /** Added to a key's description once it lives in Obsidian's keychain. */
@@ -378,6 +395,65 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 						name: "Mangaka photo folder",
 						desc: "Where mangaka photos are saved. Leave empty to follow your attachment folder setting.",
 						control: { type: "folder", key: "mangakaPhotoFolder", placeholder: FOLLOW_ATTACHMENTS },
+					},
+				],
+			},
+			{
+				type: "group",
+				heading: "🎵 Music: folders",
+				items: [
+					{
+						name: "Artist folder",
+						desc: "Where new artist notes are created. Leave empty for the vault root.",
+						control: { type: "folder", key: "artistFolder", placeholder: DEFAULT_SETTINGS.artistFolder },
+					},
+					{
+						name: "Album folder",
+						desc: "Where new album notes are created. Leave empty for the vault root.",
+						control: { type: "folder", key: "albumFolder", placeholder: DEFAULT_SETTINGS.albumFolder },
+					},
+					{
+						name: "Album cover folder",
+						desc: "Where album covers are saved. Leave empty to follow your attachment folder setting.",
+						control: { type: "folder", key: "albumCoverFolder", placeholder: FOLLOW_ATTACHMENTS },
+					},
+					{
+						name: "Artist photo folder",
+						desc: "Where artist photos are saved. Leave empty to follow your attachment folder setting.",
+						control: { type: "folder", key: "artistPhotoFolder", placeholder: FOLLOW_ATTACHMENTS },
+					},
+				],
+			},
+			{
+				type: "group",
+				heading: "🎵 Music: metadata",
+				items: [
+					{
+						name: "Link artists",
+						desc: "Write an album's artists as [[wikilinks]] when a note with that name already exists. An album never creates its artist's note: add the artist yourself, and the next albums link to it.",
+						control: { type: "toggle", key: "linkArtists" },
+					},
+					{
+						name: "Link genres",
+						desc: "The same for an album's genres. Off by default: genre notes become very busy hubs.",
+						aliases: ["Music genres"],
+						control: { type: "toggle", key: "linkMusicGenres" },
+					},
+				],
+			},
+			{
+				type: "group",
+				heading: "🎵 Music: panels",
+				items: [
+					{
+						name: "Show tracklist",
+						desc: "Below an album's properties, list its tracks.",
+						control: { type: "toggle", key: "showTracklist" },
+					},
+					{
+						name: "Show discography",
+						desc: "Below an artist's properties, list their albums that are in your vault, with a button to add another.",
+						control: { type: "toggle", key: "showDiscography" },
 					},
 				],
 			},

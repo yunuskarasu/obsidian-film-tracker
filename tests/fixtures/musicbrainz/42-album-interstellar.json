@@ -1,0 +1,51 @@
+{
+	"id": "4513c7b9-854e-457f-81d6-3dbeb001beb8",
+	"title": "Interstellar: Original Motion Picture Soundtrack",
+	"first-release-date": "2014-11-17",
+	"primary-type": "Album",
+	"secondary-types": [
+		"Soundtrack"
+	],
+	"artist-credit": [
+		{
+			"name": "Hans Zimmer",
+			"joinphrase": "",
+			"artist": {
+				"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+				"name": "Hans Zimmer",
+				"sort-name": "Zimmer, Hans",
+				"country": "US",
+				"type": "Person",
+				"disambiguation": "German score composer"
+			}
+		}
+	],
+	"genres": [
+		{
+			"name": "ambient",
+			"count": 1
+		},
+		{
+			"name": "classical",
+			"count": 3
+		},
+		{
+			"name": "electronic",
+			"count": 2
+		}
+	],
+	"relations": [
+		{
+			"type": "IMDb",
+			"url": {
+				"resource": "https://www.imdb.com/title/tt0816692/"
+			}
+		},
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q18552823"
+			}
+		}
+	]
+}

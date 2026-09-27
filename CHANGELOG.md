@@ -4,6 +4,19 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+### Added
+
+- **Music, from MusicBrainz — no key needed.** **Add album** writes an album's note: its artists, year, kind (album, EP, single, soundtrack, live…), genres, running time, cover and one line per track. **Add artist** writes an artist's note: both names, the country, when they were born or formed, genres and a photo.
+- Each note is its own. An album never creates its artist's note and an artist never creates their albums': an album names its artists, as links once their notes exist (**Link artists**).
+- An artist named in another script is named in English — 久石譲 becomes Joe Hisaishi — so that a film's composer and an album's artist both find the note. Both names go in `aliases`.
+- **Browse an artist's albums instead…**, the first row of every album search: soundtracks, EPs and titles in other scripts are often missed by the search, and are always on the artist's own list. The DISCOGRAPHY panel has the same list behind **Add album…**.
+- **Listened today** — a button under an album's cover, a command and a menu entry. It ticks `listened`, dates it the first time, and counts every listen in `listen_count`.
+- The **TRACKLIST** panel under an album, and **DISCOGRAPHY** under an artist, each with a setting of its own.
+- Artist photos are the artist's own press photos from Deezer, found through the link MusicBrainz keeps to their Deezer page, so never a namesake's. An artist without one gets a photo from Wikimedia Commons instead. Either way a short `photo_credit` line says where it came from — for Commons, who took it and its licence.
+- **Change photo**, under an artist's photo and as a command: every photo on offer side by side — Deezer's, and up to eight from the artist's category on Wikimedia Commons — or a picture from your vault, or from a web address. The one picked replaces the note's; the old photo is kept unless you say to delete it.
+- Album covers come from the album's own page on Deezer — the edition with the album's number of tracks, not a deluxe one — and, for an album Deezer doesn't have, from the Cover Art Archive, all by itself.
+- A **🎵 Music** group in the settings: four folders (`Music/Artists`, `Music/Albums`, `Music/Pics/Covers`, `Music/Pics/Artists` by default), **Link artists**, **Link genres**, **Show tracklist** and **Show discography**.
+
 ## [3.0.0] - 2026-09-24
 
 3.0 marks TV series joining films and anime-manga. Nothing breaks: notes and settings from 2.x carry over as they are.

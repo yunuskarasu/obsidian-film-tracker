@@ -1,0 +1,285 @@
+{
+	"releases": [
+		{
+			"id": "0c7134d5-65fa-48ae-88d4-7c206ecec61c",
+			"date": "2012",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 21
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "300c5b5e-f2ec-42b9-be93-d87d84a546eb",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 21
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "41f3b694-163a-4979-b526-3faaaeb026a2",
+			"status": "Pseudo-Release",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": null,
+					"track-count": 21
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "5df4f9c7-dc3a-465d-a6ae-c429f89ab03e",
+			"date": "2001",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 21
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "7327ef89-e214-4f90-8d5d-3e56ffe21d0b",
+			"date": "2002-09-10",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 21
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "78ef1a62-f8fe-4127-80d5-2731a84c49de",
+			"status": "Bootleg",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": null,
+					"track-count": 23
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "7a16f215-079e-4c55-abda-06f9a4228b6a",
+			"date": "2001-07-18",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 21
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "80eec3d5-a44a-43b6-a95b-b4004461c6ca",
+			"date": "",
+			"country": "XW",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 21
+				}
+			],
+			"relations": [
+				{
+					"type": "free streaming",
+					"url": {
+						"resource": "https://www.deezer.com/album/181915142"
+					}
+				}
+			]
+		},
+		{
+			"id": "818288f6-a876-46ca-8b7d-09b901b6d9f1",
+			"date": "2019-11-12",
+			"country": "CA",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Blu-ray",
+					"track-count": 0
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 21
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "83aae150-258d-42b0-9c98-9f8f46aaa41c",
+			"date": "2002-03-19",
+			"country": "FR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 21
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "8546a5ee-1873-4656-98e0-badc0a789b19",
+			"date": "2001",
+			"country": "TW",
+			"status": "Bootleg",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 21
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "8b7601b3-b021-4fd3-b90f-0c5fbda16d8d",
+			"date": "2002-04",
+			"country": "FR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 21
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "8f63de1c-7f75-415a-89e2-81b531591247",
+			"date": "",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 21
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "9fe92739-5bcd-4f6e-b2f2-d2db97cabc32",
+			"status": "Pseudo-Release",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": null,
+					"track-count": 21
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "a1fe63f7-e41a-4e5b-845c-32343412af53",
+			"date": "2020-11-03",
+			"country": "JP",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "12\" Vinyl",
+					"track-count": 15
+				},
+				{
+					"position": 2,
+					"format": "12\" Vinyl",
+					"track-count": 6
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "a5bca402-04e2-4592-8bc9-61fd46a9aad3",
+			"date": "2004-05-06",
+			"country": "KR",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 21
+				}
+			],
+			"relations": []
+		}
+	]
+}

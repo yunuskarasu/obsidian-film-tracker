@@ -1,0 +1,50 @@
+{
+	"id": "635e2a34-a566-47c4-b61d-fa5d203856aa",
+	"name": "Sezen Aksu",
+	"sort-name": "Aksu, Sezen",
+	"type": "Person",
+	"country": "TR",
+	"disambiguation": "",
+	"life-span": {
+		"begin": "1954-07-13",
+		"end": null
+	},
+	"aliases": [
+		{
+			"name": "Fatma Sezen Yıldırım",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Minik Serçe",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "Σεζέν Ακτσού",
+			"locale": null,
+			"primary": null
+		}
+	],
+	"genres": [],
+	"relations": [
+		{
+			"type": "free streaming",
+			"url": {
+				"resource": "https://www.deezer.com/artist/9289"
+			}
+		},
+		{
+			"type": "IMDb",
+			"url": {
+				"resource": "https://www.imdb.com/name/nm0015574/"
+			}
+		},
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q298139"
+			}
+		}
+	]
+}

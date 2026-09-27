@@ -1,0 +1,55 @@
+{
+	"release-group-count": 106,
+	"release-groups": [
+		{
+			"id": "01186c6c-fa5a-4f94-b31d-bae96d281342",
+			"title": "Electricity",
+			"first-release-date": "2024-12-08",
+			"primary-type": "Other",
+			"secondary-types": []
+		},
+		{
+			"id": "4cfff859-f395-4270-8c76-918921f52443",
+			"title": "Floating Points w/ Hikaru Utada 270726",
+			"first-release-date": "2026-07-27",
+			"primary-type": "Broadcast",
+			"secondary-types": [
+				"DJ-mix"
+			]
+		},
+		{
+			"id": "5f2e299b-c359-4049-b063-ea50493f0959",
+			"title": "Mine or Yours (Bella Boo remix)",
+			"first-release-date": "2025-11-07",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "a4b89694-edaa-46a9-9101-77b112cccaf2",
+			"title": "Mine or Yours (The Blessed Madonna's GODSQUAD mix)",
+			"first-release-date": "2025-10-20",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "f328f4d4-1510-40ad-bae3-f25153a7e1e1",
+			"title": "パッパパラダイス",
+			"first-release-date": "2026-06-24",
+			"primary-type": "Other",
+			"secondary-types": []
+		},
+		{
+			"id": "fd2ae7e3-579b-434e-9eea-06cc64aee1db",
+			"title": "Hikaru Utada “Go Stream” Video Single",
+			"first-release-date": "2022-09",
+			"primary-type": "Other",
+			"secondary-types": [
+				"Live"
+			]
+		}
+	]
+}

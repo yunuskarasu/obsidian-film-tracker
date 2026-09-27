@@ -1,0 +1,87 @@
+{
+	"id": "20b2dd9a-cee1-4767-8bc1-5b3b08cfcae5",
+	"date": "1994-09-24",
+	"country": "GB",
+	"status": "Official",
+	"media": [
+		{
+			"position": 1,
+			"format": "CD",
+			"track-count": 8,
+			"tracks": [
+				{
+					"position": 1,
+					"title": "My Iron Lung",
+					"length": 277133,
+					"recording": {
+						"title": "My Iron Lung",
+						"length": 276440
+					}
+				},
+				{
+					"position": 2,
+					"title": "The Trickster",
+					"length": 280466,
+					"recording": {
+						"title": "The Trickster",
+						"length": 280466
+					}
+				},
+				{
+					"position": 3,
+					"title": "Lewis (Mistreated)",
+					"length": 199026,
+					"recording": {
+						"title": "Lewis (Mistreated)",
+						"length": 199026
+					}
+				},
+				{
+					"position": 4,
+					"title": "Punchdrunk Lovesick Singalong",
+					"length": 280306,
+					"recording": {
+						"title": "Punchdrunk Lovesick Singalong",
+						"length": 280306
+					}
+				},
+				{
+					"position": 5,
+					"title": "Permanent Daylight",
+					"length": 168226,
+					"recording": {
+						"title": "Permanent Daylight",
+						"length": 168240
+					}
+				},
+				{
+					"position": 6,
+					"title": "Lozenge of Love",
+					"length": 136200,
+					"recording": {
+						"title": "Lozenge of Love",
+						"length": 136200
+					}
+				},
+				{
+					"position": 7,
+					"title": "You Never Wash Up After Yourself",
+					"length": 104466,
+					"recording": {
+						"title": "You Never Wash Up After Yourself",
+						"length": 104440
+					}
+				},
+				{
+					"position": 8,
+					"title": "Creep (acoustic)",
+					"length": 259066,
+					"recording": {
+						"title": "Creep (acoustic)",
+						"length": 259066
+					}
+				}
+			]
+		}
+	]
+}

@@ -1,0 +1,359 @@
+{
+	"releases": [
+		{
+			"id": "0aef9fb8-67ed-4750-a504-cef04201e320",
+			"date": "2014-12-16",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 16
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 13
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "0cf04f3d-fad9-4ef6-86a3-655b327f48ee",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 1
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "0fdc6264-9c55-47b2-9e8f-bf3c79d65d62",
+			"date": "2020-11-13",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 16
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 14
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "20074beb-380c-4da5-8dcd-e1eb063f78ce",
+			"date": "2014-11-18",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 23
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "29eef140-bfb6-4c81-91d1-b9e8c42251c4",
+			"date": "2015-04-03",
+			"country": "DE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 16
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 13
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "35c4c72a-9aa7-4c8b-b39a-bb4256ee89bb",
+			"date": "2020-11-13",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": false
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 16
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 14
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "3dd79a9c-ede6-4d05-8735-5bb51a3e505b",
+			"date": "2014-11-17",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 16
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "480c236e-2fee-4d1b-b760-c7c82296ed31",
+			"date": "2014-11-18",
+			"country": "XW",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 16
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "50be1a18-69e5-46c4-8b04-cf3113c47460",
+			"date": "2015",
+			"country": "US",
+			"status": "Promotion",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 19
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 14
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "57491821-1177-4819-8679-4fcdec13ec69",
+			"date": "2014-11-17",
+			"country": "XE",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 16
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "60b498c1-29e8-4cf6-8d96-45c1f4d509ab",
+			"date": "2020",
+			"country": null,
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 16
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 14
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "6504c878-6a13-42fc-8673-0b236405bfe1",
+			"date": "2014-11-22",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 24
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "7a6a1bc5-24c8-48ff-9aea-5c37a111da97",
+			"date": "2014-11-17",
+			"country": "XW",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 30
+				}
+			],
+			"relations": [
+				{
+					"type": "free streaming",
+					"url": {
+						"resource": "https://www.deezer.com/album/185320622"
+					}
+				},
+				{
+					"type": "free streaming",
+					"url": {
+						"resource": "https://www.deezer.com/album/521434482"
+					}
+				}
+			]
+		},
+		{
+			"id": "82871d96-a733-45f2-b872-8f239dfa24e2",
+			"status": "Bootleg",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 24
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "cd4f282f-5403-4005-836e-565621889396",
+			"date": "2015-03-09",
+			"country": "NL",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "12\" Vinyl",
+					"track-count": 10
+				},
+				{
+					"position": 2,
+					"format": "12\" Vinyl",
+					"track-count": 6
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "cdf74834-b713-4c8f-9b07-97baf6b4364c",
+			"date": "2019-03-15",
+			"country": "XW",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 24
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "daf7e126-a9a5-4b31-ab40-4b43cde2f62c",
+			"date": "2020-11-13",
+			"country": "US",
+			"status": "Official",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "CD",
+					"track-count": 16
+				},
+				{
+					"position": 2,
+					"format": "CD",
+					"track-count": 14
+				}
+			],
+			"relations": []
+		},
+		{
+			"id": "f9ce8ec8-a2b0-4674-8c93-8519e1e748be",
+			"date": "2017",
+			"country": "XW",
+			"status": "Bootleg",
+			"cover-art-archive": {
+				"front": true
+			},
+			"media": [
+				{
+					"position": 1,
+					"format": "Digital Media",
+					"track-count": 39
+				}
+			],
+			"relations": []
+		}
+	]
+}

@@ -1,0 +1,96 @@
+{
+	"id": "da625a37-0cbb-4d66-bb86-e6c8caaa38c8",
+	"date": "1981-04-09",
+	"country": "XW",
+	"status": "Official",
+	"media": [
+		{
+			"position": 1,
+			"format": "Digital Media",
+			"track-count": 9,
+			"tracks": [
+				{
+					"position": 1,
+					"title": "Ademoğlu Kızgın Fırın Havva Kızı Mercimek",
+					"length": 308000,
+					"recording": {
+						"title": "Ademoğlu Kızgın Fırın Havva Kızı Mercimek",
+						"length": 308000
+					}
+				},
+				{
+					"position": 2,
+					"title": "Ali Yazar Veli Bozar",
+					"length": 225000,
+					"recording": {
+						"title": "Ali Yazar Veli Bozar",
+						"length": 225000
+					}
+				},
+				{
+					"position": 3,
+					"title": "Cacık",
+					"length": 227000,
+					"recording": {
+						"title": "Cacık",
+						"length": 227000
+					}
+				},
+				{
+					"position": 4,
+					"title": "Arkadaşım Eşşek",
+					"length": 174000,
+					"recording": {
+						"title": "Arkadaşım Eşşek",
+						"length": 174000
+					}
+				},
+				{
+					"position": 5,
+					"title": "2025",
+					"length": 498000,
+					"recording": {
+						"title": "2025",
+						"length": 498000
+					}
+				},
+				{
+					"position": 6,
+					"title": "Gülpembe",
+					"length": 288000,
+					"recording": {
+						"title": "Gülpembe",
+						"length": 288000
+					}
+				},
+				{
+					"position": 7,
+					"title": "Alla Beni Pulla Beni",
+					"length": 247000,
+					"recording": {
+						"title": "Alla Beni Pulla Beni",
+						"length": 247000
+					}
+				},
+				{
+					"position": 8,
+					"title": "Şehrezat",
+					"length": 412000,
+					"recording": {
+						"title": "Şehrezat",
+						"length": 412000
+					}
+				},
+				{
+					"position": 9,
+					"title": "Dönence",
+					"length": 410000,
+					"recording": {
+						"title": "Dönence",
+						"length": 410000
+					}
+				}
+			]
+		}
+	]
+}

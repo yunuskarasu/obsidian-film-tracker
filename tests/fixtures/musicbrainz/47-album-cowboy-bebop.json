@@ -1,0 +1,63 @@
+{
+	"id": "2fd0a042-8c07-3c57-9189-d158e0c1cde1",
+	"title": "COWBOY BEBOP",
+	"first-release-date": "1998-05-21",
+	"primary-type": "Album",
+	"secondary-types": [
+		"Soundtrack"
+	],
+	"artist-credit": [
+		{
+			"name": "菅野よう子",
+			"joinphrase": "、",
+			"artist": {
+				"id": "5ffb73c0-b739-4231-ba22-f8d361be1d45",
+				"name": "菅野よう子",
+				"sort-name": "Kanno, Yōko",
+				"country": "JP",
+				"type": "Person",
+				"disambiguation": "Japanese composer, arranger & musician"
+			}
+		},
+		{
+			"name": "シートベルツ",
+			"joinphrase": "",
+			"artist": {
+				"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+				"name": "シートベルツ",
+				"sort-name": "Seatbelts, The",
+				"country": "JP",
+				"type": "Group",
+				"disambiguation": "Japanese space jazz band"
+			}
+		}
+	],
+	"genres": [
+		{
+			"name": "blues",
+			"count": 4
+		},
+		{
+			"name": "jazz",
+			"count": 6
+		},
+		{
+			"name": "rock",
+			"count": 2
+		}
+	],
+	"relations": [
+		{
+			"type": "IMDb",
+			"url": {
+				"resource": "https://www.imdb.com/title/tt0213338/"
+			}
+		},
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q1947606"
+			}
+		}
+	]
+}

@@ -1,0 +1,25 @@
+{
+	"query": {
+		"pages": {
+			"179695193": {
+				"imageinfo": [
+					{
+						"thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a1/RadioheadO2211125_composite.jpg/500px-RadioheadO2211125_composite.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+						"extmetadata": {
+							"Artist": {
+								"value": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/raph_ph/\">Raph_PH</a>",
+								"source": "commons-desc-page"
+							},
+							"LicenseShortName": {
+								"value": "CC BY 4.0",
+								"source": "commons-desc-page",
+								"hidden": ""
+							}
+						}
+					}
+				],
+				"title": "File:RadioheadO2211125 composite.jpg"
+			}
+		}
+	}
+}

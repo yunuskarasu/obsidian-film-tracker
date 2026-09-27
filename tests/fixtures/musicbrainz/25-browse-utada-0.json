@@ -1,0 +1,761 @@
+{
+	"release-group-count": 106,
+	"release-groups": [
+		{
+			"id": "00a03c78-baf6-4a9c-b533-7068cfb017ed",
+			"title": "Beautiful World -PLANiTb Acoustica Mix-",
+			"first-release-date": "2009-06-27",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "0a474134-d550-30e7-b096-2cd4d6db83ee",
+			"title": "Be My Last",
+			"first-release-date": "2005-09-28",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "0a475820-9b8b-3a89-a603-2b42714f15e7",
+			"title": "Keep Tryin'",
+			"first-release-date": "2006-02-22",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "0c40e05e-fcaf-44eb-8471-66795cf2abfc",
+			"title": "Come Back to Me (Remixes)",
+			"first-release-date": "2009-04-07",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "0d1078a6-fa06-4d0e-b5b6-bbeb4525d392",
+			"title": "WILD LIFE",
+			"first-release-date": "2010-12-08",
+			"primary-type": null,
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "0e4b20ed-e887-4a30-98bd-ae914c7c43b3",
+			"title": "SCIENCE FICTION",
+			"first-release-date": "2024-04-10",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "0ea480c1-a927-3a8d-91ba-f0b2b9b23454",
+			"title": "REMIX: Fly Me to the Moon",
+			"first-release-date": "2000-05-10",
+			"primary-type": "EP",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "0f9f92ed-d6fe-3b52-8cdf-262410f6a77a",
+			"title": "Distance",
+			"first-release-date": "2001-03-28",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "13a46a01-21bb-4b7c-b38a-d13e46efd8ab",
+			"title": "浪漫と算盤 LDN ver.",
+			"first-release-date": "2019-11-02",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "14959dc4-3016-4824-8545-a031502f9e2c",
+			"title": "Mine or Yours",
+			"first-release-date": "2025-05-02",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "1f2dee2d-a846-4ddd-99ac-3d7ffae1dc02",
+			"title": "Forevermore",
+			"first-release-date": "2017-07-28",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "21b14dac-052f-451e-9071-aaa8e62e4813",
+			"title": "初恋",
+			"first-release-date": "2018-06-27",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "23213ddd-9553-40a3-a546-a1e7be376a4e",
+			"title": "誓い",
+			"first-release-date": "2018-12-10",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "23959257-3a50-43e4-b0c4-85c23d5b0076",
+			"title": "First Love / 初恋",
+			"first-release-date": "2022-12-09",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "23c216cd-1440-4b5b-b85f-dda3da376d03",
+			"title": "Too Proud (L1 remix)",
+			"first-release-date": "2018-11-06",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "2e7be25b-dcf6-3fbf-8061-756b61beb4fc",
+			"title": "You Make Me Want to Be a Man",
+			"first-release-date": "2005-09-12",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "301ff3e5-ed43-4b7f-ae73-b213bf97a3aa",
+			"title": "Liner Voice+ 宇多田ヒカル「BADモード」",
+			"first-release-date": "2022-01-24",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Spokenword"
+			]
+		},
+		{
+			"id": "3d02e461-d62a-4a73-953a-090e58c71559",
+			"title": "Utada the Best",
+			"first-release-date": "2010-11-24",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "452e1d30-220c-3262-8009-db577c425169",
+			"title": "Come Back to Me",
+			"first-release-date": "2009-02-10",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "4a41f3c4-4eec-4e0b-b557-3398c9d378fc",
+			"title": "This Is Love",
+			"first-release-date": "2006-05-29",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "4a761687-2a4e-36f0-9579-afc937d09c6c",
+			"title": "Easy Breezy",
+			"first-release-date": "2004-10-06",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "50ef8a71-9658-4e45-b9af-32b07c897c55",
+			"title": "桜流し",
+			"first-release-date": "2012-11-17",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "5197477b-f3bd-44fa-b2cd-e524f6daa822",
+			"title": "Dirty Desire (The Remixes)",
+			"first-release-date": "2009-12-21",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "5204fe7d-2e31-3457-8d69-ccfe6d02e788",
+			"title": "Passion",
+			"first-release-date": "2005-12-14",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "554293c5-ffe2-4743-9745-e0aa2c9b8963",
+			"title": "光 (Ray Of Hope MIX)",
+			"first-release-date": "2017-01-11",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "58a22801-f20d-3921-a025-9ba064616695",
+			"title": "SAKURAドロップス",
+			"first-release-date": "2002-05-09",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "5d51eb38-8c29-3b41-ab0f-b9a43cd857a8",
+			"title": "誰かの願いが叶うころ",
+			"first-release-date": "2004-04-21",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "64f95f7b-624b-442d-a763-f45179fbb864",
+			"title": "UTADA UNITED 2006",
+			"first-release-date": "2012-12-20",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "6587c207-786b-4181-b340-4d947b7600c2",
+			"title": "君に夢中",
+			"first-release-date": "2021-11-26",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "65be77d0-733c-4c11-bee8-6c44f623a2c0",
+			"title": "何色でもない花",
+			"first-release-date": "2024-02-12",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "65c18732-da39-4227-a0fc-ceb067b0994b",
+			"title": "Hikaru Utada Live Sessions from Air Studios",
+			"first-release-date": "2022-06-09",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "671e04d6-3903-374b-8e48-621383408b6f",
+			"title": "This Is the One",
+			"first-release-date": "2009-03-14",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "68cd3faf-6df2-451f-8e19-395269159076",
+			"title": "BADモード",
+			"first-release-date": "2022-01-19",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "6d9299f5-52b3-3b25-b2eb-e09a1af26ba6",
+			"title": "Exodus '04",
+			"first-release-date": "2005-01-01",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "7469dd03-8f4d-42fb-84c0-fd2dad269321",
+			"title": "Sanctuary (Opening)",
+			"first-release-date": "2009-01-01",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "77631231-08c5-4f8c-8653-d7d6c80d0f6b",
+			"title": "First Love - From THE FIRST TAKE",
+			"first-release-date": "2025-06-09",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "7b1ddfe2-87d4-421c-ab5c-3861448d4132",
+			"title": "誰にも言わない",
+			"first-release-date": "2020-05-29",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "7d816de9-4ffe-4455-a1bd-9fca9e079ede",
+			"title": "Play A Love Song",
+			"first-release-date": "2018-04-25",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "7e630a23-a0f8-46c3-9e53-e52e172e309f",
+			"title": "Hymne à l'amour 〜愛のアンセム〜",
+			"first-release-date": "2010-10-09",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "7ee0527f-363b-4003-bd4f-88092a83f783",
+			"title": "浪漫と算盤 TYO ver.",
+			"first-release-date": "2019-11-25",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "81f21054-78ac-4006-ab10-057db5a4ac83",
+			"title": "HIKARU UTADA SCIENCE FICTION TOUR 2024",
+			"first-release-date": "2024-12-11",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "82af2fe4-2bfb-3f7d-9978-c51bb62805be",
+			"title": "Automatic / time will tell",
+			"first-release-date": "1998-12-09",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "830ddddf-2b7e-4e9a-a617-f8f30343bc19",
+			"title": "Time",
+			"first-release-date": "2020-05-08",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "866be811-cd03-3072-843d-dcd4ba5e397b",
+			"title": "Wait & See 〜リスク〜",
+			"first-release-date": "2000-04-19",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "88d673d7-7629-357f-9f52-3f2dc6996001",
+			"title": "COLORS",
+			"first-release-date": "2003-01-29",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "8a649a57-70f2-36cc-9f74-1b75415e10cf",
+			"title": "Can You Keep A Secret?",
+			"first-release-date": "2001-02-16",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "8a95de98-0de9-416c-a0b0-26ddeb141cf7",
+			"title": "冷たい月〜泣かないで〜",
+			"first-release-date": "1996-09-25",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "8e3a04f9-3823-3e72-b6a1-de8abb8840b0",
+			"title": "Devil Inside",
+			"first-release-date": "2004-01-01",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "8e8aead9-812e-4f95-ac65-186cf1b5d465",
+			"title": "Fantôme",
+			"first-release-date": "2016-09-28",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "8eb84f3f-008a-4603-9d29-c92d3ab0d3c3",
+			"title": "Sanctuary (Ending)",
+			"first-release-date": "2009-01-01",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "90bb164b-86d0-3c7c-b6b1-de80b18ca1d7",
+			"title": "For You / タイム・リミット",
+			"first-release-date": "2000-06-30",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "947a1557-8462-30ea-bd8e-d5f82d41dad3",
+			"title": "First Love",
+			"first-release-date": "1999-04-28",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "9543516d-fee1-3638-b247-2a05cb5c8381",
+			"title": "Exodus",
+			"first-release-date": "2004-09-08",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "99c1c5d7-cb5c-367c-a4af-24a5895407e3",
+			"title": "Addicted to You",
+			"first-release-date": "1999-11-10",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "9a150f03-4bc3-4d96-b3d6-7d8b56dca5f9",
+			"title": "Electricity (salute remix)",
+			"first-release-date": "2025-03-31",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "9a28ea51-cefa-4403-9eb1-5bb53c43f2b7",
+			"title": "初恋",
+			"first-release-date": "2018-05-30",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "9a769e67-7a05-3b09-a55a-b5f0b21512f8",
+			"title": "Utada Hikaru SINGLE COLLECTION VOL.1",
+			"first-release-date": "2004-03-31",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "9bd317be-2383-4391-ae96-385ec4dc78d9",
+			"title": "Somewhere Near Marseilles ーマルセイユ辺りー (Sci-Fi Edit)",
+			"first-release-date": "2024-04-03",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "9c569ad8-eb06-48eb-b16b-ae354c321e40",
+			"title": "Gold 〜また逢う日まで〜 (Taku's Twice Upon a Time remix)",
+			"first-release-date": "2023-08-25",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "9da8386f-5d19-398e-854d-b743ec783490",
+			"title": "traveling",
+			"first-release-date": "2001-11-28",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "9e4d548a-144e-359e-ad54-506e25b3e92b",
+			"title": "Movin' on without you",
+			"first-release-date": "1999-02-17",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "a041d326-79a3-3520-81b7-602794ab6de8",
+			"title": "Flavor of Life",
+			"first-release-date": "2007-02-28",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "a166ef97-5540-3faa-b556-c6ecf812faa4",
+			"title": "Precious",
+			"first-release-date": "1998-01-28",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "ab74c0f7-7e5d-4b0e-837a-c18c28dd52ac",
+			"title": "Electricity Remixes",
+			"first-release-date": "2025-07-09",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "ae884313-e47f-37fd-9885-3dc8f2397c1b",
+			"title": "ぼくはくま",
+			"first-release-date": "2006-11-22",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "b22d4b5e-8fc9-4014-af20-e740808e96f8",
+			"title": "Simple and Clean (re‐recording)",
+			"first-release-date": "2024-05-22",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "b26e9dd6-0add-4831-8a0d-da89cecb10d6",
+			"title": "少年時代",
+			"first-release-date": "2019-11-27",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "b2977118-be3a-4d5b-ad39-a3e55dd62f62",
+			"title": "Bohemian Summer 2000",
+			"first-release-date": "2000-12-09",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "b5f3303b-a93f-4294-b325-99bd471fef15",
+			"title": "丸ノ内サディスティック",
+			"first-release-date": "2018-05-23",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "b6900a8f-65a2-4af3-b7ba-5a9572aad108",
+			"title": "Eternally (drama mix)",
+			"first-release-date": "2008-10-31",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "b7134045-5d73-4943-a366-adb6abc30427",
+			"title": "40代はいろいろ -Live from Metropolis Studios-",
+			"first-release-date": "2023-02-17",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "b7ec8061-e3e7-3573-a2a0-deaf3a59b095",
+			"title": "Beautiful World / Kiss & Cry",
+			"first-release-date": "2007-08-29",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "b93f9c83-e86f-45a4-9a80-8f1d1437b772",
+			"title": "あなた",
+			"first-release-date": "2017-12-08",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "b9823f5a-c4ae-3883-b895-58501146607f",
+			"title": "HEART STATION",
+			"first-release-date": "2008-03-19",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "bab024ba-d257-4d62-96d5-ef3a99aa28f5",
+			"title": "You Make Me Want To Be A Man (Tom Neville mix)",
+			"first-release-date": "2005-10-18",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "bde5b75c-24f9-31d0-bc6a-5d66e0361715",
+			"title": "UTADA HIKARU UNPLUGGED",
+			"first-release-date": "2001-11-28",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "be2c5cea-0260-438e-a313-1ed6ff86ab76",
+			"title": "Don’t Think Twice",
+			"first-release-date": "2018-12-10",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "bf7f9efc-6324-4c84-bbb1-75bccd52ddc1",
+			"title": "Electricity (Arca remix)",
+			"first-release-date": "2025-02-28",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "c1b9bc98-0964-413b-b538-80a56413ae5c",
+			"title": "花束を君に",
+			"first-release-date": "2016-04-15",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "c60fcd45-9420-30aa-98e5-2bffb894021a",
+			"title": "First Love",
+			"first-release-date": "1999-03-10",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "c699d45c-8ead-4cad-8554-061a3690f4f8",
+			"title": "Face My Fears",
+			"first-release-date": "2019-01-18",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "c807fd7a-50fc-4a5a-86f1-d94b9f28a487",
+			"title": "Mine or Yours (Yaeji remix)",
+			"first-release-date": "2025-10-06",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "cd6e8315-7813-463d-bcba-d00f352b3c30",
+			"title": "PINK BLOOD",
+			"first-release-date": "2021-06-02",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "cf2eaaeb-e472-3b2a-a643-a01efd24c4e5",
+			"title": "DEEP RIVER",
+			"first-release-date": "2002-06-19",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "d3ce58c3-3832-4b61-8c17-eed3c6494145",
+			"title": "Hikaru Utada Laughter in the Dark Tour 2018",
+			"first-release-date": "2019-06-29",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "e09ca24c-eab1-4532-a78d-02f8014f1c81",
+			"title": "Utada Hikaru SINGLE COLLECTION VOL.2",
+			"first-release-date": "2010-11-24",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation"
+			]
+		},
+		{
+			"id": "e0e0eace-4eb7-4fc3-84d1-5111018ee7a3",
+			"title": "大空で抱きしめて",
+			"first-release-date": "2017-07-10",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "e242e5fd-3837-3655-82ed-5f7076a5b60e",
+			"title": "FINAL DISTANCE",
+			"first-release-date": "2001-07-25",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "e7a34b63-52d1-4740-91b8-b40d090172dc",
+			"title": "Electricity (Karen Nyame KG remix)",
+			"first-release-date": "2025-02-15",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Remix"
+			]
+		},
+		{
+			"id": "e9a031e1-a1d2-35e1-b764-ad37cb16441d",
+			"title": "HEART STATION / Stay Gold",
+			"first-release-date": "2008-02-20",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "e9e72dc3-178f-43bc-b8d1-1b6ddfb5fec3",
+			"title": "One Last Kiss",
+			"first-release-date": "2021-03-09",
+			"primary-type": "EP",
+			"secondary-types": []
+		},
+		{
+			"id": "e9e9bfac-8fba-4d1f-9c05-924a9713ceb3",
+			"title": "パッパパラダイス",
+			"first-release-date": "2026-05-06",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "ec19fe3d-ae17-31b2-8a74-b3daf6d802c2",
+			"title": "ULTRA BLUE",
+			"first-release-date": "2006-06-13",
+			"primary-type": "Album",
+			"secondary-types": []
+		},
+		{
+			"id": "ed1d3335-46d2-4a63-a1db-1f363b4cdac8",
+			"title": "Utada Hikaru in Budokan 2004 ヒカルの5",
+			"first-release-date": "2004-07-28",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Live"
+			]
+		},
+		{
+			"id": "ee54ffd5-2e6c-422c-b2ac-1f90ea915e64",
+			"title": "Gold ～また逢う日まで～ EP",
+			"first-release-date": "2023-09-13",
+			"primary-type": "EP",
+			"secondary-types": []
+		},
+		{
+			"id": "ef7dfea9-4e34-4a25-a26c-331dc5fd58c8",
+			"title": "真夏の通り雨",
+			"first-release-date": "2016-04-15",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "efbb83bc-59f3-49e6-831d-1a214eede61d",
+			"title": "Gold ～また逢う日まで～",
+			"first-release-date": "2023-07-28",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "f6ad4cb8-46a3-3d39-b626-d8c2a6cea462",
+			"title": "光",
+			"first-release-date": "2002-03-20",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "fba52b98-85fb-451e-b7d4-a09f9f318f20",
+			"title": "Home",
+			"first-release-date": "2026-03-09",
+			"primary-type": "Single",
+			"secondary-types": []
+		},
+		{
+			"id": "fc2739cf-f359-3f2a-a475-8b6f1c72e4e6",
+			"title": "Prisoner Of Love",
+			"first-release-date": "2008-05-21",
+			"primary-type": "Single",
+			"secondary-types": []
+		}
+	]
+}

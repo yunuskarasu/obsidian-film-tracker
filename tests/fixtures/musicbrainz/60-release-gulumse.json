@@ -1,0 +1,105 @@
+{
+	"id": "25f654c3-f7ec-4f96-97e5-398deff6534e",
+	"date": "1991-05-29",
+	"country": "TR",
+	"status": "Official",
+	"media": [
+		{
+			"position": 1,
+			"format": "Cassette",
+			"track-count": 10,
+			"tracks": [
+				{
+					"position": 1,
+					"title": "Hadi Bakalım",
+					"length": null,
+					"recording": {
+						"title": "Hadi Bakalım",
+						"length": 296373
+					}
+				},
+				{
+					"position": 2,
+					"title": "Tutsak",
+					"length": null,
+					"recording": {
+						"title": "Tutsak",
+						"length": 387666
+					}
+				},
+				{
+					"position": 3,
+					"title": "Ne Kavgam Bitti Ne Sevdam",
+					"length": null,
+					"recording": {
+						"title": "Ne Kavgam Bitti Ne Sevdam",
+						"length": 207666
+					}
+				},
+				{
+					"position": 4,
+					"title": "Gülümse",
+					"length": null,
+					"recording": {
+						"title": "Gülümse",
+						"length": 302400
+					}
+				},
+				{
+					"position": 5,
+					"title": "Güllerim Soldu",
+					"length": null,
+					"recording": {
+						"title": "Güllerim Soldu",
+						"length": 271000
+					}
+				},
+				{
+					"position": 6,
+					"title": "Vazgeçtim",
+					"length": null,
+					"recording": {
+						"title": "Vazgeçtim",
+						"length": 309000
+					}
+				},
+				{
+					"position": 7,
+					"title": "Her Şeyi Yak",
+					"length": null,
+					"recording": {
+						"title": "Her Şeyi Yak",
+						"length": 313333
+					}
+				},
+				{
+					"position": 8,
+					"title": "Namus",
+					"length": null,
+					"recording": {
+						"title": "Namus",
+						"length": 235226
+					}
+				},
+				{
+					"position": 9,
+					"title": "Seni Kimler Aldı",
+					"length": null,
+					"recording": {
+						"title": "Seni Kimler Aldı",
+						"length": 208000
+					}
+				},
+				{
+					"position": 10,
+					"title": "Değer mi?",
+					"length": null,
+					"recording": {
+						"title": "Değer mi?",
+						"length": 205800
+					}
+				}
+			]
+		}
+	]
+}

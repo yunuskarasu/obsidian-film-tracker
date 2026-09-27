@@ -6,7 +6,6 @@ import {
 	keepLinks,
 	listValues,
 	mergeAliases,
-	needsQuoting,
 	parseFrontmatterBlocks,
 	posterLine,
 	serializeFrontmatterBlocks,
@@ -17,6 +16,7 @@ import {
 	NO_LINKS,
 } from "./note";
 import type { TvMetadata, TvSeason } from "./tmdb-tv";
+import { flowEntry } from "./yaml-flow";
 
 /** Named the way a film note is: "Breaking Bad (2008)". */
 export { buildFileName as buildTvFileName } from "./note";
@@ -111,28 +111,6 @@ function dateText(value: unknown): string | null {
 	if (typeof value === "string") return value.trim() === "" ? null : value.trim();
 	if (value instanceof Date) return value.toISOString().slice(0, 10);
 	return null;
-}
-
-/**
- * A value inside a `{ … }` season line. Flow style has more characters it
- * cannot take plainly than a normal YAML value — a comma or a brace would
- * end the entry — so those are quoted on top of what `needsQuoting` catches.
- */
-function flowValue(value: unknown): string {
-	if (value === null || value === undefined) return "";
-	if (typeof value === "number" || typeof value === "boolean") return String(value);
-	if (value instanceof Date) return value.toISOString().slice(0, 10);
-	if (typeof value !== "string") return JSON.stringify(value);
-	// A JSON string is a valid double-quoted YAML one, and gives the value
-	// back exactly: nothing is added to it, however often it is written.
-	return needsQuoting(value) || /[,[\]{}]/.test(value) ? JSON.stringify(value) : value;
-}
-
-function flowEntry(pairs: [string, unknown][]): string {
-	const written = pairs
-		.filter(([, value]) => value !== null && value !== undefined)
-		.map(([key, value]) => `${key}: ${flowValue(value)}`);
-	return `  - { ${written.join(", ")} }`;
 }
 
 /** The `seasons:` block, one line per season. */

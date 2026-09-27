@@ -1,4 +1,6 @@
-import { App, Notice, SuggestModal } from "obsidian";
+import { App, FuzzySuggestModal, Notice, SuggestModal, type FuzzyMatch } from "obsidian";
+import type { AlbumSearchResult, ArtistSearchResult } from "./music";
+import { MusicBrainzError, SearchSuperseded, type MusicBrainzClient } from "./musicbrainz";
 import {
 	MalError,
 	formatMediaType,
@@ -15,6 +17,7 @@ import {
 import type { TvSearchResult } from "./tmdb-tv";
 
 const DEBOUNCE_MS = 300;
+const MUSICBRAINZ_DEBOUNCE_MS = 600;
 const MIN_QUERY_LENGTH = 2;
 
 function delay(ms: number): Promise<void> {
@@ -25,10 +28,16 @@ function delay(ms: number): Promise<void> {
 interface SearchSource<T> {
 	placeholder: string;
 	emptyText: string;
-	search: (query: string) => Promise<T[]>;
+	/** `isLatest` says whether the query is still what the box holds. */
+	search: (query: string, isLatest: () => boolean) => Promise<T[]>;
 	render: (item: T, el: HTMLElement) => void;
 	/** Named in the message for a failure that isn't the API's own error. */
-	service: "TMDB" | "MyAnimeList";
+	service: "TMDB" | "MyAnimeList" | "MusicBrainz";
+	/**
+	 * How long typing has to stop before a search goes out. MusicBrainz takes
+	 * one request a second, so its searches wait longer than the others.
+	 */
+	debounceMs?: number;
 }
 
 /**
@@ -55,15 +64,15 @@ class ApiSearchModal<T> extends SuggestModal<T> {
 		this.latestQuery = trimmed;
 		if (trimmed.length < MIN_QUERY_LENGTH) return [];
 
-		await delay(DEBOUNCE_MS);
+		await delay(this.source.debounceMs ?? DEBOUNCE_MS);
 		if (this.latestQuery !== trimmed) return [];
 
 		try {
-			const results = await this.source.search(trimmed);
+			const results = await this.source.search(trimmed, () => this.latestQuery === trimmed);
 			this.lastErrorShown = "";
 			return this.latestQuery === trimmed ? results : [];
 		} catch (error) {
-			this.reportOnce(error);
+			if (!(error instanceof SearchSuperseded)) this.reportOnce(error);
 			return [];
 		}
 	}
@@ -77,7 +86,7 @@ class ApiSearchModal<T> extends SuggestModal<T> {
 	}
 
 	private reportOnce(error: unknown): void {
-		const known = error instanceof TmdbError || error instanceof MalError;
+		const known = error instanceof TmdbError || error instanceof MalError || error instanceof MusicBrainzError;
 		const message = known ? error.message : `${this.source.service} search failed.`;
 		if (!known) console.error("Film + Anime-Manga Tracker: search failed", error);
 		if (message === this.lastErrorShown) return;
@@ -113,7 +122,7 @@ function yearText(year: number | null): string | null {
  * exists in both is a real choice, and hiding which is which would only make
  * it harder.
  */
-function source(name: "TMDB" | "MAL", ...rest: (string | null)[]): (string | null)[] {
+function source(name: "TMDB" | "MAL" | "MusicBrainz", ...rest: (string | null)[]): (string | null)[] {
 	return [name, ...rest];
 }
 
@@ -232,4 +241,122 @@ export function openMangaSearch(
 		},
 		onPick,
 	).open();
+}
+
+export function openArtistSearch(
+	app: App,
+	client: MusicBrainzClient,
+	onPick: (artist: ArtistSearchResult) => void,
+): void {
+	new ApiSearchModal(
+		app,
+		{
+			placeholder: "Search for an artist…",
+			emptyText: "No artists found.",
+			search: (query, isLatest) => client.searchArtists(query, isLatest),
+			// Two artists often share a name: the kind, country, year and
+			// MusicBrainz's own note are what tell them apart.
+			render: (artist, el) =>
+				renderRow(el, artist.name, source("MusicBrainz", ...artist.details), artist.originalName ?? undefined),
+			service: "MusicBrainz",
+			debounceMs: MUSICBRAINZ_DEBOUNCE_MS,
+		},
+		onPick,
+	).open();
+}
+
+/** The first row of an album search, always there: the way to an album the search doesn't find. */
+const BROWSE_INSTEAD = { browse: true } as const;
+type AlbumRow = AlbumSearchResult | typeof BROWSE_INSTEAD;
+
+function albumDetails(album: AlbumSearchResult): (string | null)[] {
+	return source("MusicBrainz", album.albumType, yearText(album.year), album.artists || null);
+}
+
+/**
+ * The album search. A soundtrack, an album with a Japanese title or an EP is
+ * often missed by the search itself, and is always on its artist's own list:
+ * the first row leads there — first, so it is never below a long list of
+ * results — and `onBrowse` opens it.
+ */
+export function openAlbumSearch(
+	app: App,
+	client: MusicBrainzClient,
+	onPick: (album: AlbumSearchResult) => void,
+	onBrowse: () => void,
+): void {
+	new ApiSearchModal<AlbumRow>(
+		app,
+		{
+			placeholder: "Search for an album…",
+			emptyText: "No albums found.",
+			search: async (query, isLatest) => [BROWSE_INSTEAD, ...(await client.searchAlbums(query, isLatest))],
+			render: (row, el) => {
+				if ("browse" in row) {
+					renderRow(el, "Browse an artist's albums instead…", ["Soundtracks, EPs and titles in other scripts are easier to find there"]);
+					return;
+				}
+				renderRow(el, row.title, albumDetails(row));
+			},
+			service: "MusicBrainz",
+			debounceMs: MUSICBRAINZ_DEBOUNCE_MS,
+		},
+		(row) => ("browse" in row ? onBrowse() : onPick(row)),
+	).open();
+}
+
+/**
+ * One artist's albums, oldest first, filtered as you type — the whole list
+ * is read before the window opens, so typing costs no request at all.
+ */
+class ArtistAlbumsModal extends FuzzySuggestModal<AlbumSearchResult> {
+	private readonly albums: AlbumSearchResult[];
+	private readonly onPick: (album: AlbumSearchResult) => void;
+
+	constructor(app: App, artistName: string, albums: AlbumSearchResult[], onPick: (album: AlbumSearchResult) => void) {
+		super(app);
+		this.albums = albums;
+		this.onPick = onPick;
+		this.setPlaceholder(`${artistName}'s albums — type to filter…`);
+		this.emptyStateText = "No albums match.";
+	}
+
+	getItems(): AlbumSearchResult[] {
+		return this.albums;
+	}
+
+	getItemText(album: AlbumSearchResult): string {
+		return `${album.title} ${album.albumType} ${album.year ?? ""}`;
+	}
+
+	renderSuggestion(match: FuzzyMatch<AlbumSearchResult>, el: HTMLElement): void {
+		renderRow(el, match.item.title, albumDetails(match.item));
+	}
+
+	onChooseItem(album: AlbumSearchResult): void {
+		this.onPick(album);
+	}
+}
+
+/** Reads an artist's albums, then lets one be picked from them. The artist's own note is never created. */
+export async function openArtistAlbums(
+	app: App,
+	client: MusicBrainzClient,
+	artist: { id: string; name: string },
+	onPick: (album: AlbumSearchResult) => void,
+): Promise<void> {
+	new Notice(`Loading ${artist.name}'s albums…`);
+	let albums: AlbumSearchResult[];
+	try {
+		albums = await client.artistAlbums(artist.id);
+	} catch (error) {
+		if (!(error instanceof MusicBrainzError)) console.error("Film + Anime-Manga Tracker: could not list albums", error);
+		new Notice(error instanceof MusicBrainzError ? error.message : "Could not list the albums. See the console for details.");
+		return;
+	}
+	if (albums.length === 0) {
+		new Notice(`MusicBrainz lists no albums for ${artist.name}.`);
+		return;
+	}
+	new ArtistAlbumsModal(app, artist.name, albums, onPick).open();
 }

@@ -1,0 +1,51 @@
+{
+	"id": "dc1f9d7d-9a98-3f2c-83aa-c16dbb4a9ae1",
+	"title": "千と千尋の神隠し サウンドトラック",
+	"first-release-date": "2001-07-18",
+	"primary-type": "Album",
+	"secondary-types": [
+		"Soundtrack"
+	],
+	"artist-credit": [
+		{
+			"name": "久石譲",
+			"joinphrase": "",
+			"artist": {
+				"id": "44c64a30-1d58-49c5-b314-6e02fba49526",
+				"name": "久石譲",
+				"sort-name": "Hisaishi, Joe",
+				"country": "JP",
+				"type": "Person",
+				"disambiguation": "composer & musical director"
+			}
+		}
+	],
+	"genres": [
+		{
+			"name": "ambient",
+			"count": 2
+		},
+		{
+			"name": "classical",
+			"count": 2
+		},
+		{
+			"name": "electronic",
+			"count": 2
+		}
+	],
+	"relations": [
+		{
+			"type": "IMDb",
+			"url": {
+				"resource": "https://www.imdb.com/title/tt0245429/"
+			}
+		},
+		{
+			"type": "wikidata",
+			"url": {
+				"resource": "https://www.wikidata.org/wiki/Q3228258"
+			}
+		}
+	]
+}
