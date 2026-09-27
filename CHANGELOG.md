@@ -4,6 +4,10 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+## [3.1.0] - 2026-09-27
+
+Music joins films, TV series and anime-manga. Nothing breaks: notes and settings from 3.0 carry over as they are.
+
 ### Added
 
 - **Music, from MusicBrainz — no key needed.** **Add album** writes an album's note: its artists, year, kind (album, EP, single, soundtrack, live…), genres, running time, cover and one line per track. **Add artist** writes an artist's note: both names, the country, when they were born or formed, genres and a photo.
@@ -15,6 +19,7 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 - Artist photos are the artist's own press photos from Deezer, found through the link MusicBrainz keeps to their Deezer page, so never a namesake's. An artist without one gets a photo from Wikimedia Commons instead. Either way a short `photo_credit` line says where it came from — for Commons, who took it and its licence.
 - **Change photo**, under an artist's photo and as a command: every photo on offer side by side — Deezer's, and up to eight from the artist's category on Wikimedia Commons — or a picture from your vault, or from a web address. The one picked replaces the note's; the old photo is kept unless you say to delete it.
 - Album covers come from the album's own page on Deezer — the edition with the album's number of tracks, not a deluxe one — and, for an album Deezer doesn't have, from the Cover Art Archive, all by itself.
+- **Refresh metadata** on an album or artist note brings back a cover or photo whose file was deleted — the note still linking it — and never touches one that is there.
 - A **🎵 Music** group in the settings: four folders (`Music/Artists`, `Music/Albums`, `Music/Pics/Covers`, `Music/Pics/Artists` by default), **Link artists**, **Link genres**, **Show tracklist** and **Show discography**.
 
 ## [3.0.0] - 2026-09-24
@@ -157,7 +162,8 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 - Relinking of directors and genres.
 - Import from Letterboxd.
 
-[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.0.0...HEAD
+[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.1.0...HEAD
+[3.1.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.4.0...3.0.0
 [2.4.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.3.0...2.4.0
 [2.3.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.2.0...2.3.0
