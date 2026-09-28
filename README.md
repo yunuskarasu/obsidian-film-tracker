@@ -236,6 +236,8 @@ The first time you add a film, open the note's properties, click the type icon n
 
 ## Settings
 
+The settings are on five pages — 🔑 API keys, 🎬 Films, 📺 TV series, 🌸 Anime & manga and 🎵 Music — each opened from the plugin's settings tab. The API keys entry says which keys are set without being opened. To find a setting without knowing its page, type in the search box above Obsidian's settings: it looks through every page. On Obsidian before 1.13, the same pages follow one another on a single page.
+
 | Setting | Default | What it does |
 | --- | --- | --- |
 | TMDB API key | empty | Your personal key. Required. On Obsidian 1.11.4 or later, kept in Obsidian's keychain on each device (see [Setup](#setup)). |

@@ -4,6 +4,14 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+## [3.3.1] - 2026-09-28
+
+The settings, rearranged. Nothing else changes, and every setting keeps its value.
+
+### Changed
+
+- **The settings are on pages of their own**: 🔑 API keys, 🎬 Films, 📺 TV series, 🌸 Anime & manga and 🎵 Music, each opened from the plugin's settings tab. The API keys entry says which keys are set. Obsidian's settings search finds a setting on any page. Every setting keeps its value: only its place changed. On Obsidian before 1.13 the pages follow one another on one page.
+
 ## [3.3.0] - 2026-09-28
 
 Soundtracks, and who scored what. Nothing breaks: notes and settings from 3.2 carry over as they are, and a film's, a TV series' or an anime's note is never written for its soundtrack.
@@ -188,7 +196,8 @@ Music joins films, TV series and anime-manga. Nothing breaks: notes and settings
 - Relinking of directors and genres.
 - Import from Letterboxd.
 
-[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.3.0...HEAD
+[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.3.1...HEAD
+[3.3.1]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.3.0...3.3.1
 [3.3.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.2.0...3.3.0
 [3.2.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.1.0...3.2.0
 [3.1.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.0.0...3.1.0

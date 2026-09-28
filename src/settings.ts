@@ -11,7 +11,7 @@ import {
 	type SettingGroup,
 } from "obsidian";
 import type FilmTrackerPlugin from "./main";
-import { keychainOf } from "./secrets";
+import { keychainOf, readKey } from "./secrets";
 
 export interface FilmTrackerSettings {
 	/** The TMDB key as typed in — before Obsidian 1.11.4, which brought the keychain (see secrets.ts). */
@@ -162,337 +162,376 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 	}
 
 	/**
-	 * Every setting, described rather than drawn. Obsidian 1.13 renders these
-	 * itself, which is what puts them in its settings search and gives the
-	 * folder fields their vault folder suggestions; `display` draws the same
-	 * list on earlier versions.
+	 * Every setting, described rather than drawn, on a page of its own for
+	 * each kind of note. Obsidian 1.13 renders these itself: each page is an
+	 * entry that opens it, and its settings search — the box above every tab —
+	 * finds a setting on any of them. It also gives the folder fields their
+	 * vault folder suggestions. `display` draws the same pages one after
+	 * another on earlier versions. The pages only arrange the settings: each
+	 * is saved under the same name as ever.
 	 */
 	getSettingDefinitions(): SettingDefinitionItem[] {
 		const inKeychain = keychainOf(this.app) !== null;
 		return [
 			{
-				type: "group",
-				heading: "🔑 API & integrations",
+				type: "page",
+				name: "🔑 API keys",
+				desc: "The TMDB key for films and TV series, and the MyAnimeList client ID for anime and manga. Music needs none.",
+				displayValue: () => this.keysSummary(),
 				items: [
 					{
-						name: "TMDB API key",
-						desc: this.apiKeyDescription(inKeychain),
-						aliases: ["themoviedb", "film metadata"],
-						render: (setting) => this.renderKey(setting, "tmdb"),
-					},
-					{
-						name: "MyAnimeList client ID",
-						desc: this.malClientIdDescription(inKeychain),
-						aliases: ["MAL", "anime metadata", "manga metadata"],
-						render: (setting) => this.renderKey(setting, "mal"),
+						type: "group",
+						heading: "Keys",
+						items: [
+							{
+								name: "TMDB API key",
+								desc: this.apiKeyDescription(inKeychain),
+								aliases: ["themoviedb", "film metadata"],
+								render: (setting) => this.renderKey(setting, "tmdb"),
+							},
+							{
+								name: "MyAnimeList client ID",
+								desc: this.malClientIdDescription(inKeychain),
+								aliases: ["MAL", "anime metadata", "manga metadata"],
+								render: (setting) => this.renderKey(setting, "mal"),
+							},
+						],
 					},
 				],
 			},
 			{
-				type: "group",
-				heading: "🎬 Cinema: folders",
+				type: "page",
+				name: "🎬 Films",
+				desc: "Folders, metadata, panels, and importing from Letterboxd.",
 				items: [
 					{
-						name: "Film folder",
-						desc: "Where new film notes are created. Leave empty for the vault root.",
-						control: { type: "folder", key: "filmFolder", placeholder: "Films" },
+						type: "group",
+						heading: "Folders",
+						items: [
+							{
+								name: "Film folder",
+								desc: "Where new film notes are created. Leave empty for the vault root.",
+								control: { type: "folder", key: "filmFolder", placeholder: "Films" },
+							},
+							{
+								name: "Poster folder",
+								desc: "Where posters are saved. Leave empty to follow your attachment folder setting.",
+								control: { type: "folder", key: "posterFolder", placeholder: FOLLOW_ATTACHMENTS },
+							},
+							{
+								name: "Director folder",
+								desc: "Where new director notes are created. Leave empty for the vault root.",
+								control: { type: "folder", key: "directorFolder", placeholder: "Directors" },
+							},
+							{
+								name: "Director photo folder",
+								desc: "Where director photos are saved. Leave empty to follow your attachment folder setting.",
+								control: { type: "folder", key: "directorPhotoFolder", placeholder: FOLLOW_ATTACHMENTS },
+							},
+						],
 					},
 					{
-						name: "Poster folder",
-						desc: "Where posters are saved. Leave empty to follow your attachment folder setting.",
-						control: { type: "folder", key: "posterFolder", placeholder: FOLLOW_ATTACHMENTS },
+						type: "group",
+						heading: "Metadata",
+						items: [
+							{
+								name: "Link directors",
+								desc: "Write directors as [[wikilinks]] when a note with that name already exists, so the film shows up in the director's backlinks.",
+								control: { type: "toggle", key: "linkDirectors" },
+							},
+							{
+								name: "Link genres",
+								desc: "The same for genres. Off by default: genre notes become very busy hubs.",
+								control: { type: "toggle", key: "linkGenres" },
+							},
+							{
+								name: "Add cast",
+								desc: "Write a cast property with the film's top-billed actors.",
+								control: { type: "toggle", key: "addCast" },
+							},
+							{
+								name: "Cast count",
+								desc: "How many top-billed actors to include. Only used when add cast is on.",
+								control: {
+									type: "number",
+									key: "castCount",
+									min: 1,
+									defaultValue: DEFAULT_SETTINGS.castCount,
+									placeholder: String(DEFAULT_SETTINGS.castCount),
+								},
+							},
+							{
+								name: "Link cast",
+								desc: "Write cast as [[wikilinks]] when a note with that name already exists, so the film shows up in the actor's backlinks.",
+								control: { type: "toggle", key: "linkCast" },
+							},
+							{
+								name: "Add composers",
+								desc: "Write a composers property with the film's original score composer.",
+								control: { type: "toggle", key: "addComposers" },
+							},
+							{
+								name: "Link composers",
+								desc: "Write composers as [[wikilinks]] when a note with that name already exists.",
+								control: { type: "toggle", key: "linkComposers" },
+							},
+						],
 					},
 					{
-						name: "Director folder",
-						desc: "Where new director notes are created. Leave empty for the vault root.",
-						control: { type: "folder", key: "directorFolder", placeholder: "Directors" },
+						type: "group",
+						heading: "Panels",
+						items: [
+							{
+								name: "Show connections",
+								desc: "Below a film's or TV series' properties, list other films and series in your vault that share a director, creator, composer or cast member.",
+								control: { type: "toggle", key: "showConnections" },
+							},
+							{
+								name: "Show filmography",
+								desc: "Below a person's properties, list their films in your vault, linked directly.",
+								control: { type: "toggle", key: "showFilmography" },
+							},
+						],
 					},
 					{
-						name: "Director photo folder",
-						desc: "Where director photos are saved. Leave empty to follow your attachment folder setting.",
-						control: { type: "folder", key: "directorPhotoFolder", placeholder: FOLLOW_ATTACHMENTS },
+						type: "group",
+						heading: "Import",
+						items: [
+							{
+								name: "Import from Letterboxd",
+								desc:
+									"Export your data from Letterboxd, unzip it, and drag diary.csv (or watched.csv) " +
+									"into your vault. This creates a note for each film not already in your vault, " +
+									"with watch_date filled in from diary.csv, and can mark the films as watched.",
+								render: (setting) => {
+									setting.addButton((button) =>
+										button.setButtonText("Import…").onClick(() => this.plugin.startImportFromLetterboxd()),
+									);
+								},
+							},
+						],
 					},
 				],
 			},
 			{
-				type: "group",
-				heading: "🎬 Cinema: film metadata",
+				type: "page",
+				name: "📺 TV series",
+				desc: "Folders, metadata and panels.",
 				items: [
 					{
-						name: "Link directors",
-						desc: "Write directors as [[wikilinks]] when a note with that name already exists, so the film shows up in the director's backlinks.",
-						control: { type: "toggle", key: "linkDirectors" },
+						type: "group",
+						heading: "Folders",
+						items: [
+							{
+								name: "TV series folder",
+								desc: "Where new TV series notes are created. Leave empty for the vault root.",
+								control: { type: "folder", key: "tvFolder", placeholder: "TV" },
+							},
+							{
+								name: "TV series poster folder",
+								desc: "Where TV series posters are saved. Leave empty to follow your attachment folder setting.",
+								control: { type: "folder", key: "tvPosterFolder", placeholder: FOLLOW_ATTACHMENTS },
+							},
+						],
 					},
 					{
-						name: "Link genres",
-						desc: "The same for genres. Off by default: genre notes become very busy hubs.",
-						control: { type: "toggle", key: "linkGenres" },
+						type: "group",
+						heading: "Metadata",
+						items: [
+							{
+								name: "Link creators",
+								desc: "Write a series' creators as [[wikilinks]] when a note with that name already exists, so the series shows up in their backlinks. A creator is to a series what a director is to a film, and they share the same notes.",
+								control: { type: "toggle", key: "linkCreators" },
+							},
+							{
+								name: "Link genres",
+								desc: "The same for a series' genres. Off by default: genre notes become very busy hubs.",
+								aliases: ["TV genres"],
+								control: { type: "toggle", key: "linkTvGenres" },
+							},
+							{
+								name: "Add cast",
+								desc: "Write a cast property with the series' top-billed actors, counted across every season.",
+								aliases: ["TV cast"],
+								control: { type: "toggle", key: "addTvCast" },
+							},
+							{
+								name: "Cast count",
+								desc: "How many top-billed actors to include on a series. Only used when add cast is on.",
+								aliases: ["TV cast count"],
+								control: {
+									type: "number",
+									key: "tvCastCount",
+									min: 1,
+									defaultValue: DEFAULT_SETTINGS.tvCastCount,
+									placeholder: String(DEFAULT_SETTINGS.tvCastCount),
+								},
+							},
+							{
+								name: "Link cast",
+								desc: "Write a series' cast as [[wikilinks]] when a note with that name already exists.",
+								aliases: ["TV cast links"],
+								control: { type: "toggle", key: "linkTvCast" },
+							},
+						],
 					},
 					{
-						name: "Add cast",
-						desc: "Write a cast property with the film's top-billed actors.",
-						control: { type: "toggle", key: "addCast" },
-					},
-					{
-						name: "Cast count",
-						desc: "How many top-billed actors to include. Only used when add cast is on.",
-						control: {
-							type: "number",
-							key: "castCount",
-							min: 1,
-							defaultValue: DEFAULT_SETTINGS.castCount,
-							placeholder: String(DEFAULT_SETTINGS.castCount),
-						},
-					},
-					{
-						name: "Link cast",
-						desc: "Write cast as [[wikilinks]] when a note with that name already exists, so the film shows up in the actor's backlinks.",
-						control: { type: "toggle", key: "linkCast" },
-					},
-					{
-						name: "Add composers",
-						desc: "Write a composers property with the film's original score composer.",
-						control: { type: "toggle", key: "addComposers" },
-					},
-					{
-						name: "Link composers",
-						desc: "Write composers as [[wikilinks]] when a note with that name already exists.",
-						control: { type: "toggle", key: "linkComposers" },
+						type: "group",
+						heading: "Panels",
+						items: [
+							{
+								name: "Show seasons",
+								desc: "Below a TV series' properties, list its seasons with a checkbox and a bar for each — where watching a series is recorded.",
+								control: { type: "toggle", key: "showSeasons" },
+							},
+							{
+								name: "Show TV series",
+								desc: "Below a person's properties, list the TV series they created that are in your vault, in their own group under the filmography.",
+								control: { type: "toggle", key: "showTvSeries" },
+							},
+						],
 					},
 				],
 			},
 			{
-				type: "group",
-				heading: "🎬 Cinema: panels",
+				type: "page",
+				name: "🌸 Anime & manga",
+				desc: "Folders, and importing from MyAnimeList.",
 				items: [
 					{
-						name: "Show connections",
-						desc: "Below a film's or TV series' properties, list other films and series in your vault that share a director, creator, composer or cast member.",
-						control: { type: "toggle", key: "showConnections" },
+						type: "group",
+						heading: "Folders",
+						items: [
+							{
+								name: "Anime/manga folder",
+								desc: "Where new anime and manga notes are created (the same folder for both, since a series note can hold either or both). Leave empty for the vault root.",
+								control: { type: "folder", key: "animeFolder", placeholder: "Anime" },
+							},
+							{
+								name: "Anime/manga poster folder",
+								desc: "Where anime and manga posters are saved — kept as two separate files (a series note can show both). Leave empty to follow your attachment folder setting.",
+								control: { type: "folder", key: "animePosterFolder", placeholder: FOLLOW_ATTACHMENTS },
+							},
+							{
+								name: "Mangaka folder",
+								desc: "Where new mangaka notes are created. Kept separate from the anime/manga folder, the same way directors have their own folder apart from films. Leave empty for the vault root.",
+								control: { type: "folder", key: "mangakaFolder", placeholder: "Mangaka" },
+							},
+							{
+								name: "Mangaka photo folder",
+								desc: "Where mangaka photos are saved. Leave empty to follow your attachment folder setting.",
+								control: { type: "folder", key: "mangakaPhotoFolder", placeholder: FOLLOW_ATTACHMENTS },
+							},
+						],
 					},
 					{
-						name: "Show filmography",
-						desc: "Below a person's properties, list their films in your vault, linked directly.",
-						control: { type: "toggle", key: "showFilmography" },
+						type: "group",
+						heading: "Import",
+						items: [
+							{
+								name: "Import from MyAnimeList",
+								desc:
+									"Reads a public MyAnimeList list and creates a note for each anime and manga on it, " +
+									"with what you have completed marked watched or read. Anything already in your " +
+									"vault is left where it is.",
+								render: (setting) => {
+									setting.addButton((button) =>
+										button.setButtonText("Import…").onClick(() => this.plugin.startImportFromMal()),
+									);
+								},
+							},
+						],
 					},
 				],
 			},
 			{
-				type: "group",
-				heading: "🎬 Cinema: Letterboxd",
+				type: "page",
+				name: "🎵 Music",
+				desc: "Folders, metadata and panels.",
 				items: [
 					{
-						name: "Import from Letterboxd",
-						desc:
-							"Export your data from Letterboxd, unzip it, and drag diary.csv (or watched.csv) " +
-							"into your vault. This creates a note for each film not already in your vault, " +
-							"with watch_date filled in from diary.csv, and can mark the films as watched.",
-						render: (setting) => {
-							setting.addButton((button) =>
-								button.setButtonText("Import…").onClick(() => this.plugin.startImportFromLetterboxd()),
-							);
-						},
-					},
-				],
-			},
-			{
-				type: "group",
-				heading: "🌸 Anime & manga: MyAnimeList",
-				items: [
-					{
-						name: "Import from MyAnimeList",
-						desc:
-							"Reads a public MyAnimeList list and creates a note for each anime and manga on it, " +
-							"with what you have completed marked watched or read. Anything already in your " +
-							"vault is left where it is.",
-						render: (setting) => {
-							setting.addButton((button) =>
-								button.setButtonText("Import…").onClick(() => this.plugin.startImportFromMal()),
-							);
-						},
-					},
-				],
-			},
-			{
-				type: "group",
-				heading: "📺 TV series: folders",
-				items: [
-					{
-						name: "TV series folder",
-						desc: "Where new TV series notes are created. Leave empty for the vault root.",
-						control: { type: "folder", key: "tvFolder", placeholder: "TV" },
+						type: "group",
+						heading: "Folders",
+						items: [
+							{
+								name: "Artist folder",
+								desc: "Where new artist notes are created. Leave empty for the vault root.",
+								control: { type: "folder", key: "artistFolder", placeholder: DEFAULT_SETTINGS.artistFolder },
+							},
+							{
+								name: "Album folder",
+								desc: "Where new album notes are created. Leave empty for the vault root.",
+								control: { type: "folder", key: "albumFolder", placeholder: DEFAULT_SETTINGS.albumFolder },
+							},
+							{
+								name: "Album notes as folder notes",
+								desc: "Give each new album a folder of its own, with the album's note inside under the same name, and put the songs you add from it in that folder. Works on its own. With the Folder Notes plugin, clicking an album's folder opens its note. Turn off to keep albums side by side in the album folder and songs in the song folder.",
+								control: { type: "toggle", key: "albumFolderNotes" },
+							},
+							{
+								name: "Song folder",
+								desc: "Where new song notes are created when album notes aren't folder notes. Leave empty for the vault root.",
+								control: { type: "folder", key: "songFolder", placeholder: DEFAULT_SETTINGS.songFolder },
+							},
+							{
+								name: "Album cover folder",
+								desc: "Where album covers are saved. Leave empty to follow your attachment folder setting.",
+								control: { type: "folder", key: "albumCoverFolder", placeholder: FOLLOW_ATTACHMENTS },
+							},
+							{
+								name: "Artist photo folder",
+								desc: "Where artist photos are saved. Leave empty to follow your attachment folder setting.",
+								control: { type: "folder", key: "artistPhotoFolder", placeholder: FOLLOW_ATTACHMENTS },
+							},
+						],
 					},
 					{
-						name: "TV series poster folder",
-						desc: "Where TV series posters are saved. Leave empty to follow your attachment folder setting.",
-						control: { type: "folder", key: "tvPosterFolder", placeholder: FOLLOW_ATTACHMENTS },
-					},
-				],
-			},
-			{
-				type: "group",
-				heading: "📺 TV series: metadata",
-				items: [
-					{
-						name: "Link creators",
-						desc: "Write a series' creators as [[wikilinks]] when a note with that name already exists, so the series shows up in their backlinks. A creator is to a series what a director is to a film, and they share the same notes.",
-						control: { type: "toggle", key: "linkCreators" },
-					},
-					{
-						name: "Link genres",
-						desc: "The same for a series' genres. Off by default: genre notes become very busy hubs.",
-						aliases: ["TV genres"],
-						control: { type: "toggle", key: "linkTvGenres" },
+						type: "group",
+						heading: "Metadata",
+						items: [
+							{
+								name: "Link artists",
+								desc: "Write an album's artists as [[wikilinks]] when a note with that name already exists. An album never creates its artist's note: add the artist yourself, and the next albums link to it.",
+								control: { type: "toggle", key: "linkArtists" },
+							},
+							{
+								name: "Link genres",
+								desc: "The same for an album's genres. Off by default: genre notes become very busy hubs.",
+								aliases: ["Music genres"],
+								control: { type: "toggle", key: "linkMusicGenres" },
+							},
+						],
 					},
 					{
-						name: "Add cast",
-						desc: "Write a cast property with the series' top-billed actors, counted across every season.",
-						aliases: ["TV cast"],
-						control: { type: "toggle", key: "addTvCast" },
-					},
-					{
-						name: "Cast count",
-						desc: "How many top-billed actors to include on a series. Only used when add cast is on.",
-						aliases: ["TV cast count"],
-						control: {
-							type: "number",
-							key: "tvCastCount",
-							min: 1,
-							defaultValue: DEFAULT_SETTINGS.tvCastCount,
-							placeholder: String(DEFAULT_SETTINGS.tvCastCount),
-						},
-					},
-					{
-						name: "Link cast",
-						desc: "Write a series' cast as [[wikilinks]] when a note with that name already exists.",
-						aliases: ["TV cast links"],
-						control: { type: "toggle", key: "linkTvCast" },
-					},
-				],
-			},
-			{
-				type: "group",
-				heading: "📺 TV series: panels",
-				items: [
-					{
-						name: "Show seasons",
-						desc: "Below a TV series' properties, list its seasons with a checkbox and a bar for each — where watching a series is recorded.",
-						control: { type: "toggle", key: "showSeasons" },
-					},
-					{
-						name: "Show TV series",
-						desc: "Below a person's properties, list the TV series they created that are in your vault, in their own group under the filmography.",
-						control: { type: "toggle", key: "showTvSeries" },
-					},
-				],
-			},
-			{
-				type: "group",
-				heading: "🌸 Anime & manga: folders",
-				items: [
-					{
-						name: "Anime/manga folder",
-						desc: "Where new anime and manga notes are created (the same folder for both, since a series note can hold either or both). Leave empty for the vault root.",
-						control: { type: "folder", key: "animeFolder", placeholder: "Anime" },
-					},
-					{
-						name: "Anime/manga poster folder",
-						desc: "Where anime and manga posters are saved — kept as two separate files (a series note can show both). Leave empty to follow your attachment folder setting.",
-						control: { type: "folder", key: "animePosterFolder", placeholder: FOLLOW_ATTACHMENTS },
-					},
-					{
-						name: "Mangaka folder",
-						desc: "Where new mangaka notes are created. Kept separate from the anime/manga folder, the same way directors have their own folder apart from films. Leave empty for the vault root.",
-						control: { type: "folder", key: "mangakaFolder", placeholder: "Mangaka" },
-					},
-					{
-						name: "Mangaka photo folder",
-						desc: "Where mangaka photos are saved. Leave empty to follow your attachment folder setting.",
-						control: { type: "folder", key: "mangakaPhotoFolder", placeholder: FOLLOW_ATTACHMENTS },
-					},
-				],
-			},
-			{
-				type: "group",
-				heading: "🎵 Music: folders",
-				items: [
-					{
-						name: "Artist folder",
-						desc: "Where new artist notes are created. Leave empty for the vault root.",
-						control: { type: "folder", key: "artistFolder", placeholder: DEFAULT_SETTINGS.artistFolder },
-					},
-					{
-						name: "Album folder",
-						desc: "Where new album notes are created. Leave empty for the vault root.",
-						control: { type: "folder", key: "albumFolder", placeholder: DEFAULT_SETTINGS.albumFolder },
-					},
-					{
-						name: "Album notes as folder notes",
-						desc: "Give each new album a folder of its own, with the album's note inside under the same name, and put the songs you add from it in that folder. Works on its own. With the Folder Notes plugin, clicking an album's folder opens its note. Turn off to keep albums side by side in the album folder and songs in the song folder.",
-						control: { type: "toggle", key: "albumFolderNotes" },
-					},
-					{
-						name: "Song folder",
-						desc: "Where new song notes are created when album notes aren't folder notes. Leave empty for the vault root.",
-						control: { type: "folder", key: "songFolder", placeholder: DEFAULT_SETTINGS.songFolder },
-					},
-					{
-						name: "Album cover folder",
-						desc: "Where album covers are saved. Leave empty to follow your attachment folder setting.",
-						control: { type: "folder", key: "albumCoverFolder", placeholder: FOLLOW_ATTACHMENTS },
-					},
-					{
-						name: "Artist photo folder",
-						desc: "Where artist photos are saved. Leave empty to follow your attachment folder setting.",
-						control: { type: "folder", key: "artistPhotoFolder", placeholder: FOLLOW_ATTACHMENTS },
-					},
-				],
-			},
-			{
-				type: "group",
-				heading: "🎵 Music: metadata",
-				items: [
-					{
-						name: "Link artists",
-						desc: "Write an album's artists as [[wikilinks]] when a note with that name already exists. An album never creates its artist's note: add the artist yourself, and the next albums link to it.",
-						control: { type: "toggle", key: "linkArtists" },
-					},
-					{
-						name: "Link genres",
-						desc: "The same for an album's genres. Off by default: genre notes become very busy hubs.",
-						aliases: ["Music genres"],
-						control: { type: "toggle", key: "linkMusicGenres" },
-					},
-				],
-			},
-			{
-				type: "group",
-				heading: "🎵 Music: panels",
-				items: [
-					{
-						name: "Show tracklist",
-						desc: "Below an album's properties, list its tracks.",
-						control: { type: "toggle", key: "showTracklist" },
-					},
-					{
-						name: "Show discography",
-						desc: "Below an artist's properties, list their albums that are in your vault, with a button to add another.",
-						control: { type: "toggle", key: "showDiscography" },
-					},
-					{
-						name: "Show lyrics",
-						desc: "Below a song's properties, show its lyrics from LRCLIB, with a button to copy them into the note. Off, nothing is ever sent to LRCLIB.",
-						control: { type: "toggle", key: "showLyrics" },
-					},
-					{
-						name: "Show soundtracks",
-						desc: "Below a film's, a TV series' or an anime's properties, list the albums linked as its soundtrack, with a button to find another.",
-						control: { type: "toggle", key: "showSoundtracks" },
-					},
-					{
-						name: "Show scores",
-						desc: "Below an artist's discography, list the films, TV series and anime in your vault they scored: named among a film's composers, or linked from one of their albums as its soundtrack.",
-						control: { type: "toggle", key: "showScores" },
+						type: "group",
+						heading: "Panels",
+						items: [
+							{
+								name: "Show tracklist",
+								desc: "Below an album's properties, list its tracks.",
+								control: { type: "toggle", key: "showTracklist" },
+							},
+							{
+								name: "Show discography",
+								desc: "Below an artist's properties, list their albums that are in your vault, with a button to add another.",
+								control: { type: "toggle", key: "showDiscography" },
+							},
+							{
+								name: "Show lyrics",
+								desc: "Below a song's properties, show its lyrics from LRCLIB, with a button to copy them into the note. Off, nothing is ever sent to LRCLIB.",
+								control: { type: "toggle", key: "showLyrics" },
+							},
+							{
+								name: "Show soundtracks",
+								desc: "Below a film's, a TV series' or an anime's properties, list the albums linked as its soundtrack, with a button to find another.",
+								control: { type: "toggle", key: "showSoundtracks" },
+							},
+							{
+								name: "Show scores",
+								desc: "Below an artist's discography, list the films, TV series and anime in your vault they scored: named among a film's composers, or linked from one of their albums as its soundtrack.",
+								control: { type: "toggle", key: "showScores" },
+							},
+						],
 					},
 				],
 			},
@@ -508,6 +547,13 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 		];
 	}
 
+	/** What the API keys entry says without being opened: which of the two are set. */
+	private keysSummary(): string {
+		const keychain = keychainOf(this.app);
+		const state = (key: "tmdb" | "mal") => (readKey(keychain, this.plugin.settings, key) !== "" ? "set" : "not set");
+		return `TMDB: ${state("tmdb")} · MyAnimeList: ${state("mal")}`;
+	}
+
 	/** Reads a setting by the key its definition names. */
 	getControlValue(key: string): unknown {
 		return this.plugin.settings[key as keyof FilmTrackerSettings];
@@ -519,6 +565,9 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 		settings[key] = typeof value === "string" ? value.trim() : value;
 		await this.plugin.saveSettings();
 		if (key.startsWith("show")) this.plugin.refreshPanels();
+		// The API keys entry says which keys are set; from 1.13, `update` redraws it.
+		const tab = this as { update?: () => void };
+		if (key.endsWith("SecretName") && typeof tab.update === "function") tab.update();
 	}
 
 	/**
@@ -528,14 +577,21 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 	display(): void {
 		const { containerEl } = this;
 		containerEl.empty();
-		for (const item of this.getSettingDefinitions()) {
+		this.drawAll(containerEl, this.getSettingDefinitions(), "");
+	}
+
+	/** Pages and groups become headings — "🎬 Films: Folders" — with their settings under them. */
+	private drawAll(containerEl: HTMLElement, items: SettingDefinitionItem[], page: string): void {
+		for (const item of items) {
 			if (!("type" in item)) {
 				this.draw(containerEl, item);
-				continue;
+			} else if (item.type === "page") {
+				this.drawAll(containerEl, item.items ?? [], item.name);
+			} else {
+				const heading = item.heading === undefined ? page : page === "" ? item.heading : `${page}: ${item.heading}`;
+				if (heading !== "") new Setting(containerEl).setName(heading).setHeading();
+				this.drawAll(containerEl, item.items ?? [], page);
 			}
-			const heading = "heading" in item ? item.heading : undefined;
-			if (heading !== undefined) new Setting(containerEl).setName(heading).setHeading();
-			for (const child of ("items" in item ? item.items : undefined) ?? []) this.draw(containerEl, child);
 		}
 	}
 

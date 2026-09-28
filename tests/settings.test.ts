@@ -40,9 +40,14 @@ function tabFor(plugin: unknown): FilmTrackerSettingTab {
 	return new FilmTrackerSettingTab({} as App, plugin as Plugin as never);
 }
 
-/** Every row, groups flattened out. */
+/** Every row, pages and groups flattened out. */
 function rows(items: SettingDefinitionItem[]): SettingDefinitionItem[] {
-	return items.flatMap((item) => ("type" in item ? [...(("items" in item ? item.items : undefined) ?? [])] : [item]));
+	return items.flatMap((item) => ("type" in item ? rows(item.items ?? []) : [item]));
+}
+
+/** Every page and group, however deep. */
+function sections(items: SettingDefinitionItem[]): SettingDefinitionItem[] {
+	return items.flatMap((item) => ("type" in item ? [item, ...sections(item.items ?? [])] : []));
 }
 
 describe("the setting definitions", () => {
@@ -88,12 +93,34 @@ describe("the setting definitions", () => {
 		]);
 	});
 
-	it("names every group and every row", () => {
-		for (const item of definitions) {
-			if ("type" in item) expect("heading" in item ? item.heading : "").not.toBe("");
-			else expect(item.name).not.toBe("");
+	it("names every page, every group and every row", () => {
+		for (const item of sections(definitions)) {
+			expect("heading" in item ? item.heading : "name" in item ? item.name : "").not.toBe("");
 		}
 		for (const row of all) expect("name" in row ? row.name : "").not.toBe("");
+	});
+
+	it("puts each kind of note on a page of its own, with the attribution below them", () => {
+		expect(definitions.map((item) => ("type" in item && item.type === "page" ? item.name : "name" in item ? item.name : ""))).toEqual([
+			"🔑 API keys",
+			"🎬 Films",
+			"📺 TV series",
+			"🌸 Anime & manga",
+			"🎵 Music",
+			"Attribution",
+		]);
+	});
+
+	it("says on the API keys entry which keys are set, without opening it", () => {
+		const keys = definitions[0];
+		const summary = (overrides: Partial<FilmTrackerSettings>) => {
+			const page = tabFor(fakePlugin(overrides).plugin).getSettingDefinitions()[0];
+			const value = "type" in page && page.type === "page" ? page.displayValue : undefined;
+			return typeof value === "function" ? value() : value;
+		};
+		expect("type" in keys && keys.type).toBe("page");
+		expect(summary({})).toBe("TMDB: not set · MyAnimeList: not set");
+		expect(summary({ apiKey: "abc" })).toBe("TMDB: set · MyAnimeList: not set");
 	});
 });
 
