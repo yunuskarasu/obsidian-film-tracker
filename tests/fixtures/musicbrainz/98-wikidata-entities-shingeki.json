@@ -1,0 +1,39 @@
+{
+	"entities": {
+		"Q22126305": {
+			"claims": {
+				"P4983": [
+					{
+						"mainsnak": {
+							"datavalue": {
+								"value": "1429"
+							}
+						}
+					}
+				],
+				"P4086": [
+					{
+						"mainsnak": {
+							"datavalue": {
+								"value": "16498"
+							}
+						}
+					}
+				]
+			}
+		},
+		"Q47388290": {
+			"claims": {
+				"P4086": [
+					{
+						"mainsnak": {
+							"datavalue": {
+								"value": "16498"
+							}
+						}
+					}
+				]
+			}
+		}
+	}
+}

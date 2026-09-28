@@ -1,0 +1,20 @@
+{
+	"id": "cba0c394-1aa2-40e0-8613-a9ead5624c21",
+	"title": "Inception: Music From the Motion Picture",
+	"first-release-date": "2010-07-09",
+	"primary-type": "Album",
+	"secondary-types": [
+		"Soundtrack"
+	],
+	"artist-credit": [
+		{
+			"name": "Hans Zimmer",
+			"joinphrase": "",
+			"artist": {
+				"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+				"name": "Hans Zimmer",
+				"sort-name": "Zimmer, Hans"
+			}
+		}
+	]
+}

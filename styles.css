@@ -65,19 +65,19 @@ body {
 
 /* Live preview keeps the whole body in .cm-contentContainer, which spans both
    columns on its own row. Between the properties and the body sits one row per
-   panel — a TV note has its seasons and its connections, a person note their
-   films and their series — each pinned to its own row so two of them can never
+   panel — a TV note has its seasons, its connections and its soundtrack, a
+   person note their films and their series — each pinned to its own row so two of them can never
    land in the same cell and paint over each other. A row with no panel in it is
    simply empty, so nothing has to collapse it. 1fr on the body's row lets it
    fill the remaining height so clicking below the text still focuses the
    editor. */
 .markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout {
-	grid-template-rows: auto auto auto auto auto auto 1fr;
+	grid-template-rows: auto auto auto auto auto auto auto 1fr;
 }
 
 .markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .cm-contentContainer {
 	grid-column: 1 / -1;
-	grid-row: 7;
+	grid-row: 8;
 	min-width: 0;
 }
 
@@ -99,6 +99,10 @@ body {
 
 .markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-shows {
 	grid-row: 6;
+}
+
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-soundtrack {
+	grid-row: 7;
 }
 
 .markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .inline-title,
@@ -129,7 +133,8 @@ body {
 /* Two panels belong together more than a panel and the body do. */
 .markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-manga:not(:first-of-type),
 .markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-main:not(:first-of-type),
-.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-shows {
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-shows,
+.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-soundtrack:not(:first-of-type) {
 	margin-block-start: 1rem;
 }
 
@@ -198,7 +203,7 @@ body {
 	}
 
 	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout {
-		grid-template-rows: auto auto auto auto auto auto auto 1fr;
+		grid-template-rows: auto auto auto auto auto auto auto auto 1fr;
 	}
 
 	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-poster,
@@ -243,9 +248,13 @@ body {
 		grid-row: 7;
 	}
 
+	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .film-tracker-panel-soundtrack {
+		grid-row: 8;
+	}
+
 	.markdown-source-view.mod-cm6 .cm-sizer.film-tracker-layout > .cm-contentContainer {
 		grid-column: 1;
-		grid-row: 8;
+		grid-row: 9;
 	}
 }
 

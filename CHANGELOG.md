@@ -4,6 +4,17 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+## [3.3.0] - 2026-09-28
+
+Soundtracks, and who scored what. Nothing breaks: notes and settings from 3.2 carry over as they are, and a film's, a TV series' or an anime's note is never written for its soundtrack.
+
+### Added
+
+- **Soundtracks.** An album note can name the films, TV series and anime it is the soundtrack of, in `soundtrack_of`. The work's own note is never written: its new **SOUNDTRACK** panel lists the albums that link it.
+- **Find soundtrack**, on the SOUNDTRACK panel, on film, TV and anime notes' menus and in the command palette: the albums Wikidata knows as the work's soundtrack first, then MusicBrainz's soundtracks under each of the work's titles. Nothing is linked until you pick it. **Link album to film or series** does the same from the album's side.
+- A **Show soundtracks** setting turns the panel off.
+- **SCORES**, under an artist's DISCOGRAPHY: the films, TV series and anime in your vault they scored — a film naming them among its `composers`, or a work an album of theirs is the soundtrack of. Only there when there is something to list; **Show scores** turns it off.
+
 ## [3.2.0] - 2026-09-28
 
 Songs, and their lyrics. Nothing breaks: notes and settings from 3.1 carry over as they are, and an album note already in your vault is never moved.
@@ -177,7 +188,8 @@ Music joins films, TV series and anime-manga. Nothing breaks: notes and settings
 - Relinking of directors and genres.
 - Import from Letterboxd.
 
-[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.2.0...HEAD
+[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.3.0...HEAD
+[3.3.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.2.0...3.3.0
 [3.2.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.1.0...3.2.0
 [3.1.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.4.0...3.0.0

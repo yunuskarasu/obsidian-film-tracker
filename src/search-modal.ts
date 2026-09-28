@@ -1,6 +1,8 @@
 import { App, FuzzySuggestModal, Notice, SuggestModal, type FuzzyMatch } from "obsidian";
 import type { AlbumSearchResult, ArtistSearchResult } from "./music";
 import type { AlbumTrackEntry } from "./music-note";
+import type { WorkNote } from "./music-actions";
+import type { SoundtrackChoice } from "./soundtrack";
 import { MusicBrainzError, SearchSuperseded, type MusicBrainzClient } from "./musicbrainz";
 import {
 	MalError,
@@ -373,6 +375,109 @@ export class AlbumTracksModal extends FuzzySuggestModal<AlbumTrackEntry> {
 
 	onChooseItem(track: AlbumTrackEntry): void {
 		this.onPick(track);
+	}
+}
+
+/** The last row of "Find soundtrack…", always there: the way to an album the list doesn't have. */
+const SEARCH_INSTEAD = { search: true } as const;
+type SoundtrackRow = SoundtrackChoice | typeof SEARCH_INSTEAD;
+
+/**
+ * "Find soundtrack…": the albums found for a work, filtered as you type —
+ * Wikidata's first, each row saying who found it, and whether its note is
+ * already in the vault. The last row leads to the plain album search.
+ */
+export class SoundtrackModal extends FuzzySuggestModal<SoundtrackRow> {
+	private readonly rows: SoundtrackRow[];
+	private readonly inVault: (albumId: string) => boolean;
+	private readonly onPick: (choice: SoundtrackChoice) => void;
+	private readonly onSearch: () => void;
+
+	constructor(
+		app: App,
+		workName: string,
+		choices: SoundtrackChoice[],
+		inVault: (albumId: string) => boolean,
+		onPick: (choice: SoundtrackChoice) => void,
+		onSearch: () => void,
+	) {
+		super(app);
+		this.rows = [...choices, SEARCH_INSTEAD];
+		this.inVault = inVault;
+		this.onPick = onPick;
+		this.onSearch = onSearch;
+		this.setPlaceholder(`The soundtrack of ${workName} — type to filter…`);
+		this.emptyStateText = "No albums match.";
+	}
+
+	getItems(): SoundtrackRow[] {
+		return this.rows;
+	}
+
+	getItemText(row: SoundtrackRow): string {
+		// The last row stays whatever is typed: it is the way out when nothing matches.
+		return "search" in row ? "" : `${row.album.title} ${row.album.artists} ${row.album.year ?? ""}`;
+	}
+
+	getSuggestions(query: string): FuzzyMatch<SoundtrackRow>[] {
+		const matches = super.getSuggestions(query).filter((match) => !("search" in match.item));
+		return [...matches, { item: SEARCH_INSTEAD, match: { score: 0, matches: [] } }];
+	}
+
+	renderSuggestion(match: FuzzyMatch<SoundtrackRow>, el: HTMLElement): void {
+		const row = match.item;
+		if ("search" in row) {
+			renderRow(el, "Search MusicBrainz for another album…", ["The one you mean isn't listed"]);
+			return;
+		}
+		const { album } = row;
+		renderRow(
+			el,
+			album.title,
+			[row.source, yearText(album.year), album.artists || null, this.inVault(album.id) ? "in your vault" : null],
+		);
+	}
+
+	onChooseItem(row: SoundtrackRow): void {
+		if ("search" in row) this.onSearch();
+		else this.onPick(row);
+	}
+}
+
+const WORK_KIND_LABEL: Record<WorkNote["work"]["kind"], string> = { film: "Film", tv: "TV series", anime: "Anime" };
+
+/**
+ * "Link to film or series…" on an album: the film, TV series and anime
+ * notes in the vault, filtered as you type — the ones Wikidata names as the
+ * album's works first.
+ */
+export class WorkPickerModal extends FuzzySuggestModal<WorkNote> {
+	private readonly works: WorkNote[];
+	private readonly onPick: (work: WorkNote) => void;
+
+	constructor(app: App, albumName: string, works: WorkNote[], onPick: (work: WorkNote) => void) {
+		super(app);
+		this.works = works;
+		this.onPick = onPick;
+		this.setPlaceholder(`What ${albumName} is the soundtrack of — type to filter…`);
+		this.emptyStateText = "No films, TV series or anime match.";
+	}
+
+	getItems(): WorkNote[] {
+		return this.works;
+	}
+
+	getItemText(work: WorkNote): string {
+		return work.file.basename;
+	}
+
+	renderSuggestion(match: FuzzyMatch<WorkNote>, el: HTMLElement): void {
+		const { file, work, suggested } = match.item;
+		renderRow(el, file.basename, [WORK_KIND_LABEL[work.kind], suggested ? "Wikidata: its soundtrack" : null]);
+	}
+
+	onChooseItem(work: WorkNote): void {
+		this.onPick(work);
 	}
 }
 

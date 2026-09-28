@@ -61,6 +61,10 @@ export interface FilmTrackerSettings {
 	showDiscography: boolean;
 	/** The LYRICS panel under a song, and with it every request to LRCLIB. */
 	showLyrics: boolean;
+	/** The SOUNDTRACK panel under a film, a TV series or an anime. */
+	showSoundtracks: boolean;
+	/** The SCORES panel under an artist: what they scored in the vault. */
+	showScores: boolean;
 }
 
 export const DEFAULT_SETTINGS: FilmTrackerSettings = {
@@ -105,6 +109,8 @@ export const DEFAULT_SETTINGS: FilmTrackerSettings = {
 	showTracklist: true,
 	showDiscography: true,
 	showLyrics: true,
+	showSoundtracks: true,
+	showScores: true,
 };
 
 /** Added to a key's description once it lives in Obsidian's keychain. */
@@ -477,6 +483,16 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 						name: "Show lyrics",
 						desc: "Below a song's properties, show its lyrics from LRCLIB, with a button to copy them into the note. Off, nothing is ever sent to LRCLIB.",
 						control: { type: "toggle", key: "showLyrics" },
+					},
+					{
+						name: "Show soundtracks",
+						desc: "Below a film's, a TV series' or an anime's properties, list the albums linked as its soundtrack, with a button to find another.",
+						control: { type: "toggle", key: "showSoundtracks" },
+					},
+					{
+						name: "Show scores",
+						desc: "Below an artist's discography, list the films, TV series and anime in your vault they scored: named among a film's composers, or linked from one of their albums as its soundtrack.",
+						control: { type: "toggle", key: "showScores" },
 					},
 				],
 			},

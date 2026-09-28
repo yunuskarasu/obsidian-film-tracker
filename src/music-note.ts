@@ -13,6 +13,7 @@ import {
 	yamlScalar,
 	yamlString,
 } from "./note";
+import { SOUNDTRACK_KEY } from "./soundtrack";
 import { Quoted, flowEntry } from "./yaml-flow";
 
 /*
@@ -173,6 +174,7 @@ const ALBUM_FIELD_ORDER = [
 	"artists",
 	"year",
 	"album_type",
+	SOUNDTRACK_KEY,
 	"genres",
 	"runtime",
 	"tracks_count",
@@ -270,8 +272,18 @@ function albumLines(album: AlbumMetadata, links: MusicLinks, previous?: Record<s
 	];
 }
 
-export function buildAlbumNoteContent(album: AlbumMetadata, coverLink: string | null, links: MusicLinks): string {
+/**
+ * A new album note. `soundtrackOf` is the work it was added from with
+ * "Find soundtrack…" — otherwise the note has no `soundtrack_of` at all.
+ */
+export function buildAlbumNoteContent(
+	album: AlbumMetadata,
+	coverLink: string | null,
+	links: MusicLinks,
+	soundtrackOf: string[] = [],
+): string {
 	const owned = new Map(albumLines(album, links));
+	if (soundtrackOf.length > 0) owned.set(SOUNDTRACK_KEY, yamlList(SOUNDTRACK_KEY, soundtrackOf));
 	const lines = ["---"];
 	for (const key of ALBUM_FIELD_ORDER) {
 		if (key === "poster") lines.push(posterLine(coverLink === null ? null : coverLink.replace(/^!/, "")));
@@ -309,6 +321,29 @@ export function refreshAlbumFrontmatter(
 	if (coverLink !== null && (posterMissing || isEmptyValue(doc.blocks.get("poster")))) {
 		setKey(doc, ALBUM_FIELD_ORDER, "poster", [posterLine(coverLink.replace(/^!/, ""))]);
 	}
+	return serializeFrontmatterBlocks(doc);
+}
+
+/**
+ * The album is the soundtrack of one more work: `link` joins its
+ * `soundtrack_of` list, after the ones there. Whether it is already there is
+ * for the caller to say (`isLinked`), since two links can name one note.
+ * `null` when the property can't be read, and the note is then left alone.
+ */
+export function addSoundtrackLink(content: string, link: string, isLinked: (existing: string) => boolean): string | null {
+	const doc = parseFrontmatterBlocks(content);
+	if (doc === null) return null;
+	const block = doc.blocks.get(SOUNDTRACK_KEY);
+	let existing: string[] = [];
+	if (block !== undefined) {
+		try {
+			existing = listValues((parseYaml(block.join("\n")) as Record<string, unknown> | null)?.[SOUNDTRACK_KEY] ?? []);
+		} catch {
+			return null;
+		}
+	}
+	if (existing.some(isLinked)) return content;
+	setKey(doc, ALBUM_FIELD_ORDER, SOUNDTRACK_KEY, yamlList(SOUNDTRACK_KEY, [...existing, link]));
 	return serializeFrontmatterBlocks(doc);
 }
 

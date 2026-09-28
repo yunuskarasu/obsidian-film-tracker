@@ -29,6 +29,8 @@ import { MusicBrainzClient } from "./musicbrainz";
 import { canListen, canWatch, hasAnime, hasEpisodes, hasManga, type NoteKind } from "./note-kind";
 import {
 	AlbumTracksModal,
+	SoundtrackModal,
+	WorkPickerModal,
 	openAlbumSearch,
 	openAnimeSearch,
 	openArtistAlbums,
@@ -42,7 +44,9 @@ import { isMissingHere, keychainOf, moveKeysToKeychain, readKey, type ApiKey } f
 import { DEFAULT_SETTINGS, FilmTrackerSettingTab, type FilmTrackerSettings } from "./settings";
 import { TmdbClient } from "./tmdb";
 import { TvActions } from "./tv-actions";
-import { VaultNotes } from "./vault-notes";
+import { VaultNotes, reportFailures } from "./vault-notes";
+import { soundtrackWorkOf } from "./soundtrack";
+import { WikidataClient } from "./wikidata";
 import { songNoteFor, VaultScan } from "./panels/vault-scan";
 
 /**
@@ -171,6 +175,28 @@ export default class FilmTrackerPlugin extends Plugin {
 				const note = this.activeNote();
 				if (note === null || note.kind.kind !== "album") return false;
 				if (!checking) this.startAddSong(note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "find-soundtrack",
+			name: "Find soundtrack",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || soundtrackWorkOf(note.kind) === null) return false;
+				if (!checking) void this.startFindSoundtrack(note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "link-soundtrack-to-work",
+			name: "Link album to film or series",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || note.kind.kind !== "album") return false;
+				if (!checking) void this.startLinkToWork(note.file);
 				return true;
 			},
 		});
@@ -441,6 +467,7 @@ export default class FilmTrackerPlugin extends Plugin {
 		}
 		if (kind.kind === "album") {
 			entries.push({ title: "Add song", icon: "music", run: () => this.startAddSong(file) });
+			entries.push({ title: "Link to film or series", icon: "clapperboard", run: () => void this.startLinkToWork(file) });
 			if (!isFolderNote(file.path)) {
 				entries.push({ title: "Move album into its folder", icon: "folder-input", run: () => void this.music.moveAlbumIntoFolder(file) });
 			}
@@ -454,6 +481,9 @@ export default class FilmTrackerPlugin extends Plugin {
 		}
 		if (canWatch(kind)) {
 			entries.push({ title: "Mark as watched today", icon: "check", run: () => void this.watchedToday(file) });
+		}
+		if (soundtrackWorkOf(kind) !== null) {
+			entries.push({ title: "Find soundtrack", icon: "disc", run: () => void this.startFindSoundtrack(file) });
 		}
 		if (hasEpisodes(kind)) {
 			entries.push({
@@ -566,6 +596,7 @@ export default class FilmTrackerPlugin extends Plugin {
 					if (song !== null) void this.lyrics.markWrong(song);
 				},
 				changePhoto: (file) => void this.music.changePhoto(this.musicbrainz(), file),
+				findSoundtrack: (file) => void this.startFindSoundtrack(file),
 			},
 		);
 		this.layout = layout;
@@ -724,6 +755,42 @@ export default class FilmTrackerPlugin extends Plugin {
 		}
 		const client = this.musicbrainz();
 		new AlbumTracksModal(this.app, file.basename, tracks, (track) => void this.music.addSong(client, file, track, true)).open();
+	}
+
+	/**
+	 * "Find soundtrack": the albums Wikidata and MusicBrainz have for a film,
+	 * TV series or anime, one to pick — or, from the last row, any album at
+	 * all. The pick is linked to the work from the album's side.
+	 */
+	private async startFindSoundtrack(file: TFile): Promise<void> {
+		const client = this.musicbrainz();
+		new Notice(`Looking for the soundtrack of ${file.basename}…`);
+		let choices: Awaited<ReturnType<MusicActions["soundtrackChoicesFor"]>> = null;
+		await reportFailures("look for soundtracks", async () => {
+			choices = await this.music.soundtrackChoicesFor(client, new WikidataClient(this.manifest.version), file);
+		});
+		if (choices === null) return;
+		const link = (album: AlbumSearchResult) => void this.music.linkSoundtrack(client, file, album);
+		new SoundtrackModal(
+			this.app,
+			file.basename,
+			choices,
+			(albumId) => this.music.albumNoteOf(albumId) !== null,
+			(choice) => link(choice.album),
+			() => openAlbumSearch(this.app, client, link, () => {
+				openArtistSearch(this.app, client, (artist) => void openArtistAlbums(this.app, client, artist, link));
+			}),
+		).open();
+	}
+
+	/** "Link to film or series": one of the vault's films, TV series and anime, for this album to be the soundtrack of. */
+	private async startLinkToWork(file: TFile): Promise<void> {
+		const works = await this.music.worksToLink(new WikidataClient(this.manifest.version), file);
+		if (works.length === 0) {
+			new Notice(`There is no film, TV series or anime in your vault that ${file.basename} isn't linked to already.`);
+			return;
+		}
+		new WorkPickerModal(this.app, file.basename, works, (work) => void this.music.linkAlbumToWork(file, work.file)).open();
 	}
 
 	/** DISCOGRAPHY's "Add album…": the albums of the artist whose note it is. */

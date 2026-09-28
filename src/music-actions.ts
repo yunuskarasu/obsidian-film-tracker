@@ -4,6 +4,7 @@ import type { ConfirmAnswer, ConfirmRequest } from "./confirm-modal";
 import type { MusicBrainzClient, PhotoCandidate, Picture } from "./musicbrainz";
 import type { PhotoChoice } from "./photo-picker-modal";
 import {
+	addSoundtrackLink,
 	buildAlbumNoteContent,
 	buildArtistNoteContent,
 	buildSongNoteContent,
@@ -19,13 +20,48 @@ import {
 import { buildFileName, folderNotePath, isFolderNote, joinPath, parseLinkTarget, sanitizeFileName, today } from "./note";
 import { appendLyrics, hasLyricsSection } from "./lyrics";
 import type { FilmTrackerSettings } from "./settings";
+import {
+	sameWork,
+	soundtrackChoices,
+	soundtrackLinksOf,
+	soundtrackWorkOf,
+	workFactsOf,
+	workTitles,
+	type SoundtrackChoice,
+	type SoundtrackWork,
+} from "./soundtrack";
+import type { WikidataClient } from "./wikidata";
 import { noteName, reportFailures, type VaultNotes } from "./vault-notes";
 
 /** What the music commands need from MusicBrainz: tests hand in saved answers instead. */
 export type MusicSource = Pick<
 	MusicBrainzClient,
-	"getArtist" | "getAlbum" | "albumSongs" | "getSong" | "albumCover" | "artistPhoto" | "photoCandidates" | "download" | "downloadUrl"
+	| "getArtist"
+	| "getAlbum"
+	| "albumSongs"
+	| "getSong"
+	| "albumCover"
+	| "artistPhoto"
+	| "photoCandidates"
+	| "download"
+	| "downloadUrl"
+	| "searchSoundtracks"
+	| "albumsById"
 >;
+
+/** What finding soundtracks needs from Wikidata: tests hand in saved answers instead. */
+export type SoundtrackLinks = Pick<WikidataClient, "soundtrackAlbumIds" | "worksOfAlbum">;
+
+/** A film, TV series or anime note "Link to film or series…" can link an album to. */
+export interface WorkNote {
+	file: TFile;
+	work: SoundtrackWork;
+	/** Whether Wikidata says this album is its soundtrack: those come first. */
+	suggested: boolean;
+}
+
+/** How many of Wikidata's albums are looked up at most — one MusicBrainz request each. */
+const MAX_WIKIDATA_ALBUMS = 6;
 
 /** What a music command needs to ask the user. */
 export interface MusicUi {
@@ -115,34 +151,129 @@ export class MusicActions {
 				await this.notes.openNote(existing);
 				return;
 			}
-
-			// Several requests at MusicBrainz's pace of one a second: say so.
-			new Notice(`Adding ${result.title}…`);
-			const album = await client.getAlbum(result.id);
-			const name = buildFileName(album.title, album.year);
-			const target = this.settings().albumFolderNotes
-				? await this.notes.newFolderNotePath(this.settings().albumFolder, name)
-				: await this.notes.newNotePath(this.settings().albumFolder, [name]);
-			if (target === null) return;
-			if ("conflict" in target) {
-				await this.notes.openConflict(target.conflict);
-				return;
-			}
-			const notePath = target.path;
-
-			const cover = await this.saveImage(
-				await client.albumCover(album),
-				noteName(notePath),
-				notePath,
-				this.settings().albumCoverFolder,
-				"the cover",
-			);
-			const coverLink = cover === null ? null : this.notes.imageLink(cover, notePath);
-
-			const note = await this.app.vault.create(notePath, buildAlbumNoteContent(album, coverLink, this.links(notePath)));
-			await this.notes.openNote(note);
-			new Notice(cover === null ? `Added ${album.title}. No cover was found.` : `Added ${album.title}`);
+			await this.createAlbum(client, result, null);
 		});
+	}
+
+	/**
+	 * A new album note, written from MusicBrainz. `soundtrackOf` is the work
+	 * it was found from with "Find soundtrack…": then the note links it, and
+	 * that work's note stays on screen rather than the album's.
+	 */
+	private async createAlbum(client: MusicSource, result: AlbumSearchResult, soundtrackOf: TFile | null): Promise<void> {
+		// Several requests at MusicBrainz's pace of one a second: say so.
+		new Notice(`Adding ${result.title}…`);
+		const album = await client.getAlbum(result.id);
+		const name = buildFileName(album.title, album.year);
+		const target = this.settings().albumFolderNotes
+			? await this.notes.newFolderNotePath(this.settings().albumFolder, name)
+			: await this.notes.newNotePath(this.settings().albumFolder, [name]);
+		if (target === null) return;
+		if ("conflict" in target) {
+			await this.notes.openConflict(target.conflict);
+			return;
+		}
+		const notePath = target.path;
+
+		const cover = await this.saveImage(
+			await client.albumCover(album),
+			noteName(notePath),
+			notePath,
+			this.settings().albumCoverFolder,
+			"the cover",
+		);
+		const coverLink = cover === null ? null : this.notes.imageLink(cover, notePath);
+
+		const works = soundtrackOf === null ? [] : [this.notes.noteLink(soundtrackOf, notePath)];
+		const note = await this.app.vault.create(notePath, buildAlbumNoteContent(album, coverLink, this.links(notePath), works));
+		if (soundtrackOf === null) await this.notes.openNote(note);
+		const added = soundtrackOf === null ? `Added ${album.title}` : `Added ${album.title} as the soundtrack of ${soundtrackOf.basename}`;
+		new Notice(cover === null ? `${added}. No cover was found.` : added);
+	}
+
+	/**
+	 * What "Find soundtrack…" offers for a film, TV series or anime note:
+	 * Wikidata's answers first, then MusicBrainz's soundtracks under each of
+	 * the work's titles (see `soundtrackChoices`). `null` for a note that is
+	 * none of those.
+	 */
+	async soundtrackChoicesFor(client: MusicSource, wikidata: SoundtrackLinks, file: TFile): Promise<SoundtrackChoice[] | null> {
+		const work = soundtrackWorkOf(this.notes.kindOf(file));
+		if (work === null) return null;
+		const frontmatter = this.notes.frontmatterOf(file);
+
+		const ids = await wikidata.soundtrackAlbumIds(work);
+		const fromWikidata = await client.albumsById(ids.slice(0, MAX_WIKIDATA_ALBUMS));
+		const searches = [];
+		for (const title of workTitles(frontmatter)) searches.push(await client.searchSoundtracks(title));
+		return soundtrackChoices(fromWikidata, searches, workFactsOf(frontmatter));
+	}
+
+	/** The album note of a MusicBrainz album, if it is in the vault. */
+	albumNoteOf(albumId: string): TFile | null {
+		return this.notes.findNote({ kind: "album", mbAlbumId: albumId });
+	}
+
+	/**
+	 * An album picked in "Find soundtrack…" becomes the work's soundtrack:
+	 * an album note already in the vault gets the link, and one that isn't is
+	 * added with it. The work's own note is never written.
+	 */
+	async linkSoundtrack(client: MusicSource, workFile: TFile, result: AlbumSearchResult): Promise<void> {
+		await reportFailures("link the soundtrack", async () => {
+			const existing = this.albumNoteOf(result.id);
+			if (existing === null) await this.createAlbum(client, result, workFile);
+			else await this.linkAlbumToWork(existing, workFile);
+		});
+	}
+
+	/**
+	 * "Link to film or series…": `workFile` joins the album note's
+	 * `soundtrack_of`, unless a link there already leads to it.
+	 */
+	async linkAlbumToWork(albumFile: TFile, workFile: TFile): Promise<void> {
+		let linked = false;
+		let readable = true;
+		await this.app.vault.process(albumFile, (content) => {
+			const next = addSoundtrackLink(content, this.notes.noteLink(workFile, albumFile.path), (existing) =>
+				this.linksTo(existing, albumFile.path, workFile),
+			);
+			if (next === null) {
+				readable = false;
+				return content;
+			}
+			linked = next !== content;
+			return next;
+		});
+		if (!readable) new Notice(`Could not read the soundtrack_of property of ${albumFile.basename}, so it was left unchanged.`);
+		else if (linked) new Notice(`Linked ${albumFile.basename} as the soundtrack of ${workFile.basename}.`);
+		else new Notice(`${albumFile.basename} is already linked to ${workFile.basename}.`);
+	}
+
+	/**
+	 * The film, TV series and anime notes an album can be linked to, those it
+	 * isn't linked to yet: the ones Wikidata names as its works first, then
+	 * the rest by name.
+	 */
+	async worksToLink(wikidata: SoundtrackLinks, albumFile: TFile): Promise<WorkNote[]> {
+		const album = this.notes.kindOf(albumFile);
+		if (album?.kind !== "album") return [];
+		const linked = soundtrackLinksOf(this.notes.frontmatterOf(albumFile));
+		const known = await wikidata.worksOfAlbum(album.mbAlbumId);
+
+		const works: WorkNote[] = [];
+		for (const file of this.app.vault.getMarkdownFiles()) {
+			const work = soundtrackWorkOf(this.notes.kindOf(file));
+			if (work === null || linked.some((link) => this.linksTo(link, albumFile.path, file))) continue;
+			works.push({ file, work, suggested: known.some((other) => sameWork(other, work)) });
+		}
+		return works.sort((a, b) => Number(b.suggested) - Number(a.suggested) || a.file.basename.localeCompare(b.file.basename));
+	}
+
+	/** Whether a `soundtrack_of` entry, read from the note at `sourcePath`, leads to `target`. */
+	private linksTo(link: string, sourcePath: string, target: TFile): boolean {
+		const linkpath = parseLinkTarget(link) ?? link;
+		return this.app.metadataCache.getFirstLinkpathDest(linkpath, sourcePath)?.path === target.path;
 	}
 
 	/**

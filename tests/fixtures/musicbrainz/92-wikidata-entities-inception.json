@@ -1,0 +1,17 @@
+{
+	"entities": {
+		"Q25188": {
+			"claims": {
+				"P4947": [
+					{
+						"mainsnak": {
+							"datavalue": {
+								"value": "27205"
+							}
+						}
+					}
+				]
+			}
+		}
+	}
+}

@@ -1,0 +1,129 @@
+{
+	"release-groups": [
+		{
+			"id": "963a0775-5a24-412b-8cb4-a2d26fba985f",
+			"title": "Attack on Titan Original Game Soundtrack",
+			"score": 100,
+			"first-release-date": "2016-02-18",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "梅村祐玄",
+					"joinphrase": ", ",
+					"artist": {
+						"id": "43a486cc-7b97-4b8c-97cc-b10757cffeb0",
+						"name": "梅村祐玄",
+						"sort-name": "Umemura, Yugen"
+					}
+				},
+				{
+					"name": "中村新一郎",
+					"joinphrase": " & ",
+					"artist": {
+						"id": "a8f0fd00-4f3a-4480-b058-f24e7cda50c5",
+						"name": "中村新一郎",
+						"sort-name": "Nakamura, Shin-ichiro"
+					}
+				},
+				{
+					"name": "石黒潤也",
+					"artist": {
+						"id": "d7d52945-7514-4cdb-979a-d408c4eef1a8",
+						"name": "石黒潤也",
+						"sort-name": "Ishiguro, Junya"
+					}
+				}
+			]
+		},
+		{
+			"id": "4c49d690-a9c2-44a7-be5c-c37af71834fe",
+			"title": "My War (from \"Attack on Titan\")",
+			"score": 100,
+			"first-release-date": "2020-12-30",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Miura Jam",
+					"artist": {
+						"id": "9caff38a-ac10-4dae-a7ec-ce2c460b0fa3",
+						"name": "Miura Jam",
+						"sort-name": "Miura Jam"
+					}
+				}
+			]
+		},
+		{
+			"id": "d3c0ed1b-3660-421d-8925-f81c21e197c7",
+			"title": "Attack on Titan 2 Original Game Soundtrack",
+			"score": 92,
+			"first-release-date": "2018-03-15",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "豊田亜矢子",
+					"joinphrase": ", ",
+					"artist": {
+						"id": "92ce89c8-be93-4408-80fc-5578ed5d46fd",
+						"name": "豊田亜矢子",
+						"sort-name": "Toyoda, Ayako"
+					}
+				},
+				{
+					"name": "梅村祐玄",
+					"joinphrase": " & ",
+					"artist": {
+						"id": "43a486cc-7b97-4b8c-97cc-b10757cffeb0",
+						"name": "梅村祐玄",
+						"sort-name": "Umemura, Yugen"
+					}
+				},
+				{
+					"name": "石黒潤也",
+					"artist": {
+						"id": "d7d52945-7514-4cdb-979a-d408c4eef1a8",
+						"name": "石黒潤也",
+						"sort-name": "Ishiguro, Junya"
+					}
+				}
+			]
+		},
+		{
+			"id": "66f2bc52-ff4e-425a-82cc-54fce1f8e6ad",
+			"title": "Attack on Titan: Escape from Death Original Game Soundtrack",
+			"score": 81,
+			"first-release-date": "2017-05-11",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "松村雄基",
+					"joinphrase": " & ",
+					"artist": {
+						"id": "4fc1eb98-9b32-48df-9b6d-dec2e1d5969c",
+						"name": "松村雄基",
+						"sort-name": "Matsumura, Yūki"
+					}
+				},
+				{
+					"name": "梅村祐玄",
+					"artist": {
+						"id": "43a486cc-7b97-4b8c-97cc-b10757cffeb0",
+						"name": "梅村祐玄",
+						"sort-name": "Umemura, Yugen"
+					}
+				}
+			]
+		}
+	]
+}

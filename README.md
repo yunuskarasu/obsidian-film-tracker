@@ -82,6 +82,8 @@ Mangaka work a little differently: open the manga or Series note whose author yo
 | **Add album** | Search MusicBrainz and create the album's note, with its tracks and cover. The first row of the search browses an artist's own albums instead. See [Music](#music). |
 | **Add artist** | Search MusicBrainz and create the artist's note, with a credited photo. Creates none of their albums. |
 | **Move album into its folder** | Moves the album note you have open — one from before album folder notes — into a folder of its own name, beside the songs added from it. Every link to it follows. Only appears on an album note that isn't in its own folder yet. |
+| **Find soundtrack** | Lists the albums that may be the soundtrack of the film, TV series or anime you have open — Wikidata's first, then MusicBrainz's soundtracks under each of its titles — and links the one you pick. Only appears on film, TV and anime notes. Also a **Find soundtrack…** button on the SOUNDTRACK panel, and an entry on the note's right-click menu. See [Soundtracks](#soundtracks). |
+| **Link album to film or series** | Links the album you have open to one of the films, TV series and anime in your vault, as its soundtrack. Only appears on album notes. Also **Link to film or series** on the note's right-click menu. |
 | **Add song from this album** | Pick one of the tracks of the album you have open and create that song's note. Only appears on album notes, and only lists tracks without a note yet. Also a **+** beside each track on the TRACKLIST panel, and **Add song** on the note's right-click menu. |
 | **Change artist photo** | Shows every photo on offer for the artist you have open — Deezer's, and those Wikimedia Commons files under the artist — side by side, with a picture from your vault or from a web address as two more ways. The one you pick becomes the note's. The old photo is only deleted if you say so, and only offered when no other note uses it. Only appears on artist notes. Also a **Change photo** button under the photo, and an entry on the note's right-click menu. |
 | **Add anime** | Search MyAnimeList and create a Series note — or, after asking, link into the manga-only note open in the editor. |
@@ -275,6 +277,8 @@ The first time you add a film, open the note's properties, click the type icon n
 | Show tracklist | on | Below an album's properties, list its tracks, each linking its song's note or with a **+** to create one. |
 | Show discography | on | Below an artist's properties, list their albums in your vault, with a button to add another. |
 | Show lyrics | on | Below a song's properties, show its lyrics from LRCLIB. Off, nothing is ever sent to LRCLIB. |
+| Show scores | on | Below an artist's discography, list the films, TV series and anime in your vault they scored. Only shown when there is one. |
+| Show soundtracks | on | Below a film's, a TV series' or an anime's properties, list the albums linked as its soundtrack, with a button to find another. |
 
 On Obsidian 1.13 or later these settings appear in Obsidian's own settings search, and each folder setting suggests the folders in your vault as you type. On earlier versions the plugin draws the same settings itself, with the same folder suggestions.
 
@@ -513,6 +517,29 @@ Under a song's properties, the LYRICS panel shows its lyrics from [LRCLIB](https
 - **Copy lyrics into note** adds them at the end of the note, under `## Lyrics`. From then on they are the note's own: yours to edit, and on every device the note syncs to. The panel steps aside for a note with its own Lyrics section.
 - **Wrong lyrics** remembers that the ones found aren't this song's; **Fetch again** asks LRCLIB anew. An instrumental says so.
 
+### Soundtracks
+
+An album can be the soundtrack of a film, a TV series or an anime in your vault. The link is kept on the album's note alone, in `soundtrack_of`, and the work's own note is never written for it:
+
+```yaml
+---
+title: "Interstellar: Original Motion Picture Soundtrack"
+artists:
+  - "[[Hans Zimmer]]"
+year: 2014
+album_type: Soundtrack
+soundtrack_of:
+  - "[[Interstellar (2014)]]"
+---
+```
+
+- Under a film's, a TV series' or an anime's properties, the SOUNDTRACK panel lists the albums that link it, with how many you have listened to.
+- **Find soundtrack…** lists what may be its soundtrack. [Wikidata](https://www.wikidata.org) comes first: it knows the soundtracks of a fair share of films and anime — not all — and what it knows is right. Then MusicBrainz's soundtracks under each of the work's titles, its original one included: a Japanese soundtrack is filed under 進撃の巨人, not under "Attack on Titan". An album from before the work is left out, and one by a composer the note names comes first. Nothing is linked until you pick it. An album already in your vault gets the link; one that isn't is added with it.
+- The last row, **Search MusicBrainz for another album…**, is the plain album search, for a soundtrack the list doesn't have.
+- From the album's side, **Link to film or series** lists the films, TV series and anime in your vault, the ones Wikidata names as its works first.
+- An album can be the soundtrack of more than one: a compilation, or a film you have both as a film and as an anime. To take a link away, remove it from `soundtrack_of` in the album's properties.
+- A film's own note is never changed — its SOUNDTRACK panel is worked out from the albums every time.
+
 ### Finding an album
 
 **Add album** searches MusicBrainz. A soundtrack, an EP or an album with a title in another script is often not near the top of that search — "Interstellar" finds a live suite before the soundtrack — so the first row of every search is **Browse an artist's albums instead…**: pick the artist, then the album from their own list, oldest first and filtered as you type. The artist's note isn't created for it. An artist note has the same list behind the **Add album…** button on its DISCOGRAPHY panel.
@@ -544,8 +571,11 @@ mb_artist_id: 44c64a30-1d58-49c5-b314-6e02fba49526
 - The photo is the artist's own press photo from their page on Deezer, found through the link MusicBrainz keeps — so it is the right artist, never a namesake. For an artist without one, it comes from [Wikimedia Commons](https://commons.wikimedia.org), whose photos mostly ask to be credited: `photo_credit` says where the photo came from, and for Commons who took it and its licence (`citykane · CC BY 2.0`).
 - Don't like it? **Change photo**, under the photo, shows every photo on offer side by side — Deezer's, and up to eight from the artist's category on Commons, each with whom it credits — and the one you pick replaces it. **Choose from your vault…** links a picture you already have, as it is; **From a web address…** downloads the picture at an address you paste and credits the site. The old photo is kept unless you say otherwise.
 - Under the properties, DISCOGRAPHY lists the artist's albums already in your vault, matched on every name in the note, with how many you have listened to.
+- Under it, SCORES lists the films, TV series and anime in your vault the artist scored, with how many you have watched: a film whose `composers` names them (with **Add composers** on), and every work an album of theirs is linked to as its [soundtrack](#soundtracks) — the only way an anime or a TV series can say who scored it. An artist who scored nothing in your vault has no SCORES panel.
 
 ### Being a good guest
+
+Wikidata is asked only when you look for a soundtrack, and is sent only the work's TMDB or MyAnimeList id, or the album's MusicBrainz id.
 
 LRCLIB is asked only for a song's lyrics, and is sent only the song's title, artist, album and length — nothing about you. The plugin carries no lyrics of its own: it fetches the ones you open, from LRCLIB, and **Show lyrics** turned off stops every request to it.
 
@@ -643,4 +673,4 @@ This product uses the TMDB API but is not endorsed or certified by TMDB.
 
 Anime and manga metadata and posters come from the [MyAnimeList API](https://myanimelist.net/apiconfig/references/api/v2).
 
-Music metadata comes from [MusicBrainz](https://musicbrainz.org), and lyrics from [LRCLIB](https://lrclib.net). Album covers come from [Deezer](https://www.deezer.com) or the [Cover Art Archive](https://coverartarchive.org), and artist photos from Deezer or [Wikimedia Commons](https://commons.wikimedia.org), each credited in the note's own `photo_credit`.
+Music metadata comes from [MusicBrainz](https://musicbrainz.org), and lyrics from [LRCLIB](https://lrclib.net). Which album is which work's soundtrack comes from [Wikidata](https://www.wikidata.org). Album covers come from [Deezer](https://www.deezer.com) or the [Cover Art Archive](https://coverartarchive.org), and artist photos from Deezer or [Wikimedia Commons](https://commons.wikimedia.org), each credited in the note's own `photo_credit`.

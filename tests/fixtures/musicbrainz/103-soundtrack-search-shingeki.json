@@ -1,0 +1,301 @@
+{
+	"release-groups": [
+		{
+			"id": "bf8ea8d1-ff26-4ac9-afc8-88c995d2f3dc",
+			"title": "進撃の巨人展",
+			"score": 100,
+			"first-release-date": "2014-11-28",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "澤野弘之",
+					"artist": {
+						"id": "60d2ea34-1912-425f-bf9c-fc544e4448cd",
+						"name": "澤野弘之",
+						"sort-name": "Sawano, Hiroyuki"
+					}
+				}
+			]
+		},
+		{
+			"id": "bdb150b2-6b97-4a80-b01d-50373e31d187",
+			"title": "TVアニメ「進撃の巨人」オリジナルサウンドトラックII",
+			"score": 92,
+			"first-release-date": "2013-10-16",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "澤野弘之",
+					"artist": {
+						"id": "60d2ea34-1912-425f-bf9c-fc544e4448cd",
+						"name": "澤野弘之",
+						"sort-name": "Sawano, Hiroyuki"
+					}
+				}
+			]
+		},
+		{
+			"id": "a75812d1-c4d3-4583-bb77-7cdbd82a8ab6",
+			"title": "TVアニメ「進撃の巨人」オリジナルサウンドトラック",
+			"score": 92,
+			"first-release-date": "2013-06-28",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "澤野弘之",
+					"artist": {
+						"id": "60d2ea34-1912-425f-bf9c-fc544e4448cd",
+						"name": "澤野弘之",
+						"sort-name": "Sawano, Hiroyuki"
+					}
+				}
+			]
+		},
+		{
+			"id": "3527933a-4c8a-46f0-9b1b-2f397587148d",
+			"title": "『進撃の巨人』オリジナル・サウンドトラック",
+			"score": 85,
+			"first-release-date": "2015-07-22",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "鷺巣詩郎",
+					"artist": {
+						"id": "9b127d23-f877-4541-83cd-44f46393dfb7",
+						"name": "鷺巣詩郎",
+						"sort-name": "Sagisu, Shirō"
+					}
+				}
+			]
+		},
+		{
+			"id": "f17d521f-f8e9-41d8-9b0e-e270d5d905ed",
+			"title": "TVアニメ「進撃の巨人」Season 2 オリジナルサウンドトラック",
+			"score": 80,
+			"first-release-date": "2017-06-07",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "澤野弘之",
+					"artist": {
+						"id": "60d2ea34-1912-425f-bf9c-fc544e4448cd",
+						"name": "澤野弘之",
+						"sort-name": "Sawano, Hiroyuki"
+					}
+				}
+			]
+		},
+		{
+			"id": "58d84467-7a4d-428b-8637-417ac36ac42b",
+			"title": "TVアニメ「進撃の巨人」Season 3 オリジナルサウンドトラック",
+			"score": 80,
+			"first-release-date": "2019-06-26",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "澤野弘之",
+					"artist": {
+						"id": "60d2ea34-1912-425f-bf9c-fc544e4448cd",
+						"name": "澤野弘之",
+						"sort-name": "Sawano, Hiroyuki"
+					}
+				}
+			]
+		},
+		{
+			"id": "4fb3d3f9-8d7e-445d-87b9-511ea5936691",
+			"title": "TVアニメ「進撃の巨人」 The Final Season Original Soundtrack",
+			"score": 67,
+			"first-release-date": "2021-06-23",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "KOHTA YAMAMOTO",
+					"joinphrase": " / ",
+					"artist": {
+						"id": "4d9bcf67-f7b1-40ae-b494-cdb3fd95bfa2",
+						"name": "KOHTA YAMAMOTO",
+						"sort-name": "Yamamoto, Kohta"
+					}
+				},
+				{
+					"name": "澤野弘之",
+					"artist": {
+						"id": "60d2ea34-1912-425f-bf9c-fc544e4448cd",
+						"name": "澤野弘之",
+						"sort-name": "Sawano, Hiroyuki"
+					}
+				}
+			]
+		},
+		{
+			"id": "10756827-1f1b-47d8-bf91-1441e68f2831",
+			"title": "TVアニメ「進撃の巨人」 The Final Season Original Soundtrack 02",
+			"score": 64,
+			"first-release-date": "2022-06-22",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "KOHTA YAMAMOTO",
+					"joinphrase": " / ",
+					"artist": {
+						"id": "4d9bcf67-f7b1-40ae-b494-cdb3fd95bfa2",
+						"name": "KOHTA YAMAMOTO",
+						"sort-name": "Yamamoto, Kohta"
+					}
+				},
+				{
+					"name": "澤野弘之",
+					"artist": {
+						"id": "60d2ea34-1912-425f-bf9c-fc544e4448cd",
+						"name": "澤野弘之",
+						"sort-name": "Sawano, Hiroyuki"
+					}
+				}
+			]
+		},
+		{
+			"id": "12dd0bf8-092c-4a3b-942a-a8685a03b789",
+			"title": "TVアニメ「進撃の巨人」 The Final Season Original Soundtrack 03",
+			"score": 64,
+			"first-release-date": "2023-11-08",
+			"primary-type": "EP",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "KOHTA YAMAMOTO",
+					"joinphrase": " / ",
+					"artist": {
+						"id": "4d9bcf67-f7b1-40ae-b494-cdb3fd95bfa2",
+						"name": "KOHTA YAMAMOTO",
+						"sort-name": "Yamamoto, Kohta"
+					}
+				},
+				{
+					"name": "澤野弘之",
+					"artist": {
+						"id": "60d2ea34-1912-425f-bf9c-fc544e4448cd",
+						"name": "澤野弘之",
+						"sort-name": "Sawano, Hiroyuki"
+					}
+				}
+			]
+		},
+		{
+			"id": "161a3ad5-ce7c-46a5-8e0c-385c1066b278",
+			"title": "TVアニメ「進撃の巨人 The Final Season」Original Sound Track Complete Album",
+			"score": 59,
+			"first-release-date": "2024-07-17",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Compilation",
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "KOHTA YAMAMOTO",
+					"joinphrase": " / ",
+					"artist": {
+						"id": "4d9bcf67-f7b1-40ae-b494-cdb3fd95bfa2",
+						"name": "KOHTA YAMAMOTO",
+						"sort-name": "Yamamoto, Kohta"
+					}
+				},
+				{
+					"name": "澤野弘之",
+					"artist": {
+						"id": "60d2ea34-1912-425f-bf9c-fc544e4448cd",
+						"name": "澤野弘之",
+						"sort-name": "Sawano, Hiroyuki"
+					}
+				}
+			]
+		},
+		{
+			"id": "1c75920b-d9dc-4acc-a62f-13bc0f0edf47",
+			"title": "劇場版「進撃の巨人」Season2 ～覚醒の咆哮～ Original Soundtrack",
+			"score": 49,
+			"first-release-date": "2018-06-27",
+			"primary-type": "EP",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "澤野弘之",
+					"artist": {
+						"id": "60d2ea34-1912-425f-bf9c-fc544e4448cd",
+						"name": "澤野弘之",
+						"sort-name": "Sawano, Hiroyuki"
+					}
+				}
+			]
+		},
+		{
+			"id": "d6540234-5395-4e81-a245-1fe9f17cd114",
+			"title": "劇場版「進撃の巨人」後編〜自由の翼〜 オリジナルサウンドトラック",
+			"score": 49,
+			"first-release-date": "2015-12-16",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "澤野弘之",
+					"artist": {
+						"id": "60d2ea34-1912-425f-bf9c-fc544e4448cd",
+						"name": "澤野弘之",
+						"sort-name": "Sawano, Hiroyuki"
+					}
+				}
+			]
+		},
+		{
+			"id": "de24f0b9-25bb-48d6-b91b-2b3ef09a774d",
+			"title": "劇場版「進撃の巨人」前編〜紅蓮の弓矢〜 オリジナルサウンドトラック",
+			"score": 48,
+			"first-release-date": "2015-03-18",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "澤野弘之",
+					"artist": {
+						"id": "60d2ea34-1912-425f-bf9c-fc544e4448cd",
+						"name": "澤野弘之",
+						"sort-name": "Sawano, Hiroyuki"
+					}
+				}
+			]
+		}
+	]
+}

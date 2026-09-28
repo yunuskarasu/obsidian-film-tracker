@@ -1,0 +1,64 @@
+{
+	"release-groups": [
+		{
+			"id": "c2b24dfc-d17f-46a0-9649-e03047918354",
+			"title": "Starlight Inception",
+			"score": 100,
+			"first-release-date": "2016",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "David Arkenstone",
+					"artist": {
+						"id": "50a45c3d-b54b-4fd5-bb83-5046e4ff6813",
+						"name": "David Arkenstone",
+						"sort-name": "Arkenstone, David"
+					}
+				}
+			]
+		},
+		{
+			"id": "fc447d81-0e55-4b86-b52d-f4a210ee92f2",
+			"title": "Lenna’s Inception Original Soundtrack",
+			"score": 81,
+			"first-release-date": "2020-01-17",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Joel Baylis",
+					"artist": {
+						"id": "3854cc41-3e55-4d40-a425-b5e92804c738",
+						"name": "Joel Baylis",
+						"sort-name": "Baylis, Joel"
+					}
+				}
+			]
+		},
+		{
+			"id": "cba0c394-1aa2-40e0-8613-a9ead5624c21",
+			"title": "Inception: Music From the Motion Picture",
+			"score": 69,
+			"first-release-date": "2010-07-09",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans"
+					}
+				}
+			]
+		}
+	]
+}

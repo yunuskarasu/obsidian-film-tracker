@@ -1,0 +1,30 @@
+{
+	"entities": {
+		"Q3797611": {
+			"claims": {
+				"P436": [
+					{
+						"mainsnak": {
+							"datavalue": {
+								"value": "cba0c394-1aa2-40e0-8613-a9ead5624c21"
+							}
+						}
+					}
+				],
+				"P9899": [
+					{
+						"mainsnak": {
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 25188,
+									"id": "Q25188"
+								}
+							}
+						}
+					}
+				]
+			}
+		}
+	}
+}

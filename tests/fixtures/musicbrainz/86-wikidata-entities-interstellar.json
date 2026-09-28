@@ -1,0 +1,30 @@
+{
+	"entities": {
+		"Q13417189": {
+			"claims": {
+				"P406": [
+					{
+						"mainsnak": {
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 18552823,
+									"id": "Q18552823"
+								}
+							}
+						}
+					}
+				],
+				"P4947": [
+					{
+						"mainsnak": {
+							"datavalue": {
+								"value": "157336"
+							}
+						}
+					}
+				]
+			}
+		}
+	}
+}

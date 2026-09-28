@@ -28,6 +28,8 @@ import {
 	type SongMetadata,
 } from "./music";
 
+import { soundtrackQuery, type ScoredAlbum } from "./soundtrack";
+
 const API_BASE = "https://musicbrainz.org/ws/2";
 const HOMEPAGE = "https://github.com/yunuskarasu/obsidian-film-tracker";
 
@@ -46,6 +48,9 @@ const BROWSE_PAGE = 100;
 const BROWSE_MAX = 500;
 
 export class MusicBrainzError extends Error {}
+
+/** An id MusicBrainz no longer has: merged into another, or deleted. */
+export class MusicBrainzNotFound extends MusicBrainzError {}
 
 /**
  * A search dropped while it waited its turn, because the user has typed on
@@ -164,6 +169,32 @@ export class MusicBrainzClient {
 			stillWanted,
 		);
 		return rankAlbums(body["release-groups"] ?? []).map(toAlbumSearchResult).filter((album) => album.title !== "");
+	}
+
+	/**
+	 * Soundtracks filed under one title (see `soundtrackQuery`), in
+	 * MusicBrainz's own order, each with its score.
+	 */
+	async searchSoundtracks(title: string): Promise<ScoredAlbum[]> {
+		const body = await this.mb<{ "release-groups"?: MbReleaseGroup[] }>(
+			`release-group?query=${encodeURIComponent(soundtrackQuery(title))}&limit=25`,
+		);
+		return (body["release-groups"] ?? [])
+			.map((group) => ({ album: toAlbumSearchResult(group), score: group.score ?? 0 }))
+			.filter((result) => result.album.title !== "");
+	}
+
+	/** Albums by their ids, one request each; an id MusicBrainz no longer has is skipped. */
+	async albumsById(ids: string[]): Promise<AlbumSearchResult[]> {
+		const albums: AlbumSearchResult[] = [];
+		for (const id of ids) {
+			try {
+				albums.push(toAlbumSearchResult(await this.mb<MbReleaseGroup>(`release-group/${id}?inc=artist-credits`)));
+			} catch (error) {
+				if (!(error instanceof MusicBrainzNotFound)) throw error;
+			}
+		}
+		return albums.filter((album) => album.title !== "");
 	}
 
 	/**
@@ -475,7 +506,7 @@ export class MusicBrainzClient {
 				throw new MusicBrainzError("Could not reach MusicBrainz. Check your internet connection.");
 			}
 			if (response.status === 200) return response.json as T;
-			if (response.status === 404) throw new MusicBrainzError("MusicBrainz has no such entry any more.");
+			if (response.status === 404) throw new MusicBrainzNotFound("MusicBrainz has no such entry any more.");
 			if (response.status !== 503) throw new MusicBrainzError(`MusicBrainz request failed (HTTP ${response.status}).`);
 			const pause = BUSY_PAUSES_MS[attempt];
 			if (pause !== undefined) await this.web.sleep(pause);

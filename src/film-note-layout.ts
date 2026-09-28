@@ -1,14 +1,17 @@
 import { MarkdownView, type App } from "obsidian";
 import { applyConnections } from "./panels/connections-panel";
-import { applyDiscography } from "./panels/discography-panel";
+import { applyDiscography, applyScores } from "./panels/discography-panel";
 import { applyFilmography } from "./panels/filmography-panel";
 import { CONNECTIONS_CLASS, detachPanelsExcept, panelOf, type MangaPanelActions, type PanelContext } from "./panels/kit";
 import { applyMangaPanel } from "./panels/manga-panel";
 import { applyMangagraphy } from "./panels/mangagraphy-panel";
 import { panelPlanFor } from "./panels/panel-plan";
+import { classifyNote } from "./note-kind";
+import { soundtrackWorkOf } from "./soundtrack";
 import { LAYOUT_CLASS, POSTER_CLASS, applyPoster, findHost } from "./panels/poster";
 import { applySeasonsPanel } from "./panels/seasons-panel";
 import { applyLyricsPanel } from "./panels/lyrics-panel";
+import { applySoundtrack } from "./panels/soundtrack-panel";
 import { applyTracklist } from "./panels/tracklist-panel";
 import { VaultScan } from "./panels/vault-scan";
 import type { FilmTrackerSettings } from "./settings";
@@ -139,18 +142,22 @@ export class FilmNoteLayout {
 		host?.toggleClass(TRACKS_HOST_CLASS, plan.kind === "album");
 
 		const context = this.context;
+		// A film, a TV series or an anime has its SOUNDTRACK below whatever else it has.
+		if (soundtrackWorkOf(classifyNote(frontmatter)) !== null) applySoundtrack(context, anchor, file, scan);
+		else panelOf(anchor, "soundtrack")?.detach();
+
 		switch (plan.kind) {
 			case "tv":
 				// All three, each in its own box and in this order: the seasons,
 				// the manga it adapts, and what it shares with the rest of the vault.
-				detachPanelsExcept(anchor, ["seasons", "manga", "main"]);
+				detachPanelsExcept(anchor, ["seasons", "manga", "main", "soundtrack"]);
 				applySeasonsPanel(context, anchor, file, frontmatter ?? {});
 				if (plan.manga) applyMangaPanel(context, anchor, file, frontmatter ?? {});
 				else panelOf(anchor, "manga")?.detach();
 				applyConnections(context, anchor, file, scan);
 				return;
 			case "manga":
-				detachPanelsExcept(anchor, ["manga"]);
+				detachPanelsExcept(anchor, ["manga", "soundtrack"]);
 				applyMangaPanel(context, anchor, file, frontmatter ?? {});
 				return;
 			case "mangaka":
@@ -158,7 +165,7 @@ export class FilmNoteLayout {
 				applyMangagraphy(context, anchor, file.path, plan.names, scan);
 				return;
 			case "none":
-				detachPanelsExcept(anchor, []);
+				detachPanelsExcept(anchor, ["soundtrack"]);
 				return;
 			case "person":
 				// Their films, then the series they created, each in its own box.
@@ -166,12 +173,14 @@ export class FilmNoteLayout {
 				applyFilmography(context, anchor, file.path, plan.names, scan);
 				return;
 			case "work":
-				detachPanelsExcept(anchor, ["main"]);
+				detachPanelsExcept(anchor, ["main", "soundtrack"]);
 				applyConnections(context, anchor, file, scan);
 				return;
 			case "artist":
-				detachPanelsExcept(anchor, ["main"]);
+				// Their albums, then what they scored, each in its own box.
+				detachPanelsExcept(anchor, ["main", "shows"]);
 				applyDiscography(context, anchor, file, plan.names, scan);
+				applyScores(context, anchor, file, plan.names, scan);
 				return;
 			case "album":
 				detachPanelsExcept(anchor, ["main"]);

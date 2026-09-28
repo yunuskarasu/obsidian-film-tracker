@@ -1,0 +1,221 @@
+{
+	"release-groups": [
+		{
+			"id": "6554380c-bd17-48d1-affa-27e7571b4876",
+			"title": "Interstellar (Retro)",
+			"score": 100,
+			"first-release-date": "2017-11-07",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Aune",
+					"artist": {
+						"id": "fe1265b5-d4fe-4afa-b899-39a28d83b815",
+						"name": "Aune",
+						"sort-name": "Aune"
+					}
+				}
+			]
+		},
+		{
+			"id": "faacd77f-f450-4b20-afc2-e16212525119",
+			"title": "Interstellar Sentinel",
+			"score": 100,
+			"first-release-date": "2024-02-24",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Chris Huelsbeck",
+					"artist": {
+						"id": "6a4ee4c8-eaed-48ef-84c2-34ee655e2312",
+						"name": "Chris Hülsbeck",
+						"sort-name": "Hülsbeck, Chris"
+					}
+				}
+			]
+		},
+		{
+			"id": "7926e317-78c5-4e85-9f62-9ef7f2a53b91",
+			"title": "Project Interstellar OST",
+			"score": 89,
+			"first-release-date": "2016-10-24",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "WoolyDrool",
+					"artist": {
+						"id": "1960f139-3409-438b-8abb-0448a5a277f2",
+						"name": "WoolyDrool",
+						"sort-name": "WoolyDrool"
+					}
+				}
+			]
+		},
+		{
+			"id": "75dcfadc-b088-4292-a9d0-3963f0ebdd88",
+			"title": "Interstellar Rift Soundtrack",
+			"score": 89,
+			"first-release-date": "2017",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Curtis Schweitzer",
+					"artist": {
+						"id": "465167d6-c5aa-41b6-baf8-b9a05fbc7f52",
+						"name": "Curtis Schweitzer",
+						"sort-name": "Schweitzer, Curtis"
+					}
+				}
+			]
+		},
+		{
+			"id": "88bdaf4b-973f-4bf0-b8f5-e41d7c3774ba",
+			"title": "Interstellar Marines: The Beginning",
+			"score": 81,
+			"first-release-date": "2012-05-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Nicolai Grønborg",
+					"artist": {
+						"id": "909a4659-dd66-49ae-a6a0-25f7fdc507bb",
+						"name": "Nicolai Grønborg",
+						"sort-name": "Grønborg, Nicolai"
+					}
+				}
+			]
+		},
+		{
+			"id": "b0cbd46e-7b14-42fc-a7d1-7b3bb04ad892",
+			"title": "Interstellar Space: Genesis Soundtrack",
+			"score": 81,
+			"first-release-date": "2020-06-25",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Grant Kirkhope",
+					"joinphrase": " & ",
+					"artist": {
+						"id": "3237b5a8-ae44-400c-aa6d-cea51f0b9074",
+						"name": "Grant Kirkhope",
+						"sort-name": "Kirkhope, Grant"
+					}
+				},
+				{
+					"name": "Ryan McQuinn",
+					"artist": {
+						"id": "0ff0857f-dd68-4c9f-bdad-4645a4f91788",
+						"name": "Ryan McQuinn",
+						"sort-name": "McQuinn, Ryan"
+					}
+				}
+			]
+		},
+		{
+			"id": "ef46add5-9456-400e-b1e2-b9a7be50e6ad",
+			"title": "Day One (From \"Interstellar\")",
+			"score": 81,
+			"first-release-date": "2024-10-11",
+			"primary-type": "Single",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"joinphrase": "; ",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans"
+					}
+				},
+				{
+					"name": "Hayato Sumino",
+					"artist": {
+						"id": "32b4ec52-3489-4077-bc71-8e84991f976b",
+						"name": "角野隼斗",
+						"sort-name": "Sumino, Hayato"
+					}
+				}
+			]
+		},
+		{
+			"id": "4513c7b9-854e-457f-81d6-3dbeb001beb8",
+			"title": "Interstellar: Original Motion Picture Soundtrack",
+			"score": 75,
+			"first-release-date": "2014-11-17",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans"
+					}
+				}
+			]
+		},
+		{
+			"id": "cb49dea6-96f8-4e87-9aa5-aee0524c3ccb",
+			"title": "Interstellar: Complete Motion Picture Score Promotional Edition",
+			"score": 66,
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Hans Zimmer",
+					"artist": {
+						"id": "e6de1f3b-6484-491c-88dd-6d619f142abc",
+						"name": "Hans Zimmer",
+						"sort-name": "Zimmer, Hans"
+					}
+				}
+			]
+		},
+		{
+			"id": "7da8afce-9c79-40a7-8ba7-a8c5bfd46267",
+			"title": "見上げてごらん、夜空の星を Interstellar Focus 夜空ディレクターズセレクトサウンドトラック",
+			"score": 49,
+			"first-release-date": "2018-06-29",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Twofive",
+					"artist": {
+						"id": "f071c142-0b2a-49f4-800b-c72d2728c282",
+						"name": "Twofive",
+						"sort-name": "Twofive"
+					}
+				}
+			]
+		}
+	]
+}

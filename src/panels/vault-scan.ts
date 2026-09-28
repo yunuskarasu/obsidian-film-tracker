@@ -3,7 +3,9 @@ import type { WorkNoteInfo } from "../connections";
 import type { FilmographyWork } from "../filmography";
 import type { MangagraphyManga } from "../mangagraphy";
 import { parseLinkTarget } from "../note";
+import { resolveLinkedFile } from "./kit";
 import { classifyNote } from "../note-kind";
+import { soundtrackLinksOf, soundtrackWorkOf, type ScoreWork } from "../soundtrack";
 import { extractNames } from "./panel-plan";
 
 /** A song note as TRACKLIST finds it: the album note it links, and where on that album it sits. */
@@ -13,6 +15,12 @@ export interface ScannedSong {
 	disc: number | null;
 	n: number | null;
 }
+
+/**
+ * An album note as DISCOGRAPHY and SOUNDTRACK list it. `soundtrackOf` is
+ * the paths of the notes its `soundtrack_of` links, where they resolve.
+ */
+export type ScannedAlbum = FilmographyWork & { soundtrackOf: string[] };
 
 /** A film or TV series note as the Connections, Filmography and TV series panels read it. */
 export type ScannedWork = WorkNoteInfo & FilmographyWork & { kind: "film" | "tv" };
@@ -27,8 +35,9 @@ export class VaultScan {
 	private readonly app: App;
 	private workList: ScannedWork[] | null = null;
 	private mangaList: MangagraphyManga[] | null = null;
-	private albumList: FilmographyWork[] | null = null;
+	private albumList: ScannedAlbum[] | null = null;
 	private songList: ScannedSong[] | null = null;
+	private scoreWorkList: ScoreWork[] | null = null;
 
 	constructor(app: App) {
 		this.app = app;
@@ -50,14 +59,32 @@ export class VaultScan {
 	}
 
 	/** Album notes, read the way a person's works are: their artists are who made them. */
-	albums(): FilmographyWork[] {
+	albums(): ScannedAlbum[] {
 		if (this.albumList === null) {
 			this.albumList = this.app.vault
 				.getMarkdownFiles()
 				.map((file) => readAlbum(this.app, file))
-				.filter((album): album is FilmographyWork => album !== null);
+				.filter((album): album is ScannedAlbum => album !== null);
 		}
 		return this.albumList;
+	}
+
+	/** The albums whose `soundtrack_of` links the note at `path`, oldest first. */
+	soundtracksOf(path: string): ScannedAlbum[] {
+		return this.albums()
+			.filter((album) => album.soundtrackOf.includes(path))
+			.sort((a, b) => (a.year ?? Infinity) - (b.year ?? Infinity) || a.title.localeCompare(b.title));
+	}
+
+	/** Films, TV series and anime together: what an artist's SCORES can list. */
+	scoreWorks(): ScoreWork[] {
+		if (this.scoreWorkList === null) {
+			this.scoreWorkList = this.app.vault
+				.getMarkdownFiles()
+				.map((file) => readScoreWork(this.app, file))
+				.filter((work): work is ScoreWork => work !== null);
+		}
+		return this.scoreWorkList;
 	}
 
 	/** Song notes, each with the album note it was added from. */
@@ -111,7 +138,7 @@ export function readWork(app: App, file: TFile): ScannedWork | null {
 }
 
 /** An album note as DISCOGRAPHY lists it; `watched` is whether it has been listened to. */
-function readAlbum(app: App, file: TFile): FilmographyWork | null {
+function readAlbum(app: App, file: TFile): ScannedAlbum | null {
 	const frontmatter = app.metadataCache.getFileCache(file)?.frontmatter;
 	if (frontmatter === undefined || classifyNote(frontmatter)?.kind !== "album") return null;
 	const title: unknown = frontmatter.title;
@@ -122,6 +149,25 @@ function readAlbum(app: App, file: TFile): FilmographyWork | null {
 		year: typeof year === "number" ? year : null,
 		watched: frontmatter.listened === true,
 		credits: extractNames(frontmatter.artists),
+		soundtrackOf: soundtrackLinksOf(frontmatter)
+			.map((link) => resolveLinkedFile(app, parseLinkTarget(link) ?? link, file.path)?.path ?? null)
+			.filter((path): path is string => path !== null),
+	};
+}
+
+function readScoreWork(app: App, file: TFile): ScoreWork | null {
+	const frontmatter = app.metadataCache.getFileCache(file)?.frontmatter;
+	const work = soundtrackWorkOf(classifyNote(frontmatter));
+	if (frontmatter === undefined || work === null) return null;
+	const title: unknown = frontmatter.title;
+	const year: unknown = frontmatter.year;
+	return {
+		path: file.path,
+		title: typeof title === "string" && title !== "" ? title : file.basename,
+		year: typeof year === "number" ? year : null,
+		watched: frontmatter.watched === true,
+		kind: work.kind,
+		composers: extractNames(frontmatter.composers),
 	};
 }
 

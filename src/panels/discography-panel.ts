@@ -1,5 +1,6 @@
 import type { TFile } from "obsidian";
 import { filmographyProgress, findFilmography } from "../filmography";
+import { findScores } from "../soundtrack";
 import { ensurePanel, panelOf, redrawPanel, renderAction, renderPathLink, type PanelContext } from "./kit";
 import type { VaultScan } from "./vault-scan";
 
@@ -41,4 +42,33 @@ export function applyDiscography(
 
 	const actions = panel.createDiv({ cls: "film-tracker-manga-actions film-tracker-panel-actions" });
 	renderAction(actions, "Add album…", () => context.actions.addAlbumByArtist(file));
+}
+
+const KIND_LABEL = { film: "Film", tv: "TV series", anime: "Anime" } as const;
+
+/**
+ * SCORES, under DISCOGRAPHY: the films, TV series and anime in the vault
+ * the artist scored — named in a film's `composers`, or linked from an
+ * album of theirs as its soundtrack. Only there when there is something to
+ * list: most artists never wrote a score.
+ */
+export function applyScores(context: PanelContext, anchor: HTMLElement, file: TFile, names: Set<string>, scan: VaultScan): void {
+	const works = context.settings().showScores ? findScores(names, scan.scoreWorks(), scan.albums()) : [];
+	if (works.length === 0) {
+		panelOf(anchor, "shows")?.detach();
+		return;
+	}
+
+	const progress = filmographyProgress(works);
+	const suffix = progress === null ? undefined : `${progress}% watched`;
+	const panel = ensurePanel(anchor, "shows");
+	if (!redrawPanel(panel, JSON.stringify(["scores", file.path, works]), "SCORES", suffix)) return;
+
+	const list = panel.createEl("ul", { cls: "film-tracker-connections-list" });
+	for (const work of works) {
+		const item = list.createEl("li");
+		renderPathLink(context.app, item, work.title, work.path, file.path);
+		const details = [KIND_LABEL[work.kind], work.year === null ? null : String(work.year)].filter((part) => part !== null);
+		item.createSpan({ cls: "film-tracker-connections-shared", text: ` — ${details.join(" · ")}` });
+	}
 }

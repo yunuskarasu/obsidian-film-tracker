@@ -48,6 +48,8 @@ export interface MangaPanelActions {
 	fetchLyricsAgain: (file: TFile) => void;
 	/** "Wrong lyrics". */
 	markLyricsWrong: (file: TFile) => void;
+	/** SOUNDTRACK's own button: this work's soundtracks to pick one from. */
+	findSoundtrack: (file: TFile) => void;
 }
 
 /** What a panel needs from the plugin to draw itself. */
@@ -62,8 +64,10 @@ export interface PanelContext {
  * three of them — its seasons, its manga, then what it shares with the rest
  * of the vault — and a person note two, their films and their series, so each
  * keeps a box of its own. `main` is the single box every other note has.
+ * An artist has DISCOGRAPHY in `main` and SCORES in `shows`. A film, a TV
+ * series or an anime has its SOUNDTRACK last, below the rest.
  */
-export const PANEL_SLOTS = ["seasons", "manga", "main", "shows"] as const;
+export const PANEL_SLOTS = ["seasons", "manga", "main", "shows", "soundtrack"] as const;
 export type PanelSlot = (typeof PANEL_SLOTS)[number];
 
 function panelClass(slot: PanelSlot): string {
