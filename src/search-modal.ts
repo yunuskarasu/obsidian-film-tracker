@@ -1,5 +1,6 @@
 import { App, FuzzySuggestModal, Notice, SuggestModal, type FuzzyMatch } from "obsidian";
 import type { AlbumSearchResult, ArtistSearchResult } from "./music";
+import type { AlbumTrackEntry } from "./music-note";
 import { MusicBrainzError, SearchSuperseded, type MusicBrainzClient } from "./musicbrainz";
 import {
 	MalError,
@@ -335,6 +336,43 @@ class ArtistAlbumsModal extends FuzzySuggestModal<AlbumSearchResult> {
 
 	onChooseItem(album: AlbumSearchResult): void {
 		this.onPick(album);
+	}
+}
+
+/**
+ * "Add song": an album note's tracks that have no note yet, read from the
+ * note itself — nothing is asked of MusicBrainz until one is picked.
+ */
+export class AlbumTracksModal extends FuzzySuggestModal<AlbumTrackEntry> {
+	private readonly tracks: AlbumTrackEntry[];
+	private readonly onPick: (track: AlbumTrackEntry) => void;
+	private readonly discs: boolean;
+
+	constructor(app: App, albumName: string, tracks: AlbumTrackEntry[], onPick: (track: AlbumTrackEntry) => void) {
+		super(app);
+		this.tracks = tracks;
+		this.onPick = onPick;
+		this.discs = new Set(tracks.map((track) => track.disc ?? 1)).size > 1;
+		this.setPlaceholder(`A song from ${albumName} — type to filter…`);
+		this.emptyStateText = "No songs match.";
+	}
+
+	getItems(): AlbumTrackEntry[] {
+		return this.tracks;
+	}
+
+	getItemText(track: AlbumTrackEntry): string {
+		return track.title;
+	}
+
+	renderSuggestion(match: FuzzyMatch<AlbumTrackEntry>, el: HTMLElement): void {
+		const { disc, n, length } = match.item;
+		const position = this.discs ? `Disc ${disc ?? 1} · ${n}` : String(n);
+		renderRow(el, match.item.title, [position, length]);
+	}
+
+	onChooseItem(track: AlbumTrackEntry): void {
+		this.onPick(track);
 	}
 }
 

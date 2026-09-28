@@ -552,3 +552,35 @@ export function chooseNotePath(
 	while (occupant(joinPath(folder, `${last} ${index}.md`)) !== "free") index += 1;
 	return { path: joinPath(folder, `${last} ${index}.md`) };
 }
+
+/** A folder note's path: `name` inside a folder of its own name, under `parent`. */
+export function folderNotePath(parent: string, name: string): string {
+	return joinPath(joinPath(parent, name), `${name}.md`);
+}
+
+/**
+ * Where a new folder note goes — "Music/Albums/Abbey Road (1969)/Abbey Road
+ * (1969).md" — by the same rules as `chooseNotePath`: another of the
+ * plugin's notes there means a different work of the same name, which gets a
+ * numbered folder of its own ("… 2/… 2.md"); any other note is a conflict.
+ */
+export function chooseFolderNotePath(
+	parent: string,
+	name: string,
+	occupant: (path: string) => PathOccupant,
+): NotePathChoice {
+	const path = folderNotePath(parent, name);
+	const held = occupant(path);
+	if (held === "free") return { path };
+	if (held === "other") return { conflict: path };
+
+	let index = 2;
+	while (occupant(folderNotePath(parent, `${name} ${index}`)) !== "free") index += 1;
+	return { path: folderNotePath(parent, `${name} ${index}`) };
+}
+
+/** Whether a note is the note of the folder it sits in: "Abbey Road (1969)/Abbey Road (1969).md". */
+export function isFolderNote(notePath: string): boolean {
+	const parts = notePath.split("/");
+	return parts.length >= 2 && `${parts[parts.length - 2]}.md` === parts[parts.length - 1];
+}

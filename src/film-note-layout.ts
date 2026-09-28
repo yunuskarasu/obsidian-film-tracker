@@ -8,6 +8,7 @@ import { applyMangagraphy } from "./panels/mangagraphy-panel";
 import { panelPlanFor } from "./panels/panel-plan";
 import { LAYOUT_CLASS, POSTER_CLASS, applyPoster, findHost } from "./panels/poster";
 import { applySeasonsPanel } from "./panels/seasons-panel";
+import { applyLyricsPanel } from "./panels/lyrics-panel";
 import { applyTracklist } from "./panels/tracklist-panel";
 import { VaultScan } from "./panels/vault-scan";
 import type { FilmTrackerSettings } from "./settings";
@@ -174,7 +175,11 @@ export class FilmNoteLayout {
 				return;
 			case "album":
 				detachPanelsExcept(anchor, ["main"]);
-				applyTracklist(context, anchor, file, frontmatter ?? {});
+				applyTracklist(context, anchor, file, frontmatter ?? {}, scan);
+				return;
+			case "song":
+				detachPanelsExcept(anchor, ["main"]);
+				applyLyricsPanel(context, anchor, file);
 				return;
 		}
 	}

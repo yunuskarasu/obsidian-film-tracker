@@ -1,0 +1,19 @@
+{
+	"id": "5138e6be-39b2-46bf-a306-d3b5ee983a18",
+	"title": "First Love",
+	"length": 258000,
+	"artist-credit": [
+		{
+			"name": "宇多田ヒカル",
+			"joinphrase": "",
+			"artist": {
+				"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+				"name": "宇多田ヒカル",
+				"sort-name": "Utada, Hikaru",
+				"country": "JP",
+				"type": "Person",
+				"disambiguation": "Japanese-American singer-songwriter"
+			}
+		}
+	]
+}

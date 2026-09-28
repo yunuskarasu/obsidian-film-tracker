@@ -484,6 +484,19 @@ body {
 	font-variant-numeric: tabular-nums;
 }
 
+/* The "+" that writes one track's song note, or the empty slot where a
+ * track already has one: the same width, so the lengths line up. */
+.film-tracker-track-add {
+	flex: 0 0 var(--icon-size, 18px);
+	display: flex;
+	align-self: center;
+}
+
+.film-tracker-track-add .clickable-icon {
+	padding: 0;
+	--icon-size: var(--icon-xs);
+}
+
 .film-tracker-track-disc {
 	margin-top: var(--size-4-2);
 	color: var(--text-muted);
@@ -493,6 +506,29 @@ body {
 
 .film-tracker-track-disc:first-child {
 	margin-top: 0;
+}
+
+/* ---------- Lyrics panel: a song's lyrics as LRCLIB has them, in a box of
+ * about eighteen lines — a long song scrolls inside it rather than pushing
+ * the note down. Selectable, for copying a verse by hand. */
+
+.film-tracker-lyrics {
+	max-height: calc(18 * var(--line-height-normal) * 1em);
+	overflow-y: auto;
+	white-space: pre-wrap;
+	user-select: text;
+	line-height: var(--line-height-normal);
+	padding-right: var(--size-4-2);
+}
+
+.film-tracker-lyrics-message {
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+}
+
+.film-tracker-connections.is-collapsed .film-tracker-lyrics,
+.film-tracker-connections.is-collapsed .film-tracker-lyrics-message {
+	display: none;
 }
 
 /* "Change photo": the photos on offer side by side, each with its source

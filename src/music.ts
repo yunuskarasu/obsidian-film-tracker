@@ -70,7 +70,17 @@ export interface MbTrack {
 	position?: number;
 	title?: string;
 	length?: number | null;
-	recording?: { title?: string; length?: number | null };
+	/** Only when asked for (`inc=artist-credits`): who the track itself is by. */
+	"artist-credit"?: MbArtistCredit[];
+	recording?: { id?: string; title?: string; length?: number | null };
+}
+
+/** A song as MusicBrainz keeps it, whatever album it is on. */
+export interface MbRecording {
+	id: string;
+	title?: string;
+	length?: number | null;
+	"artist-credit"?: MbArtistCredit[];
 }
 
 export interface MbMedium {
@@ -130,6 +140,31 @@ export interface AlbumTrack {
 	n: number;
 	title: string;
 	length: string | null;
+}
+
+/** What MusicBrainz says of a song, for its note. */
+export interface SongMetadata {
+	title: string;
+	/** Named the way each artist's own note is (see `artistNoteName`). */
+	artists: string[];
+	length: string | null;
+	mbRecordingId: string;
+}
+
+/** A song where it sits on its album: the disc (on an album of more than one) and the track number. */
+export interface AlbumSong extends SongMetadata {
+	disc: number | null;
+	n: number;
+}
+
+/** A track of a release before its artists are named: `credits` is who MusicBrainz credits for it. */
+export interface SongTrack {
+	disc: number | null;
+	n: number;
+	title: string;
+	length: string | null;
+	mbRecordingId: string;
+	credits: MbArtistCredit[];
 }
 
 export interface AlbumMetadata {
@@ -365,6 +400,53 @@ export function tracksOf(release: MbRelease): AlbumTrack[] {
 			length: formatLength(trackLength(track)),
 		})),
 	);
+}
+
+/**
+ * A release's tracks as songs, numbered the way `tracksOf` numbers an
+ * album note's: the same disc and track for the same line. A track
+ * MusicBrainz has no recording for is left out — there is nothing to name.
+ */
+export function songTracksOf(release: MbRelease): SongTrack[] {
+	const media = release.media ?? [];
+	const discs = media.length > 1;
+	return media.flatMap((medium, index) =>
+		(medium.tracks ?? []).flatMap((track, at) => {
+			const id = track.recording?.id;
+			if (id === undefined || id === "") return [];
+			return [
+				{
+					disc: discs ? (medium.position ?? index + 1) : null,
+					n: track.position ?? at + 1,
+					title: (track.title ?? track.recording?.title ?? "").trim(),
+					length: formatLength(trackLength(track)),
+					mbRecordingId: id,
+					credits: track["artist-credit"] ?? [],
+				},
+			];
+		}),
+	);
+}
+
+/**
+ * The song an album note's track line is: the one at the same disc and
+ * number with the same title, else the one with that title. A title that is
+ * nowhere on the album — MusicBrainz has changed it since the note was
+ * written — finds nothing, rather than whatever sits at that number now.
+ */
+export function findSong<T extends { disc: number | null; n: number; title: string }>(
+	songs: T[],
+	track: { disc: number | null; n: number; title: string },
+): T | null {
+	const title = matchKey(track.title);
+	const same = songs.filter((song) => matchKey(song.title) === title);
+	return same.find((song) => (song.disc ?? 1) === (track.disc ?? 1) && song.n === track.n) ?? same[0] ?? null;
+}
+
+/** A song note's name: "Here Comes the Sun (The Beatles)" — its first artist tells two "Intro"s apart. */
+export function songNoteName(title: string, artists: string[]): string {
+	const artist = artists[0];
+	return artist === undefined || artist === "" ? title : `${title} (${artist})`;
 }
 
 /** The whole album's length in minutes — unknown if any track's is. */

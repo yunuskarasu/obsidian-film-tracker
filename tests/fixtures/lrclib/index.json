@@ -1,0 +1,38 @@
+{
+	"https://lrclib.net/api/get?artist_name=Radiohead&track_name=Airbag&album_name=OK+Computer&duration=284": {
+		"status": 200,
+		"file": "01-get-airbag.json"
+	},
+	"https://lrclib.net/api/get?artist_name=The+Beatles&track_name=Here+Comes+the+Sun&album_name=Abbey+Road&duration=186": {
+		"status": 200,
+		"file": "02-get-here-comes-the-sun.json"
+	},
+	"https://lrclib.net/api/get?artist_name=Hikaru+Utada&track_name=First+Love&album_name=First+Love&duration=258": {
+		"status": 200,
+		"file": "03-get-first-love.json"
+	},
+	"https://lrclib.net/api/get?artist_name=Hans+Zimmer&track_name=Cornfield+Chase&album_name=Interstellar+%28Original+Motion+Picture+Soundtrack%29&duration=126": {
+		"status": 200,
+		"file": "04-get-cornfield-chase.json"
+	},
+	"https://lrclib.net/api/get?artist_name=Nobody+Xyz&track_name=Nothing+Qqq+Zzz&duration=200": {
+		"status": 404,
+		"file": null
+	},
+	"https://lrclib.net/api/search?track_name=Nothing+Qqq+Zzz&artist_name=Nobody+Xyz": {
+		"status": 200,
+		"file": "05-search-missing.json"
+	},
+	"https://lrclib.net/api/get?artist_name=The+Seatbelts&track_name=Tank%21&album_name=COWBOY+BEBOP": {
+		"status": 200,
+		"file": "06-get-tank-no-length.json"
+	},
+	"https://lrclib.net/api/get?artist_name=Radiohead&track_name=Airbag&album_name=OK+Computer&duration=400": {
+		"status": 404,
+		"file": null
+	},
+	"https://lrclib.net/api/search?track_name=Airbag&artist_name=Radiohead": {
+		"status": 200,
+		"file": "07-search-airbag-too-long.json"
+	}
+}

@@ -237,6 +237,17 @@ export class FakeApp {
 				this.notes.delete(file.path);
 				this.images.delete(file.path);
 			},
+			/** A move. Links here resolve by name, so they follow a note the way Obsidian's own do. */
+			renameFile: async (file: TFile, path: string) => {
+				if (this.exists(path)) throw new Error(`Destination exists: ${path}`);
+				const content = this.notes.get(file.path);
+				if (content !== undefined) {
+					this.notes.delete(file.path);
+					this.notes.set(path, content);
+				} else if (this.images.delete(file.path)) {
+					this.images.add(path);
+				}
+			},
 		};
 
 		return { vault, metadataCache, workspace, fileManager } as unknown as App;

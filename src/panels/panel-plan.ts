@@ -15,11 +15,13 @@ import { parseWikilink } from "../note";
  * - `work`: CONNECTIONS — drawn only when the note is a film.
  * - `artist`: DISCOGRAPHY, matched on every name the artist goes by.
  * - `album`: TRACKLIST.
+ * - `song`: LYRICS.
  */
 export type PanelPlan =
 	| { kind: "tv"; manga: boolean }
 	| { kind: "artist"; names: Set<string> }
 	| { kind: "album" }
+	| { kind: "song" }
 	| { kind: "manga" }
 	| { kind: "mangaka"; names: Set<string> }
 	| { kind: "none" }
@@ -46,6 +48,7 @@ export function panelPlanFor(frontmatter: Record<string, unknown> | undefined): 
 	const kind = classifyNote(frontmatter)?.kind;
 	if (kind === "tv") return { kind: "tv", manga };
 	if (kind === "album") return { kind: "album" };
+	if (kind === "song") return { kind: "song" };
 	if (kind === "artist") return { kind: "artist", names: artistNames(frontmatter ?? {}) };
 	if (manga) return { kind: "manga" };
 	if (frontmatter === undefined) return { kind: "work" };

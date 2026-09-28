@@ -2,6 +2,7 @@ import { MarkdownView, Notice, TFile, TFolder, getLinkpath, normalizePath, type 
 import { MalError } from "./mal";
 import { MusicBrainzError } from "./musicbrainz";
 import {
+	chooseFolderNotePath,
 	chooseNotePath,
 	joinPath,
 	parseFrontmatterBlocks,
@@ -127,6 +128,36 @@ export class VaultNotes {
 		return chooseNotePath(folder, names, (path) => this.pathOccupant(path));
 	}
 
+	/**
+	 * Where a new folder note goes (see `chooseFolderNotePath`) — its folder is
+	 * made here too — or `null` when `parent` names a file.
+	 */
+	async newFolderNotePath(parent: string, name: string): Promise<NotePathChoice | null> {
+		if (!(await this.ensureFolder(parent))) return null;
+		const choice = chooseFolderNotePath(parent, name, (path) => this.pathOccupant(path));
+		if ("path" in choice && !(await this.ensureFolder(choice.path.slice(0, choice.path.lastIndexOf("/"))))) return null;
+		return choice;
+	}
+
+	/** Whether any note in the vault goes by `name` — a bare `[[name]]` would then be ambiguous. */
+	noteNameTaken(name: string): boolean {
+		return this.app.vault.getMarkdownFiles().some((file) => file.basename === name);
+	}
+
+	/**
+	 * Moves a note, the way dragging it in the file explorer does: every link
+	 * to it follows. `false`, after a Notice, when something is already there.
+	 */
+	async moveNote(file: TFile, path: string): Promise<boolean> {
+		if (this.app.vault.getAbstractFileByPath(path) !== null) {
+			new Notice(`Something is already at ${path}, so ${file.basename} was left where it is.`);
+			return false;
+		}
+		if (!(await this.ensureFolder(path.slice(0, path.lastIndexOf("/"))))) return false;
+		await this.app.fileManager.renameFile(file, path);
+		return true;
+	}
+
 	private pathOccupant(path: string): PathOccupant {
 		const existing = this.app.vault.getAbstractFileByPath(path);
 		if (existing === null) return "free";
@@ -152,6 +183,16 @@ export class VaultNotes {
 			if (image !== null) return image;
 		}
 		return null;
+	}
+
+	/** The image a note's own `poster` shows, if its file is there — a song shows its album's. */
+	posterOf(note: TFile): TFile | null {
+		return this.posterFile(note, (frontmatter) => frontmatter.poster);
+	}
+
+	/** A `[[link]]` to a note, as short as the vault allows: a song's to its album. */
+	noteLink(note: TFile, sourcePath: string): string {
+		return `[[${this.app.metadataCache.fileToLinktext(note, sourcePath, true)}]]`;
 	}
 
 	/**

@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
 	albumTypeOf,
 	deezerAlbumIdsOf,
+	findSong,
 	pickDeezerEdition,
 	artistNoteName,
 	formatLength,
@@ -10,6 +11,8 @@ import {
 	photoCredit,
 	pickEdition,
 	rankAlbums,
+	songNoteName,
+	songTracksOf,
 	toArtistMetadata,
 	toArtistSearchResult,
 	tracksOf,
@@ -170,6 +173,65 @@ describe("tracksOf", () => {
 
 	it("leaves the disc out on a single-disc album", () => {
 		expect(tracksOf(fixture<MbRelease>("release-ok-computer"))[0]).toEqual({ disc: null, n: 1, title: "Airbag", length: "4:44" });
+	});
+});
+
+describe("songTracksOf", () => {
+	it("numbers a release's songs the way tracksOf numbers the album note's lines", () => {
+		const release = fixture<MbRelease>("songs-white-album");
+		const songs = songTracksOf(release);
+		expect(songs.map(({ disc, n, title }) => ({ disc, n, title }))).toEqual(
+			tracksOf(release).map(({ disc, n, title }) => ({ disc, n, title })),
+		);
+		expect(songs.find((song) => song.disc === 2 && song.n === 1)?.title).toBe("Birthday");
+	});
+
+	it("keeps each song's recording and who the track itself is credited to", () => {
+		const [airbag] = songTracksOf(fixture<MbRelease>("songs-ok-computer"));
+		expect(airbag).toMatchObject({ disc: null, n: 1, title: "Airbag", length: "4:44", mbRecordingId: "4a7fea2e-545b-4c63-bc9a-9943cc3a29d7" });
+		expect(airbag.credits.map((credit) => credit.name)).toEqual(["Radiohead"]);
+	});
+
+	it("leaves out a track MusicBrainz has no recording for", () => {
+		const release: MbRelease = { id: "r", media: [{ tracks: [{ position: 1, title: "Kept", recording: { id: "a" } }, { position: 2, title: "Gone" }] }] };
+		expect(songTracksOf(release).map((song) => song.title)).toEqual(["Kept"]);
+	});
+});
+
+describe("findSong", () => {
+	const songs = [
+		{ disc: 1, n: 1, title: "Back in the U.S.S.R." },
+		{ disc: 1, n: 2, title: "Dear Prudence" },
+		{ disc: 2, n: 1, title: "Birthday" },
+		{ disc: 2, n: 2, title: "Yer Blues" },
+	];
+
+	it("finds the song at the same disc and number, by the same title", () => {
+		expect(findSong(songs, { disc: 2, n: 1, title: "Birthday" })).toBe(songs[2]);
+	});
+
+	it("goes by the title when the numbers have moved", () => {
+		expect(findSong(songs, { disc: 1, n: 5, title: "Yer blues" })).toBe(songs[3]);
+	});
+
+	it("finds nothing rather than whatever sits at that number now", () => {
+		expect(findSong(songs, { disc: 1, n: 2, title: "Something" })).toBeNull();
+	});
+
+	it("reads a missing disc as the first", () => {
+		const single = [{ disc: null, n: 1, title: "Airbag" }];
+		expect(findSong(single, { disc: null, n: 1, title: "Airbag" })).toBe(single[0]);
+	});
+});
+
+describe("songNoteName", () => {
+	it("names a song after its first artist", () => {
+		expect(songNoteName("Here Comes the Sun", ["The Beatles"])).toBe("Here Comes the Sun (The Beatles)");
+		expect(songNoteName("Tank!", ["The Seatbelts", "Yoko Kanno"])).toBe("Tank! (The Seatbelts)");
+	});
+
+	it("uses the title alone when no artist is credited", () => {
+		expect(songNoteName("Intro", [])).toBe("Intro");
 	});
 });
 

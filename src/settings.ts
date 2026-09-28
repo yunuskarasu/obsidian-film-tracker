@@ -50,12 +50,17 @@ export interface FilmTrackerSettings {
 	/** Music has settings of its own, apart from films' and series': it links different people. */
 	artistFolder: string;
 	albumFolder: string;
+	/** Each album in a folder of its own, its note inside under the same name, with the songs added from it. */
+	albumFolderNotes: boolean;
+	songFolder: string;
 	albumCoverFolder: string;
 	artistPhotoFolder: string;
 	linkArtists: boolean;
 	linkMusicGenres: boolean;
 	showTracklist: boolean;
 	showDiscography: boolean;
+	/** The LYRICS panel under a song, and with it every request to LRCLIB. */
+	showLyrics: boolean;
 }
 
 export const DEFAULT_SETTINGS: FilmTrackerSettings = {
@@ -91,12 +96,15 @@ export const DEFAULT_SETTINGS: FilmTrackerSettings = {
 	mangakaPhotoFolder: "",
 	artistFolder: "Music/Artists",
 	albumFolder: "Music/Albums",
+	albumFolderNotes: true,
+	songFolder: "Music/Songs",
 	albumCoverFolder: "Music/Pics/Covers",
 	artistPhotoFolder: "Music/Pics/Artists",
 	linkArtists: true,
 	linkMusicGenres: false,
 	showTracklist: true,
 	showDiscography: true,
+	showLyrics: true,
 };
 
 /** Added to a key's description once it lives in Obsidian's keychain. */
@@ -413,6 +421,16 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 						control: { type: "folder", key: "albumFolder", placeholder: DEFAULT_SETTINGS.albumFolder },
 					},
 					{
+						name: "Album notes as folder notes",
+						desc: "Give each new album a folder of its own, with the album's note inside under the same name, and put the songs you add from it in that folder. Works on its own. With the Folder Notes plugin, clicking an album's folder opens its note. Turn off to keep albums side by side in the album folder and songs in the song folder.",
+						control: { type: "toggle", key: "albumFolderNotes" },
+					},
+					{
+						name: "Song folder",
+						desc: "Where new song notes are created when album notes aren't folder notes. Leave empty for the vault root.",
+						control: { type: "folder", key: "songFolder", placeholder: DEFAULT_SETTINGS.songFolder },
+					},
+					{
 						name: "Album cover folder",
 						desc: "Where album covers are saved. Leave empty to follow your attachment folder setting.",
 						control: { type: "folder", key: "albumCoverFolder", placeholder: FOLLOW_ATTACHMENTS },
@@ -454,6 +472,11 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 						name: "Show discography",
 						desc: "Below an artist's properties, list their albums that are in your vault, with a button to add another.",
 						control: { type: "toggle", key: "showDiscography" },
+					},
+					{
+						name: "Show lyrics",
+						desc: "Below a song's properties, show its lyrics from LRCLIB, with a button to copy them into the note. Off, nothing is ever sent to LRCLIB.",
+						control: { type: "toggle", key: "showLyrics" },
 					},
 				],
 			},

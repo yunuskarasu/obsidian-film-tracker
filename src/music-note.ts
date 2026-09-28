@@ -1,5 +1,5 @@
 import { parseYaml } from "obsidian";
-import type { AlbumMetadata, AlbumTrack, ArtistMetadata } from "./music";
+import type { AlbumMetadata, AlbumSong, AlbumTrack, ArtistMetadata, SongMetadata } from "./music";
 import {
 	formatNames,
 	isEmptyValue,
@@ -16,9 +16,10 @@ import {
 import { Quoted, flowEntry } from "./yaml-flow";
 
 /*
- * Artist and album notes. Neither ever writes the other: an album names its
- * artists — as links when their notes exist — and an artist note lists the
- * albums already in the vault, but adding one never creates the other.
+ * Artist, album and song notes. None ever writes another: an album names its
+ * artists — as links when their notes exist — an artist note lists the
+ * albums already in the vault, and a song links the album it was added
+ * from, but adding one never creates any other.
  */
 
 /** A note split into its frontmatter blocks, as `parseFrontmatterBlocks` hands it over. */
@@ -356,4 +357,80 @@ export function albumTracksOf(frontmatter: Record<string, unknown> | undefined):
 	const raw: unknown = frontmatter?.[TRACKS_KEY];
 	if (!Array.isArray(raw)) return [];
 	return raw.map(toTrackEntry).filter((track): track is AlbumTrackEntry => track !== null);
+}
+
+// ——— Songs ———
+
+const SONG_FIELD_ORDER = ["title", "aliases", "artists", "album", "track", "disc", "length", "year", "poster", "mb_recording_id"];
+
+/** The album a song note is added from: a link to the album's note, and the album's year. */
+export interface SongAlbum {
+	link: string;
+	year: number | null;
+}
+
+/** What MusicBrainz knows of the song itself — what a refresh rewrites. */
+function songLines(song: SongMetadata, links: MusicLinks, previous?: Record<string, unknown>): [string, string[]][] {
+	const artists = links.artists ? formatNames(song.artists, links.isResolved) : song.artists;
+	return [
+		["artists", yamlList("artists", keepLinks(artists, previous?.artists))],
+		// Always quoted: "3:06" unquoted is a number of seconds to some YAML readers.
+		["length", [song.length === null ? "length:" : `length: ${JSON.stringify(song.length)}`]],
+		["mb_recording_id", [`mb_recording_id: ${song.mbRecordingId}`]],
+	];
+}
+
+/**
+ * A song's note: the song, and where it sits on the album it was added from.
+ * The cover is the album's own file, linked rather than copied. `disc` is
+ * only written for an album of more than one. `alias` is the name a song
+ * named by its title alone is also found by: "The Art of Dying (Gojira)".
+ */
+export function buildSongNoteContent(
+	song: AlbumSong,
+	album: SongAlbum,
+	coverLink: string | null,
+	links: MusicLinks,
+	alias: string | null = null,
+): string {
+	const owned = new Map(songLines(song, links));
+	const lines = ["---"];
+	for (const key of SONG_FIELD_ORDER) {
+		if (key === "title") lines.push(`title: ${yamlString(song.title)}`);
+		else if (key === "aliases") {
+			if (alias !== null) lines.push(...yamlList("aliases", [alias]));
+		} else if (key === "album") lines.push(yamlScalar("album", album.link));
+		else if (key === "track") lines.push(`track: ${song.n}`);
+		else if (key === "disc") {
+			if (song.disc !== null) lines.push(`disc: ${song.disc}`);
+		} else if (key === "year") lines.push(yamlScalar("year", album.year));
+		else if (key === "poster") lines.push(posterLine(coverLink === null ? null : coverLink.replace(/^!/, "")));
+		else lines.push(...(owned.get(key) ?? []));
+	}
+	lines.push("---", "");
+	return lines.join("\n");
+}
+
+/**
+ * Brings a song's artists and length up to date. Its title, album, track
+ * and year are where it sits on the album it was added from, and stay; so
+ * does the cover once there is one — or is filled in when the note has none,
+ * or `posterMissing`, one whose file is gone — and every other property and
+ * the body, lyrics copied into it among them.
+ */
+export function refreshSongFrontmatter(
+	content: string,
+	song: SongMetadata,
+	links: MusicLinks,
+	coverLink: string | null,
+	previous: Record<string, unknown> = {},
+	posterMissing = false,
+): string {
+	const doc = parseFrontmatterBlocks(content);
+	if (doc === null) return content;
+	for (const [key, lines] of songLines(song, links, previous)) setKey(doc, SONG_FIELD_ORDER, key, lines);
+	if (coverLink !== null && (posterMissing || isEmptyValue(doc.blocks.get("poster")))) {
+		setKey(doc, SONG_FIELD_ORDER, "poster", [posterLine(coverLink.replace(/^!/, ""))]);
+	}
+	return serializeFrontmatterBlocks(doc);
 }

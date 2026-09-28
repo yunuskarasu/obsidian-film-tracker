@@ -1,0 +1,22 @@
+{
+	"id": "c6517557-a6e5-4e67-989d-87e0cf38c871",
+	"name": "木村弓",
+	"sort-name": "Kimura, Youmi",
+	"aliases": [
+		{
+			"name": "Youmi Kimura",
+			"locale": "en",
+			"primary": true
+		},
+		{
+			"name": "yumi kimura",
+			"locale": null,
+			"primary": null
+		},
+		{
+			"name": "木村 弓",
+			"locale": null,
+			"primary": null
+		}
+	]
+}

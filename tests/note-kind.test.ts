@@ -283,6 +283,25 @@ describe("music notes", () => {
 	it("reads nothing into a blank or numeric id", () => {
 		expect(classifyNote({ mb_album_id: "" })).toBeNull();
 		expect(classifyNote({ mb_artist_id: 42 })).toBeNull();
+		expect(classifyNote({ mb_recording_id: " " })).toBeNull();
+	});
+
+	it("reads a song by its recording, and never a song for an album", () => {
+		expect(classifyNote({ title: "Airbag", mb_recording_id: "4a7f" })).toEqual({ kind: "song", mbRecordingId: "4a7f" });
+		expect(classifyNote({ title: "OK Computer", mb_album_id: "b139", mb_recording_id: "4a7f" })?.kind).toBe("album");
+		expect(classifyNote({ title: "Stalker", directors: [], tmdb_id: 1398, mb_recording_id: "x" })?.kind).toBe("film");
+	});
+
+	it("tells a song apart from an album or artist with the same id", () => {
+		const song = { kind: "song", mbRecordingId: "4a7f" } as const;
+		expect(matchesRef(song, { kind: "song", mbRecordingId: "4a7f" })).toBe(true);
+		expect(matchesRef(song, { kind: "album", mbAlbumId: "4a7f" })).toBe(false);
+		expect(matchesRef({ kind: "album", mbAlbumId: "4a7f" }, { kind: "song", mbRecordingId: "4a7f" })).toBe(false);
+	});
+
+	it("is neither watched nor listened to", () => {
+		expect(canListen({ kind: "song", mbRecordingId: "4a7f" })).toBe(false);
+		expect(canWatch({ kind: "song", mbRecordingId: "4a7f" })).toBe(false);
 	});
 
 	it("tells an album apart from every other note when one is looked for", () => {

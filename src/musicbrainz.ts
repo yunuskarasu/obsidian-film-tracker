@@ -2,12 +2,14 @@ import { requestUrl } from "obsidian";
 import {
 	artistNoteName,
 	deezerAlbumIdsOf,
+	formatLength,
 	matchKey,
 	needsAliases,
 	photoCredit,
 	pickDeezerEdition,
 	pickEdition,
 	rankAlbums,
+	songTracksOf,
 	sortByDate,
 	toAlbumMetadata,
 	toAlbumSearchResult,
@@ -15,11 +17,15 @@ import {
 	toArtistSearchResult,
 	type AlbumMetadata,
 	type AlbumSearchResult,
+	type AlbumSong,
 	type ArtistMetadata,
 	type ArtistSearchResult,
 	type MbArtist,
+	type MbArtistCredit,
+	type MbRecording,
 	type MbRelease,
 	type MbReleaseGroup,
+	type SongMetadata,
 } from "./music";
 
 const API_BASE = "https://musicbrainz.org/ws/2";
@@ -65,7 +71,7 @@ export interface WebAccess {
 	sleep(ms: number): Promise<void>;
 }
 
-const OBSIDIAN_WEB: WebAccess = {
+export const OBSIDIAN_WEB: WebAccess = {
 	get: async (url, headers) => {
 		const response = await requestUrl({ url, headers, throw: false });
 		const type = Object.entries(response.headers).find(([name]) => name.toLowerCase() === "content-type")?.[1];
@@ -189,14 +195,51 @@ export class MusicBrainzClient {
 		const releases = await this.mb<{ releases?: MbRelease[] }>(`release?release-group=${id}&inc=media+url-rels&limit=100`);
 		const edition = pickEdition(releases.releases ?? [], group["first-release-date"]);
 		const release = edition === null ? null : await this.mb<MbRelease>(`release/${edition.id}?inc=recordings`);
+		const artists = await this.creditNames(group["artist-credit"]);
+		return toAlbumMetadata(group, release, artists, deezerAlbumIdsOf(releases.releases ?? []));
+	}
 
-		const artists: string[] = [];
-		for (const credit of group["artist-credit"] ?? []) {
+	/**
+	 * Every song on an album, read from the same release its note's tracks
+	 * came from (see `pickEdition`), so that a track line and its song agree
+	 * on disc and number — each with its own artists, who on a soundtrack or a
+	 * compilation are not always the album's. Three requests, and one more
+	 * for each artist credited in a script other than Latin letters.
+	 */
+	async albumSongs(albumId: string): Promise<AlbumSong[]> {
+		const group = await this.mb<MbReleaseGroup>(`release-group/${albumId}?inc=artist-credits+genres+url-rels`);
+		const releases = await this.mb<{ releases?: MbRelease[] }>(`release?release-group=${albumId}&inc=media+url-rels&limit=100`);
+		const edition = pickEdition(releases.releases ?? [], group["first-release-date"]);
+		if (edition === null) return [];
+		const release = await this.mb<MbRelease>(`release/${edition.id}?inc=recordings+artist-credits`);
+
+		const songs: AlbumSong[] = [];
+		for (const { credits, ...track } of songTracksOf(release)) {
+			songs.push({ ...track, artists: await this.creditNames(credits) });
+		}
+		return songs;
+	}
+
+	/** A song by itself — what refreshing its note reads. */
+	async getSong(recordingId: string): Promise<SongMetadata> {
+		const recording = await this.mb<MbRecording>(`recording/${recordingId}?inc=artist-credits`);
+		return {
+			title: recording.title?.trim() ?? "",
+			artists: await this.creditNames(recording["artist-credit"]),
+			length: formatLength(recording.length),
+			mbRecordingId: recording.id,
+		};
+	}
+
+	/** The artists a credit names, each the way their own note is named, once each. */
+	private async creditNames(credits: MbArtistCredit[] | undefined): Promise<string[]> {
+		const names: string[] = [];
+		for (const credit of credits ?? []) {
 			if (credit.artist === undefined) continue;
 			const name = await this.noteNameOf(credit.artist);
-			if (name !== "" && !artists.includes(name)) artists.push(name);
+			if (name !== "" && !names.includes(name)) names.push(name);
 		}
-		return toAlbumMetadata(group, release, artists, deezerAlbumIdsOf(releases.releases ?? []));
+		return names;
 	}
 
 	private async noteNameOf(artist: MbArtist): Promise<string> {
@@ -420,6 +463,14 @@ export class MusicBrainzClient {
 			try {
 				response = await this.web.get(url, { "User-Agent": this.userAgent, Accept: "application/json" });
 			} catch (error) {
+				// MusicBrainz now and then drops a connection outright; a moment
+				// later the same request goes through. Only a request that keeps
+				// failing means there is no connection.
+				const pause = BUSY_PAUSES_MS[attempt];
+				if (pause !== undefined) {
+					await this.web.sleep(pause);
+					continue;
+				}
 				console.error("Film + Anime-Manga Tracker: MusicBrainz request failed", error);
 				throw new MusicBrainzError("Could not reach MusicBrainz. Check your internet connection.");
 			}

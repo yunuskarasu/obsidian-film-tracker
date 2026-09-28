@@ -1,4 +1,4 @@
-import { Menu, Notice, Plugin, TFile, debounce } from "obsidian";
+import { Menu, Notice, Plugin, TFile, debounce, normalizePath } from "obsidian";
 import { AnimeActions } from "./anime-actions";
 import {
 	AlreadyTrackedModal,
@@ -20,9 +20,15 @@ import { MangakaPickerModal } from "./mangaka-picker-modal";
 import { ImageUrlModal, PhotoPickerModal, VaultImageModal } from "./photo-picker-modal";
 import type { AlbumSearchResult } from "./music";
 import { MusicActions } from "./music-actions";
+import { albumTracksOf } from "./music-note";
+import { LrclibClient } from "./lrclib";
+import { LyricsCache } from "./lyrics-cache";
+import { LyricsService, lyricsQueryOf } from "./lyrics-service";
+import { isFolderNote } from "./note";
 import { MusicBrainzClient } from "./musicbrainz";
 import { canListen, canWatch, hasAnime, hasEpisodes, hasManga, type NoteKind } from "./note-kind";
 import {
+	AlbumTracksModal,
 	openAlbumSearch,
 	openAnimeSearch,
 	openArtistAlbums,
@@ -37,6 +43,7 @@ import { DEFAULT_SETTINGS, FilmTrackerSettingTab, type FilmTrackerSettings } fro
 import { TmdbClient } from "./tmdb";
 import { TvActions } from "./tv-actions";
 import { VaultNotes } from "./vault-notes";
+import { songNoteFor, VaultScan } from "./panels/vault-scan";
 
 /**
  * The plugin itself: commands, the ribbon menu, the settings tab and the note
@@ -65,6 +72,19 @@ export default class FilmTrackerPlugin extends Plugin {
 	private readonly tv = new TvActions(this.app, this.notes, () => this.settings, {
 		alsoTracked: (title, noteNames, side) => this.askAlsoTracked(title, noteNames, side),
 	});
+	/**
+	 * Song lyrics, kept beside the plugin's own files rather than in data.json
+	 * with the keys — see lyrics-cache.ts.
+	 */
+	private readonly lyrics = new LyricsService(
+		() => new LrclibClient(this.manifest.version),
+		new LyricsCache(
+			this.app.vault.adapter,
+			normalizePath(`${this.manifest.dir ?? `${this.app.vault.configDir}/plugins/${this.manifest.id}`}/lyrics.json`),
+		),
+		() => this.refreshPanels(),
+	);
+
 	private readonly music = new MusicActions(this.app, this.notes, () => this.settings, {
 		pickPhoto: (artistName, candidates) =>
 			new Promise((resolve) => {
@@ -134,6 +154,28 @@ export default class FilmTrackerPlugin extends Plugin {
 		});
 
 		this.addCommand({
+			id: "move-album-into-folder",
+			name: "Move album into its folder",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || note.kind.kind !== "album" || isFolderNote(note.file.path)) return false;
+				if (!checking) void this.music.moveAlbumIntoFolder(note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "add-song",
+			name: "Add song from this album",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || note.kind.kind !== "album") return false;
+				if (!checking) this.startAddSong(note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
 			id: "add-mangaka",
 			name: "Add mangaka",
 			checkCallback: (checking) => {
@@ -185,7 +227,8 @@ export default class FilmTrackerPlugin extends Plugin {
 			name: "Refresh music metadata from MusicBrainz",
 			checkCallback: (checking) => {
 				const note = this.activeNote();
-				if (note === null || (note.kind.kind !== "artist" && note.kind.kind !== "album")) return false;
+				const music = ["artist", "album", "song"];
+				if (note === null || !music.includes(note.kind.kind)) return false;
 				if (!checking) void this.music.refresh(this.musicbrainz(), note.file);
 				return true;
 			},
@@ -396,6 +439,12 @@ export default class FilmTrackerPlugin extends Plugin {
 				run: () => void this.music.markListenedToday(file),
 			});
 		}
+		if (kind.kind === "album") {
+			entries.push({ title: "Add song", icon: "music", run: () => this.startAddSong(file) });
+			if (!isFolderNote(file.path)) {
+				entries.push({ title: "Move album into its folder", icon: "folder-input", run: () => void this.music.moveAlbumIntoFolder(file) });
+			}
+		}
 		if (kind.kind === "artist") {
 			entries.push({
 				title: "Change photo",
@@ -498,6 +547,24 @@ export default class FilmTrackerPlugin extends Plugin {
 				setSeasonWatched: (file, season, watched) => void this.tv.setSeasonWatched(file, season, watched),
 				watchedToday: (file) => void this.watchedToday(file),
 				addAlbumByArtist: (file) => this.startAddAlbumOf(file),
+				addSong: (file, track) => void this.music.addSong(this.musicbrainz(), file, track, false),
+				lyricsState: (file) => {
+					const song = this.songId(file);
+					return song === null ? null : this.lyrics.state(song, () => lyricsQueryOf(this.app, file));
+				},
+				copyLyrics: (file) => {
+					const song = this.songId(file);
+					const state = song === null ? null : this.lyrics.state(song, () => lyricsQueryOf(this.app, file));
+					if (state?.status === "text") void this.music.copyLyrics(file, state.text);
+				},
+				fetchLyricsAgain: (file) => {
+					const song = this.songId(file);
+					if (song !== null) void this.lyrics.fetchAgain(song, () => lyricsQueryOf(this.app, file));
+				},
+				markLyricsWrong: (file) => {
+					const song = this.songId(file);
+					if (song !== null) void this.lyrics.markWrong(song);
+				},
 				changePhoto: (file) => void this.music.changePhoto(this.musicbrainz(), file),
 			},
 		);
@@ -637,6 +704,26 @@ export default class FilmTrackerPlugin extends Plugin {
 		openAlbumSearch(this.app, client, add, () => {
 			openArtistSearch(this.app, client, (artist) => void openArtistAlbums(this.app, client, artist, add));
 		});
+	}
+
+	/** The MusicBrainz recording a song note is, which its lyrics are kept by. */
+	private songId(file: TFile): string | null {
+		const kind = this.notes.kindOf(file);
+		return kind?.kind === "song" ? kind.mbRecordingId : null;
+	}
+
+	/** "Add song": one of the album's tracks that has no note yet, then that one song's note. */
+	private startAddSong(file: TFile): void {
+		const songs = new VaultScan(this.app).songs();
+		const tracks = albumTracksOf(this.notes.frontmatterOf(file)).filter(
+			(track) => songNoteFor(songs, file.path, track) === null,
+		);
+		if (tracks.length === 0) {
+			new Notice(`Every song on ${file.basename} already has a note.`);
+			return;
+		}
+		const client = this.musicbrainz();
+		new AlbumTracksModal(this.app, file.basename, tracks, (track) => void this.music.addSong(client, file, track, true)).open();
 	}
 
 	/** DISCOGRAPHY's "Add album…": the albums of the artist whose note it is. */

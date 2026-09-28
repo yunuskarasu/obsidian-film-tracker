@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
+	chooseFolderNotePath,
+	isFolderNote,
 	buildAliases,
 	buildFileName,
 	buildNoteContent,
@@ -117,6 +119,43 @@ describe("buildFileName", () => {
 
 	it("still appends the year when the title ends in a different one", () => {
 		expect(buildFileName("Hunter x Hunter (2011)", 2012)).toBe("Hunter x Hunter (2011) (2012)");
+	});
+});
+
+describe("chooseFolderNotePath", () => {
+	const occupants = (held: Record<string, PathOccupant>) => (path: string) => held[path] ?? "free";
+
+	it("puts the note in a folder of its own name", () => {
+		expect(chooseFolderNotePath("Music/Albums", "Abbey Road (1969)", occupants({}))).toEqual({
+			path: "Music/Albums/Abbey Road (1969)/Abbey Road (1969).md",
+		});
+	});
+
+	it("gives a different work of the same name a numbered folder", () => {
+		const held = occupants({ "Music/Albums/Greatest Hits/Greatest Hits.md": "plugin" });
+		expect(chooseFolderNotePath("Music/Albums", "Greatest Hits", held)).toEqual({
+			path: "Music/Albums/Greatest Hits 2/Greatest Hits 2.md",
+		});
+	});
+
+	it("never writes beside a note of the user's own", () => {
+		const held = occupants({ "Music/Albums/Greatest Hits/Greatest Hits.md": "other" });
+		expect(chooseFolderNotePath("Music/Albums", "Greatest Hits", held)).toEqual({
+			conflict: "Music/Albums/Greatest Hits/Greatest Hits.md",
+		});
+	});
+
+	it("works at the vault root", () => {
+		expect(chooseFolderNotePath("", "Abbey Road (1969)", occupants({}))).toEqual({ path: "Abbey Road (1969)/Abbey Road (1969).md" });
+	});
+});
+
+describe("isFolderNote", () => {
+	it("is a note named after the folder it is in", () => {
+		expect(isFolderNote("Music/Albums/Abbey Road (1969)/Abbey Road (1969).md")).toBe(true);
+		expect(isFolderNote("Music/Albums/Abbey Road (1969).md")).toBe(false);
+		expect(isFolderNote("Abbey Road (1969).md")).toBe(false);
+		expect(isFolderNote("Music/Albums/Abbey Road (1969)/Here Comes the Sun.md")).toBe(false);
 	});
 });
 

@@ -1,14 +1,16 @@
 import { describe, expect, it } from "vitest";
-import type { AlbumMetadata, ArtistMetadata } from "../src/music";
+import type { AlbumMetadata, AlbumSong, ArtistMetadata } from "../src/music";
 import {
 	albumTracksOf,
 	buildAlbumNoteContent,
 	buildArtistNoteContent,
+	buildSongNoteContent,
 	listenProgressOf,
 	markAlbumListened,
 	readTracks,
 	refreshAlbumFrontmatter,
 	refreshArtistFrontmatter,
+	refreshSongFrontmatter,
 	setArtistPhoto,
 	tracksReadable,
 	NO_MUSIC_LINKS,
@@ -250,5 +252,85 @@ describe("Listened today", () => {
 		expect(listenProgressOf({ listened: true, listen_count: 7 }).count).toBe(7);
 		expect(listenProgressOf({ listen_count: "many" }).count).toBe(0);
 		expect(listenProgressOf(undefined)).toEqual({ listened: false, count: 0, date: null });
+	});
+});
+
+describe("a song note", () => {
+	const sun: AlbumSong = {
+		disc: null,
+		n: 7,
+		title: "Here Comes the Sun",
+		artists: ["The Beatles"],
+		length: "3:06",
+		mbRecordingId: "440f60e8-0b25-4ec4-abb1-c6beec624ab0",
+	};
+	const abbeyRoad = { link: "[[Abbey Road (1969)]]", year: 1969 };
+	const linked = { artists: true, genres: false, isResolved: (name: string) => name === "The Beatles" };
+
+	it("is the song, and where it sits on the album it came from, with the album's cover", () => {
+		expect(buildSongNoteContent(sun, abbeyRoad, "[[Abbey Road (1969).jpg]]", linked)).toBe(
+			[
+				"---",
+				"title: Here Comes the Sun",
+				"artists:",
+				'  - "[[The Beatles]]"',
+				'album: "[[Abbey Road (1969)]]"',
+				"track: 7",
+				'length: "3:06"',
+				"year: 1969",
+				'poster: "[[Abbey Road (1969).jpg]]"',
+				"mb_recording_id: 440f60e8-0b25-4ec4-abb1-c6beec624ab0",
+				"---",
+				"",
+			].join("\n"),
+		);
+	});
+
+	it("says which disc only on an album of more than one", () => {
+		const birthday = buildSongNoteContent({ ...sun, disc: 2, n: 1, title: "Birthday" }, abbeyRoad, null, NO_MUSIC_LINKS);
+		expect(frontmatter(birthday)).toMatchObject({ track: 1, disc: 2, poster: null });
+		expect(frontmatter(buildSongNoteContent(sun, abbeyRoad, null, NO_MUSIC_LINKS))).not.toHaveProperty("disc");
+	});
+
+	it("is a song note, never an album's", () => {
+		const note = frontmatter(buildSongNoteContent(sun, abbeyRoad, null, NO_MUSIC_LINKS));
+		expect(classifyNote(note)).toEqual({ kind: "song", mbRecordingId: sun.mbRecordingId });
+	});
+
+	it("is brought up to date without touching the album, the cover, the user's properties or the lyrics", () => {
+		const written = buildSongNoteContent(sun, abbeyRoad, "[[Mine.png]]", NO_MUSIC_LINKS)
+			.replace("year: 1969", "year: 1969\nfavourite: true")
+			.concat("\n## Lyrics\n\nMy own words.\n");
+		const fresh = { title: "Here Comes the Sun (2019 mix)", artists: ["The Beatles", "George Harrison"], length: "3:05", mbRecordingId: sun.mbRecordingId };
+		const refreshed = refreshSongFrontmatter(written, fresh, NO_MUSIC_LINKS, "[[Other.jpg]]", frontmatter(written));
+
+		expect(frontmatter(refreshed)).toMatchObject({
+			title: "Here Comes the Sun",
+			artists: ["The Beatles", "George Harrison"],
+			album: "[[Abbey Road (1969)]]",
+			track: 7,
+			length: "3:05",
+			poster: "[[Mine.png]]",
+			favourite: true,
+		});
+		expect(refreshed.endsWith("\n## Lyrics\n\nMy own words.\n")).toBe(true);
+	});
+
+	it("keeps an artist the user linked by hand, with Link artists off", () => {
+		const written = buildSongNoteContent(sun, abbeyRoad, null, NO_MUSIC_LINKS).replace("  - The Beatles", '  - "[[The Beatles]]"');
+		const refreshed = refreshSongFrontmatter(written, sun, NO_MUSIC_LINKS, null, frontmatter(written));
+		expect(frontmatter(refreshed).artists).toEqual(["[[The Beatles]]"]);
+	});
+
+	it("keeps its length a string, never a number of seconds", () => {
+		expect(buildSongNoteContent(sun, abbeyRoad, null, NO_MUSIC_LINKS)).toContain('\nlength: "3:06"\n');
+		expect(buildSongNoteContent({ ...sun, length: null }, abbeyRoad, null, NO_MUSIC_LINKS)).toContain("\nlength:\n");
+	});
+
+	it("fills in a cover it has none of, or whose file is gone", () => {
+		const bare = buildSongNoteContent(sun, abbeyRoad, null, NO_MUSIC_LINKS);
+		expect(frontmatter(refreshSongFrontmatter(bare, sun, NO_MUSIC_LINKS, "[[A.jpg]]")).poster).toBe("[[A.jpg]]");
+		const gone = buildSongNoteContent(sun, abbeyRoad, "[[Gone.jpg]]", NO_MUSIC_LINKS);
+		expect(frontmatter(refreshSongFrontmatter(gone, sun, NO_MUSIC_LINKS, "[[A.jpg]]", {}, true)).poster).toBe("[[A.jpg]]");
 	});
 });

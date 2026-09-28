@@ -56,6 +56,60 @@ describe("getAlbum", () => {
 	});
 });
 
+describe("albumSongs", () => {
+	it("reads an album's songs in three requests, from the release its note's tracks came from", async () => {
+		const { client, web } = replayClient();
+		const songs = await client.albumSongs(idOf("album-abbey-road"));
+
+		expect(songs).toHaveLength(17);
+		expect(songs[6]).toEqual({
+			disc: null,
+			n: 7,
+			title: "Here Comes the Sun",
+			length: "3:06",
+			mbRecordingId: "440f60e8-0b25-4ec4-abb1-c6beec624ab0",
+			artists: ["The Beatles"],
+		});
+		expect(mbRequests(web.requests)).toHaveLength(3);
+		expect(web.requests[web.requests.length - 1]).toContain("inc=recordings+artist-credits");
+	});
+
+	it("names each song's own artists the way their notes are named, asking once for each", async () => {
+		const { client, web } = replayClient();
+		const songs = await client.albumSongs(idOf("album-spirited-away"));
+		expect(songs[0].artists).toEqual(["Joe Hisaishi"]);
+		// The closing song is Youmi Kimura's, not the album's composer's.
+		expect(songs[songs.length - 1]).toMatchObject({ title: "いつも何度でも", artists: ["Youmi Kimura"] });
+		expect(mbRequests(web.requests).filter((url) => url.includes("inc=aliases&"))).toHaveLength(2);
+	});
+
+	it("keeps the discs of a double album", async () => {
+		const { client } = replayClient();
+		const songs = await client.albumSongs(idOf("album-white-album"));
+		expect(songs).toHaveLength(30);
+		expect(songs.find((song) => song.disc === 2 && song.n === 1)?.title).toBe("Birthday");
+	});
+});
+
+describe("getSong", () => {
+	it("reads a song by itself in one request", async () => {
+		const { client, web } = replayClient();
+		expect(await client.getSong("4a7fea2e-545b-4c63-bc9a-9943cc3a29d7")).toEqual({
+			title: "Airbag",
+			artists: ["Radiohead"],
+			length: "4:44",
+			mbRecordingId: "4a7fea2e-545b-4c63-bc9a-9943cc3a29d7",
+		});
+		expect(mbRequests(web.requests)).toHaveLength(1);
+	});
+
+	it("names an artist credited in their own script the way their note is named", async () => {
+		const { client } = replayClient();
+		const song = await client.getSong(fixture<{ id: string }>("recording-first-love").id);
+		expect(song).toMatchObject({ title: "First Love", artists: ["Hikaru Utada"] });
+	});
+});
+
 describe("artistAlbums", () => {
 	it("reads every page of an artist's albums, oldest first", async () => {
 		const { client, web } = replayClient();
@@ -282,9 +336,11 @@ describe("manners", () => {
 		expect(web.requests[0]).toContain("Joe%20Hisaishi");
 	});
 
-	it("turns a failed connection into a message of its own", async () => {
+	it("turns a connection that keeps failing into a message of its own, after trying twice more", async () => {
+		let calls = 0;
 		const offline: WebAccess = {
 			get: async () => {
+				calls += 1;
 				throw new Error("net::ERR_INTERNET_DISCONNECTED");
 			},
 			sleep: async () => {},
@@ -292,5 +348,23 @@ describe("manners", () => {
 		const error = await new MusicBrainzClient("3.1.0", offline).searchArtists("Queen").catch((thrown: unknown) => thrown);
 		expect(error).toBeInstanceOf(MusicBrainzError);
 		expect((error as Error).message).toBe("Could not reach MusicBrainz. Check your internet connection.");
+		expect(calls).toBe(3);
+	});
+
+	it("gets past a connection MusicBrainz drops once", async () => {
+		const { web } = replayClient();
+		let dropped = false;
+		const flaky: WebAccess = {
+			get: async (url, headers) => {
+				if (!dropped) {
+					dropped = true;
+					throw new Error("net::ERR_CONNECTION_CLOSED");
+				}
+				return web.get(url, headers);
+			},
+			sleep: async () => {},
+		};
+		const songs = await new MusicBrainzClient("3.1.0", flaky).albumSongs(idOf("album-abbey-road"));
+		expect(songs).toHaveLength(17);
 	});
 });

@@ -2,8 +2,17 @@ import type { App, TFile } from "obsidian";
 import type { WorkNoteInfo } from "../connections";
 import type { FilmographyWork } from "../filmography";
 import type { MangagraphyManga } from "../mangagraphy";
+import { parseLinkTarget } from "../note";
 import { classifyNote } from "../note-kind";
 import { extractNames } from "./panel-plan";
+
+/** A song note as TRACKLIST finds it: the album note it links, and where on that album it sits. */
+export interface ScannedSong {
+	path: string;
+	albumPath: string | null;
+	disc: number | null;
+	n: number | null;
+}
 
 /** A film or TV series note as the Connections, Filmography and TV series panels read it. */
 export type ScannedWork = WorkNoteInfo & FilmographyWork & { kind: "film" | "tv" };
@@ -19,6 +28,7 @@ export class VaultScan {
 	private workList: ScannedWork[] | null = null;
 	private mangaList: MangagraphyManga[] | null = null;
 	private albumList: FilmographyWork[] | null = null;
+	private songList: ScannedSong[] | null = null;
 
 	constructor(app: App) {
 		this.app = app;
@@ -48,6 +58,17 @@ export class VaultScan {
 				.filter((album): album is FilmographyWork => album !== null);
 		}
 		return this.albumList;
+	}
+
+	/** Song notes, each with the album note it was added from. */
+	songs(): ScannedSong[] {
+		if (this.songList === null) {
+			this.songList = this.app.vault
+				.getMarkdownFiles()
+				.map((file) => readSong(this.app, file))
+				.filter((song): song is ScannedSong => song !== null);
+		}
+		return this.songList;
 	}
 
 	mangas(): MangagraphyManga[] {
@@ -102,6 +123,29 @@ function readAlbum(app: App, file: TFile): FilmographyWork | null {
 		watched: frontmatter.listened === true,
 		credits: extractNames(frontmatter.artists),
 	};
+}
+
+function readSong(app: App, file: TFile): ScannedSong | null {
+	const frontmatter = app.metadataCache.getFileCache(file)?.frontmatter;
+	if (frontmatter === undefined || classifyNote(frontmatter)?.kind !== "song") return null;
+	const linkpath = parseLinkTarget(frontmatter.album);
+	const album = linkpath === null ? null : app.metadataCache.getFirstLinkpathDest(linkpath, file.path);
+	const disc: unknown = frontmatter.disc;
+	const track: unknown = frontmatter.track;
+	return {
+		path: file.path,
+		albumPath: album?.path ?? null,
+		disc: typeof disc === "number" ? disc : null,
+		n: typeof track === "number" ? track : null,
+	};
+}
+
+/** The song note of one of an album's track lines, if there is one: it links the album, at the same disc and number. */
+export function songNoteFor(songs: ScannedSong[], albumPath: string, track: { disc: number | null; n: number }): string | null {
+	const found = songs.find(
+		(song) => song.albumPath === albumPath && song.n === track.n && (song.disc ?? 1) === (track.disc ?? 1),
+	);
+	return found?.path ?? null;
 }
 
 /** A note's `manga` block as MANGAGRAPHY lists it — a manga-only note and a merged Series note look identical here. */

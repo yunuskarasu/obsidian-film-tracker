@@ -73,5 +73,14 @@
 	"https://musicbrainz.org/ws/2/artist/44c64a30-1d58-49c5-b314-6e02fba49526?inc=aliases&fmt=json": "72-aliases-spirited-away.json",
 	"https://www.wikidata.org/w/api.php?action=wbgetclaims&entity=Q44190&property=P373&format=json": "73-wikidata-p373-radiohead.json",
 	"https://commons.wikimedia.org/w/api.php?action=query&list=categorymembers&cmtitle=Category%3ARadiohead&cmtype=file&cmlimit=30&format=json": "74-commons-category-radiohead.json",
-	"https://commons.wikimedia.org/w/api.php?action=query&titles=File%3ARadioheadO2211125%20composite.jpg%7CFile%3AAzxcvbn.jpg%7CFile%3ABurn%20the%20Witch%20props.jpg%7CFile%3ACnrsblue.jpg%7CFile%3AMeadowbank%20Stadium%20-%20Radiohead.jpg%7CFile%3AOutside%20Lands%202017%20IMG%208911%20(36440091741).jpg%7CFile%3APyramid%20meter.jpg%7CFile%3ARadiohead%20Curfew%20advert.jpg&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=500&format=json": "75-commons-batch-radiohead.json"
+	"https://commons.wikimedia.org/w/api.php?action=query&titles=File%3ARadioheadO2211125%20composite.jpg%7CFile%3AAzxcvbn.jpg%7CFile%3ABurn%20the%20Witch%20props.jpg%7CFile%3ACnrsblue.jpg%7CFile%3AMeadowbank%20Stadium%20-%20Radiohead.jpg%7CFile%3AOutside%20Lands%202017%20IMG%208911%20(36440091741).jpg%7CFile%3APyramid%20meter.jpg%7CFile%3ARadiohead%20Curfew%20advert.jpg&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=500&format=json": "75-commons-batch-radiohead.json",
+	"https://musicbrainz.org/ws/2/release/1834eae1-741b-3c03-9ca5-0df3decb43ea?inc=recordings+artist-credits&fmt=json": "76-songs-ok-computer.json",
+	"https://musicbrainz.org/ws/2/release/05e77dbd-1c4f-4e5e-8461-caac6e5fbae7?inc=recordings+artist-credits&fmt=json": "77-songs-abbey-road.json",
+	"https://musicbrainz.org/ws/2/release/a882c9f9-b920-30ad-8cd0-3ea2d6fedd60?inc=recordings+artist-credits&fmt=json": "78-songs-white-album.json",
+	"https://musicbrainz.org/ws/2/release/22638e35-336a-448c-9232-fc7670263687?inc=recordings+artist-credits&fmt=json": "79-songs-cowboy-bebop.json",
+	"https://musicbrainz.org/ws/2/release/4202c672-402d-3629-8078-e51bdaf1b77a?inc=recordings+artist-credits&fmt=json": "80-songs-first-love.json",
+	"https://musicbrainz.org/ws/2/release/7a16f215-079e-4c55-abda-06f9a4228b6a?inc=recordings+artist-credits&fmt=json": "81-songs-spirited-away.json",
+	"https://musicbrainz.org/ws/2/recording/4a7fea2e-545b-4c63-bc9a-9943cc3a29d7?inc=artist-credits&fmt=json": "82-recording-airbag.json",
+	"https://musicbrainz.org/ws/2/recording/5138e6be-39b2-46bf-a306-d3b5ee983a18?inc=artist-credits&fmt=json": "83-recording-first-love.json",
+	"https://musicbrainz.org/ws/2/artist/c6517557-a6e5-4e67-989d-87e0cf38c871?inc=aliases&fmt=json": "84-aliases-youmi-kimura.json"
 }

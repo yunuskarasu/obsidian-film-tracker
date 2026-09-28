@@ -1,0 +1,423 @@
+{
+	"id": "22638e35-336a-448c-9232-fc7670263687",
+	"date": "1998-05-21",
+	"country": "JP",
+	"status": "Official",
+	"media": [
+		{
+			"position": 1,
+			"format": "CD",
+			"track-count": 17,
+			"tracks": [
+				{
+					"position": 1,
+					"title": "Tank!",
+					"length": 210333,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "7b42397a-d885-43d8-9e4f-de1421cad3fe",
+						"title": "Tank!",
+						"length": 210333
+					}
+				},
+				{
+					"position": 2,
+					"title": "RUSH",
+					"length": 214160,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "94d7a297-acc1-4fe9-baa5-5b87f6fff24d",
+						"title": "RUSH",
+						"length": 214160
+					}
+				},
+				{
+					"position": 3,
+					"title": "SPOKEY DOKEY",
+					"length": 245000,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "5ed2f952-eb1e-42dc-9000-805bee458aa8",
+						"title": "SPOKEY DOKEY",
+						"length": 245000
+					}
+				},
+				{
+					"position": 4,
+					"title": "BAD DOG NO BISCUITS",
+					"length": 250373,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "1983e272-575b-43f2-a253-d7035411c954",
+						"title": "BAD DOG NO BISCUITS",
+						"length": 250373
+					}
+				},
+				{
+					"position": 5,
+					"title": "CAT BLUES",
+					"length": 157293,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "8fc7320c-34ba-4020-aa0f-567a07fc1dac",
+						"title": "CAT BLUES",
+						"length": 157000
+					}
+				},
+				{
+					"position": 6,
+					"title": "COSMOS",
+					"length": 97000,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "8875cd25-0dfd-49d6-b336-8d4d8cdf7c3a",
+						"title": "COSMOS",
+						"length": 97000
+					}
+				},
+				{
+					"position": 7,
+					"title": "SPACE LION",
+					"length": 431373,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "d9275896-b4fd-4873-abe8-79528b5b8ff0",
+						"title": "SPACE LION",
+						"length": 431000
+					}
+				},
+				{
+					"position": 8,
+					"title": "WALTZ for ZIZI",
+					"length": 209400,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "07c943c6-2447-45e9-b061-afe2e5bde478",
+						"title": "WALTZ for ZIZI",
+						"length": 209400
+					}
+				},
+				{
+					"position": 9,
+					"title": "PIANO BLACK",
+					"length": 167893,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "09fa4a04-742e-4fa5-9454-a2b274f55961",
+						"title": "PIANO BLACK",
+						"length": 167893
+					}
+				},
+				{
+					"position": 10,
+					"title": "POT CITY",
+					"length": 134040,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "6faa82aa-72f7-4e77-a786-80bced4d4402",
+						"title": "POT CITY",
+						"length": 134027
+					}
+				},
+				{
+					"position": 11,
+					"title": "TOO GOOD TOO BAD",
+					"length": 154800,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "03ff42ad-c29e-4327-adca-3ce6b68eac01",
+						"title": "TOO GOOD TOO BAD",
+						"length": 154800
+					}
+				},
+				{
+					"position": 12,
+					"title": "CAR 24",
+					"length": 169293,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "4ae55527-fedc-41f3-88c8-9f33ab32047f",
+						"title": "CAR 24",
+						"length": 169293
+					}
+				},
+				{
+					"position": 13,
+					"title": "The EGG and I",
+					"length": 162600,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "fdd62593-0e08-4c2d-b9cf-664e1b289c20",
+						"title": "The EGG and I",
+						"length": 162600
+					}
+				},
+				{
+					"position": 14,
+					"title": "FELT TIP PEN",
+					"length": 162466,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "0819f9b5-dd81-4422-9237-b40e17cf7913",
+						"title": "FELT TIP PEN",
+						"length": 160400
+					}
+				},
+				{
+					"position": 15,
+					"title": "RAIN",
+					"length": 203466,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "bd60a7da-7aaf-4586-8b96-dc80a8e16213",
+						"title": "RAIN",
+						"length": 203466
+					}
+				},
+				{
+					"position": 16,
+					"title": "DIGGING MY POTATO",
+					"length": 144573,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "c737e208-e7c9-4df0-a924-e338f4e409e3",
+						"title": "DIGGING MY POTATO",
+						"length": 144560
+					}
+				},
+				{
+					"position": 17,
+					"title": "MEMORY",
+					"length": 91933,
+					"artist-credit": [
+						{
+							"name": "シートベルツ",
+							"joinphrase": "",
+							"artist": {
+								"id": "b5fb0f1a-2cd4-4759-9d80-648643f70c43",
+								"name": "シートベルツ",
+								"sort-name": "Seatbelts, The",
+								"country": "JP",
+								"type": "Group",
+								"disambiguation": "Japanese space jazz band"
+							}
+						}
+					],
+					"recording": {
+						"id": "b16f868c-1125-4254-a9d3-0e748ef6b3bb",
+						"title": "MEMORY",
+						"length": 91266
+					}
+				}
+			]
+		}
+	]
+}

@@ -1,5 +1,6 @@
 import { setIcon, type App, type TFile } from "obsidian";
 import { parseWikilink } from "../note";
+import type { LyricsState } from "../lyrics-service";
 import type { FilmTrackerSettings } from "../settings";
 
 /*
@@ -37,6 +38,16 @@ export interface MangaPanelActions {
 	addAlbumByArtist: (file: TFile) => void;
 	/** "Change photo" under an artist's photo. */
 	changePhoto: (file: TFile) => void;
+	/** TRACKLIST's "+" beside a track: that one song's note. */
+	addSong: (file: TFile, track: { disc: number | null; n: number; title: string }) => void;
+	/** What the LYRICS panel shows for a song note — asking starts the lookup the first time. */
+	lyricsState: (file: TFile) => LyricsState | null;
+	/** "Copy lyrics into note". */
+	copyLyrics: (file: TFile) => void;
+	/** "Fetch again" and "Try again". */
+	fetchLyricsAgain: (file: TFile) => void;
+	/** "Wrong lyrics". */
+	markLyricsWrong: (file: TFile) => void;
 }
 
 /** What a panel needs from the plugin to draw itself. */

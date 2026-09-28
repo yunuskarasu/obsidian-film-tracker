@@ -25,8 +25,9 @@ import { malIdFrom, mangaMalIdFrom } from "./manga-note";
  * note holds: the manga side belongs to the work, not to where its episodes
  * were read from.
  *
- * Artist and album notes carry MusicBrainz's ids, `mb_artist_id` and
- * `mb_album_id` — text, never a number — and are only read as such when the
+ * Artist, album and song notes carry MusicBrainz's ids, `mb_artist_id`,
+ * `mb_album_id` and `mb_recording_id` — text, never a number, one to a note
+ * — and are only read as such when the
  * note carries none of the ids above: a note that has one keeps the meaning
  * it has always had.
  */
@@ -37,7 +38,8 @@ export type NoteKind =
 	| { kind: "mangaka"; malId: number }
 	| { kind: "tv"; tmdbTvId: number; mangaMalId: number | null }
 	| { kind: "artist"; mbArtistId: string }
-	| { kind: "album"; mbAlbumId: string };
+	| { kind: "album"; mbAlbumId: string }
+	| { kind: "song"; mbRecordingId: string };
 
 type Frontmatter = Record<string, unknown> | undefined;
 
@@ -87,6 +89,8 @@ function musicKindOf(frontmatter: Record<string, unknown>): NoteKind | null {
 	if (album !== null) return { kind: "album", mbAlbumId: album };
 	const artist = mbIdFrom(frontmatter.mb_artist_id);
 	if (artist !== null) return { kind: "artist", mbArtistId: artist };
+	const song = mbIdFrom(frontmatter.mb_recording_id);
+	if (song !== null) return { kind: "song", mbRecordingId: song };
 	return null;
 }
 
@@ -106,7 +110,8 @@ export type NoteRef =
 	| { kind: "mangaka"; malId: number }
 	| { kind: "tv"; tmdbTvId: number }
 	| { kind: "artist"; mbArtistId: string }
-	| { kind: "album"; mbAlbumId: string };
+	| { kind: "album"; mbAlbumId: string }
+	| { kind: "song"; mbRecordingId: string };
 
 /**
  * Whether `note` is the one `ref` names. The kind has to match as well as the
@@ -140,6 +145,8 @@ export function matchesRef(note: NoteKind | null, ref: NoteRef): boolean {
 			return note.kind === "artist" && note.mbArtistId === ref.mbArtistId;
 		case "album":
 			return note.kind === "album" && note.mbAlbumId === ref.mbAlbumId;
+		case "song":
+			return note.kind === "song" && note.mbRecordingId === ref.mbRecordingId;
 	}
 }
 

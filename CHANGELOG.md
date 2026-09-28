@@ -4,6 +4,21 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+## [3.2.0] - 2026-09-28
+
+Songs, and their lyrics. Nothing breaks: notes and settings from 3.1 carry over as they are, and an album note already in your vault is never moved.
+
+### Added
+
+- **Song notes.** A **+** beside each track on an album's TRACKLIST panel, or **Add song from this album**, writes that one song's note: its artists, the album it came from as a link, its track number and length, and the album's cover — linked, not downloaded again. Adding an album still never writes its songs. A track with a note links to it from the TRACKLIST.
+- **Album notes as folder notes**, on by default: each new album gets a folder of its own, with its note inside under the same name, and its songs go in that folder, named by their title — or "Title (Artist)" when another note already has that name — and found by "Title (Artist)" through `aliases` either way. Turned off, albums sit side by side and songs go in the **Song folder**, `Music/Songs` by default.
+- **The LYRICS panel**, under a song: its lyrics from LRCLIB, found by the song's title, artist, album and length — never a recording of another length. They are kept in the plugin's own `lyrics.json` and show again without a connection. **Copy lyrics into note** makes them the note's own, under `## Lyrics`, to edit; **Wrong lyrics** remembers they aren't this song's; **Fetch again** asks anew. A **Show lyrics** setting turns the panel, and every request to LRCLIB, off.
+- **Move album into its folder**, for an album note from before: it moves into a folder of its own name, beside its songs, and every link to it follows. An album is never moved unless you ask.
+
+### Changed
+
+- A request MusicBrainz drops outright is tried twice more before the plugin says it can't reach MusicBrainz. It happens now and then, and a moment later the same request goes through.
+
 ## [3.1.0] - 2026-09-27
 
 Music joins films, TV series and anime-manga. Nothing breaks: notes and settings from 3.0 carry over as they are.
@@ -162,7 +177,8 @@ Music joins films, TV series and anime-manga. Nothing breaks: notes and settings
 - Relinking of directors and genres.
 - Import from Letterboxd.
 
-[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.1.0...HEAD
+[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.2.0...HEAD
+[3.2.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.1.0...3.2.0
 [3.1.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.4.0...3.0.0
 [2.4.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/2.3.0...2.4.0

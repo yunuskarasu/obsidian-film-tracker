@@ -82,6 +82,7 @@ describe("the setting definitions", () => {
 			"mangakaPhotoFolder",
 			"artistFolder",
 			"albumFolder",
+			"songFolder",
 			"albumCoverFolder",
 			"artistPhotoFolder",
 		]);

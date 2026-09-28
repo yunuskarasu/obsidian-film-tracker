@@ -63,6 +63,10 @@ describe("panelPlanFor", () => {
 		expect(panelPlanFor({ title: "OK Computer", artists: ["Radiohead"], mb_album_id: "b139" })).toEqual({ kind: "album" });
 	});
 
+	it("gives a song no panel of its own yet — only its cover", () => {
+		expect(panelPlanFor({ title: "Airbag", album: "[[OK Computer (1997)]]", mb_recording_id: "4a7f" })).toEqual({ kind: "song" });
+	});
+
 	it("reads a manga block only when it has its MAL id", () => {
 		expect(hasMangaBlock({ manga: { title: "x" } })).toBe(false);
 		expect(hasMangaBlock({ manga: "One Piece" })).toBe(false);

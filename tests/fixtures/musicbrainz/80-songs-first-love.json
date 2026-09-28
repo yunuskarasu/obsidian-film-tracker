@@ -1,0 +1,303 @@
+{
+	"id": "4202c672-402d-3629-8078-e51bdaf1b77a",
+	"date": "1999-03-10",
+	"country": "JP",
+	"status": "Official",
+	"media": [
+		{
+			"position": 1,
+			"format": "CD",
+			"track-count": 12,
+			"tracks": [
+				{
+					"position": 1,
+					"title": "Automatic -Album Edit-",
+					"length": 327933,
+					"artist-credit": [
+						{
+							"name": "宇多田ヒカル",
+							"joinphrase": "",
+							"artist": {
+								"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+								"name": "宇多田ヒカル",
+								"sort-name": "Utada, Hikaru",
+								"country": "JP",
+								"type": "Person",
+								"disambiguation": "Japanese-American singer-songwriter"
+							}
+						}
+					],
+					"recording": {
+						"id": "5a62caad-0ccb-4a77-822c-2701f6d42e08",
+						"title": "Automatic -Album Edit-",
+						"length": 328000
+					}
+				},
+				{
+					"position": 2,
+					"title": "Movin' on without you",
+					"length": 278293,
+					"artist-credit": [
+						{
+							"name": "宇多田ヒカル",
+							"joinphrase": "",
+							"artist": {
+								"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+								"name": "宇多田ヒカル",
+								"sort-name": "Utada, Hikaru",
+								"country": "JP",
+								"type": "Person",
+								"disambiguation": "Japanese-American singer-songwriter"
+							}
+						}
+					],
+					"recording": {
+						"id": "5c5e7749-9ee2-4827-854f-01189e834100",
+						"title": "Movin’ on without you",
+						"length": 278293
+					}
+				},
+				{
+					"position": 3,
+					"title": "In My Room",
+					"length": 259160,
+					"artist-credit": [
+						{
+							"name": "宇多田ヒカル",
+							"joinphrase": "",
+							"artist": {
+								"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+								"name": "宇多田ヒカル",
+								"sort-name": "Utada, Hikaru",
+								"country": "JP",
+								"type": "Person",
+								"disambiguation": "Japanese-American singer-songwriter"
+							}
+						}
+					],
+					"recording": {
+						"id": "eb222829-b5eb-46f2-8823-26a91986d91c",
+						"title": "In My Room",
+						"length": 259000
+					}
+				},
+				{
+					"position": 4,
+					"title": "First Love",
+					"length": 257853,
+					"artist-credit": [
+						{
+							"name": "宇多田ヒカル",
+							"joinphrase": "",
+							"artist": {
+								"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+								"name": "宇多田ヒカル",
+								"sort-name": "Utada, Hikaru",
+								"country": "JP",
+								"type": "Person",
+								"disambiguation": "Japanese-American singer-songwriter"
+							}
+						}
+					],
+					"recording": {
+						"id": "5138e6be-39b2-46bf-a306-d3b5ee983a18",
+						"title": "First Love",
+						"length": 258000
+					}
+				},
+				{
+					"position": 5,
+					"title": "甘いワナ 〜 Paint It, Black",
+					"length": 301920,
+					"artist-credit": [
+						{
+							"name": "宇多田ヒカル",
+							"joinphrase": "",
+							"artist": {
+								"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+								"name": "宇多田ヒカル",
+								"sort-name": "Utada, Hikaru",
+								"country": "JP",
+								"type": "Person",
+								"disambiguation": "Japanese-American singer-songwriter"
+							}
+						}
+					],
+					"recording": {
+						"id": "6fb988fe-4b7e-4225-8da3-7c7a3e629949",
+						"title": "甘いワナ 〜 Paint It, Black",
+						"length": 302000
+					}
+				},
+				{
+					"position": 6,
+					"title": "time will tell",
+					"length": 327760,
+					"artist-credit": [
+						{
+							"name": "宇多田ヒカル",
+							"joinphrase": "",
+							"artist": {
+								"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+								"name": "宇多田ヒカル",
+								"sort-name": "Utada, Hikaru",
+								"country": "JP",
+								"type": "Person",
+								"disambiguation": "Japanese-American singer-songwriter"
+							}
+						}
+					],
+					"recording": {
+						"id": "7de5cd2c-cb9e-40e0-bdf7-768c757b3a35",
+						"title": "time will tell",
+						"length": 327426
+					}
+				},
+				{
+					"position": 7,
+					"title": "Never Let Go",
+					"length": 237840,
+					"artist-credit": [
+						{
+							"name": "宇多田ヒカル",
+							"joinphrase": "",
+							"artist": {
+								"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+								"name": "宇多田ヒカル",
+								"sort-name": "Utada, Hikaru",
+								"country": "JP",
+								"type": "Person",
+								"disambiguation": "Japanese-American singer-songwriter"
+							}
+						}
+					],
+					"recording": {
+						"id": "5c7fd9eb-31af-4878-ad5e-97d3014f496a",
+						"title": "Never Let Go",
+						"length": 237800
+					}
+				},
+				{
+					"position": 8,
+					"title": "B&C -Album Version-",
+					"length": 260826,
+					"artist-credit": [
+						{
+							"name": "宇多田ヒカル",
+							"joinphrase": "",
+							"artist": {
+								"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+								"name": "宇多田ヒカル",
+								"sort-name": "Utada, Hikaru",
+								"country": "JP",
+								"type": "Person",
+								"disambiguation": "Japanese-American singer-songwriter"
+							}
+						}
+					],
+					"recording": {
+						"id": "836a2a6a-6a45-447c-9ac7-5203fb36be34",
+						"title": "B&C -Album Version-",
+						"length": 260826
+					}
+				},
+				{
+					"position": 9,
+					"title": "Another Chance",
+					"length": 322093,
+					"artist-credit": [
+						{
+							"name": "宇多田ヒカル",
+							"joinphrase": "",
+							"artist": {
+								"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+								"name": "宇多田ヒカル",
+								"sort-name": "Utada, Hikaru",
+								"country": "JP",
+								"type": "Person",
+								"disambiguation": "Japanese-American singer-songwriter"
+							}
+						}
+					],
+					"recording": {
+						"id": "07af0cb6-3f56-4c71-ae7b-88b0667a092f",
+						"title": "Another Chance",
+						"length": 322000
+					}
+				},
+				{
+					"position": 10,
+					"title": "Interlude",
+					"length": 17226,
+					"artist-credit": [
+						{
+							"name": "宇多田ヒカル",
+							"joinphrase": "",
+							"artist": {
+								"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+								"name": "宇多田ヒカル",
+								"sort-name": "Utada, Hikaru",
+								"country": "JP",
+								"type": "Person",
+								"disambiguation": "Japanese-American singer-songwriter"
+							}
+						}
+					],
+					"recording": {
+						"id": "8469fe74-c0b3-4cb3-a626-b31526e76f97",
+						"title": "Interlude",
+						"length": 17000
+					}
+				},
+				{
+					"position": 11,
+					"title": "Give Me A Reason",
+					"length": 387373,
+					"artist-credit": [
+						{
+							"name": "宇多田ヒカル",
+							"joinphrase": "",
+							"artist": {
+								"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+								"name": "宇多田ヒカル",
+								"sort-name": "Utada, Hikaru",
+								"country": "JP",
+								"type": "Person",
+								"disambiguation": "Japanese-American singer-songwriter"
+							}
+						}
+					],
+					"recording": {
+						"id": "b9593332-6447-4cad-b546-c1ecdccca512",
+						"title": "Give Me A Reason",
+						"length": 384826
+					}
+				},
+				{
+					"position": 12,
+					"title": "Automatic -Johnny Vicious Remix-",
+					"length": 276306,
+					"artist-credit": [
+						{
+							"name": "宇多田ヒカル",
+							"joinphrase": "",
+							"artist": {
+								"id": "b539e453-c4fe-47e3-8a07-8517eac74429",
+								"name": "宇多田ヒカル",
+								"sort-name": "Utada, Hikaru",
+								"country": "JP",
+								"type": "Person",
+								"disambiguation": "Japanese-American singer-songwriter"
+							}
+						}
+					],
+					"recording": {
+						"id": "3a7e7e76-7708-4ac6-978a-b9cfeea86489",
+						"title": "Automatic -Johnny Vicious Remix-",
+						"length": 276306
+					}
+				}
+			]
+		}
+	]
+}
