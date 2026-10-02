@@ -1,0 +1,137 @@
+[
+	{
+		"id": 207026,
+		"alternative_names": [
+			{
+				"id": 93861,
+				"comment": "Stylized title",
+				"name": "FINAL FANTASY VII"
+			},
+			{
+				"id": 93862,
+				"comment": "Alternative spelling",
+				"name": "FF7"
+			},
+			{
+				"id": 93863,
+				"comment": "Alternative spelling",
+				"name": "Final Fantasy 7 International"
+			},
+			{
+				"id": 93864,
+				"comment": "Alternative spelling",
+				"name": "Final Fantasy VII International"
+			},
+			{
+				"id": 93865,
+				"comment": "Alternative spelling",
+				"name": "Final Fantasy 7"
+			},
+			{
+				"id": 93866,
+				"comment": "Chinese title - simplified",
+				"name": "最終幻想VII"
+			},
+			{
+				"id": 93867,
+				"comment": "Acronym",
+				"name": "FFVII"
+			},
+			{
+				"id": 93869,
+				"comment": "Russian title",
+				"name": "Финальная Фантазия 7"
+			},
+			{
+				"id": 239450,
+				"comment": "Windows Executable",
+				"name": "FF7_Launcher.exe"
+			}
+		],
+		"cover": {
+			"id": 543372,
+			"image_id": "cobn9o"
+		},
+		"first_release_date": 1449273600,
+		"franchises": [
+			{
+				"id": 4,
+				"name": "Final Fantasy"
+			}
+		],
+		"genres": [
+			{
+				"id": 12,
+				"name": "Role-playing (RPG)"
+			}
+		],
+		"involved_companies": [
+			{
+				"id": 315969,
+				"company": {
+					"id": 26,
+					"name": "Square Enix"
+				},
+				"developer": false,
+				"publisher": true
+			},
+			{
+				"id": 363932,
+				"company": {
+					"id": 19281,
+					"name": "Square Enix Business Division 3"
+				},
+				"developer": true,
+				"publisher": false
+			},
+			{
+				"id": 363933,
+				"company": {
+					"id": 4501,
+					"name": "DotEmu"
+				},
+				"developer": true,
+				"publisher": false
+			}
+		],
+		"name": "Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 48,
+				"abbreviation": "PS4",
+				"name": "PlayStation 4"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 49,
+				"abbreviation": "XONE",
+				"name": "Xbox One"
+			},
+			{
+				"id": 130,
+				"abbreviation": "Switch",
+				"name": "Nintendo Switch"
+			}
+		],
+		"url": "https://www.igdb.com/games/final-fantasy-vii--6",
+		"collections": [
+			{
+				"id": 39,
+				"name": "Final Fantasy"
+			},
+			{
+				"id": 5134,
+				"name": "Compilation of Final Fantasy VII"
+			},
+			{
+				"id": 9007,
+				"name": "Final Fantasy VII"
+			}
+		],
+		"game_type": 11
+	}
+]

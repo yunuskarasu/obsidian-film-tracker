@@ -7,6 +7,9 @@ import {
 } from "./already-tracked-modal";
 import { ConfirmModal } from "./confirm-modal";
 import { FilmActions } from "./film-actions";
+import { GameActions } from "./game-actions";
+import type { GameDlc } from "./game";
+import { IgdbClient } from "./igdb";
 import { FilmNoteLayout } from "./film-note-layout";
 import { CsvFileModal } from "./import-file-modal";
 import { ImportConfirmModal, ImportProgressModal } from "./import-progress-modal";
@@ -26,9 +29,10 @@ import { LyricsCache } from "./lyrics-cache";
 import { LyricsService, lyricsQueryOf } from "./lyrics-service";
 import { isFolderNote } from "./note";
 import { MusicBrainzClient } from "./musicbrainz";
-import { canListen, canWatch, hasAnime, hasEpisodes, hasManga, type NoteKind } from "./note-kind";
+import { canListen, canWatch, hasAnime, hasEpisodes, hasManga, isGame, type NoteKind } from "./note-kind";
 import {
 	AlbumTracksModal,
+	DlcModal,
 	SoundtrackModal,
 	WorkPickerModal,
 	openAlbumSearch,
@@ -37,6 +41,7 @@ import {
 	openArtistSearch,
 	openDirectorSearch,
 	openFilmSearch,
+	openGameSearch,
 	openMangaSearch,
 	openTvSearch,
 } from "./search-modal";
@@ -48,6 +53,7 @@ import { VaultNotes, reportFailures } from "./vault-notes";
 import { soundtrackWorkOf } from "./soundtrack";
 import { WikidataClient } from "./wikidata";
 import { songNoteFor, VaultScan } from "./panels/vault-scan";
+import { trackTitleShown } from "./panels/tracklist-panel";
 
 /**
  * The plugin itself: commands, the ribbon menu, the settings tab and the note
@@ -107,6 +113,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				new ConfirmModal(this.app, request, resolve).open();
 			}),
 	});
+	private readonly games = new GameActions(this.app, this.notes, () => this.settings);
 	private readonly importer = new LetterboxdImporter(this.app, this.notes, this.films);
 	private readonly malImporter = new MalListImporter(this.app, this.notes, this.anime);
 
@@ -158,6 +165,59 @@ export default class FilmTrackerPlugin extends Plugin {
 		});
 
 		this.addCommand({
+			id: "add-game",
+			name: "Add game",
+			callback: () => this.startAddGame(),
+		});
+
+		this.addCommand({
+			id: "refresh-game-metadata",
+			name: "Refresh metadata from IGDB",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || !isGame(note.kind)) return false;
+				if (!checking) {
+					const client = this.igdb();
+					if (client !== null) void this.games.refresh(client, note.file);
+				}
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "add-dlc",
+			name: "Add DLC",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || !isGame(note.kind)) return false;
+				if (!checking) void this.startAddDlc(note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "start-playing",
+			name: "Start playing",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || !isGame(note.kind)) return false;
+				if (!checking) void this.games.startPlaying(note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "completed-today",
+			name: "Mark as completed today",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || !isGame(note.kind)) return false;
+				if (!checking) void this.games.markCompletedToday(note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
 			id: "move-album-into-folder",
 			name: "Move album into its folder",
 			checkCallback: (checking) => {
@@ -192,7 +252,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 		this.addCommand({
 			id: "link-soundtrack-to-work",
-			name: "Link album to film or series",
+			name: "Link album to a film, series or game",
 			checkCallback: (checking) => {
 				const note = this.activeNote();
 				if (note === null || note.kind.kind !== "album") return false;
@@ -345,7 +405,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			callback: () => this.startImportFromMal(),
 		});
 
-		this.addRibbonIcon("film", "Add film, TV series, anime, manga or music", (evt) => {
+		this.addRibbonIcon("film", "Add film, TV series, anime, manga, music or game", (evt) => {
 			const menu = new Menu();
 			menu.addItem((item) =>
 				item
@@ -399,6 +459,13 @@ export default class FilmTrackerPlugin extends Plugin {
 					.setIcon("mic")
 					.onClick(() => this.startAddArtist()),
 			);
+			menu.addSeparator();
+			menu.addItem((item) =>
+				item
+					.setTitle("Add game")
+					.setIcon("gamepad-2")
+					.onClick(() => this.startAddGame()),
+			);
 
 			menu.showAtMouseEvent(evt);
 		});
@@ -434,7 +501,8 @@ export default class FilmTrackerPlugin extends Plugin {
 	 */
 	private async watchedToday(file: TFile): Promise<void> {
 		const kind = this.notes.kindOf(file);
-		if (canListen(kind)) await this.music.markListenedToday(file);
+		if (isGame(kind)) await this.games.markCompletedToday(file);
+		else if (canListen(kind)) await this.music.markListenedToday(file);
 		else if (kind?.kind === "film") await this.films.markWatchedToday(file);
 		else if (kind?.kind === "tv") await this.tv.markWatchedToday(file);
 		else if (hasAnime(kind)) await this.anime.markWatchedToday(file);
@@ -467,7 +535,7 @@ export default class FilmTrackerPlugin extends Plugin {
 		}
 		if (kind.kind === "album") {
 			entries.push({ title: "Add song", icon: "music", run: () => this.startAddSong(file) });
-			entries.push({ title: "Link to film or series", icon: "clapperboard", run: () => void this.startLinkToWork(file) });
+			entries.push({ title: "Link to a film, series or game", icon: "clapperboard", run: () => void this.startLinkToWork(file) });
 			if (!isFolderNote(file.path)) {
 				entries.push({ title: "Move album into its folder", icon: "folder-input", run: () => void this.music.moveAlbumIntoFolder(file) });
 			}
@@ -478,6 +546,11 @@ export default class FilmTrackerPlugin extends Plugin {
 				icon: "image",
 				run: () => void this.music.changePhoto(this.musicbrainz(), file),
 			});
+		}
+		if (isGame(kind)) {
+			entries.push({ title: "Start playing", icon: "play", run: () => void this.games.startPlaying(file) });
+			entries.push({ title: "Mark as completed today", icon: "check", run: () => void this.games.markCompletedToday(file) });
+			entries.push({ title: "Add DLC", icon: "package-plus", run: () => void this.startAddDlc(file) });
 		}
 		if (canWatch(kind)) {
 			entries.push({ title: "Mark as watched today", icon: "check", run: () => void this.watchedToday(file) });
@@ -543,6 +616,14 @@ export default class FilmTrackerPlugin extends Plugin {
 		return new MusicBrainzClient(this.manifest.version);
 	}
 
+	/** An IGDB client, or `null` once the user has been pointed at whichever of its two values is missing. */
+	private igdb(): IgdbClient | null {
+		const clientId = this.key("igdbId", "IGDB client ID");
+		if (clientId === null) return null;
+		const secret = this.key("igdbSecret", "IGDB client secret");
+		return secret === null ? null : new IgdbClient(clientId, secret);
+	}
+
 	/** A MyAnimeList client, or `null` once the user has been pointed at the missing client ID. */
 	private mal(): MalClient | null {
 		const clientId = this.key("mal", "MyAnimeList client ID");
@@ -597,6 +678,9 @@ export default class FilmTrackerPlugin extends Plugin {
 				},
 				changePhoto: (file) => void this.music.changePhoto(this.musicbrainz(), file),
 				findSoundtrack: (file) => void this.startFindSoundtrack(file),
+				startPlaying: (file) => void this.games.startPlaying(file),
+				addDlc: (file) => void this.startAddDlc(file),
+				setDlcDone: (file, igdbId, done) => void this.games.setDlcDone(file, igdbId, done),
 			},
 		);
 		this.layout = layout;
@@ -720,6 +804,29 @@ export default class FilmTrackerPlugin extends Plugin {
 		openMangaSearch(this.app, client, (result) => void this.anime.addManga(client, result));
 	}
 
+	private startAddGame(): void {
+		const client = this.igdb();
+		if (client === null) return;
+		openGameSearch(this.app, client, (result) => void this.games.addGame(client, result));
+	}
+
+	/** "Add DLC": the game's DLCs on IGDB that its note doesn't have yet, one to pick. */
+	private async startAddDlc(file: TFile): Promise<void> {
+		const client = this.igdb();
+		if (client === null) return;
+		new Notice(`Looking for DLCs of ${file.basename}…`);
+		let choices: GameDlc[] | null = null;
+		await reportFailures("look for DLCs", async () => {
+			choices = await this.games.dlcChoices(client, file);
+		});
+		if (choices === null) return;
+		if ((choices as GameDlc[]).length === 0) {
+			new Notice(`IGDB lists no DLC for ${file.basename} that isn't on the note already.`);
+			return;
+		}
+		new DlcModal(this.app, file.basename, choices, (dlc) => void this.games.addDlc(file, dlc)).open();
+	}
+
 	private startAddArtist(): void {
 		const client = this.musicbrainz();
 		openArtistSearch(this.app, client, (result) => void this.music.addArtist(client, result));
@@ -754,7 +861,8 @@ export default class FilmTrackerPlugin extends Plugin {
 			return;
 		}
 		const client = this.musicbrainz();
-		new AlbumTracksModal(this.app, file.basename, tracks, (track) => void this.music.addSong(client, file, track, true)).open();
+		const title = this.settings.showLatinTitles ? trackTitleShown : undefined;
+		new AlbumTracksModal(this.app, file.basename, tracks, (track) => void this.music.addSong(client, file, track, true), title).open();
 	}
 
 	/**
@@ -783,11 +891,11 @@ export default class FilmTrackerPlugin extends Plugin {
 		).open();
 	}
 
-	/** "Link to film or series": one of the vault's films, TV series and anime, for this album to be the soundtrack of. */
+	/** "Link to a film, series or game": one of the vault's films, TV series, anime and games, for this album to be the soundtrack of. */
 	private async startLinkToWork(file: TFile): Promise<void> {
 		const works = await this.music.worksToLink(new WikidataClient(this.manifest.version), file);
 		if (works.length === 0) {
-			new Notice(`There is no film, TV series or anime in your vault that ${file.basename} isn't linked to already.`);
+			new Notice(`There is no film, TV series, anime or game in your vault that ${file.basename} isn't linked to already.`);
 			return;
 		}
 		new WorkPickerModal(this.app, file.basename, works, (work) => void this.music.linkAlbumToWork(file, work.file)).open();

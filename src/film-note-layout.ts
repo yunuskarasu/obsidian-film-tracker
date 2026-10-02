@@ -11,6 +11,7 @@ import { soundtrackWorkOf } from "./soundtrack";
 import { LAYOUT_CLASS, POSTER_CLASS, applyPoster, findHost } from "./panels/poster";
 import { applySeasonsPanel } from "./panels/seasons-panel";
 import { applyLyricsPanel } from "./panels/lyrics-panel";
+import { applyDlcPanel } from "./panels/dlc-panel";
 import { applySoundtrack } from "./panels/soundtrack-panel";
 import { applyTracklist } from "./panels/tracklist-panel";
 import { VaultScan } from "./panels/vault-scan";
@@ -32,6 +33,8 @@ const MANGA_HOST_CLASS = "film-tracker-has-manga";
 const SEASONS_HOST_CLASS = "film-tracker-has-seasons";
 /** And for an album's `tracks`, whose readable view is the TRACKLIST panel. */
 const TRACKS_HOST_CLASS = "film-tracker-has-tracks";
+/** And for a game's `dlcs`, whose readable view is the DLC panel. */
+const DLCS_HOST_CLASS = "film-tracker-has-dlcs";
 
 /**
  * Draws the poster beside every open note's properties and the panels under
@@ -75,6 +78,7 @@ export class FilmNoteLayout {
 			root.querySelectorAll(`.${MANGA_HOST_CLASS}`).forEach((el) => el.removeClass(MANGA_HOST_CLASS));
 			root.querySelectorAll(`.${SEASONS_HOST_CLASS}`).forEach((el) => el.removeClass(SEASONS_HOST_CLASS));
 			root.querySelectorAll(`.${TRACKS_HOST_CLASS}`).forEach((el) => el.removeClass(TRACKS_HOST_CLASS));
+			root.querySelectorAll(`.${DLCS_HOST_CLASS}`).forEach((el) => el.removeClass(DLCS_HOST_CLASS));
 		}
 	}
 
@@ -131,6 +135,7 @@ export class FilmNoteLayout {
 			host?.removeClass(MANGA_HOST_CLASS);
 			host?.removeClass(SEASONS_HOST_CLASS);
 			host?.removeClass(TRACKS_HOST_CLASS);
+			host?.removeClass(DLCS_HOST_CLASS);
 			detachPanelsExcept(anchor, []);
 			return;
 		}
@@ -140,9 +145,10 @@ export class FilmNoteLayout {
 		host?.toggleClass(MANGA_HOST_CLASS, plan.kind === "manga" || (plan.kind === "tv" && plan.manga));
 		host?.toggleClass(SEASONS_HOST_CLASS, plan.kind === "tv");
 		host?.toggleClass(TRACKS_HOST_CLASS, plan.kind === "album");
+		host?.toggleClass(DLCS_HOST_CLASS, plan.kind === "game");
 
 		const context = this.context;
-		// A film, a TV series or an anime has its SOUNDTRACK below whatever else it has.
+		// A film, a TV series, an anime or a game has its SOUNDTRACK below whatever else it has.
 		if (soundtrackWorkOf(classifyNote(frontmatter)) !== null) applySoundtrack(context, anchor, file, scan);
 		else panelOf(anchor, "soundtrack")?.detach();
 
@@ -189,6 +195,10 @@ export class FilmNoteLayout {
 			case "song":
 				detachPanelsExcept(anchor, ["main"]);
 				applyLyricsPanel(context, anchor, file);
+				return;
+			case "game":
+				detachPanelsExcept(anchor, ["main", "soundtrack"]);
+				applyDlcPanel(context, anchor, file, frontmatter ?? {});
 				return;
 		}
 	}

@@ -1,0 +1,75 @@
+[
+	{
+		"id": 415005,
+		"alternative_names": [
+			{
+				"id": 289552,
+				"comment": "Abbreviation",
+				"name": "The Witcher 3 Remastered"
+			}
+		],
+		"cover": {
+			"id": 595561,
+			"image_id": "cocrjd"
+		},
+		"first_release_date": 1790640000,
+		"franchises": [
+			{
+				"id": 452,
+				"name": "The Witcher"
+			}
+		],
+		"genres": [
+			{
+				"id": 12,
+				"name": "Role-playing (RPG)"
+			},
+			{
+				"id": 31,
+				"name": "Adventure"
+			}
+		],
+		"involved_companies": [
+			{
+				"id": 410659,
+				"company": {
+					"id": 908,
+					"name": "CD Projekt RED"
+				},
+				"developer": true,
+				"publisher": true
+			}
+		],
+		"name": "The Witcher 3: Wild Hunt Remastered",
+		"platforms": [
+			{
+				"id": 169,
+				"abbreviation": "Series X|S",
+				"name": "Xbox Series X|S"
+			},
+			{
+				"id": 508,
+				"abbreviation": "Switch 2",
+				"name": "Nintendo Switch 2"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 167,
+				"abbreviation": "PS5",
+				"name": "PlayStation 5"
+			}
+		],
+		"url": "https://www.igdb.com/games/the-witcher-3-wild-hunt-remastered",
+		"collections": [
+			{
+				"id": 62,
+				"name": "The Witcher"
+			}
+		],
+		"game_type": 9
+	}
+]

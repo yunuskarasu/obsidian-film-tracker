@@ -3,6 +3,12 @@ import { albumTracksOf, type AlbumTrackEntry } from "../music-note";
 import { ensurePanel, panelOf, redrawPanel, renderPathLink, type PanelContext } from "./kit";
 import { songNoteFor, type VaultScan } from "./vault-scan";
 
+/** A track's title in Latin letters, where its line has one (`latin`), else its own. */
+export function trackTitleShown(track: AlbumTrackEntry): string {
+	const latin: unknown = track.extra.latin;
+	return typeof latin === "string" && latin.trim() !== "" ? latin.trim() : track.title;
+}
+
 /** The heading's own summary: "12 tracks · 53 min". */
 export function tracklistSummary(count: number, runtime: unknown): string {
 	const tracks = `${count} ${count === 1 ? "track" : "tracks"}`;
@@ -29,11 +35,12 @@ export function applyTracklist(
 		return;
 	}
 
+	const latin = context.settings().showLatinTitles;
 	const songs = scan.songs();
 	const notes = tracks.map((track) => songNoteFor(songs, file.path, track));
 	const panel = ensurePanel(anchor, "main");
 	const summary = tracklistSummary(tracks.length, frontmatter.runtime);
-	if (!redrawPanel(panel, JSON.stringify(["tracklist", file.path, tracks, notes, summary]), "TRACKLIST", summary)) return;
+	if (!redrawPanel(panel, JSON.stringify(["tracklist", file.path, tracks, notes, summary, latin]), "TRACKLIST", summary)) return;
 
 	const list = panel.createDiv({ cls: "film-tracker-connections-list film-tracker-tracks" });
 	const discs = new Set(tracks.map((track) => track.disc ?? 1));
@@ -43,16 +50,24 @@ export function applyTracklist(
 			disc = track.disc;
 			list.createDiv({ cls: "film-tracker-track-disc", text: `Disc ${disc ?? 1}` });
 		}
-		renderTrack(context, list, file, track, notes[index]);
+		renderTrack(context, list, file, track, notes[index], latin);
 	});
 }
 
-function renderTrack(context: PanelContext, list: HTMLElement, file: TFile, track: AlbumTrackEntry, note: string | null): void {
+function renderTrack(
+	context: PanelContext,
+	list: HTMLElement,
+	file: TFile,
+	track: AlbumTrackEntry,
+	note: string | null,
+	latin: boolean,
+): void {
 	const row = list.createDiv({ cls: "film-tracker-track" });
 	row.createSpan({ cls: "film-tracker-track-number", text: String(track.n) });
 	const title = row.createSpan({ cls: "film-tracker-track-title" });
-	if (note === null) title.setText(track.title);
-	else renderPathLink(context.app, title, track.title, note, file.path);
+	const shown = latin ? trackTitleShown(track) : track.title;
+	if (note === null) title.setText(shown);
+	else renderPathLink(context.app, title, shown, note, file.path);
 	if (track.length !== null) row.createSpan({ cls: "film-tracker-track-length", text: track.length });
 
 	// A fixed-width slot either way, so the lengths stay in one column.

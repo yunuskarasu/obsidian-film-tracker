@@ -1,0 +1,112 @@
+[
+	{
+		"id": 7346,
+		"alternative_names": [
+			{
+				"id": 24387,
+				"comment": "Acronym",
+				"name": "TLoZ BotW"
+			},
+			{
+				"id": 51798,
+				"comment": "Acronym",
+				"name": "BotW"
+			},
+			{
+				"id": 111231,
+				"comment": "Abbreviation",
+				"name": "Breath of the Wild"
+			},
+			{
+				"id": 132653,
+				"comment": "Chinese title - traditional",
+				"name": "薩爾達傳說：曠野之息"
+			},
+			{
+				"id": 137950,
+				"comment": "Korean title - abbreviation",
+				"name": "젤다 야숨"
+			},
+			{
+				"id": 175703,
+				"comment": "Chinese title - simplified",
+				"name": "塞尔达传说 旷野之息"
+			}
+		],
+		"cover": {
+			"id": 172453,
+			"image_id": "co3p2d"
+		},
+		"first_release_date": 1488499200,
+		"franchises": [
+			{
+				"id": 596,
+				"name": "The Legend of Zelda"
+			}
+		],
+		"genres": [
+			{
+				"id": 9,
+				"name": "Puzzle"
+			},
+			{
+				"id": 31,
+				"name": "Adventure"
+			}
+		],
+		"involved_companies": [
+			{
+				"id": 200269,
+				"company": {
+					"id": 1119,
+					"name": "Monolith Soft"
+				},
+				"developer": false,
+				"publisher": false
+			},
+			{
+				"id": 200267,
+				"company": {
+					"id": 70,
+					"name": "Nintendo"
+				},
+				"developer": false,
+				"publisher": true
+			},
+			{
+				"id": 200268,
+				"company": {
+					"id": 45209,
+					"name": "Nintendo EPD Production Group No. 3"
+				},
+				"developer": true,
+				"publisher": false
+			}
+		],
+		"name": "The Legend of Zelda: Breath of the Wild",
+		"platforms": [
+			{
+				"id": 41,
+				"abbreviation": "WiiU",
+				"name": "Wii U"
+			},
+			{
+				"id": 130,
+				"abbreviation": "Switch",
+				"name": "Nintendo Switch"
+			}
+		],
+		"url": "https://www.igdb.com/games/the-legend-of-zelda-breath-of-the-wild",
+		"collections": [
+			{
+				"id": 106,
+				"name": "The Legend of Zelda"
+			},
+			{
+				"id": 8988,
+				"name": "The Legend of Zelda: Breath of the Wild"
+			}
+		],
+		"game_type": 0
+	}
+]

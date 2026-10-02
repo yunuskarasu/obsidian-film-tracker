@@ -1,12 +1,14 @@
 # Film + Anime-Manga Tracker
 
-Add films, TV series, anime and manga to your Obsidian vault as notes with metadata and a poster.
+Add films, TV series, anime, manga, music and games to your Obsidian vault as notes with metadata and a poster.
 
 Search for a film, pick it from the list, and Film + Anime-Manga Tracker creates a note containing exactly two things: a frontmatter block with the film's metadata, and the poster. Nothing else. No rating, no review section, no template. What you write in the note is up to you.
 
 TV series work the same way, also from TMDB: one note per show, with its seasons kept in the note itself and a SEASONS panel to tick them off as you watch. See [TV series](#tv-series).
 
 Albums, artists and songs work the same way too, from MusicBrainz, with no key to set up. See [Music](#music).
+
+Games come from IGDB, with where you are with each one — in your backlog, playing, completed — kept in the note. See [Games](#games).
 
 Anime and manga follow the same philosophy, sourced from MyAnimeList. The two even share a single note when they're the same series: search for either half and Film + Anime-Manga Tracker creates or merges into one **Series note**, with a separate panel below the properties for the manga side. See [Anime and manga](#anime-and-manga) for details.
 
@@ -39,7 +41,9 @@ Obsidian will notify you when a new version is available.
 
 For anime and manga, register a free app in your [MyAnimeList API config](https://myanimelist.net/apiconfig) and paste its **Client ID** into **Settings → Film + Anime-Manga Tracker → MyAnimeList client ID**. No OAuth, no redirect URI to configure — search and metadata only need the client ID.
 
-On Obsidian 1.11.4 or later, both go into Obsidian's keychain instead of the plugin's settings file: next to **TMDB API key** and **MyAnimeList client ID**, add a new secret and paste the value into it, or pick one you already have. The keychain keeps them out of the vault — and out of anything that syncs or backs it up — but it's kept per device, so on a second device you add them there once too. Keys typed into an earlier version move to the keychain on their own the first time the plugin loads. On older versions of Obsidian, the keys are typed in and saved with the other settings, as before.
+For games, register a free app in the [Twitch developer console](https://dev.twitch.tv/console/apps) — IGDB is run by Twitch — and paste its **Client ID** and **Client Secret** into **IGDB client ID** and **IGDB client secret**. See [Games](#games) for the steps.
+
+On Obsidian 1.11.4 or later, the keys go into Obsidian's keychain instead of the plugin's settings file: next to **TMDB API key** and **MyAnimeList client ID**, add a new secret and paste the value into it, or pick one you already have. The keychain keeps them out of the vault — and out of anything that syncs or backs it up — but it's kept per device, so on a second device you add them there once too. Keys typed into an earlier version move to the keychain on their own the first time the plugin loads. On older versions of Obsidian, the keys are typed in and saved with the other settings, as before.
 
 ## Tips for a smooth start
 
@@ -54,7 +58,8 @@ A handful of mistakes account for most of the confusion new users hit:
 - **Letterboxd import runs once per file.** Films already in your vault (matched by `tmdb_id`) are skipped rather than duplicated, so re-running the same export after adding more notes by hand is safe — it only fills gaps: a missing `watch_date`, and `watched` if you choose to mark the films as watched.
 - **A blank poster/photo isn't necessarily a bug.** Some TMDB entries genuinely have no image; the note is still created with full metadata either way.
 - **Anime and manga only merge into one note when you open the right note first.** There's no automatic matching — if you want a Series note with both, add one half, keep that note open in the editor, run the other **Add** command and confirm **Link to this note** (see [Anime and manga](#anime-and-manga)).
-- **Never delete or hand-edit `mal_id`, or the `manga` block's `mal_id`.** Same rule as `tmdb_id`: they're what Film + Anime-Manga Tracker uses to recognize a note and know what to refresh.
+- **Never delete or hand-edit `mal_id`, or the `manga` block's `mal_id`.** Same rule as `tmdb_id`: they're what Film + Anime-Manga Tracker uses to recognize a note and know what to refresh. The same goes for a game's `igdb_id`, and for the MusicBrainz ids of music notes.
+- **Games need IGDB's client ID and secret**, from a free Twitch app — a few minutes, once (see [Setting up IGDB](#setting-up-igdb)). Without them **Add game** points you to settings.
 
 ## Usage
 
@@ -70,6 +75,8 @@ Anime and manga work the same way too: run **Add anime** or **Add manga**, searc
 
 Music works the same way, with no key: run **Add album** or **Add artist**, search MusicBrainz, and pick. See [Music](#music).
 
+Games work the same way too: run **Add game**, search IGDB and pick. A remake, a remaster or a port says what it is beside the year. See [Games](#games).
+
 Mangaka work a little differently: open the manga or Series note whose author you want to add, then run **Add mangaka** — it reads that note's own manga metadata to find the author on MyAnimeList directly, rather than opening a search box. One credited author adds straight away; more than one shows a quick pick list. See [Anime and manga](#anime-and-manga) for the MANGAGRAPHY panel it unlocks.
 
 ### Commands
@@ -80,10 +87,13 @@ Mangaka work a little differently: open the manga or Series note whose author yo
 | **Add TV series** | Search TMDB and create the note, with a line for each season that has aired. See [TV series](#tv-series). |
 | **Add director** | Search TMDB for a person and create a director note: name, birthday, place of birth and a photo. |
 | **Add album** | Search MusicBrainz and create the album's note, with its tracks and cover. The first row of the search browses an artist's own albums instead. See [Music](#music). |
+| **Add game** | Search IGDB and create the game's note, with its cover. Needs the IGDB client ID and secret. See [Games](#games). |
+| **Start playing** / **Mark as completed today** | Set the game you have open playing, or complete it: the date the first time, one more in `completed_count` every time. Only appear on game notes; also on the note's right-click menu, and the second as a button under the cover. |
+| **Refresh metadata from IGDB** | Re-fetch the game and rewrite only what IGDB knows. Only appears on game notes. |
 | **Add artist** | Search MusicBrainz and create the artist's note, with a credited photo. Creates none of their albums. |
 | **Move album into its folder** | Moves the album note you have open — one from before album folder notes — into a folder of its own name, beside the songs added from it. Every link to it follows. Only appears on an album note that isn't in its own folder yet. |
-| **Find soundtrack** | Lists the albums that may be the soundtrack of the film, TV series or anime you have open — Wikidata's first, then MusicBrainz's soundtracks under each of its titles — and links the one you pick. Only appears on film, TV and anime notes. Also a **Find soundtrack…** button on the SOUNDTRACK panel, and an entry on the note's right-click menu. See [Soundtracks](#soundtracks). |
-| **Link album to film or series** | Links the album you have open to one of the films, TV series and anime in your vault, as its soundtrack. Only appears on album notes. Also **Link to film or series** on the note's right-click menu. |
+| **Find soundtrack** | Lists the albums that may be the soundtrack of the film, TV series, anime or game you have open — Wikidata's first, then MusicBrainz's soundtracks under each of its titles — and links the one you pick. Only appears on film, TV, anime and game notes. Also a **Find soundtrack…** button on the SOUNDTRACK panel, and an entry on the note's right-click menu. See [Soundtracks](#soundtracks). |
+| **Link album to a film, series or game** | Links the album you have open to one of the films, TV series, anime and games in your vault, as its soundtrack. Only appears on album notes. Also **Link to a film, series or game** on the note's right-click menu. |
 | **Add song from this album** | Pick one of the tracks of the album you have open and create that song's note. Only appears on album notes, and only lists tracks without a note yet. Also a **+** beside each track on the TRACKLIST panel, and **Add song** on the note's right-click menu. |
 | **Change artist photo** | Shows every photo on offer for the artist you have open — Deezer's, and those Wikimedia Commons files under the artist — side by side, with a picture from your vault or from a web address as two more ways. The one you pick becomes the note's. The old photo is only deleted if you say so, and only offered when no other note uses it. Only appears on artist notes. Also a **Change photo** button under the photo, and an entry on the note's right-click menu. |
 | **Add anime** | Search MyAnimeList and create a Series note — or, after asking, link into the manga-only note open in the editor. |
@@ -236,7 +246,7 @@ The first time you add a film, open the note's properties, click the type icon n
 
 ## Settings
 
-The settings are on five pages — 🔑 API keys, 🎬 Films, 📺 TV series, 🌸 Anime & manga and 🎵 Music — each opened from the plugin's settings tab. The API keys entry says which keys are set without being opened. To find a setting without knowing its page, type in the search box above Obsidian's settings: it looks through every page. On Obsidian before 1.13, the same pages follow one another on a single page.
+The settings are on six pages — 🔑 API keys, 🎬 Films, 📺 TV series, 🌸 Anime & manga, 🎵 Music and 🎮 Games — each opened from the plugin's settings tab. The API keys entry says which keys are set without being opened. To find a setting without knowing its page, type in the search box above Obsidian's settings: it looks through every page. On Obsidian before 1.13, the same pages follow one another on a single page.
 
 | Setting | Default | What it does |
 | --- | --- | --- |
@@ -279,19 +289,26 @@ The settings are on five pages — 🔑 API keys, 🎬 Films, 📺 TV series, �
 | Show tracklist | on | Below an album's properties, list its tracks, each linking its song's note or with a **+** to create one. |
 | Show discography | on | Below an artist's properties, list their albums in your vault, with a button to add another. |
 | Show lyrics | on | Below a song's properties, show its lyrics from LRCLIB. Off, nothing is ever sent to LRCLIB. |
-| Show scores | on | Below an artist's discography, list the films, TV series and anime in your vault they scored. Only shown when there is one. |
-| Show soundtracks | on | Below a film's, a TV series' or an anime's properties, list the albums linked as its soundtrack, with a button to find another. |
+| Show scores | on | Below an artist's discography, list the films, TV series, anime and games in your vault they scored. Only shown when there is one. |
+| Game folder | `Games` | Where new game notes are created. |
+| Game cover folder | *(empty)* | Where game covers are saved. Empty follows your attachment folder setting. |
+| Link developers | off | Write a game's developers and publishers as links when a note by that name exists. |
+| Platforms to list | 10 | How many of a game's platforms its note lists. 0 leaves `platforms` out. |
+| Short platform names | on | PS4 and Switch rather than PlayStation 4 and Nintendo Switch. |
+| Show DLCs | on | Below a game's properties, list the DLCs added to it, with a button to add another. |
+| Only my platforms | off | List only the platforms you play on — **My platforms**, separated by commas — in your order. |
+| Show soundtracks | on | Below a film's, a TV series', an anime's or a game's properties, list the albums linked as its soundtrack, with a button to find another. |
 
 On Obsidian 1.13 or later these settings appear in Obsidian's own settings search, and each folder setting suggests the folders in your vault as you type. On earlier versions the plugin draws the same settings itself, with the same folder suggestions.
 
 ## Behaviour worth knowing
 
-- **Duplicates.** If a film or director with the same `tmdb_id` already exists anywhere in your vault, Film + Anime-Manga Tracker opens it instead of creating a second one. It never overwrites a note you have written in.
+- **Duplicates.** If a film or director with the same `tmdb_id` already exists anywhere in your vault, Film + Anime-Manga Tracker opens it instead of creating a second one. It never overwrites a note you have written in. Games are matched the same way by `igdb_id`, albums, artists and songs by their MusicBrainz ids.
 - **How notes are recognized.** By their properties, never by their folder. A film's and a director's TMDB ids can be the same number, so they're told apart by what each note holds: a director note has `name`, a film has `directors`. That's what keeps a refresh from ever writing a film's data into a director note (or an anime's into a mangaka note), whatever your folder settings are.
 - **Missing posters.** If TMDB has no poster or photo, or the download fails, the note is still created with its metadata. The image is never worth losing the note over.
 - **File names.** Film notes are named `English Title (Year).md`; director notes are named after the person. Characters that are illegal in file names or that break wikilinks are removed, so `Face/Off` becomes `Face Off (1997)`. A title that already ends in its year — MyAnimeList writes remakes as `Hunter x Hunter (2011)` — keeps it once.
 - **Same-named works.** When another of the plugin's notes already has the name a new note would get (two films with one title and year, a light novel and its manga), the new note takes the next free name: a manga-only note tries its title with the year added, and past that a number is added (`Home (2015) 2.md`). A note of your own under that name is never written beside — the plugin opens it and leaves both alone.
-- **Layout.** In a note that has a `tmdb_id` or `mal_id` and a poster, the title and properties sit in a left column with the poster beside them, in both live preview and reading view. The poster is drawn from the `poster` property rather than embedded in the body, so the body stays empty and entirely yours. Narrow windows and mobile stack it vertically. To change the poster size, override `--film-tracker-poster-width` in a CSS snippet.
+- **Layout.** In a note the plugin wrote — a film, a series, an anime, an album, a game… — that has a poster, the title and properties sit in a left column with the poster beside them, in both live preview and reading view. The poster is drawn from the `poster` property rather than embedded in the body, so the body stays empty and entirely yours. Narrow windows and mobile stack it vertically. To change the poster size, override `--film-tracker-poster-width` in a CSS snippet.
 - **Poster links.** Posters and photos are always linked as `[[wikilinks]]`, even with Obsidian's **Use [[Wikilinks]]** setting turned off, since that's the link a property understands. Posters an earlier version wrote as Markdown links still show.
 - **Anime duplicates.** Same rule as film duplicates, matched by `mal_id` anywhere in your vault.
 - **Manga duplicates.** Matched by the manga side's own MAL id, wherever it's currently stored (a fresh note, or nested inside an existing Series note next to an anime side). This only stops a second *note of its own*: the same manga — or the same anime — can be linked into as many Series notes as it has adaptations (see [Adaptations](#adaptations)).
@@ -475,6 +492,14 @@ tracks:
 - `tracks` holds one line per track, with `disc` on an album of more than one. Under the properties, the TRACKLIST panel is the readable view of it. A key you add to a track's line is kept.
 - The cover comes from the album's own page on Deezer, found through the links MusicBrainz keeps — the edition with the album's own number of tracks, not a deluxe one. An album Deezer doesn't have (many soundtracks, older records) gets its cover from the [Cover Art Archive](https://coverartarchive.org) instead, and failing that from Deezer's search, but only for an album whose title and artist match exactly. No cover is better than the wrong one.
 
+### Titles in other scripts
+
+An album titled in another script — 千と千尋の神隠し サウンドトラック — also gets its title in Latin letters when MusicBrainz has one, at no extra cost: romaji first ("Sen to Chihiro no Kamikakushi"), then English ("Spirited Away Soundtrack"). Every form of it goes in the new note's `aliases`, so a search in any of them finds it, and each track's line gets its own as `latin`, when a release in Latin letters has the same tracks.
+
+- **Show titles in Latin letters** (Music → Titles in other scripts) shows those titles on the TRACKLIST, DISCOGRAPHY and SOUNDTRACK panels and in **Add song**. The notes stay as they are.
+- **Name new notes in Latin letters** names new album and song notes by them, and titles them so; their own title is kept in `original_title` and `aliases`. Lyrics are still looked up by the song's own title.
+- Both are off by default. An album note already in your vault is never renamed, and a refresh adds nothing to it. Search results are shown as MusicBrainz lists them: it keeps no Latin titles there.
+
 ### Song notes
 
 A song lives with its album. Each album is a folder of its own, its note inside under the same name, and the songs you add from it go beside it. This works on its own — the album's note is simply the first file in its folder. With the [Folder Notes](https://github.com/LostPaul/obsidian-folder-notes) plugin, the note is tucked away and clicking the album's folder opens it:
@@ -521,7 +546,7 @@ Under a song's properties, the LYRICS panel shows its lyrics from [LRCLIB](https
 
 ### Soundtracks
 
-An album can be the soundtrack of a film, a TV series or an anime in your vault. The link is kept on the album's note alone, in `soundtrack_of`, and the work's own note is never written for it:
+An album can be the soundtrack of a film, a TV series, an anime or a game in your vault. The link is kept on the album's note alone, in `soundtrack_of`, and the work's own note is never written for it:
 
 ```yaml
 ---
@@ -535,10 +560,11 @@ soundtrack_of:
 ---
 ```
 
-- Under a film's, a TV series' or an anime's properties, the SOUNDTRACK panel lists the albums that link it, with how many you have listened to.
+- Under a film's, a TV series', an anime's or a game's properties, the SOUNDTRACK panel lists the albums that link it, with how many you have listened to.
 - **Find soundtrack…** lists what may be its soundtrack. [Wikidata](https://www.wikidata.org) comes first: it knows the soundtracks of a fair share of films and anime — not all — and what it knows is right. Then MusicBrainz's soundtracks under each of the work's titles, its original one included: a Japanese soundtrack is filed under 進撃の巨人, not under "Attack on Titan". An album from before the work is left out, and one by a composer the note names comes first. Nothing is linked until you pick it. An album already in your vault gets the link; one that isn't is added with it.
 - The last row, **Search MusicBrainz for another album…**, is the plain album search, for a soundtrack the list doesn't have.
-- From the album's side, **Link to film or series** lists the films, TV series and anime in your vault, the ones Wikidata names as its works first.
+- From the album's side, **Link to a film, series or game** lists the films, TV series, anime and games in your vault, the ones Wikidata names as its works first.
+- Wikidata knows a game by the end of its IGDB address — `hollow-knight` — which it reads from the note's `url`; that is all it is sent.
 - An album can be the soundtrack of more than one: a compilation, or a film you have both as a film and as an anime. To take a link away, remove it from `soundtrack_of` in the album's properties.
 - A film's own note is never changed — its SOUNDTRACK panel is worked out from the albums every time.
 
@@ -573,15 +599,69 @@ mb_artist_id: 44c64a30-1d58-49c5-b314-6e02fba49526
 - The photo is the artist's own press photo from their page on Deezer, found through the link MusicBrainz keeps — so it is the right artist, never a namesake. For an artist without one, it comes from [Wikimedia Commons](https://commons.wikimedia.org), whose photos mostly ask to be credited: `photo_credit` says where the photo came from, and for Commons who took it and its licence (`citykane · CC BY 2.0`).
 - Don't like it? **Change photo**, under the photo, shows every photo on offer side by side — Deezer's, and up to eight from the artist's category on Commons, each with whom it credits — and the one you pick replaces it. **Choose from your vault…** links a picture you already have, as it is; **From a web address…** downloads the picture at an address you paste and credits the site. The old photo is kept unless you say otherwise.
 - Under the properties, DISCOGRAPHY lists the artist's albums already in your vault, matched on every name in the note, with how many you have listened to.
-- Under it, SCORES lists the films, TV series and anime in your vault the artist scored, with how many you have watched: a film whose `composers` names them (with **Add composers** on), and every work an album of theirs is linked to as its [soundtrack](#soundtracks) — the only way an anime or a TV series can say who scored it. An artist who scored nothing in your vault has no SCORES panel.
+- Under it, SCORES lists the films, TV series, anime and games in your vault the artist scored, with how many you have watched: a film whose `composers` names them (with **Add composers** on), and every work an album of theirs is linked to as its [soundtrack](#soundtracks) — the only way an anime, a TV series or a game can say who scored it. An artist who scored nothing in your vault has no SCORES panel.
 
 ### Being a good guest
 
 Wikidata is asked only when you look for a soundtrack, and is sent only the work's TMDB or MyAnimeList id, or the album's MusicBrainz id.
 
+IGDB is asked only for the games you search for, add and refresh. Your client secret only ever goes to Twitch, for the access token.
+
 LRCLIB is asked only for a song's lyrics, and is sent only the song's title, artist, album and length — nothing about you. The plugin carries no lyrics of its own: it fetches the ones you open, from LRCLIB, and **Show lyrics** turned off stops every request to it.
 
 MusicBrainz is run by a non-profit and asks every app for two things: at most one request a second, and a name it can reach the app's author by. The plugin does both — it waits its turn between requests and introduces itself as `FilmTracker/<version> ( https://github.com/yunuskarasu/obsidian-film-tracker )` — nothing about you. That is why adding an album takes a few seconds: it is several requests at MusicBrainz's pace.
+
+## Games
+
+**Add game** searches [IGDB](https://www.igdb.com), the games database run by Twitch, and writes the game's note and cover:
+
+```yaml
+---
+title: Hollow Knight
+aliases:
+  - Hollow Knight
+year: 2017
+platforms:
+  - PC
+  - Switch
+developers:
+  - Team Cherry
+publishers:
+  - Team Cherry
+genres:
+  - Platform
+  - Adventure
+series:
+  - Hollow Knight
+poster: "[[Hollow Knight (2017).jpg]]"
+url: https://www.igdb.com/games/hollow-knight
+igdb_id: 14593
+play_status: playing
+played_on: Switch
+completed:
+completed_count: 0
+hours: 12
+---
+```
+
+- The search lists games that stand on their own: a main game, a remake, a remaster, an expanded edition, a port, a standalone expansion — each says what it is beside its year. A DLC, a bundle, a mod or an update never shows. A game titled exactly as you searched comes first, then the best known, so Final Fantasy VII itself is above its ports.
+- `aliases` holds the game's title and its Japanese titles (ペルソナ５ タクティカ), so a search in either finds the note.
+- `play_status` (backlog, playing, completed, abandoned), `played_on`, `completed`, `completed_count` and `hours` are yours. **Start playing** sets the game playing; **Mark as completed today** — also a button under the cover — completes it, writes the date the first time and counts one more completion every time. A refresh never touches them.
+- **Refresh metadata from IGDB** rewrites what IGDB knows. Your aliases, a name you made a link, the cover once there is one, your own properties and the body stay as they are.
+- **Link developers** (🎮 Games settings) writes developers and publishers as links when a note by that name exists.
+- Under the properties, the **DLC** panel lists the DLCs and expansions added to the game, each with a checkbox: ticked, it's done and dated that day. **Add DLC…** — also a command and on the note's right-click menu — lists the game's own DLCs and expansions on IGDB that the note doesn't have yet. None is ever added on its own, and a refresh leaves them as they are. They're kept in the note's `dlcs`, one line each: `{ title: Hearts of Stone, year: 2015, igdb_id: 12345, done: true, completed: 2026-10-02 }`.
+- A game can come out on a dozen platforms. **Platforms** (🎮 Games settings) decides how many the note lists (0 leaves `platforms` out), in short names or full, and — with **Only my platforms** — only the ones you play on: `PC, PS5, Switch`. A refresh lists them by the settings of the day.
+
+### Setting up IGDB
+
+IGDB is reached with a Twitch app's client ID and secret. It takes a few minutes, once:
+
+1. Sign in to the [Twitch developer console](https://dev.twitch.tv/console/apps). Twitch asks for two-factor authentication on the account before it lets you register an app.
+2. **Register Your Application**: any name, OAuth redirect URL `http://localhost`, category *Application Integration*, client type *Confidential*.
+3. Open the app, copy its **Client ID**, press **New Secret** and copy the **Client Secret** — Twitch shows it only once.
+4. Paste them into **🔑 API keys → IGDB client ID** and **IGDB client secret**.
+
+The plugin trades them for an access token itself, keeps the token in memory only, and asks for a new one whenever it runs out — about every two months. You never have to do anything about it, unless you make a new secret on Twitch: then paste that one in.
 
 ## Anime and manga
 
@@ -669,10 +749,14 @@ npm run dev   # esbuild watch
 npm run build # typecheck + production bundle
 ```
 
+The IGDB tests replay answers saved in `tests/fixtures/igdb`. To save them afresh, set `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` in a terminal and run `npx vitest run --config vitest.record.config.mts` there. Only the games' data is written — never a key, a secret or a token.
+
 ## Attribution
 
 This product uses the TMDB API but is not endorsed or certified by TMDB.
 
 Anime and manga metadata and posters come from the [MyAnimeList API](https://myanimelist.net/apiconfig/references/api/v2).
+
+Game data and covers come from [IGDB.com](https://www.igdb.com).
 
 Music metadata comes from [MusicBrainz](https://musicbrainz.org), and lyrics from [LRCLIB](https://lrclib.net). Which album is which work's soundtrack comes from [Wikidata](https://www.wikidata.org). Album covers come from [Deezer](https://www.deezer.com) or the [Cover Art Archive](https://coverartarchive.org), and artist photos from Deezer or [Wikimedia Commons](https://commons.wikimedia.org), each credited in the note's own `photo_credit`.

@@ -1,0 +1,17 @@
+{
+	"entities": {
+		"Q29300592": {
+			"claims": {
+				"P5794": [
+					{
+						"mainsnak": {
+							"datavalue": {
+								"value": "hollow-knight"
+							}
+						}
+					}
+				]
+			}
+		}
+	}
+}

@@ -1,0 +1,115 @@
+[
+	{
+		"id": 9927,
+		"alternative_names": [
+			{
+				"id": 24453,
+				"comment": "Acronym",
+				"name": "P5"
+			},
+			{
+				"id": 156641,
+				"comment": "Alternative title",
+				"name": "Shin Megami Tensei: Persona 5"
+			},
+			{
+				"id": 156606,
+				"comment": "Chinese title - traditional",
+				"name": "女神異聞錄5"
+			},
+			{
+				"id": 156607,
+				"comment": "Chinese title - simplified",
+				"name": "女神异闻录5"
+			}
+		],
+		"cover": {
+			"id": 81906,
+			"image_id": "co1r76"
+		},
+		"first_release_date": 1473897600,
+		"franchises": [
+			{
+				"id": 592,
+				"name": "Megami Tensei"
+			},
+			{
+				"id": 552,
+				"name": "Persona"
+			}
+		],
+		"genres": [
+			{
+				"id": 12,
+				"name": "Role-playing (RPG)"
+			},
+			{
+				"id": 31,
+				"name": "Adventure"
+			}
+		],
+		"involved_companies": [
+			{
+				"id": 35624,
+				"company": {
+					"id": 9969,
+					"name": "P Studio"
+				},
+				"developer": true,
+				"publisher": false
+			},
+			{
+				"id": 35623,
+				"company": {
+					"id": 2488,
+					"name": "Atlus USA"
+				},
+				"developer": false,
+				"publisher": true
+			},
+			{
+				"id": 37286,
+				"company": {
+					"id": 423,
+					"name": "Deep Silver"
+				},
+				"developer": false,
+				"publisher": true
+			},
+			{
+				"id": 369001,
+				"company": {
+					"id": 818,
+					"name": "Atlus"
+				},
+				"developer": false,
+				"publisher": true
+			}
+		],
+		"name": "Persona 5",
+		"platforms": [
+			{
+				"id": 9,
+				"abbreviation": "PS3",
+				"name": "PlayStation 3"
+			},
+			{
+				"id": 48,
+				"abbreviation": "PS4",
+				"name": "PlayStation 4"
+			}
+		],
+		"url": "https://www.igdb.com/games/persona-5",
+		"collections": [
+			{
+				"id": 552,
+				"name": "Persona"
+			},
+			{
+				"id": 9216,
+				"name": "Persona 5"
+			}
+		],
+		"game_type": 0
+	}
+]

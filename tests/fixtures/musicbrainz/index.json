@@ -103,5 +103,11 @@
 	"https://musicbrainz.org/ws/2/release-group?query=releasegroup%3A%22Attack%20on%20Titan%22%20AND%20secondarytype%3Asoundtrack&limit=25&fmt=json": "102-soundtrack-search-shingeki.json",
 	"https://musicbrainz.org/ws/2/release-group?query=releasegroup%3A%22%E9%80%B2%E6%92%83%E3%81%AE%E5%B7%A8%E4%BA%BA%22%20AND%20secondarytype%3Asoundtrack&limit=25&fmt=json": "103-soundtrack-search-shingeki.json",
 	"https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP436%3D4513c7b9-854e-457f-81d6-3dbeb001beb8&srlimit=10&format=json": "104-wikidata-album-interstellar.json",
-	"https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP406%3DQ18552823&srlimit=10&format=json": "105-wikidata-release-of-interstellar.json"
+	"https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP406%3DQ18552823&srlimit=10&format=json": "105-wikidata-release-of-interstellar.json",
+	"https://musicbrainz.org/ws/2/release/9fe92739-5bcd-4f6e-b2f2-d2db97cabc32?inc=recordings&fmt=json": "106-release-spirited-away-romaji.json",
+	"https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP5794%3Dhollow-knight&srlimit=10&format=json": "107-wikidata-work-hollow-knight.json",
+	"https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q29300592&props=claims&format=json": "108-wikidata-entities-hollow-knight.json",
+	"https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP9899%3DQ29300592&srlimit=10&format=json": "109-wikidata-created-for-hollow-knight.json",
+	"https://musicbrainz.org/ws/2/release-group?query=releasegroup%3A%22Hollow%20Knight%22%20AND%20secondarytype%3Asoundtrack&limit=25&fmt=json": "110-soundtrack-search-hollow-knight.json",
+	"https://www.wikidata.org/w/api.php?action=query&list=search&srsearch=haswbstatement%3AP436%3D9df7cf82-6ea3-4021-829f-f2192977ac8d&srlimit=10&format=json": "111-wikidata-album-hollow-knight.json"
 }

@@ -39,7 +39,8 @@ export type NoteKind =
 	| { kind: "tv"; tmdbTvId: number; mangaMalId: number | null }
 	| { kind: "artist"; mbArtistId: string }
 	| { kind: "album"; mbAlbumId: string }
-	| { kind: "song"; mbRecordingId: string };
+	| { kind: "song"; mbRecordingId: string }
+	| { kind: "game"; igdbId: number };
 
 type Frontmatter = Record<string, unknown> | undefined;
 
@@ -75,8 +76,14 @@ export function classifyNote(frontmatter: Frontmatter): NoteKind | null {
 	const mangaMalId = mangaMalIdFrom(frontmatter);
 	const tmdbTvId = tmdbTvIdFrom(frontmatter);
 	if (malId === null && tmdbTvId !== null) return { kind: "tv", tmdbTvId, mangaMalId };
-	if (malId === null && mangaMalId === null) return musicKindOf(frontmatter);
+	if (malId === null && mangaMalId === null) return gameKindOf(frontmatter) ?? musicKindOf(frontmatter);
 	return { kind: "series", animeMalId: malId, mangaMalId };
+}
+
+/** A game note: IGDB's id, a number — no other note of the plugin's has `igdb_id`. */
+function gameKindOf(frontmatter: Record<string, unknown>): NoteKind | null {
+	const id: unknown = frontmatter.igdb_id;
+	return typeof id === "number" && Number.isInteger(id) ? { kind: "game", igdbId: id } : null;
 }
 
 /** A MusicBrainz id as the note keeps it: text, never blank. */
@@ -111,7 +118,8 @@ export type NoteRef =
 	| { kind: "tv"; tmdbTvId: number }
 	| { kind: "artist"; mbArtistId: string }
 	| { kind: "album"; mbAlbumId: string }
-	| { kind: "song"; mbRecordingId: string };
+	| { kind: "song"; mbRecordingId: string }
+	| { kind: "game"; igdbId: number };
 
 /**
  * Whether `note` is the one `ref` names. The kind has to match as well as the
@@ -147,6 +155,8 @@ export function matchesRef(note: NoteKind | null, ref: NoteRef): boolean {
 			return note.kind === "album" && note.mbAlbumId === ref.mbAlbumId;
 		case "song":
 			return note.kind === "song" && note.mbRecordingId === ref.mbRecordingId;
+		case "game":
+			return note.kind === "game" && note.igdbId === ref.igdbId;
 	}
 }
 
@@ -192,6 +202,11 @@ export function canWatch(kind: NoteKind | null): boolean {
 /** The notes episodes are counted on: a TV series, or a Series note's anime side. */
 export function hasEpisodes(kind: NoteKind | null): boolean {
 	return kind?.kind === "tv" || hasAnime(kind);
+}
+
+/** The notes a game's own commands apply to: "Start playing" and "Mark as completed today". */
+export function isGame(kind: NoteKind | null): kind is { kind: "game"; igdbId: number } {
+	return kind?.kind === "game";
 }
 
 /** The notes "Mark as listened today" applies to: an album. */

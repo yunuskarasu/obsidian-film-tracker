@@ -1,0 +1,48 @@
+[
+	{
+		"id": 372563,
+		"alternative_names": [
+			{
+				"id": 192699,
+				"comment": "Alternative title",
+				"name": "Hollow Knight Silksong Demake"
+			}
+		],
+		"cover": {
+			"id": 498069,
+			"image_id": "coaob9"
+		},
+		"first_release_date": 1627430400,
+		"genres": [
+			{
+				"id": 8,
+				"name": "Platform"
+			},
+			{
+				"id": 31,
+				"name": "Adventure"
+			}
+		],
+		"involved_companies": [
+			{
+				"id": 352674,
+				"company": {
+					"id": 53411,
+					"name": "Elvies"
+				},
+				"developer": true,
+				"publisher": true
+			}
+		],
+		"name": "Hollow Knight Silksong",
+		"platforms": [
+			{
+				"id": 22,
+				"abbreviation": "GBC",
+				"name": "Game Boy Color"
+			}
+		],
+		"url": "https://www.igdb.com/games/hollow-knight-silksong--2",
+		"game_type": 0
+	}
+]

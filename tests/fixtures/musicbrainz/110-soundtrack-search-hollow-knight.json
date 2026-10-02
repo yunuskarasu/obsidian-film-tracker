@@ -1,0 +1,124 @@
+{
+	"release-groups": [
+		{
+			"id": "9df7cf82-6ea3-4021-829f-f2192977ac8d",
+			"title": "Hollow Knight",
+			"score": 100,
+			"first-release-date": "2017-02-10",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Christopher Larkin",
+					"artist": {
+						"id": "38e0beaf-c6ea-4561-808c-ba4a84b66341",
+						"name": "Christopher Larkin",
+						"sort-name": "Larkin, Christopher"
+					}
+				}
+			]
+		},
+		{
+			"id": "ffc63f5b-2b45-4fee-904f-a9ff48f59d71",
+			"title": "Hollow Knight Piano Collection",
+			"score": 80,
+			"first-release-date": "2025-08-29",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Kara Comparetto",
+					"artist": {
+						"id": "0f3ea83e-2ba1-4bf5-83db-44cc1a11c16d",
+						"name": "Kara Comparetto",
+						"sort-name": "Comparetto, Kara"
+					}
+				}
+			]
+		},
+		{
+			"id": "91a79b91-a98c-447c-a7b9-c40e731d8d8d",
+			"title": "Hollow Knight: Hidden Dreams",
+			"score": 80,
+			"first-release-date": "2017-08-03",
+			"primary-type": "EP",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Christopher Larkin",
+					"artist": {
+						"id": "38e0beaf-c6ea-4561-808c-ba4a84b66341",
+						"name": "Christopher Larkin",
+						"sort-name": "Larkin, Christopher"
+					}
+				}
+			]
+		},
+		{
+			"id": "b1c402a5-2595-4276-a668-ce7001f7193a",
+			"title": "Hollow Knight: Gods & Nightmares",
+			"score": 73,
+			"first-release-date": "2018-08-09",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Christopher Larkin",
+					"artist": {
+						"id": "38e0beaf-c6ea-4561-808c-ba4a84b66341",
+						"name": "Christopher Larkin",
+						"sort-name": "Larkin, Christopher"
+					}
+				}
+			]
+		},
+		{
+			"id": "cb338578-6398-4ab1-8730-0bbe7c976d65",
+			"title": "Hollow Knight: Silksong (OST Sample)",
+			"score": 73,
+			"first-release-date": "2019-12-13",
+			"primary-type": "EP",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Christopher Larkin",
+					"artist": {
+						"id": "38e0beaf-c6ea-4561-808c-ba4a84b66341",
+						"name": "Christopher Larkin",
+						"sort-name": "Larkin, Christopher"
+					}
+				}
+			]
+		},
+		{
+			"id": "d34d8658-6603-449e-b691-a982ccc79116",
+			"title": "Hollow Knight: Silksong (Original Soundtrack)",
+			"score": 73,
+			"first-release-date": "2025-09-04",
+			"primary-type": "Album",
+			"secondary-types": [
+				"Soundtrack"
+			],
+			"artist-credit": [
+				{
+					"name": "Christopher Larkin",
+					"artist": {
+						"id": "38e0beaf-c6ea-4561-808c-ba4a84b66341",
+						"name": "Christopher Larkin",
+						"sort-name": "Larkin, Christopher"
+					}
+				}
+			]
+		}
+	]
+}

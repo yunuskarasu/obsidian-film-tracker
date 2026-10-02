@@ -1,0 +1,135 @@
+[
+	{
+		"id": 114283,
+		"alternative_names": [
+			{
+				"id": 24390,
+				"comment": "Acronym",
+				"name": "P5R"
+			},
+			{
+				"id": 56060,
+				"comment": "Japanese title - romanization",
+				"name": "Persona 5 The Royal"
+			},
+			{
+				"id": 154579,
+				"comment": "Chinese title - simplified",
+				"name": "女神异闻录5 皇家版"
+			},
+			{
+				"id": 156605,
+				"comment": "Chinese title - traditional",
+				"name": "女神異聞錄5 皇家版"
+			},
+			{
+				"id": 183545,
+				"comment": "Windows Executable",
+				"name": "P5R.exe"
+			}
+		],
+		"cover": {
+			"id": 587629,
+			"image_id": "coclf1"
+		},
+		"first_release_date": 1572480000,
+		"franchises": [
+			{
+				"id": 592,
+				"name": "Megami Tensei"
+			},
+			{
+				"id": 538,
+				"name": "Shin Megami Tensei"
+			},
+			{
+				"id": 552,
+				"name": "Persona"
+			}
+		],
+		"genres": [
+			{
+				"id": 12,
+				"name": "Role-playing (RPG)"
+			},
+			{
+				"id": 31,
+				"name": "Adventure"
+			}
+		],
+		"involved_companies": [
+			{
+				"id": 267324,
+				"company": {
+					"id": 9969,
+					"name": "P Studio"
+				},
+				"developer": true,
+				"publisher": false
+			},
+			{
+				"id": 369002,
+				"company": {
+					"id": 112,
+					"name": "Sega"
+				},
+				"developer": false,
+				"publisher": true
+			},
+			{
+				"id": 369003,
+				"company": {
+					"id": 818,
+					"name": "Atlus"
+				},
+				"developer": false,
+				"publisher": true
+			}
+		],
+		"name": "Persona 5 Royal",
+		"platforms": [
+			{
+				"id": 169,
+				"abbreviation": "Series X|S",
+				"name": "Xbox Series X|S"
+			},
+			{
+				"id": 48,
+				"abbreviation": "PS4",
+				"name": "PlayStation 4"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 167,
+				"abbreviation": "PS5",
+				"name": "PlayStation 5"
+			},
+			{
+				"id": 49,
+				"abbreviation": "XONE",
+				"name": "Xbox One"
+			},
+			{
+				"id": 130,
+				"abbreviation": "Switch",
+				"name": "Nintendo Switch"
+			}
+		],
+		"url": "https://www.igdb.com/games/persona-5-royal",
+		"collections": [
+			{
+				"id": 552,
+				"name": "Persona"
+			},
+			{
+				"id": 9216,
+				"name": "Persona 5"
+			}
+		],
+		"game_type": 10
+	}
+]

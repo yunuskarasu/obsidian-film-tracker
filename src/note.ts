@@ -318,7 +318,7 @@ export function buildNoteContent(
 	return `${buildFrontmatter(film, link, links)}\n`;
 }
 
-interface FrontmatterDoc {
+export interface FrontmatterDoc {
 	/**
 	 * Whatever comes before the first key — a comment, a blank line — kept
 	 * as it is and written back first.
@@ -394,6 +394,34 @@ export function serializeFrontmatterBlocks(doc: FrontmatterDoc): string {
 	}
 	lines.push("---");
 	return `${lines.join(doc.eol)}${doc.eol}${doc.body}`;
+}
+
+/**
+ * Where a key the note doesn't have yet goes: right after the nearest field
+ * before it in `fieldOrder` that the note has, or else right before the
+ * nearest one after it — never at the end past the user's own properties.
+ * A key the note already has stays exactly where it is.
+ */
+export function setOrderedKey(doc: FrontmatterDoc, fieldOrder: readonly string[], key: string, lines: string[]): void {
+	doc.blocks.set(key, lines);
+	if (doc.order.includes(key)) return;
+
+	const canonical = fieldOrder.indexOf(key);
+	for (let before = canonical - 1; before >= 0; before -= 1) {
+		const at = doc.order.indexOf(fieldOrder[before]);
+		if (at !== -1) {
+			doc.order.splice(at + 1, 0, key);
+			return;
+		}
+	}
+	for (let after = canonical + 1; after < fieldOrder.length; after += 1) {
+		const at = doc.order.indexOf(fieldOrder[after]);
+		if (at !== -1) {
+			doc.order.splice(at, 0, key);
+			return;
+		}
+	}
+	doc.order.push(key);
 }
 
 export function isEmptyValue(block: string[] | undefined): boolean {

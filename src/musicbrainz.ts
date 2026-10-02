@@ -3,6 +3,9 @@ import {
 	artistNoteName,
 	deezerAlbumIdsOf,
 	formatLength,
+	latinReleasesOf,
+	latinTracksOf,
+	sameTracklist,
 	matchKey,
 	needsAliases,
 	photoCredit,
@@ -18,6 +21,7 @@ import {
 	type AlbumMetadata,
 	type AlbumSearchResult,
 	type AlbumSong,
+	type LatinNames,
 	type ArtistMetadata,
 	type ArtistSearchResult,
 	type MbArtist,
@@ -221,13 +225,30 @@ export class MusicBrainzClient {
 	 * more for each artist credited in a script other than Latin letters,
 	 * whose note name has to come from their aliases.
 	 */
-	async getAlbum(id: string): Promise<AlbumMetadata> {
+	async getAlbum(id: string, withLatin = false): Promise<AlbumMetadata> {
 		const group = await this.mb<MbReleaseGroup>(`release-group/${id}?inc=artist-credits+genres+url-rels`);
 		const releases = await this.mb<{ releases?: MbRelease[] }>(`release?release-group=${id}&inc=media+url-rels&limit=100`);
 		const edition = pickEdition(releases.releases ?? [], group["first-release-date"]);
 		const release = edition === null ? null : await this.mb<MbRelease>(`release/${edition.id}?inc=recordings`);
 		const artists = await this.creditNames(group["artist-credit"]);
-		return toAlbumMetadata(group, release, artists, deezerAlbumIdsOf(releases.releases ?? []));
+		const album = toAlbumMetadata(group, release, artists, deezerAlbumIdsOf(releases.releases ?? []));
+		if (withLatin) album.latin = await this.latinNames(album, releases.releases ?? [], edition);
+		return album;
+	}
+
+	/**
+	 * A new album's title and tracks in Latin letters, when its title is in
+	 * another script: the title comes with the releases already read, and
+	 * the tracks cost one request more — from the first Latin release whose
+	 * discs line up with the edition's.
+	 */
+	private async latinNames(album: AlbumMetadata, releases: MbRelease[], edition: MbRelease | null): Promise<LatinNames | undefined> {
+		const latin = latinReleasesOf(album.title, releases);
+		if (latin.length === 0) return undefined;
+		const titles = latin.map((release) => release.title?.trim() ?? "");
+		const source = edition === null ? undefined : latin.find((release) => sameTracklist(release, edition));
+		const full = source === undefined ? null : await this.mb<MbRelease>(`release/${source.id}?inc=recordings`);
+		return { titles, tracks: latinTracksOf(full, album.tracks) };
 	}
 
 	/**

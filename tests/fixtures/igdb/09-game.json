@@ -1,0 +1,199 @@
+[
+	{
+		"id": 1942,
+		"alternative_names": [
+			{
+				"id": 173745,
+				"comment": "Alternative title",
+				"name": "Witcher III"
+			},
+			{
+				"id": 2427,
+				"comment": "Russian Title",
+				"name": "Ведьмак 3: Дикая охота"
+			},
+			{
+				"id": 2495,
+				"comment": "Polish title",
+				"name": "Wiedźmin 3: Dziki Gon"
+			},
+			{
+				"id": 71879,
+				"comment": "Chinese title - simplified",
+				"name": "巫师3：狂猎"
+			},
+			{
+				"id": 51941,
+				"comment": "Alternative spelling",
+				"name": "The Witcher III: Wild Hunt"
+			},
+			{
+				"id": 74560,
+				"comment": "Alternative title",
+				"name": "Witcher 3"
+			},
+			{
+				"id": 74561,
+				"comment": "Acronym",
+				"name": "TW3"
+			},
+			{
+				"id": 121895,
+				"comment": "Chinese title - traditional",
+				"name": "巫師3：狂獵"
+			},
+			{
+				"id": 179756,
+				"comment": "Windows Executable",
+				"name": "redprelauncher.exe"
+			},
+			{
+				"id": 256031,
+				"comment": "Czech title",
+				"name": "Zaklínač 3: Divoký hon"
+			},
+			{
+				"id": 276816,
+				"comment": "Alternative title",
+				"name": "Вещерът 3 - Дивият лов"
+			},
+			{
+				"id": 282455,
+				"comment": "Japanese title - stylized",
+				"name": "ウィッチャー３　ワイルドハント"
+			},
+			{
+				"id": 276919,
+				"comment": "Alternative title",
+				"name": "Вещерът 3: Дивият лов"
+			}
+		],
+		"cover": {
+			"id": 480513,
+			"image_id": "coaarl"
+		},
+		"first_release_date": 1431993600,
+		"franchises": [
+			{
+				"id": 452,
+				"name": "The Witcher"
+			}
+		],
+		"genres": [
+			{
+				"id": 12,
+				"name": "Role-playing (RPG)"
+			},
+			{
+				"id": 31,
+				"name": "Adventure"
+			}
+		],
+		"involved_companies": [
+			{
+				"id": 17436,
+				"company": {
+					"id": 50,
+					"name": "WB Games"
+				},
+				"developer": false,
+				"publisher": true
+			},
+			{
+				"id": 17769,
+				"company": {
+					"id": 3119,
+					"name": "cdp.pl"
+				},
+				"developer": false,
+				"publisher": true
+			},
+			{
+				"id": 17771,
+				"company": {
+					"id": 1217,
+					"name": "Spike Chunsoft"
+				},
+				"developer": false,
+				"publisher": true
+			},
+			{
+				"id": 17768,
+				"company": {
+					"id": 248,
+					"name": "Bandai Namco Entertainment"
+				},
+				"developer": false,
+				"publisher": true
+			},
+			{
+				"id": 42142,
+				"company": {
+					"id": 908,
+					"name": "CD Projekt RED"
+				},
+				"developer": true,
+				"publisher": false
+			},
+			{
+				"id": 64293,
+				"company": {
+					"id": 5696,
+					"name": "D3T Limited"
+				},
+				"developer": false,
+				"publisher": false
+			},
+			{
+				"id": 196544,
+				"company": {
+					"id": 946,
+					"name": "Saber Interactive"
+				},
+				"developer": false,
+				"publisher": false
+			}
+		],
+		"name": "The Witcher 3: Wild Hunt",
+		"platforms": [
+			{
+				"id": 169,
+				"abbreviation": "Series X|S",
+				"name": "Xbox Series X|S"
+			},
+			{
+				"id": 48,
+				"abbreviation": "PS4",
+				"name": "PlayStation 4"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 167,
+				"abbreviation": "PS5",
+				"name": "PlayStation 5"
+			},
+			{
+				"id": 49,
+				"abbreviation": "XONE",
+				"name": "Xbox One"
+			},
+			{
+				"id": 130,
+				"abbreviation": "Switch",
+				"name": "Nintendo Switch"
+			}
+		],
+		"url": "https://www.igdb.com/games/the-witcher-3-wild-hunt",
+		"collections": [
+			{
+				"id": 62,
+				"name": "The Witcher"
+			}
+		],
+		"game_type": 0
+	}
+]

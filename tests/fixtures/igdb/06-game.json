@@ -1,0 +1,108 @@
+[
+	{
+		"id": 14593,
+		"alternative_names": [
+			{
+				"id": 169043,
+				"comment": "Alternative title",
+				"name": "Hollow Knight: Voidheart Edition"
+			},
+			{
+				"id": 182108,
+				"comment": "Windows Executable",
+				"name": "hollow_knight.exe"
+			}
+		],
+		"cover": {
+			"id": 533941,
+			"image_id": "cobfzp"
+		},
+		"first_release_date": 1487894400,
+		"genres": [
+			{
+				"id": 8,
+				"name": "Platform"
+			},
+			{
+				"id": 31,
+				"name": "Adventure"
+			},
+			{
+				"id": 32,
+				"name": "Indie"
+			}
+		],
+		"involved_companies": [
+			{
+				"id": 228860,
+				"company": {
+					"id": 7263,
+					"name": "Team Cherry"
+				},
+				"developer": true,
+				"publisher": true
+			}
+		],
+		"name": "Hollow Knight",
+		"platforms": [
+			{
+				"id": 169,
+				"abbreviation": "Series X|S",
+				"name": "Xbox Series X|S"
+			},
+			{
+				"id": 48,
+				"abbreviation": "PS4",
+				"name": "PlayStation 4"
+			},
+			{
+				"id": 3,
+				"abbreviation": "Linux",
+				"name": "Linux"
+			},
+			{
+				"id": 508,
+				"abbreviation": "Switch 2",
+				"name": "Nintendo Switch 2"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 167,
+				"abbreviation": "PS5",
+				"name": "PlayStation 5"
+			},
+			{
+				"id": 14,
+				"abbreviation": "Mac",
+				"name": "Mac"
+			},
+			{
+				"id": 41,
+				"abbreviation": "WiiU",
+				"name": "Wii U"
+			},
+			{
+				"id": 49,
+				"abbreviation": "XONE",
+				"name": "Xbox One"
+			},
+			{
+				"id": 130,
+				"abbreviation": "Switch",
+				"name": "Nintendo Switch"
+			}
+		],
+		"url": "https://www.igdb.com/games/hollow-knight",
+		"collections": [
+			{
+				"id": 5702,
+				"name": "Hollow Knight"
+			}
+		],
+		"game_type": 0
+	}
+]

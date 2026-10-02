@@ -99,9 +99,15 @@ export class LyricsService {
  * length, and every name its artists go by — the note's, then, from each
  * artist's own note where there is one, their name in their own script.
  */
+function ownTitle(frontmatter: Record<string, unknown>): unknown {
+	const original: unknown = frontmatter.original_title;
+	return typeof original === "string" && original.trim() !== "" ? original : frontmatter.title;
+}
+
 export function lyricsQueryOf(app: App, file: TFile): LyricsQuery {
 	const frontmatter = app.metadataCache.getFileCache(file)?.frontmatter ?? {};
-	const title: unknown = frontmatter.title;
+	// A note titled in Latin letters keeps its own title — the one LRCLIB knows — in original_title.
+	const title: unknown = ownTitle(frontmatter);
 	const credited = extractNames(frontmatter.artists);
 
 	const others: string[] = [];
@@ -116,7 +122,7 @@ export function lyricsQueryOf(app: App, file: TFile): LyricsQuery {
 
 	const albumPath = parseLinkTarget(frontmatter.album);
 	const albumNote = albumPath === null ? null : app.metadataCache.getFirstLinkpathDest(albumPath, file.path);
-	const albumTitle: unknown = albumNote === null ? undefined : app.metadataCache.getFileCache(albumNote)?.frontmatter?.title;
+	const albumTitle: unknown = albumNote === null ? undefined : ownTitle(app.metadataCache.getFileCache(albumNote)?.frontmatter ?? {});
 
 	return {
 		title: typeof title === "string" && title.trim() !== "" ? title.trim() : file.basename,

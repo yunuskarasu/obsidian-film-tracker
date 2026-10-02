@@ -1,0 +1,379 @@
+[
+	{
+		"id": 207026,
+		"first_release_date": 1449273600,
+		"name": "Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 48,
+				"abbreviation": "PS4",
+				"name": "PlayStation 4"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 49,
+				"abbreviation": "XONE",
+				"name": "Xbox One"
+			},
+			{
+				"id": 130,
+				"abbreviation": "Switch",
+				"name": "Nintendo Switch"
+			}
+		],
+		"total_rating_count": 42,
+		"game_type": 11
+	},
+	{
+		"id": 207028,
+		"first_release_date": 1439942400,
+		"name": "Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 34,
+				"abbreviation": "Android",
+				"name": "Android"
+			},
+			{
+				"id": 39,
+				"abbreviation": "iOS",
+				"name": "iOS"
+			}
+		],
+		"game_type": 11
+	},
+	{
+		"id": 207021,
+		"first_release_date": 898646400,
+		"name": "Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			}
+		],
+		"total_rating_count": 18,
+		"game_type": 11
+	},
+	{
+		"id": 393025,
+		"first_release_date": 854668800,
+		"name": "Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 7,
+				"abbreviation": "PS1",
+				"name": "PlayStation"
+			}
+		],
+		"total_rating_count": 9,
+		"game_type": 0
+	},
+	{
+		"id": 427,
+		"first_release_date": 873590400,
+		"name": "Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 9,
+				"abbreviation": "PS3",
+				"name": "PlayStation 3"
+			},
+			{
+				"id": 7,
+				"abbreviation": "PS1",
+				"name": "PlayStation"
+			},
+			{
+				"id": 38,
+				"abbreviation": "PSP",
+				"name": "PlayStation Portable"
+			}
+		],
+		"total_rating_count": 1634,
+		"game_type": 10
+	},
+	{
+		"id": 2406,
+		"first_release_date": 1135987200,
+		"name": "Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 99,
+				"abbreviation": "famicom",
+				"name": "Family Computer"
+			}
+		],
+		"game_type": 0
+	},
+	{
+		"id": 350141,
+		"name": "Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 4,
+				"abbreviation": "N64",
+				"name": "Nintendo 64"
+			},
+			{
+				"id": 416,
+				"abbreviation": "64DD",
+				"name": "64DD"
+			}
+		],
+		"game_type": 0
+	},
+	{
+		"id": 381337,
+		"name": "Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 58,
+				"abbreviation": "SFAM",
+				"name": "Super Famicom"
+			}
+		],
+		"game_type": 0
+	},
+	{
+		"id": 392808,
+		"first_release_date": 1344902400,
+		"name": "Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			}
+		],
+		"game_type": 11
+	},
+	{
+		"id": 133236,
+		"first_release_date": 1709164800,
+		"name": "Final Fantasy VII Rebirth",
+		"platforms": [
+			{
+				"id": 169,
+				"abbreviation": "Series X|S",
+				"name": "Xbox Series X|S"
+			},
+			{
+				"id": 508,
+				"abbreviation": "Switch 2",
+				"name": "Nintendo Switch 2"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 167,
+				"abbreviation": "PS5",
+				"name": "PlayStation 5"
+			}
+		],
+		"total_rating_count": 166,
+		"game_type": 8
+	},
+	{
+		"id": 394328,
+		"name": "Final Fantasy VII: Regenesis",
+		"platforms": [
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			}
+		],
+		"game_type": 0
+	},
+	{
+		"id": 146620,
+		"first_release_date": 875750400,
+		"name": "Final Fantasy VII International",
+		"platforms": [
+			{
+				"id": 9,
+				"abbreviation": "PS3",
+				"name": "PlayStation 3"
+			},
+			{
+				"id": 7,
+				"abbreviation": "PS1",
+				"name": "PlayStation"
+			},
+			{
+				"id": 38,
+				"abbreviation": "PSP",
+				"name": "PlayStation Portable"
+			}
+		],
+		"total_rating_count": 5,
+		"game_type": 11
+	},
+	{
+		"id": 11169,
+		"first_release_date": 1586476800,
+		"name": "Final Fantasy VII Remake",
+		"platforms": [
+			{
+				"id": 169,
+				"abbreviation": "Series X|S",
+				"name": "Xbox Series X|S"
+			},
+			{
+				"id": 48,
+				"abbreviation": "PS4",
+				"name": "PlayStation 4"
+			},
+			{
+				"id": 508,
+				"abbreviation": "Switch 2",
+				"name": "Nintendo Switch 2"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 167,
+				"abbreviation": "PS5",
+				"name": "PlayStation 5"
+			}
+		],
+		"total_rating_count": 509,
+		"game_type": 8
+	},
+	{
+		"id": 404721,
+		"first_release_date": 1807142400,
+		"name": "Final Fantasy VII Revelation",
+		"platforms": [
+			{
+				"id": 169,
+				"abbreviation": "Series X|S",
+				"name": "Xbox Series X|S"
+			},
+			{
+				"id": 508,
+				"abbreviation": "Switch 2",
+				"name": "Nintendo Switch 2"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 167,
+				"abbreviation": "PS5",
+				"name": "PlayStation 5"
+			}
+		],
+		"game_type": 8
+	},
+	{
+		"id": 144040,
+		"first_release_date": 1694044800,
+		"name": "Final Fantasy VII: Ever Crisis",
+		"platforms": [
+			{
+				"id": 34,
+				"abbreviation": "Android",
+				"name": "Android"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 39,
+				"abbreviation": "iOS",
+				"name": "iOS"
+			}
+		],
+		"total_rating_count": 19,
+		"game_type": 0
+	},
+	{
+		"id": 80033,
+		"first_release_date": 1095984000,
+		"name": "Before Crisis: Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 55,
+				"abbreviation": "Mobile",
+				"name": "Legacy Mobile Device"
+			}
+		],
+		"game_type": 0
+	},
+	{
+		"id": 7398,
+		"first_release_date": 1414627200,
+		"name": "Final Fantasy VII G-Bike",
+		"platforms": [
+			{
+				"id": 34,
+				"abbreviation": "Android",
+				"name": "Android"
+			},
+			{
+				"id": 39,
+				"abbreviation": "iOS",
+				"name": "iOS"
+			}
+		],
+		"game_type": 0
+	},
+	{
+		"id": 2407,
+		"first_release_date": 1189641600,
+		"name": "Crisis Core: Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 38,
+				"abbreviation": "PSP",
+				"name": "PlayStation Portable"
+			}
+		],
+		"total_rating_count": 176,
+		"game_type": 0
+	},
+	{
+		"id": 18068,
+		"first_release_date": 1138233600,
+		"name": "Dirge of Cerberus: Final Fantasy VII",
+		"platforms": [
+			{
+				"id": 8,
+				"abbreviation": "PS2",
+				"name": "PlayStation 2"
+			}
+		],
+		"total_rating_count": 51,
+		"game_type": 0
+	},
+	{
+		"id": 233846,
+		"first_release_date": 1439424000,
+		"name": "Final Fantasy VII: Re-Imagined",
+		"platforms": [
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			}
+		],
+		"game_type": 0
+	}
+]

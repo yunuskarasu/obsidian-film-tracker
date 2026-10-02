@@ -1,0 +1,35 @@
+[
+	{
+		"id": 7346,
+		"first_release_date": 1488499200,
+		"name": "The Legend of Zelda: Breath of the Wild",
+		"platforms": [
+			{
+				"id": 41,
+				"abbreviation": "WiiU",
+				"name": "Wii U"
+			},
+			{
+				"id": 130,
+				"abbreviation": "Switch",
+				"name": "Nintendo Switch"
+			}
+		],
+		"total_rating_count": 3008,
+		"game_type": 0
+	},
+	{
+		"id": 338072,
+		"first_release_date": 1749081600,
+		"name": "The Legend of Zelda: Breath of the Wild - Nintendo Switch 2 Edition",
+		"platforms": [
+			{
+				"id": 508,
+				"abbreviation": "Switch 2",
+				"name": "Nintendo Switch 2"
+			}
+		],
+		"total_rating_count": 11,
+		"game_type": 10
+	}
+]

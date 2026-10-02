@@ -1,0 +1,139 @@
+[
+	{
+		"id": 117731,
+		"alternative_names": [
+			{
+				"id": 24392,
+				"comment": "Acronym",
+				"name": "P5S"
+			},
+			{
+				"id": 55567,
+				"comment": "Alternative spelling",
+				"name": "Persona® 5 Strikers"
+			},
+			{
+				"id": 55568,
+				"comment": "Japanese title - translated",
+				"name": "Persona 5 Scramble: The Phantom Strikers"
+			},
+			{
+				"id": 108538,
+				"comment": "Japanese title - stylized",
+				"name": "ペルソナ５スクランブル ザ ファントムストライカーズ"
+			},
+			{
+				"id": 156577,
+				"comment": "Chinese title - traditional",
+				"name": "女神異聞錄5 亂戰：魅影攻手"
+			},
+			{
+				"id": 156578,
+				"comment": "Chinese title - simplified",
+				"name": "女神异闻录5 乱战：魅影攻手"
+			},
+			{
+				"id": 199479,
+				"comment": "Windows Executable",
+				"name": "game.exe"
+			}
+		],
+		"cover": {
+			"id": 139562,
+			"image_id": "co2zoq"
+		},
+		"first_release_date": 1582156800,
+		"franchises": [
+			{
+				"id": 592,
+				"name": "Megami Tensei"
+			},
+			{
+				"id": 552,
+				"name": "Persona"
+			}
+		],
+		"genres": [
+			{
+				"id": 12,
+				"name": "Role-playing (RPG)"
+			},
+			{
+				"id": 25,
+				"name": "Hack and slash/Beat 'em up"
+			},
+			{
+				"id": 31,
+				"name": "Adventure"
+			}
+		],
+		"involved_companies": [
+			{
+				"id": 239277,
+				"company": {
+					"id": 112,
+					"name": "Sega"
+				},
+				"developer": false,
+				"publisher": true
+			},
+			{
+				"id": 368996,
+				"company": {
+					"id": 1394,
+					"name": "Omega Force"
+				},
+				"developer": true,
+				"publisher": false
+			},
+			{
+				"id": 368997,
+				"company": {
+					"id": 9969,
+					"name": "P Studio"
+				},
+				"developer": true,
+				"publisher": false
+			},
+			{
+				"id": 368998,
+				"company": {
+					"id": 818,
+					"name": "Atlus"
+				},
+				"developer": false,
+				"publisher": true
+			}
+		],
+		"name": "Persona 5 Strikers",
+		"platforms": [
+			{
+				"id": 48,
+				"abbreviation": "PS4",
+				"name": "PlayStation 4"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 130,
+				"abbreviation": "Switch",
+				"name": "Nintendo Switch"
+			}
+		],
+		"url": "https://www.igdb.com/games/persona-5-strikers",
+		"collections": [
+			{
+				"id": 552,
+				"name": "Persona"
+			},
+			{
+				"id": 9216,
+				"name": "Persona 5"
+			}
+		],
+		"game_type": 0
+	}
+]

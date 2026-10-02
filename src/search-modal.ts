@@ -18,6 +18,35 @@ import {
 	type TmdbClient,
 } from "./tmdb";
 import type { TvSearchResult } from "./tmdb-tv";
+import type { GameDlc, GameSearchResult } from "./game";
+import { IgdbError, type IgdbClient } from "./igdb";
+
+/** How many of a game's platforms a search row names before "…". */
+const SHOWN_PLATFORMS = 3;
+
+function platformsText(platforms: string[]): string | null {
+	if (platforms.length === 0) return null;
+	const shown = platforms.slice(0, SHOWN_PLATFORMS).join(", ");
+	return platforms.length > SHOWN_PLATFORMS ? `${shown}…` : shown;
+}
+
+/**
+ * The game search. A remake, a remaster or a port is a game of its own and
+ * says what it is beside the year; a DLC, a bundle or a mod never shows.
+ */
+export function openGameSearch(app: App, client: IgdbClient, onPick: (game: GameSearchResult) => void): void {
+	new ApiSearchModal(
+		app,
+		{
+			placeholder: "Search for a game…",
+			emptyText: "No games found.",
+			search: (query) => client.search(query),
+			render: (game, el) => renderRow(el, game.title, source("IGDB", game.type, yearText(game.year), platformsText(game.platforms))),
+			service: "IGDB",
+		},
+		onPick,
+	).open();
+}
 
 const DEBOUNCE_MS = 300;
 const MUSICBRAINZ_DEBOUNCE_MS = 600;
@@ -35,7 +64,7 @@ interface SearchSource<T> {
 	search: (query: string, isLatest: () => boolean) => Promise<T[]>;
 	render: (item: T, el: HTMLElement) => void;
 	/** Named in the message for a failure that isn't the API's own error. */
-	service: "TMDB" | "MyAnimeList" | "MusicBrainz";
+	service: "TMDB" | "MyAnimeList" | "MusicBrainz" | "IGDB";
 	/**
 	 * How long typing has to stop before a search goes out. MusicBrainz takes
 	 * one request a second, so its searches wait longer than the others.
@@ -89,7 +118,7 @@ class ApiSearchModal<T> extends SuggestModal<T> {
 	}
 
 	private reportOnce(error: unknown): void {
-		const known = error instanceof TmdbError || error instanceof MalError || error instanceof MusicBrainzError;
+		const known = error instanceof TmdbError || error instanceof MalError || error instanceof MusicBrainzError || error instanceof IgdbError;
 		const message = known ? error.message : `${this.source.service} search failed.`;
 		if (!known) console.error("Film + Anime-Manga Tracker: search failed", error);
 		if (message === this.lastErrorShown) return;
@@ -125,7 +154,7 @@ function yearText(year: number | null): string | null {
  * exists in both is a real choice, and hiding which is which would only make
  * it harder.
  */
-function source(name: "TMDB" | "MAL" | "MusicBrainz", ...rest: (string | null)[]): (string | null)[] {
+function source(name: "TMDB" | "MAL" | "MusicBrainz" | "IGDB", ...rest: (string | null)[]): (string | null)[] {
 	return [name, ...rest];
 }
 
@@ -350,9 +379,18 @@ export class AlbumTracksModal extends FuzzySuggestModal<AlbumTrackEntry> {
 	private readonly onPick: (track: AlbumTrackEntry) => void;
 	private readonly discs: boolean;
 
-	constructor(app: App, albumName: string, tracks: AlbumTrackEntry[], onPick: (track: AlbumTrackEntry) => void) {
+	private readonly title: (track: AlbumTrackEntry) => string;
+
+	constructor(
+		app: App,
+		albumName: string,
+		tracks: AlbumTrackEntry[],
+		onPick: (track: AlbumTrackEntry) => void,
+		title: (track: AlbumTrackEntry) => string = (track) => track.title,
+	) {
 		super(app);
 		this.tracks = tracks;
+		this.title = title;
 		this.onPick = onPick;
 		this.discs = new Set(tracks.map((track) => track.disc ?? 1)).size > 1;
 		this.setPlaceholder(`A song from ${albumName} — type to filter…`);
@@ -364,17 +402,47 @@ export class AlbumTracksModal extends FuzzySuggestModal<AlbumTrackEntry> {
 	}
 
 	getItemText(track: AlbumTrackEntry): string {
-		return track.title;
+		return this.title(track);
 	}
 
 	renderSuggestion(match: FuzzyMatch<AlbumTrackEntry>, el: HTMLElement): void {
 		const { disc, n, length } = match.item;
 		const position = this.discs ? `Disc ${disc ?? 1} · ${n}` : String(n);
-		renderRow(el, match.item.title, [position, length]);
+		renderRow(el, this.title(match.item), [position, length]);
 	}
 
 	onChooseItem(track: AlbumTrackEntry): void {
 		this.onPick(track);
+	}
+}
+
+/** "Add DLC…": a game's DLCs and expansions that its note doesn't have yet, filtered as you type. */
+export class DlcModal extends FuzzySuggestModal<GameDlc> {
+	private readonly dlcs: GameDlc[];
+	private readonly onPick: (dlc: GameDlc) => void;
+
+	constructor(app: App, gameName: string, dlcs: GameDlc[], onPick: (dlc: GameDlc) => void) {
+		super(app);
+		this.dlcs = dlcs;
+		this.onPick = onPick;
+		this.setPlaceholder(`A DLC of ${gameName} — type to filter…`);
+		this.emptyStateText = "No DLCs match.";
+	}
+
+	getItems(): GameDlc[] {
+		return this.dlcs;
+	}
+
+	getItemText(dlc: GameDlc): string {
+		return dlc.title;
+	}
+
+	renderSuggestion(match: FuzzyMatch<GameDlc>, el: HTMLElement): void {
+		renderRow(el, match.item.title, source("IGDB", match.item.type, yearText(match.item.year)));
+	}
+
+	onChooseItem(dlc: GameDlc): void {
+		this.onPick(dlc);
 	}
 }
 
@@ -444,10 +512,10 @@ export class SoundtrackModal extends FuzzySuggestModal<SoundtrackRow> {
 	}
 }
 
-const WORK_KIND_LABEL: Record<WorkNote["work"]["kind"], string> = { film: "Film", tv: "TV series", anime: "Anime" };
+const WORK_KIND_LABEL: Record<WorkNote["work"]["kind"], string> = { film: "Film", tv: "TV series", anime: "Anime", game: "Game" };
 
 /**
- * "Link to film or series…" on an album: the film, TV series and anime
+ * "Link to a film, series or game…" on an album: the film, TV series, anime and game
  * notes in the vault, filtered as you type — the ones Wikidata names as the
  * album's works first.
  */
@@ -460,7 +528,7 @@ export class WorkPickerModal extends FuzzySuggestModal<WorkNote> {
 		this.works = works;
 		this.onPick = onPick;
 		this.setPlaceholder(`What ${albumName} is the soundtrack of — type to filter…`);
-		this.emptyStateText = "No films, TV series or anime match.";
+		this.emptyStateText = "No films, TV series, anime or games match.";
 	}
 
 	getItems(): WorkNote[] {

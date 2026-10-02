@@ -19,17 +19,20 @@ export function keychainOf(app: App): Keychain | null {
 	return works && keychain !== undefined ? keychain : null;
 }
 
-export type ApiKey = "tmdb" | "mal";
+export type ApiKey = "tmdb" | "mal" | "igdbId" | "igdbSecret";
 
 /**
  * Where each key sits in the settings: typed in (`plain`, which ends up in
  * data.json), or as the name of the keychain secret that holds it. `id` is
  * the name the plugin gives a secret when it moves a typed-in key there.
  */
-const FIELDS = {
+export const KEY_FIELDS = {
 	tmdb: { plain: "apiKey", secretName: "apiKeySecretName", id: "film-tracker-tmdb-api-key" },
 	mal: { plain: "malClientId", secretName: "malClientIdSecretName", id: "film-tracker-mal-client-id" },
+	igdbId: { plain: "igdbClientId", secretName: "igdbClientIdSecretName", id: "film-tracker-igdb-client-id" },
+	igdbSecret: { plain: "igdbClientSecret", secretName: "igdbClientSecretSecretName", id: "film-tracker-igdb-client-secret" },
 } as const;
+const FIELDS = KEY_FIELDS;
 
 /**
  * The key itself: the keychain's secret when this device has it, otherwise

@@ -12,6 +12,8 @@ const ID_PROPERTY: Record<SoundtrackWork["kind"], string> = {
 	film: "P4947",
 	tv: "P4983",
 	anime: "P4086",
+	// IGDB's slug, "hollow-knight", rather than its number.
+	game: "P5794",
 };
 /** A work's "soundtrack release" — the album item. */
 const SOUNDTRACK_RELEASE = "P406";
@@ -48,7 +50,9 @@ export class WikidataClient {
 	 * the film — so both are read.
 	 */
 	async soundtrackAlbumIds(work: SoundtrackWork): Promise<string[]> {
-		const works = await this.search(`haswbstatement:${ID_PROPERTY[work.kind]}=${workId(work)}`);
+		const id = workId(work);
+		if (id === null) return [];
+		const works = await this.search(`haswbstatement:${ID_PROPERTY[work.kind]}=${id}`);
 		if (works.length === 0) return [];
 
 		const albums = values(await this.entities(works), SOUNDTRACK_RELEASE);
@@ -77,6 +81,7 @@ export class WikidataClient {
 		for (const id of values(entities, ID_PROPERTY.film).map(Number).filter(Number.isInteger)) works.push({ kind: "film", tmdbId: id });
 		for (const id of values(entities, ID_PROPERTY.tv).map(Number).filter(Number.isInteger)) works.push({ kind: "tv", tmdbTvId: id });
 		for (const id of values(entities, ID_PROPERTY.anime).map(Number).filter(Number.isInteger)) works.push({ kind: "anime", malId: id });
+		for (const slug of values(entities, ID_PROPERTY.game)) works.push({ kind: "game", igdbId: null, slug });
 		return works;
 	}
 
@@ -107,8 +112,12 @@ export class WikidataClient {
 	}
 }
 
-function workId(work: SoundtrackWork): number {
-	return work.kind === "film" ? work.tmdbId : work.kind === "tv" ? work.tmdbTvId : work.malId;
+/** The id Wikidata knows a work by; `null` for a game whose note has no IGDB address to take its slug from. */
+function workId(work: SoundtrackWork): number | string | null {
+	if (work.kind === "film") return work.tmdbId;
+	if (work.kind === "tv") return work.tmdbTvId;
+	if (work.kind === "anime") return work.malId;
+	return work.slug;
 }
 
 /**

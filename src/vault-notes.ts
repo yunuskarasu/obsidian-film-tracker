@@ -11,6 +11,7 @@ import {
 	type PathOccupant,
 } from "./note";
 import { classifyNote, matchesRef, type NoteKind, type NoteRef } from "./note-kind";
+import { IgdbError } from "./igdb";
 import { TmdbError } from "./tmdb";
 
 /** A note's top-level `poster`: a film's or an anime's, or a person's photo. */
@@ -40,7 +41,7 @@ export async function reportFailures(what: string, action: () => Promise<void>):
 	try {
 		await action();
 	} catch (error) {
-		if (error instanceof TmdbError || error instanceof MalError || error instanceof MusicBrainzError) {
+		if (error instanceof TmdbError || error instanceof MalError || error instanceof MusicBrainzError || error instanceof IgdbError) {
 			new Notice(error.message);
 			return;
 		}
@@ -190,8 +191,19 @@ export class VaultNotes {
 		return this.posterFile(note, (frontmatter) => frontmatter.poster);
 	}
 
-	/** A `[[link]]` to a note, as short as the vault allows: a song's to its album. */
+	/**
+	 * A `[[link]]` to a note, as short as the vault allows: a song's to its
+	 * album. Obsidian makes it longer where another note has the same name —
+	 * but it can't know of a note that is only about to be written at
+	 * `sourcePath`: one of that same name would take a short link for itself
+	 * (an album "Hollow Knight (2017)" linking the game "Hollow Knight
+	 * (2017)"), so the link then names the note's whole path.
+	 */
 	noteLink(note: TFile, sourcePath: string): string {
+		const sameName = noteName(sourcePath).toLowerCase() === note.basename.toLowerCase() && sourcePath !== note.path;
+		if (sameName && this.app.vault.getAbstractFileByPath(sourcePath) === null) {
+			return `[[${note.path.replace(/\.md$/, "")}]]`;
+		}
 		return `[[${this.app.metadataCache.fileToLinktext(note, sourcePath, true)}]]`;
 	}
 

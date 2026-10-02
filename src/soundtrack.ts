@@ -4,32 +4,53 @@ import type { NoteKind } from "./note-kind";
 import { extractNames } from "./panels/panel-plan";
 
 /*
- * Soundtracks: which album notes are the music of which film, TV series or
- * anime. The link lives on the album note alone, as `soundtrack_of`, so a
+ * Soundtracks: which album notes are the music of which film, TV series,
+ * anime or game. The link lives on the album note alone, as `soundtrack_of`, so a
  * film's own note is never written; its SOUNDTRACK panel is worked out from
  * the albums that point at it. Pure functions only — the lookups are in
  * wikidata.ts and musicbrainz.ts.
  */
 
-/** A film, a TV series or an anime, by the id its note is known by — what a soundtrack can be the music of. */
+/**
+ * A film, a TV series, an anime or a game, by the id its note is known by —
+ * what a soundtrack can be the music of. Wikidata knows a game by IGDB's
+ * `slug` — "hollow-knight", the end of its page's address — rather than its
+ * number, so a game carries both, as far as they are known.
+ */
 export type SoundtrackWork =
 	| { kind: "film"; tmdbId: number }
 	| { kind: "tv"; tmdbTvId: number }
-	| { kind: "anime"; malId: number };
+	| { kind: "anime"; malId: number }
+	| { kind: "game"; igdbId: number | null; slug: string | null };
 
-/** What a note is as a work with a soundtrack: `null` for a manga-only note, a person, an album… */
-export function soundtrackWorkOf(note: NoteKind | null): SoundtrackWork | null {
+/** IGDB's slug of a game, from the address of its page: "https://www.igdb.com/games/hollow-knight". */
+export function igdbSlugOf(url: unknown): string | null {
+	if (typeof url !== "string") return null;
+	const match = url.match(/igdb\.com\/games\/([^/?#\s]+)/i);
+	return match === null ? null : match[1];
+}
+
+/**
+ * What a note is as a work with a soundtrack: `null` for a manga-only note,
+ * a person, an album… A game's slug is read from its note's `url`, when the
+ * note is given.
+ */
+export function soundtrackWorkOf(note: NoteKind | null, frontmatter?: Record<string, unknown>): SoundtrackWork | null {
 	if (note?.kind === "film") return { kind: "film", tmdbId: note.tmdbId };
 	if (note?.kind === "tv") return { kind: "tv", tmdbTvId: note.tmdbTvId };
 	if (note?.kind === "series" && note.animeMalId !== null) return { kind: "anime", malId: note.animeMalId };
+	if (note?.kind === "game") return { kind: "game", igdbId: note.igdbId, slug: igdbSlugOf(frontmatter?.url) };
 	return null;
 }
 
-/** Whether two works are the same one. */
+/** Whether two works are the same one: a game by either of its ids. */
 export function sameWork(a: SoundtrackWork, b: SoundtrackWork): boolean {
 	if (a.kind === "film" && b.kind === "film") return a.tmdbId === b.tmdbId;
 	if (a.kind === "tv" && b.kind === "tv") return a.tmdbTvId === b.tmdbTvId;
 	if (a.kind === "anime" && b.kind === "anime") return a.malId === b.malId;
+	if (a.kind === "game" && b.kind === "game") {
+		return (a.slug !== null && a.slug === b.slug) || (a.igdbId !== null && a.igdbId === b.igdbId);
+	}
 	return false;
 }
 

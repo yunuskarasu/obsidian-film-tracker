@@ -4,6 +4,7 @@ import type { FilmographyWork } from "../filmography";
 import type { MangagraphyManga } from "../mangagraphy";
 import { parseLinkTarget } from "../note";
 import { resolveLinkedFile } from "./kit";
+import { isLatin } from "../music";
 import { classifyNote } from "../note-kind";
 import { soundtrackLinksOf, soundtrackWorkOf, type ScoreWork } from "../soundtrack";
 import { extractNames } from "./panel-plan";
@@ -20,7 +21,24 @@ export interface ScannedSong {
  * An album note as DISCOGRAPHY and SOUNDTRACK list it. `soundtrackOf` is
  * the paths of the notes its `soundtrack_of` links, where they resolve.
  */
-export type ScannedAlbum = FilmographyWork & { soundtrackOf: string[] };
+export type ScannedAlbum = FilmographyWork & {
+	soundtrackOf: string[];
+	/** The title in Latin letters, for an album titled in another script whose note has one in `aliases`. */
+	latinTitle: string | null;
+	/** The cover its `poster` shows, when the file is there. */
+	coverPath: string | null;
+};
+
+/** An album's title in Latin letters: the first such alias of a note titled in another script. */
+export function latinTitleOf(title: string, aliases: unknown): string | null {
+	if (isLatin(title)) return null;
+	return extractNames(aliases).find((alias) => isLatin(alias)) ?? null;
+}
+
+/** Albums as the panels show them: titled in Latin letters where `latin` says so and the note has such a title. */
+export function albumsShown(albums: ScannedAlbum[], latin: boolean): ScannedAlbum[] {
+	return latin ? albums.map((album) => (album.latinTitle === null ? album : { ...album, title: album.latinTitle })) : albums;
+}
 
 /** A film or TV series note as the Connections, Filmography and TV series panels read it. */
 export type ScannedWork = WorkNoteInfo & FilmographyWork & { kind: "film" | "tv" };
@@ -69,14 +87,14 @@ export class VaultScan {
 		return this.albumList;
 	}
 
-	/** The albums whose `soundtrack_of` links the note at `path`, oldest first. */
+	/** The albums whose `soundtrack_of` links the note at `path`, oldest first — by their own titles. */
 	soundtracksOf(path: string): ScannedAlbum[] {
 		return this.albums()
 			.filter((album) => album.soundtrackOf.includes(path))
 			.sort((a, b) => (a.year ?? Infinity) - (b.year ?? Infinity) || a.title.localeCompare(b.title));
 	}
 
-	/** Films, TV series and anime together: what an artist's SCORES can list. */
+	/** Films, TV series, anime and games together: what an artist's SCORES can list. */
 	scoreWorks(): ScoreWork[] {
 		if (this.scoreWorkList === null) {
 			this.scoreWorkList = this.app.vault
@@ -149,15 +167,17 @@ function readAlbum(app: App, file: TFile): ScannedAlbum | null {
 		year: typeof year === "number" ? year : null,
 		watched: frontmatter.listened === true,
 		credits: extractNames(frontmatter.artists),
+		latinTitle: latinTitleOf(typeof title === "string" && title !== "" ? title : file.basename, frontmatter.aliases),
+		coverPath: resolveLinkedFile(app, parseLinkTarget(frontmatter.poster), file.path)?.path ?? null,
 		soundtrackOf: soundtrackLinksOf(frontmatter)
-			.map((link) => resolveLinkedFile(app, parseLinkTarget(link) ?? link, file.path)?.path ?? null)
+			.map((link) => soundtrackTarget(app, link, file)?.path ?? null)
 			.filter((path): path is string => path !== null),
 	};
 }
 
 function readScoreWork(app: App, file: TFile): ScoreWork | null {
 	const frontmatter = app.metadataCache.getFileCache(file)?.frontmatter;
-	const work = soundtrackWorkOf(classifyNote(frontmatter));
+	const work = soundtrackWorkOf(classifyNote(frontmatter), frontmatter);
 	if (frontmatter === undefined || work === null) return null;
 	const title: unknown = frontmatter.title;
 	const year: unknown = frontmatter.year;
@@ -169,6 +189,19 @@ function readScoreWork(app: App, file: TFile): ScoreWork | null {
 		kind: work.kind,
 		composers: extractNames(frontmatter.composers),
 	};
+}
+
+/**
+ * The note one of an album's `soundtrack_of` links leads to. An album
+ * named exactly like its work — "Hollow Knight (2017)", game and album both —
+ * has its short link taken by Obsidian for the album itself; a work is never
+ * its own soundtrack, so the link is then read as the work of that name.
+ */
+export function soundtrackTarget(app: App, link: string, album: TFile): TFile | null {
+	const target = resolveLinkedFile(app, parseLinkTarget(link) ?? link, album.path);
+	if (target === null || target.path !== album.path) return target;
+	const isWork = (file: TFile) => soundtrackWorkOf(classifyNote(app.metadataCache.getFileCache(file)?.frontmatter)) !== null;
+	return app.vault.getMarkdownFiles().find((file) => file.path !== album.path && file.basename === album.basename && isWork(file)) ?? null;
 }
 
 function readSong(app: App, file: TFile): ScannedSong | null {

@@ -5,6 +5,8 @@ import type { MusicBrainzClient, PhotoCandidate, Picture } from "./musicbrainz";
 import type { PhotoChoice } from "./photo-picker-modal";
 import {
 	addSoundtrackLink,
+	albumNoteTitle,
+	albumTracksOf,
 	buildAlbumNoteContent,
 	buildArtistNoteContent,
 	buildSongNoteContent,
@@ -31,6 +33,7 @@ import {
 	type SoundtrackWork,
 } from "./soundtrack";
 import type { WikidataClient } from "./wikidata";
+import { soundtrackTarget } from "./panels/vault-scan";
 import { noteName, reportFailures, type VaultNotes } from "./vault-notes";
 
 /** What the music commands need from MusicBrainz: tests hand in saved answers instead. */
@@ -52,7 +55,7 @@ export type MusicSource = Pick<
 /** What finding soundtracks needs from Wikidata: tests hand in saved answers instead. */
 export type SoundtrackLinks = Pick<WikidataClient, "soundtrackAlbumIds" | "worksOfAlbum">;
 
-/** A film, TV series or anime note "Link to film or series…" can link an album to. */
+/** A film, TV series, anime or game note "Link to a film, series or game…" can link an album to. */
 export interface WorkNote {
 	file: TFile;
 	work: SoundtrackWork;
@@ -163,8 +166,11 @@ export class MusicActions {
 	private async createAlbum(client: MusicSource, result: AlbumSearchResult, soundtrackOf: TFile | null): Promise<void> {
 		// Several requests at MusicBrainz's pace of one a second: say so.
 		new Notice(`Adding ${result.title}…`);
-		const album = await client.getAlbum(result.id);
-		const name = buildFileName(album.title, album.year);
+		// Its title and tracks in Latin letters too, for an album titled in another script.
+		const album = await client.getAlbum(result.id, true);
+		const latinNames = this.settings().latinNoteNames;
+		const title = albumNoteTitle(album, latinNames);
+		const name = buildFileName(title, album.year);
 		const target = this.settings().albumFolderNotes
 			? await this.notes.newFolderNotePath(this.settings().albumFolder, name)
 			: await this.notes.newNotePath(this.settings().albumFolder, [name]);
@@ -185,22 +191,22 @@ export class MusicActions {
 		const coverLink = cover === null ? null : this.notes.imageLink(cover, notePath);
 
 		const works = soundtrackOf === null ? [] : [this.notes.noteLink(soundtrackOf, notePath)];
-		const note = await this.app.vault.create(notePath, buildAlbumNoteContent(album, coverLink, this.links(notePath), works));
+		const note = await this.app.vault.create(notePath, buildAlbumNoteContent(album, coverLink, this.links(notePath), works, latinNames));
 		if (soundtrackOf === null) await this.notes.openNote(note);
-		const added = soundtrackOf === null ? `Added ${album.title}` : `Added ${album.title} as the soundtrack of ${soundtrackOf.basename}`;
+		const added = soundtrackOf === null ? `Added ${title}` : `Added ${title} as the soundtrack of ${soundtrackOf.basename}`;
 		new Notice(cover === null ? `${added}. No cover was found.` : added);
 	}
 
 	/**
-	 * What "Find soundtrack…" offers for a film, TV series or anime note:
+	 * What "Find soundtrack…" offers for a film, TV series, anime or game note:
 	 * Wikidata's answers first, then MusicBrainz's soundtracks under each of
 	 * the work's titles (see `soundtrackChoices`). `null` for a note that is
 	 * none of those.
 	 */
 	async soundtrackChoicesFor(client: MusicSource, wikidata: SoundtrackLinks, file: TFile): Promise<SoundtrackChoice[] | null> {
-		const work = soundtrackWorkOf(this.notes.kindOf(file));
-		if (work === null) return null;
 		const frontmatter = this.notes.frontmatterOf(file);
+		const work = soundtrackWorkOf(this.notes.kindOf(file), frontmatter);
+		if (work === null) return null;
 
 		const ids = await wikidata.soundtrackAlbumIds(work);
 		const fromWikidata = await client.albumsById(ids.slice(0, MAX_WIKIDATA_ALBUMS));
@@ -228,7 +234,7 @@ export class MusicActions {
 	}
 
 	/**
-	 * "Link to film or series…": `workFile` joins the album note's
+	 * "Link to a film, series or game…": `workFile` joins the album note's
 	 * `soundtrack_of`, unless a link there already leads to it.
 	 */
 	async linkAlbumToWork(albumFile: TFile, workFile: TFile): Promise<void> {
@@ -263,7 +269,7 @@ export class MusicActions {
 
 		const works: WorkNote[] = [];
 		for (const file of this.app.vault.getMarkdownFiles()) {
-			const work = soundtrackWorkOf(this.notes.kindOf(file));
+			const work = soundtrackWorkOf(this.notes.kindOf(file), this.notes.frontmatterOf(file));
 			if (work === null || linked.some((link) => this.linksTo(link, albumFile.path, file))) continue;
 			works.push({ file, work, suggested: known.some((other) => sameWork(other, work)) });
 		}
@@ -272,6 +278,8 @@ export class MusicActions {
 
 	/** Whether a `soundtrack_of` entry, read from the note at `sourcePath`, leads to `target`. */
 	private linksTo(link: string, sourcePath: string, target: TFile): boolean {
+		const album = this.app.vault.getFileByPath(sourcePath);
+		if (album !== null) return soundtrackTarget(this.app, link, album)?.path === target.path;
 		const linkpath = parseLinkTarget(link) ?? link;
 		return this.app.metadataCache.getFirstLinkpathDest(linkpath, sourcePath)?.path === target.path;
 	}
@@ -301,7 +309,11 @@ export class MusicActions {
 				return;
 			}
 
-			const place = this.songPlace(albumFile, song);
+			// With Latin names on, a song titled in another script is named by its
+			// title in Latin letters, from its line on the album note.
+			const latin = this.settings().latinNoteNames ? latinTitleOf(this.notes.frontmatterOf(albumFile), song) : null;
+			const named = latin === null ? song : { ...song, title: latin };
+			const place = this.songPlace(albumFile, named);
 			const target = await this.notes.newNotePath(place.folder, place.names);
 			if (target === null) return;
 			if ("conflict" in target) {
@@ -312,18 +324,21 @@ export class MusicActions {
 
 			const year: unknown = this.notes.frontmatterOf(albumFile)?.year;
 			const cover = this.notes.posterOf(albumFile);
-			// A song named by its title alone is also found by "Title (Artist)".
-			const fullName = songNoteName(song.title, song.artists);
+			// A song named by its title alone is also found by "Title (Artist)",
+			// and one named in Latin letters by its own title too.
+			const fullName = songNoteName(named.title, song.artists);
+			const aliases = [...(noteName(notePath) === sanitizeFileName(fullName) ? [] : [fullName]), ...(latin === null ? [] : [song.title])];
 			const content = buildSongNoteContent(
-				song,
+				named,
 				{ link: this.notes.noteLink(albumFile, notePath), year: typeof year === "number" ? year : null },
 				cover === null ? null : this.notes.imageLink(cover, notePath),
 				this.links(notePath),
-				noteName(notePath) === sanitizeFileName(fullName) ? null : fullName,
+				aliases,
+				latin === null ? null : song.title,
 			);
 			const note = await this.app.vault.create(notePath, content);
 			if (open) await this.notes.openNote(note);
-			new Notice(`Added ${song.title}`);
+			new Notice(`Added ${named.title}`);
 		});
 	}
 
@@ -561,6 +576,13 @@ export class MusicActions {
 		const name = `${baseName}.${picture.extension ?? "jpg"}`;
 		return this.notes.saveImage(async () => picture.data, name, notePath, folder, what);
 	}
+}
+
+/** A song's title in Latin letters, from its line on the album note — `null` when the line has none. */
+function latinTitleOf(albumFrontmatter: Record<string, unknown> | undefined, song: AlbumSong): string | null {
+	const line = albumTracksOf(albumFrontmatter).find((track) => track.n === song.n && (track.disc ?? 1) === (song.disc ?? 1));
+	const latin: unknown = line?.extra.latin;
+	return typeof latin === "string" && latin.trim() !== "" ? latin.trim() : null;
 }
 
 /** The folder a file is in: "" at the vault root. */

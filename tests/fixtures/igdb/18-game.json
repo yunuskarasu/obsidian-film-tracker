@@ -1,0 +1,75 @@
+[
+	{
+		"id": 338072,
+		"cover": {
+			"id": 525778,
+			"image_id": "cob9oy"
+		},
+		"first_release_date": 1749081600,
+		"franchises": [
+			{
+				"id": 596,
+				"name": "The Legend of Zelda"
+			}
+		],
+		"genres": [
+			{
+				"id": 9,
+				"name": "Puzzle"
+			},
+			{
+				"id": 31,
+				"name": "Adventure"
+			}
+		],
+		"involved_companies": [
+			{
+				"id": 314030,
+				"company": {
+					"id": 45209,
+					"name": "Nintendo EPD Production Group No. 3"
+				},
+				"developer": true,
+				"publisher": false
+			},
+			{
+				"id": 314017,
+				"company": {
+					"id": 1119,
+					"name": "Monolith Soft"
+				},
+				"developer": false,
+				"publisher": false
+			},
+			{
+				"id": 314019,
+				"company": {
+					"id": 70,
+					"name": "Nintendo"
+				},
+				"developer": false,
+				"publisher": true
+			}
+		],
+		"name": "The Legend of Zelda: Breath of the Wild - Nintendo Switch 2 Edition",
+		"platforms": [
+			{
+				"id": 508,
+				"abbreviation": "Switch 2",
+				"name": "Nintendo Switch 2"
+			}
+		],
+		"url": "https://www.igdb.com/games/the-legend-of-zelda-breath-of-the-wild-nintendo-switch-2-edition",
+		"collections": [
+			{
+				"id": 8988,
+				"name": "The Legend of Zelda: Breath of the Wild"
+			},
+			{
+				"id": 106,
+				"name": "The Legend of Zelda"
+			}
+		],
+		"game_type": 10
+	}
+]

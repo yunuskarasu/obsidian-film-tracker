@@ -4,6 +4,26 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+## [3.4.0] - 2026-10-02
+
+Games, and titles in other scripts. Nothing breaks: notes and settings from 3.3 carry over as they are.
+
+### Added
+
+- **Games, from IGDB.** **Add game** writes a game's note and cover: its platforms, developers, publishers, genres and series. A remake, a remaster or a port is a game of its own; a DLC or a bundle never shows in the search. `play_status`, `played_on`, `completed`, `completed_count` and `hours` are yours: **Start playing** and **Mark as completed today** — also a button under the cover — keep them, and a refresh never touches them. IGDB needs a Twitch app's client ID and secret, kept in Obsidian's keychain; the plugin gets its access token itself. A new **🎮 Games** settings page has the folders, **Link developers**, and how platforms are listed: how many (0 for none), short names, and only your own.
+- **DLCs.** Under a game, the **DLC** panel lists the DLCs and expansions added to it, each with a checkbox that dates the day it's ticked. **Add DLC…** lists the game's own on IGDB; none is ever added on its own. **Show DLCs** turns the panel off.
+- **Game soundtracks.** A game has a SOUNDTRACK panel too, and **Find soundtrack** — Wikidata knows a game by the end of its IGDB address. **Link album to a film, series or game** offers games, and an artist's SCORES lists the games they scored.
+- **Titles in other scripts.** A new album titled in another script — Japanese, say — gets its title in Latin letters too, romaji first and English otherwise, all of them in its `aliases`, and each track's in its line. **Show titles in Latin letters** shows them on the panels; **Name new notes in Latin letters** names new album and song notes by them, keeping their own title in `original_title`. Both are off by default, and notes already in your vault are never changed.
+
+### Changed
+
+- The SOUNDTRACK panel shows each album's cover beside it.
+- **Link album to film or series** is now **Link album to a film, series or game**.
+
+### Fixed
+
+- An album named exactly like its film, series or game — a soundtrack "Hollow Knight (2017)" for the game "Hollow Knight (2017)" — linked itself rather than its work, so the work's SOUNDTRACK panel stayed empty. A new album now links such a work by its whole path, and an album already in your vault is read the right way, as it is.
+
 ## [3.3.1] - 2026-09-28
 
 The settings, rearranged. Nothing else changes, and every setting keeps its value.
@@ -196,7 +216,8 @@ Music joins films, TV series and anime-manga. Nothing breaks: notes and settings
 - Relinking of directors and genres.
 - Import from Letterboxd.
 
-[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.3.1...HEAD
+[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.4.0...HEAD
+[3.4.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.3.1...3.4.0
 [3.3.1]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.3.0...3.3.1
 [3.3.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.2.0...3.3.0
 [3.2.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.1.0...3.2.0

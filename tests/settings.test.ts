@@ -62,14 +62,23 @@ describe("the setting definitions", () => {
 		}
 	});
 
-	it("covers every setting: with a control, or with the keychain picker the two keys use", () => {
+	it("covers every setting: with a control, or with the keychain picker the keys use", () => {
 		const covered = new Set(controls.map((control) => control.key));
-		const keys = ["apiKey", "apiKeySecretName", "malClientId", "malClientIdSecretName"];
+		const keys = [
+			"apiKey",
+			"apiKeySecretName",
+			"malClientId",
+			"malClientIdSecretName",
+			"igdbClientId",
+			"igdbClientIdSecretName",
+			"igdbClientSecret",
+			"igdbClientSecretSecretName",
+		];
 		for (const key of Object.keys(DEFAULT_SETTINGS)) {
 			if (keys.includes(key)) continue;
 			expect(covered, key).toContain(key);
 		}
-		expect(all.filter((row) => "render" in row && row.render !== undefined).length).toBeGreaterThanOrEqual(2);
+		expect(all.filter((row) => "render" in row && row.render !== undefined).length).toBeGreaterThanOrEqual(4);
 	});
 
 	it("gives the folder settings a folder control, so Obsidian suggests the vault's folders", () => {
@@ -90,6 +99,8 @@ describe("the setting definitions", () => {
 			"songFolder",
 			"albumCoverFolder",
 			"artistPhotoFolder",
+			"gameFolder",
+			"gameCoverFolder",
 		]);
 	});
 
@@ -107,6 +118,7 @@ describe("the setting definitions", () => {
 			"📺 TV series",
 			"🌸 Anime & manga",
 			"🎵 Music",
+			"🎮 Games",
 			"Attribution",
 		]);
 	});
@@ -119,8 +131,11 @@ describe("the setting definitions", () => {
 			return typeof value === "function" ? value() : value;
 		};
 		expect("type" in keys && keys.type).toBe("page");
-		expect(summary({})).toBe("TMDB: not set · MyAnimeList: not set");
-		expect(summary({ apiKey: "abc" })).toBe("TMDB: set · MyAnimeList: not set");
+		expect(summary({})).toBe("TMDB: not set · MyAnimeList: not set · IGDB: not set");
+		expect(summary({ apiKey: "abc" })).toBe("TMDB: set · MyAnimeList: not set · IGDB: not set");
+		// IGDB needs both of its values.
+		expect(summary({ igdbClientId: "id" })).toBe("TMDB: not set · MyAnimeList: not set · IGDB: not set");
+		expect(summary({ igdbClientId: "id", igdbClientSecret: "secret" })).toBe("TMDB: not set · MyAnimeList: not set · IGDB: set");
 	});
 });
 

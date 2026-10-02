@@ -1,6 +1,7 @@
 import type { App, MarkdownView, TFile } from "obsidian";
 import { animeProgressOf } from "../anime-note";
 import { parseLinkTarget } from "../note";
+import { playProgressOf } from "../game-note";
 import { listenProgressOf } from "../music-note";
 import { classifyNote, hasAnime } from "../note-kind";
 import { tvProgressOf } from "../tv-note";
@@ -37,6 +38,8 @@ export interface WatchControls {
 	markText: string;
 	/** An artist's photo can be swapped for another one on offer. */
 	canChangePhoto: boolean;
+	/** A game not being played right now can be started. */
+	canStartPlaying?: boolean;
 }
 
 export function watchControlsFor(frontmatter: Record<string, unknown> | undefined): WatchControls | null {
@@ -49,6 +52,21 @@ export function watchControlsFor(frontmatter: Record<string, unknown> | undefine
 	}
 	if (kind.kind === "artist") {
 		return { label: null, percent: null, canWatchEpisode: false, canMarkWatched: false, markText: WATCHED, canChangePhoto: true };
+	}
+	if (kind.kind === "game") {
+		// Played again and again: the button stays, and counts each time.
+		const { status, completedCount } = playProgressOf(frontmatter);
+		const times = completedCount === 0 ? null : completedCount === 1 ? "Completed once" : `Completed ${completedCount} times`;
+		const label = [status === "playing" ? "Playing" : null, times].filter((part) => part !== null).join(" · ") || null;
+		return {
+			label,
+			percent: null,
+			canWatchEpisode: false,
+			canMarkWatched: true,
+			markText: "Completed today",
+			canChangePhoto: false,
+			canStartPlaying: status !== "playing",
+		};
 	}
 	if (kind.kind === "album") {
 		// Listened to again and again: the button stays, and counts each time.
@@ -186,6 +204,9 @@ function showWatchProgress(app: App, actions: MangaPanelActions, host: HTMLEleme
 	const buttons = wrap.createDiv({ cls: "film-tracker-progress-actions" });
 	if (controls.canWatchEpisode) {
 		renderAction(buttons, "+1 episode", () => actions.watchEpisode(file));
+	}
+	if (controls.canStartPlaying === true) {
+		renderAction(buttons, "Start playing", () => actions.startPlaying(file));
 	}
 	if (controls.canMarkWatched) {
 		renderAction(buttons, controls.markText, () => actions.watchedToday(file));

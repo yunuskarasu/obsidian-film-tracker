@@ -92,6 +92,9 @@ export interface MbMedium {
 
 export interface MbRelease {
 	id: string;
+	title?: string;
+	/** The release's language and script: "jpn" in "Latn" is romaji, "eng" in "Latn" an English title. */
+	"text-representation"?: { language?: string | null; script?: string | null };
 	date?: string;
 	country?: string | null;
 	status?: string | null;
@@ -183,6 +186,18 @@ export interface AlbumMetadata {
 	 * releases — where the cover comes from. Never written to the note.
 	 */
 	deezerAlbumIds: string[];
+	/** The title and tracks in Latin letters, for an album whose title isn't — only when asked for. */
+	latin?: LatinNames;
+}
+
+/**
+ * An album's title in Latin letters: romaji first, then English, each once
+ * (see `latinReleasesOf`); and its tracks' titles from the same release, in
+ * the order of `tracks` — `null` for one it has no title for.
+ */
+export interface LatinNames {
+	titles: string[];
+	tracks: (string | null)[];
 }
 
 const LATIN = /^[\p{Script=Latin}\p{Script=Common}\p{Script=Inherited}]*$/u;
@@ -372,6 +387,56 @@ export function pickEdition(releases: MbRelease[], firstDate: string | undefined
 	// A release whose track count MusicBrainz doesn't have sorts last.
 	const length = (release: MbRelease) => trackCount(release) || Infinity;
 	return [...candidates].sort((a, b) => length(a) - length(b) || country(a) - country(b))[0];
+}
+
+/** How much a release is to be trusted for a title: a transliteration or translation is usually filed as a pseudo-release. */
+const LATIN_STATUS_ORDER = ["Pseudo-Release", "Official"];
+
+function latinRelease(releases: MbRelease[], language: string): MbRelease | null {
+	const rank = (release: MbRelease) => {
+		const at = LATIN_STATUS_ORDER.indexOf(release.status ?? "");
+		return at === -1 ? LATIN_STATUS_ORDER.length : at;
+	};
+	const found = releases.filter(
+		(release) =>
+			release["text-representation"]?.script === "Latn" &&
+			release["text-representation"]?.language === language &&
+			(release.title ?? "").trim() !== "" &&
+			isLatin(release.title ?? ""),
+	);
+	return found.sort((a, b) => rank(a) - rank(b))[0] ?? null;
+}
+
+/**
+ * The releases of an album with a title in another script that carry it in
+ * Latin letters: romaji — Japanese written in Latin letters, "Sen to Chihiro
+ * no Kamikakushi" — then English, "Spirited Away Soundtrack". None for an
+ * album whose own title is in Latin letters already.
+ */
+export function latinReleasesOf(title: string, releases: MbRelease[]): MbRelease[] {
+	if (isLatin(title)) return [];
+	const found: MbRelease[] = [];
+	for (const language of ["jpn", "eng"]) {
+		const release = latinRelease(releases, language);
+		if (release !== null && !found.some((known) => known.title?.trim() === release.title?.trim())) found.push(release);
+	}
+	return found;
+}
+
+/** Whether two releases have the same discs of the same lengths — so that their tracks line up one to one. */
+export function sameTracklist(a: MbRelease, b: MbRelease): boolean {
+	const counts = (release: MbRelease) => (release.media ?? []).map((medium) => medium["track-count"] ?? -1).join(",");
+	return counts(a) !== "" && !counts(a).includes("-1") && counts(a) === counts(b);
+}
+
+/** A Latin release's tracks as titles for `tracks`, one to one; `null` where it has none, or differs from nothing. */
+export function latinTracksOf(release: MbRelease | null, tracks: AlbumTrack[]): (string | null)[] {
+	const latin = release === null ? [] : tracksOf(release);
+	if (latin.length !== tracks.length) return tracks.map(() => null);
+	return latin.map((track, index) => {
+		const title = track.title.trim();
+		return title === "" || title === tracks[index].title ? null : title;
+	});
 }
 
 /** "4:44", or "1:02:03" for a track over an hour. */

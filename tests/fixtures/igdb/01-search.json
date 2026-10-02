@@ -1,0 +1,141 @@
+[
+	{
+		"id": 14593,
+		"first_release_date": 1487894400,
+		"name": "Hollow Knight",
+		"platforms": [
+			{
+				"id": 169,
+				"abbreviation": "Series X|S",
+				"name": "Xbox Series X|S"
+			},
+			{
+				"id": 48,
+				"abbreviation": "PS4",
+				"name": "PlayStation 4"
+			},
+			{
+				"id": 3,
+				"abbreviation": "Linux",
+				"name": "Linux"
+			},
+			{
+				"id": 508,
+				"abbreviation": "Switch 2",
+				"name": "Nintendo Switch 2"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 167,
+				"abbreviation": "PS5",
+				"name": "PlayStation 5"
+			},
+			{
+				"id": 14,
+				"abbreviation": "Mac",
+				"name": "Mac"
+			},
+			{
+				"id": 41,
+				"abbreviation": "WiiU",
+				"name": "Wii U"
+			},
+			{
+				"id": 49,
+				"abbreviation": "XONE",
+				"name": "Xbox One"
+			},
+			{
+				"id": 130,
+				"abbreviation": "Switch",
+				"name": "Nintendo Switch"
+			}
+		],
+		"total_rating_count": 2255,
+		"game_type": 0
+	},
+	{
+		"id": 372563,
+		"first_release_date": 1627430400,
+		"name": "Hollow Knight Silksong",
+		"platforms": [
+			{
+				"id": 22,
+				"abbreviation": "GBC",
+				"name": "Game Boy Color"
+			}
+		],
+		"game_type": 0
+	},
+	{
+		"id": 115289,
+		"first_release_date": 1756944000,
+		"name": "Hollow Knight: Silksong",
+		"platforms": [
+			{
+				"id": 169,
+				"abbreviation": "Series X|S",
+				"name": "Xbox Series X|S"
+			},
+			{
+				"id": 48,
+				"abbreviation": "PS4",
+				"name": "PlayStation 4"
+			},
+			{
+				"id": 3,
+				"abbreviation": "Linux",
+				"name": "Linux"
+			},
+			{
+				"id": 508,
+				"abbreviation": "Switch 2",
+				"name": "Nintendo Switch 2"
+			},
+			{
+				"id": 6,
+				"abbreviation": "PC",
+				"name": "PC (Microsoft Windows)"
+			},
+			{
+				"id": 167,
+				"abbreviation": "PS5",
+				"name": "PlayStation 5"
+			},
+			{
+				"id": 14,
+				"abbreviation": "Mac",
+				"name": "Mac"
+			},
+			{
+				"id": 49,
+				"abbreviation": "XONE",
+				"name": "Xbox One"
+			},
+			{
+				"id": 130,
+				"abbreviation": "Switch",
+				"name": "Nintendo Switch"
+			}
+		],
+		"total_rating_count": 513,
+		"game_type": 0
+	},
+	{
+		"id": 231055,
+		"first_release_date": 1672876800,
+		"name": "Hollow World: Dark Knight",
+		"platforms": [
+			{
+				"id": 130,
+				"abbreviation": "Switch",
+				"name": "Nintendo Switch"
+			}
+		],
+		"game_type": 0
+	}
+]

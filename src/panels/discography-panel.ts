@@ -2,7 +2,7 @@ import type { TFile } from "obsidian";
 import { filmographyProgress, findFilmography } from "../filmography";
 import { findScores } from "../soundtrack";
 import { ensurePanel, panelOf, redrawPanel, renderAction, renderPathLink, type PanelContext } from "./kit";
-import type { VaultScan } from "./vault-scan";
+import { albumsShown, type VaultScan } from "./vault-scan";
 
 /**
  * DISCOGRAPHY, under an artist's properties: their albums already in the
@@ -21,7 +21,7 @@ export function applyDiscography(
 		return;
 	}
 
-	const albums = findFilmography(names, scan.albums());
+	const albums = findFilmography(names, albumsShown(scan.albums(), context.settings().showLatinTitles));
 	const progress = filmographyProgress(albums);
 	const suffix = progress === null ? undefined : `${progress}% listened`;
 	const panel = ensurePanel(anchor, "main");
@@ -44,10 +44,10 @@ export function applyDiscography(
 	renderAction(actions, "Add album…", () => context.actions.addAlbumByArtist(file));
 }
 
-const KIND_LABEL = { film: "Film", tv: "TV series", anime: "Anime" } as const;
+const KIND_LABEL = { film: "Film", tv: "TV series", anime: "Anime", game: "Game" } as const;
 
 /**
- * SCORES, under DISCOGRAPHY: the films, TV series and anime in the vault
+ * SCORES, under DISCOGRAPHY: the films, TV series, anime and games in the vault
  * the artist scored — named in a film's `composers`, or linked from an
  * album of theirs as its soundtrack. Only there when there is something to
  * list: most artists never wrote a score.

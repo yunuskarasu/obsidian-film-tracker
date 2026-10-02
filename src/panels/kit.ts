@@ -50,6 +50,12 @@ export interface MangaPanelActions {
 	markLyricsWrong: (file: TFile) => void;
 	/** SOUNDTRACK's own button: this work's soundtracks to pick one from. */
 	findSoundtrack: (file: TFile) => void;
+	/** "Start playing" under a game's cover. */
+	startPlaying: (file: TFile) => void;
+	/** The DLC panel's own button: the game's DLCs to pick one from. */
+	addDlc: (file: TFile) => void;
+	/** That panel's checkbox: a DLC finished, or not. */
+	setDlcDone: (file: TFile, igdbId: number, done: boolean) => void;
 }
 
 /** What a panel needs from the plugin to draw itself. */

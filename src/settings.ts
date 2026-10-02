@@ -11,7 +11,7 @@ import {
 	type SettingGroup,
 } from "obsidian";
 import type FilmTrackerPlugin from "./main";
-import { keychainOf, readKey } from "./secrets";
+import { KEY_FIELDS, keychainOf, readKey, type ApiKey } from "./secrets";
 
 export interface FilmTrackerSettings {
 	/** The TMDB key as typed in — before Obsidian 1.11.4, which brought the keychain (see secrets.ts). */
@@ -43,6 +43,25 @@ export interface FilmTrackerSettings {
 	linkTvCast: boolean;
 	malClientId: string;
 	malClientIdSecretName: string;
+	/** IGDB's two values — a Twitch app's client ID and secret — typed in, or (from 1.11.4) the names of their keychain secrets. */
+	igdbClientId: string;
+	igdbClientIdSecretName: string;
+	igdbClientSecret: string;
+	igdbClientSecretSecretName: string;
+	gameFolder: string;
+	gameCoverFolder: string;
+	/** A game's developers and publishers as links, where their notes exist. */
+	linkDevelopers: boolean;
+	/** IGDB's short platform names, "PS4". */
+	shortPlatformNames: boolean;
+	/** Only the platforms in `myPlatforms`. */
+	onlyMyPlatforms: boolean;
+	/** "PC, PS5, Switch". */
+	myPlatforms: string;
+	/** How many platforms a game note lists; 0 leaves the property out. */
+	platformCount: number;
+	/** The DLC panel under a game. */
+	showDlcs: boolean;
 	animeFolder: string;
 	animePosterFolder: string;
 	mangakaFolder: string;
@@ -65,6 +84,10 @@ export interface FilmTrackerSettings {
 	showSoundtracks: boolean;
 	/** The SCORES panel under an artist: what they scored in the vault. */
 	showScores: boolean;
+	/** Album and track titles in another script shown in Latin letters, where the album note has them. */
+	showLatinTitles: boolean;
+	/** New album and song notes named in Latin letters, their own title kept in `original_title`. */
+	latinNoteNames: boolean;
 }
 
 export const DEFAULT_SETTINGS: FilmTrackerSettings = {
@@ -94,6 +117,18 @@ export const DEFAULT_SETTINGS: FilmTrackerSettings = {
 	linkTvCast: false,
 	malClientId: "",
 	malClientIdSecretName: "",
+	igdbClientId: "",
+	igdbClientIdSecretName: "",
+	igdbClientSecret: "",
+	igdbClientSecretSecretName: "",
+	gameFolder: "Games",
+	gameCoverFolder: "",
+	linkDevelopers: false,
+	shortPlatformNames: true,
+	onlyMyPlatforms: false,
+	myPlatforms: "",
+	platformCount: 10,
+	showDlcs: true,
 	animeFolder: "Anime",
 	animePosterFolder: "",
 	mangakaFolder: "Mangaka",
@@ -111,6 +146,8 @@ export const DEFAULT_SETTINGS: FilmTrackerSettings = {
 	showLyrics: true,
 	showSoundtracks: true,
 	showScores: true,
+	showLatinTitles: false,
+	latinNoteNames: false,
 };
 
 /** Added to a key's description once it lives in Obsidian's keychain. */
@@ -118,6 +155,8 @@ const KEYCHAIN_NOTE = " It's kept in Obsidian's keychain on this device only: no
 
 export const TMDB_ATTRIBUTION =
 	"This product uses the TMDB API but is not endorsed or certified by TMDB.";
+
+export const IGDB_ATTRIBUTION = "Game data from IGDB.com.";
 
 const FOLLOW_ATTACHMENTS = "Follow attachment settings";
 
@@ -176,7 +215,7 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 			{
 				type: "page",
 				name: "🔑 API keys",
-				desc: "The TMDB key for films and TV series, and the MyAnimeList client ID for anime and manga. Music needs none.",
+				desc: "The TMDB key for films and TV series, the MyAnimeList client ID for anime and manga, and IGDB's client ID and secret for games. Music needs none.",
 				displayValue: () => this.keysSummary(),
 				items: [
 					{
@@ -194,6 +233,18 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 								desc: this.malClientIdDescription(inKeychain),
 								aliases: ["MAL", "anime metadata", "manga metadata"],
 								render: (setting) => this.renderKey(setting, "mal"),
+							},
+							{
+								name: "IGDB client ID",
+								desc: this.igdbDescription(inKeychain, "Client ID"),
+								aliases: ["IGDB", "Twitch", "game metadata"],
+								render: (setting) => this.renderKey(setting, "igdbId"),
+							},
+							{
+								name: "IGDB client secret",
+								desc: this.igdbDescription(inKeychain, "Client Secret"),
+								aliases: ["IGDB", "Twitch", "game metadata"],
+								render: (setting) => this.renderKey(setting, "igdbSecret"),
 							},
 						],
 					},
@@ -504,6 +555,24 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 					},
 					{
 						type: "group",
+						heading: "Titles in other scripts",
+						items: [
+							{
+								name: "Show titles in Latin letters",
+								desc: "Show an album's and its tracks' titles in Latin letters on the panels — romaji where MusicBrainz has it, English otherwise — for albums added from now on with a title in another script, such as Japanese. The notes themselves stay as they are.",
+								aliases: ["romaji", "Japanese titles", "transliteration"],
+								control: { type: "toggle", key: "showLatinTitles" },
+							},
+							{
+								name: "Name new notes in Latin letters",
+								desc: "Give new album and song notes with a title in another script their title in Latin letters, as their name and title. Their own title is kept in original_title and aliases, so a search in either finds them. Notes already in your vault are never renamed.",
+								aliases: ["romaji", "Japanese titles", "transliteration"],
+								control: { type: "toggle", key: "latinNoteNames" },
+							},
+						],
+					},
+					{
+						type: "group",
 						heading: "Panels",
 						items: [
 							{
@@ -523,12 +592,12 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 							},
 							{
 								name: "Show soundtracks",
-								desc: "Below a film's, a TV series' or an anime's properties, list the albums linked as its soundtrack, with a button to find another.",
+								desc: "Below a film's, a TV series', an anime's or a game's properties, list the albums linked as its soundtrack, with a button to find another.",
 								control: { type: "toggle", key: "showSoundtracks" },
 							},
 							{
 								name: "Show scores",
-								desc: "Below an artist's discography, list the films, TV series and anime in your vault they scored: named among a film's composers, or linked from one of their albums as its soundtrack.",
+								desc: "Below an artist's discography, list the films, TV series, anime and games in your vault they scored: named among a film's composers, or linked from one of their albums as its soundtrack.",
 								control: { type: "toggle", key: "showScores" },
 							},
 						],
@@ -536,22 +605,105 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 				],
 			},
 			{
+				type: "page",
+				name: "🎮 Games",
+				desc: "Folders, metadata, platforms and the DLC panel.",
+				items: [
+					{
+						type: "group",
+						heading: "Folders",
+						items: [
+							{
+								name: "Game folder",
+								desc: "Where new game notes are created. Leave empty for the vault root.",
+								control: { type: "folder", key: "gameFolder", placeholder: DEFAULT_SETTINGS.gameFolder },
+							},
+							{
+								name: "Game cover folder",
+								desc: "Where game covers are saved. Leave empty to follow your attachment folder setting.",
+								control: { type: "folder", key: "gameCoverFolder", placeholder: FOLLOW_ATTACHMENTS },
+							},
+						],
+					},
+					{
+						type: "group",
+						heading: "Metadata",
+						items: [
+							{
+								name: "Link developers",
+								desc: "Write a game's developers and publishers as [[wikilinks]] when a note with that name already exists, so the game shows up in the studio's backlinks.",
+								aliases: ["Link publishers", "studios"],
+								control: { type: "toggle", key: "linkDevelopers" },
+							},
+						],
+					},
+					{
+						type: "group",
+						heading: "Platforms",
+						items: [
+							{
+								name: "Platforms to list",
+								desc: "How many of a game's platforms its note lists. 0 leaves the platforms property out altogether.",
+								aliases: ["platform count"],
+								control: {
+									type: "number",
+									key: "platformCount",
+									min: 0,
+									defaultValue: DEFAULT_SETTINGS.platformCount,
+									placeholder: String(DEFAULT_SETTINGS.platformCount),
+								},
+							},
+							{
+								name: "Short platform names",
+								desc: "PS4 and Switch rather than PlayStation 4 and Nintendo Switch.",
+								control: { type: "toggle", key: "shortPlatformNames" },
+							},
+							{
+								name: "Only my platforms",
+								desc: "List only the platforms you play on, in your order, rather than every one a game came out on.",
+								control: { type: "toggle", key: "onlyMyPlatforms" },
+							},
+							{
+								name: "My platforms",
+								desc: "The platforms you play on, separated by commas. Short or full names both work: PC, PS5, Nintendo Switch.",
+								visible: () => this.plugin.settings.onlyMyPlatforms,
+								control: { type: "text", key: "myPlatforms", placeholder: "PC, PS5, Switch" },
+							},
+						],
+					},
+					{
+						type: "group",
+						heading: "Panels",
+						items: [
+							{
+								name: "Show DLCs",
+								desc: "Below a game's properties, list the DLCs and expansions added to it, each with a checkbox, and a button to add another.",
+								aliases: ["DLC", "expansions"],
+								control: { type: "toggle", key: "showDlcs" },
+							},
+						],
+					},
+				],
+			},
+			{
 				name: "Attribution",
-				desc: TMDB_ATTRIBUTION,
+				desc: `${TMDB_ATTRIBUTION} ${IGDB_ATTRIBUTION}`,
 				searchable: false,
 				render: (setting) => {
 					setting.settingEl.empty();
 					setting.settingEl.createEl("p", { text: TMDB_ATTRIBUTION, cls: "film-tracker-attribution" });
+					setting.settingEl.createEl("p", { text: IGDB_ATTRIBUTION, cls: "film-tracker-attribution" });
 				},
 			},
 		];
 	}
 
-	/** What the API keys entry says without being opened: which of the two are set. */
+	/** What the API keys entry says without being opened: which keys are set — IGDB's only with both of its values. */
 	private keysSummary(): string {
 		const keychain = keychainOf(this.app);
-		const state = (key: "tmdb" | "mal") => (readKey(keychain, this.plugin.settings, key) !== "" ? "set" : "not set");
-		return `TMDB: ${state("tmdb")} · MyAnimeList: ${state("mal")}`;
+		const has = (key: ApiKey) => readKey(keychain, this.plugin.settings, key) !== "";
+		const state = (set: boolean) => (set ? "set" : "not set");
+		return `TMDB: ${state(has("tmdb"))} · MyAnimeList: ${state(has("mal"))} · IGDB: ${state(has("igdbId") && has("igdbSecret"))}`;
 	}
 
 	/** Reads a setting by the key its definition names. */
@@ -565,9 +717,11 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 		settings[key] = typeof value === "string" ? value.trim() : value;
 		await this.plugin.saveSettings();
 		if (key.startsWith("show")) this.plugin.refreshPanels();
-		// The API keys entry says which keys are set; from 1.13, `update` redraws it.
+		// The API keys entry says which keys are set, and My platforms only shows with
+		// Only my platforms on: from 1.13 `update` redraws the page at once. Before
+		// 1.13 the tab shows the change the next time it is opened.
 		const tab = this as { update?: () => void };
-		if (key.endsWith("SecretName") && typeof tab.update === "function") tab.update();
+		if ((key.endsWith("SecretName") || key === "onlyMyPlatforms") && typeof tab.update === "function") tab.update();
 	}
 
 	/**
@@ -597,6 +751,8 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 
 	private draw(containerEl: HTMLElement, item: SettingDefinitionItem): void {
 		if ("type" in item) return;
+		const visible = "visible" in item ? item.visible : undefined;
+		if (visible === false || (typeof visible === "function" && !visible())) return;
 
 		const setting = new Setting(containerEl).setName(item.name);
 		if (item.desc !== undefined) setting.setDesc(item.desc);
@@ -626,7 +782,8 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 			if (control.type === "number") {
 				text.onChange((value) => {
 					const parsed = Number.parseInt(value, 10);
-					if (Number.isFinite(parsed) && parsed > 0) save(parsed);
+					const min = "min" in control && typeof control.min === "number" ? control.min : 1;
+					if (Number.isFinite(parsed) && parsed >= min) save(parsed);
 				});
 			} else {
 				text.onChange(save);
@@ -641,9 +798,9 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 	 * or wherever the keychain and its picker aren't really there, whatever
 	 * the version says — the key is typed in and saved with the settings.
 	 */
-	private renderKey(setting: Setting, key: "tmdb" | "mal"): void {
-		const secretName = key === "tmdb" ? "apiKeySecretName" : "malClientIdSecretName";
-		const plain = key === "tmdb" ? "apiKey" : "malClientId";
+	private renderKey(setting: Setting, key: ApiKey): void {
+		const secretName = KEY_FIELDS[key].secretName;
+		const plain = KEY_FIELDS[key].plain;
 		const keychain = keychainOf(this.app);
 
 		if (requireApiVersion("1.11.4") && keychain !== null && typeof SecretComponent === "function") {
@@ -658,7 +815,7 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 		setting.addText((text) => {
 			text.inputEl.type = "password";
 			text
-				.setPlaceholder(key === "tmdb" ? "Paste your key" : "Paste your client ID")
+				.setPlaceholder(key === "tmdb" ? "Paste your key" : key === "igdbSecret" ? "Paste your client secret" : "Paste your client ID")
 				.setValue(this.plugin.settings[plain])
 				.onChange((value) => void this.setControlValue(plain, value));
 		});
@@ -674,6 +831,18 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 		fragment.append(", then copy the ");
 		fragment.createEl("strong", { text: "API key (v3 auth)" });
 		fragment.append(" value.");
+		if (inKeychain) fragment.append(KEYCHAIN_NOTE);
+		return fragment;
+	}
+
+	/** IGDB is run by Twitch: its key is a Twitch app's client ID and secret, both from the same page. */
+	private igdbDescription(inKeychain: boolean, value: "Client ID" | "Client Secret"): DocumentFragment {
+		const fragment = new DocumentFragment();
+		fragment.append("Register a free app in the ");
+		fragment.createEl("a", { text: "Twitch developer console", href: "https://dev.twitch.tv/console/apps" });
+		fragment.append(" (OAuth redirect URL: http://localhost, client type: Confidential), then copy its ");
+		fragment.createEl("strong", { text: value });
+		fragment.append(value === "Client Secret" ? " — the New Secret button shows it once." : ".");
 		if (inKeychain) fragment.append(KEYCHAIN_NOTE);
 		return fragment;
 	}

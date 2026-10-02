@@ -9,6 +9,7 @@ import {
 	parseFrontmatterBlocks,
 	posterLine,
 	serializeFrontmatterBlocks,
+	setOrderedKey as setKey,
 	yamlList,
 	yamlScalar,
 	yamlString,
@@ -23,9 +24,6 @@ import { Quoted, flowEntry } from "./yaml-flow";
  * from, but adding one never creates any other.
  */
 
-/** A note split into its frontmatter blocks, as `parseFrontmatterBlocks` hands it over. */
-type Doc = NonNullable<ReturnType<typeof parseFrontmatterBlocks>>;
-
 /** Which of an album's names are written as links, and how to tell whether a note exists. */
 export interface MusicLinks {
 	artists: boolean;
@@ -35,33 +33,6 @@ export interface MusicLinks {
 
 export const NO_MUSIC_LINKS: MusicLinks = { artists: false, genres: false, isResolved: () => false };
 
-/**
- * Where a key the note doesn't have yet goes: right after the nearest field
- * before it in `fieldOrder` that the note has, or else right before the
- * nearest one after it — never at the end past the user's own properties.
- * A key the note already has stays exactly where it is.
- */
-function setKey(doc: Doc, fieldOrder: readonly string[], key: string, lines: string[]): void {
-	doc.blocks.set(key, lines);
-	if (doc.order.includes(key)) return;
-
-	const canonical = fieldOrder.indexOf(key);
-	for (let before = canonical - 1; before >= 0; before -= 1) {
-		const at = doc.order.indexOf(fieldOrder[before]);
-		if (at !== -1) {
-			doc.order.splice(at + 1, 0, key);
-			return;
-		}
-	}
-	for (let after = canonical + 1; after < fieldOrder.length; after += 1) {
-		const at = doc.order.indexOf(fieldOrder[after]);
-		if (at !== -1) {
-			doc.order.splice(at, 0, key);
-			return;
-		}
-	}
-	doc.order.push(key);
-}
 
 // ——— Artists ———
 
@@ -171,6 +142,8 @@ const TRACKS_KEY = "tracks";
 
 const ALBUM_FIELD_ORDER = [
 	"title",
+	"original_title",
+	"aliases",
 	"artists",
 	"year",
 	"album_type",
@@ -273,24 +246,53 @@ function albumLines(album: AlbumMetadata, links: MusicLinks, previous?: Record<s
 }
 
 /**
+ * The title a new album note goes by: in Latin letters when `latinNames`
+ * asks for it and MusicBrainz has them — romaji first, then English — and
+ * the album's own title otherwise.
+ */
+export function albumNoteTitle(album: AlbumMetadata, latinNames: boolean): string {
+	return (latinNames ? album.latin?.titles[0] : undefined) ?? album.title;
+}
+
+/**
  * A new album note. `soundtrackOf` is the work it was added from with
  * "Find soundtrack…" — otherwise the note has no `soundtrack_of` at all.
+ *
+ * An album titled in another script also gets its title in Latin letters
+ * (`album.latin`): every form of it in `aliases` — romaji, English and its
+ * own — and each track's in its line, as `latin`. With `latinNames` the
+ * note's `title` is the first of them, and `original_title` keeps its own.
+ * An album titled in Latin letters is written exactly as before.
  */
 export function buildAlbumNoteContent(
 	album: AlbumMetadata,
 	coverLink: string | null,
 	links: MusicLinks,
 	soundtrackOf: string[] = [],
+	latinNames = false,
 ): string {
 	const owned = new Map(albumLines(album, links));
 	if (soundtrackOf.length > 0) owned.set(SOUNDTRACK_KEY, yamlList(SOUNDTRACK_KEY, soundtrackOf));
+	const latin = album.latin;
+	if (latin !== undefined && latin.titles.length > 0) {
+		owned.set("aliases", yamlList("aliases", [...latin.titles, album.title]));
+		const title = albumNoteTitle(album, latinNames);
+		if (title !== album.title) {
+			owned.set("title", [`title: ${yamlString(title)}`]);
+			owned.set("original_title", [`original_title: ${yamlString(album.title)}`]);
+		}
+	}
+	const tracks = album.tracks.map((track, index) => {
+		const title = latin?.tracks[index] ?? null;
+		return { ...track, extra: title === null ? {} : { latin: title } };
+	});
 	const lines = ["---"];
 	for (const key of ALBUM_FIELD_ORDER) {
 		if (key === "poster") lines.push(posterLine(coverLink === null ? null : coverLink.replace(/^!/, "")));
 		else if (key === "listened") lines.push("listened: false");
 		else if (key === "listen_date") lines.push("listen_date:");
 		else if (key === "listen_count") lines.push("listen_count: 0");
-		else if (key === TRACKS_KEY) lines.push(...trackLines(album.tracks.map((track) => ({ ...track, extra: {} }))));
+		else if (key === TRACKS_KEY) lines.push(...trackLines(tracks));
 		else lines.push(...(owned.get(key) ?? []));
 	}
 	lines.push("---", "");
@@ -316,7 +318,12 @@ export function refreshAlbumFrontmatter(
 	const existing = readTracks(doc.blocks.get(TRACKS_KEY));
 	if (existing === null) return content;
 
-	for (const [key, lines] of albumLines(album, links, previous)) setKey(doc, ALBUM_FIELD_ORDER, key, lines);
+	// A note named in Latin letters keeps its title; its own title is `original_title`.
+	const latinTitled = doc.blocks.has("original_title");
+	for (const [key, lines] of albumLines(album, links, previous)) {
+		if (key === "title" && latinTitled) setKey(doc, ALBUM_FIELD_ORDER, "original_title", [`original_title: ${yamlString(album.title)}`]);
+		else setKey(doc, ALBUM_FIELD_ORDER, key, lines);
+	}
 	setKey(doc, ALBUM_FIELD_ORDER, TRACKS_KEY, trackLines(mergeTracks(existing, album.tracks)));
 	if (coverLink !== null && (posterMissing || isEmptyValue(doc.blocks.get("poster")))) {
 		setKey(doc, ALBUM_FIELD_ORDER, "poster", [posterLine(coverLink.replace(/^!/, ""))]);
@@ -396,7 +403,7 @@ export function albumTracksOf(frontmatter: Record<string, unknown> | undefined):
 
 // ——— Songs ———
 
-const SONG_FIELD_ORDER = ["title", "aliases", "artists", "album", "track", "disc", "length", "year", "poster", "mb_recording_id"];
+const SONG_FIELD_ORDER = ["title", "original_title", "aliases", "artists", "album", "track", "disc", "length", "year", "poster", "mb_recording_id"];
 
 /** The album a song note is added from: a link to the album's note, and the album's year. */
 export interface SongAlbum {
@@ -418,22 +425,27 @@ function songLines(song: SongMetadata, links: MusicLinks, previous?: Record<stri
 /**
  * A song's note: the song, and where it sits on the album it was added from.
  * The cover is the album's own file, linked rather than copied. `disc` is
- * only written for an album of more than one. `alias` is the name a song
- * named by its title alone is also found by: "The Art of Dying (Gojira)".
+ * only written for an album of more than one. `aliases` are the names the
+ * song is also found by: "The Art of Dying (Gojira)" for a song named by its
+ * title alone. `originalTitle` is its own title, for a song whose note is
+ * titled in Latin letters.
  */
 export function buildSongNoteContent(
 	song: AlbumSong,
 	album: SongAlbum,
 	coverLink: string | null,
 	links: MusicLinks,
-	alias: string | null = null,
+	aliases: string[] = [],
+	originalTitle: string | null = null,
 ): string {
 	const owned = new Map(songLines(song, links));
 	const lines = ["---"];
 	for (const key of SONG_FIELD_ORDER) {
 		if (key === "title") lines.push(`title: ${yamlString(song.title)}`);
-		else if (key === "aliases") {
-			if (alias !== null) lines.push(...yamlList("aliases", [alias]));
+		else if (key === "original_title") {
+			if (originalTitle !== null) lines.push(`original_title: ${yamlString(originalTitle)}`);
+		} else if (key === "aliases") {
+			if (aliases.length > 0) lines.push(...yamlList("aliases", aliases));
 		} else if (key === "album") lines.push(yamlScalar("album", album.link));
 		else if (key === "track") lines.push(`track: ${song.n}`);
 		else if (key === "disc") {
