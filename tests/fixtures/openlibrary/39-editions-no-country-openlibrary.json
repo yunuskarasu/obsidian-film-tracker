@@ -1,0 +1,1116 @@
+{
+	"size": 45,
+	"entries": [
+		{
+			"key": "/books/OL47250713M",
+			"title": "No és país per a vells",
+			"publishers": [
+				"Edicions 62"
+			],
+			"publish_date": "Nov 09, 2022",
+			"number_of_pages": 280,
+			"isbn_13": [
+				"9788429760873"
+			],
+			"isbn_10": [
+				"8429760873"
+			],
+			"languages": [
+				{
+					"key": "/languages/cat"
+				}
+			],
+			"covers": [
+				13697260
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL48635802M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Knopf Doubleday Publishing Group"
+			],
+			"publish_date": "2007",
+			"isbn_13": [
+				"9781283997584"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL48689344M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Trice Publishing, B. E."
+			],
+			"publish_date": "2005",
+			"isbn_13": [
+				"9781890885199"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL47236380M",
+			"title": "NO ES PAIS PARA VIEJOS",
+			"publishers": [
+				"GPO ED RANDOM HOUSE MONDADORI"
+			],
+			"publish_date": "Mar 19, 2008",
+			"isbn_13": [
+				"9789586395526"
+			],
+			"isbn_10": [
+				"9586395529"
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL42690891M",
+			"title": "No es país para viejos",
+			"publishers": [
+				"Penguin Random House Grupo Editorial",
+				"Literatura Random House"
+			],
+			"publish_date": "2023",
+			"number_of_pages": 256,
+			"isbn_13": [
+				"9788439741114"
+			],
+			"languages": [
+				{
+					"key": "/languages/spa"
+				}
+			],
+			"covers": [
+				13475080
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL40268216M",
+			"title": "No es país para viejos",
+			"publishers": [
+				"DEBOLSILLO"
+			],
+			"publish_date": "Jan 25, 2008",
+			"number_of_pages": 248,
+			"isbn_13": [
+				"9788483464939"
+			],
+			"isbn_10": [
+				"8483464934"
+			],
+			"physical_format": "hardcover",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL37805077M",
+			"title": "No es país para viejos",
+			"publishers": [
+				"Debolsillo"
+			],
+			"publish_date": "2008",
+			"number_of_pages": 241,
+			"isbn_13": [
+				"9789875663695",
+				"9789708103671"
+			],
+			"isbn_10": [
+				"9875663697",
+				"9708103675"
+			],
+			"languages": [
+				{
+					"key": "/languages/spa"
+				}
+			],
+			"covers": [
+				12712642
+			],
+			"physical_format": "Paperback",
+			"by_statement": "Cormac McCarthy ; traducción de Luis Murillo",
+			"contributors": [
+				{
+					"role": "Translator",
+					"name": "Luis Murillo"
+				}
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL35632500M",
+			"title": "No es país para viejos",
+			"publishers": [
+				"Debolsillo",
+				"DEBOLSILLO"
+			],
+			"publish_date": "Nov 01, 2007",
+			"number_of_pages": 248,
+			"isbn_13": [
+				"9788499896779"
+			],
+			"isbn_10": [
+				"8499896774"
+			],
+			"covers": [
+				12339450
+			],
+			"physical_format": "mass market paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL38812335M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Pan Macmillan"
+			],
+			"publish_date": "2022",
+			"isbn_13": [
+				"9781035003785"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL39817309M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Vintage",
+				"Brand: Random House Inc."
+			],
+			"publish_date": "Oct 08, 2006",
+			"number_of_pages": 309,
+			"isbn_13": [
+				"9780307277039"
+			],
+			"isbn_10": [
+				"0307277038"
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL43311508M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Alfred A. Knopf"
+			],
+			"publish_date": "2005-01-01",
+			"isbn_13": [
+				"9780739465318"
+			],
+			"isbn_10": [
+				"0739465317"
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL48615289M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Recorded Books, Inc."
+			],
+			"publish_date": "2008",
+			"isbn_13": [
+				"9781407418360"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL37024172M",
+			"title": "İhtiyarlara yer yok",
+			"publishers": [
+				"Kanat"
+			],
+			"publish_date": "2008",
+			"number_of_pages": 220,
+			"isbn_13": [
+				"9789758859757"
+			],
+			"isbn_10": [
+				"9758859757"
+			],
+			"languages": [
+				{
+					"key": "/languages/tur"
+				}
+			],
+			"covers": [
+				12603449
+			],
+			"by_statement": "Cormac McCarthy ; çeviren, Roza Hakmen",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32203053M",
+			"title": "İhtiyarlara Yer Yok",
+			"publishers": [
+				"Ithaki Yayinlari"
+			],
+			"publish_date": "Apr 13, 2018",
+			"number_of_pages": 248,
+			"isbn_13": [
+				"9786053758594"
+			],
+			"isbn_10": [
+				"6053758590"
+			],
+			"covers": [
+				10852190
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL35615896M",
+			"title": "To nie jest kraj dla starych ludzi",
+			"publishers": [
+				"Wydawnictwo Literackie"
+			],
+			"publish_date": "2014",
+			"number_of_pages": 320,
+			"isbn_13": [
+				"9788308053065"
+			],
+			"isbn_10": [
+				"8308053068"
+			],
+			"languages": [
+				{
+					"key": "/languages/pol"
+				}
+			],
+			"covers": [
+				12322737
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32044308M",
+			"title": "No country for old men",
+			"isbn_13": [
+				"9782757813416"
+			],
+			"isbn_10": [
+				"2757813412"
+			],
+			"covers": [
+				10710359
+			],
+			"physical_format": "product bundle",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL31956977M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Recorded Books, Inc."
+			],
+			"publish_date": "Jul 19, 2005",
+			"number_of_pages": 7,
+			"isbn_13": [
+				"9781419326943"
+			],
+			"isbn_10": [
+				"1419326945"
+			],
+			"covers": [
+				10637422
+			],
+			"physical_format": "audio cd",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL35466836M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"AudioGo"
+			],
+			"publish_date": "2007",
+			"isbn_13": [
+				"9781405613958"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL35468595M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Pan Macmillan"
+			],
+			"publish_date": "2011",
+			"isbn_13": [
+				"9781447200949"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL35477276M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Pan Macmillan"
+			],
+			"publish_date": "2010",
+			"isbn_13": [
+				"9780330474771"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL28199770M",
+			"title": "Kein Land für alte Männer",
+			"publishers": [
+				"Rowohlt"
+			],
+			"isbn_13": [
+				"9783498045029"
+			],
+			"isbn_10": [
+				"3498045024"
+			],
+			"covers": [
+				10135342
+			],
+			"physical_format": "hardcover",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL28290179M",
+			"title": "Kein Land für alte Männer",
+			"publishers": [
+				"Rowohlt Taschenbuch"
+			],
+			"publish_date": "Oct 01, 2009",
+			"isbn_13": [
+				"9783499242885"
+			],
+			"isbn_10": [
+				"3499242885"
+			],
+			"covers": [
+				10215088
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL31906521M",
+			"title": "No country for old men",
+			"publishers": [
+				"Editions de l'Olivier",
+				"Points",
+				"Contemporary French Fiction"
+			],
+			"publish_date": "2008-01",
+			"number_of_pages": 298,
+			"isbn_13": [
+				"9782757807224"
+			],
+			"languages": [
+				{
+					"key": "/languages/fre"
+				}
+			],
+			"covers": [
+				10587417
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL28242695M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Vintage, 2006",
+				"Vintage Books / Random House"
+			],
+			"publish_date": "Jun 12, 2006",
+			"number_of_pages": 340,
+			"isbn_13": [
+				"9780330440110"
+			],
+			"isbn_10": [
+				"033044011X"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"covers": [
+				15248080,
+				10587409
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL28259044M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"MacMillan"
+			],
+			"publish_date": "Jan 01, 1900",
+			"isbn_13": [
+				"9780330521000"
+			],
+			"isbn_10": [
+				"0330521004"
+			],
+			"covers": [
+				10187694
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL28351884M",
+			"title": "No Country For Old Men",
+			"publishers": [
+				"KNOPF."
+			],
+			"publish_date": "Jul 20, 2005",
+			"number_of_pages": 340,
+			"isbn_13": [
+				"9780330440301"
+			],
+			"isbn_10": [
+				"0330440306"
+			],
+			"covers": [
+				10299423
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL28744012M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Knopf Doubleday Publishing Group"
+			],
+			"publish_date": "2006",
+			"number_of_pages": 320,
+			"isbn_13": [
+				"9780375706677"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"covers": [
+				12373924
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL29408195M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Alfred A Knopf"
+			],
+			"publish_date": "Jan 01, 2005",
+			"isbn_13": [
+				"9781447201809"
+			],
+			"isbn_10": [
+				"1447201809"
+			],
+			"covers": [
+				10389224
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL28172734M",
+			"title": "No Country For Old Men",
+			"publishers": [
+				"Vintage Books / Random House"
+			],
+			"publish_date": "Jun 02, 2006",
+			"number_of_pages": 340,
+			"isbn_13": [
+				"9780330441704"
+			],
+			"isbn_10": [
+				"0330441701"
+			],
+			"covers": [
+				10110389
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL31906510M",
+			"title": "No country for old men",
+			"publishers": [
+				"Windsor | Paragon",
+				"BBC Audiobooks Ltd"
+			],
+			"publish_date": "2006",
+			"isbn_13": [
+				"9781405613941"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"covers": [
+				10587402
+			],
+			"physical_format": "Paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL27958036M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Picador USA",
+				"imusti",
+				"Picador"
+			],
+			"publish_date": "Jan 04, 2008",
+			"number_of_pages": 320,
+			"isbn_13": [
+				"9780330454537"
+			],
+			"isbn_10": [
+				"0330454536"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"covers": [
+				10587404
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL28013163M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Picador USA",
+				"imusti"
+			],
+			"publish_date": "May 07, 2010",
+			"isbn_13": [
+				"9780330511216"
+			],
+			"isbn_10": [
+				"0330511211"
+			],
+			"covers": [
+				9396572
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL27077727M",
+			"title": "Non è un paese per vecchi",
+			"publishers": [
+				"Einaudi"
+			],
+			"publish_date": "2006",
+			"number_of_pages": 251,
+			"isbn_13": [
+				"9788806179670"
+			],
+			"isbn_10": [
+				"8806179675"
+			],
+			"languages": [
+				{
+					"key": "/languages/ita"
+				}
+			],
+			"covers": [
+				8700504
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL27118632M",
+			"title": "Starikam tut ne mesto",
+			"publishers": [
+				"Azbuka-klassika"
+			],
+			"publish_date": "2009",
+			"number_of_pages": 286,
+			"isbn_13": [
+				"9785395004338"
+			],
+			"isbn_10": [
+				"5395004335"
+			],
+			"languages": [
+				{
+					"key": "/languages/rus"
+				}
+			],
+			"covers": [
+				10587475
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL27111257M",
+			"title": "Noin ŭl wihan nara nŭn ŏpta",
+			"publishers": [
+				"Sapʻiensŭ"
+			],
+			"publish_date": "2008",
+			"number_of_pages": 341,
+			"isbn_13": [
+				"9788992579629"
+			],
+			"isbn_10": [
+				"8992579624"
+			],
+			"languages": [
+				{
+					"key": "/languages/kor"
+				}
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL13264119M",
+			"title": "No es país para viejos",
+			"publishers": [
+				"Mondadori"
+			],
+			"publish_date": "2006",
+			"number_of_pages": 242,
+			"isbn_13": [
+				"9788439720379"
+			],
+			"isbn_10": [
+				"8439720378"
+			],
+			"languages": [
+				{
+					"key": "/languages/spa"
+				}
+			],
+			"covers": [
+				15250027,
+				15235390,
+				10587483
+			],
+			"physical_format": "Hardcover",
+			"contributors": [
+				{
+					"role": "Translator",
+					"name": "Luis Murillo Fort"
+				}
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL23080682M",
+			"title": "No es país para viejos",
+			"publishers": [
+				"Mondadori"
+			],
+			"publish_date": "2006",
+			"number_of_pages": 242,
+			"isbn_13": [
+				"9788439720379"
+			],
+			"isbn_10": [
+				"8439720378"
+			],
+			"languages": [
+				{
+					"key": "/languages/spa"
+				}
+			],
+			"by_statement": "Cormac McCarthy ; traducción de Luis Murillo Fort.",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL26336883M",
+			"title": "No country for old men",
+			"publishers": [
+				"Picador"
+			],
+			"publish_date": "2007",
+			"number_of_pages": 309,
+			"isbn_13": [
+				"9780330454278"
+			],
+			"isbn_10": [
+				"0330454277"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"covers": [
+				8261131
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL26122805M",
+			"title": "No Country for Old Men Cormac McCarthy",
+			"publishers": [
+				"Picador USA"
+			],
+			"isbn_13": [
+				"9780330440103"
+			],
+			"covers": [
+				7768189
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL9527726M",
+			"title": "No Country for Old Men (MTI) (Vintage International)",
+			"publishers": [
+				"Vintage"
+			],
+			"publish_date": "October 9, 2007",
+			"number_of_pages": 320,
+			"isbn_13": [
+				"9780307387134"
+			],
+			"isbn_10": [
+				"0307387135"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"covers": [
+				1165316
+			],
+			"physical_format": "Paperback",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL26676075M",
+			"title": "No country for old men",
+			"publishers": [
+				"Vintage"
+			],
+			"publish_date": "2006",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL23241795M",
+			"title": "No country for old men",
+			"publishers": [
+				"Knopf"
+			],
+			"publish_date": "2005",
+			"number_of_pages": 309,
+			"isbn_13": [
+				"9780375406775"
+			],
+			"isbn_10": [
+				"0375406778"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"covers": [
+				12003542
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL24258568M",
+			"title": "No Country for Old Men",
+			"publishers": [
+				"Knopf Doubleday Publishing Group"
+			],
+			"publish_date": "2007",
+			"isbn_13": [
+				"9780307390530"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"covers": [
+				6406496
+			],
+			"physical_format": "Electronic resource",
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL3424039M",
+			"title": "No country for old men",
+			"publishers": [
+				"Random House Large Print"
+			],
+			"publish_date": "2005",
+			"number_of_pages": 437,
+			"isbn_10": [
+				"0375435042"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"covers": [
+				14428726,
+				14428725,
+				9158769
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL3311863M",
+			"title": "No country for old men",
+			"publishers": [
+				"Knopf"
+			],
+			"publish_date": "2005",
+			"number_of_pages": 309,
+			"isbn_10": [
+				"0375406778"
+			],
+			"languages": [
+				{
+					"key": "/languages/eng"
+				}
+			],
+			"covers": [
+				9296899
+			],
+			"works": [
+				{
+					"key": "/works/OL40875W"
+				}
+			]
+		}
+	]
+}

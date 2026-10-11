@@ -1,0 +1,25 @@
+{
+	"key": "/books/OL28130921M",
+	"title": "Kurk Mantolu Madonna",
+	"publishers": [
+		"Yap Kredi Yaynlar",
+		"Yapi Kredi"
+	],
+	"publish_date": "May 23, 1998",
+	"number_of_pages": 164,
+	"isbn_13": [
+		"9789753638029"
+	],
+	"isbn_10": [
+		"9753638027"
+	],
+	"covers": [
+		10031512
+	],
+	"physical_format": "paperback",
+	"works": [
+		{
+			"key": "/works/OL20784452W"
+		}
+	]
+}

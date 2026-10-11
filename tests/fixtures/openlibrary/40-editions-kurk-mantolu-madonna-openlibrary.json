@@ -1,0 +1,583 @@
+{
+	"size": 24,
+	"entries": [
+		{
+			"key": "/books/OL46545042M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Yapı Kredi Yayınları"
+			],
+			"publish_date": "2022-06-13",
+			"number_of_pages": 160,
+			"isbn_13": [
+				"9789753638029"
+			],
+			"languages": [
+				{
+					"key": "/languages/tur"
+				}
+			],
+			"covers": [
+				13315465
+			],
+			"physical_format": "Paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32202438M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Elips Kitap"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 176,
+			"isbn_13": [
+				"9786051215853"
+			],
+			"isbn_10": [
+				"6051215859"
+			],
+			"covers": [
+				10851614
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32202434M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Kor Kitap"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 168,
+			"isbn_13": [
+				"9786052283530"
+			],
+			"isbn_10": [
+				"605228353X"
+			],
+			"covers": [
+				10851611
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32202186M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Koloni"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 176,
+			"isbn_13": [
+				"9786057795410"
+			],
+			"isbn_10": [
+				"6057795415"
+			],
+			"covers": [
+				10851363
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32201846M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"İstek Yayınları"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 212,
+			"isbn_13": [
+				"9786056892073"
+			],
+			"isbn_10": [
+				"6056892077"
+			],
+			"covers": [
+				10851022
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32201847M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Hayykitap"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 176,
+			"isbn_13": [
+				"9786052214725"
+			],
+			"isbn_10": [
+				"6052214724"
+			],
+			"covers": [
+				10851021
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32201776M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Altin Kitaplar"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 184,
+			"isbn_13": [
+				"9789752124578"
+			],
+			"isbn_10": [
+				"9752124577"
+			],
+			"covers": [
+				10850950
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32201627M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Parga Yayincilik"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 232,
+			"isbn_13": [
+				"9786056870361"
+			],
+			"isbn_10": [
+				"6056870367"
+			],
+			"covers": [
+				10850801
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32201620M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Mahzen"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 192,
+			"isbn_13": [
+				"9786056910647"
+			],
+			"isbn_10": [
+				"6056910644"
+			],
+			"covers": [
+				10850794
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32201452M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Hitabevi Yayinlari"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 144,
+			"isbn_13": [
+				"9786054868452"
+			],
+			"isbn_10": [
+				"6054868454"
+			],
+			"covers": [
+				10850626
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32201424M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Hasrem Yayınları"
+			],
+			"publish_date": "Apr 13, 2019",
+			"isbn_13": [
+				"9786058076389"
+			],
+			"isbn_10": [
+				"6058076382"
+			],
+			"covers": [
+				10850597
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32201422M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Kagit Uçak Yayinlari"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 219,
+			"isbn_13": [
+				"9786058055902"
+			],
+			"isbn_10": [
+				"6058055903"
+			],
+			"covers": [
+				10850595
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32201208M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Fark Yayinlari"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 160,
+			"isbn_13": [
+				"9786052240779"
+			],
+			"isbn_10": [
+				"6052240776"
+			],
+			"covers": [
+				10850382
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32201202M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Evrensel Iletisim Yayinlari - Kültür Kitaplari"
+			],
+			"publish_date": "Apr 13, 2020",
+			"number_of_pages": 160,
+			"isbn_13": [
+				"9786057958747"
+			],
+			"isbn_10": [
+				"6057958748"
+			],
+			"covers": [
+				10850376
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32201071M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Sümer Kitabevi"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 176,
+			"isbn_13": [
+				"9786058105973"
+			],
+			"isbn_10": [
+				"6058105978"
+			],
+			"covers": [
+				10850244
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32201070M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Parola Yayinlari"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 160,
+			"isbn_13": [
+				"9786057522160"
+			],
+			"isbn_10": [
+				"6057522168"
+			],
+			"covers": [
+				10850243
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32200720M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Rönesans Yayınları"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 176,
+			"isbn_13": [
+				"9786052343364"
+			],
+			"isbn_10": [
+				"6052343362"
+			],
+			"covers": [
+				10849893
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32200436M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Altın Post Yayıncılık"
+			],
+			"publish_date": "Apr 13, 2019",
+			"isbn_13": [
+				"9789752445437"
+			],
+			"isbn_10": [
+				"9752445438"
+			],
+			"covers": [
+				10849608
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32200275M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Iyi Kalem Yayinlari"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 144,
+			"isbn_13": [
+				"9786052159897"
+			],
+			"isbn_10": [
+				"6052159898"
+			],
+			"covers": [
+				10849446
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32200191M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Yakamoz Yayinevi"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 208,
+			"isbn_13": [
+				"9786052972120"
+			],
+			"isbn_10": [
+				"6052972122"
+			],
+			"covers": [
+				10849409
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32200147M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Kerasus Yayinlari"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 176,
+			"isbn_13": [
+				"9786057914132"
+			],
+			"isbn_10": [
+				"6057914139"
+			],
+			"covers": [
+				10849364
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32200039M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Destek Yaynlar",
+				"Destek Yayınları"
+			],
+			"publish_date": "Jan 15, 2019",
+			"number_of_pages": 208,
+			"isbn_13": [
+				"9786053115359"
+			],
+			"isbn_10": [
+				"6053115355"
+			],
+			"covers": [
+				10849255,
+				-1
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32199573M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Akçağ Yayınları"
+			],
+			"publish_date": "Apr 13, 2019",
+			"number_of_pages": 172,
+			"isbn_13": [
+				"9786053424765"
+			],
+			"isbn_10": [
+				"6053424765"
+			],
+			"covers": [
+				10848789
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		},
+		{
+			"key": "/books/OL32197818M",
+			"title": "Kürk Mantolu Madonna",
+			"publishers": [
+				"Filozof Yayinevi"
+			],
+			"publish_date": "Apr 12, 2020",
+			"number_of_pages": 176,
+			"isbn_13": [
+				"9786050616903"
+			],
+			"isbn_10": [
+				"6050616906"
+			],
+			"covers": [
+				10848013
+			],
+			"physical_format": "paperback",
+			"works": [
+				{
+					"key": "/works/OL24327596W"
+				}
+			]
+		}
+	]
+}

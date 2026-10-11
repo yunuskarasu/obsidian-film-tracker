@@ -36,5 +36,14 @@
 	"https://openlibrary.org/authors/OL19677A.json": "35-author-anton-chekhov-openlibrary.json",
 	"https://www.wikidata.org/w/api.php?action=wbgetentities&ids=Q5685&props=claims|labels&languages=en|mul&format=json": "36-author-anton-chekhov-wikidata.json",
 	"https://openlibrary.org/search.json?author_key=OL28104A&sort=editions&fields=key,title,author_name,author_key,first_publish_year,cover_i,number_of_pages_median,edition_count,editions,editions.title,editions.language&lang=en&limit=100": "37-works-cormac-mccarthy-openlibrary.json",
-	"https://openlibrary.org/search.json?author_key=OL19677A&sort=editions&fields=key,title,author_name,author_key,first_publish_year,cover_i,number_of_pages_median,edition_count,editions,editions.title,editions.language&lang=en&limit=100": "38-works-anton-chekhov-openlibrary.json"
+	"https://openlibrary.org/search.json?author_key=OL19677A&sort=editions&fields=key,title,author_name,author_key,first_publish_year,cover_i,number_of_pages_median,edition_count,editions,editions.title,editions.language&lang=en&limit=100": "38-works-anton-chekhov-openlibrary.json",
+	"https://openlibrary.org/works/OL40875W/editions.json?limit=1000": "39-editions-no-country-openlibrary.json",
+	"https://openlibrary.org/works/OL24327596W/editions.json?limit=1000": "40-editions-kurk-mantolu-madonna-openlibrary.json",
+	"https://openlibrary.org/works/OL55417W/editions.json?limit=1000": "41-editions-cherry-orchard-openlibrary.json",
+	"https://openlibrary.org/isbn/9789758859757.json": "42-isbn-no-country-kanat-openlibrary.json",
+	"https://openlibrary.org/isbn/9789753638029.json": "43-isbn-kurk-mantolu-madonna-yky-openlibrary.json",
+	"https://openlibrary.org/search.json?q=No%20Country%20for%20Old%20Men&author=Cormac%20McCarthy&fields=key,title,author_name,author_key,first_publish_year,cover_i,number_of_pages_median,edition_count,editions,editions.title,editions.language&lang=en&limit=5": "44-find-no-country-openlibrary.json",
+	"https://openlibrary.org/search.json?q=K%C3%BCrk%20Mantolu%20Madonna&author=Sabahattin%20Ali&fields=key,title,author_name,author_key,first_publish_year,cover_i,number_of_pages_median,edition_count,editions,editions.title,editions.language&lang=en&limit=5": "45-find-kurk-mantolu-madonna-openlibrary.json",
+	"https://openlibrary.org/search.json?q=The%20Cherry%20Orchard&author=Anton%20Chekhov&fields=key,title,author_name,author_key,first_publish_year,cover_i,number_of_pages_median,edition_count,editions,editions.title,editions.language&lang=en&limit=5": "46-find-cherry-orchard-openlibrary.json",
+	"https://openlibrary.org/search.json?q=A%20Book%20That%20Was%20Never%20Written&author=Nobody%20Atall&fields=key,title,author_name,author_key,first_publish_year,cover_i,number_of_pages_median,edition_count,editions,editions.title,editions.language&lang=en&limit=5": "47-find-unknown-openlibrary.json"
 }

@@ -2,6 +2,7 @@ import { mkdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
 import type { WebAccess, WebResponse } from "../src/musicbrainz";
+import { translatorsOf } from "../src/book-edition";
 import { OpenLibraryClient } from "../src/openlibrary";
 
 /*
@@ -22,7 +23,36 @@ const KEPT_CLAIMS = ["P18", "P50", "P136", "P179", "P569", "P570", "P577", "P648
 
 type Entity = { claims?: Record<string, unknown[]>; labels?: Record<string, unknown> };
 
+/** What the plugin reads of an edition: the rest of its record is left out. */
+const KEPT_EDITION_FIELDS = [
+	"key",
+	"title",
+	"publishers",
+	"publish_date",
+	"number_of_pages",
+	"isbn_13",
+	"isbn_10",
+	"languages",
+	"covers",
+	"physical_format",
+	"by_statement",
+	"contributors",
+	"works",
+];
+
+/** A title page is only kept where it names a translator: that is all the plugin reads it for. */
+function edition(record: Record<string, unknown>): Record<string, unknown> {
+	const kept = Object.fromEntries(KEPT_EDITION_FIELDS.filter((field) => field in record).map((field) => [field, record[field]]));
+	if (typeof kept.by_statement === "string" && translatorsOf({ by_statement: kept.by_statement }).length === 0) delete kept.by_statement;
+	return kept;
+}
+
 function trimmed(url: string, json: unknown): unknown {
+	if (url.includes("/editions.json")) {
+		const list = json as { size?: number; entries?: Record<string, unknown>[] };
+		return { size: list.size, entries: (list.entries ?? []).map(edition) };
+	}
+	if (url.includes("openlibrary.org/isbn/")) return edition(json as Record<string, unknown>);
 	if (!url.includes("wikidata.org") || !url.includes("action=wbgetentities")) return json;
 	const entities = (json as { entities?: Record<string, Entity> }).entities ?? {};
 	const kept: Record<string, Entity> = {};
@@ -95,6 +125,35 @@ describe("recording Open Library's answers", () => {
 		]) {
 			label = name;
 			await client.authorPhoto(await client.getAuthor(id));
+		}
+		for (const [name, id] of [
+			["editions-no-country", "OL40875W"],
+			["editions-kurk-mantolu-madonna", "OL24327596W"],
+			["editions-cherry-orchard", "OL55417W"],
+		]) {
+			label = name;
+			await client.editions(id);
+		}
+		for (const [name, isbn] of [
+			// Kanat's Turkish translation, filed under the novel itself.
+			["isbn-no-country-kanat", "9789758859757"],
+			// Yapı Kredi's, filed under a second copy of the book's record.
+			["isbn-kurk-mantolu-madonna-yky", "9789753638029"],
+			// No book has it: 979 is never turned into a ten-digit ISBN, as 978 is.
+			["isbn-unknown", "9799999999990"],
+		]) {
+			label = name;
+			await client.editionByIsbn(isbn);
+		}
+		for (const [name, title, author] of [
+			["find-no-country", "No Country for Old Men", "Cormac McCarthy"],
+			["find-kurk-mantolu-madonna", "Kürk Mantolu Madonna", "Sabahattin Ali"],
+			["find-cherry-orchard", "The Cherry Orchard", "Anton Chekhov"],
+			// No book has it: what an import reports as not found.
+			["find-unknown", "A Book That Was Never Written", "Nobody Atall"],
+		]) {
+			label = name;
+			await client.findBook(title, author);
 		}
 		label = "works-cormac-mccarthy";
 		await client.authorWorks("OL28104A");

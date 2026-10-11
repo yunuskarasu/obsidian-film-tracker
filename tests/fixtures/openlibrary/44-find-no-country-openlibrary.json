@@ -1,0 +1,89 @@
+{
+	"numFound": 3,
+	"start": 0,
+	"numFoundExact": true,
+	"num_found": 3,
+	"documentation_url": "https://openlibrary.org/dev/docs/api/search",
+	"q": "No Country for Old Men",
+	"offset": null,
+	"docs": [
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 9296899,
+			"edition_count": 45,
+			"first_publish_year": 1900,
+			"key": "/works/OL40875W",
+			"number_of_pages_median": 304,
+			"title": "No Country for Old Men",
+			"editions": {
+				"numFound": 41,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 12506599,
+			"edition_count": 1,
+			"first_publish_year": 2020,
+			"key": "/works/OL26822525W",
+			"title": "The Road / Blood Meridian / No Country for Old Men",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Road / Blood Meridian / No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2007,
+			"key": "/works/OL42448495W",
+			"title": "Cormac Mccarthy Bestselling Series, 6 Books Set, Cities of the Plain, the Crossing, the Road, Blood Meridian, No Country for Old Men, All the Pretty Horses",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Cormac Mccarthy Bestselling Series, 6 Books Set, Cities of the Plain, the Crossing, the Road, Blood Meridian, No Country for Old Men, All the Pretty Horses",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		}
+	]
+}

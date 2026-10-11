@@ -1,4 +1,4 @@
-import { App, FuzzySuggestModal, Notice, SuggestModal, type FuzzyMatch } from "obsidian";
+import { App, FuzzySuggestModal, Modal, Notice, Setting, SuggestModal, type FuzzyMatch } from "obsidian";
 import type { AlbumSearchResult, ArtistSearchResult } from "./music";
 import type { AlbumTrackEntry } from "./music-note";
 import type { WorkNote } from "./music-actions";
@@ -22,6 +22,8 @@ import type { GameDlc, GameSearchResult } from "./game";
 import { IgdbError, type IgdbClient } from "./igdb";
 import type { AuthorSearchResult, BookSearchResult } from "./book";
 import { OpenLibraryError, type OpenLibraryClient } from "./openlibrary";
+import { languageName, normalizeIsbn, type BookEdition } from "./book-edition";
+import type { EditionChoice } from "./book-actions";
 
 /** How many of a game's platforms a search row names before "…". */
 const SHOWN_PLATFORMS = 3;
@@ -631,6 +633,117 @@ class AuthorWorksModal extends FuzzySuggestModal<BookSearchResult> {
 
 	onChooseItem(book: BookSearchResult): void {
 		this.onPick(book);
+	}
+}
+
+/** A row of "Choose edition": the way to an ISBN, always first, or one of the editions. */
+type EditionRow = { kind: "isbn" } | { kind: "edition"; edition: BookEdition };
+
+const ISBN_ROW: EditionRow = { kind: "isbn" };
+
+/**
+ * "Choose edition": a book's editions, those in the user's language first,
+ * filtered as you type — by publisher, year, language, format, ISBN or
+ * translator. The first row, always there, takes an ISBN instead: the one
+ * typed, when what is typed is one.
+ */
+export class EditionPickerModal extends FuzzySuggestModal<EditionRow> {
+	private readonly bookTitle: string;
+	private readonly editions: BookEdition[];
+	private readonly onDone: (choice: EditionChoice | null) => void;
+	private choice: EditionChoice | null = null;
+
+	constructor(app: App, bookTitle: string, editions: BookEdition[], onDone: (choice: EditionChoice | null) => void) {
+		super(app);
+		this.bookTitle = bookTitle;
+		this.editions = editions;
+		this.onDone = onDone;
+		this.setPlaceholder(`Editions of ${bookTitle} — type to filter, or type an ISBN…`);
+		this.emptyStateText = "No editions match.";
+	}
+
+	getItems(): EditionRow[] {
+		return this.editions.map((edition) => ({ kind: "edition", edition }));
+	}
+
+	getItemText(row: EditionRow): string {
+		if (row.kind === "isbn") return "";
+		const { edition } = row;
+		return [edition.title, edition.publisher, edition.year, ...edition.languages.map(languageName), edition.format, edition.isbn, ...edition.translators]
+			.filter((part) => part !== null)
+			.join(" ");
+	}
+
+	getSuggestions(query: string): FuzzyMatch<EditionRow>[] {
+		const isbn = normalizeIsbn(query);
+		// What is typed is an ISBN: look it up rather than filter by it.
+		const editions = isbn === null ? super.getSuggestions(query) : [];
+		return [{ item: ISBN_ROW, match: { score: 0, matches: [] } }, ...editions];
+	}
+
+	renderSuggestion(match: FuzzyMatch<EditionRow>, el: HTMLElement): void {
+		const row = match.item;
+		if (row.kind === "isbn") {
+			const isbn = normalizeIsbn(this.inputEl.value);
+			renderRow(el, isbn === null ? "Enter ISBN…" : `Use ISBN ${isbn}`, [], "The edition with the ISBN on the back of your book.");
+			return;
+		}
+		const { edition } = row;
+		const pages = edition.pages === null ? null : `${edition.pages} pages`;
+		const details = source("Open Library", edition.publisher, yearText(edition.year), pages, edition.languages.map(languageName).join(", ") || null, edition.format);
+		const second = [edition.isbn === null ? null : `ISBN ${edition.isbn}`, edition.translators.length === 0 ? null : `Translated by ${edition.translators.join(", ")}`]
+			.filter((part) => part !== null)
+			.join(" · ");
+		renderRow(el, edition.title ?? this.bookTitle, details, second === "" ? undefined : second);
+	}
+
+	onChooseItem(row: EditionRow): void {
+		this.choice = row.kind === "edition" ? { kind: "edition", edition: row.edition } : { kind: "isbn", isbn: normalizeIsbn(this.inputEl.value) };
+	}
+
+	onClose(): void {
+		super.onClose();
+		// Obsidian closes the list before it hands over the pick: answer once both are done.
+		window.setTimeout(() => this.onDone(this.choice), 0);
+	}
+}
+
+/** Asks for an ISBN: "Enter ISBN…" on "Choose edition". */
+export class IsbnModal extends Modal {
+	private readonly onDone: (isbn: string | null) => void;
+	private isbn = "";
+	private submitted = false;
+
+	constructor(app: App, onDone: (isbn: string | null) => void) {
+		super(app);
+		this.onDone = onDone;
+	}
+
+	onOpen(): void {
+		const { contentEl } = this;
+		contentEl.createEl("h2", { text: "Edition by ISBN" });
+		contentEl.createEl("p", { text: "The ISBN is on the back of the book, by the barcode, or on the copyright page: 13 digits, or 10 in older books." });
+
+		new Setting(contentEl).setName("ISBN").addText((text) => {
+			text.setPlaceholder("978-…").onChange((value) => (this.isbn = value));
+			text.inputEl.addEventListener("keydown", (event) => {
+				if (event.key === "Enter") this.submit();
+			});
+			window.setTimeout(() => text.inputEl.focus(), 0);
+		});
+		new Setting(contentEl)
+			.addButton((button) => button.setButtonText("Find this edition").setCta().onClick(() => this.submit()))
+			.addButton((button) => button.setButtonText("Cancel").onClick(() => this.close()));
+	}
+
+	onClose(): void {
+		this.contentEl.empty();
+		this.onDone(this.submitted && this.isbn.trim() !== "" ? this.isbn.trim() : null);
+	}
+
+	private submit(): void {
+		this.submitted = true;
+		this.close();
 	}
 }
 

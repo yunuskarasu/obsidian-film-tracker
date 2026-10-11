@@ -10,7 +10,7 @@ export interface LetterboxdRow {
  * A small RFC4180-ish tokenizer: handles quoted fields, commas and quotes
  * inside them ("" is an escaped quote), and either line ending.
  */
-function parseCsv(text: string): string[][] {
+export function parseCsv(text: string): string[][] {
 	const rows: string[][] = [];
 	let row: string[] = [];
 	let field = "";

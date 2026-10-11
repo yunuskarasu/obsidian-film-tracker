@@ -1,0 +1,29 @@
+{
+	"key": "/books/OL37024172M",
+	"title": "İhtiyarlara yer yok",
+	"publishers": [
+		"Kanat"
+	],
+	"publish_date": "2008",
+	"number_of_pages": 220,
+	"isbn_13": [
+		"9789758859757"
+	],
+	"isbn_10": [
+		"9758859757"
+	],
+	"languages": [
+		{
+			"key": "/languages/tur"
+		}
+	],
+	"covers": [
+		12603449
+	],
+	"by_statement": "Cormac McCarthy ; çeviren, Roza Hakmen",
+	"works": [
+		{
+			"key": "/works/OL40875W"
+		}
+	]
+}

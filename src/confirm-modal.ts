@@ -6,6 +6,8 @@ export interface ConfirmRequest {
 	message: string;
 	/** The button that goes ahead, shown as a warning since it deletes something. */
 	confirmLabel: string;
+	/** `false` for a question that deletes nothing: the button that goes ahead is then an ordinary one. */
+	destructive?: boolean;
 	/** The button that doesn't: "Cancel" unless given. */
 	cancelLabel?: string;
 	/** An extra yes/no shown as a toggle, off to start with. */
@@ -29,7 +31,8 @@ function markDestructive(button: ButtonComponent): ButtonComponent {
 
 /**
  * Asks before the plugin deletes anything: Remove manga, or a poster no note
- * uses any more. Closing the dialog counts as Cancel.
+ * uses any more — or, with `destructive` off, before it goes ahead with
+ * something unsure. Closing the dialog counts as Cancel.
  */
 export class ConfirmModal extends Modal {
 	private readonly request: ConfirmRequest;
@@ -45,7 +48,7 @@ export class ConfirmModal extends Modal {
 
 	onOpen(): void {
 		const { contentEl } = this;
-		const { title, message, confirmLabel, cancelLabel, option } = this.request;
+		const { title, message, confirmLabel, cancelLabel, option, destructive } = this.request;
 		contentEl.createEl("h2", { text: title });
 		contentEl.createEl("p", { text: message });
 
@@ -63,7 +66,7 @@ export class ConfirmModal extends Modal {
 		new Setting(contentEl)
 			.addButton((button) => button.setButtonText(cancelLabel ?? "Cancel").onClick(() => this.close()))
 			.addButton((button) =>
-				markDestructive(button.setButtonText(confirmLabel)).onClick(() => {
+				(destructive === false ? button.setButtonText(confirmLabel).setCta() : markDestructive(button.setButtonText(confirmLabel))).onClick(() => {
 					this.answer = { option: this.option };
 					this.close();
 				}),

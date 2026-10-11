@@ -706,7 +706,7 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 			{
 				type: "page",
 				name: "📚 Books",
-				desc: "Folders, metadata and the bibliography panel.",
+				desc: "Folders, metadata, the bibliography panel, and importing from Goodreads.",
 				items: [
 					{
 						type: "group",
@@ -759,6 +759,25 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 								name: "Show bibliography",
 								desc: "Below an author's properties, list their books that are in your vault, with a button to add another.",
 								control: { type: "toggle", key: "showBibliography" },
+							},
+						],
+					},
+					{
+						type: "group",
+						heading: "Import",
+						items: [
+							{
+								name: "Import from Goodreads",
+								desc:
+									'On Goodreads, open My Books, then "Import and export", export your library, and drag ' +
+									"goodreads_library_export.csv into your vault. This creates a note for each book not already in your vault, " +
+									"in the folder of its first shelf of your own, with the edition you shelved, your shelves, the day you read it " +
+									"and how many times. Ratings and reviews are not imported.",
+								render: (setting) => {
+									setting.addButton((button) =>
+										button.setButtonText("Import…").onClick(() => this.plugin.startImportFromGoodreads()),
+									);
+								},
 							},
 						],
 					},

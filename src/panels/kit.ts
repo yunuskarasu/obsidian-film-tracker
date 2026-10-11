@@ -58,6 +58,8 @@ export interface MangaPanelActions {
 	setDlcDone: (file: TFile, igdbId: number, done: boolean) => void;
 	/** "Start reading" under a book's cover. */
 	startReading: (file: TFile) => void;
+	/** "Choose edition", under a book's cover. */
+	chooseEdition: (file: TFile) => void;
 	/** BIBLIOGRAPHY's own button: the author's books to pick one from. */
 	addBookByAuthor: (file: TFile) => void;
 }

@@ -1,4 +1,5 @@
 import { NO_BOOK_FACTS, type AuthorMetadata, type BookFacts, type BookMetadata, type ReadStatus } from "./book";
+import type { BookEdition } from "./book-edition";
 import {
 	formatNames,
 	isEmptyValue,
@@ -19,7 +20,9 @@ import {
  * authors, year, genres, series, pages; an author's names and dates — is
  * rewritten by a refresh; where the user is with a book — `read_status`,
  * `started`, `finished`, `read_count` — is theirs, and only ever changed by
- * their own commands.
+ * their own commands, and so are the `shelves` a Goodreads import brings. So is the `edition` block, the edition the user owns:
+ * only "Choose edition" writes it, and once it is there `pages` is that
+ * edition's.
  */
 
 const BOOK_FIELD_ORDER = [
@@ -34,10 +37,12 @@ const BOOK_FIELD_ORDER = [
 	"poster",
 	"url",
 	"openlibrary_id",
+	"edition",
 	"read_status",
 	"started",
 	"finished",
 	"read_count",
+	"shelves",
 ];
 
 const AUTHOR_FIELD_ORDER = ["name", "original_name", "aliases", "born", "died", "poster", "photo_credit", "url", "openlibrary_id"];
@@ -127,7 +132,12 @@ export function refreshBookFrontmatter(
 	const doc = parseFrontmatterBlocks(content);
 	if (doc === null) return content;
 
-	for (const [key, lines] of bookLines(book, links, facts, previous)) setOrderedKey(doc, BOOK_FIELD_ORDER, key, lines);
+	// Once the user has chosen their edition, the page count is that edition's.
+	const ownEdition = !isEmptyValue(doc.blocks.get("edition"));
+	for (const [key, lines] of bookLines(book, links, facts, previous)) {
+		if (key === "pages" && ownEdition) continue;
+		setOrderedKey(doc, BOOK_FIELD_ORDER, key, lines);
+	}
 	if (facts !== null) {
 		// The old title gives way to the new one; every other alias — the user's own too — stays.
 		const aliases = mergeAliases(aliasesOf(book), listValues(previous.aliases), [...listValues(previous.title), ...listValues(previous.original_title)]);
@@ -135,6 +145,85 @@ export function refreshBookFrontmatter(
 	}
 	if (coverLink !== null && (posterMissing || isEmptyValue(doc.blocks.get("poster")))) {
 		setOrderedKey(doc, BOOK_FIELD_ORDER, "poster", [posterLine(coverLink.replace(/^!/, ""))]);
+	}
+	return serializeFrontmatterBlocks(doc);
+}
+
+/** The edition a book's note says the user owns, as far as choosing another goes. */
+export interface NoteEdition {
+	id: string | null;
+	title: string | null;
+	translators: string[];
+}
+
+export function editionOfNote(frontmatter: Record<string, unknown> | undefined): NoteEdition | null {
+	const edition: unknown = frontmatter?.edition;
+	if (edition === null || typeof edition !== "object" || Array.isArray(edition)) return null;
+	const fields = edition as Record<string, unknown>;
+	const id = typeof fields.openlibrary_id === "string" && /^OL\d+M$/.test(fields.openlibrary_id.trim()) ? fields.openlibrary_id.trim() : null;
+	const [title] = listValues(fields.title);
+	return { id, title: title ?? null, translators: listValues(fields.translators) };
+}
+
+/** Two titles that differ only in case or spacing are one. */
+function sameTitle(a: string, b: string): boolean {
+	const key = (text: string) => text.normalize("NFC").toLowerCase().replace(/\s+/g, " ").trim();
+	return key(a) === key(b);
+}
+
+/**
+ * The `edition` block: the edition's Open Library id, its title where it
+ * isn't the book's own — a translation's, say — its publisher, the year it
+ * was published, its ISBN and its translators. Every key is written, empty
+ * where nothing is known, for the user to fill in.
+ */
+function editionBlock(edition: BookEdition, translators: string[], ownTitle: boolean): string[] {
+	const indent = "  ";
+	return [
+		"edition:",
+		yamlScalar("openlibrary_id", edition.id, indent),
+		...(edition.title !== null && !ownTitle ? [yamlScalar("title", edition.title, indent)] : []),
+		yamlScalar("publisher", edition.publisher, indent),
+		yamlScalar("published", edition.year, indent),
+		yamlScalar("isbn", edition.isbn, indent),
+		...yamlList("translators", translators, indent),
+	];
+}
+
+/**
+ * "Choose edition": the edition becomes the note's own. Its block replaces
+ * the one before, `pages` becomes its page count where it has one, and its
+ * cover the poster where one was saved. A translation's title joins the
+ * aliases, so the note is found by it, in place of the last edition's.
+ * Everything else stays as it is. With `keepPages`, a page count already
+ * there stays too: an import fills a note in, it never overwrites it.
+ */
+export function setBookEdition(
+	content: string,
+	edition: BookEdition,
+	translators: string[],
+	coverLink: string | null,
+	previous: Record<string, unknown> = {},
+	options: { keepPages?: boolean } = {},
+): string {
+	const doc = parseFrontmatterBlocks(content);
+	if (doc === null) return content;
+	// The book's own titles: an edition under one of them adds no title of its own.
+	const ownTitles = [...listValues(previous.title), ...listValues(previous.original_title)];
+	const isOwn = (title: string) => ownTitles.some((own) => sameTitle(own, title));
+	const ownTitle = edition.title === null || isOwn(edition.title);
+
+	setOrderedKey(doc, BOOK_FIELD_ORDER, "edition", editionBlock(edition, translators, ownTitle));
+	const keepPages = options.keepPages === true && !isEmptyValue(doc.blocks.get("pages"));
+	if (edition.pages !== null && !keepPages) setOrderedKey(doc, BOOK_FIELD_ORDER, "pages", [yamlScalar("pages", edition.pages)]);
+	if (coverLink !== null) setOrderedKey(doc, BOOK_FIELD_ORDER, "poster", [posterLine(coverLink.replace(/^!/, ""))]);
+
+	const aliases = listValues(previous.aliases);
+	const previousTitle = editionOfNote(previous)?.title ?? null;
+	const kept = aliases.filter((alias) => alias !== previousTitle || isOwn(alias));
+	const added = edition.title !== null && !ownTitle && !kept.some((alias) => sameTitle(alias, edition.title ?? "")) ? [edition.title] : [];
+	if (added.length > 0 || kept.length !== aliases.length) {
+		setOrderedKey(doc, BOOK_FIELD_ORDER, "aliases", yamlList("aliases", [...kept, ...added]));
 	}
 	return serializeFrontmatterBlocks(doc);
 }
@@ -231,5 +320,69 @@ export function markBookFinished(content: string, date: string, count: number): 
 	setOrderedKey(doc, BOOK_FIELD_ORDER, "read_status", [`read_status: ${"read" satisfies ReadStatus}`]);
 	if (isEmptyValue(doc.blocks.get("finished"))) setOrderedKey(doc, BOOK_FIELD_ORDER, "finished", [`finished: ${date}`]);
 	setOrderedKey(doc, BOOK_FIELD_ORDER, "read_count", [`read_count: ${count + 1}`]);
+	return serializeFrontmatterBlocks(doc);
+}
+
+/** Where the user is with a book, as an import finds it: Goodreads' shelves, read date and read count. */
+export interface ImportedReading {
+	status: ReadStatus;
+	finished: string | null;
+	readCount: number;
+	shelves: string[];
+}
+
+/**
+ * A new book note, as an import writes it: the note "Add book" writes, with
+ * the user's edition — the ISBN they shelved — and where they are with it.
+ */
+export function buildImportedBookNote(
+	book: BookMetadata,
+	coverLink: string | null,
+	links: BookLinks,
+	edition: BookEdition | null,
+	reading: ImportedReading,
+): string {
+	const content = buildBookNoteContent(book, coverLink, links);
+	const own = { title: book.title, original_title: book.originalTitle ?? undefined, aliases: aliasesOf(book) };
+	const withEdition = edition === null ? content : setBookEdition(content, edition, edition.translators, null, own);
+	const doc = parseFrontmatterBlocks(withEdition);
+	if (doc === null) return withEdition;
+	setOrderedKey(doc, BOOK_FIELD_ORDER, "read_status", [`read_status: ${reading.status}`]);
+	if (reading.finished !== null) setOrderedKey(doc, BOOK_FIELD_ORDER, "finished", [`finished: ${reading.finished}`]);
+	setOrderedKey(doc, BOOK_FIELD_ORDER, "read_count", [`read_count: ${reading.readCount}`]);
+	if (reading.shelves.length > 0) setOrderedKey(doc, BOOK_FIELD_ORDER, "shelves", yamlList("shelves", reading.shelves));
+	return serializeFrontmatterBlocks(doc);
+}
+
+/**
+ * A book already in the vault, filled in from an import: only what the note
+ * leaves empty. Its status only moves on from "to read" — a book the user
+ * marked reading, read or dropped stays so — the read date and the shelves
+ * are only written where there are none, the read count only where it is
+ * 0, and the edition only where none was chosen, the page count kept. The
+ * poster, and where the note sits, are never touched.
+ */
+export function fillImportedBook(
+	content: string,
+	edition: BookEdition | null,
+	reading: ImportedReading,
+	previous: Record<string, unknown> = {},
+): string {
+	const hasEdition = editionOfNote(previous) !== null;
+	const withEdition = edition === null || hasEdition ? content : setBookEdition(content, edition, edition.translators, null, previous, { keepPages: true });
+	const doc = parseFrontmatterBlocks(withEdition);
+	if (doc === null) return content;
+
+	const { status, readCount } = readProgressOf(previous);
+	if (status === null || (status === "to read" && reading.status !== "to read")) {
+		setOrderedKey(doc, BOOK_FIELD_ORDER, "read_status", [`read_status: ${reading.status}`]);
+	}
+	if (reading.finished !== null && isEmptyValue(doc.blocks.get("finished"))) {
+		setOrderedKey(doc, BOOK_FIELD_ORDER, "finished", [`finished: ${reading.finished}`]);
+	}
+	if (readCount === 0 && reading.readCount > 0) setOrderedKey(doc, BOOK_FIELD_ORDER, "read_count", [`read_count: ${reading.readCount}`]);
+	if (reading.shelves.length > 0 && isEmptyValue(doc.blocks.get("shelves"))) {
+		setOrderedKey(doc, BOOK_FIELD_ORDER, "shelves", yamlList("shelves", reading.shelves));
+	}
 	return serializeFrontmatterBlocks(doc);
 }

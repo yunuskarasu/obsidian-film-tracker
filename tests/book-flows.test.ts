@@ -1,5 +1,7 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { BookActions } from "../src/book-actions";
+import { BookActions, type BookUi, type EditionChoice } from "../src/book-actions";
+import type { BookEdition } from "../src/book-edition";
+import type { ConfirmAnswer, ConfirmRequest } from "../src/confirm-modal";
 import { VaultNotes } from "../src/vault-notes";
 import { FakeApp, settings } from "./fake-app";
 import { replayOpenLibraryClient } from "./openlibrary-fixtures";
@@ -142,10 +144,37 @@ describe("an author's metadata", () => {
 	});
 });
 
+/** The user, as "Choose edition" asks them: each answer given in turn, and every question kept. */
+function bookUi(
+	options: {
+		language?: string;
+		pick?: (editions: BookEdition[]) => EditionChoice | null;
+		isbn?: string | null;
+		answers?: ConfirmAnswer[];
+	} = {},
+) {
+	const offered: BookEdition[][] = [];
+	const confirmed: ConfirmRequest[] = [];
+	const answers = [...(options.answers ?? [])];
+	const ui: BookUi = {
+		language: () => options.language ?? "en",
+		pickEdition: async (_title, editions) => {
+			offered.push(editions);
+			return options.pick?.(editions) ?? null;
+		},
+		askIsbn: async () => options.isbn ?? null,
+		confirm: async (request) => {
+			confirmed.push(request);
+			return answers.shift() ?? null;
+		},
+	};
+	return { ui, offered, confirmed };
+}
+
 describe("Add book and Add author, on the saved answers", () => {
 	function setUp(notes: Record<string, string> = {}) {
 		const app = new FakeApp(notes);
-		const books = new BookActions(app.app, new VaultNotes(app.app), settings());
+		const books = new BookActions(app.app, new VaultNotes(app.app), settings(), bookUi().ui);
 		return { app, books, ...replayOpenLibraryClient() };
 	}
 	const pickBook = (id: string, title: string) => ({ id, title, originalTitle: null, authors: [], year: null, editions: 1 });
@@ -287,5 +316,146 @@ describe("Add book and Add author, on the saved answers", () => {
 		await books.markFinishedToday(file);
 		expect(app.frontmatter(NO_COUNTRY)).toMatchObject({ read_status: "read", read_count: 2, started: "2020-01-01", finished: "2020-02-01" });
 		expect(Notice.shown[Notice.shown.length - 1]).toBe("Finished No Country for Old Men (2005) today — 2 times so far.");
+	});
+});
+
+describe("Choose edition, on the saved answers", () => {
+	const NO_COUNTRY = "Books/No Country for Old Men (2005).md";
+	const KURK = "Books/Kürk Mantolu Madonna (1943).md";
+	const pickBook = (id: string, title: string) => ({ id, title, originalTitle: null, authors: [], year: null, editions: 1 });
+
+	async function setUp(ui: ReturnType<typeof bookUi>, id = "OL40875W", title = "No Country for Old Men") {
+		const app = new FakeApp();
+		const books = new BookActions(app.app, new VaultNotes(app.app), settings(), ui.ui);
+		const replay = replayOpenLibraryClient();
+		await books.addBook(replay.client, pickBook(id, title));
+		Notice.shown.length = 0;
+		return { app, books, ...replay, ...ui };
+	}
+
+	const byId =
+		(id: string) =>
+		(editions: BookEdition[]): EditionChoice => {
+			const edition = editions.find((found) => found.id === id);
+			if (edition === undefined) throw new Error(`${id} isn't listed`);
+			return { kind: "edition", edition };
+		};
+	const kanat = byId("OL37024172M");
+
+	it("makes Kanat's Turkish translation the note's own: its block, pages, title and cover", async () => {
+		const { app, books, client, offered, confirmed } = await setUp(bookUi({ language: "tr", pick: kanat, answers: [{ option: false }] }));
+		const before = app.note(NO_COUNTRY);
+		await books.chooseEdition(client, app.file(NO_COUNTRY));
+
+		// The user's language first: the one Turkish edition heads the list.
+		expect(offered[0][0].id).toBe("OL37024172M");
+		expect(app.note(NO_COUNTRY)).toBe(
+			before
+				.replace("  - No Country for Old Men\n", "  - No Country for Old Men\n  - İhtiyarlara yer yok\n")
+				.replace("pages: 304", "pages: 220")
+				.replace('poster: "[[No Country for Old Men (2005).jpg]]"', 'poster: "[[No Country for Old Men (2005) 1.jpg]]"')
+				.replace(
+					"openlibrary_id: OL40875W\n",
+					[
+						"openlibrary_id: OL40875W",
+						"edition:",
+						"  openlibrary_id: OL37024172M",
+						"  title: İhtiyarlara yer yok",
+						"  publisher: Kanat",
+						"  published: 2008",
+						'  isbn: "9789758859757"',
+						"  translators:",
+						"    - Roza Hakmen",
+						"",
+					].join("\n"),
+				),
+		);
+		expect(Notice.shown).toContain("No Country for Old Men (2005) is now your Kanat, 2008, Turkish edition.");
+		// The old cover, which nothing uses now, is deleted once the user says so.
+		expect(confirmed[0]).toMatchObject({ title: "Delete the old cover?", confirmLabel: "Delete", cancelLabel: "Keep" });
+		expect([...app.images]).toEqual(["No Country for Old Men (2005) 1.jpg"]);
+	});
+
+	it("keeps the old cover when the user says Keep", async () => {
+		const { app, books, client } = await setUp(bookUi({ pick: kanat, answers: [null] }));
+		await books.chooseEdition(client, app.file(NO_COUNTRY));
+		expect([...app.images].sort()).toEqual(["No Country for Old Men (2005) 1.jpg", "No Country for Old Men (2005).jpg"]);
+	});
+
+	it("finds the edition by the ISBN typed into the list", async () => {
+		const { app, books, client, confirmed } = await setUp(bookUi({ pick: () => ({ kind: "isbn", isbn: "9789758859757" }), answers: [null] }));
+		await books.chooseEdition(client, app.file(NO_COUNTRY));
+		expect(app.frontmatter(NO_COUNTRY).edition).toMatchObject({ openlibrary_id: "OL37024172M", isbn: "9789758859757" });
+		// Only the old cover is asked about: the edition is filed under the book itself.
+		expect(confirmed.map((request) => request.title)).toEqual(["Delete the old cover?"]);
+	});
+
+	it("asks for an ISBN when none was typed, and says so when it is mistyped or no book has it", async () => {
+		const mistyped = await setUp(bookUi({ pick: () => ({ kind: "isbn", isbn: null }), isbn: "978-975-8859-75-8" }));
+		const before = mistyped.app.note(NO_COUNTRY);
+		await mistyped.books.chooseEdition(mistyped.client, mistyped.app.file(NO_COUNTRY));
+		expect(Notice.shown[Notice.shown.length - 1]).toBe("That isn't an ISBN, or a digit of it is mistyped. An ISBN has 13 digits, or 10 in older books.");
+		expect(mistyped.app.note(NO_COUNTRY)).toBe(before);
+
+		const unknown = await setUp(bookUi({ pick: () => ({ kind: "isbn", isbn: null }), isbn: "979-9999999990" }));
+		await unknown.books.chooseEdition(unknown.client, unknown.app.file(NO_COUNTRY));
+		expect(Notice.shown[Notice.shown.length - 1]).toBe("Open Library has no edition with ISBN 9799999999990.");
+		expect(unknown.app.note(NO_COUNTRY)).toBe(before);
+	});
+
+	it("asks before taking an edition filed under another record of the book, and leaves the note be on Cancel", async () => {
+		const yky = () => ({ kind: "isbn" as const, isbn: "9789753638029" });
+		const cancelled = await setUp(bookUi({ pick: yky, answers: [null] }), "OL24327596W", "Kürk Mantolu Madonna");
+		const before = cancelled.app.note(KURK);
+		await cancelled.books.chooseEdition(cancelled.client, cancelled.app.file(KURK));
+		expect(cancelled.confirmed[0]).toMatchObject({ title: "Use this edition?", confirmLabel: "Use it", destructive: false });
+		expect(cancelled.confirmed[0].message).toContain("ISBN 9789753638029 (Yap Kredi Yaynlar, 1998)");
+		expect(cancelled.app.note(KURK)).toBe(before);
+
+		const used = await setUp(bookUi({ pick: yky, answers: [{ option: false }, null] }), "OL24327596W", "Kürk Mantolu Madonna");
+		await used.books.chooseEdition(used.client, used.app.file(KURK));
+		expect(used.app.frontmatter(KURK)).toMatchObject({
+			pages: 164,
+			edition: { openlibrary_id: "OL28130921M", title: "Kurk Mantolu Madonna", published: 1998 },
+		});
+	});
+
+	it("is undone by nothing: a refresh keeps the edition, its pages and its cover", async () => {
+		const { app, books, client } = await setUp(bookUi({ pick: kanat, answers: [null] }));
+		await books.chooseEdition(client, app.file(NO_COUNTRY));
+		const chosen = app.note(NO_COUNTRY);
+		await books.refresh(client, app.file(NO_COUNTRY));
+		expect(app.note(NO_COUNTRY)).toBe(chosen);
+	});
+
+	it("keeps the translators the user wrote when the same edition is chosen again, and drops the last edition's title for another", async () => {
+		const english = (editions: BookEdition[]): EditionChoice => {
+			const edition = editions.find((found) => found.languages.includes("eng") && found.id !== "OL37024172M");
+			if (edition === undefined) throw new Error("No English edition listed");
+			return { kind: "edition", edition };
+		};
+		const picks = [kanat, kanat, english];
+		const ui = bookUi({ answers: [null, null, null] });
+		ui.ui.pickEdition = async (_title, editions) => picks.shift()?.(editions) ?? null;
+		const { app, books, client } = await setUp(ui);
+		const file = app.file(NO_COUNTRY);
+
+		await books.chooseEdition(client, file);
+		app.notes.set(NO_COUNTRY, app.note(NO_COUNTRY).replace("    - Roza Hakmen", "    - Roza Hakmen\n    - Someone Else"));
+		await books.chooseEdition(client, file);
+		expect((app.frontmatter(NO_COUNTRY).edition as Record<string, unknown>).translators).toEqual(["Roza Hakmen", "Someone Else"]);
+
+		await books.chooseEdition(client, file);
+		const note = app.frontmatter(NO_COUNTRY);
+		expect(note.aliases).toEqual(["No Country for Old Men"]);
+		expect((note.edition as Record<string, unknown>).openlibrary_id).not.toBe("OL37024172M");
+		expect(JSON.stringify((note.edition as Record<string, unknown>).translators)).not.toContain("Someone Else");
+	});
+
+	it("leaves the note as it is when the list is closed", async () => {
+		const { app, books, client } = await setUp(bookUi());
+		const before = app.note(NO_COUNTRY);
+		await books.chooseEdition(client, app.file(NO_COUNTRY));
+		expect(app.note(NO_COUNTRY)).toBe(before);
 	});
 });

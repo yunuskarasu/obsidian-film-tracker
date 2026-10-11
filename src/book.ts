@@ -163,7 +163,7 @@ export function authorIdOf(key: string | undefined): string | null {
 }
 
 /** A title reduced to its letters and digits, for telling whether a search names it exactly. */
-function titleKey(text: string): string {
+export function titleKey(text: string): string {
 	return text.normalize("NFKD").replace(/\p{M}/gu, "").toLowerCase().replace(/[^\p{L}\p{N}]+/gu, "");
 }
 

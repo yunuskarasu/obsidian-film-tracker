@@ -43,6 +43,8 @@ export interface WatchControls {
 	canStartPlaying?: boolean;
 	/** A book not being read right now can be started. */
 	canStartReading?: boolean;
+	/** A book's own edition can be chosen. */
+	canChooseEdition?: boolean;
 }
 
 export function watchControlsFor(frontmatter: Record<string, unknown> | undefined): WatchControls | null {
@@ -84,6 +86,7 @@ export function watchControlsFor(frontmatter: Record<string, unknown> | undefine
 			markText: "Finished today",
 			canChangePhoto: false,
 			canStartReading: status !== "reading",
+			canChooseEdition: true,
 		};
 	}
 	if (kind.kind === "album") {
@@ -234,5 +237,8 @@ function showWatchProgress(app: App, actions: MangaPanelActions, host: HTMLEleme
 	}
 	if (controls.canChangePhoto) {
 		renderAction(buttons, "Change photo", () => actions.changePhoto(file));
+	}
+	if (controls.canChooseEdition === true) {
+		renderAction(buttons, "Choose edition", () => actions.chooseEdition(file));
 	}
 }

@@ -63,6 +63,7 @@ A handful of mistakes account for most of the confusion new users hit:
 - **A blank poster/photo isn't necessarily a bug.** Some TMDB entries genuinely have no image; the note is still created with full metadata either way.
 - **Anime and manga only merge into one note when you open the right note first.** There's no automatic matching — if you want a Series note with both, add one half, keep that note open in the editor, run the other **Add** command and confirm **Link to this note** (see [Anime and manga](#anime-and-manga)).
 - **Never delete or hand-edit `mal_id`, or the `manga` block's `mal_id`.** Same rule as `tmdb_id`: they're what Film + Anime-Manga Tracker uses to recognize a note and know what to refresh. The same goes for a game's `igdb_id`, a book's or an author's `openlibrary_id`, and the MusicBrainz ids of music notes.
+- **Imports are safe to run again.** The Letterboxd, MyAnimeList and Goodreads imports recognize what is already in your vault by its id, wherever the note lives, and never write it twice: a second run only fills in what is still empty.
 - **Games need IGDB's client ID and secret**, from a free Twitch app — a few minutes, once (see [Setting up IGDB](#setting-up-igdb)). Without them **Add game** points you to settings.
 
 ## Usage
@@ -100,6 +101,7 @@ Mangaka work a little differently: open the manga or Series note whose author yo
 | **Add author** | Search Open Library and create the author's note, with a credited photo. Creates none of their books. |
 | **Start reading** / **Mark book as finished today** | Set the book you have open as being read, or finish it: the date the first time, one more in `read_count` every time. Only appear on book notes; also buttons under the cover and on the note's right-click menu. |
 | **Refresh book metadata from Open Library** | Re-fetch the book or author and rewrite only what Open Library and Wikidata know. Only appears on book and author notes. |
+| **Choose edition** | Pick the edition you own of the book you have open — from Open Library's list, or by its ISBN — for its publisher, year, ISBN, translators, page count and cover. Only appears on book notes; also a button under the cover and on the note's right-click menu. See [Your edition](#your-edition). |
 | **Add artist** | Search MusicBrainz and create the artist's note, with a credited photo. Creates none of their albums. |
 | **Move album into its folder** | Moves the album note you have open — one from before album folder notes — into a folder of its own name, beside the songs added from it. Every link to it follows. Only appears on an album note that isn't in its own folder yet. |
 | **Find soundtrack** | Lists the albums that may be the soundtrack of the film, TV series, anime or game you have open — Wikidata's first, then MusicBrainz's soundtracks under each of its titles — and links the one you pick. Only appears on film, TV, anime and game notes. Also a **Find soundtrack…** button on the SOUNDTRACK panel, and an entry on the note's right-click menu. See [Soundtracks](#soundtracks). |
@@ -121,6 +123,7 @@ Mangaka work a little differently: open the manga or Series note whose author yo
 | **Relink directors and genres** | Turn plain names into `[[wikilinks]]` wherever a note by that name now exists, on film and TV series notes — a show's creators follow the **Link directors** setting. No network calls, so it runs in a second. |
 | **Import from Letterboxd** | Bulk-create notes from a Letterboxd export. See below. |
 | **Import from MyAnimeList** | Bulk-create notes from a public MyAnimeList list, marking what you have completed. See below. |
+| **Import from Goodreads** | Bulk-create book notes from a Goodreads library export, with your shelves, read dates and editions. See below. |
 
 ## Importing from Letterboxd
 
@@ -148,6 +151,50 @@ What you have **completed** arrives ticked: an anime as `watched`, a manga as `r
 Nothing is matched by title, so there is no guessing. What can still go wrong is a name: when a note of your own already has the name an entry would take, that entry is left out and listed in the **Film + Anime-Manga Tracker Import Report** note written at the end. Closing the progress window stops the import, the same as **Cancel**, and only one import runs at a time.
 
 The list has to be public. That's a MyAnimeList setting (**Account settings → My List → List visibility**), not something the plugin can change: MyAnimeList only shares a private list with the account that owns it, which would need signing in.
+
+## Importing from Goodreads
+
+Goodreads exports your library only from its website on a computer, not from its app.
+
+1. On [goodreads.com](https://www.goodreads.com), open **My Books**. In the left column, under **Tools**, click **Import and export**.
+2. Click **Export Library**. Goodreads prepares the file — refresh the page after a minute if no link appears — then click **Your export from …** to download `goodreads_library_export.csv`. It is a plain CSV file, not a zip.
+3. Drag `goodreads_library_export.csv` into your vault. Any folder works, the vault root included. Obsidian's file explorer doesn't list `.csv` files unless **Settings → Files and links → Detect all file extensions** is on, but the import finds the file either way. Don't open and save it in a spreadsheet first: a spreadsheet rewrites the ISBNs.
+4. Run **Import from Goodreads** from the command palette, or click **Import…** on the **📚 Books** settings page, and pick that file.
+5. The window shows how many books are on each shelf. Pick the shelves to import — **Read**, **Currently reading**, **Want to read** and **Your own exclusive shelves** — and click **Import**.
+
+Each book is looked up on Open Library by its title and author, and gets the same note **Add book** writes, with these filled in from Goodreads:
+
+| Goodreads | Note |
+| --- | --- |
+| Read | `read_status: read`, `finished` from **Date Read**, and `read_count` from **Read Count** (at least 1) |
+| Currently reading | `read_status: reading` |
+| Want to read | `read_status: to read` |
+| A shelf of your own for books you gave up on — `dnf`, `did-not-finish`, `abandoned` and the like | `read_status: dropped`, even beside **Read**, the way many people shelve a book they stopped |
+| Any other exclusive shelf of your own, `owned` say | `read` when Goodreads has a read date or count for it, else `to read` |
+| Your own shelves | `shelves`, every one of them, and the folder the note goes in |
+| ISBN | the note's [edition](#your-edition) |
+
+`started` stays empty: Goodreads' export has no start date. Your rating, review and private notes are never read — they are your own words, not the plugin's to copy.
+
+**Folders.** A book on a shelf of your own goes in a folder named after its first shelf, inside the book folder: `Books/favorites/`, `Books/did-not-finish/`. A book on none of your own shelves goes in the book folder itself. A book on several of your shelves goes in the first one's folder, and `shelves` lists them all — search `[shelves:classics]` in Obsidian to see every book on a shelf, whatever its folder.
+
+```yaml
+read_status: read
+started:
+finished: 2024-03-02
+read_count: 2
+shelves:
+  - favorites
+  - american
+```
+
+**Books already in your vault** are recognized by their `openlibrary_id`, wherever they live, and are never moved or written twice. They are only filled in where they are empty: the status moves on from `to read` but never back, the read date and the shelves are written where there are none, the read count where it is 0, and the edition where you haven't chosen one — the page count and the cover they have stay. Running the same export again changes nothing.
+
+**What can't be found.** A book Open Library has no match for, by its title and author or by its ISBN, is left out and listed, with the reason, in a **Film + Anime-Manga Tracker Import Report** note written at the end.
+
+**Translations.** Open Library keeps many translations as records of their own. A book you shelved under its translated title — *Suç ve Ceza* rather than *Crime and Punishment* — may arrive as that translation's record, with few editions and sometimes the translation's year, rather than the book itself. To move such a note to the book's own record, find the book on [openlibrary.org](https://openlibrary.org), copy the `OL…W` from its address — `openlibrary.org/works/OL166894W/…` — into the note's `openlibrary_id`, and run **Refresh book metadata from Open Library**.
+
+Open Library answers one request a second, and a book takes about three, so a library of 300 books takes about 15 minutes. The window shows how far along it is. Closing it stops the import, the same as **Cancel**; what was imported by then stays. Once the import is done, you can delete the CSV file from your vault.
 
 ## What gets written
 
@@ -709,12 +756,38 @@ read_count: 0
 ---
 ```
 
-- A note is the book itself, the work, not one edition of it: one note for *The Cherry Orchard*, however many translations and printings it has. The cover is the one Open Library shows for the work, and `pages` is the usual length of its editions.
+- A note is the book itself, the work, not one edition of it: one note for *The Cherry Orchard*, however many translations and printings it has. The cover is the one Open Library shows for the work, and `pages` is the usual length of its editions — until you choose [your edition](#your-edition).
 - Each search result names its authors, its year and how many editions it has. A book titled exactly as you searched comes first, then the most printed, so Chekhov's play is above the books named after it.
 - `year` is when the book first came out: Wikidata's date where it has one, else the year of the earliest edition Open Library knows. `genres` and `series` come from [Wikidata](https://www.wikidata.org).
 - `read_status` (to read, reading, read, dropped), `started`, `finished` and `read_count` are yours. **Start reading** sets the book reading and dates the day the first time. **Mark book as finished today** sets it read, dates the day the first time and counts one more reading every time. Both are buttons under the cover too. A refresh never touches them.
-- **Refresh book metadata from Open Library** rewrites what Open Library and Wikidata know. Your aliases, a name you made a link, the cover once there is one, your own properties and the body stay as they are. When Wikidata can't be reached, the year, authors and genres are left as they were rather than guessed.
+- **Refresh book metadata from Open Library** rewrites what Open Library and Wikidata know. Your edition, your aliases, a name you made a link, the cover once there is one, your own properties and the body stay as they are. When Wikidata can't be reached, the year, authors and genres are left as they were rather than guessed.
 - **Link authors** (📚 Books settings, on by default) writes the authors as links when a note by that name exists. Adding a book never writes its author's note.
+
+### Your edition
+
+**Choose edition** — a button under the cover, a command, and an entry on the note's right-click menu — lists every edition Open Library has of the book: those in Obsidian's language first, then the newest. Each shows its publisher, year, page count, language and format, with its ISBN and translators below, and the list filters as you type. The first row is **Enter ISBN…**: type the ISBN on the back of your copy, with or without hyphens — or type it straight into the list. A mistyped digit is caught, since an ISBN's last digit checks the others.
+
+```yaml
+pages: 220
+poster: "[[No Country for Old Men (2005) 1.jpg]]"
+openlibrary_id: OL40875W
+edition:
+  openlibrary_id: OL37024172M
+  title: İhtiyarlara yer yok
+  publisher: Kanat
+  published: 2008
+  isbn: "9789758859757"
+  translators:
+    - Roza Hakmen
+```
+
+- The `edition` block is the edition you own. Edit it in source mode: Obsidian's Properties view shows a nested block as raw text. Choose another edition and the block is replaced.
+- `pages` becomes the edition's page count, and from then on a refresh leaves it and the block alone.
+- A translation's `title` is written only when it differs from the book's, and it joins `aliases`, so the note is found by it too. Choosing another edition takes the old one's title out of `aliases`.
+- `translators` are filled in only when Open Library names them for certain — a translator credit, or a title page that says "translated by" or "çeviren". Otherwise the list is left empty for you, and once you have filled it in, choosing the same edition again keeps your list.
+- The edition's cover becomes the note's poster, saved beside the old one. If no other note uses the old cover, you are asked whether to delete it. An edition without a cover keeps the one there.
+- Open Library sometimes files an edition under a second copy of the book's record. An ISBN that lands on one asks **Use this edition?** before anything changes.
+- Obsidian's language decides which editions come first. With Obsidian in English, type a language — "Turkish" — to filter the list down to it.
 
 ### Titles in other scripts
 
@@ -748,7 +821,7 @@ openlibrary_id: OL19677A
 
 ### Open Library's pace
 
-Open Library is run by a non-profit and asks apps to say who they are and to go easy on its servers. The plugin sends at most one request a second and introduces itself as `FilmTracker/<version> ( https://github.com/yunuskarasu/obsidian-film-tracker )`. It sends nothing about you. Adding a book takes a few seconds for that reason.
+Open Library is run by a non-profit and asks apps to say who they are and to go easy on its servers. The plugin sends at most one request a second and introduces itself as `FilmTracker/<version> ( https://github.com/yunuskarasu/obsidian-film-tracker )`. It sends nothing about you: a Goodreads import sends each book's title, author and ISBN, and nothing else from your export. Adding a book takes a few seconds for that reason, and an import about three seconds a book.
 
 Wikidata is asked only about the books and authors you add and refresh, found by their Open Library ids. It is sent nothing about you either.
 

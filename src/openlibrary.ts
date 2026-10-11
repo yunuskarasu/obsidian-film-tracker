@@ -21,6 +21,7 @@ import {
 	type OlAuthorDoc,
 	type OlWorkDoc,
 } from "./book";
+import { EDITIONS_MAX, toBookEdition, type BookEdition, type OlEdition } from "./book-edition";
 import { commonsImages } from "./commons";
 import { isLatin } from "./music";
 import { OBSIDIAN_WEB, SearchSuperseded, type Picture, type WebAccess, type WebResponse } from "./musicbrainz";
@@ -47,6 +48,9 @@ const BUSY_PAUSES_MS = [2000, 4000];
 const AUTHOR_WORKS_MAX = 100;
 
 export class OpenLibraryError extends Error {}
+
+/** A 404: Open Library has nothing under that address. */
+class OpenLibraryNotFound extends OpenLibraryError {}
 
 /** For tests: the next request goes out at once. */
 export function resetOpenLibraryQueue(): void {
@@ -89,6 +93,20 @@ export class OpenLibraryClient {
 		return rankAuthors(body.docs ?? [])
 			.map(toAuthorSearchResult)
 			.filter((author) => author.id !== "" && author.name !== "");
+	}
+
+	/**
+	 * A book by its title and author, as an import names it: Open Library
+	 * finds the title in any edition's, a translation's too, and the author
+	 * under any name it knows them by. Its own order is kept: it puts the
+	 * book itself — Вишневый сад for "The Cherry Orchard" — ahead of the
+	 * stray records titled exactly as asked.
+	 */
+	async findBook(title: string, author: string): Promise<BookSearchResult[]> {
+		const body = await this.ol<{ docs?: OlWorkDoc[] }>(
+			`/search.json?q=${encodeURIComponent(title)}&author=${encodeURIComponent(author)}&fields=${WORK_FIELDS}&lang=${WORK_LANGUAGE}&limit=5`,
+		);
+		return (body.docs ?? []).map(toBookSearchResult).filter((book) => book.id !== "" && book.title !== "");
 	}
 
 	/** An author's books, the ones with the most editions first: what BIBLIOGRAPHY's "Add book…" offers. */
@@ -136,6 +154,27 @@ export class OpenLibraryClient {
 			}
 		}
 		return named;
+	}
+
+	/** Every edition Open Library files under a work, as many as `EDITIONS_MAX`, in its own order. */
+	async editions(workId: string): Promise<BookEdition[]> {
+		const body = await this.ol<{ entries?: OlEdition[] }>(`/works/${workId}/editions.json?limit=${EDITIONS_MAX}`);
+		return (body.entries ?? []).map(toBookEdition).filter((edition) => edition.id !== "");
+	}
+
+	/**
+	 * The edition with this ISBN, or `null` when Open Library has none. It
+	 * may be filed under another work than the one asked about: Open Library
+	 * keeps stray copies of some books' records.
+	 */
+	async editionByIsbn(isbn: string): Promise<BookEdition | null> {
+		try {
+			const edition = toBookEdition(await this.ol<OlEdition>(`/isbn/${isbn}.json`));
+			return edition.id === "" ? null : edition;
+		} catch (error) {
+			if (error instanceof OpenLibraryNotFound) return null;
+			throw error;
+		}
 	}
 
 	/** An author by their id: their own record, and Wikidata's facts beside it. */
@@ -200,7 +239,7 @@ export class OpenLibraryClient {
 				throw new OpenLibraryError("Could not reach Open Library. Check your internet connection.");
 			}
 			if (response.status === 200) return (response.json ?? {}) as T;
-			if (response.status === 404) throw new OpenLibraryError("Open Library has no such entry any more.");
+			if (response.status === 404) throw new OpenLibraryNotFound("Open Library has no such entry any more.");
 			if (response.status !== 429 && response.status !== 503) {
 				throw new OpenLibraryError(`Open Library request failed (HTTP ${response.status}).`);
 			}

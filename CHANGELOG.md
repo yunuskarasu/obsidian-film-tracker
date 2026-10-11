@@ -4,6 +4,15 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+## [3.6.0] - 2026-10-11
+
+Your own edition of a book, and your Goodreads library. Nothing breaks: notes and settings from 3.5 carry over as they are.
+
+### Added
+
+- **Choose edition.** A button under a book's cover, a command and a menu entry list every edition Open Library has of the book, those in Obsidian's language first, or find one by the ISBN on the back of your copy. The one you pick goes into an `edition` block: its publisher, year, ISBN, its title where it is a translation's, and its translators where Open Library names them for certain. `pages` becomes its page count, and its cover the note's poster; the old cover is only deleted if you say so. A refresh leaves the edition alone.
+- **Import from Goodreads.** Reads Goodreads' library export and writes a note for each book on the shelves you pick, with your edition from its ISBN. Read, currently reading and want to read become `read_status`; a shelf of your own for books you gave up on makes one dropped. `finished` comes from the date you read it and `read_count` from how many times. Your own shelves go into a new `shelves` list, and each book into a folder named after its first one. A book already in your vault stays where it is and is only filled in where it is empty. Ratings and reviews are never imported. The **📚 Books** settings page has an **Import…** button for it.
+
 ## [3.5.0] - 2026-10-11
 
 Books and their authors. Nothing breaks: notes and settings from 3.4 carry over as they are.
@@ -227,7 +236,8 @@ Music joins films, TV series and anime-manga. Nothing breaks: notes and settings
 - Relinking of directors and genres.
 - Import from Letterboxd.
 
-[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.5.0...HEAD
+[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.6.0...HEAD
+[3.6.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.5.0...3.6.0
 [3.5.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.4.0...3.5.0
 [3.4.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.3.1...3.4.0
 [3.3.1]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.3.0...3.3.1

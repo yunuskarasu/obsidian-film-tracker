@@ -1,4 +1,4 @@
-import { Menu, Notice, Plugin, TFile, debounce, normalizePath } from "obsidian";
+import { Menu, Notice, Plugin, TFile, debounce, moment, normalizePath } from "obsidian";
 import { AnimeActions } from "./anime-actions";
 import {
 	AlreadyTrackedModal,
@@ -12,6 +12,9 @@ import { GameActions } from "./game-actions";
 import type { GameDlc } from "./game";
 import { IgdbClient } from "./igdb";
 import { FilmNoteLayout } from "./film-note-layout";
+import { parseGoodreadsCsv, type GoodreadsRow } from "./goodreads-import";
+import { GoodreadsImportModal } from "./goodreads-import-modal";
+import { GoodreadsImporter } from "./goodreads-importer";
 import { CsvFileModal } from "./import-file-modal";
 import { ImportConfirmModal, ImportProgressModal } from "./import-progress-modal";
 import { isWatchedExport, parseLetterboxdCsv, type LetterboxdRow } from "./letterboxd-import";
@@ -42,6 +45,8 @@ import {
 	openArtistAlbums,
 	openAuthorSearch,
 	openAuthorWorks,
+	EditionPickerModal,
+	IsbnModal,
 	openBookSearch,
 	openArtistSearch,
 	openDirectorSearch,
@@ -119,9 +124,25 @@ export default class FilmTrackerPlugin extends Plugin {
 			}),
 	});
 	private readonly games = new GameActions(this.app, this.notes, () => this.settings);
-	private readonly books = new BookActions(this.app, this.notes, () => this.settings);
+	private readonly books = new BookActions(this.app, this.notes, () => this.settings, {
+		// Obsidian sets moment's locale to its own language, on every version the plugin supports.
+		language: () => moment.locale(),
+		pickEdition: (bookTitle, editions) =>
+			new Promise((resolve) => {
+				new EditionPickerModal(this.app, bookTitle, editions, resolve).open();
+			}),
+		askIsbn: () =>
+			new Promise((resolve) => {
+				new IsbnModal(this.app, resolve).open();
+			}),
+		confirm: (request) =>
+			new Promise((resolve) => {
+				new ConfirmModal(this.app, request, resolve).open();
+			}),
+	});
 	private readonly importer = new LetterboxdImporter(this.app, this.notes, this.films);
 	private readonly malImporter = new MalListImporter(this.app, this.notes, this.anime);
+	private readonly goodreadsImporter = new GoodreadsImporter(this.app, this.notes, this.books, () => this.settings);
 
 	async onload(): Promise<void> {
 		await this.loadSettings();
@@ -264,6 +285,17 @@ export default class FilmTrackerPlugin extends Plugin {
 				const note = this.activeNote();
 				if (note === null || !isBook(note.kind)) return false;
 				if (!checking) void this.books.markFinishedToday(note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "choose-edition",
+			name: "Choose edition",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || !isBook(note.kind)) return false;
+				if (!checking) void this.books.chooseEdition(this.openLibrary(), note.file);
 				return true;
 			},
 		});
@@ -456,6 +488,12 @@ export default class FilmTrackerPlugin extends Plugin {
 			callback: () => this.startImportFromMal(),
 		});
 
+		this.addCommand({
+			id: "import-goodreads",
+			name: "Import from Goodreads",
+			callback: () => this.startImportFromGoodreads(),
+		});
+
 		this.addRibbonIcon("film", "Add film, TV series, anime, manga, music, game or book", (evt) => {
 			const menu = new Menu();
 			menu.addItem((item) =>
@@ -620,6 +658,7 @@ export default class FilmTrackerPlugin extends Plugin {
 		if (isBook(kind)) {
 			entries.push({ title: "Start reading", icon: "book-open", run: () => void this.books.startReading(file) });
 			entries.push({ title: "Mark book as finished today", icon: "check", run: () => void this.books.markFinishedToday(file) });
+			entries.push({ title: "Choose edition", icon: "library", run: () => void this.books.chooseEdition(this.openLibrary(), file) });
 		}
 		if (canWatch(kind)) {
 			entries.push({ title: "Mark as watched today", icon: "check", run: () => void this.watchedToday(file) });
@@ -756,6 +795,7 @@ export default class FilmTrackerPlugin extends Plugin {
 				addDlc: (file) => void this.startAddDlc(file),
 				setDlcDone: (file, igdbId, done) => void this.games.setDlcDone(file, igdbId, done),
 				startReading: (file) => void this.books.startReading(file),
+				chooseEdition: (file) => void this.books.chooseEdition(this.openLibrary(), file),
 				addBookByAuthor: (file) => this.startAddBookOf(file),
 			},
 		);
@@ -1040,7 +1080,7 @@ export default class FilmTrackerPlugin extends Plugin {
 
 	/** Only one import runs at a time, of either kind; a second is turned away. */
 	private importRunning(): boolean {
-		if (!this.importer.running && !this.malImporter.running) return false;
+		if (!this.importer.running && !this.malImporter.running && !this.goodreadsImporter.running) return false;
 		new Notice("An import is already running.");
 		return true;
 	}
@@ -1056,6 +1096,37 @@ export default class FilmTrackerPlugin extends Plugin {
 			const progress = new ImportProgressModal(this.app, "Importing from MyAnimeList…");
 			progress.open();
 			void this.malImporter.run(client, userName, selection, progress);
+		}).open();
+	}
+
+	/** "Import from Goodreads": a note for every book in a Goodreads library export (see `GoodreadsImporter`). */
+	startImportFromGoodreads(): void {
+		if (this.importRunning()) return;
+		new CsvFileModal(this.app, (file) => void this.beginGoodreadsImport(file), {
+			placeholder: "Pick the Goodreads export you added to your vault…",
+			empty: 'No .csv files found. On Goodreads, open My Books, then "Import and export", export your library, and drag goodreads_library_export.csv into your vault first.',
+		}).open();
+	}
+
+	private async beginGoodreadsImport(file: TFile): Promise<void> {
+		let rows: GoodreadsRow[];
+		try {
+			rows = parseGoodreadsCsv(await this.app.vault.read(file));
+		} catch (error) {
+			new Notice(error instanceof Error ? error.message : "Could not read that file.");
+			return;
+		}
+		if (rows.length === 0) {
+			new Notice("No books found in that file.");
+			return;
+		}
+
+		new GoodreadsImportModal(this.app, rows, (groups) => {
+			// Asked again: another import may have started while this dialog was open.
+			if (this.importRunning()) return;
+			const progress = new ImportProgressModal(this.app, "Importing from Goodreads…");
+			progress.open();
+			void this.goodreadsImporter.run(this.openLibrary(), rows, groups, progress);
 		}).open();
 	}
 
