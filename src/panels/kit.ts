@@ -56,6 +56,10 @@ export interface MangaPanelActions {
 	addDlc: (file: TFile) => void;
 	/** That panel's checkbox: a DLC finished, or not. */
 	setDlcDone: (file: TFile, igdbId: number, done: boolean) => void;
+	/** "Start reading" under a book's cover. */
+	startReading: (file: TFile) => void;
+	/** BIBLIOGRAPHY's own button: the author's books to pick one from. */
+	addBookByAuthor: (file: TFile) => void;
 }
 
 /** What a panel needs from the plugin to draw itself. */

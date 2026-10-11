@@ -1,0 +1,33 @@
+{
+	"numFound": 4,
+	"start": 0,
+	"numFoundExact": true,
+	"docs": [
+		{
+			"birth_date": "20 July 1933",
+			"death_date": "13 June 2023",
+			"key": "OL28104A",
+			"name": "Cormac McCarthy",
+			"top_work": "The Road",
+			"work_count": 30
+		},
+		{
+			"key": "OL16491925A",
+			"name": "Cormac McCarthy",
+			"top_work": "COPD - An Update in Pathogenesis and Clinical Management",
+			"work_count": 1
+		},
+		{
+			"key": "OL4449395A",
+			"name": "Sean Cormac McCarthy",
+			"top_work": "BOT and OMT contracts for infrastructure",
+			"work_count": 2
+		},
+		{
+			"key": "OL13420019A",
+			"name": "Colloque International sur Cormac McCarthy (3rd 2003 Reims)",
+			"top_work": "Cormac McCarthy",
+			"work_count": 1
+		}
+	]
+}

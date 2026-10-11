@@ -1,0 +1,758 @@
+{
+	"numFound": 28,
+	"start": 0,
+	"numFoundExact": true,
+	"num_found": 28,
+	"documentation_url": "https://openlibrary.org/dev/docs/api/search",
+	"q": "",
+	"offset": null,
+	"docs": [
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 198120,
+			"edition_count": 84,
+			"first_publish_year": 2006,
+			"key": "/works/OL40873W",
+			"number_of_pages_median": 256,
+			"title": "The Road",
+			"editions": {
+				"numFound": 84,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Road",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 9296904,
+			"edition_count": 54,
+			"first_publish_year": 1992,
+			"key": "/works/OL40882W",
+			"number_of_pages_median": 306,
+			"title": "All the Pretty Horses",
+			"editions": {
+				"numFound": 54,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "All the Pretty Horses (Border Trilogy)",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 9296899,
+			"edition_count": 45,
+			"first_publish_year": 1900,
+			"key": "/works/OL40875W",
+			"number_of_pages_median": 304,
+			"title": "No Country for Old Men",
+			"editions": {
+				"numFound": 45,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 419991,
+			"edition_count": 37,
+			"first_publish_year": 1985,
+			"key": "/works/OL40879W",
+			"number_of_pages_median": 353,
+			"title": "Blood Meridian",
+			"editions": {
+				"numFound": 37,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Blood Meridian",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 6999576,
+			"edition_count": 30,
+			"first_publish_year": 1994,
+			"key": "/works/OL40883W",
+			"number_of_pages_median": 432,
+			"title": "The Crossing",
+			"editions": {
+				"numFound": 30,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The crossing",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 9158767,
+			"edition_count": 29,
+			"first_publish_year": 1998,
+			"key": "/works/OL40869W",
+			"number_of_pages_median": 294,
+			"title": "Cities of the Plain",
+			"editions": {
+				"numFound": 29,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Cities of the plain",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 9296908,
+			"edition_count": 23,
+			"first_publish_year": 1979,
+			"key": "/works/OL40885W",
+			"number_of_pages_median": 561,
+			"title": "Suttree",
+			"editions": {
+				"numFound": 23,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Suttree",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 9296903,
+			"edition_count": 22,
+			"first_publish_year": 1968,
+			"key": "/works/OL40881W",
+			"number_of_pages_median": 242,
+			"title": "Outer Dark",
+			"editions": {
+				"numFound": 22,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Outer Dark",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 9158770,
+			"edition_count": 20,
+			"first_publish_year": 1965,
+			"key": "/works/OL40884W",
+			"number_of_pages_median": 246,
+			"title": "The Orchard Keeper",
+			"editions": {
+				"numFound": 20,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Orchard Keeper",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 9158768,
+			"edition_count": 20,
+			"first_publish_year": 1974,
+			"key": "/works/OL40878W",
+			"number_of_pages_median": 197,
+			"title": "Child of God",
+			"editions": {
+				"numFound": 20,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Child of God",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 9296906,
+			"edition_count": 15,
+			"first_publish_year": 2006,
+			"key": "/works/OL40877W",
+			"number_of_pages_median": 143,
+			"title": "The Sunset Limited",
+			"editions": {
+				"numFound": 15,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Sunset Limited",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 9354733,
+			"edition_count": 14,
+			"first_publish_year": 2015,
+			"key": "/works/OL20682827W",
+			"number_of_pages_median": 424,
+			"title": "The Passenger",
+			"editions": {
+				"numFound": 14,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Passenger",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 7852011,
+			"edition_count": 12,
+			"first_publish_year": 2013,
+			"key": "/works/OL17575522W",
+			"number_of_pages_median": 140,
+			"title": "The Counselor",
+			"editions": {
+				"numFound": 12,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Counsellor",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 225981,
+			"edition_count": 11,
+			"first_publish_year": 1999,
+			"key": "/works/OL40868W",
+			"number_of_pages_median": 1032,
+			"title": "The Border Trilogy (All the Pretty Horses / The Crossing / Cities of the Plain)",
+			"editions": {
+				"numFound": 11,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Border Trilogy",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 13011479,
+			"edition_count": 8,
+			"first_publish_year": 2022,
+			"key": "/works/OL28018177W",
+			"title": "Stella Maris",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Stella Maris",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 676456,
+			"edition_count": 5,
+			"first_publish_year": 1996,
+			"key": "/works/OL14928146W",
+			"number_of_pages_median": 112,
+			"title": "The Gardener's Son",
+			"editions": {
+				"numFound": 5,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Gardener's son",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 9000603,
+			"edition_count": 4,
+			"first_publish_year": 1994,
+			"key": "/works/OL20336580W",
+			"number_of_pages_median": 133,
+			"title": "The Stonemason",
+			"editions": {
+				"numFound": 4,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The stonemason",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 13885644,
+			"edition_count": 3,
+			"first_publish_year": 2022,
+			"key": "/works/OL28018180W",
+			"number_of_pages_median": 616,
+			"title": "The Passenger / Stella Maris",
+			"editions": {
+				"numFound": 3,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Passenger / Stella Maris",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A",
+				"OL2651111A",
+				"OL3034236A"
+			],
+			"author_name": [
+				"Cormac McCarthy",
+				"Paul J. Ford",
+				"Stephen R. Pastore"
+			],
+			"cover_i": 11315965,
+			"edition_count": 3,
+			"first_publish_year": 2013,
+			"key": "/works/OL24636103W",
+			"number_of_pages_median": 436,
+			"title": "Cormac McCarthy",
+			"editions": {
+				"numFound": 3,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Cormac Mccarthy : Vol I",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"edition_count": 1,
+			"key": "/works/OL31320558W",
+			"title": "Maeve Binchy, The Glass Lake, Heart and Soul, Nights of Rain and Stars, Scarlet Feather, Quentins, Tara Road, White Horn Woods [Set of 7 Hardcover Books]",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Maeve Binchy, The Glass Lake, Heart and Soul, Nights of Rain and Stars, Scarlet Feather, Quentins, Tara Road, White Horn Woods [Set of 7 Hardcover Books]"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2014,
+			"key": "/works/OL36075483W",
+			"title": "Revelation of Insight",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Revelation of Insight",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A",
+				"OL13002856A"
+			],
+			"author_name": [
+				"Cormac McCarthy",
+				"Stphen R. Pastore"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2012,
+			"key": "/works/OL36056415W",
+			"title": "Cormac Mccarthy : A Descriptive Bibliography",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Cormac Mccarthy : A Descriptive Bibliography",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A",
+				"OL3034236A"
+			],
+			"author_name": [
+				"Cormac McCarthy",
+				"Stephen R. Pastore"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2013,
+			"key": "/works/OL36072543W",
+			"title": "Rethinking Cormac Mccarthy",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Rethinking Cormac Mccarthy",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2007,
+			"key": "/works/OL42448495W",
+			"title": "Cormac Mccarthy Bestselling Series, 6 Books Set, Cities of the Plain, the Crossing, the Road, Blood Meridian, No Country for Old Men, All the Pretty Horses",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Cormac Mccarthy Bestselling Series, 6 Books Set, Cities of the Plain, the Crossing, the Road, Blood Meridian, No Country for Old Men, All the Pretty Horses",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A",
+				"OL31120A",
+				"OL27078A",
+				"OL7548162A"
+			],
+			"author_name": [
+				"Cormac McCarthy",
+				"Toni Morrison",
+				"John Updike",
+				"Richard Yates"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2010,
+			"key": "/works/OL36068832W",
+			"title": "American Contemporaries",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "American Contemporaries",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A",
+				"OL3048710A"
+			],
+			"author_name": [
+				"Cormac McCarthy",
+				"Manu Larcenet"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2024,
+			"key": "/works/OL37891094W",
+			"title": "The Road",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Road",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 12506599,
+			"edition_count": 1,
+			"first_publish_year": 2020,
+			"key": "/works/OL26822525W",
+			"title": "The Road / Blood Meridian / No Country for Old Men",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Road / Blood Meridian / No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"edition_count": 1,
+			"first_publish_year": 1993,
+			"key": "/works/OL31232898W",
+			"title": "The Orchard Keeper / Suttree / Blood Meridian",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Orchard Keeper / Suttree / Blood Meridian"
+					}
+				]
+			}
+		}
+	]
+}

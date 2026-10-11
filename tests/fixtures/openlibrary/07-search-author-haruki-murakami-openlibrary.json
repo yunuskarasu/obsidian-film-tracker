@@ -1,0 +1,50 @@
+{
+	"numFound": 7,
+	"start": 0,
+	"numFoundExact": true,
+	"docs": [
+		{
+			"birth_date": "1937",
+			"key": "OL11994305A",
+			"name": "Haruki Murakami",
+			"top_work": "Wind/Pinball",
+			"work_count": 4
+		},
+		{
+			"key": "OL9888421A",
+			"name": "Haruki Murakami",
+			"work_count": 0
+		},
+		{
+			"birth_date": "12 January 1949",
+			"key": "OL382524A",
+			"name": "村上春樹",
+			"top_work": "海辺のカフカ",
+			"work_count": 534
+		},
+		{
+			"key": "OL13496877A",
+			"name": "CUN SHANG CHUN SHU ( CUN SHANG CHUN SHU Haruki Murakami)",
+			"top_work": "Hear the Wind Sing (30th Anniversary Edition)(Chinese Edition)",
+			"work_count": 1
+		},
+		{
+			"key": "OL13824319A",
+			"name": "Paula Fox, Haruki Murakami, Nathaniel Bellows, Rick DeMarinis, Mary-Beth Hughes, Ignacio Padilla, Spring Melody Berman, Murray Bodo, Billy Collins, Mo",
+			"top_work": "The Paris Review (Vol. 170 Summer 2004)",
+			"work_count": 1
+		},
+		{
+			"key": "OL10355377A",
+			"name": "Murakami Haruki, Seiji Ozawa, Jay Rubin",
+			"top_work": "Absolutely on Music",
+			"work_count": 1
+		},
+		{
+			"key": "OL12033223A",
+			"name": "Kokusai Shinpojūmu & Wākushoppu Haruki o Meguru Bōken, Sekai wa Murakami Bungaku o Dō Yomu ka (2006 Tōkyō Daigaku. Kyōyō Gakubu, etc.)",
+			"top_work": "Sekai wa Murakami Haruki o dō yomu ka",
+			"work_count": 1
+		}
+	]
+}

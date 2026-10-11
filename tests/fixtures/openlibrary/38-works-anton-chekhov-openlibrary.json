@@ -1,0 +1,3202 @@
+{
+	"numFound": 2700,
+	"start": 0,
+	"numFoundExact": true,
+	"num_found": 2700,
+	"documentation_url": "https://openlibrary.org/dev/docs/api/search",
+	"q": "",
+	"offset": null,
+	"docs": [
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 903963,
+			"edition_count": 222,
+			"first_publish_year": 1897,
+			"key": "/works/OL55527W",
+			"number_of_pages_median": 82,
+			"title": "Дядя Ваня",
+			"editions": {
+				"numFound": 222,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Uncle Vanya",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 2050811,
+			"edition_count": 208,
+			"first_publish_year": 1915,
+			"key": "/works/OL55403W",
+			"number_of_pages_median": 96,
+			"title": "Чайка",
+			"editions": {
+				"numFound": 208,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Sea-Gull",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 13420205,
+			"edition_count": 152,
+			"first_publish_year": 1918,
+			"key": "/works/OL55417W",
+			"number_of_pages_median": 88,
+			"title": "Вишневый сад",
+			"editions": {
+				"numFound": 152,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Cherry Orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 14550081,
+			"edition_count": 108,
+			"first_publish_year": 1901,
+			"key": "/works/OL55419W",
+			"number_of_pages_median": 109,
+			"title": "Три сестры",
+			"editions": {
+				"numFound": 108,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Three Sisters",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12749981,
+			"edition_count": 95,
+			"first_publish_year": 1917,
+			"key": "/works/OL278145W",
+			"number_of_pages_median": 242,
+			"title": "The Lady with the Dog and Other Stories [9 stories]",
+			"editions": {
+				"numFound": 95,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The lady with the dog : and other stories",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12748259,
+			"edition_count": 69,
+			"first_publish_year": 1916,
+			"key": "/works/OL278134W",
+			"number_of_pages_median": 286,
+			"title": "The Duel and Other Stories [8 stories]",
+			"editions": {
+				"numFound": 69,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Duel and Other Stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL2411015A",
+				"OL19677A",
+				"OL22242A",
+				"OL47908A",
+				"OL26783A",
+				"OL2627043A",
+				"OL10240A",
+				"OL11457232A",
+				"OL5176901A",
+				"OL12630461A",
+				"OL117A",
+				"OL57938A",
+				"OL340972A",
+				"OL2886663A",
+				"OL12210824A"
+			],
+			"author_name": [
+				"Thomas Seltzer",
+				"Антон Павлович Чехов",
+				"Fiódor Dostoievski",
+				"Александр Сергеевич Пушкин",
+				"Лев Толстой",
+				"Nikolaĭ Vasilʹevich  Gogolʹ",
+				"Ivan Sergeevich Turgenev",
+				"Seltzer, Thomas, Editor",
+				"Ignatiĭ Nikolaevich Potapenko",
+				"S.T. Somyonov",
+				"Максим Горький",
+				"Леонид Николаевич Андреев",
+				"M. Art͡sybashev",
+				"Aleksandr Ivanovich Kuprin",
+				"A. Pushkin"
+			],
+			"cover_i": 12777558,
+			"edition_count": 67,
+			"first_publish_year": 1917,
+			"key": "/works/OL205915W",
+			"number_of_pages_median": 264,
+			"title": "Best Russian short stories",
+			"editions": {
+				"numFound": 67,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Best Russian Short Stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 6599970,
+			"edition_count": 62,
+			"first_publish_year": 1946,
+			"key": "/works/OL55401W",
+			"number_of_pages_median": 256,
+			"title": "4 Plays (Вишнёвый сад / Дядя Ваня / Три сестры / Чайка)",
+			"editions": {
+				"numFound": 62,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Four plays",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12768914,
+			"edition_count": 61,
+			"first_publish_year": 1923,
+			"key": "/works/OL55513W",
+			"number_of_pages_median": 108,
+			"title": "Иванов",
+			"editions": {
+				"numFound": 61,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Ivanoff",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12768930,
+			"edition_count": 56,
+			"first_publish_year": 1918,
+			"key": "/works/OL55511W",
+			"number_of_pages_median": 256,
+			"title": "The witch and other stories [15 stories]",
+			"editions": {
+				"numFound": 56,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Witch, and Other Stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12749979,
+			"edition_count": 56,
+			"first_publish_year": 1916,
+			"key": "/works/OL55523W",
+			"number_of_pages_median": 242,
+			"title": "The Bishop and Other Stories [7 stories]",
+			"editions": {
+				"numFound": 56,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Bishop and Other Stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12768918,
+			"edition_count": 55,
+			"first_publish_year": 1920,
+			"key": "/works/OL55422W",
+			"number_of_pages_median": 418,
+			"title": "Letters of Anton Chekhov to his family and friends",
+			"editions": {
+				"numFound": 55,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Letters of Anton Tchehov",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A",
+				"OL4635315A",
+				"OL9164802A",
+				"OL10889805A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов",
+				"Leonard Woolf",
+				"Samuel Solomonovitch Koteliansky",
+				"Leonard 1880-1969 Woolf"
+			],
+			"cover_i": 12750020,
+			"edition_count": 55,
+			"first_publish_year": 1921,
+			"key": "/works/OL55496W",
+			"number_of_pages_median": 146,
+			"title": "Note-Book of Anton Chekhov",
+			"editions": {
+				"numFound": 55,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Note-Book of Anton Chekhov",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 6604459,
+			"edition_count": 49,
+			"first_publish_year": 1944,
+			"key": "/works/OL55404W",
+			"number_of_pages_median": 380,
+			"title": "5 Plays (Вишнёвый сад / Дядя Ваня / Иванов / Три сестры / Чайка)",
+			"editions": {
+				"numFound": 49,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Cherry Orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 13659090,
+			"edition_count": 48,
+			"first_publish_year": 1918,
+			"key": "/works/OL278147W",
+			"number_of_pages_median": 246,
+			"title": "The Wife and Other Stories [9 stories]",
+			"editions": {
+				"numFound": 48,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Wife and Other Stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12748220,
+			"edition_count": 47,
+			"first_publish_year": 1922,
+			"key": "/works/OL55492W",
+			"number_of_pages_median": 198,
+			"title": "The Cook's Wedding and Other Stories",
+			"editions": {
+				"numFound": 47,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Cook's Wedding and Other Stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 8236436,
+			"edition_count": 43,
+			"first_publish_year": 1916,
+			"key": "/works/OL278143W",
+			"number_of_pages_median": 292,
+			"title": "The Darling and Other Stories [10 stories]",
+			"editions": {
+				"numFound": 43,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Darling",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL120346A",
+				"OL2745528A",
+				"OL2338232A",
+				"OL24638A",
+				"OL22242A",
+				"OL19677A",
+				"OL26681A",
+				"OL28127A",
+				"OL18319A",
+				"OL21093A",
+				"OL32271A",
+				"OL12267574A",
+				"OL12987021A",
+				"OL1745911A",
+				"OL11440261A",
+				"OL11467733A",
+				"OL11528567A",
+				"OL11529351A",
+				"OL11557647A",
+				"OL3524622A"
+			],
+			"author_name": [
+				"Barrett Harper Clark",
+				"Barrett H. Clark",
+				"Maxim Lieber",
+				"Charles Dickens",
+				"Fiódor Dostoievski",
+				"Антон Павлович Чехов",
+				"Nathaniel Hawthorne",
+				"Edgar Allan Poe",
+				"Mark Twain",
+				"Ambrose Bierce",
+				"Theodore Dreiser",
+				"BARRETT H. CLARK",
+				"CLARK AND LIEBER",
+				"Gerda Charles",
+				"Clark, Barrett H.; Lieber, Maxim",
+				"Barrett H. & Maxim Lieber Clark",
+				"Clark, Barrett H. / Lieber, Maxim",
+				"Barrett H. and Maxim Lieber Clark",
+				"Clark & Lieber",
+				"Barrett Harper Clark"
+			],
+			"cover_i": 14540542,
+			"edition_count": 43,
+			"first_publish_year": 1922,
+			"key": "/works/OL1191826W",
+			"number_of_pages_median": 1072,
+			"title": "Great Short Stories of the World -- a collection of complete short stories chosen from the literatures of all periods and countries",
+			"editions": {
+				"numFound": 43,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Great Short Stories of the World",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 13656264,
+			"edition_count": 41,
+			"first_publish_year": 1922,
+			"key": "/works/OL55514W",
+			"number_of_pages_median": 192,
+			"title": "Love and other stories [23 stories]",
+			"editions": {
+				"numFound": 41,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Love and other stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 6913513,
+			"edition_count": 40,
+			"first_publish_year": 1948,
+			"key": "/works/OL55409W",
+			"number_of_pages_median": 63,
+			"title": "Дама с собачкой",
+			"editions": {
+				"numFound": 40,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "犬を連れた奥さん",
+						"language": [
+							"jpn"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 13655685,
+			"edition_count": 40,
+			"first_publish_year": 1921,
+			"key": "/works/OL55521W",
+			"number_of_pages_median": 260,
+			"title": "The horse-stealers and other stories",
+			"editions": {
+				"numFound": 40,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The horse-stealers and other stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 6907476,
+			"edition_count": 39,
+			"first_publish_year": 1915,
+			"key": "/works/OL55499W",
+			"number_of_pages_median": 264,
+			"title": "Plays -- Second Series [8 plays]",
+			"editions": {
+				"numFound": 39,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Plays by Anton Chekhov, Second Series",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 14550082,
+			"edition_count": 38,
+			"first_publish_year": 1950,
+			"key": "/works/OL55476W",
+			"title": "Душечка",
+			"editions": {
+				"numFound": 38,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Darling",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 13630787,
+			"edition_count": 37,
+			"first_publish_year": 1917,
+			"key": "/works/OL278146W",
+			"number_of_pages_median": 303,
+			"title": "The party and other stories [11 stories]",
+			"editions": {
+				"numFound": 37,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The party and other stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 13657763,
+			"edition_count": 35,
+			"first_publish_year": 1920,
+			"key": "/works/OL55512W",
+			"number_of_pages_median": 214,
+			"title": "The Chorus Girl and Other Stories [12 stories]",
+			"editions": {
+				"numFound": 35,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Chorus Girl and Other Stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 10874186,
+			"edition_count": 34,
+			"first_publish_year": 2011,
+			"key": "/works/OL24349460W",
+			"number_of_pages_median": 376,
+			"title": "Учитель",
+			"editions": {
+				"numFound": 34,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Schoolmaster",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12752377,
+			"edition_count": 32,
+			"first_publish_year": 1921,
+			"key": "/works/OL55438W",
+			"number_of_pages_median": 248,
+			"title": "The schoolmaster and other stories",
+			"editions": {
+				"numFound": 32,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The schoolmaster and other stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12622186,
+			"edition_count": 32,
+			"first_publish_year": 1916,
+			"key": "/works/OL9120857W",
+			"number_of_pages_median": 139,
+			"title": "Дуэль",
+			"editions": {
+				"numFound": 32,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Duel",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 14016669,
+			"edition_count": 31,
+			"first_publish_year": 1917,
+			"key": "/works/OL278135W",
+			"number_of_pages_median": 254,
+			"title": "The House With The Mezzanine and Other Stories [7 stories]",
+			"editions": {
+				"numFound": 31,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The house with the mezzanine",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 13656964,
+			"edition_count": 29,
+			"first_publish_year": 1920,
+			"key": "/works/OL55469W",
+			"number_of_pages_median": 180,
+			"title": "The schoolmistress and other stories [21 stories]",
+			"editions": {
+				"numFound": 29,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The schoolmistress",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 9298329,
+			"edition_count": 27,
+			"first_publish_year": 1949,
+			"key": "/works/OL55524W",
+			"number_of_pages_median": 60,
+			"title": "Каштанка",
+			"editions": {
+				"numFound": 27,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kashtanka",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A",
+				"OL13192A",
+				"OL107911A",
+				"OL123281A",
+				"OL21569A",
+				"OL27524A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов",
+				"Henrik Ibsen",
+				"George Bernard Shaw",
+				"Sean O'Casey",
+				"Arthur Miller",
+				"Tennessee Williams"
+			],
+			"cover_i": 12779103,
+			"edition_count": 26,
+			"first_publish_year": 1956,
+			"key": "/works/OL8468119W",
+			"number_of_pages_median": 512,
+			"title": "Six Great Modern Plays",
+			"editions": {
+				"numFound": 26,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Six Great Modern Plays",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12818648,
+			"edition_count": 26,
+			"first_publish_year": 1930,
+			"key": "/works/OL55408W",
+			"number_of_pages_median": 195,
+			"title": "Платонов",
+			"editions": {
+				"numFound": 26,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "That worthless fellow Platonov.",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12767423,
+			"edition_count": 26,
+			"first_publish_year": 1893,
+			"key": "/works/OL19947613W",
+			"number_of_pages_median": 112,
+			"title": "Палата No. 6",
+			"editions": {
+				"numFound": 26,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Ward No. 6",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 10338022,
+			"edition_count": 24,
+			"first_publish_year": 1947,
+			"key": "/works/OL55518W",
+			"number_of_pages_median": 631,
+			"title": "The portable Chekhov",
+			"editions": {
+				"numFound": 24,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The portable Chekhov",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12021085,
+			"edition_count": 23,
+			"first_publish_year": 2018,
+			"key": "/works/OL25393377W",
+			"number_of_pages_median": 152,
+			"title": "Воры",
+			"editions": {
+				"numFound": 23,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Horse-Stealers",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL223380A",
+				"OL2826351A",
+				"OL21093A",
+				"OL19677A",
+				"OL11446654A"
+			],
+			"author_name": [
+				"James Moffett",
+				"Kenneth R. McElheny",
+				"Ambrose Bierce",
+				"Антон Павлович Чехов",
+				"Moffett, James and McElheny, Kenneth R."
+			],
+			"cover_i": 6649492,
+			"edition_count": 22,
+			"first_publish_year": 1960,
+			"key": "/works/OL1866126W",
+			"number_of_pages_median": 576,
+			"title": "Points of View",
+			"editions": {
+				"numFound": 22,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Points of view",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12779110,
+			"edition_count": 20,
+			"first_publish_year": 1908,
+			"key": "/works/OL13173151W",
+			"number_of_pages_median": 317,
+			"title": "The kiss and other stories [15 stories]",
+			"editions": {
+				"numFound": 20,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The kiss and other stories",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12749837,
+			"edition_count": 19,
+			"first_publish_year": 2004,
+			"key": "/works/OL278168W",
+			"number_of_pages_median": 43,
+			"title": "Лебединая песня",
+			"editions": {
+				"numFound": 19,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Swan Song",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12749852,
+			"edition_count": 19,
+			"first_publish_year": 1915,
+			"key": "/works/OL55455W",
+			"number_of_pages_median": 243,
+			"title": "The bet and other stories [13 stories]",
+			"editions": {
+				"numFound": 19,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The bet, and other stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12750227,
+			"edition_count": 19,
+			"first_publish_year": 1932,
+			"key": "/works/OL55472W",
+			"number_of_pages_median": 448,
+			"title": "The Stories of Anton Chekhov [23 stories]",
+			"editions": {
+				"numFound": 19,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The stories of Anton Tchekov",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12768894,
+			"edition_count": 19,
+			"first_publish_year": 1914,
+			"key": "/works/OL55484W",
+			"number_of_pages_median": 20,
+			"title": "Предложение",
+			"editions": {
+				"numFound": 19,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "A marriage proposal",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12583854,
+			"edition_count": 17,
+			"first_publish_year": 1923,
+			"key": "/works/OL13052107W",
+			"number_of_pages_median": 298,
+			"title": "Three sisters and other plays [7 plays]",
+			"editions": {
+				"numFound": 17,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Three sisters",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12818720,
+			"edition_count": 17,
+			"first_publish_year": 1903,
+			"key": "/works/OL55490W",
+			"number_of_pages_median": 302,
+			"title": "The Black Monk and other stories [12 stories]",
+			"editions": {
+				"numFound": 17,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Black Monk",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 14907544,
+			"edition_count": 17,
+			"first_publish_year": 1937,
+			"key": "/works/OL55434W",
+			"number_of_pages_median": 360,
+			"title": "Plays and stories",
+			"editions": {
+				"numFound": 17,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Tchekhov's Plays And Stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 14550505,
+			"edition_count": 16,
+			"first_publish_year": 1960,
+			"key": "/works/OL278128W",
+			"number_of_pages_median": 287,
+			"title": "Selected Stories [20 stories]",
+			"editions": {
+				"numFound": 16,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Selected Stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 14019688,
+			"edition_count": 16,
+			"first_publish_year": 1895,
+			"key": "/works/OL55497W",
+			"number_of_pages_median": 374,
+			"title": "Остров Сахалин",
+			"editions": {
+				"numFound": 16,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The island",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL79124A",
+				"OL19677A"
+			],
+			"author_name": [
+				"Lillian Hellman",
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 13654740,
+			"edition_count": 16,
+			"first_publish_year": 1955,
+			"key": "/works/OL894983W",
+			"number_of_pages_median": 331,
+			"title": "The Selected Letters of Anton Chekhov",
+			"editions": {
+				"numFound": 16,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Selected Letters Of Anton Chekhov",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL3258606A",
+				"OL22242A",
+				"OL19677A"
+			],
+			"author_name": [
+				"Julian Hawthorne",
+				"Fiódor Dostoievski",
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12768917,
+			"edition_count": 15,
+			"first_publish_year": 1909,
+			"key": "/works/OL27962987W",
+			"number_of_pages_median": 371,
+			"title": "The Lock and Key Library -- North Europe",
+			"editions": {
+				"numFound": 15,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Lock and Key Library : Classic Mystery and Detective Stories of All Nations",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12769804,
+			"edition_count": 14,
+			"first_publish_year": 1993,
+			"key": "/works/OL55456W",
+			"number_of_pages_median": 84,
+			"title": "Чёрный монах",
+			"editions": {
+				"numFound": 14,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Black Monk",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12768899,
+			"edition_count": 14,
+			"first_publish_year": 1987,
+			"key": "/works/OL55442W",
+			"number_of_pages_median": 165,
+			"title": "Степь",
+			"editions": {
+				"numFound": 14,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Steppe",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 6616867,
+			"edition_count": 13,
+			"first_publish_year": 1958,
+			"key": "/works/OL278130W",
+			"number_of_pages_median": 99,
+			"title": "The brute and other farces [7 stories]",
+			"editions": {
+				"numFound": 13,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The brute",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL29497A",
+				"OL22242A",
+				"OL79039A",
+				"OL26783A",
+				"OL21001A",
+				"OL19677A",
+				"OL22973A",
+				"OL31827A",
+				"OL33146A",
+				"OL19964A",
+				"OL181680A"
+			],
+			"author_name": [
+				"Herman Melville",
+				"Фёдор Михайлович Достоевский",
+				"Gustave Flaubert",
+				"Лев Толстой",
+				"Henry James",
+				"Антон Павлович Чехов",
+				"Thomas Mann",
+				"James Joyce",
+				"Franz Kafka",
+				"D. H. Lawrence",
+				"Charles Neider"
+			],
+			"cover_i": 613244,
+			"edition_count": 13,
+			"first_publish_year": 1901,
+			"key": "/works/OL1633753W",
+			"number_of_pages_median": 643,
+			"title": "Short Novels of the Masters",
+			"editions": {
+				"numFound": 13,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Short Novels of the Masters",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL34612A",
+				"OL78910A",
+				"OL52922A",
+				"OL18928A",
+				"OL22098A",
+				"OL19677A",
+				"OL35183A"
+			],
+			"author_name": [
+				"Laurie G. Kirszner",
+				"Chinua Achebe",
+				"Margaret Atwood",
+				"Jorge Luis Borges",
+				"Lewis Carroll",
+				"Антон Павлович Чехов",
+				"Kate Chopin"
+			],
+			"cover_i": 11376479,
+			"edition_count": 13,
+			"first_publish_year": 1991,
+			"key": "/works/OL57916W",
+			"number_of_pages_median": 1740,
+			"title": "Literature",
+			"editions": {
+				"numFound": 13,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Literature",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 10569497,
+			"edition_count": 13,
+			"first_publish_year": 1950,
+			"key": "/works/OL55474W",
+			"number_of_pages_median": 139,
+			"title": "Три года",
+			"editions": {
+				"numFound": 13,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Three years",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL224232A",
+				"OL1460580A",
+				"OL19677A",
+				"OL22098A",
+				"OL39826A",
+				"OL52922A"
+			],
+			"author_name": [
+				"Edgar V. Roberts",
+				"Henry E. Jacobs",
+				"Антон Павлович Чехов",
+				"Lewis Carroll",
+				"Alexander Pope",
+				"Margaret Atwood"
+			],
+			"cover_i": 10260334,
+			"edition_count": 13,
+			"first_publish_year": 1986,
+			"key": "/works/OL1872916W",
+			"number_of_pages_median": 1717,
+			"title": "Literature",
+			"editions": {
+				"numFound": 13,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Literature",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL2043927A",
+				"OL21093A",
+				"OL19677A",
+				"OL1672063A",
+				"OL2164039A",
+				"OL2250373A",
+				"OL11474083A",
+				"OL124171A"
+			],
+			"author_name": [
+				"Elisabeth Wintersteen Schneider",
+				"Ambrose Bierce",
+				"Антон Павлович Чехов",
+				"Elisabeth Schneider",
+				"Albert L. Walker",
+				"Herbert E. Childs",
+				"Schneider, Elisabeth",
+				"Albert Camus"
+			],
+			"cover_i": 9289846,
+			"edition_count": 12,
+			"first_publish_year": 1960,
+			"key": "/works/OL7162098W",
+			"number_of_pages_median": 732,
+			"title": "The range of literature",
+			"editions": {
+				"numFound": 12,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "the Range of Literature",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12768898,
+			"edition_count": 12,
+			"first_publish_year": 1963,
+			"key": "/works/OL55507W",
+			"number_of_pages_median": 344,
+			"title": "The image of Chekhov",
+			"editions": {
+				"numFound": 12,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The image of Chekhov",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12749854,
+			"edition_count": 12,
+			"first_publish_year": 1914,
+			"key": "/works/OL55516W",
+			"number_of_pages_median": 314,
+			"title": "Stories of Russian life [24 stories]",
+			"editions": {
+				"numFound": 12,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Stories of Russian life",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 10804744,
+			"edition_count": 12,
+			"first_publish_year": 1912,
+			"key": "/works/OL55446W",
+			"number_of_pages_median": 155,
+			"title": "2 Plays (Вишнёвый сад / Чайка)",
+			"editions": {
+				"numFound": 12,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Two plays",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A",
+				"OL771751A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов",
+				"Simon Karlinsky"
+			],
+			"cover_i": 12771561,
+			"edition_count": 12,
+			"first_publish_year": 1973,
+			"key": "/works/OL10425657W",
+			"number_of_pages_median": 494,
+			"title": "Letters of Anton Chekhov",
+			"editions": {
+				"numFound": 12,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Anton Chekhov's life and thought",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL7433980A",
+				"OL830757A",
+				"OL78910A",
+				"OL52922A",
+				"OL21594A",
+				"OL18928A",
+				"OL142238A",
+				"OL124171A",
+				"OL22098A",
+				"OL19677A",
+				"OL35183A",
+				"OL21093A",
+				"OL24638A",
+				"OL225933A"
+			],
+			"author_name": [
+				"Kennedy, X. & Gioia, D.",
+				"Dana Gioia",
+				"Chinua Achebe",
+				"Margaret Atwood",
+				"Jane Austen",
+				"Jorge Luis Borges",
+				"Anthony Burgess",
+				"Albert Camus",
+				"Lewis Carroll",
+				"Антон Павлович Чехов",
+				"Kate Chopin",
+				"Ambrose Bierce",
+				"Charles Dickens",
+				"X. J. Kennedy"
+			],
+			"cover_i": 14328336,
+			"edition_count": 12,
+			"first_publish_year": 2006,
+			"key": "/works/OL18007456W",
+			"number_of_pages_median": 2137,
+			"title": "Literature--An Introduction to Fiction, Poetry, Drama and Writing--Eleventh Edition",
+			"editions": {
+				"numFound": 12,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Literature",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 9515188,
+			"edition_count": 12,
+			"first_publish_year": 1924,
+			"key": "/works/OL55424W",
+			"number_of_pages_median": 346,
+			"title": "Letters on the short story",
+			"editions": {
+				"numFound": 12,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Letters on the short story, the drama, and other literary topics",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12768907,
+			"edition_count": 11,
+			"first_publish_year": 1920,
+			"key": "/works/OL9120843W",
+			"number_of_pages_median": 153,
+			"title": "Моя жизнь",
+			"editions": {
+				"numFound": 11,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "My Life",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL127085A",
+				"OL19677A",
+				"OL10364664A",
+				"OL1809634A"
+			],
+			"author_name": [
+				"N. N. Evreinov",
+				"Антон Павлович Чехов",
+				"Denis von Vizin",
+				"C. E. Bechhofer Roberts"
+			],
+			"cover_i": 12749983,
+			"edition_count": 11,
+			"first_publish_year": 1916,
+			"key": "/works/OL6692459W",
+			"number_of_pages_median": 173,
+			"title": "Five Russian plays",
+			"editions": {
+				"numFound": 11,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Five Russian plays",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 14014190,
+			"edition_count": 11,
+			"first_publish_year": 1945,
+			"key": "/works/OL55433W",
+			"number_of_pages_median": 248,
+			"title": "Plays (Вишнёвый сад / Дядя Ваня / Медведь / На большой дороге / О вреде табака / Свадьба / Три сестры / Чайка / Юбилей)",
+			"editions": {
+				"numFound": 11,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Nine plays of Chekov",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12769790,
+			"edition_count": 11,
+			"first_publish_year": 1965,
+			"key": "/works/OL10425749W",
+			"number_of_pages_median": 399,
+			"title": "Ward six and other stories [6 stories]",
+			"editions": {
+				"numFound": 11,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Ward Six",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12749999,
+			"edition_count": 11,
+			"first_publish_year": 1909,
+			"key": "/works/OL7986494W",
+			"number_of_pages_median": 32,
+			"title": "Медведь",
+			"editions": {
+				"numFound": 11,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The boor",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"edition_count": 11,
+			"first_publish_year": 1921,
+			"key": "/works/OL55466W",
+			"number_of_pages_median": 108,
+			"title": "The note-books of Anton Tchekhov",
+			"editions": {
+				"numFound": 11,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The notebooks of Anton Tchekhou, together with reminiscences of Tchekhov by Maxim Gorky.",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12996369,
+			"edition_count": 11,
+			"first_publish_year": 1925,
+			"key": "/works/OL55477W",
+			"number_of_pages_median": 222,
+			"title": "Драма на охоте",
+			"editions": {
+				"numFound": 11,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The shooting party",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL661927A",
+				"OL21093A",
+				"OL24137A",
+				"OL19677A"
+			],
+			"author_name": [
+				"Roger B. Goodman",
+				"Ambrose Bierce",
+				"Ray Bradbury",
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 6978572,
+			"edition_count": 11,
+			"first_publish_year": 1961,
+			"key": "/works/OL3762003W",
+			"number_of_pages_median": 283,
+			"title": "75 Short Masterpieces",
+			"editions": {
+				"numFound": 11,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "75 Short Masterpieces",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL1454930A",
+				"OL7833980A",
+				"OL19677A",
+				"OL52940A"
+			],
+			"author_name": [
+				"Nicholas Rzhevsky",
+				"Nicholas Rzhevsky",
+				"Антон Павлович Чехов",
+				"Михаил Афанасьевич Булгаков"
+			],
+			"cover_i": 13873350,
+			"edition_count": 10,
+			"first_publish_year": 1996,
+			"key": "/works/OL5896614W",
+			"number_of_pages_median": 587,
+			"title": "An Anthology of Russian Literature from Earliest Writings to Modern Fiction",
+			"editions": {
+				"numFound": 10,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "An Anthology of Russian literature from earliest writings to modern fiction",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"edition_count": 10,
+			"first_publish_year": 1950,
+			"key": "/works/OL55522W",
+			"number_of_pages_median": 492,
+			"title": "Izbrannye proizvedenii͡a︡",
+			"editions": {
+				"numFound": 10,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Izbrannye proizvedenii͡a︡.",
+						"language": [
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12750204,
+			"edition_count": 10,
+			"first_publish_year": 1912,
+			"key": "/works/OL55467W",
+			"number_of_pages_median": 300,
+			"title": "The Plays of Anton Tchekov [7 plays]",
+			"editions": {
+				"numFound": 10,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Plays of Anton Tchekov",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12752456,
+			"edition_count": 10,
+			"first_publish_year": 1964,
+			"key": "/works/OL55418W",
+			"number_of_pages_median": 280,
+			"title": "Lady with lapdog and other stories [11 stories]",
+			"editions": {
+				"numFound": 10,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Lady with lapdog and other stories",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"edition_count": 10,
+			"first_publish_year": 1923,
+			"key": "/works/OL13052106W",
+			"number_of_pages_median": 273,
+			"title": "The Cherry orchard and other plays (Вишнёвый сад / Дядя Ваня / Медведь / Предложение / Чайка)",
+			"editions": {
+				"numFound": 10,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The cherry orchard and other plays",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL3202968A",
+				"OL5009559A",
+				"OL5407520A",
+				"OL19677A",
+				"OL3983193A"
+			],
+			"author_name": [
+				"Benedetti",
+				"Olʹga Leonardovna Knipper-Chekhova",
+				"Olʹga Leonardovna Knipper-Chekhova",
+				"Антон Павлович Чехов",
+				"Olga Knipper"
+			],
+			"cover_i": 12771565,
+			"edition_count": 10,
+			"first_publish_year": 1996,
+			"key": "/works/OL9104336W",
+			"number_of_pages_median": 300,
+			"title": "Dear Writer, Dear Actress",
+			"editions": {
+				"numFound": 10,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Dear Writer, Dear Actress",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL1124912A",
+				"OL26681A",
+				"OL28127A",
+				"OL35183A",
+				"OL19677A",
+				"OL20188A",
+				"OL22583A",
+				"OL31827A",
+				"OL21831A",
+				"OL25788A",
+				"OL33621A",
+				"OL507165A",
+				"OL27363A",
+				"OL78910A",
+				"OL82236A",
+				"OL52922A",
+				"OL217774A",
+				"OL29388A",
+				"OL13640A",
+				"OL32584A",
+				"OL32983A",
+				"OL27709A",
+				"OL35145A",
+				"OL27078A",
+				"OL223348A",
+				"OL32981A",
+				"OL234250A",
+				"OL9887926A",
+				"OL30011A"
+			],
+			"author_name": [
+				"R. S. Gwynn",
+				"Nathaniel Hawthorne",
+				"Edgar Allan Poe",
+				"Kate Chopin",
+				"Антон Павлович Чехов",
+				"Edith Wharton",
+				"Willa Cather",
+				"James Joyce",
+				"William Faulkner",
+				"John Steinbeck",
+				"Richard Wright",
+				"Shirley Jackson",
+				"Gabriel García Márquez",
+				"Chinua Achebe",
+				"Alice Munro",
+				"Margaret Atwood",
+				"Alice Walker",
+				"Guy de Maupassant",
+				"Ernest Hemingway",
+				"Eudora Welty",
+				"Ralph Ellison",
+				"Doris Lessing",
+				"Flannery O'Connor",
+				"John Updike",
+				"Raymond Carver",
+				"Joyce Carol Oates",
+				"Bobbie Ann Mason",
+				"Denise Chávez",
+				"Louise Erdrich"
+			],
+			"cover_i": 6611816,
+			"edition_count": 10,
+			"first_publish_year": 1993,
+			"key": "/works/OL5107038W",
+			"number_of_pages_median": 354,
+			"title": "Fiction",
+			"editions": {
+				"numFound": 10,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Fiction",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL2416881A",
+				"OL2551959A",
+				"OL7679400A",
+				"OL19677A"
+			],
+			"author_name": [
+				"B. Roland Lewis",
+				"Lewis, Benjamin Roland",
+				"B. Roland Lewis",
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12818686,
+			"edition_count": 10,
+			"first_publish_year": 1922,
+			"key": "/works/OL208815W",
+			"number_of_pages_median": 418,
+			"title": "Contemporary One-Act Plays",
+			"editions": {
+				"numFound": 10,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Contemporary one-act plays;",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL720924A",
+				"OL19677A",
+				"OL21831A",
+				"OL31827A",
+				"OL48139A",
+				"OL82236A",
+				"OL9351235A",
+				"OL223132A"
+			],
+			"author_name": [
+				"Jeffrey Eugenides",
+				"Антон Павлович Чехов",
+				"William Faulkner",
+				"James Joyce",
+				"Vladimir Nabokov",
+				"Alice Munro",
+				"Jeffery Eugenides",
+				"William Trevor"
+			],
+			"cover_i": 7084714,
+			"edition_count": 10,
+			"first_publish_year": 2008,
+			"key": "/works/OL3951516W",
+			"number_of_pages_median": 587,
+			"title": "My Mistress's Sparrow Is Dead",
+			"editions": {
+				"numFound": 10,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "My Mistress's Sparrow Is Dead",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL2627532A",
+				"OL78910A",
+				"OL52922A",
+				"OL18928A",
+				"OL19677A"
+			],
+			"author_name": [
+				"Kylene Beers",
+				"Chinua Achebe",
+				"Margaret Atwood",
+				"Jorge Luis Borges",
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12292230,
+			"edition_count": 10,
+			"first_publish_year": 2006,
+			"key": "/works/OL270749W",
+			"number_of_pages_median": 1674,
+			"title": "Essentials of British and World Literature",
+			"editions": {
+				"numFound": 10,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Holt Elements of Literature",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL1355619A",
+				"OL19677A"
+			],
+			"author_name": [
+				"Miriam Morton",
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 14550858,
+			"edition_count": 9,
+			"first_publish_year": 1967,
+			"key": "/works/OL5619777W",
+			"number_of_pages_median": 474,
+			"title": "A harvest of Russian children's literature",
+			"editions": {
+				"numFound": 9,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "A Harvest of Russian Children's Literature",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 904003,
+			"edition_count": 9,
+			"first_publish_year": 1951,
+			"key": "/works/OL55487W",
+			"number_of_pages_median": 235,
+			"title": "Selected short stories",
+			"editions": {
+				"numFound": 9,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Rasskazy",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"edition_count": 9,
+			"first_publish_year": 1927,
+			"key": "/works/OL10425776W",
+			"number_of_pages_median": 849,
+			"title": "Select tales of Tchehov [25 stories]",
+			"editions": {
+				"numFound": 9,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Select tales of Tchehov.",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL5923927A",
+				"OL19677A"
+			],
+			"author_name": [
+				"Julius West",
+				"Антон Павлович Чехов"
+			],
+			"edition_count": 9,
+			"first_publish_year": 2013,
+			"key": "/works/OL34449425W",
+			"number_of_pages_median": 197,
+			"title": "Plays by Anton Chekhov",
+			"editions": {
+				"numFound": 9,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Plays by Anton Chekhov",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12768903,
+			"edition_count": 9,
+			"first_publish_year": 2002,
+			"key": "/works/OL14942827W",
+			"number_of_pages_median": 121,
+			"title": "Рассказ неивестного человека",
+			"editions": {
+				"numFound": 9,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "An Anonymous Story",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"edition_count": 9,
+			"first_publish_year": 1939,
+			"key": "/works/OL55510W",
+			"number_of_pages_median": 331,
+			"title": "Six famous plays (Вишнёвый сад / Дядя Ваня / Медведь / Предложение / Три сестры / Чайка)",
+			"editions": {
+				"numFound": 9,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Six famous plays.",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12750208,
+			"edition_count": 9,
+			"first_publish_year": 1926,
+			"key": "/works/OL55452W",
+			"number_of_pages_median": 120,
+			"title": "Леший",
+			"editions": {
+				"numFound": 9,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The wood demon",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 2682510,
+			"edition_count": 9,
+			"first_publish_year": 1950,
+			"key": "/works/OL55503W",
+			"number_of_pages_median": 382,
+			"title": "Short novels and stories",
+			"editions": {
+				"numFound": 9,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Short Novels and Stories (Classics of Russian Literature)",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL2627532A",
+				"OL2627829A",
+				"OL24137A",
+				"OL19677A"
+			],
+			"author_name": [
+				"Kylene Beers",
+				"Kylene Beers",
+				"Ray Bradbury",
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 14544551,
+			"edition_count": 9,
+			"first_publish_year": 2005,
+			"key": "/works/OL21774486W",
+			"number_of_pages_median": 1177,
+			"title": "Holt Elements of Literature -- Fourth Course",
+			"editions": {
+				"numFound": 9,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Holt Elements of Literature",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL232700A",
+				"OL20928A",
+				"OL21093A",
+				"OL24638A",
+				"OL19677A"
+			],
+			"author_name": [
+				"Cleanth Brooks",
+				"Robert Penn Warren",
+				"Ambrose Bierce",
+				"Charles Dickens",
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 14811797,
+			"edition_count": 9,
+			"first_publish_year": 1943,
+			"key": "/works/OL1939466W",
+			"number_of_pages_median": 608,
+			"title": "Understanding fiction",
+			"editions": {
+				"numFound": 9,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Understanding fiction",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL135127A",
+				"OL144345A",
+				"OL19767A",
+				"OL677865A",
+				"OL1714233A",
+				"OL239800A",
+				"OL197515A",
+				"OL13640A",
+				"OL1401732A",
+				"OL33585A",
+				"OL1759312A",
+				"OL124171A",
+				"OL151775A",
+				"OL18319A",
+				"OL25788A",
+				"OL91522A",
+				"OL19677A",
+				"OL20580A",
+				"OL673748A",
+				"OL20243A",
+				"OL120686A",
+				"OL65682A",
+				"OL124444A",
+				"OL2705399A",
+				"OL27078A",
+				"OL835248A",
+				"OL4328696A",
+				"OL946631A",
+				"OL507165A",
+				"OL20919A",
+				"OL13066A",
+				"OL7892324A",
+				"OL20646A",
+				"OL3128269A",
+				"OL31827A",
+				"OL19441A",
+				"OL1770A",
+				"OL218707A",
+				"OL3819780A",
+				"OL19964A",
+				"OL1300458A",
+				"OL234170A",
+				"OL79003A",
+				"OL93286A",
+				"OL331289A",
+				"OL121699A",
+				"OL257959A",
+				"OL20903A",
+				"OL1928369A",
+				"OL1910551A",
+				"OL24527A",
+				"OL56244A",
+				"OL117A",
+				"OL4334380A",
+				"OL6758573A",
+				"OL27709A",
+				"OL591204A",
+				"OL29961A",
+				"OL75696A",
+				"OL119715A",
+				"OL486298A",
+				"OL584484A",
+				"OL602587A",
+				"OL2101175A",
+				"OL32292A",
+				"OL32584A",
+				"OL27349A",
+				"OL337513A",
+				"OL956671A",
+				"OL124130A"
+			],
+			"author_name": [
+				"Isak Dinesen",
+				"Sholem Aleichem",
+				"Aldous Huxley",
+				"Irwin Shaw",
+				"Reader's Digest Association",
+				"Truman Capote",
+				"Dorothy L. Sayers",
+				"Ernest Hemingway",
+				"Nigel Balchin",
+				"William Somerset Maugham",
+				"Santha Rama Rau",
+				"Albert Camus",
+				"Katherine Anne Porter",
+				"Mark Twain",
+				"John Steinbeck",
+				"Anatole France",
+				"Антон Павлович Чехов",
+				"Nadine Gordimer",
+				"Bertolt Brecht",
+				"Graham Greene",
+				"Frank O'Connor",
+				"Katherine Mansfield",
+				"Corrado Alvaro",
+				"Sally Benson",
+				"John Updike",
+				"Damon Runyon",
+				"Pearl S. Buck",
+				"Jessamyn West",
+				"Shirley Jackson",
+				"Alberto Moravia",
+				"H. G. Wells",
+				"Lilika Nakos",
+				"Oscar Wilde",
+				"Guy de Maupassat",
+				"James Joyce",
+				"Joseph Conrad",
+				"Rabindranath Tagore",
+				"Rumer Godden",
+				"Hernando Tellez",
+				"D. H. Lawrence",
+				"Robert Benchley",
+				"John O'Hara",
+				"S. J. Perelman",
+				"Machado de Assis",
+				"Jean Stafford",
+				"Max Aub",
+				"Gabrielle Roy",
+				"James Thurber",
+				"Leo Kennedy",
+				"Dorothy Parker",
+				"Stephen Crane",
+				"Montague Rhodes James",
+				"Максим Горький",
+				"Gregorio Lopez y Fuentes",
+				"Josh Gregory",
+				"Doris Lessing",
+				"Saki",
+				"Wallace Stegner",
+				"Marcel Aymé",
+				"Colette",
+				"Ring Lardner",
+				"Paul Horgan",
+				"Thomas Head Raddall",
+				"O. Henry",
+				"Luigi Pirandello",
+				"Eudora Welty",
+				"F. Scott Fitzgerald",
+				"Mikhail Zoshchenko",
+				"Hjalmar Söderberg",
+				"Henry Lawson"
+			],
+			"cover_i": 9448466,
+			"edition_count": 9,
+			"first_publish_year": 1972,
+			"key": "/works/OL16048288W",
+			"number_of_pages_median": 799,
+			"title": "Great Short Stories of the World",
+			"editions": {
+				"numFound": 9,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Great Short Stories of the World",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 5197451,
+			"edition_count": 8,
+			"first_publish_year": 2004,
+			"key": "/works/OL278157W",
+			"number_of_pages_median": 300,
+			"title": "Жена",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Wife",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12769867,
+			"edition_count": 8,
+			"first_publish_year": 1993,
+			"key": "/works/OL55461W",
+			"number_of_pages_median": 56,
+			"title": "Поцелуй",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Kiss",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A",
+				"OL12787329A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов",
+				"S. S. Koteliansky, Philip Tomlinson, eds."
+			],
+			"cover_i": 9442159,
+			"edition_count": 8,
+			"first_publish_year": 1925,
+			"key": "/works/OL55463W",
+			"number_of_pages_median": 314,
+			"title": "The life and letters of Anton Tchekhov",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The life and letters of Anton Tchekhov.",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"edition_count": 8,
+			"first_publish_year": 1965,
+			"key": "/works/OL55498W",
+			"title": "The Oxford Chekhov",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Oxford Chekhov",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"edition_count": 8,
+			"first_publish_year": 2014,
+			"key": "/works/OL40373057W",
+			"number_of_pages_median": 61,
+			"title": "Sea-Gull",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Seagull",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 6725882,
+			"edition_count": 8,
+			"first_publish_year": 1975,
+			"key": "/works/OL278159W",
+			"number_of_pages_median": 233,
+			"title": "Chekhov [11 stories]",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Russian master",
+						"language": [
+							"eng",
+							"rus"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL1965822A",
+				"OL2666321A",
+				"OL28127A",
+				"OL26681A",
+				"OL29388A",
+				"OL25963A",
+				"OL19677A",
+				"OL24461A",
+				"OL24527A",
+				"OL19441A",
+				"OL24762A",
+				"OL19964A",
+				"OL31827A",
+				"OL65682A",
+				"OL25965A",
+				"OL33585A",
+				"OL21831A",
+				"OL25788A",
+				"OL20903A",
+				"OL32584A",
+				"OL11446189A"
+			],
+			"author_name": [
+				"Clarence Lee Cline",
+				"C. L. Cline",
+				"Edgar Allan Poe",
+				"Nathaniel Hawthorne",
+				"Guy de Maupassant",
+				"Robert Louis Stevenson",
+				"Антон Павлович Чехов",
+				"Rudyard Kipling",
+				"Stephen Crane",
+				"Joseph Conrad",
+				"Sherwood Anderson",
+				"D. H. Lawrence",
+				"James Joyce",
+				"Katherine Mansfield",
+				"Stephen Vincent Benét",
+				"William Somerset Maugham",
+				"William Faulkner",
+				"John Steinbeck",
+				"James Thurber",
+				"Eudora Welty",
+				"C.L. CLINE"
+			],
+			"cover_i": 14550889,
+			"edition_count": 8,
+			"first_publish_year": 1952,
+			"key": "/works/OL7020901W",
+			"number_of_pages_median": 307,
+			"title": "The Rinehart Book of Short Stories",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Rinehart Book of Short Stories",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 14550518,
+			"edition_count": 8,
+			"first_publish_year": 1959,
+			"key": "/works/OL9680023W",
+			"number_of_pages_median": 453,
+			"title": "8 Plays (Вишнёвый сад / Дядя Ваня / Иванов / Медведь / Предложение / Три сестры / Чайка / Юбилей)",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Plays",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		}
+	]
+}

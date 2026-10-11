@@ -1,0 +1,67 @@
+{
+	"name": "Cormac McCarthy",
+	"source_records": [
+		"amazon:1419326945",
+		"promise:bwb_daily_pallets_2022-05-23",
+		"bwb:9780128243824",
+		"bwb:9780764521003",
+		"amazon:1524712396",
+		"amazon:8499083463",
+		"promise:bwb_daily_pallets_2022-09-12:W7-CQB-509",
+		"amazon:9586395529",
+		"amazon:8415250444",
+		"amazon:1529064430",
+		"bwb:9780345221056",
+		"bwb:9780307389091",
+		"amazon:8499303145",
+		"bwb:9781035039067"
+	],
+	"photos": [
+		14333158,
+		6677918
+	],
+	"key": "/authors/OL28104A",
+	"personal_name": "Cormac McCarthy",
+	"birth_date": "20 July 1933",
+	"remote_ids": {
+		"isni": "0000000121259060",
+		"viaf": "29558386",
+		"wikidata": "Q272610",
+		"amazon": "B000APT0OW",
+		"bookbrainz": "30ef2519-7503-4e2c-9f72-31eab741f8e9",
+		"musicbrainz": "1904173a-8508-47ca-9880-51dfd363acfd",
+		"goodreads": "4178",
+		"imdb": "nm0565092",
+		"lc_naf": "n82028392",
+		"librarything": "mccarthycormac-1",
+		"opac_sbn": "RAVV086000"
+	},
+	"bio": {
+		"type": "/type/text",
+		"value": "Cormac McCarthy (born Charles Joseph McCarthy Jr.) is an American writer who has written twelve novels, two plays, five screenplays, and three short stories, spanning the Western and postapocalyptic genres. He is known for his graphic depictions of violence and his unique writing style, recognizable by a sparse use of punctuation and attribution. McCarthy is widely regarded as one of the greatest contemporary American writers."
+	},
+	"type": {
+		"key": "/type/author"
+	},
+	"death_date": "13 June 2023",
+	"alternate_names": [
+		"Cormac Mccarthy",
+		"Mccarthy Cormac",
+		"McCarthy Cormac",
+		"cormac-mccarthy",
+		"mccarthy-cormac",
+		"CORMAC MCCARTHY",
+		"MCCARTHY,CORMAC",
+		"Cormac Mc Carthy"
+	],
+	"latest_revision": 17,
+	"revision": 17,
+	"created": {
+		"type": "/type/datetime",
+		"value": "2008-04-01T03:28:50.625462"
+	},
+	"last_modified": {
+		"type": "/type/datetime",
+		"value": "2026-02-25T14:19:56.353772"
+	}
+}

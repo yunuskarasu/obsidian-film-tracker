@@ -1,0 +1,20 @@
+{
+	"entities": {
+		"Q192881": {
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "tragicomedy"
+				}
+			}
+		},
+		"Q5685": {
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "Anton Chekhov"
+				}
+			}
+		}
+	}
+}

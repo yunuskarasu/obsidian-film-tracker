@@ -1,0 +1,791 @@
+{
+	"entities": {
+		"Q982838": {
+			"claims": {
+				"P18": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P18",
+							"hash": "82a7bfe09f731bb97585bd855818a46e87cc99ec",
+							"datavalue": {
+								"value": "Sabahattin Ali, date and location unknown.jpg",
+								"type": "string"
+							},
+							"datatype": "commonsMedia"
+						},
+						"type": "statement",
+						"id": "Q982838$CA9470C6-AA2E-42FB-BEF6-5111BC6FF241",
+						"rank": "normal"
+					}
+				],
+				"P569": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P569",
+							"hash": "77b1118ebd0a3427ce172fe754d1e4c4b5db4c26",
+							"datavalue": {
+								"value": {
+									"time": "+1907-02-25T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"id": "q982838$6693E7D1-F7CA-4E40-BEE8-1D6306E2897B",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "36ddfa00648f1782d5c2fd7364a2767dd016da50",
+								"snaks": {
+									"P212": [
+										{
+											"snaktype": "value",
+											"property": "P212",
+											"hash": "3bf431b02e625ba72e6c0a99bb87e6b163140705",
+											"datavalue": {
+												"value": "9789750826672",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "85f38548b219245e3f613c704218efd0595de8da",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 13219454,
+													"id": "Q13219454"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "4a73a4c7b8bc571e702846102b1d03c361330d1d",
+											"datavalue": {
+												"value": {
+													"time": "+2017-12-05T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P212",
+									"P248",
+									"P813"
+								]
+							},
+							{
+								"hash": "bedf46b91414434a186c569b00bad07bfe5eafbc",
+								"snaks": {
+									"P143": [
+										{
+											"snaktype": "value",
+											"property": "P143",
+											"hash": "5a6fb73df37ac546825b07ebb80a22de88d99425",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 58255,
+													"id": "Q58255"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "4a73a4c7b8bc571e702846102b1d03c361330d1d",
+											"datavalue": {
+												"value": {
+													"time": "+2017-12-05T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P143",
+									"P813"
+								]
+							},
+							{
+								"hash": "a48ec3879cc2a4b7ffc5ca1c9817f369026d1653",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "bd4f5450b56b6d225cf8a8c0f5e9f860b00b820a",
+											"datavalue": {
+												"value": "http://images.ykykultur.com.tr/upload/document/7a773bd4-7b34-425b-940c-aef55b06679a.pdf",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "4a73a4c7b8bc571e702846102b1d03c361330d1d",
+											"datavalue": {
+												"value": {
+													"time": "+2017-12-05T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854",
+									"P813"
+								]
+							},
+							{
+								"hash": "5605dddacef09067f5951e2c1b3e6486b1231afd",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "e2a81dbf2f7dd02b332d6358ef65f622f82e8cc3",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 237227,
+													"id": "Q237227"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P5019": [
+										{
+											"snaktype": "value",
+											"property": "P5019",
+											"hash": "bd2a4fe512c4dc83236ca95f38ca0059ab648b99",
+											"datavalue": {
+												"value": "sabahattin-ali",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "287dda686294b0d8a69c703174339714c16bf7d7",
+											"datavalue": {
+												"value": "Sabahattin Ali",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P5019",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "808de0dbbdadc060bb23743e5ed0f53a88ae693a",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "80047f9d5b0d2daf06989e71bd5f4ba15b215fd6",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 13550863,
+													"id": "Q13550863"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P691": [
+										{
+											"snaktype": "value",
+											"property": "P691",
+											"hash": "a91aa5c1fe192739ee2e6f746a543959198fac80",
+											"datavalue": {
+												"value": "ola2002113831",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "cc16bc92e709509822cfd58fe5a927f8db9ce1ff",
+											"datavalue": {
+												"value": {
+													"time": "+2019-11-23T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P691",
+									"P813"
+								]
+							},
+							{
+								"hash": "cde1aef149438b3c39f1117b5751457d02f9ed86",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "155e1a7322c5a7febad55feba5ba4c3a2656b1c4",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2877812,
+													"id": "Q2877812"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P3630": [
+										{
+											"snaktype": "value",
+											"property": "P3630",
+											"hash": "fda21957facf8d2efec2d7a2a1996561ac4e0cd0",
+											"datavalue": {
+												"value": "138953",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "287dda686294b0d8a69c703174339714c16bf7d7",
+											"datavalue": {
+												"value": "Sabahattin Ali",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P3630",
+									"P1810"
+								]
+							}
+						]
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P569",
+							"hash": "d120893ed8ecf3c77ea65b336fd97c11be556f33",
+							"datavalue": {
+								"value": {
+									"time": "+1906-02-12T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"id": "Q982838$686BD91A-A6AA-46CA-8275-C297338B0CE5",
+						"rank": "deprecated",
+						"references": [
+							{
+								"hash": "ffa6d327419643c0191d8cd12cdfb51bd6b3d3b4",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "019a50b7de741e0068bde41c9d9955b22a5de47b",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 36578,
+													"id": "Q36578"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "39372fcfc87c4e7d3306f51a554a7178e7057147",
+											"datavalue": {
+												"value": {
+													"time": "+2014-05-05T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P813"
+								]
+							}
+						]
+					}
+				],
+				"P570": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P570",
+							"hash": "a60041040a5bae77548e834890b0146738e693e1",
+							"datavalue": {
+								"value": {
+									"time": "+1948-04-02T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"id": "q982838$8BE626D9-DB72-4C50-BE93-3391FE7508B5",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "ffa6d327419643c0191d8cd12cdfb51bd6b3d3b4",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "019a50b7de741e0068bde41c9d9955b22a5de47b",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 36578,
+													"id": "Q36578"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "39372fcfc87c4e7d3306f51a554a7178e7057147",
+											"datavalue": {
+												"value": {
+													"time": "+2014-05-05T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P813"
+								]
+							},
+							{
+								"hash": "8e0a23f02e8353923c562cd5d219a5114ecb9971",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "6ff2cf2f32fe6bf566da4c3c6e2d0ae639ecef93",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 17378135,
+													"id": "Q17378135"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1476": [
+										{
+											"snaktype": "value",
+											"property": "P1476",
+											"hash": "ac97a8f3f3914b4f5dd52609a0fcf0864968a9b6",
+											"datavalue": {
+												"value": {
+													"text": "Сабахаттин Али",
+													"language": "ru"
+												},
+												"type": "monolingualtext"
+											},
+											"datatype": "monolingualtext"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "257d05ea12cb52ad821eebdba59a493d541a923f",
+											"datavalue": {
+												"value": {
+													"time": "+2015-09-28T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1476",
+									"P813"
+								]
+							},
+							{
+								"hash": "5605dddacef09067f5951e2c1b3e6486b1231afd",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "e2a81dbf2f7dd02b332d6358ef65f622f82e8cc3",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 237227,
+													"id": "Q237227"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P5019": [
+										{
+											"snaktype": "value",
+											"property": "P5019",
+											"hash": "bd2a4fe512c4dc83236ca95f38ca0059ab648b99",
+											"datavalue": {
+												"value": "sabahattin-ali",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "287dda686294b0d8a69c703174339714c16bf7d7",
+											"datavalue": {
+												"value": "Sabahattin Ali",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P5019",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "808de0dbbdadc060bb23743e5ed0f53a88ae693a",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "80047f9d5b0d2daf06989e71bd5f4ba15b215fd6",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 13550863,
+													"id": "Q13550863"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P691": [
+										{
+											"snaktype": "value",
+											"property": "P691",
+											"hash": "a91aa5c1fe192739ee2e6f746a543959198fac80",
+											"datavalue": {
+												"value": "ola2002113831",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "cc16bc92e709509822cfd58fe5a927f8db9ce1ff",
+											"datavalue": {
+												"value": {
+													"time": "+2019-11-23T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P691",
+									"P813"
+								]
+							},
+							{
+								"hash": "cde1aef149438b3c39f1117b5751457d02f9ed86",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "155e1a7322c5a7febad55feba5ba4c3a2656b1c4",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2877812,
+													"id": "Q2877812"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P3630": [
+										{
+											"snaktype": "value",
+											"property": "P3630",
+											"hash": "fda21957facf8d2efec2d7a2a1996561ac4e0cd0",
+											"datavalue": {
+												"value": "138953",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "287dda686294b0d8a69c703174339714c16bf7d7",
+											"datavalue": {
+												"value": "Sabahattin Ali",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P3630",
+									"P1810"
+								]
+							}
+						]
+					}
+				],
+				"P648": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P648",
+							"hash": "2069cddf5d19f32e88969db61784e7ba19a3f0d1",
+							"datavalue": {
+								"value": "OL97057A",
+								"type": "string"
+							},
+							"datatype": "external-id"
+						},
+						"type": "statement",
+						"id": "Q982838$D1A6C0BA-EF02-4C78-BF76-314C5759A654",
+						"rank": "normal"
+					}
+				],
+				"P1559": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1559",
+							"hash": "7004864e9f1395c996882f268a4bfc42721e377c",
+							"datavalue": {
+								"value": {
+									"text": "Sabahattin Ali",
+									"language": "tr"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q982838$59f70877-4982-b0e5-a488-ccf3e07f38aa",
+						"rank": "normal"
+					}
+				]
+			},
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "Sabahattin Ali"
+				},
+				"mul": {
+					"language": "mul",
+					"value": "Sabahattin Ali"
+				}
+			}
+		}
+	}
+}

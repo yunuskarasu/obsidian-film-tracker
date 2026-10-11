@@ -1,0 +1,48 @@
+{
+	"entities": {
+		"Q111984153": {
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "young adult fiction"
+				}
+			}
+		},
+		"Q132311": {
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "fantasy"
+				}
+			}
+		},
+		"Q21802675": {
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "adventure fiction"
+				}
+			}
+		},
+		"Q8337": {
+			"labels": {
+				"mul": {
+					"language": "mul",
+					"value": "Harry Potter"
+				}
+			}
+		},
+		"Q34660": {
+			"labels": {
+				"mul": {
+					"language": "mul",
+					"value": "J. K. Rowling"
+				},
+				"en": {
+					"language": "en",
+					"value": "J. K. Rowling"
+				}
+			}
+		}
+	}
+}

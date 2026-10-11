@@ -1,0 +1,24 @@
+{
+	"entities": {
+		"Q1347298": {
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "serialized fiction"
+				}
+			}
+		},
+		"Q982838": {
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "Sabahattin Ali"
+				},
+				"mul": {
+					"language": "mul",
+					"value": "Sabahattin Ali"
+				}
+			}
+		}
+	}
+}

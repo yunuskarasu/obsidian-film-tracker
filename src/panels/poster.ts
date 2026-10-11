@@ -2,6 +2,7 @@ import type { App, MarkdownView, TFile } from "obsidian";
 import { animeProgressOf } from "../anime-note";
 import { parseLinkTarget } from "../note";
 import { playProgressOf } from "../game-note";
+import { readProgressOf } from "../book-note";
 import { listenProgressOf } from "../music-note";
 import { classifyNote, hasAnime } from "../note-kind";
 import { tvProgressOf } from "../tv-note";
@@ -40,6 +41,8 @@ export interface WatchControls {
 	canChangePhoto: boolean;
 	/** A game not being played right now can be started. */
 	canStartPlaying?: boolean;
+	/** A book not being read right now can be started. */
+	canStartReading?: boolean;
 }
 
 export function watchControlsFor(frontmatter: Record<string, unknown> | undefined): WatchControls | null {
@@ -66,6 +69,21 @@ export function watchControlsFor(frontmatter: Record<string, unknown> | undefine
 			markText: "Completed today",
 			canChangePhoto: false,
 			canStartPlaying: status !== "playing",
+		};
+	}
+	if (kind.kind === "book") {
+		// Read again and again, like a game: the button stays, and counts each time.
+		const { status, readCount } = readProgressOf(frontmatter);
+		const times = readCount === 0 ? null : readCount === 1 ? "Read once" : `Read ${readCount} times`;
+		const label = [status === "reading" ? "Reading" : null, times].filter((part) => part !== null).join(" · ") || null;
+		return {
+			label,
+			percent: null,
+			canWatchEpisode: false,
+			canMarkWatched: true,
+			markText: "Finished today",
+			canChangePhoto: false,
+			canStartReading: status !== "reading",
 		};
 	}
 	if (kind.kind === "album") {
@@ -207,6 +225,9 @@ function showWatchProgress(app: App, actions: MangaPanelActions, host: HTMLEleme
 	}
 	if (controls.canStartPlaying === true) {
 		renderAction(buttons, "Start playing", () => actions.startPlaying(file));
+	}
+	if (controls.canStartReading === true) {
+		renderAction(buttons, "Start reading", () => actions.startReading(file));
 	}
 	if (controls.canMarkWatched) {
 		renderAction(buttons, controls.markText, () => actions.watchedToday(file));

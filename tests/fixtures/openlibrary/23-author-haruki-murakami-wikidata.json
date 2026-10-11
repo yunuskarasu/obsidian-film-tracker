@@ -1,0 +1,641 @@
+{
+	"entities": {
+		"Q134798": {
+			"claims": {
+				"P18": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P18",
+							"hash": "f4f42f3f929cff13e9fe092b1df40f77527a6c83",
+							"datavalue": {
+								"value": "Conversatorio Haruki Murakami (12 de 12) (45747009452) (cropped).jpg",
+								"type": "string"
+							},
+							"datatype": "commonsMedia"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P585": [
+								{
+									"snaktype": "value",
+									"property": "P585",
+									"hash": "6174553681261aeec411766adf691fdeec1dee47",
+									"datavalue": {
+										"value": {
+											"time": "+2018-00-00T00:00:00Z",
+											"timezone": 0,
+											"before": 0,
+											"after": 0,
+											"precision": 9,
+											"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+										},
+										"type": "time"
+									},
+									"datatype": "time"
+								}
+							],
+							"P2096": [
+								{
+									"snaktype": "value",
+									"property": "P2096",
+									"hash": "48b506a13f08d1064aeed5e02535694720181680",
+									"datavalue": {
+										"value": {
+											"text": "Haruki Murakami during a meeting at [[Casa de la Cultura Ecuatoriana]] in 2018.",
+											"language": "es"
+										},
+										"type": "monolingualtext"
+									},
+									"datatype": "monolingualtext"
+								},
+								{
+									"snaktype": "value",
+									"property": "P2096",
+									"hash": "9b9cea2562025b8de59e204383308b327aa9bb96",
+									"datavalue": {
+										"value": {
+											"text": "Haruki Murakami (2018)",
+											"language": "cs"
+										},
+										"type": "monolingualtext"
+									},
+									"datatype": "monolingualtext"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P585",
+							"P2096"
+						],
+						"id": "q134798$57C581EA-5D3A-4FCC-943F-7A0A10A25612",
+						"rank": "normal"
+					}
+				],
+				"P136": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P136",
+							"hash": "396be0f272320556122e0f4ab484175448dc9954",
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 38072107,
+									"id": "Q38072107"
+								},
+								"type": "wikibase-entityid"
+							},
+							"datatype": "wikibase-item"
+						},
+						"type": "statement",
+						"id": "Q134798$55a24790-4408-a189-d552-c91e1287e1e9",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P136",
+							"hash": "4e44fb27e9cb0a561b32ad5db939b367d43bdf68",
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 112983,
+									"id": "Q112983"
+								},
+								"type": "wikibase-entityid"
+							},
+							"datatype": "wikibase-item"
+						},
+						"type": "statement",
+						"id": "Q134798$8a927e2f-4624-8c8c-4dd7-df65f888562c",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P136",
+							"hash": "22fdbd4bdd2aaa17e0a4cae00f9d843f741ddcfb",
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 35760,
+									"id": "Q35760"
+								},
+								"type": "wikibase-entityid"
+							},
+							"datatype": "wikibase-item"
+						},
+						"type": "statement",
+						"id": "Q134798$A7009ADE-A668-4774-94A5-1DBEBAF893E7",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "4b7af9bcfbf8f95e7b71b39c5098b3df96535cc6",
+								"snaks": {
+									"P143": [
+										{
+											"snaktype": "value",
+											"property": "P143",
+											"hash": "6a164248fc96bfa583bbb495cb63ae6401ec203c",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 206855,
+													"id": "Q206855"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P4656": [
+										{
+											"snaktype": "value",
+											"property": "P4656",
+											"hash": "29b29e145e7b1c4a79422d7dfea06d099cb6914e",
+											"datavalue": {
+												"value": "https://ru.wikipedia.org/?oldid=95738215",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									]
+								},
+								"snaks-order": [
+									"P143",
+									"P4656"
+								]
+							}
+						]
+					}
+				],
+				"P569": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P569",
+							"hash": "cdab3fe8e46b791841d1ccda7beb3ef67c17adf8",
+							"datavalue": {
+								"value": {
+									"time": "+1949-01-12T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"id": "q134798$D9FF21F8-6D1C-4D60-98FA-9F4C38877E3C",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "9bb5f8294ae50889ede77ff26340874c7fec2321",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "871891c242389d06b23bf809fdc0301df1ed9c77",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2629164,
+													"id": "Q2629164"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1233": [
+										{
+											"snaktype": "value",
+											"property": "P1233",
+											"hash": "cad6ecd1c00ad15c2b5092d4881a499155306c40",
+											"datavalue": {
+												"value": "1863",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "09e1b9849714c107f5f44f1201f6836a9d72f32a",
+											"datavalue": {
+												"value": "村上春樹",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1233",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "1ff1b2eef0f7fa75da43903cce68c7c1b473e694",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "d1d1b10a05a8f3fc5d26bb4aeb6849617ad81fc7",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 5375741,
+													"id": "Q5375741"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1417": [
+										{
+											"snaktype": "value",
+											"property": "P1417",
+											"hash": "7e43f9e23d82fd4b344a3ef5a4bc88255e9c882f",
+											"datavalue": {
+												"value": "biography/Murakami-Haruki",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "449fb62a20bbb9ae5f5de5c2cc0b29b69d116b9b",
+											"datavalue": {
+												"value": "Haruki Murakami",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1417",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "18ff0b21254e5e4bfaa17c12044357bc6dc25d4a",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "c34208b35b041d6758e6b68814cd263cacdabb10",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 504063,
+													"id": "Q504063"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1953": [
+										{
+											"snaktype": "value",
+											"property": "P1953",
+											"hash": "8f363e086be2337cf67d42e982fd42c6048f6e47",
+											"datavalue": {
+												"value": "1428088",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "90c84cb93a09e26e30ea9056e1a72475798b987b",
+											"datavalue": {
+												"value": "Haruki Murakami (2)",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1953",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "056276bc1fc7681c1a8b3b8c920bd429304dd413",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "a90160a2ce9deb340bb0a7e07b0d9c6106266546",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 10855166,
+													"id": "Q10855166"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P6844": [
+										{
+											"snaktype": "value",
+											"property": "P6844",
+											"hash": "05f29ae311d6c26bda817c26975fea1b6c082652",
+											"datavalue": {
+												"value": "87136",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "449fb62a20bbb9ae5f5de5c2cc0b29b69d116b9b",
+											"datavalue": {
+												"value": "Haruki Murakami",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P6844",
+									"P1810"
+								]
+							},
+							{
+								"hash": "3da11c68ea91207c6c03877dc62ab21470e4ee11",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "e2a81dbf2f7dd02b332d6358ef65f622f82e8cc3",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 237227,
+													"id": "Q237227"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P5019": [
+										{
+											"snaktype": "value",
+											"property": "P5019",
+											"hash": "1d7c693a22d951970dcf775e73dd82893baf8852",
+											"datavalue": {
+												"value": "murakami-haruki",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "449fb62a20bbb9ae5f5de5c2cc0b29b69d116b9b",
+											"datavalue": {
+												"value": "Haruki Murakami",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P5019",
+									"P1810"
+								]
+							},
+							{
+								"hash": "2c6bab1e3c5875da175abaa5fc1924dd5c54c797",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "155e1a7322c5a7febad55feba5ba4c3a2656b1c4",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2877812,
+													"id": "Q2877812"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P3630": [
+										{
+											"snaktype": "value",
+											"property": "P3630",
+											"hash": "11c6795a7f7df0654552c958de0e7fa33ba2a20f",
+											"datavalue": {
+												"value": "3041",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "449fb62a20bbb9ae5f5de5c2cc0b29b69d116b9b",
+											"datavalue": {
+												"value": "Haruki Murakami",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P3630",
+									"P1810"
+								]
+							}
+						]
+					}
+				],
+				"P648": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P648",
+							"hash": "d5686a89528725781cbb610b13dda30925289c03",
+							"datavalue": {
+								"value": "OL382524A",
+								"type": "string"
+							},
+							"datatype": "external-id"
+						},
+						"type": "statement",
+						"id": "Q134798$1074f3b8-4c24-ee8e-ada8-592bc435ba94",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P648",
+							"hash": "bb8e9906f6309a9055efb896e0ba67acd46c8173",
+							"datavalue": {
+								"value": "OL13493873A",
+								"type": "string"
+							},
+							"datatype": "external-id"
+						},
+						"type": "statement",
+						"id": "Q134798$D957B5C5-7E0B-4ED3-AD1E-29C186EDDFC5",
+						"rank": "normal"
+					}
+				],
+				"P1559": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1559",
+							"hash": "d43099200233386c6a3bb1cb190434b36a5eeeef",
+							"datavalue": {
+								"value": {
+									"text": "村上 春樹",
+									"language": "ja"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P2125": [
+								{
+									"snaktype": "value",
+									"property": "P2125",
+									"hash": "e59472b8fef1d9a8e3eaa55e0c92ba5681e5aa7f",
+									"datavalue": {
+										"value": "Murakami Haruki",
+										"type": "string"
+									},
+									"datatype": "string"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P2125"
+						],
+						"id": "Q134798$363825A2-E0FE-4387-891F-90C48A2096BE",
+						"rank": "normal"
+					}
+				]
+			},
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "Haruki Murakami"
+				},
+				"mul": {
+					"language": "mul",
+					"value": "Haruki Murakami"
+				}
+			}
+		}
+	}
+}

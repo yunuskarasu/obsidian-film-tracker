@@ -101,6 +101,10 @@ describe("the setting definitions", () => {
 			"artistPhotoFolder",
 			"gameFolder",
 			"gameCoverFolder",
+			"bookFolder",
+			"bookCoverFolder",
+			"authorFolder",
+			"authorPhotoFolder",
 		]);
 	});
 
@@ -119,6 +123,7 @@ describe("the setting definitions", () => {
 			"🌸 Anime & manga",
 			"🎵 Music",
 			"🎮 Games",
+			"📚 Books",
 			"Attribution",
 		]);
 	});

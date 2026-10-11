@@ -17,6 +17,8 @@ import { parseWikilink } from "../note";
  * - `album`: TRACKLIST.
  * - `song`: LYRICS.
  * - `game`: DLC.
+ * - `author`: BIBLIOGRAPHY, matched on every name the author goes by.
+ * - `book`: none yet.
  */
 export type PanelPlan =
 	| { kind: "tv"; manga: boolean }
@@ -24,6 +26,8 @@ export type PanelPlan =
 	| { kind: "album" }
 	| { kind: "song" }
 	| { kind: "game" }
+	| { kind: "author"; names: Set<string> }
+	| { kind: "book" }
 	| { kind: "manga" }
 	| { kind: "mangaka"; names: Set<string> }
 	| { kind: "none" }
@@ -53,6 +57,9 @@ export function panelPlanFor(frontmatter: Record<string, unknown> | undefined): 
 	if (kind === "song") return { kind: "song" };
 	if (kind === "game") return { kind: "game" };
 	if (kind === "artist") return { kind: "artist", names: artistNames(frontmatter ?? {}) };
+	// An author note has a `name` too: read as a person, it would list films.
+	if (kind === "author") return { kind: "author", names: artistNames(frontmatter ?? {}) };
+	if (kind === "book") return { kind: "book" };
 	if (manga) return { kind: "manga" };
 	if (frontmatter === undefined) return { kind: "work" };
 
@@ -68,7 +75,7 @@ export function panelPlanFor(frontmatter: Record<string, unknown> | undefined): 
 	return { kind: "work" };
 }
 
-/** An artist by every name an album might credit them under: 久石譲 as well as Joe Hisaishi. */
+/** An artist — or an author — by every name an album or a book might credit them under: 久石譲 as well as Joe Hisaishi. */
 function artistNames(frontmatter: Record<string, unknown>): Set<string> {
 	const names = [frontmatter.name, frontmatter.original_name]
 		.filter((name): name is string => typeof name === "string" && name.trim() !== "")

@@ -1,0 +1,1111 @@
+{
+	"entities": {
+		"Q43361": {
+			"claims": {
+				"P50": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P50",
+							"hash": "9830500dbeedbe8731f13540ce1e0ba53a1bb14e",
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 34660,
+									"id": "Q34660"
+								},
+								"type": "wikibase-entityid"
+							},
+							"datatype": "wikibase-item"
+						},
+						"type": "statement",
+						"id": "q43361$0537D4E1-98D5-4266-A78E-CC788851C7D5",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "d40b292bce257d9c07a9349bd01f39ac53af3efd",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "871891c242389d06b23bf809fdc0301df1ed9c77",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2629164,
+													"id": "Q2629164"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1274": [
+										{
+											"snaktype": "value",
+											"property": "P1274",
+											"hash": "2910188e1addd2cd030757cabfcb1a8c65c49e8c",
+											"datavalue": {
+												"value": "19763",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "d2ec0a5b843469e7283b977cd7b52f318cef56c2",
+											"datavalue": {
+												"value": {
+													"time": "+2025-07-02T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1274",
+									"P813"
+								]
+							}
+						]
+					}
+				],
+				"P136": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P136",
+							"hash": "80453963b0eac99d4aa63826a79f41d5ce486f53",
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 111984153,
+									"id": "Q111984153"
+								},
+								"type": "wikibase-entityid"
+							},
+							"datatype": "wikibase-item"
+						},
+						"type": "statement",
+						"id": "Q43361$227A9B26-B545-4810-AF75-BFDE8B7B596C",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P136",
+							"hash": "25089c112168a51004f460387089398b9d703722",
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 132311,
+									"id": "Q132311"
+								},
+								"type": "wikibase-entityid"
+							},
+							"datatype": "wikibase-item"
+						},
+						"type": "statement",
+						"id": "Q43361$C7C53500-A367-45E6-967E-2384EDC9198C",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P136",
+							"hash": "2ca68ffb302cbaa65adc6da7ef87dbd9ff28f464",
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 21802675,
+									"id": "Q21802675"
+								},
+								"type": "wikibase-entityid"
+							},
+							"datatype": "wikibase-item"
+						},
+						"type": "statement",
+						"id": "Q43361$33A74122-3EE6-4FB9-9880-6385B53F000A",
+						"rank": "normal"
+					}
+				],
+				"P179": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P179",
+							"hash": "9cb5d3f25b61ba7310793254cf0c62443c4d9a1b",
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 8337,
+									"id": "Q8337"
+								},
+								"type": "wikibase-entityid"
+							},
+							"datatype": "wikibase-item"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P156": [
+								{
+									"snaktype": "value",
+									"property": "P156",
+									"hash": "84e687228767bf1633572fa9ba627f281faf2468",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 47209,
+											"id": "Q47209"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							],
+							"P1545": [
+								{
+									"snaktype": "value",
+									"property": "P1545",
+									"hash": "2a1ced1dca90648ea7e306acbadd74fc81a10722",
+									"datavalue": {
+										"value": "1",
+										"type": "string"
+									},
+									"datatype": "string"
+								}
+							],
+							"P155": [
+								{
+									"snaktype": "novalue",
+									"property": "P155",
+									"hash": "2c0614dca66b9f846a3cb129bd6ca15adeba8a7a",
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P156",
+							"P1545",
+							"P155"
+						],
+						"id": "Q43361$f086e801-4000-bc65-e547-1d7517f99dd0",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "43563cb62d0b7c2e68486a7a7b69a7d9fc55941c",
+								"snaks": {
+									"P143": [
+										{
+											"snaktype": "value",
+											"property": "P143",
+											"hash": "5a343e7e758a4282a01316d3e959b6e653b767fc",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 11920,
+													"id": "Q11920"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P4656": [
+										{
+											"snaktype": "value",
+											"property": "P4656",
+											"hash": "c310d197048938dedb5a2cbd21f2f8aff9d343a7",
+											"datavalue": {
+												"value": "https://it.wikipedia.org/w/index.php?title=Harry_Potter_e_la_pietra_filosofale&oldid=122235387",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									]
+								},
+								"snaks-order": [
+									"P143",
+									"P4656"
+								]
+							}
+						]
+					}
+				],
+				"P577": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P577",
+							"hash": "1e47083426b1e1b1353cc4908af97d8b9a5d639c",
+							"datavalue": {
+								"value": {
+									"time": "+1997-06-30T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P291": [
+								{
+									"snaktype": "value",
+									"property": "P291",
+									"hash": "0a04593d08cbf7e3266dcb4ca0b01da704269a28",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 145,
+											"id": "Q145"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P291"
+						],
+						"id": "Q43361$c9189998-483e-a484-d283-9e88bfee6762",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "6051ca679329e2d0ba6ecc162ebeadc5489c5d55",
+								"snaks": {
+									"P957": [
+										{
+											"snaktype": "value",
+											"property": "P957",
+											"hash": "e3452754e59b6a80d8cc2f76f1a542eb74b9bba6",
+											"datavalue": {
+												"value": "0-7475-3269-9",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									]
+								},
+								"snaks-order": [
+									"P957"
+								]
+							}
+						]
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P577",
+							"hash": "b5affbf7a74d63ecbd2fbaf7f1f344c81e3b53c0",
+							"datavalue": {
+								"value": {
+									"time": "+1998-09-01T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P291": [
+								{
+									"snaktype": "value",
+									"property": "P291",
+									"hash": "d030038c836f9ed0d37c69cb8c389d689ebeb05a",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 30,
+											"id": "Q30"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P291"
+						],
+						"id": "Q43361$fbb176e8-4fdd-999c-7ac7-9985c05cd8f0",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P577",
+							"hash": "6339b0429c254694642e34ccd0d568da44e58128",
+							"datavalue": {
+								"value": {
+									"time": "+1997-06-26T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P291": [
+								{
+									"snaktype": "value",
+									"property": "P291",
+									"hash": "0a04593d08cbf7e3266dcb4ca0b01da704269a28",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 145,
+											"id": "Q145"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P291"
+						],
+						"id": "Q43361$68464b85-4b54-c713-08b1-4d1e72d87c89",
+						"rank": "preferred",
+						"references": [
+							{
+								"hash": "b9d2039cbc7aaed9606e7b1536077b5902e774e1",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "74d880727da482802146e129cc0d0e54c42536e9",
+											"datavalue": {
+												"value": "https://www.bloomsbury.com/uk/harry-potter-and-the-philosophers-stone-9780747532699/",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854"
+								]
+							},
+							{
+								"hash": "d40b292bce257d9c07a9349bd01f39ac53af3efd",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "871891c242389d06b23bf809fdc0301df1ed9c77",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2629164,
+													"id": "Q2629164"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1274": [
+										{
+											"snaktype": "value",
+											"property": "P1274",
+											"hash": "2910188e1addd2cd030757cabfcb1a8c65c49e8c",
+											"datavalue": {
+												"value": "19763",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "d2ec0a5b843469e7283b977cd7b52f318cef56c2",
+											"datavalue": {
+												"value": {
+													"time": "+2025-07-02T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1274",
+									"P813"
+								]
+							}
+						]
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P577",
+							"hash": "f5233feeae71dc0dcd352c92c48e5e8ab4f2b55e",
+							"datavalue": {
+								"value": {
+									"time": "+1999-12-08T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P291": [
+								{
+									"snaktype": "value",
+									"property": "P291",
+									"hash": "bb32394d31503e16b2eca63379d79b080de13059",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 17,
+											"id": "Q17"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							],
+							"P123": [
+								{
+									"snaktype": "value",
+									"property": "P123",
+									"hash": "6914b18745756ab97c8b9fa7983723fac34d5949",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 17220800,
+											"id": "Q17220800"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P291",
+							"P123"
+						],
+						"id": "Q43361$c65777ae-4a42-6103-5fba-9b3413ed2bca",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "a29a646602abf65105ed0f39a44231c962ece9ee",
+								"snaks": {
+									"P143": [
+										{
+											"snaktype": "value",
+											"property": "P143",
+											"hash": "c6f1777471211df31724ac60175786f3872c83e9",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 177837,
+													"id": "Q177837"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									]
+								},
+								"snaks-order": [
+									"P143"
+								]
+							}
+						]
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P577",
+							"hash": "7c68eddd53cc8f38035fa22e5a6f994e90587f07",
+							"datavalue": {
+								"value": {
+									"time": "+1998-09-28T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P291": [
+								{
+									"snaktype": "value",
+									"property": "P291",
+									"hash": "9f54c0fd64378e7b06e201509ae2feee11655168",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 33,
+											"id": "Q33"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							],
+							"P123": [
+								{
+									"snaktype": "value",
+									"property": "P123",
+									"hash": "1eaead5b5d6b12f9f1490ef3f3b8c99b0c27b150",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 3579529,
+											"id": "Q3579529"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P291",
+							"P123"
+						],
+						"id": "Q43361$03706489-476a-8a5d-c8a0-9971cba00faa",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "1bbad6e44b135a9f81d7e0d5805c9aa410230f16",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "c34a3a08382a412bd82caa34822fa96b428f3e3c",
+											"datavalue": {
+												"value": "https://kirja.fi/blogs/kirjavinkit-lasten-ja-nuortenkirjoista/harry-potter-25-vuotta-suomessa",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "5a0074453b3fc08e026c4ac068607166085fcee9",
+											"datavalue": {
+												"value": {
+													"time": "+2025-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854",
+									"P813"
+								]
+							}
+						]
+					}
+				],
+				"P648": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P648",
+							"hash": "698ec8298729bd9aa03b20788d159168ff5859f1",
+							"datavalue": {
+								"value": "OL82563W",
+								"type": "string"
+							},
+							"datatype": "external-id"
+						},
+						"type": "statement",
+						"id": "Q43361$1469A009-0A02-4671-941A-1A30D8941CAB",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "cb9d2b816ad615f718c7f353e50b7a94323d1ba9",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "c80df7528eb9281e0805db6a991cd9d6fa2bc86b",
+											"datavalue": {
+												"value": "https://openlibrary.org/works/OL82563W/Harry_Potter_and_the_Philosopher%27s_Stone?edition=harrypotterphilo0000rowl",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854"
+								]
+							}
+						]
+					}
+				],
+				"P1476": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "e69e1d90b000a5ac0e8a474edbe58c2222105eca",
+							"datavalue": {
+								"value": {
+									"text": "Harry Potter and the Philosopher's Stone",
+									"language": "en-gb"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P7452": [
+								{
+									"snaktype": "value",
+									"property": "P7452",
+									"hash": "f63fcd84974b322791f0dbd1471565eed2a433c9",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 71548220,
+											"id": "Q71548220"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P7452"
+						],
+						"id": "Q43361$d975a4a4-4d37-13e0-6e93-c2082ab98b3f",
+						"rank": "preferred"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "b16efe4b5dcad47e5391c9fabeb95f54fb5b40d4",
+							"datavalue": {
+								"value": {
+									"text": "Harry Potter and the Sorcerer's Stone",
+									"language": "en-us"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P3005": [
+								{
+									"snaktype": "value",
+									"property": "P3005",
+									"hash": "17f84b598959b9d455fec1ec62a8768d50b75511",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 30,
+											"id": "Q30"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P3005"
+						],
+						"id": "Q43361$2fb7e6b8-4ea9-8a9b-42f3-875c6879f233",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "4016ea11f506db1c1397d3d45fb5e8fc455c84e7",
+							"datavalue": {
+								"value": {
+									"text": "Harry Potter y la piedra filosofal",
+									"language": "es"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q43361$894ec3be-4640-0c1f-dfd4-d14d31b98ef9",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "3bc80d6d01851d47564c30ba7f1b0857e949834f",
+							"datavalue": {
+								"value": {
+									"text": "Harry Potter à l'école des sorciers",
+									"language": "fr"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q43361$a3c5f643-4639-568c-69b0-21338c26eb9b",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "338e763a4e71d0f4c87a64ea99c83e177f00a289",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "871891c242389d06b23bf809fdc0301df1ed9c77",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2629164,
+													"id": "Q2629164"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1274": [
+										{
+											"snaktype": "value",
+											"property": "P1274",
+											"hash": "60666b73cd5c5340dc7fc09367e67c54350a98ba",
+											"datavalue": {
+												"value": "1443229",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "d2ec0a5b843469e7283b977cd7b52f318cef56c2",
+											"datavalue": {
+												"value": {
+													"time": "+2025-07-02T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1274",
+									"P813"
+								]
+							}
+						]
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "183e611988023cd7f337958e52cecf692e8d9aaf",
+							"datavalue": {
+								"value": {
+									"text": "Harry Potter eta sorgin harria",
+									"language": "eu"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q43361$02514d5c-4679-b550-7f8c-edfa6d18e970",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "5163dc34e687bc5ce2cc39809d3c8b32639c4950",
+							"datavalue": {
+								"value": {
+									"text": "Harry Potter en de Steen der Wijzen",
+									"language": "nl"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q43361$0ec135da-42a1-1cfc-7055-96da5095244c",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "cd7c129d096d495b75f03d0203a02ad9938aabd1",
+							"datavalue": {
+								"value": {
+									"text": "Hare Pota me te Whatu Manapou",
+									"language": "mi"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q43361$ff7b7e2e-44d6-f7a1-c40f-6f41ddce73d3",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "20bde93e3fd4c1030001afc5d5e973b6238b554d",
+							"datavalue": {
+								"value": {
+									"text": "Harry Potter e a pedra filosofal",
+									"language": "gl"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q43361$e531ea27-462e-b664-d42e-0bdac3d53bef",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "f6350e36c2049916e859c09e17df5bbb354b6fc8",
+							"datavalue": {
+								"value": {
+									"text": "Гарри Поттер и философский камень",
+									"language": "ru"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q43361$14236663-442d-9f01-3b90-c432b2ed2497",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "1e1d6c8c96cece7137467f3b72a7444f62aa60ba",
+							"datavalue": {
+								"value": {
+									"text": "Harry Potter a Kámen mudrců",
+									"language": "cs"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q43361$bc888f91-41ed-0b06-0d9d-2e86f595d431",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "424bf20df134498ab38734ca22b06d98971e0356",
+							"datavalue": {
+								"value": {
+									"text": "Harry Potter and the Philosopher's Stone",
+									"language": "en"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q43361$58ECE254-ECE8-43CD-BCE0-F68CD88D32FD",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "d40b292bce257d9c07a9349bd01f39ac53af3efd",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "871891c242389d06b23bf809fdc0301df1ed9c77",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2629164,
+													"id": "Q2629164"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1274": [
+										{
+											"snaktype": "value",
+											"property": "P1274",
+											"hash": "2910188e1addd2cd030757cabfcb1a8c65c49e8c",
+											"datavalue": {
+												"value": "19763",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "d2ec0a5b843469e7283b977cd7b52f318cef56c2",
+											"datavalue": {
+												"value": {
+													"time": "+2025-07-02T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1274",
+									"P813"
+								]
+							}
+						]
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "79cfa87ebe9f088556df9f94a5bdad2edd98fab3",
+							"datavalue": {
+								"value": {
+									"text": "Harry Potter und der Stein der Weisen",
+									"language": "de"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q43361$8b7950ba-4189-3a64-3d9d-dbcd2d96b00f",
+						"rank": "normal"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "cd19bb2c3d69d9bc64023d8fca519ea7c46acfe4",
+							"datavalue": {
+								"value": {
+									"text": "Harry Potter i Kamień Filozoficzny",
+									"language": "pl"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q43361$45be169b-40be-6aab-c84e-5a86f0e8a37b",
+						"rank": "normal"
+					}
+				]
+			},
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "Harry Potter and the Philosopher's Stone"
+				}
+			}
+		}
+	}
+}

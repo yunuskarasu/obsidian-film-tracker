@@ -30,7 +30,7 @@ export default tseslint.config(
 				"warn",
 				{
 					enforceCamelCaseLower: true,
-					brands: [...DEFAULT_BRANDS, "Film + Anime-Manga Tracker", "MyAnimeList", "Letterboxd", "MusicBrainz", "Wikimedia Commons", "Deezer", "Twitch"],
+					brands: [...DEFAULT_BRANDS, "Film + Anime-Manga Tracker", "MyAnimeList", "Letterboxd", "MusicBrainz", "Wikimedia Commons", "Deezer", "Twitch", "Open Library", "Wikidata"],
 					acronyms: [...DEFAULT_ACRONYMS, "TMDB", "MAL", "TV", "IGDB", "DLC"],
 				},
 			],

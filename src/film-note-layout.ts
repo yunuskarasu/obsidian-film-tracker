@@ -12,6 +12,7 @@ import { LAYOUT_CLASS, POSTER_CLASS, applyPoster, findHost } from "./panels/post
 import { applySeasonsPanel } from "./panels/seasons-panel";
 import { applyLyricsPanel } from "./panels/lyrics-panel";
 import { applyDlcPanel } from "./panels/dlc-panel";
+import { applyBibliography } from "./panels/bibliography-panel";
 import { applySoundtrack } from "./panels/soundtrack-panel";
 import { applyTracklist } from "./panels/tracklist-panel";
 import { VaultScan } from "./panels/vault-scan";
@@ -199,6 +200,13 @@ export class FilmNoteLayout {
 			case "game":
 				detachPanelsExcept(anchor, ["main", "soundtrack"]);
 				applyDlcPanel(context, anchor, file, frontmatter ?? {});
+				return;
+			case "author":
+				detachPanelsExcept(anchor, ["main"]);
+				applyBibliography(context, anchor, file, plan.names, scan);
+				return;
+			case "book":
+				detachPanelsExcept(anchor, []);
 				return;
 		}
 	}

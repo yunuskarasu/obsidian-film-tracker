@@ -30,6 +30,10 @@ import { malIdFrom, mangaMalIdFrom } from "./manga-note";
  * — and are only read as such when the
  * note carries none of the ids above: a note that has one keeps the meaning
  * it has always had.
+ *
+ * Book and author notes carry Open Library's id, `openlibrary_id` — text,
+ * "OL40875W" for a book and "OL28104A" for an author, the last letter
+ * telling which — and are read as such on the same terms as a game.
  */
 export type NoteKind =
 	| { kind: "film"; tmdbId: number }
@@ -40,7 +44,9 @@ export type NoteKind =
 	| { kind: "artist"; mbArtistId: string }
 	| { kind: "album"; mbAlbumId: string }
 	| { kind: "song"; mbRecordingId: string }
-	| { kind: "game"; igdbId: number };
+	| { kind: "game"; igdbId: number }
+	| { kind: "book"; openLibraryId: string }
+	| { kind: "author"; openLibraryId: string };
 
 type Frontmatter = Record<string, unknown> | undefined;
 
@@ -76,7 +82,7 @@ export function classifyNote(frontmatter: Frontmatter): NoteKind | null {
 	const mangaMalId = mangaMalIdFrom(frontmatter);
 	const tmdbTvId = tmdbTvIdFrom(frontmatter);
 	if (malId === null && tmdbTvId !== null) return { kind: "tv", tmdbTvId, mangaMalId };
-	if (malId === null && mangaMalId === null) return gameKindOf(frontmatter) ?? musicKindOf(frontmatter);
+	if (malId === null && mangaMalId === null) return gameKindOf(frontmatter) ?? bookKindOf(frontmatter) ?? musicKindOf(frontmatter);
 	return { kind: "series", animeMalId: malId, mangaMalId };
 }
 
@@ -84,6 +90,16 @@ export function classifyNote(frontmatter: Frontmatter): NoteKind | null {
 function gameKindOf(frontmatter: Record<string, unknown>): NoteKind | null {
 	const id: unknown = frontmatter.igdb_id;
 	return typeof id === "number" && Number.isInteger(id) ? { kind: "game", igdbId: id } : null;
+}
+
+/** A book or an author note: Open Library's id, whose last letter says which. */
+function bookKindOf(frontmatter: Record<string, unknown>): NoteKind | null {
+	const id: unknown = frontmatter.openlibrary_id;
+	if (typeof id !== "string") return null;
+	const trimmed = id.trim();
+	if (/^OL\d+W$/.test(trimmed)) return { kind: "book", openLibraryId: trimmed };
+	if (/^OL\d+A$/.test(trimmed)) return { kind: "author", openLibraryId: trimmed };
+	return null;
 }
 
 /** A MusicBrainz id as the note keeps it: text, never blank. */
@@ -119,7 +135,9 @@ export type NoteRef =
 	| { kind: "artist"; mbArtistId: string }
 	| { kind: "album"; mbAlbumId: string }
 	| { kind: "song"; mbRecordingId: string }
-	| { kind: "game"; igdbId: number };
+	| { kind: "game"; igdbId: number }
+	| { kind: "book"; openLibraryId: string }
+	| { kind: "author"; openLibraryId: string };
 
 /**
  * Whether `note` is the one `ref` names. The kind has to match as well as the
@@ -157,6 +175,10 @@ export function matchesRef(note: NoteKind | null, ref: NoteRef): boolean {
 			return note.kind === "song" && note.mbRecordingId === ref.mbRecordingId;
 		case "game":
 			return note.kind === "game" && note.igdbId === ref.igdbId;
+		case "book":
+			return note.kind === "book" && note.openLibraryId === ref.openLibraryId;
+		case "author":
+			return note.kind === "author" && note.openLibraryId === ref.openLibraryId;
 	}
 }
 
@@ -207,6 +229,11 @@ export function hasEpisodes(kind: NoteKind | null): boolean {
 /** The notes a game's own commands apply to: "Start playing" and "Mark as completed today". */
 export function isGame(kind: NoteKind | null): kind is { kind: "game"; igdbId: number } {
 	return kind?.kind === "game";
+}
+
+/** The notes a book's own commands apply to: "Start reading" and "Mark book as finished today". */
+export function isBook(kind: NoteKind | null): kind is { kind: "book"; openLibraryId: string } {
+	return kind?.kind === "book";
 }
 
 /** The notes "Mark as listened today" applies to: an album. */

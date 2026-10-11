@@ -1,0 +1,873 @@
+{
+	"entities": {
+		"Q272610": {
+			"claims": {
+				"P18": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P18",
+							"hash": "831006a65e5eed1c0b96bb98fe2851170d02f303",
+							"datavalue": {
+								"value": "Cormac McCarthy (Child of God author portrait - high-res).jpg",
+								"type": "string"
+							},
+							"datatype": "commonsMedia"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P585": [
+								{
+									"snaktype": "value",
+									"property": "P585",
+									"hash": "0d07f2b99c3af88b009e6b1ee95c7729631be56c",
+									"datavalue": {
+										"value": {
+											"time": "+1973-00-00T00:00:00Z",
+											"timezone": 0,
+											"before": 0,
+											"after": 0,
+											"precision": 9,
+											"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+										},
+										"type": "time"
+									},
+									"datatype": "time"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P585"
+						],
+						"id": "Q272610$83054418-83C1-4262-8F06-374D59391B4C",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "2f582cc46d1c9a0a18c4deb9e977692ddb45599e",
+								"snaks": {
+									"P143": [
+										{
+											"snaktype": "value",
+											"property": "P143",
+											"hash": "e4f6d9441d0600513c4533c672b5ab472dc73694",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 328,
+													"id": "Q328"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P4656": [
+										{
+											"snaktype": "value",
+											"property": "P4656",
+											"hash": "5e062616de4aad3606f4bb726fefec0487e9e173",
+											"datavalue": {
+												"value": "https://en.wikipedia.org/w/index.php?title=Cormac_McCarthy&oldid=1000147191",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									]
+								},
+								"snaks-order": [
+									"P143",
+									"P4656"
+								]
+							}
+						]
+					}
+				],
+				"P569": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P569",
+							"hash": "91e74cd9051d272fe1ce7b4f6e15c9845d1232de",
+							"datavalue": {
+								"value": {
+									"time": "+1933-07-20T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"id": "q272610$CD17212A-25F8-4258-85EE-E3AF0E074BD7",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "e3f7e60fd57a19a620f403bcf0bc3c7519ed92fc",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "019a50b7de741e0068bde41c9d9955b22a5de47b",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 36578,
+													"id": "Q36578"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "020d3de54b3287007b308fa6c48e427383310d00",
+											"datavalue": {
+												"value": {
+													"time": "+2014-04-27T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P813"
+								]
+							},
+							{
+								"hash": "269c9c4edfd8e538d35800176e9961175611fc96",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "f98ec89708e8eab9511c049702ef59df0721d652",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 29861311,
+													"id": "Q29861311"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P3430": [
+										{
+											"snaktype": "value",
+											"property": "P3430",
+											"hash": "a46d4b48f78a048da1ac55b890f07efcf6b3ba21",
+											"datavalue": {
+												"value": "w6737gk3",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "14d7484f05701bbf3eef7c3b541b711fe5b4e071",
+											"datavalue": {
+												"value": "Cormac McCarthy",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P3430",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "5c1df2356c9443ec02305bda190b772c29945ed4",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "871891c242389d06b23bf809fdc0301df1ed9c77",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2629164,
+													"id": "Q2629164"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1233": [
+										{
+											"snaktype": "value",
+											"property": "P1233",
+											"hash": "59a100719d2dce23aa942582bc14911bb255059d",
+											"datavalue": {
+												"value": "47991",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "14d7484f05701bbf3eef7c3b541b711fe5b4e071",
+											"datavalue": {
+												"value": "Cormac McCarthy",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1233",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "05a1c884a0b147fd222d64f79060faa1298833a1",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "d1d1b10a05a8f3fc5d26bb4aeb6849617ad81fc7",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 5375741,
+													"id": "Q5375741"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1417": [
+										{
+											"snaktype": "value",
+											"property": "P1417",
+											"hash": "ed483c778e3f67f5384b90d5fb6775ca0729d8e3",
+											"datavalue": {
+												"value": "biography/Cormac-McCarthy",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "14d7484f05701bbf3eef7c3b541b711fe5b4e071",
+											"datavalue": {
+												"value": "Cormac McCarthy",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1417",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "cbfe2c1a9cbce9f2f4155b048dc3dbe06e300d06",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "9d66409d3d04632fc69413ea86abf094f92fae88",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 3343389,
+													"id": "Q3343389"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P5570": [
+										{
+											"snaktype": "value",
+											"property": "P5570",
+											"hash": "402f51ecb24dff5bff0c759b403a3415d7dc336a",
+											"datavalue": {
+												"value": "2147185229",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "adfe5b6a4356c55d02d58e4625db5e2330766e0e",
+											"datavalue": {
+												"value": "Cormac McCARTHY",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P5570",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "51b5f5c396c4f70c173b3a50d58658a9761537ba",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "e2a81dbf2f7dd02b332d6358ef65f622f82e8cc3",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 237227,
+													"id": "Q237227"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P5019": [
+										{
+											"snaktype": "value",
+											"property": "P5019",
+											"hash": "c022a02b857b6a142703b61c0bceb798243c2a86",
+											"datavalue": {
+												"value": "mccarthy-cormac",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "14d7484f05701bbf3eef7c3b541b711fe5b4e071",
+											"datavalue": {
+												"value": "Cormac McCarthy",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P5019",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "cab1f2202ba659775619e7241969c250b5efee53",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "155e1a7322c5a7febad55feba5ba4c3a2656b1c4",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2877812,
+													"id": "Q2877812"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P3630": [
+										{
+											"snaktype": "value",
+											"property": "P3630",
+											"hash": "836a2f53e805e345f7e5e25f494e93d9aef791fa",
+											"datavalue": {
+												"value": "5610",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "14d7484f05701bbf3eef7c3b541b711fe5b4e071",
+											"datavalue": {
+												"value": "Cormac McCarthy",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P3630",
+									"P1810"
+								]
+							},
+							{
+								"hash": "a6f8a2ae56fe7e83c7f525f022f0b999ddafe0d5",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "055f82ef73ce123450780d681359ac6e9077e315",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 107343683,
+													"id": "Q107343683"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1284": [
+										{
+											"snaktype": "value",
+											"property": "P1284",
+											"hash": "e762e22a291fccae800831ada169ff85d862c35c",
+											"datavalue": {
+												"value": "00000020506",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "14d7484f05701bbf3eef7c3b541b711fe5b4e071",
+											"datavalue": {
+												"value": "Cormac McCarthy",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1284",
+									"P813",
+									"P1810"
+								]
+							}
+						]
+					}
+				],
+				"P570": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P570",
+							"hash": "5b3e71c1bc5b329c707905b0aba90916989848bc",
+							"datavalue": {
+								"value": {
+									"time": "+2023-06-13T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"id": "Q272610$b049e479-4cbf-1b90-0df0-b320d7145aa8",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "470f9ef3fcaadbb5097e8f3a9e6de607cfc3d842",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "fc1acd50a1a0be15d65000d3a39434e359262783",
+											"datavalue": {
+												"value": "https://www.nytimes.com/2023/06/13/books/cormac-mccarthy-dead.html",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "cb291a2355d33463440483f4283500e9c61ff03e",
+											"datavalue": {
+												"value": {
+													"time": "+2023-06-13T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									],
+									"P1476": [
+										{
+											"snaktype": "value",
+											"property": "P1476",
+											"hash": "88047174871380e3f296c3dee73579ca3e12f8cc",
+											"datavalue": {
+												"value": {
+													"text": "Cormac McCarthy, Novelist of a Darker America, Is Dead at 89",
+													"language": "en"
+												},
+												"type": "monolingualtext"
+											},
+											"datatype": "monolingualtext"
+										}
+									],
+									"P123": [
+										{
+											"snaktype": "value",
+											"property": "P123",
+											"hash": "2714993a93f86610bb90b55161a935eab4be05fc",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 9684,
+													"id": "Q9684"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854",
+									"P813",
+									"P1476",
+									"P123"
+								]
+							},
+							{
+								"hash": "1690c3b90c2f0abcf02cc8aa958502434efcb138",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "d5f929e2af93f9770cdea7129d68c1b0dfa46ada",
+											"datavalue": {
+												"value": "https://www.washingtonpost.com/obituaries/2023/06/13/cormac-mccarthy-novelist-dead/",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "cb291a2355d33463440483f4283500e9c61ff03e",
+											"datavalue": {
+												"value": {
+													"time": "+2023-06-13T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									],
+									"P1476": [
+										{
+											"snaktype": "value",
+											"property": "P1476",
+											"hash": "44fffa13497fd1ef02b808db7c41fa9532c0aea3",
+											"datavalue": {
+												"value": {
+													"text": "Cormac McCarthy, spare and haunting novelist, dies at 89",
+													"language": "en"
+												},
+												"type": "monolingualtext"
+											},
+											"datatype": "monolingualtext"
+										}
+									],
+									"P123": [
+										{
+											"snaktype": "value",
+											"property": "P123",
+											"hash": "6e882dec67ea332b21d05e10ba0a10b67fea4eb1",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 166032,
+													"id": "Q166032"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854",
+									"P813",
+									"P1476",
+									"P123"
+								]
+							}
+						]
+					}
+				],
+				"P648": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P648",
+							"hash": "d8be3a9e05816f6eafdcea333640d5cba05984ed",
+							"datavalue": {
+								"value": "OL28104A",
+								"type": "string"
+							},
+							"datatype": "external-id"
+						},
+						"type": "statement",
+						"id": "Q272610$D69C3D39-F04F-4B71-85F5-AF9A5C0E1321",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "a1e90ced6984fd4cabba0c590efa7b1d6d807b6f",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "3b8ad30045b4d7d93be11d9baa00d5e6f49d11d0",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 1201876,
+													"id": "Q1201876"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248"
+								]
+							}
+						]
+					}
+				],
+				"P1559": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1559",
+							"hash": "1f468e9c171e1357b8b7915c43be97900893b0d3",
+							"datavalue": {
+								"value": {
+									"text": "Cormac McCarthy",
+									"language": "en"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q272610$56c5bb49-49ea-b46f-0eb0-dd8f139ef78e",
+						"rank": "normal"
+					}
+				]
+			},
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "Cormac McCarthy"
+				},
+				"mul": {
+					"language": "mul",
+					"value": "Cormac McCarthy"
+				}
+			}
+		}
+	}
+}

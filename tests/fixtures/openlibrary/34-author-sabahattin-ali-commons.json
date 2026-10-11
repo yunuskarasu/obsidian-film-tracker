@@ -1,0 +1,105 @@
+{
+	"batchcomplete": "",
+	"query": {
+		"pages": {
+			"156862198": {
+				"pageid": 156862198,
+				"ns": 6,
+				"title": "File:Sabahattin Ali, date and location unknown.jpg",
+				"imagerepository": "local",
+				"imageinfo": [
+					{
+						"thumburl": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Sabahattin_Ali%2C_date_and_location_unknown.jpg/500px-Sabahattin_Ali%2C_date_and_location_unknown.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+						"thumbwidth": 500,
+						"thumbheight": 351,
+						"responsiveUrls": {
+							"2": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Sabahattin_Ali%2C_date_and_location_unknown.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+						},
+						"thumbattribs": {
+							"src": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a5/Sabahattin_Ali%2C_date_and_location_unknown.jpg/500px-Sabahattin_Ali%2C_date_and_location_unknown.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+							"decoding": "async",
+							"loading": "lazy",
+							"width": 500,
+							"height": 351,
+							"srcset": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Sabahattin_Ali%2C_date_and_location_unknown.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled 2x"
+						},
+						"url": "https://upload.wikimedia.org/wikipedia/commons/a/a5/Sabahattin_Ali%2C_date_and_location_unknown.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+						"descriptionurl": "https://commons.wikimedia.org/wiki/File:Sabahattin_Ali,_date_and_location_unknown.jpg",
+						"descriptionshorturl": "https://commons.wikimedia.org/w/index.php?curid=156862198",
+						"extmetadata": {
+							"DateTime": {
+								"value": "2024-12-18 20:33:06",
+								"source": "mediawiki-metadata",
+								"hidden": ""
+							},
+							"ObjectName": {
+								"value": "Sabahattin Ali, date and location unknown",
+								"source": "mediawiki-metadata"
+							},
+							"CommonsMetadataExtension": {
+								"value": 1.2,
+								"source": "extension",
+								"hidden": ""
+							},
+							"Categories": {
+								"value": "Sabahattin Ali|Public domain images no longer eligible for claim of authorship|PD Tr|Template Unknown (author)",
+								"source": "commons-categories",
+								"hidden": ""
+							},
+							"Assessments": {
+								"value": "",
+								"source": "commons-categories",
+								"hidden": ""
+							},
+							"ImageDescription": {
+								"value": "Sabahattin Ali, date and location unknown.",
+								"source": "commons-desc-page"
+							},
+							"DateTimeOriginal": {
+								"value": "circa 1940<div style=\"display: none;\">date QS:P,+1940-00-00T00:00:00Z/9,P1480,Q5727902</div>",
+								"source": "commons-desc-page"
+							},
+							"Credit": {
+								"value": "<a rel=\"nofollow\" class=\"external free\" href=\"https://yandex.com.tr/gorsel/search?family=yes&amp;from=tabbar&amp;img_url=https%3A%2F%2Fimage.milimaj.com%2Fi%2Fmilliyet%2F75%2F1200x675%2F5ca755f745d2a02864d8e6e3.jpg&amp;lr=100&amp;pos=11&amp;rpt=simage&amp;text=sabahattin%20ali%20hapishane%20foto%C4%9Fraflar%C4%B1\">https://yandex.com.tr/gorsel/search?family=yes&amp;from=tabbar&amp;img_url=https%3A%2F%2Fimage.milimaj.com%2Fi%2Fmilliyet%2F75%2F1200x675%2F5ca755f745d2a02864d8e6e3.jpg&amp;lr=100&amp;pos=11&amp;rpt=simage&amp;text=sabahattin%20ali%20hapishane%20foto%C4%9Fraflar%C4%B1</a>",
+								"source": "commons-desc-page"
+							},
+							"Artist": {
+								"value": "Unknown author<span style=\"display: none;\">Unknown author</span>",
+								"source": "commons-desc-page"
+							},
+							"LicenseShortName": {
+								"value": "Public domain",
+								"source": "commons-desc-page",
+								"hidden": ""
+							},
+							"UsageTerms": {
+								"value": "Public domain",
+								"source": "commons-desc-page"
+							},
+							"AttributionRequired": {
+								"value": "false",
+								"source": "commons-desc-page",
+								"hidden": ""
+							},
+							"Copyrighted": {
+								"value": "False",
+								"source": "commons-desc-page",
+								"hidden": ""
+							},
+							"Restrictions": {
+								"value": "",
+								"source": "commons-desc-page",
+								"hidden": ""
+							},
+							"License": {
+								"value": "pd",
+								"source": "commons-templates",
+								"hidden": ""
+							}
+						}
+					}
+				]
+			}
+		}
+	}
+}

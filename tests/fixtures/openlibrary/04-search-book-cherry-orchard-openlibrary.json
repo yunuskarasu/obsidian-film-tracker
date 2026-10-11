@@ -1,0 +1,546 @@
+{
+	"numFound": 322,
+	"start": 0,
+	"numFoundExact": true,
+	"num_found": 322,
+	"documentation_url": "https://openlibrary.org/dev/docs/api/search",
+	"q": "The Cherry Orchard",
+	"offset": null,
+	"docs": [
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 13420205,
+			"edition_count": 152,
+			"first_publish_year": 1918,
+			"key": "/works/OL55417W",
+			"number_of_pages_median": 88,
+			"title": "Вишневый сад",
+			"editions": {
+				"numFound": 123,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Cherry Orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 6604459,
+			"edition_count": 49,
+			"first_publish_year": 1944,
+			"key": "/works/OL55404W",
+			"number_of_pages_median": 380,
+			"title": "5 Plays (Вишнёвый сад / Дядя Ваня / Иванов / Три сестры / Чайка)",
+			"editions": {
+				"numFound": 34,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Cherry Orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 6599970,
+			"edition_count": 62,
+			"first_publish_year": 1946,
+			"key": "/works/OL55401W",
+			"number_of_pages_median": 256,
+			"title": "4 Plays (Вишнёвый сад / Дядя Ваня / Три сестры / Чайка)",
+			"editions": {
+				"numFound": 41,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Best plays by Chekhov",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL1549282A",
+				"OL19677A"
+			],
+			"author_name": [
+				"Herbert Goldstone",
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 6978308,
+			"edition_count": 1,
+			"first_publish_year": 1965,
+			"key": "/works/OL6091306W",
+			"number_of_pages_median": 200,
+			"title": "Chekhov's The cherry orchard",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Chekhov's The cherry orchard.",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 903963,
+			"edition_count": 222,
+			"first_publish_year": 1897,
+			"key": "/works/OL55527W",
+			"number_of_pages_median": 82,
+			"title": "Дядя Ваня",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Uncle Vanya",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"edition_count": 10,
+			"first_publish_year": 1923,
+			"key": "/works/OL13052106W",
+			"number_of_pages_median": 273,
+			"title": "The Cherry orchard and other plays (Вишнёвый сад / Дядя Ваня / Медведь / Предложение / Чайка)",
+			"editions": {
+				"numFound": 10,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The cherry orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 10804744,
+			"edition_count": 12,
+			"first_publish_year": 1912,
+			"key": "/works/OL55446W",
+			"number_of_pages_median": 155,
+			"title": "2 Plays (Вишнёвый сад / Чайка)",
+			"editions": {
+				"numFound": 10,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Two plays by Tchekhof",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL2932759A"
+			],
+			"author_name": [
+				"Andrew Upton"
+			],
+			"edition_count": 3,
+			"first_publish_year": 2011,
+			"key": "/works/OL16137242W",
+			"number_of_pages_median": 88,
+			"title": "The cherry orchard",
+			"editions": {
+				"numFound": 3,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The cherry orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19697A"
+			],
+			"author_name": [
+				"David Mamet"
+			],
+			"cover_i": 4679328,
+			"edition_count": 2,
+			"first_publish_year": 1986,
+			"key": "/works/OL55741W",
+			"number_of_pages_median": 86,
+			"title": "The cherry orchard",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The cherry orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL513769A"
+			],
+			"author_name": [
+				"Tom Murphy"
+			],
+			"cover_i": 12711036,
+			"edition_count": 2,
+			"first_publish_year": 2004,
+			"key": "/works/OL3194092W",
+			"number_of_pages_median": 87,
+			"title": "The cherry orchard",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The cherry orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19106A"
+			],
+			"author_name": [
+				"Donald Rayfield"
+			],
+			"cover_i": 3940509,
+			"edition_count": 2,
+			"first_publish_year": 1994,
+			"key": "/works/OL448622W",
+			"number_of_pages_median": 146,
+			"title": "The Cherry Orchard",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Cherry Orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 12752364,
+			"edition_count": 4,
+			"first_publish_year": 1964,
+			"key": "/works/OL14942833W",
+			"number_of_pages_median": 221,
+			"title": "Plays (Вишнёвый сад / Три сестры / Чайка)",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Three Plays",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 5258216,
+			"edition_count": 8,
+			"first_publish_year": 1912,
+			"key": "/works/OL9680034W",
+			"number_of_pages_median": 154,
+			"title": "2 Plays (Вишнёвый сад / Три сестры)",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Two plays",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL2035339A"
+			],
+			"author_name": [
+				"Louis V. Talento"
+			],
+			"cover_i": 14440846,
+			"edition_count": 1,
+			"first_publish_year": 1970,
+			"key": "/works/OL7145335W",
+			"number_of_pages_median": 90,
+			"title": "Anton Chekhov: The three sisters, The cherry orchard",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Anton Chekhov: The three sisters, The cherry orchard.",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL14620252A",
+				"OL5923927A"
+			],
+			"author_name": [
+				"Anton Chekov",
+				"Julius West"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2017,
+			"key": "/works/OL31643404W",
+			"number_of_pages_median": 60,
+			"title": "The Cherry Orchard",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Cherry Orchard"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL19677A"
+			],
+			"author_name": [
+				"Антон Павлович Чехов"
+			],
+			"cover_i": 14014190,
+			"edition_count": 11,
+			"first_publish_year": 1945,
+			"key": "/works/OL55433W",
+			"number_of_pages_median": 248,
+			"title": "Plays (Вишнёвый сад / Дядя Ваня / Медведь / На большой дороге / О вреде табака / Свадьба / Три сестры / Чайка / Юбилей)",
+			"editions": {
+				"numFound": 11,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The plays of Anton Chekov",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL829462A"
+			],
+			"author_name": [
+				"Michael Poulton"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2008,
+			"key": "/works/OL22362207W",
+			"number_of_pages_median": 65,
+			"title": "Anton Chekhov's The cherry orchard",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Anton Chekhov's The cherry orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL7696463A"
+			],
+			"author_name": [
+				"Jonathan Lovejoy"
+			],
+			"cover_i": 9018793,
+			"edition_count": 2,
+			"first_publish_year": 2014,
+			"key": "/works/OL20352563W",
+			"number_of_pages_median": 290,
+			"title": "The Cherry Orchard",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Cherry Orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL4340559A"
+			],
+			"author_name": [
+				"Tom Stoppard"
+			],
+			"edition_count": 2,
+			"first_publish_year": 2009,
+			"key": "/works/OL15090619W",
+			"number_of_pages_median": 79,
+			"title": "The cherry orchard",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The cherry orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL115050A"
+			],
+			"author_name": [
+				"Maria Edgeworth"
+			],
+			"edition_count": 2,
+			"first_publish_year": 1856,
+			"key": "/works/OL32093587W",
+			"number_of_pages_median": 32,
+			"title": "The cherry orchard",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The cherry orchard",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		}
+	]
+}

@@ -6,6 +6,7 @@ import { parseLinkTarget } from "../note";
 import { resolveLinkedFile } from "./kit";
 import { isLatin } from "../music";
 import { classifyNote } from "../note-kind";
+import { readProgressOf } from "../book-note";
 import { soundtrackLinksOf, soundtrackWorkOf, type ScoreWork } from "../soundtrack";
 import { extractNames } from "./panel-plan";
 
@@ -56,6 +57,7 @@ export class VaultScan {
 	private albumList: ScannedAlbum[] | null = null;
 	private songList: ScannedSong[] | null = null;
 	private scoreWorkList: ScoreWork[] | null = null;
+	private bookList: FilmographyWork[] | null = null;
 
 	constructor(app: App) {
 		this.app = app;
@@ -103,6 +105,17 @@ export class VaultScan {
 				.filter((work): work is ScoreWork => work !== null);
 		}
 		return this.scoreWorkList;
+	}
+
+	/** Book notes, read the way a person's works are: their authors are who made them, and `watched` is whether they have been read. */
+	books(): FilmographyWork[] {
+		if (this.bookList === null) {
+			this.bookList = this.app.vault
+				.getMarkdownFiles()
+				.map((file) => readBook(this.app, file))
+				.filter((book): book is FilmographyWork => book !== null);
+		}
+		return this.bookList;
 	}
 
 	/** Song notes, each with the album note it was added from. */
@@ -172,6 +185,22 @@ function readAlbum(app: App, file: TFile): ScannedAlbum | null {
 		soundtrackOf: soundtrackLinksOf(frontmatter)
 			.map((link) => soundtrackTarget(app, link, file)?.path ?? null)
 			.filter((path): path is string => path !== null),
+	};
+}
+
+/** A book note as BIBLIOGRAPHY lists it: read once it is marked read, or has been finished at least once. */
+function readBook(app: App, file: TFile): FilmographyWork | null {
+	const frontmatter = app.metadataCache.getFileCache(file)?.frontmatter;
+	if (frontmatter === undefined || classifyNote(frontmatter)?.kind !== "book") return null;
+	const title: unknown = frontmatter.title;
+	const year: unknown = frontmatter.year;
+	const { status, readCount } = readProgressOf(frontmatter);
+	return {
+		path: file.path,
+		title: typeof title === "string" && title !== "" ? title : file.basename,
+		year: typeof year === "number" ? year : null,
+		watched: status === "read" || readCount > 0,
+		credits: extractNames(frontmatter.authors),
 	};
 }
 

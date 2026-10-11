@@ -1,0 +1,21 @@
+{
+	"numFound": 2,
+	"start": 0,
+	"numFoundExact": true,
+	"docs": [
+		{
+			"birth_date": "1906",
+			"death_date": "1948",
+			"key": "OL97057A",
+			"name": "Sabahattin Ali",
+			"top_work": "Kürk Mantolu Madonna",
+			"work_count": 206
+		},
+		{
+			"key": "OL9908419A",
+			"name": "Edip Yesil, Ali Yüce, Sabahattin Yalkin, Süleyman El-Isa",
+			"top_work": "Antakya Siirinin Dört Ustasi;Süleyman Okay, Ali Yüce, Sabahattin Yalkin, Süleyman El-Isa",
+			"work_count": 1
+		}
+	]
+}

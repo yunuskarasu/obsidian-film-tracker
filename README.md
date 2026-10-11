@@ -1,6 +1,6 @@
 # Film + Anime-Manga Tracker
 
-Add films, TV series, anime, manga, music and games to your Obsidian vault as notes with metadata and a poster.
+Add films, TV series, anime, manga, music, games and books to your Obsidian vault as notes with metadata and a poster.
 
 Search for a film, pick it from the list, and Film + Anime-Manga Tracker creates a note containing exactly two things: a frontmatter block with the film's metadata, and the poster. Nothing else. No rating, no review section, no template. What you write in the note is up to you.
 
@@ -9,6 +9,8 @@ TV series work the same way, also from TMDB: one note per show, with its seasons
 Albums, artists and songs work the same way too, from MusicBrainz, with no key to set up. See [Music](#music).
 
 Games come from IGDB, with where you are with each one — in your backlog, playing, completed — kept in the note. See [Games](#games).
+
+Books and their authors come from Open Library, with no key either, and with where you are with each book kept in its note. See [Books](#books).
 
 Anime and manga follow the same philosophy, sourced from MyAnimeList. The two even share a single note when they're the same series: search for either half and Film + Anime-Manga Tracker creates or merges into one **Series note**, with a separate panel below the properties for the manga side. See [Anime and manga](#anime-and-manga) for details.
 
@@ -43,6 +45,8 @@ For anime and manga, register a free app in your [MyAnimeList API config](https:
 
 For games, register a free app in the [Twitch developer console](https://dev.twitch.tv/console/apps) — IGDB is run by Twitch — and paste its **Client ID** and **Client Secret** into **IGDB client ID** and **IGDB client secret**. See [Games](#games) for the steps.
 
+Music and books need no key.
+
 On Obsidian 1.11.4 or later, the keys go into Obsidian's keychain instead of the plugin's settings file: next to **TMDB API key** and **MyAnimeList client ID**, add a new secret and paste the value into it, or pick one you already have. The keychain keeps them out of the vault — and out of anything that syncs or backs it up — but it's kept per device, so on a second device you add them there once too. Keys typed into an earlier version move to the keychain on their own the first time the plugin loads. On older versions of Obsidian, the keys are typed in and saved with the other settings, as before.
 
 ## Tips for a smooth start
@@ -58,7 +62,7 @@ A handful of mistakes account for most of the confusion new users hit:
 - **Letterboxd import runs once per file.** Films already in your vault (matched by `tmdb_id`) are skipped rather than duplicated, so re-running the same export after adding more notes by hand is safe — it only fills gaps: a missing `watch_date`, and `watched` if you choose to mark the films as watched.
 - **A blank poster/photo isn't necessarily a bug.** Some TMDB entries genuinely have no image; the note is still created with full metadata either way.
 - **Anime and manga only merge into one note when you open the right note first.** There's no automatic matching — if you want a Series note with both, add one half, keep that note open in the editor, run the other **Add** command and confirm **Link to this note** (see [Anime and manga](#anime-and-manga)).
-- **Never delete or hand-edit `mal_id`, or the `manga` block's `mal_id`.** Same rule as `tmdb_id`: they're what Film + Anime-Manga Tracker uses to recognize a note and know what to refresh. The same goes for a game's `igdb_id`, and for the MusicBrainz ids of music notes.
+- **Never delete or hand-edit `mal_id`, or the `manga` block's `mal_id`.** Same rule as `tmdb_id`: they're what Film + Anime-Manga Tracker uses to recognize a note and know what to refresh. The same goes for a game's `igdb_id`, a book's or an author's `openlibrary_id`, and the MusicBrainz ids of music notes.
 - **Games need IGDB's client ID and secret**, from a free Twitch app — a few minutes, once (see [Setting up IGDB](#setting-up-igdb)). Without them **Add game** points you to settings.
 
 ## Usage
@@ -77,6 +81,8 @@ Music works the same way, with no key: run **Add album** or **Add artist**, sear
 
 Games work the same way too: run **Add game**, search IGDB and pick. A remake, a remaster or a port says what it is beside the year. See [Games](#games).
 
+Books work the same way, with no key: run **Add book** or **Add author**, search Open Library and pick. See [Books](#books).
+
 Mangaka work a little differently: open the manga or Series note whose author you want to add, then run **Add mangaka** — it reads that note's own manga metadata to find the author on MyAnimeList directly, rather than opening a search box. One credited author adds straight away; more than one shows a quick pick list. See [Anime and manga](#anime-and-manga) for the MANGAGRAPHY panel it unlocks.
 
 ### Commands
@@ -90,6 +96,10 @@ Mangaka work a little differently: open the manga or Series note whose author yo
 | **Add game** | Search IGDB and create the game's note, with its cover. Needs the IGDB client ID and secret. See [Games](#games). |
 | **Start playing** / **Mark as completed today** | Set the game you have open playing, or complete it: the date the first time, one more in `completed_count` every time. Only appear on game notes; also on the note's right-click menu, and the second as a button under the cover. |
 | **Refresh metadata from IGDB** | Re-fetch the game and rewrite only what IGDB knows. Only appears on game notes. |
+| **Add book** | Search Open Library and create the book's note, with its cover. See [Books](#books). |
+| **Add author** | Search Open Library and create the author's note, with a credited photo. Creates none of their books. |
+| **Start reading** / **Mark book as finished today** | Set the book you have open as being read, or finish it: the date the first time, one more in `read_count` every time. Only appear on book notes; also buttons under the cover and on the note's right-click menu. |
+| **Refresh book metadata from Open Library** | Re-fetch the book or author and rewrite only what Open Library and Wikidata know. Only appears on book and author notes. |
 | **Add artist** | Search MusicBrainz and create the artist's note, with a credited photo. Creates none of their albums. |
 | **Move album into its folder** | Moves the album note you have open — one from before album folder notes — into a folder of its own name, beside the songs added from it. Every link to it follows. Only appears on an album note that isn't in its own folder yet. |
 | **Find soundtrack** | Lists the albums that may be the soundtrack of the film, TV series, anime or game you have open — Wikidata's first, then MusicBrainz's soundtracks under each of its titles — and links the one you pick. Only appears on film, TV, anime and game notes. Also a **Find soundtrack…** button on the SOUNDTRACK panel, and an entry on the note's right-click menu. See [Soundtracks](#soundtracks). |
@@ -246,7 +256,7 @@ The first time you add a film, open the note's properties, click the type icon n
 
 ## Settings
 
-The settings are on six pages — 🔑 API keys, 🎬 Films, 📺 TV series, 🌸 Anime & manga, 🎵 Music and 🎮 Games — each opened from the plugin's settings tab. The API keys entry says which keys are set without being opened. To find a setting without knowing its page, type in the search box above Obsidian's settings: it looks through every page. On Obsidian before 1.13, the same pages follow one another on a single page.
+The settings are on seven pages — 🔑 API keys, 🎬 Films, 📺 TV series, 🌸 Anime & manga, 🎵 Music, 🎮 Games and 📚 Books — each opened from the plugin's settings tab. The API keys entry says which keys are set without being opened. To find a setting without knowing its page, type in the search box above Obsidian's settings: it looks through every page. On Obsidian before 1.13, the same pages follow one another on a single page.
 
 | Setting | Default | What it does |
 | --- | --- | --- |
@@ -297,13 +307,20 @@ The settings are on six pages — 🔑 API keys, 🎬 Films, 📺 TV series, �
 | Short platform names | on | PS4 and Switch rather than PlayStation 4 and Nintendo Switch. |
 | Show DLCs | on | Below a game's properties, list the DLCs added to it, with a button to add another. |
 | Only my platforms | off | List only the platforms you play on — **My platforms**, separated by commas — in your order. |
+| Book folder | `Books` | Where new book notes are created. |
+| Book cover folder | *(empty)* | Where book covers are saved. Empty follows your attachment folder setting. |
+| Author folder | `Authors` | Where new author notes are created. |
+| Author photo folder | *(empty)* | Where author photos are saved. Empty follows your attachment folder setting. |
+| Link authors | on | Write a book's authors as wikilinks when a note by that name exists. |
+| Link genres (books) | off | The same for a book's genres. |
+| Show bibliography | on | Below an author's properties, list their books in your vault, with a button to add another. |
 | Show soundtracks | on | Below a film's, a TV series', an anime's or a game's properties, list the albums linked as its soundtrack, with a button to find another. |
 
 On Obsidian 1.13 or later these settings appear in Obsidian's own settings search, and each folder setting suggests the folders in your vault as you type. On earlier versions the plugin draws the same settings itself, with the same folder suggestions.
 
 ## Behaviour worth knowing
 
-- **Duplicates.** If a film or director with the same `tmdb_id` already exists anywhere in your vault, Film + Anime-Manga Tracker opens it instead of creating a second one. It never overwrites a note you have written in. Games are matched the same way by `igdb_id`, albums, artists and songs by their MusicBrainz ids.
+- **Duplicates.** If a film or director with the same `tmdb_id` already exists anywhere in your vault, Film + Anime-Manga Tracker opens it instead of creating a second one. It never overwrites a note you have written in. Games are matched the same way by `igdb_id`, books and authors by `openlibrary_id`, albums, artists and songs by their MusicBrainz ids.
 - **How notes are recognized.** By their properties, never by their folder. A film's and a director's TMDB ids can be the same number, so they're told apart by what each note holds: a director note has `name`, a film has `directors`. That's what keeps a refresh from ever writing a film's data into a director note (or an anime's into a mangaka note), whatever your folder settings are.
 - **Missing posters.** If TMDB has no poster or photo, or the download fails, the note is still created with its metadata. The image is never worth losing the note over.
 - **File names.** Film notes are named `English Title (Year).md`; director notes are named after the person. Characters that are illegal in file names or that break wikilinks are removed, so `Face/Off` becomes `Face Off (1997)`. A title that already ends in its year — MyAnimeList writes remakes as `Hunter x Hunter (2011)` — keeps it once.
@@ -663,6 +680,78 @@ IGDB is reached with a Twitch app's client ID and secret. It takes a few minutes
 
 The plugin trades them for an access token itself, keeps the token in memory only, and asks for a new one whenever it runs out — about every two months. You never have to do anything about it, unless you make a new secret on Twitch: then paste that one in.
 
+## Books
+
+**Add book** searches [Open Library](https://openlibrary.org), the open book catalogue run by the Internet Archive, and writes the book's note and cover. No key is needed:
+
+```yaml
+---
+title: The Cherry Orchard
+original_title: Вишневый сад
+aliases:
+  - The Cherry Orchard
+  - Вишневый сад
+  - Вишнёвый сад
+year: 1904
+authors:
+  - "[[Anton Chekhov]]"
+genres:
+  - tragicomedy
+series:
+pages: 88
+poster: "[[The Cherry Orchard (1904).jpg]]"
+url: https://openlibrary.org/works/OL55417W
+openlibrary_id: OL55417W
+read_status: reading
+started: 2026-10-11
+finished:
+read_count: 0
+---
+```
+
+- A note is the book itself, the work, not one edition of it: one note for *The Cherry Orchard*, however many translations and printings it has. The cover is the one Open Library shows for the work, and `pages` is the usual length of its editions.
+- Each search result names its authors, its year and how many editions it has. A book titled exactly as you searched comes first, then the most printed, so Chekhov's play is above the books named after it.
+- `year` is when the book first came out: Wikidata's date where it has one, else the year of the earliest edition Open Library knows. `genres` and `series` come from [Wikidata](https://www.wikidata.org).
+- `read_status` (to read, reading, read, dropped), `started`, `finished` and `read_count` are yours. **Start reading** sets the book reading and dates the day the first time. **Mark book as finished today** sets it read, dates the day the first time and counts one more reading every time. Both are buttons under the cover too. A refresh never touches them.
+- **Refresh book metadata from Open Library** rewrites what Open Library and Wikidata know. Your aliases, a name you made a link, the cover once there is one, your own properties and the body stay as they are. When Wikidata can't be reached, the year, authors and genres are left as they were rather than guessed.
+- **Link authors** (📚 Books settings, on by default) writes the authors as links when a note by that name exists. Adding a book never writes its author's note.
+
+### Titles in other scripts
+
+A book titled in another script, such as Russian or Japanese, is named in English: Wikidata's English title for it, or else the title of its English edition. Its own title goes in `original_title`, and every title in `aliases`, so a search in either finds the note. A title already in Latin letters, *Kürk Mantolu Madonna* say, stays exactly as it is, with no `original_title`.
+
+### Author notes
+
+**Add author** searches Open Library for a person. Two authors often share a name, so each result shows their years, how many works they have and their best-known one.
+
+```yaml
+---
+name: Anton Chekhov
+original_name: Антон Павлович Чехов
+aliases:
+  - Anton Chekhov
+  - Антон Павлович Чехов
+born: 1860-01-17
+died: 1904-07-02
+poster: "[[Anton Chekhov.jpg]]"
+photo_credit: Open Library
+url: https://openlibrary.org/authors/OL19677A
+openlibrary_id: OL19677A
+---
+```
+
+- The note is named in Latin letters, Wikidata's English name for the author, so a book's `authors: [[Anton Chekhov]]` finds it. Their own name goes in `original_name` and `aliases`.
+- `born` and `died` come from Wikidata where it knows the author, to the day where the day is known, and from Open Library otherwise.
+- The photo is the author's own on Open Library. For an author without one, it comes from [Wikimedia Commons](https://commons.wikimedia.org), credited in `photo_credit` with who took it and its licence.
+- Adding an author writes none of their books.
+- Under the properties, **BIBLIOGRAPHY** lists the author's books already in your vault, oldest first, with the share of them you have read. **Add book…** opens the author's own list of books on Open Library, the most printed first, and filters it as you type.
+
+### Open Library's pace
+
+Open Library is run by a non-profit and asks apps to say who they are and to go easy on its servers. The plugin sends at most one request a second and introduces itself as `FilmTracker/<version> ( https://github.com/yunuskarasu/obsidian-film-tracker )`. It sends nothing about you. Adding a book takes a few seconds for that reason.
+
+Wikidata is asked only about the books and authors you add and refresh, found by their Open Library ids. It is sent nothing about you either.
+
 ## Anime and manga
 
 An anime and a manga of the same series don't have to live in two separate notes. **Add anime** and **Add manga** are independent — either can come first — but when you want them combined, open the note that already has one side in the editor and run the other command. Film + Anime-Manga Tracker asks **Link to this note?**: link it, or keep it as a separate note. Only the note in the active editor tab is ever offered — not one you looked at earlier while Graph view or a canvas has the focus. There's no automatic matching (MyAnimeList's own anime↔manga relation data turned out to be empty via the official API even for very well-known pairs, so guessing was dropped in favor of this simple, explicit rule).
@@ -749,7 +838,9 @@ npm run dev   # esbuild watch
 npm run build # typecheck + production bundle
 ```
 
-The IGDB tests replay answers saved in `tests/fixtures/igdb`. To save them afresh, set `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` in a terminal and run `npx vitest run --config vitest.record.config.mts` there. Only the games' data is written — never a key, a secret or a token.
+The IGDB tests replay answers saved in `tests/fixtures/igdb`. To save them afresh, set `IGDB_CLIENT_ID` and `IGDB_CLIENT_SECRET` in a terminal and run `npx vitest run --config vitest.record.config.mts tests/igdb-record.test.mts` there. Only the games' data is written — never a key, a secret or a token.
+
+The book tests replay Open Library's and Wikidata's answers saved in `tests/fixtures/openlibrary`. Neither needs a key: `npx vitest run --config vitest.record.config.mts tests/openlibrary-record.test.mts` saves them afresh.
 
 ## Attribution
 
@@ -758,5 +849,7 @@ This product uses the TMDB API but is not endorsed or certified by TMDB.
 Anime and manga metadata and posters come from the [MyAnimeList API](https://myanimelist.net/apiconfig/references/api/v2).
 
 Game data and covers come from [IGDB.com](https://www.igdb.com).
+
+Book data, covers and author photos come from [Open Library](https://openlibrary.org), with a book's first year, genres and series, and an author's dates and name in Latin letters, from [Wikidata](https://www.wikidata.org). An author without a photo on Open Library gets one from [Wikimedia Commons](https://commons.wikimedia.org), credited in the note's `photo_credit`.
 
 Music metadata comes from [MusicBrainz](https://musicbrainz.org), and lyrics from [LRCLIB](https://lrclib.net). Which album is which work's soundtrack comes from [Wikidata](https://www.wikidata.org). Album covers come from [Deezer](https://www.deezer.com) or the [Cover Art Archive](https://coverartarchive.org), and artist photos from Deezer or [Wikimedia Commons](https://commons.wikimedia.org), each credited in the note's own `photo_credit`.

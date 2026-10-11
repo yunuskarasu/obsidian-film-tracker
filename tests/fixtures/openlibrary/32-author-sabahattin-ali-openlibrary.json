@@ -1,0 +1,36 @@
+{
+	"name": "Sabahattin Ali",
+	"type": {
+		"key": "/type/author"
+	},
+	"alternate_names": [
+		"Ali Sabahattin",
+		"Sabahattin ALI"
+	],
+	"personal_name": "Sabahattin Ali",
+	"source_records": [
+		"amazon:8378187144"
+	],
+	"birth_date": "1906",
+	"death_date": "1948",
+	"remote_ids": {
+		"viaf": "56604917",
+		"wikidata": "Q982838",
+		"isni": "0000000081350600",
+		"musicbrainz": "66fef5a9-5ceb-4427-9670-017fe1c49786",
+		"imdb": "nm0019479",
+		"lc_naf": "n80040269",
+		"opac_sbn": "LO1V168209"
+	},
+	"key": "/authors/OL97057A",
+	"latest_revision": 6,
+	"revision": 6,
+	"created": {
+		"type": "/type/datetime",
+		"value": "2008-04-01T03:28:50.625462"
+	},
+	"last_modified": {
+		"type": "/type/datetime",
+		"value": "2025-08-01T02:34:55.318526"
+	}
+}

@@ -4,6 +4,17 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+## [3.5.0] - 2026-10-11
+
+Books and their authors. Nothing breaks: notes and settings from 3.4 carry over as they are.
+
+### Added
+
+- **Books, from Open Library.** **Add book** writes a book's note and cover: its authors, year, genres, series and page count. It needs no key. A book is the work itself, not one edition of it. Its year is when it first came out, which Wikidata gives where Open Library only knows its editions. `read_status`, `started`, `finished` and `read_count` are yours. **Start reading** and **Mark book as finished today** keep them, and both are buttons under the cover too. The first dates stay, and a refresh never touches any of them.
+- **Authors.** **Add author** writes an author's note: their name, birth and death dates, and a photo, credited in `photo_credit`. Adding a book never writes its author's note, and adding an author writes none of their books. Under the properties, **BIBLIOGRAPHY** lists their books already in your vault, with the share of them you have read. **Add book…** opens their own list of books on Open Library, best known first, to pick from.
+- **Titles in other scripts.** A book titled in another script, Russian say, gets its English title from Wikidata, or else from its English edition. Its own title goes in `original_title` and `aliases`. An author's note takes their name in Latin letters, keeping their own in `original_name`. A title already in Latin letters is left exactly as it is.
+- A new **📚 Books** settings page has the folders, **Link authors**, **Link genres** and **Show bibliography**.
+
 ## [3.4.0] - 2026-10-02
 
 Games, and titles in other scripts. Nothing breaks: notes and settings from 3.3 carry over as they are.
@@ -216,7 +227,8 @@ Music joins films, TV series and anime-manga. Nothing breaks: notes and settings
 - Relinking of directors and genres.
 - Import from Letterboxd.
 
-[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.4.0...HEAD
+[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.5.0...HEAD
+[3.5.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.4.0...3.5.0
 [3.4.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.3.1...3.4.0
 [3.3.1]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.3.0...3.3.1
 [3.3.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.2.0...3.3.0

@@ -1,0 +1,2167 @@
+{
+	"entities": {
+		"Q5685": {
+			"claims": {
+				"P18": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P18",
+							"hash": "3c5f5d1ddef1e172384ded2c2b7e2a3e246902f2",
+							"datavalue": {
+								"value": "Anton Chekhov with bow-tie sepia image.jpg",
+								"type": "string"
+							},
+							"datatype": "commonsMedia"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P2096": [
+								{
+									"snaktype": "value",
+									"property": "P2096",
+									"hash": "3fec7571c042e9c13ef8bfa0d01e4550c63d50d3",
+									"datavalue": {
+										"value": {
+											"text": "Anton Chekhov with bow-tie sepia image",
+											"language": "en"
+										},
+										"type": "monolingualtext"
+									},
+									"datatype": "monolingualtext"
+								},
+								{
+									"snaktype": "value",
+									"property": "P2096",
+									"hash": "8bcf395a69480a4ef04a7bb732b6fb10cadefa49",
+									"datavalue": {
+										"value": {
+											"text": "culo acido",
+											"language": "da"
+										},
+										"type": "monolingualtext"
+									},
+									"datatype": "monolingualtext"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P2096"
+						],
+						"id": "q5685$DD91D78C-2D49-413D-B2A6-15421CEA774F",
+						"rank": "normal"
+					}
+				],
+				"P136": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P136",
+							"hash": "ebc54cd2bd12b4d9b5fadfa3be496dd84b099664",
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 667661,
+									"id": "Q667661"
+								},
+								"type": "wikibase-entityid"
+							},
+							"datatype": "wikibase-item"
+						},
+						"type": "statement",
+						"id": "Q5685$0DD290E3-0E47-4CE7-BA2C-192F2EE00031",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "288ab581e7d2d02995a26dfa8b091d96e78457fc",
+								"snaks": {
+									"P143": [
+										{
+											"snaktype": "value",
+											"property": "P143",
+											"hash": "6a164248fc96bfa583bbb495cb63ae6401ec203c",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 206855,
+													"id": "Q206855"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									]
+								},
+								"snaks-order": [
+									"P143"
+								]
+							}
+						]
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P136",
+							"hash": "9c62b5e7e880df4bf5e222946e9641e4bfa0fc58",
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 12799318,
+									"id": "Q12799318"
+								},
+								"type": "wikibase-entityid"
+							},
+							"datatype": "wikibase-item"
+						},
+						"type": "statement",
+						"id": "Q5685$6b50b2ea-41b9-aa0d-d7f2-0e97e4325ff0",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "288ab581e7d2d02995a26dfa8b091d96e78457fc",
+								"snaks": {
+									"P143": [
+										{
+											"snaktype": "value",
+											"property": "P143",
+											"hash": "6a164248fc96bfa583bbb495cb63ae6401ec203c",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 206855,
+													"id": "Q206855"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									]
+								},
+								"snaks-order": [
+									"P143"
+								]
+							}
+						]
+					}
+				],
+				"P569": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P569",
+							"hash": "53feb92de908f4288b96158556ff47c7322f88ef",
+							"datavalue": {
+								"value": {
+									"time": "+1860-01-17T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P1480": [
+								{
+									"snaktype": "value",
+									"property": "P1480",
+									"hash": "42e8929a521a78ac91df0c53ef697bc99ed92cda",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 27055388,
+											"id": "Q27055388"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								},
+								{
+									"snaktype": "value",
+									"property": "P1480",
+									"hash": "62f1252885a9d15ff75599ca20ca3ce39388586c",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 26877143,
+											"id": "Q26877143"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P1480"
+						],
+						"id": "q5685$738e9531-4062-20f5-19ec-740ec3669df2",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "439786228d341ee681019c478c9f3440805156e0",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "49efe237467e478bd4b991941ef730828104b8f9",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 4239850,
+													"id": "Q4239850"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1683": [
+										{
+											"snaktype": "value",
+											"property": "P1683",
+											"hash": "aa5c651d6a1e1178f22c263b6aeb631c3707d5f5",
+											"datavalue": {
+												"value": {
+													"text": "17(29).I.1860",
+													"language": "ru"
+												},
+												"type": "monolingualtext"
+											},
+											"datatype": "monolingualtext"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1683"
+								]
+							},
+							{
+								"hash": "1affe7a70c3d7904e32020504566559eba8500a3",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "e70e27e5b96b5ab2f569673a52bb5d7731378a1d",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 20031473,
+													"id": "Q20031473"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1683": [
+										{
+											"snaktype": "value",
+											"property": "P1683",
+											"hash": "115a32bd7d6767f3ba0751f7dadeefd3cc689597",
+											"datavalue": {
+												"value": {
+													"text": "Ч. родился 17 января 1860 г. в Таганроге",
+													"language": "ru"
+												},
+												"type": "monolingualtext"
+											},
+											"datatype": "monolingualtext"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1683"
+								]
+							},
+							{
+								"hash": "8652d677fb9060360f44195836eaa640078647c1",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "b6db3dd4a05b315ecfc6a46b90a5a8897875bae1",
+											"datavalue": {
+												"value": "https://bigenc.ru/literature/text/4684952",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "312436691893f22614f36c9461ea5c269eb83c13",
+											"datavalue": {
+												"value": {
+													"time": "+2019-02-06T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									],
+									"P1683": [
+										{
+											"snaktype": "value",
+											"property": "P1683",
+											"hash": "edbe37f5bd8e9da0fe82d0cacf6257347a63511e",
+											"datavalue": {
+												"value": {
+													"text": "17(29).1.1860",
+													"language": "ru"
+												},
+												"type": "monolingualtext"
+											},
+											"datatype": "monolingualtext"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854",
+									"P813",
+									"P1683"
+								]
+							},
+							{
+								"hash": "8e2d1e822870ac2fa62902de79459b5d60d8a345",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "f2e4b96cda4f0e322b03b5dffb03124e607fe752",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2876969,
+													"id": "Q2876969"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P5491": [
+										{
+											"snaktype": "value",
+											"property": "P5491",
+											"hash": "559cf97f8ab6f4aad8aef479df974681b3b32e09",
+											"datavalue": {
+												"value": "34863",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "67e219fb6c79759176fef69f5423d87624d85bde",
+											"datavalue": {
+												"value": "Anton Tchékhov",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P5491",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "3c51e119606078fe39022bcca426320300680ca0",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "121607fcc3e484965b8770c6009809be40a2e40d",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 25504413,
+													"id": "Q25504413"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P7509": [
+										{
+											"snaktype": "value",
+											"property": "P7509",
+											"hash": "5c287816ad160443fa8899cadf673b1911943739",
+											"datavalue": {
+												"value": "6818",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "5047c8c10be1c1de57a1ac3266de03f5d5635ffd",
+											"datavalue": {
+												"value": "Anton Pavlovitš Tšehhov",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P7509",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "161276a0b83cb6e96a122bf1e22ab971eb68f948",
+								"snaks": {
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "8d730d546dca2b7bbdd44875599cc35a2c46b89c",
+											"datavalue": {
+												"value": "Anton Pavlovitch TCHEKHOV",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "9d66409d3d04632fc69413ea86abf094f92fae88",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 3343389,
+													"id": "Q3343389"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P5570": [
+										{
+											"snaktype": "value",
+											"property": "P5570",
+											"hash": "ab9175633e26bb8d11a1b743766b33e3be878193",
+											"datavalue": {
+												"value": "176",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									]
+								},
+								"snaks-order": [
+									"P813",
+									"P1810",
+									"P248",
+									"P5570"
+								]
+							},
+							{
+								"hash": "48aae4a9cead05c742ac8a3a38ee558a4e8fd8bf",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "e2a81dbf2f7dd02b332d6358ef65f622f82e8cc3",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 237227,
+													"id": "Q237227"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P5019": [
+										{
+											"snaktype": "value",
+											"property": "P5019",
+											"hash": "6c262c10225266eee1e535ea106ef3ebb891d5ae",
+											"datavalue": {
+												"value": "tschechow-anton-pawlowitsch",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "04f2f2f2983703edc6fbaac029c4f3f960e1a91f",
+											"datavalue": {
+												"value": "Anton Pawlowitsch Tschechow",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P5019",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "aba0707d378eae213b14c9e71bfbbac88463d5b9",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "871891c242389d06b23bf809fdc0301df1ed9c77",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2629164,
+													"id": "Q2629164"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1233": [
+										{
+											"snaktype": "value",
+											"property": "P1233",
+											"hash": "cf7ea2b627490832666dbb81c130708480ba2abb",
+											"datavalue": {
+												"value": "237480",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "905f163597775fc82c316bbc4fe56933f34ee79f",
+											"datavalue": {
+												"value": "Антон Чехов",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1233",
+									"P1810"
+								]
+							},
+							{
+								"hash": "6dc8f34e5c9d01a7cd5e48b1f939de44c279ca97",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "1276fef541b741cec556020ad14ea6b2287a1aae",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 23023088,
+													"id": "Q23023088"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P2191": [
+										{
+											"snaktype": "value",
+											"property": "P2191",
+											"hash": "395115c88bd5cbf1d719f9600b1e814d60533ed0",
+											"datavalue": {
+												"value": "10926",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "c3798bb0a9ec34e047a14c457ce4267f012ec652",
+											"datavalue": {
+												"value": "Antòn Pavlovič Cechov",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P2191",
+									"P1810"
+								]
+							},
+							{
+								"hash": "aa577e9759476858a18b9441aa5af52c31dc239a",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "155e1a7322c5a7febad55feba5ba4c3a2656b1c4",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2877812,
+													"id": "Q2877812"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P3630": [
+										{
+											"snaktype": "value",
+											"property": "P3630",
+											"hash": "9aa8de06123c64f040df39fe64bea1ba122c4a23",
+											"datavalue": {
+												"value": "3971",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "b70feda00cc2a3e3dd0bf2e6c7f5bc0c0c3a18bc",
+											"datavalue": {
+												"value": "Anton Pavlovitch Tchekhov",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P3630",
+									"P1810"
+								]
+							},
+							{
+								"hash": "7d45a9de5193efa3a107db691e1e2df73c921c67",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "c74a22cf4fa7ffd24aea799442e185f5e55efbc7",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 138307249,
+													"id": "Q138307249"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "8bacaca7c958312e80a29a2d4b158660ca716755",
+											"datavalue": {
+												"value": {
+													"time": "+2020-12-03T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									],
+									"P8290": [
+										{
+											"snaktype": "value",
+											"property": "P8290",
+											"hash": "107851cfbbf58ae5686a1cdbdb487975e9a0d85a",
+											"datavalue": {
+												"value": "15664",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P813",
+									"P8290"
+								]
+							},
+							{
+								"hash": "6bb836419453164e2f836e9558bfffa1bce1a1a2",
+								"snaks": {
+									"P5375": [
+										{
+											"snaktype": "value",
+											"property": "P5375",
+											"hash": "90f56ef48fefecb465f66fab5d531f3ee7dd41f2",
+											"datavalue": {
+												"value": "7688",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "b70feda00cc2a3e3dd0bf2e6c7f5bc0c0c3a18bc",
+											"datavalue": {
+												"value": "Anton Pavlovitch Tchekhov",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "0bde68953160e94daaa581d877970796760d2ec8",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 105958830,
+													"id": "Q105958830"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									]
+								},
+								"snaks-order": [
+									"P5375",
+									"P1810",
+									"P248"
+								]
+							},
+							{
+								"hash": "a15af7c78b1a9612fa46b81efb9e1f205468a157",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "b62f3fa8bab7eb5e1bfe16d03cda082d25315c85",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 63056,
+													"id": "Q63056"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "c8e274744e786d0a2e687322ab772eac78912fd3",
+											"datavalue": {
+												"value": {
+													"time": "+2024-06-29T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P813"
+								]
+							},
+							{
+								"hash": "53c336708260d2caa33df384aa7969a1275a56bc",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "a90160a2ce9deb340bb0a7e07b0d9c6106266546",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 10855166,
+													"id": "Q10855166"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P6844": [
+										{
+											"snaktype": "value",
+											"property": "P6844",
+											"hash": "3d240eb4fdfe455d7921a9b09a39d78064374b24",
+											"datavalue": {
+												"value": "16408",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "c9217b9fe2666409456ed2f6b757d70929f23836",
+											"datavalue": {
+												"value": "https://cs.isabart.org/person/16408",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "6f8f333cebfac92bb111b2fdd9fcbf7697285918",
+											"datavalue": {
+												"value": {
+													"time": "+2021-04-01T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P6844",
+									"P854",
+									"P813"
+								]
+							}
+						]
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P569",
+							"hash": "bf01d4b9395aa0b26cfe1dc104a092f20e35a5a2",
+							"datavalue": {
+								"value": {
+									"time": "+1860-01-29T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"id": "Q5685$50a6b995-4641-3811-348f-54cda3cbf443",
+						"rank": "preferred",
+						"references": [
+							{
+								"hash": "34b5e5518c33eddd41d483b0a1395e0ffb4bb107",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "c5383dd8c47f76890518b2a0e892f9fb66b53b65",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 76499581,
+													"id": "Q76499581"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "eb6d73e87ad364fbf511b9f861d665a1d844251f",
+											"datavalue": {
+												"value": {
+													"time": "+2026-02-02T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P813"
+								]
+							}
+						]
+					}
+				],
+				"P570": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P570",
+							"hash": "6405cfda52d703403b10dcf48934c158b5d4fb38",
+							"datavalue": {
+								"value": {
+									"time": "+1904-07-02T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985786"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P1480": [
+								{
+									"snaktype": "value",
+									"property": "P1480",
+									"hash": "42e8929a521a78ac91df0c53ef697bc99ed92cda",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 27055388,
+											"id": "Q27055388"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P1480"
+						],
+						"id": "q5685$ca6db111-427c-707a-a585-8afb8d74f1a2",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "27a8606d8f437d8fe80dd80c81ed67aa69125506",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "49efe237467e478bd4b991941ef730828104b8f9",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 4239850,
+													"id": "Q4239850"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1683": [
+										{
+											"snaktype": "value",
+											"property": "P1683",
+											"hash": "a99304fd83f1933692601a26b25e03e344d54a7b",
+											"datavalue": {
+												"value": {
+													"text": "2(15).VII.1904",
+													"language": "ru"
+												},
+												"type": "monolingualtext"
+											},
+											"datatype": "monolingualtext"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1683"
+								]
+							},
+							{
+								"hash": "d5b4bbb46e27ae569986d520e083e54becba89ea",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "b6db3dd4a05b315ecfc6a46b90a5a8897875bae1",
+											"datavalue": {
+												"value": "https://bigenc.ru/literature/text/4684952",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "312436691893f22614f36c9461ea5c269eb83c13",
+											"datavalue": {
+												"value": {
+													"time": "+2019-02-06T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									],
+									"P1683": [
+										{
+											"snaktype": "value",
+											"property": "P1683",
+											"hash": "ea351e83f184d3eaa51b49b5632b31ca0bb5a5a1",
+											"datavalue": {
+												"value": {
+													"text": "2(15).7.1904",
+													"language": "ru"
+												},
+												"type": "monolingualtext"
+											},
+											"datatype": "monolingualtext"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854",
+									"P813",
+									"P1683"
+								]
+							}
+						]
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P570",
+							"hash": "8e79f1e591a944ada77a4f88085d857bad251e74",
+							"datavalue": {
+								"value": {
+									"time": "+1904-07-15T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 11,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P1480": [
+								{
+									"snaktype": "value",
+									"property": "P1480",
+									"hash": "42e8929a521a78ac91df0c53ef697bc99ed92cda",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 27055388,
+											"id": "Q27055388"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P1480"
+						],
+						"id": "Q5685$dbbb173b-4ee9-6c4f-5e47-dd059dc25689",
+						"rank": "preferred",
+						"references": [
+							{
+								"hash": "d5b4bbb46e27ae569986d520e083e54becba89ea",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "b6db3dd4a05b315ecfc6a46b90a5a8897875bae1",
+											"datavalue": {
+												"value": "https://bigenc.ru/literature/text/4684952",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "312436691893f22614f36c9461ea5c269eb83c13",
+											"datavalue": {
+												"value": {
+													"time": "+2019-02-06T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									],
+									"P1683": [
+										{
+											"snaktype": "value",
+											"property": "P1683",
+											"hash": "ea351e83f184d3eaa51b49b5632b31ca0bb5a5a1",
+											"datavalue": {
+												"value": {
+													"text": "2(15).7.1904",
+													"language": "ru"
+												},
+												"type": "monolingualtext"
+											},
+											"datatype": "monolingualtext"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854",
+									"P813",
+									"P1683"
+								]
+							},
+							{
+								"hash": "27a8606d8f437d8fe80dd80c81ed67aa69125506",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "49efe237467e478bd4b991941ef730828104b8f9",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 4239850,
+													"id": "Q4239850"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1683": [
+										{
+											"snaktype": "value",
+											"property": "P1683",
+											"hash": "a99304fd83f1933692601a26b25e03e344d54a7b",
+											"datavalue": {
+												"value": {
+													"text": "2(15).VII.1904",
+													"language": "ru"
+												},
+												"type": "monolingualtext"
+											},
+											"datatype": "monolingualtext"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1683"
+								]
+							},
+							{
+								"hash": "3c51e119606078fe39022bcca426320300680ca0",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "121607fcc3e484965b8770c6009809be40a2e40d",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 25504413,
+													"id": "Q25504413"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P7509": [
+										{
+											"snaktype": "value",
+											"property": "P7509",
+											"hash": "5c287816ad160443fa8899cadf673b1911943739",
+											"datavalue": {
+												"value": "6818",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "5047c8c10be1c1de57a1ac3266de03f5d5635ffd",
+											"datavalue": {
+												"value": "Anton Pavlovitš Tšehhov",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P7509",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "161276a0b83cb6e96a122bf1e22ab971eb68f948",
+								"snaks": {
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "8d730d546dca2b7bbdd44875599cc35a2c46b89c",
+											"datavalue": {
+												"value": "Anton Pavlovitch TCHEKHOV",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "9d66409d3d04632fc69413ea86abf094f92fae88",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 3343389,
+													"id": "Q3343389"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P5570": [
+										{
+											"snaktype": "value",
+											"property": "P5570",
+											"hash": "ab9175633e26bb8d11a1b743766b33e3be878193",
+											"datavalue": {
+												"value": "176",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									]
+								},
+								"snaks-order": [
+									"P813",
+									"P1810",
+									"P248",
+									"P5570"
+								]
+							},
+							{
+								"hash": "48aae4a9cead05c742ac8a3a38ee558a4e8fd8bf",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "e2a81dbf2f7dd02b332d6358ef65f622f82e8cc3",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 237227,
+													"id": "Q237227"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P5019": [
+										{
+											"snaktype": "value",
+											"property": "P5019",
+											"hash": "6c262c10225266eee1e535ea106ef3ebb891d5ae",
+											"datavalue": {
+												"value": "tschechow-anton-pawlowitsch",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "04f2f2f2983703edc6fbaac029c4f3f960e1a91f",
+											"datavalue": {
+												"value": "Anton Pawlowitsch Tschechow",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "e5f60ab0b03700bb883efce38f8022d023bc49fb",
+											"datavalue": {
+												"value": {
+													"time": "+2017-10-09T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P5019",
+									"P1810",
+									"P813"
+								]
+							},
+							{
+								"hash": "aba0707d378eae213b14c9e71bfbbac88463d5b9",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "871891c242389d06b23bf809fdc0301df1ed9c77",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 2629164,
+													"id": "Q2629164"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P1233": [
+										{
+											"snaktype": "value",
+											"property": "P1233",
+											"hash": "cf7ea2b627490832666dbb81c130708480ba2abb",
+											"datavalue": {
+												"value": "237480",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "905f163597775fc82c316bbc4fe56933f34ee79f",
+											"datavalue": {
+												"value": "Антон Чехов",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P1233",
+									"P1810"
+								]
+							},
+							{
+								"hash": "6dc8f34e5c9d01a7cd5e48b1f939de44c279ca97",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "1276fef541b741cec556020ad14ea6b2287a1aae",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 23023088,
+													"id": "Q23023088"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P2191": [
+										{
+											"snaktype": "value",
+											"property": "P2191",
+											"hash": "395115c88bd5cbf1d719f9600b1e814d60533ed0",
+											"datavalue": {
+												"value": "10926",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P1810": [
+										{
+											"snaktype": "value",
+											"property": "P1810",
+											"hash": "c3798bb0a9ec34e047a14c457ce4267f012ec652",
+											"datavalue": {
+												"value": "Antòn Pavlovič Cechov",
+												"type": "string"
+											},
+											"datatype": "string"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P2191",
+									"P1810"
+								]
+							},
+							{
+								"hash": "7d45a9de5193efa3a107db691e1e2df73c921c67",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "c74a22cf4fa7ffd24aea799442e185f5e55efbc7",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 138307249,
+													"id": "Q138307249"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "8bacaca7c958312e80a29a2d4b158660ca716755",
+											"datavalue": {
+												"value": {
+													"time": "+2020-12-03T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									],
+									"P8290": [
+										{
+											"snaktype": "value",
+											"property": "P8290",
+											"hash": "107851cfbbf58ae5686a1cdbdb487975e9a0d85a",
+											"datavalue": {
+												"value": "15664",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P813",
+									"P8290"
+								]
+							},
+							{
+								"hash": "53c336708260d2caa33df384aa7969a1275a56bc",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "a90160a2ce9deb340bb0a7e07b0d9c6106266546",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 10855166,
+													"id": "Q10855166"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P6844": [
+										{
+											"snaktype": "value",
+											"property": "P6844",
+											"hash": "3d240eb4fdfe455d7921a9b09a39d78064374b24",
+											"datavalue": {
+												"value": "16408",
+												"type": "string"
+											},
+											"datatype": "external-id"
+										}
+									],
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "c9217b9fe2666409456ed2f6b757d70929f23836",
+											"datavalue": {
+												"value": "https://cs.isabart.org/person/16408",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "6f8f333cebfac92bb111b2fdd9fcbf7697285918",
+											"datavalue": {
+												"value": {
+													"time": "+2021-04-01T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P6844",
+									"P854",
+									"P813"
+								]
+							},
+							{
+								"hash": "a15af7c78b1a9612fa46b81efb9e1f205468a157",
+								"snaks": {
+									"P248": [
+										{
+											"snaktype": "value",
+											"property": "P248",
+											"hash": "b62f3fa8bab7eb5e1bfe16d03cda082d25315c85",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 63056,
+													"id": "Q63056"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "c8e274744e786d0a2e687322ab772eac78912fd3",
+											"datavalue": {
+												"value": {
+													"time": "+2024-06-29T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P248",
+									"P813"
+								]
+							}
+						]
+					}
+				],
+				"P648": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P648",
+							"hash": "0f56e4c5eb549cd636ce5679d4782336b4a0f327",
+							"datavalue": {
+								"value": "OL3156833A",
+								"type": "string"
+							},
+							"datatype": "external-id"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P2241": [
+								{
+									"snaktype": "value",
+									"property": "P2241",
+									"hash": "74bd46d0bbe97d05804856f1f73b6a7480c68cec",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 45403344,
+											"id": "Q45403344"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P2241"
+						],
+						"id": "Q5685$ee5b87a7-4355-4dd8-917c-80b22082a744",
+						"rank": "deprecated"
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P648",
+							"hash": "06ab3852ec0499b1633a387fe70d2a1688bbe05b",
+							"datavalue": {
+								"value": "OL19677A",
+								"type": "string"
+							},
+							"datatype": "external-id"
+						},
+						"type": "statement",
+						"id": "Q5685$3A38BBCE-78BC-4FC5-8852-3DF02369B1DD",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "4ff451370be1f1bbfcaeadfd41cf92be9932a231",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "4ffd9e3e3368f62714af2f67af3e57b6fedaebdc",
+											"datavalue": {
+												"value": "https://openlibrary.org/authors/OL19677A/%D0%90%D0%BD%D1%82%D0%BE%D0%BD_%D0%9F%D0%B0%D0%B2%D0%BB%D0%BE%D0%B2%D0%B8%D1%87_%D0%A7%D0%B5%D1%85%D0%BE%D0%B2",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									],
+									"P1476": [
+										{
+											"snaktype": "value",
+											"property": "P1476",
+											"hash": "474f8d04642d8888341cbdbdb33d9098ab8d8329",
+											"datavalue": {
+												"value": {
+													"text": "Антон Павлович Чехов | Open Library",
+													"language": "en"
+												},
+												"type": "monolingualtext"
+											},
+											"datatype": "monolingualtext"
+										}
+									],
+									"P813": [
+										{
+											"snaktype": "value",
+											"property": "P813",
+											"hash": "cebc01b3cc022b19bd555af34502dee635e695e4",
+											"datavalue": {
+												"value": {
+													"time": "+2023-07-25T00:00:00Z",
+													"timezone": 0,
+													"before": 0,
+													"after": 0,
+													"precision": 11,
+													"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+												},
+												"type": "time"
+											},
+											"datatype": "time"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854",
+									"P1476",
+									"P813"
+								]
+							}
+						]
+					}
+				],
+				"P1559": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1559",
+							"hash": "a05206df787f555e63c1d1b978ffdfcb1a29158e",
+							"datavalue": {
+								"value": {
+									"text": "Антон Павлович Чехов",
+									"language": "ru"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q5685$0603218f-43b4-e58d-47d7-8fc11d06577a",
+						"rank": "preferred",
+						"references": [
+							{
+								"hash": "d137bdd5c002951c771e3f45eafbabac7f28e0dc",
+								"snaks": {
+									"P143": [
+										{
+											"snaktype": "value",
+											"property": "P143",
+											"hash": "4a713f1b9c73c024784e593b0da93f2244c86d3f",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 58251,
+													"id": "Q58251"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P4656": [
+										{
+											"snaktype": "value",
+											"property": "P4656",
+											"hash": "bb624d9b501e747ef9a8823bb7ffa90df7242622",
+											"datavalue": {
+												"value": "https://az.wikipedia.org/?oldid=4931498",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									]
+								},
+								"snaks-order": [
+									"P143",
+									"P4656"
+								]
+							}
+						]
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1559",
+							"hash": "972c88f2065129cb25f5c782c9346558c8e4598a",
+							"datavalue": {
+								"value": {
+									"text": "Анто́н Па́влович Че́хов",
+									"language": "ru"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P1012": [
+								{
+									"snaktype": "value",
+									"property": "P1012",
+									"hash": "d3960412e222c2316d4280fe4f94b504664ff91c",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 181767,
+											"id": "Q181767"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P1012"
+						],
+						"id": "Q5685$27eb9f7f-4d55-1a9b-06ad-719f93a8d67a",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "ee562858bc66c03f4b845d646a6f898fcd251bef",
+								"snaks": {
+									"P143": [
+										{
+											"snaktype": "value",
+											"property": "P143",
+											"hash": "6a164248fc96bfa583bbb495cb63ae6401ec203c",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 206855,
+													"id": "Q206855"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									],
+									"P4656": [
+										{
+											"snaktype": "value",
+											"property": "P4656",
+											"hash": "9ae52cbdbbfd8f9e113f6078498a0bd142a5a96a",
+											"datavalue": {
+												"value": "https://ru.wikipedia.org/w/index.php?title=%D0%A7%D0%B5%D1%85%D0%BE%D0%B2,_%D0%90%D0%BD%D1%82%D0%BE%D0%BD_%D0%9F%D0%B0%D0%B2%D0%BB%D0%BE%D0%B2%D0%B8%D1%87&oldid=103709892",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									]
+								},
+								"snaks-order": [
+									"P143",
+									"P4656"
+								]
+							}
+						]
+					},
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1559",
+							"hash": "c26fcd9edf40ac30f9341c757b2213ded4431f79",
+							"datavalue": {
+								"value": {
+									"text": "Антонъ Павловичъ Чеховъ",
+									"language": "ru"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"qualifiers": {
+							"P3416": [
+								{
+									"snaktype": "value",
+									"property": "P3416",
+									"hash": "e93df3038ea6f5d314746dafbd2cdeecd9a093ec",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 1938758,
+											"id": "Q1938758"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							],
+							"P518": [
+								{
+									"snaktype": "value",
+									"property": "P518",
+									"hash": "550c51d843f4c766f7c9d6de8d53476cea5780eb",
+									"datavalue": {
+										"value": {
+											"entity-type": "item",
+											"numeric-id": 2442696,
+											"id": "Q2442696"
+										},
+										"type": "wikibase-entityid"
+									},
+									"datatype": "wikibase-item"
+								}
+							]
+						},
+						"qualifiers-order": [
+							"P3416",
+							"P518"
+						],
+						"id": "Q5685$714eb274-4a94-bd3c-44be-f65031ff94d2",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "fa278ebfc458360e5aed63d5058cca83c46134f1",
+								"snaks": {
+									"P143": [
+										{
+											"snaktype": "value",
+											"property": "P143",
+											"hash": "e4f6d9441d0600513c4533c672b5ab472dc73694",
+											"datavalue": {
+												"value": {
+													"entity-type": "item",
+													"numeric-id": 328,
+													"id": "Q328"
+												},
+												"type": "wikibase-entityid"
+											},
+											"datatype": "wikibase-item"
+										}
+									]
+								},
+								"snaks-order": [
+									"P143"
+								]
+							}
+						]
+					}
+				]
+			},
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "Anton Chekhov"
+				}
+			}
+		}
+	}
+}

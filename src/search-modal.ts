@@ -20,6 +20,8 @@ import {
 import type { TvSearchResult } from "./tmdb-tv";
 import type { GameDlc, GameSearchResult } from "./game";
 import { IgdbError, type IgdbClient } from "./igdb";
+import type { AuthorSearchResult, BookSearchResult } from "./book";
+import { OpenLibraryError, type OpenLibraryClient } from "./openlibrary";
 
 /** How many of a game's platforms a search row names before "…". */
 const SHOWN_PLATFORMS = 3;
@@ -48,6 +50,59 @@ export function openGameSearch(app: App, client: IgdbClient, onPick: (game: Game
 	).open();
 }
 
+/** How many of a book's authors a search row names before "…". */
+const SHOWN_AUTHORS = 2;
+
+/** A book's row: its authors — left out on one author's own list — its year and how many editions it has. */
+function bookDetails(book: BookSearchResult, withAuthors = true): (string | null)[] {
+	const authors = book.authors.slice(0, SHOWN_AUTHORS).join(", ") + (book.authors.length > SHOWN_AUTHORS ? "…" : "");
+	const editions = book.editions === 1 ? "1 edition" : `${book.editions} editions`;
+	return source("Open Library", withAuthors ? authors || null : null, yearText(book.year), book.editions > 0 ? editions : null);
+}
+
+/**
+ * The book search. Open Library keeps stray copies of some books' records:
+ * the number of editions is what tells the book itself apart, and the one
+ * with the most comes first among those of the same title.
+ */
+export function openBookSearch(app: App, client: OpenLibraryClient, onPick: (book: BookSearchResult) => void): void {
+	new ApiSearchModal(
+		app,
+		{
+			placeholder: "Search for a book…",
+			emptyText: "No books found.",
+			search: (query, isLatest) => client.searchBooks(query, isLatest),
+			// A book titled in another script shows its English title, its own under it.
+			render: (book, el) => renderRow(el, book.title, bookDetails(book), book.originalTitle ?? undefined),
+			service: "Open Library",
+			debounceMs: MUSICBRAINZ_DEBOUNCE_MS,
+		},
+		onPick,
+	).open();
+}
+
+/** Two authors often share a name, and Open Library keeps stray records of some: their years, best-known book and number of works tell them apart. */
+export function openAuthorSearch(app: App, client: OpenLibraryClient, onPick: (author: AuthorSearchResult) => void): void {
+	new ApiSearchModal(
+		app,
+		{
+			placeholder: "Search for an author…",
+			emptyText: "No authors found.",
+			search: (query, isLatest) => client.searchAuthors(query, isLatest),
+			render: (author, el) =>
+				renderRow(
+					el,
+					author.name,
+					source("Open Library", author.years, author.works === 1 ? "1 work" : `${author.works} works`),
+					author.topWork ?? undefined,
+				),
+			service: "Open Library",
+			debounceMs: MUSICBRAINZ_DEBOUNCE_MS,
+		},
+		onPick,
+	).open();
+}
+
 const DEBOUNCE_MS = 300;
 const MUSICBRAINZ_DEBOUNCE_MS = 600;
 const MIN_QUERY_LENGTH = 2;
@@ -64,7 +119,7 @@ interface SearchSource<T> {
 	search: (query: string, isLatest: () => boolean) => Promise<T[]>;
 	render: (item: T, el: HTMLElement) => void;
 	/** Named in the message for a failure that isn't the API's own error. */
-	service: "TMDB" | "MyAnimeList" | "MusicBrainz" | "IGDB";
+	service: "TMDB" | "MyAnimeList" | "MusicBrainz" | "IGDB" | "Open Library";
 	/**
 	 * How long typing has to stop before a search goes out. MusicBrainz takes
 	 * one request a second, so its searches wait longer than the others.
@@ -118,7 +173,7 @@ class ApiSearchModal<T> extends SuggestModal<T> {
 	}
 
 	private reportOnce(error: unknown): void {
-		const known = error instanceof TmdbError || error instanceof MalError || error instanceof MusicBrainzError || error instanceof IgdbError;
+		const known = error instanceof TmdbError || error instanceof MalError || error instanceof MusicBrainzError || error instanceof IgdbError || error instanceof OpenLibraryError;
 		const message = known ? error.message : `${this.source.service} search failed.`;
 		if (!known) console.error("Film + Anime-Manga Tracker: search failed", error);
 		if (message === this.lastErrorShown) return;
@@ -154,7 +209,7 @@ function yearText(year: number | null): string | null {
  * exists in both is a real choice, and hiding which is which would only make
  * it harder.
  */
-function source(name: "TMDB" | "MAL" | "MusicBrainz" | "IGDB", ...rest: (string | null)[]): (string | null)[] {
+function source(name: "TMDB" | "MAL" | "MusicBrainz" | "IGDB" | "Open Library", ...rest: (string | null)[]): (string | null)[] {
 	return [name, ...rest];
 }
 
@@ -547,6 +602,59 @@ export class WorkPickerModal extends FuzzySuggestModal<WorkNote> {
 	onChooseItem(work: WorkNote): void {
 		this.onPick(work);
 	}
+}
+
+/** One author's books, the best known first, filtered as you type — like an artist's albums. */
+class AuthorWorksModal extends FuzzySuggestModal<BookSearchResult> {
+	private readonly books: BookSearchResult[];
+	private readonly onPick: (book: BookSearchResult) => void;
+
+	constructor(app: App, authorName: string, books: BookSearchResult[], onPick: (book: BookSearchResult) => void) {
+		super(app);
+		this.books = books;
+		this.onPick = onPick;
+		this.setPlaceholder(`${authorName}'s books — type to filter…`);
+		this.emptyStateText = "No books match.";
+	}
+
+	getItems(): BookSearchResult[] {
+		return this.books;
+	}
+
+	getItemText(book: BookSearchResult): string {
+		return `${book.title} ${book.originalTitle ?? ""} ${book.year ?? ""}`;
+	}
+
+	renderSuggestion(match: FuzzyMatch<BookSearchResult>, el: HTMLElement): void {
+		renderRow(el, match.item.title, bookDetails(match.item, false), match.item.originalTitle ?? undefined);
+	}
+
+	onChooseItem(book: BookSearchResult): void {
+		this.onPick(book);
+	}
+}
+
+/** Reads an author's books on Open Library, then lets one be picked from them. */
+export async function openAuthorWorks(
+	app: App,
+	client: OpenLibraryClient,
+	author: { id: string; name: string },
+	onPick: (book: BookSearchResult) => void,
+): Promise<void> {
+	new Notice(`Loading ${author.name}'s books…`);
+	let books: BookSearchResult[];
+	try {
+		books = await client.authorWorks(author.id);
+	} catch (error) {
+		if (!(error instanceof OpenLibraryError)) console.error("Film + Anime-Manga Tracker: could not list books", error);
+		new Notice(error instanceof OpenLibraryError ? error.message : "Could not list the books. See the console for details.");
+		return;
+	}
+	if (books.length === 0) {
+		new Notice(`Open Library lists no books for ${author.name}.`);
+		return;
+	}
+	new AuthorWorksModal(app, author.name, books, onPick).open();
 }
 
 /** Reads an artist's albums, then lets one be picked from them. The artist's own note is never created. */

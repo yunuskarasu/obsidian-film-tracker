@@ -1,0 +1,183 @@
+{
+	"entities": {
+		"Q6092439": {
+			"claims": {
+				"P50": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P50",
+							"hash": "87d88265127a94885df233febe27046270d47696",
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 982838,
+									"id": "Q982838"
+								},
+								"type": "wikibase-entityid"
+							},
+							"datatype": "wikibase-item"
+						},
+						"type": "statement",
+						"id": "Q6092439$D4C286C0-1736-4849-97BB-D621A8C6F26B",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "8e8f21f6402ddaacbd735b086eed744a2544d3f3",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "a334b6f5f169c4f6d8ff30bf7538def9916c7454",
+											"datavalue": {
+												"value": "https://teis.yesevi.edu.tr/madde-detay/sabahattin-ali",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854"
+								]
+							}
+						]
+					}
+				],
+				"P136": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P136",
+							"hash": "f59e02d06f4d4dce8ccd474cfe50bcca74be161d",
+							"datavalue": {
+								"value": {
+									"entity-type": "item",
+									"numeric-id": 1347298,
+									"id": "Q1347298"
+								},
+								"type": "wikibase-entityid"
+							},
+							"datatype": "wikibase-item"
+						},
+						"type": "statement",
+						"id": "Q6092439$3345c1d8-4796-656e-fab1-62b2154046a2",
+						"rank": "normal"
+					}
+				],
+				"P577": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P577",
+							"hash": "9e39439cbf49439f3ac3f501262e5b4b53e24839",
+							"datavalue": {
+								"value": {
+									"time": "+1943-00-00T00:00:00Z",
+									"timezone": 0,
+									"before": 0,
+									"after": 0,
+									"precision": 9,
+									"calendarmodel": "http://www.wikidata.org/entity/Q1985727"
+								},
+								"type": "time"
+							},
+							"datatype": "time"
+						},
+						"type": "statement",
+						"id": "Q6092439$f41a7a45-4cd1-a597-afbb-6358d4a01e45",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "8e8f21f6402ddaacbd735b086eed744a2544d3f3",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "a334b6f5f169c4f6d8ff30bf7538def9916c7454",
+											"datavalue": {
+												"value": "https://teis.yesevi.edu.tr/madde-detay/sabahattin-ali",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854"
+								]
+							}
+						]
+					}
+				],
+				"P648": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P648",
+							"hash": "661ea02ed50ceba00543a5a6e0874c467a504f0c",
+							"datavalue": {
+								"value": "OL24327596W",
+								"type": "string"
+							},
+							"datatype": "external-id"
+						},
+						"type": "statement",
+						"id": "Q6092439$1e82a3e1-4b78-f35b-c58b-61506cdeecf3",
+						"rank": "normal"
+					}
+				],
+				"P1476": [
+					{
+						"mainsnak": {
+							"snaktype": "value",
+							"property": "P1476",
+							"hash": "2908a53e9c8726ac2be9c7a2b5cf7c579fa4ef45",
+							"datavalue": {
+								"value": {
+									"text": "Kürk Mantolu Madonna",
+									"language": "tr"
+								},
+								"type": "monolingualtext"
+							},
+							"datatype": "monolingualtext"
+						},
+						"type": "statement",
+						"id": "Q6092439$9ff14b51-4ba2-a78a-4180-168ad90d91de",
+						"rank": "normal",
+						"references": [
+							{
+								"hash": "8e8f21f6402ddaacbd735b086eed744a2544d3f3",
+								"snaks": {
+									"P854": [
+										{
+											"snaktype": "value",
+											"property": "P854",
+											"hash": "a334b6f5f169c4f6d8ff30bf7538def9916c7454",
+											"datavalue": {
+												"value": "https://teis.yesevi.edu.tr/madde-detay/sabahattin-ali",
+												"type": "string"
+											},
+											"datatype": "url"
+										}
+									]
+								},
+								"snaks-order": [
+									"P854"
+								]
+							}
+						]
+					}
+				]
+			},
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "Madonna in a Fur Coat"
+				}
+			}
+		}
+	}
+}

@@ -12,6 +12,7 @@ import {
 } from "./note";
 import { classifyNote, matchesRef, type NoteKind, type NoteRef } from "./note-kind";
 import { IgdbError } from "./igdb";
+import { OpenLibraryError } from "./openlibrary";
 import { TmdbError } from "./tmdb";
 
 /** A note's top-level `poster`: a film's or an anime's, or a person's photo. */
@@ -41,7 +42,7 @@ export async function reportFailures(what: string, action: () => Promise<void>):
 	try {
 		await action();
 	} catch (error) {
-		if (error instanceof TmdbError || error instanceof MalError || error instanceof MusicBrainzError || error instanceof IgdbError) {
+		if (error instanceof TmdbError || error instanceof MalError || error instanceof MusicBrainzError || error instanceof IgdbError || error instanceof OpenLibraryError) {
 			new Notice(error.message);
 			return;
 		}

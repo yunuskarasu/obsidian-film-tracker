@@ -88,6 +88,15 @@ export interface FilmTrackerSettings {
 	showLatinTitles: boolean;
 	/** New album and song notes named in Latin letters, their own title kept in `original_title`. */
 	latinNoteNames: boolean;
+	bookFolder: string;
+	bookCoverFolder: string;
+	authorFolder: string;
+	authorPhotoFolder: string;
+	/** A book's authors as links, where their notes exist. */
+	linkAuthors: boolean;
+	linkBookGenres: boolean;
+	/** The BIBLIOGRAPHY panel under an author. */
+	showBibliography: boolean;
 }
 
 export const DEFAULT_SETTINGS: FilmTrackerSettings = {
@@ -148,6 +157,13 @@ export const DEFAULT_SETTINGS: FilmTrackerSettings = {
 	showScores: true,
 	showLatinTitles: false,
 	latinNoteNames: false,
+	bookFolder: "Books",
+	bookCoverFolder: "",
+	authorFolder: "Authors",
+	authorPhotoFolder: "",
+	linkAuthors: true,
+	linkBookGenres: false,
+	showBibliography: true,
 };
 
 /** Added to a key's description once it lives in Obsidian's keychain. */
@@ -157,6 +173,8 @@ export const TMDB_ATTRIBUTION =
 	"This product uses the TMDB API but is not endorsed or certified by TMDB.";
 
 export const IGDB_ATTRIBUTION = "Game data from IGDB.com.";
+
+export const OPEN_LIBRARY_ATTRIBUTION = "Book data and covers from Open Library, with Wikidata.";
 
 const FOLLOW_ATTACHMENTS = "Follow attachment settings";
 
@@ -215,7 +233,7 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 			{
 				type: "page",
 				name: "🔑 API keys",
-				desc: "The TMDB key for films and TV series, the MyAnimeList client ID for anime and manga, and IGDB's client ID and secret for games. Music needs none.",
+				desc: "The TMDB key for films and TV series, the MyAnimeList client ID for anime and manga, and IGDB's client ID and secret for games. Music and books need none.",
 				displayValue: () => this.keysSummary(),
 				items: [
 					{
@@ -686,13 +704,75 @@ export class FilmTrackerSettingTab extends PluginSettingTab {
 				],
 			},
 			{
+				type: "page",
+				name: "📚 Books",
+				desc: "Folders, metadata and the bibliography panel.",
+				items: [
+					{
+						type: "group",
+						heading: "Folders",
+						items: [
+							{
+								name: "Book folder",
+								desc: "Where new book notes are created. Leave empty for the vault root.",
+								control: { type: "folder", key: "bookFolder", placeholder: DEFAULT_SETTINGS.bookFolder },
+							},
+							{
+								name: "Book cover folder",
+								desc: "Where book covers are saved. Leave empty to follow your attachment folder setting.",
+								control: { type: "folder", key: "bookCoverFolder", placeholder: FOLLOW_ATTACHMENTS },
+							},
+							{
+								name: "Author folder",
+								desc: "Where new author notes are created. Leave empty for the vault root.",
+								control: { type: "folder", key: "authorFolder", placeholder: DEFAULT_SETTINGS.authorFolder },
+							},
+							{
+								name: "Author photo folder",
+								desc: "Where author photos are saved. Leave empty to follow your attachment folder setting.",
+								control: { type: "folder", key: "authorPhotoFolder", placeholder: FOLLOW_ATTACHMENTS },
+							},
+						],
+					},
+					{
+						type: "group",
+						heading: "Metadata",
+						items: [
+							{
+								name: "Link authors",
+								desc: "Write a book's authors as [[wikilinks]] when a note with that name already exists, so the book shows up in the author's backlinks. A book never creates its author's note: add the author yourself, and the next books link to it.",
+								control: { type: "toggle", key: "linkAuthors" },
+							},
+							{
+								name: "Link genres",
+								desc: "The same for a book's genres. Off by default: genre notes become very busy hubs.",
+								aliases: ["Book genres"],
+								control: { type: "toggle", key: "linkBookGenres" },
+							},
+						],
+					},
+					{
+						type: "group",
+						heading: "Panels",
+						items: [
+							{
+								name: "Show bibliography",
+								desc: "Below an author's properties, list their books that are in your vault, with a button to add another.",
+								control: { type: "toggle", key: "showBibliography" },
+							},
+						],
+					},
+				],
+			},
+			{
 				name: "Attribution",
-				desc: `${TMDB_ATTRIBUTION} ${IGDB_ATTRIBUTION}`,
+				desc: `${TMDB_ATTRIBUTION} ${IGDB_ATTRIBUTION} ${OPEN_LIBRARY_ATTRIBUTION}`,
 				searchable: false,
 				render: (setting) => {
 					setting.settingEl.empty();
 					setting.settingEl.createEl("p", { text: TMDB_ATTRIBUTION, cls: "film-tracker-attribution" });
 					setting.settingEl.createEl("p", { text: IGDB_ATTRIBUTION, cls: "film-tracker-attribution" });
+					setting.settingEl.createEl("p", { text: OPEN_LIBRARY_ATTRIBUTION, cls: "film-tracker-attribution" });
 				},
 			},
 		];

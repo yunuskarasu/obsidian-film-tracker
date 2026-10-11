@@ -1,0 +1,520 @@
+{
+	"numFound": 174,
+	"start": 0,
+	"numFoundExact": true,
+	"num_found": 174,
+	"documentation_url": "https://openlibrary.org/dev/docs/api/search",
+	"q": "No Country for Old Men",
+	"offset": null,
+	"docs": [
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 9296899,
+			"edition_count": 45,
+			"first_publish_year": 1900,
+			"key": "/works/OL40875W",
+			"number_of_pages_median": 304,
+			"title": "No Country for Old Men",
+			"editions": {
+				"numFound": 41,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL6817467A"
+			],
+			"author_name": [
+				"Lynnea Chapman King"
+			],
+			"cover_i": 6439913,
+			"edition_count": 1,
+			"first_publish_year": 2010,
+			"key": "/works/OL15183121W",
+			"title": "No Country for Old Men",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL1654299A"
+			],
+			"author_name": [
+				"Alan Schwartz"
+			],
+			"cover_i": 8444312,
+			"edition_count": 2,
+			"first_publish_year": 1980,
+			"key": "/works/OL6327870W",
+			"number_of_pages_median": 313,
+			"title": "No country for old men",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "No country for old men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL2729164A"
+			],
+			"author_name": [
+				"Paddy Lyons"
+			],
+			"cover_i": 14189423,
+			"edition_count": 2,
+			"first_publish_year": 2008,
+			"key": "/works/OL18585061W",
+			"number_of_pages_median": 289,
+			"title": "No country for old men",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "No country for old men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL6817467A",
+				"OL2790299A"
+			],
+			"author_name": [
+				"Lynnea Chapman King",
+				"Rick Wallach"
+			],
+			"cover_i": 10040635,
+			"edition_count": 2,
+			"first_publish_year": 2009,
+			"key": "/works/OL17006187W",
+			"number_of_pages_median": 238,
+			"title": "No country for old men",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "No country for old men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL2268171A"
+			],
+			"author_name": [
+				"Warren Eyster"
+			],
+			"cover_i": 15026774,
+			"edition_count": 1,
+			"first_publish_year": 1955,
+			"key": "/works/OL7478084W",
+			"number_of_pages_median": 597,
+			"title": "No country for old men",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "No country for old men.",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL11258950A"
+			],
+			"author_name": [
+				"Eddie Patterson"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2020,
+			"key": "/works/OL35874059W",
+			"title": "No Country for Old Men",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL28104A"
+			],
+			"author_name": [
+				"Cormac McCarthy"
+			],
+			"cover_i": 12506599,
+			"edition_count": 1,
+			"first_publish_year": 2020,
+			"key": "/works/OL26822525W",
+			"title": "The Road / Blood Meridian / No Country for Old Men",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "The Road / Blood Meridian / No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL1980397A"
+			],
+			"author_name": [
+				"Smith, Kenneth"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2021,
+			"key": "/works/OL36112791W",
+			"title": "No Country for Old Men",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL9522064A"
+			],
+			"author_name": [
+				"Jennifer Herbert"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2021,
+			"key": "/works/OL36393673W",
+			"title": "No Country for Old Men",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL8264513A"
+			],
+			"author_name": [
+				"Ernie Savage"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2024,
+			"key": "/works/OL37830399W",
+			"title": "No Country for Old Men",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL11356911A"
+			],
+			"author_name": [
+				"Carla Price"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2022,
+			"key": "/works/OL31091799W",
+			"title": "Information about No Country for Old Men",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Information about No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL1390209A"
+			],
+			"author_name": [
+				"Sara L. Spurgeon"
+			],
+			"cover_i": 9766700,
+			"edition_count": 2,
+			"first_publish_year": 2011,
+			"key": "/works/OL16625118W",
+			"number_of_pages_median": 214,
+			"title": "Cormac McCarthy",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Cormac McCarthy",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL13158523A"
+			],
+			"author_name": [
+				"Inese Romanova"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2013,
+			"key": "/works/OL36625536W",
+			"title": "Cormac Mccarthy's No Country for Old Men",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Cormac Mccarthy's No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"cover_i": 12088200,
+			"edition_count": 1,
+			"first_publish_year": 2019,
+			"key": "/works/OL45589152W",
+			"number_of_pages_median": 43,
+			"title": "Study Guide",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Study Guide"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL12359040A"
+			],
+			"author_name": [
+				"Raelynn Dickerson"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2022,
+			"key": "/works/OL34144815W",
+			"title": "Picture Book Of 𝐍𝐨 𝐂𝐨𝐮𝐧𝐭𝐫𝐲 𝐅𝐨𝐫 𝐎𝐥𝐝 𝐌𝐞𝐧",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Picture Book Of 𝐍𝐨 𝐂𝐨𝐮𝐧𝐭𝐫𝐲 𝐅𝐨𝐫 𝐎𝐥𝐝 𝐌𝐞𝐧",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL12991524A"
+			],
+			"author_name": [
+				"Sara Spurgeon"
+			],
+			"edition_count": 2,
+			"first_publish_year": 2011,
+			"key": "/works/OL36018103W",
+			"title": "Cormac Mccarthy",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Cormac Mccarthy",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL13136208A"
+			],
+			"author_name": [
+				"Mario Raff"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2009,
+			"key": "/works/OL36569690W",
+			"title": "Genre, Heroism and Conceptions of Evil in 'No Country for Old Men'",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Genre, Heroism and Conceptions of Evil in 'No Country for Old Men'",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL13010154A"
+			],
+			"author_name": [
+				"Inese Vicaka"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2014,
+			"key": "/works/OL36085589W",
+			"title": "Mccarthy and the Coens : The Novel Versus the Film No Country for Old Men",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Mccarthy and the Coens : The Novel Versus the Film No Country for Old Men",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL13010154A"
+			],
+			"author_name": [
+				"Inese Vicaka"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2013,
+			"key": "/works/OL36638876W",
+			"title": "McCarthy and the Coens",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "McCarthy and the Coens",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		}
+	]
+}

@@ -1,0 +1,40 @@
+{
+	"entities": {
+		"Q12197074": {
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "Western novel"
+				}
+			}
+		},
+		"Q182015": {
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "thriller"
+				}
+			}
+		},
+		"Q5937792": {
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "crime fiction"
+				}
+			}
+		},
+		"Q272610": {
+			"labels": {
+				"en": {
+					"language": "en",
+					"value": "Cormac McCarthy"
+				},
+				"mul": {
+					"language": "mul",
+					"value": "Cormac McCarthy"
+				}
+			}
+		}
+	}
+}

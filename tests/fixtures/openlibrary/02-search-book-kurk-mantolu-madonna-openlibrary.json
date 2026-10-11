@@ -1,0 +1,485 @@
+{
+	"numFound": 23,
+	"start": 0,
+	"numFoundExact": true,
+	"num_found": 23,
+	"documentation_url": "https://openlibrary.org/dev/docs/api/search",
+	"q": "Kürk Mantolu Madonna",
+	"offset": null,
+	"docs": [
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"cover_i": 10848013,
+			"edition_count": 24,
+			"first_publish_year": 2019,
+			"key": "/works/OL24327596W",
+			"number_of_pages_median": 176,
+			"title": "Kürk Mantolu Madonna",
+			"editions": {
+				"numFound": 24,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"cover_i": 10851646,
+			"edition_count": 15,
+			"first_publish_year": 2018,
+			"key": "/works/OL24330717W",
+			"number_of_pages_median": 200,
+			"title": "Kürk Mantolu Madonna",
+			"editions": {
+				"numFound": 15,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"edition_count": 1,
+			"first_publish_year": 2017,
+			"key": "/works/OL19721199W",
+			"number_of_pages_median": 200,
+			"title": "Madonna in a fur coat",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Madonna in a fur coat",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"edition_count": 1,
+			"first_publish_year": 1976,
+			"key": "/works/OL12793840W",
+			"number_of_pages_median": 219,
+			"title": "Kürk mantolu madonna",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk mantolu madonna.",
+						"language": [
+							"eng"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"cover_i": 10031512,
+			"edition_count": 1,
+			"first_publish_year": 1998,
+			"key": "/works/OL20784452W",
+			"number_of_pages_median": 164,
+			"title": "Kurk Mantolu Madonna",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kurk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"cover_i": 12244945,
+			"edition_count": 8,
+			"first_publish_year": 2019,
+			"key": "/works/OL26244577W",
+			"number_of_pages_median": 180,
+			"title": "Kürk Mantolu Madonna",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"cover_i": 12270592,
+			"edition_count": 6,
+			"first_publish_year": 2019,
+			"key": "/works/OL26268662W",
+			"number_of_pages_median": 188,
+			"title": "Kürk Mantolu Madonna",
+			"editions": {
+				"numFound": 6,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"cover_i": 12213819,
+			"edition_count": 8,
+			"first_publish_year": 2019,
+			"key": "/works/OL26215307W",
+			"number_of_pages_median": 183,
+			"title": "Kürk Mantolu Madonna",
+			"editions": {
+				"numFound": 8,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"edition_count": 1,
+			"first_publish_year": 1943,
+			"key": "/works/OL1020029W",
+			"number_of_pages_median": 176,
+			"title": "Kürk mantolu madonna",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk mantolu madonna.",
+						"language": [
+							"tur"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"edition_count": 3,
+			"first_publish_year": 1960,
+			"key": "/works/OL38549195W",
+			"number_of_pages_median": 215,
+			"title": "Kürk mantolu Madonna",
+			"editions": {
+				"numFound": 3,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk mantolu madonna",
+						"language": [
+							"tur"
+						]
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"cover_i": 12116140,
+			"edition_count": 4,
+			"first_publish_year": 2019,
+			"key": "/works/OL26157636W",
+			"number_of_pages_median": 188,
+			"title": "Kürk Mantolu Madonna",
+			"editions": {
+				"numFound": 4,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"cover_i": 12303314,
+			"edition_count": 2,
+			"first_publish_year": 2019,
+			"key": "/works/OL26360362W",
+			"number_of_pages_median": 210,
+			"title": "Kürk Mantolu Madonna",
+			"editions": {
+				"numFound": 2,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"cover_i": 10852978,
+			"edition_count": 1,
+			"key": "/works/OL24331928W",
+			"title": "Kürk Mantolu Madonna",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL9901328A"
+			],
+			"author_name": [
+				"Olimpos Yayınları"
+			],
+			"cover_i": 12243630,
+			"edition_count": 1,
+			"first_publish_year": 2019,
+			"key": "/works/OL26243348W",
+			"number_of_pages_median": 176,
+			"title": "Kürk Mantolu Madonna",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"cover_i": 10850944,
+			"edition_count": 1,
+			"first_publish_year": 2019,
+			"key": "/works/OL24330087W",
+			"number_of_pages_median": 176,
+			"title": "Kurk Mantolu Madonna",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kurk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"cover_i": 12241232,
+			"edition_count": 1,
+			"key": "/works/OL26241079W",
+			"title": "Kürk Mantolu Madonna",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL9873190A"
+			],
+			"author_name": [
+				"Martı Yayınları"
+			],
+			"cover_i": 12115787,
+			"edition_count": 1,
+			"first_publish_year": 2019,
+			"key": "/works/OL26157300W",
+			"number_of_pages_median": 208,
+			"title": "Kürk Mantolu Madonna",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"cover_i": 10851474,
+			"edition_count": 1,
+			"first_publish_year": 2019,
+			"key": "/works/OL24330561W",
+			"number_of_pages_median": 208,
+			"title": "Resimli Kürk Mantolu Madonna",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Resimli Kürk Mantolu Madonna"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"cover_i": 12298134,
+			"edition_count": 1,
+			"first_publish_year": 2018,
+			"key": "/works/OL26354954W",
+			"number_of_pages_median": 164,
+			"title": "Kürk Mantolu Madonna ; Özel Baski",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk Mantolu Madonna ; Özel Baski"
+					}
+				]
+			}
+		},
+		{
+			"author_key": [
+				"OL97057A"
+			],
+			"author_name": [
+				"Sabahattin Ali"
+			],
+			"edition_count": 1,
+			"first_publish_year": 1943,
+			"key": "/works/OL44955394W",
+			"number_of_pages_median": 177,
+			"title": "Kürk mantolu madonna. Büyük hikâye",
+			"editions": {
+				"numFound": 1,
+				"start": 0,
+				"numFoundExact": true,
+				"docs": [
+					{
+						"title": "Kürk mantolu madonna. Büyük hikâye",
+						"language": [
+							"tur"
+						]
+					}
+				]
+			}
+		}
+	]
+}

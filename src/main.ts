@@ -6,6 +6,7 @@ import {
 	type TrackedSide,
 } from "./already-tracked-modal";
 import { ConfirmModal } from "./confirm-modal";
+import { BookActions } from "./book-actions";
 import { FilmActions } from "./film-actions";
 import { GameActions } from "./game-actions";
 import type { GameDlc } from "./game";
@@ -29,7 +30,8 @@ import { LyricsCache } from "./lyrics-cache";
 import { LyricsService, lyricsQueryOf } from "./lyrics-service";
 import { isFolderNote } from "./note";
 import { MusicBrainzClient } from "./musicbrainz";
-import { canListen, canWatch, hasAnime, hasEpisodes, hasManga, isGame, type NoteKind } from "./note-kind";
+import { canListen, canWatch, hasAnime, hasEpisodes, hasManga, isBook, isGame, type NoteKind } from "./note-kind";
+import { OpenLibraryClient } from "./openlibrary";
 import {
 	AlbumTracksModal,
 	DlcModal,
@@ -38,6 +40,9 @@ import {
 	openAlbumSearch,
 	openAnimeSearch,
 	openArtistAlbums,
+	openAuthorSearch,
+	openAuthorWorks,
+	openBookSearch,
 	openArtistSearch,
 	openDirectorSearch,
 	openFilmSearch,
@@ -114,6 +119,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			}),
 	});
 	private readonly games = new GameActions(this.app, this.notes, () => this.settings);
+	private readonly books = new BookActions(this.app, this.notes, () => this.settings);
 	private readonly importer = new LetterboxdImporter(this.app, this.notes, this.films);
 	private readonly malImporter = new MalListImporter(this.app, this.notes, this.anime);
 
@@ -213,6 +219,51 @@ export default class FilmTrackerPlugin extends Plugin {
 				const note = this.activeNote();
 				if (note === null || !isGame(note.kind)) return false;
 				if (!checking) void this.games.markCompletedToday(note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "add-book",
+			name: "Add book",
+			callback: () => this.startAddBook(),
+		});
+
+		this.addCommand({
+			id: "add-author",
+			name: "Add author",
+			callback: () => this.startAddAuthor(),
+		});
+
+		this.addCommand({
+			id: "refresh-book-metadata",
+			name: "Refresh book metadata from Open Library",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || (note.kind.kind !== "book" && note.kind.kind !== "author")) return false;
+				if (!checking) void this.books.refresh(this.openLibrary(), note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "start-reading",
+			name: "Start reading",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || !isBook(note.kind)) return false;
+				if (!checking) void this.books.startReading(note.file);
+				return true;
+			},
+		});
+
+		this.addCommand({
+			id: "finished-reading-today",
+			name: "Mark book as finished today",
+			checkCallback: (checking) => {
+				const note = this.activeNote();
+				if (note === null || !isBook(note.kind)) return false;
+				if (!checking) void this.books.markFinishedToday(note.file);
 				return true;
 			},
 		});
@@ -405,7 +456,7 @@ export default class FilmTrackerPlugin extends Plugin {
 			callback: () => this.startImportFromMal(),
 		});
 
-		this.addRibbonIcon("film", "Add film, TV series, anime, manga, music or game", (evt) => {
+		this.addRibbonIcon("film", "Add film, TV series, anime, manga, music, game or book", (evt) => {
 			const menu = new Menu();
 			menu.addItem((item) =>
 				item
@@ -466,6 +517,19 @@ export default class FilmTrackerPlugin extends Plugin {
 					.setIcon("gamepad-2")
 					.onClick(() => this.startAddGame()),
 			);
+			menu.addSeparator();
+			menu.addItem((item) =>
+				item
+					.setTitle("Add book")
+					.setIcon("book-open")
+					.onClick(() => this.startAddBook()),
+			);
+			menu.addItem((item) =>
+				item
+					.setTitle("Add author")
+					.setIcon("pen-tool")
+					.onClick(() => this.startAddAuthor()),
+			);
 
 			menu.showAtMouseEvent(evt);
 		});
@@ -502,6 +566,7 @@ export default class FilmTrackerPlugin extends Plugin {
 	private async watchedToday(file: TFile): Promise<void> {
 		const kind = this.notes.kindOf(file);
 		if (isGame(kind)) await this.games.markCompletedToday(file);
+		else if (isBook(kind)) await this.books.markFinishedToday(file);
 		else if (canListen(kind)) await this.music.markListenedToday(file);
 		else if (kind?.kind === "film") await this.films.markWatchedToday(file);
 		else if (kind?.kind === "tv") await this.tv.markWatchedToday(file);
@@ -551,6 +616,10 @@ export default class FilmTrackerPlugin extends Plugin {
 			entries.push({ title: "Start playing", icon: "play", run: () => void this.games.startPlaying(file) });
 			entries.push({ title: "Mark as completed today", icon: "check", run: () => void this.games.markCompletedToday(file) });
 			entries.push({ title: "Add DLC", icon: "package-plus", run: () => void this.startAddDlc(file) });
+		}
+		if (isBook(kind)) {
+			entries.push({ title: "Start reading", icon: "book-open", run: () => void this.books.startReading(file) });
+			entries.push({ title: "Mark book as finished today", icon: "check", run: () => void this.books.markFinishedToday(file) });
 		}
 		if (canWatch(kind)) {
 			entries.push({ title: "Mark as watched today", icon: "check", run: () => void this.watchedToday(file) });
@@ -614,6 +683,11 @@ export default class FilmTrackerPlugin extends Plugin {
 	/** MusicBrainz needs no key, only the plugin's name and version in every request. */
 	private musicbrainz(): MusicBrainzClient {
 		return new MusicBrainzClient(this.manifest.version);
+	}
+
+	/** Open Library needs no key either, only the plugin's name and version in every request. */
+	private openLibrary(): OpenLibraryClient {
+		return new OpenLibraryClient(this.manifest.version);
 	}
 
 	/** An IGDB client, or `null` once the user has been pointed at whichever of its two values is missing. */
@@ -681,6 +755,8 @@ export default class FilmTrackerPlugin extends Plugin {
 				startPlaying: (file) => void this.games.startPlaying(file),
 				addDlc: (file) => void this.startAddDlc(file),
 				setDlcDone: (file, igdbId, done) => void this.games.setDlcDone(file, igdbId, done),
+				startReading: (file) => void this.books.startReading(file),
+				addBookByAuthor: (file) => this.startAddBookOf(file),
 			},
 		);
 		this.layout = layout;
@@ -808,6 +884,26 @@ export default class FilmTrackerPlugin extends Plugin {
 		const client = this.igdb();
 		if (client === null) return;
 		openGameSearch(this.app, client, (result) => void this.games.addGame(client, result));
+	}
+
+	private startAddBook(): void {
+		const client = this.openLibrary();
+		openBookSearch(this.app, client, (result) => void this.books.addBook(client, result));
+	}
+
+	private startAddAuthor(): void {
+		const client = this.openLibrary();
+		openAuthorSearch(this.app, client, (result) => void this.books.addAuthor(client, result));
+	}
+
+	/** BIBLIOGRAPHY's "Add book…": the books of the author whose note it is. */
+	private startAddBookOf(file: TFile): void {
+		const id = this.books.authorIdOf(file);
+		if (id === null) return;
+		const client = this.openLibrary();
+		const name: unknown = this.notes.frontmatterOf(file)?.name;
+		const author = { id, name: typeof name === "string" && name.trim() !== "" ? name.trim() : file.basename };
+		void openAuthorWorks(this.app, client, author, (book) => void this.books.addBook(client, book));
 	}
 
 	/** "Add DLC": the game's DLCs on IGDB that its note doesn't have yet, one to pick. */
