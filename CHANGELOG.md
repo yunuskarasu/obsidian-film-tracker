@@ -4,6 +4,16 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+## [3.7.1] - 2026-10-12
+
+### Fixed
+
+- On a phone, the diary's arrows sat under Obsidian's floating navigation bar. They now stay clear of it, and of the home indicator.
+
+### Changed
+
+- The diary's year button is always there, across from the button for the cover — with a single year, that year is all it lists.
+
 ## [3.7.0] - 2026-10-12
 
 A diary of your year. Nothing breaks: notes and settings from 3.6 carry over as they are.
@@ -245,6 +255,7 @@ Music joins films, TV series and anime-manga. Nothing breaks: notes and settings
 - Import from Letterboxd.
 
 [Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.6.0...HEAD
+[3.7.1]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.7.0...3.7.1
 [3.7.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.6.0...3.7.0
 [3.6.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.5.0...3.6.0
 [3.5.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.4.0...3.5.0

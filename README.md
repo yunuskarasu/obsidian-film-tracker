@@ -932,7 +932,7 @@ The pages, in order:
 - **Each month**: a calendar with the days you finished something marked in their colour, and a few of the month's covers; then its entries, four a page, each with its day, cover and kind. Click an entry to open its note in a new tab — or, holding **Ctrl** (**Cmd** on macOS), wherever Obsidian puts a link opened that way.
 - **The year in numbers**: how many of each kind, the busiest month, what the year began with and the latest.
 
-To turn a page, click it, or use the arrows below the book: **‹** and **›**, and the button left of them for the cover. On the keyboard, **←** and **→** (or **Page Up** and **Page Down**) turn a page, **Home** goes to the cover and **End** to the back. The diary opens on this year, or on the latest year with anything in it. When your notes span more than one year, the year to the right of the arrows picks another.
+To turn a page, click it, or use the arrows below the book: **‹** and **›**, and the button left of them for the cover. On the keyboard, **←** and **→** (or **Page Up** and **Page Down**) turn a page, **Home** goes to the cover and **End** to the back. The diary opens on this year, or on the latest year with anything in it. The year to the right of the arrows picks another, from the years your notes have anything in.
 
 In a narrow tab, and always on a phone, the diary shows one page at a time. Swipe, or tap a page to turn it: its left third goes back.
 

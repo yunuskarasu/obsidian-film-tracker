@@ -709,6 +709,11 @@ body {
 	padding: 0;
 }
 
+/* On a phone or a tablet, the arrows stay clear of Obsidian's floating navigation bar and the home indicator. */
+.is-mobile .workspace-leaf-content[data-type="film-tracker-diary"] .view-content {
+	padding-bottom: max(var(--view-bottom-spacing, 0px), var(--safe-area-inset-bottom, 0px));
+}
+
 .theme-dark .film-tracker-diary {
 	--film-tracker-diary-paper: #2c2823;
 	--film-tracker-diary-paper-edge: #221f1b;

@@ -190,11 +190,10 @@ export class DiaryView extends ItemView {
 		const next = bar.createEl("button", { cls: "clickable-icon", attr: { "aria-label": "Next page" } });
 		setIcon(next, "chevron-right");
 		next.addEventListener("click", () => this.turnTo(this.turned + 1));
-		if (years.length > 1) {
-			const pick = bar.createEl("button", { cls: "film-tracker-diary-year", text: String(this.year), attr: { "aria-label": "Another year" } });
-			setIcon(pick.createSpan({ cls: "film-tracker-diary-year-icon" }), "chevron-down");
-			pick.addEventListener("click", (event) => this.pickYear(event, years, entries));
-		}
+		// Always there, across from the button for the cover: with one year only, that year is all it lists.
+		const pick = bar.createEl("button", { cls: "film-tracker-diary-year", text: String(this.year), attr: { "aria-label": "Another year" } });
+		setIcon(pick.createSpan({ cls: "film-tracker-diary-year-icon" }), "chevron-down");
+		pick.addEventListener("click", (event) => this.pickYear(event, years.length > 0 ? years : [this.year], entries));
 
 		this.turned = Math.min(this.turned, this.single ? this.leaves.length - 1 : this.leaves.length);
 		this.place();
