@@ -177,11 +177,17 @@ export class LibraryView extends ItemView {
 		}
 	}
 
-	/** On a phone: the filters out of the way while the shelf scrolls down, back as soon as it scrolls up, or is at the top. */
+	/**
+	 * On a phone: the filters out of the way while the shelf scrolls down,
+	 * back as soon as it scrolls up, or is at the top. Past either end —
+	 * an iPhone lets the shelf stretch there and spring back — is the end
+	 * itself: springing back from the bottom isn't scrolling up.
+	 */
 	private tuck(): void {
 		const toolbar = this.toolbarEl;
 		if (toolbar === null) return;
-		const y = this.contentEl.scrollTop;
+		const end = Math.max(0, this.contentEl.scrollHeight - this.contentEl.clientHeight);
+		const y = Math.min(Math.max(this.contentEl.scrollTop, 0), end);
 		const moved = y - this.lastScroll;
 		if (Math.abs(moved) < TUCK_SCROLL_PX && y > 0) return;
 		this.lastScroll = y;

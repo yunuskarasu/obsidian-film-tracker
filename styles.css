@@ -1786,8 +1786,20 @@ body {
 /* A phone: the search and the order share a line of their own. */
 .is-phone .film-tracker-library-find {
 	flex-basis: 100%;
+	min-width: 0;
 }
 
 .is-phone .film-tracker-library-search {
+	flex: 1 1 0;
+	width: 0;
 	max-width: none;
+	min-width: 0;
+}
+
+/* Obsidian draws a phone's fields larger: the order gives way, its name cut short, rather than run off the screen. */
+.is-phone .film-tracker-library-sort {
+	flex: 0 1 auto;
+	min-width: 0;
+	max-width: 60%;
+	text-overflow: ellipsis;
 }

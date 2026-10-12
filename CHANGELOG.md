@@ -4,6 +4,15 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+## [3.8.1] - 2026-10-13
+
+The library on a phone. On a computer it is exactly as it was.
+
+### Fixed
+
+- On an iPhone, the library's filters came back on their own at the foot of the shelf, as it sprang back from its end. They now stay out of the way until you scroll up.
+- On an iPhone, the sort list ran off the side of the screen. It now fits beside the search, which gives way to it.
+
 ## [3.8.0] - 2026-10-13
 
 A library of everything you track. Nothing breaks: notes and settings from 3.7 carry over as they are.
@@ -280,7 +289,8 @@ Music joins films, TV series and anime-manga. Nothing breaks: notes and settings
 - Relinking of directors and genres.
 - Import from Letterboxd.
 
-[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.8.0...HEAD
+[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.8.1...HEAD
+[3.8.1]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.8.0...3.8.1
 [3.8.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.7.2...3.8.0
 [3.7.2]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.7.1...3.7.2
 [3.7.1]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.7.0...3.7.1
