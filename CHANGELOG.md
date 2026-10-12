@@ -4,6 +4,20 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+## [3.7.2] - 2026-10-12
+
+The diary on a phone and a tablet. On a computer it is exactly as it was.
+
+### Fixed
+
+- On an iPhone or an iPad, turning a page could show a page further on, and a tap on an entry turned the page instead of opening its note: pages under the open one now stay out of sight and out of reach.
+- On a phone, the buttons under the diary no longer run off the side of the screen.
+- A phone on its side no longer has the diary under Obsidian's own bars: its buttons go either side of the book, which gets all the height there is.
+
+### Changed
+
+- On a phone or a tablet, a swipe no longer turns a page, since it opens Obsidian's sidebars there; a tap does. A computer's touchscreen still turns pages by a swipe.
+
 ## [3.7.1] - 2026-10-12
 
 ### Fixed
@@ -255,6 +269,7 @@ Music joins films, TV series and anime-manga. Nothing breaks: notes and settings
 - Import from Letterboxd.
 
 [Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.6.0...HEAD
+[3.7.2]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.7.1...3.7.2
 [3.7.1]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.7.0...3.7.1
 [3.7.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.6.0...3.7.0
 [3.6.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.5.0...3.6.0

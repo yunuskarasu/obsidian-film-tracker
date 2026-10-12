@@ -44,7 +44,7 @@ const TURN_MS = 800;
 const STAGGER_MS = 90;
 /** Narrower than this, the book shows one page at a time: a phone, or a tab in a split. */
 const SINGLE_PAGE_BELOW_PX = 760;
-/** How far a finger has to move for a swipe to turn a page. */
+/** How far a finger has to move on a touchscreen for a swipe to turn a page. */
 const SWIPE_PX = 40;
 
 const monthName = (month: number) => new Date(2000, month, 1).toLocaleString("en", { month: "long" });
@@ -72,8 +72,9 @@ interface Page {
  * page, the arrows under the book, or the arrow keys.
  *
  * Where there is no room for two pages — a phone, a narrow tab — the book
- * shows one at a time, each turned away to show the next, by a tap or a
- * swipe. It follows the vault: a note marked finished, or a date changed,
+ * shows one at a time, each turned away to show the next, by a tap — or
+ * on a computer's touchscreen a swipe, which a phone or a tablet keeps for
+ * Obsidian's sidebars. It follows the vault: a note marked finished, or a date changed,
  * shows on its day within a second.
  */
 export class DiaryView extends ItemView {
@@ -86,6 +87,8 @@ export class DiaryView extends ItemView {
 	private turned = 0;
 	private year = new Date().getFullYear();
 	private walking = 0;
+	/** The leaves still turning: in sight until they land. */
+	private readonly moving = new Set<HTMLElement>();
 	/** One page at a time, rather than two side by side. */
 	private single = false;
 	/** What the book was last drawn from, to tell whether a change in the vault changed it. */
@@ -115,14 +118,17 @@ export class DiaryView extends ItemView {
 		this.contentEl.setAttr("lang", "en");
 		this.contentEl.tabIndex = 0;
 		this.registerDomEvent(this.contentEl, "keydown", (event) => this.onKey(event));
-		let touchX: number | null = null;
-		this.registerDomEvent(this.contentEl, "touchstart", (event) => (touchX = event.touches[0]?.clientX ?? null), { passive: true });
-		this.registerDomEvent(this.contentEl, "touchend", (event) => {
-			const endX = event.changedTouches[0]?.clientX;
-			if (touchX === null || endX === undefined || Math.abs(endX - touchX) < SWIPE_PX) return;
-			this.turnTo(this.turned + (endX < touchX ? 1 : -1));
-			touchX = null;
-		});
+		// A swipe turns a page on a computer's touchscreen. A phone or a tablet keeps it for Obsidian's sidebars.
+		if (!Platform.isMobile) {
+			let touchX: number | null = null;
+			this.registerDomEvent(this.contentEl, "touchstart", (event) => (touchX = event.touches[0]?.clientX ?? null), { passive: true });
+			this.registerDomEvent(this.contentEl, "touchend", (event) => {
+				const endX = event.changedTouches[0]?.clientX;
+				if (touchX === null || endX === undefined || Math.abs(endX - touchX) < SWIPE_PX) return;
+				this.turnTo(this.turned + (endX < touchX ? 1 : -1));
+				touchX = null;
+			});
+		}
 
 		const refresh = debounce(() => this.refresh(), 600, true);
 		this.registerEvent(this.app.metadataCache.on("changed", refresh));
@@ -163,6 +169,7 @@ export class DiaryView extends ItemView {
 		this.bookEl = stage.createDiv({ cls: "film-tracker-diary-book" });
 		this.bookEl.toggleClass("is-single", this.single);
 		this.leaves = [];
+		this.moving.clear();
 		// Two pages a leaf, back to back — or, one at a time, a leaf a page.
 		const step = this.single ? 1 : 2;
 		for (let index = 0; index < this.pages.length; index += step) {
@@ -183,11 +190,11 @@ export class DiaryView extends ItemView {
 		const start = bar.createEl("button", { cls: "clickable-icon", attr: { "aria-label": "Back to the cover" } });
 		setIcon(start, "chevron-first");
 		start.addEventListener("click", () => this.turnTo(0));
-		const back = bar.createEl("button", { cls: "clickable-icon", attr: { "aria-label": "Previous page" } });
+		const back = bar.createEl("button", { cls: ["clickable-icon", "film-tracker-diary-previous"], attr: { "aria-label": "Previous page" } });
 		setIcon(back, "chevron-left");
 		back.addEventListener("click", () => this.turnTo(this.turned - 1));
 		this.labelEl = bar.createSpan({ cls: "film-tracker-diary-label" });
-		const next = bar.createEl("button", { cls: "clickable-icon", attr: { "aria-label": "Next page" } });
+		const next = bar.createEl("button", { cls: ["clickable-icon", "film-tracker-diary-next"], attr: { "aria-label": "Next page" } });
 		setIcon(next, "chevron-right");
 		next.addEventListener("click", () => this.turnTo(this.turned + 1));
 		// Always there, across from the button for the cover: with one year only, that year is all it lists.
@@ -445,20 +452,34 @@ export class DiaryView extends ItemView {
 			leaf.setCssProps({ "--film-tracker-diary-z": String(this.leaves.length + 1) });
 			leaf.addClass("is-top");
 			leaf.toggleClass("is-turned", forward);
+			this.moving.add(leaf);
+			// The pages it uncovers come into sight as it starts.
+			for (const shown of [this.leaves[this.turned - 1], this.leaves[this.turned]]) shown?.removeClass("is-buried");
 			this.updateBar();
 			this.placeBook();
-			window.setTimeout(() => this.place(), TURN_MS);
+			window.setTimeout(() => {
+				this.moving.delete(leaf);
+				this.place();
+			}, TURN_MS);
 			if (this.turned !== goal) this.walking = window.setTimeout(step, STAGGER_MS);
 		};
 		step();
 	}
 
-	/** Each leaf in its pile: the turned ones on the left, the last turned on top; the rest on the right, the next one on top. */
+	/**
+	 * Each leaf in its pile: the turned ones on the left, the last turned on
+	 * top; the rest on the right, the next one on top. On a phone or a
+	 * tablet only the two on top are shown, and those still turning: Safari
+	 * there stacks pages turned in 3D by its own order rather than by
+	 * z-index, and a page under the open one could show or take its taps.
+	 */
 	private place(): void {
 		this.leaves.forEach((leaf, index) => {
 			const turned = index < this.turned;
+			const top = index === this.turned - 1 || index === this.turned;
 			leaf.toggleClass("is-turned", turned);
-			leaf.toggleClass("is-top", index === this.turned - 1 || index === this.turned);
+			leaf.toggleClass("is-top", top);
+			leaf.toggleClass("is-buried", !top && !this.moving.has(leaf));
 			leaf.setCssProps({ "--film-tracker-diary-z": String(turned ? index + 1 : this.leaves.length - index) });
 		});
 		this.placeBook();
@@ -493,9 +514,13 @@ export class DiaryView extends ItemView {
 			this.render();
 			return;
 		}
+		// A phone on its side: the buttons either side of the book rather than under it.
+		this.contentEl.toggleClass("is-sideways", Platform.isPhone && this.contentEl.clientWidth > this.contentEl.clientHeight);
 		const width = this.contentEl.clientWidth * 0.94;
-		const height = (this.contentEl.clientHeight - 56) * 0.94;
-		const pageHeight = Math.max(240, Math.min(height, width / (single ? 1 : 2) / PAGE_RATIO));
+		// On a computer, the tab less the bar under the book. On a phone or a tablet, the room really left
+		// between Obsidian's own bars, and never a page larger than that.
+		const room = Platform.isMobile ? (this.bookEl.parentElement?.clientHeight ?? 0) : this.contentEl.clientHeight - 56;
+		const pageHeight = Math.max(Platform.isMobile ? 120 : 240, Math.min(room * 0.94, width / (single ? 1 : 2) / PAGE_RATIO));
 		this.bookEl.setCssProps({
 			"--film-tracker-diary-page-h": `${Math.round(pageHeight)}px`,
 			"--film-tracker-diary-page-w": `${Math.round(pageHeight * PAGE_RATIO)}px`,

@@ -934,7 +934,7 @@ The pages, in order:
 
 To turn a page, click it, or use the arrows below the book: **‹** and **›**, and the button left of them for the cover. On the keyboard, **←** and **→** (or **Page Up** and **Page Down**) turn a page, **Home** goes to the cover and **End** to the back. The diary opens on this year, or on the latest year with anything in it. The year to the right of the arrows picks another, from the years your notes have anything in.
 
-In a narrow tab, and always on a phone, the diary shows one page at a time. Swipe, or tap a page to turn it: its left third goes back.
+In a narrow tab, and always on a phone, the diary shows one page at a time. Tap a page to turn it: its left third goes back. On a computer's touchscreen a swipe turns it too; a phone or a tablet keeps the swipe for Obsidian's sidebars. A phone on its side has the buttons either side of the book, to leave it all the height there is.
 
 ## Development
 

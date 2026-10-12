@@ -771,6 +771,11 @@ body {
 	transform: rotateY(-180deg);
 }
 
+/* On a phone or a tablet, a page under another, out of sight and out of reach of a tap. */
+.is-mobile .film-tracker-diary-leaf.is-buried {
+	visibility: hidden;
+}
+
 /* One page at a time: each page turns away over its left edge, the next one under it. */
 .film-tracker-diary-book.is-single {
 	width: var(--film-tracker-diary-page-w, 320px);
@@ -1315,6 +1320,63 @@ body {
 	min-width: 12em;
 	text-align: center;
 	font-size: var(--font-ui-small);
+}
+
+/* On a phone or a tablet, with bigger buttons: they keep their size, and where the bar is short of room the label gives way. */
+.is-mobile .film-tracker-diary-bar {
+	padding: 0 var(--size-4-3);
+}
+
+.is-mobile .film-tracker-diary-bar > * {
+	flex-shrink: 0;
+}
+
+.is-mobile .film-tracker-diary-bar > .film-tracker-diary-label {
+	flex: 0 1 12em;
+	min-width: 0;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.is-phone .film-tracker-diary-bar {
+	gap: var(--size-4-1);
+}
+
+.is-phone .film-tracker-diary-year {
+	padding: 0 var(--size-4-2);
+}
+
+/* A phone on its side has height to spare least: the buttons go either side of the book, and all of it is the book's. */
+.film-tracker-diary.is-sideways {
+	position: relative;
+}
+
+.film-tracker-diary.is-sideways .film-tracker-diary-bar {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: max(var(--view-bottom-spacing, 0px), var(--safe-area-inset-bottom, 0px));
+	height: auto;
+	padding: 0 var(--size-4-4);
+	pointer-events: none;
+}
+
+.film-tracker-diary.is-sideways .film-tracker-diary-bar > * {
+	pointer-events: auto;
+}
+
+.film-tracker-diary.is-sideways .film-tracker-diary-bar > .film-tracker-diary-label {
+	display: none;
+}
+
+.film-tracker-diary.is-sideways .film-tracker-diary-previous {
+	margin-inline-end: auto;
+}
+
+.film-tracker-diary.is-sideways .film-tracker-diary-next {
+	margin-inline-start: auto;
 }
 
 .film-tracker-diary-year {
