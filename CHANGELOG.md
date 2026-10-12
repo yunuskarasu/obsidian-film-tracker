@@ -4,6 +4,14 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+## [3.7.0] - 2026-10-12
+
+A diary of your year. Nothing breaks: notes and settings from 3.6 carry over as they are.
+
+### Added
+
+- **Diary.** **Open diary**, a command and the first entry of the ribbon icon's menu, opens a book of your year in a tab of its own: every film, series, anime, manga, book, game and album you finished, by the day you finished it, with pages you turn like a real book's. A cover with the year and the covers of the first things you finished, the contents, the year at a glance, a calendar and the entries of each month, and the year in numbers. Clicking an entry opens its note. The year beside the arrows picks another, and a narrow tab or a phone shows a page at a time, turned by a swipe. It only reads the dates already in your notes — `watch_date`, each season's, `read_date`, `finished`, `completed` and `listen_date` — writes nothing, and keeps up with them while it is open.
+
 ## [3.6.0] - 2026-10-11
 
 Your own edition of a book, and your Goodreads library. Nothing breaks: notes and settings from 3.5 carry over as they are.
@@ -237,6 +245,7 @@ Music joins films, TV series and anime-manga. Nothing breaks: notes and settings
 - Import from Letterboxd.
 
 [Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.6.0...HEAD
+[3.7.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.6.0...3.7.0
 [3.6.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.5.0...3.6.0
 [3.5.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.4.0...3.5.0
 [3.4.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.3.1...3.4.0

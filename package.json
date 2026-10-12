@@ -1,6 +1,6 @@
 {
   "name": "obsidian-film-tracker",
-  "version": "3.6.0",
+  "version": "3.7.0",
   "description": "Add films, TV series, anime, manga, music, games and books to your vault as notes with metadata and a poster.",
   "main": "main.js",
   "scripts": {

@@ -684,3 +684,642 @@ body {
 .film-tracker-progress-actions:empty {
 	display: none;
 }
+
+/* The diary: a book on its own tab. Its paper, ink and boards are the
+   variables below, light and dark, for a theme or a snippet to change. */
+.film-tracker-diary {
+	--film-tracker-diary-paper: #f7f1e3;
+	--film-tracker-diary-paper-edge: #e9dfc8;
+	--film-tracker-diary-ink: #3b3226;
+	--film-tracker-diary-muted: #8c7f69;
+	--film-tracker-diary-rule: rgba(80, 60, 30, 0.12);
+	--film-tracker-diary-board: #5f2b26;
+	--film-tracker-diary-board-dark: #3f1a17;
+	--film-tracker-diary-gold: #d9b66d;
+	--film-tracker-diary-desk: var(--background-secondary);
+	--film-tracker-diary-serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	background: radial-gradient(ellipse at center, var(--background-primary) 0%, var(--film-tracker-diary-desk) 75%);
+	outline: none;
+}
+
+.workspace-leaf-content[data-type="film-tracker-diary"] .view-content {
+	padding: 0;
+}
+
+.theme-dark .film-tracker-diary {
+	--film-tracker-diary-paper: #2c2823;
+	--film-tracker-diary-paper-edge: #221f1b;
+	--film-tracker-diary-ink: #ebe3d2;
+	--film-tracker-diary-muted: #a5987f;
+	--film-tracker-diary-rule: rgba(235, 220, 190, 0.08);
+	--film-tracker-diary-board: #4a211d;
+	--film-tracker-diary-board-dark: #2b1210;
+	--film-tracker-diary-gold: #caa75f;
+}
+
+.film-tracker-diary-kind-film { --film-tracker-diary-kind: #c4574f; }
+.film-tracker-diary-kind-tv { --film-tracker-diary-kind: #4f7fbd; }
+.film-tracker-diary-kind-anime { --film-tracker-diary-kind: #8a62b0; }
+.film-tracker-diary-kind-manga { --film-tracker-diary-kind: #b0703a; }
+.film-tracker-diary-kind-book { --film-tracker-diary-kind: #3f9468; }
+.film-tracker-diary-kind-game { --film-tracker-diary-kind: #d0902c; }
+.film-tracker-diary-kind-album { --film-tracker-diary-kind: #2f98a6; }
+
+.film-tracker-diary-stage {
+	flex: 1;
+	min-height: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	perspective: 3200px;
+}
+
+.film-tracker-diary-book {
+	position: relative;
+	width: calc(var(--film-tracker-diary-page-w, 320px) * 2);
+	height: var(--film-tracker-diary-page-h, 460px);
+	font-size: var(--film-tracker-diary-unit, 10px);
+	font-family: var(--film-tracker-diary-serif);
+	color: var(--film-tracker-diary-ink);
+	transform: translateX(var(--film-tracker-diary-shift, -25%));
+	transform-style: preserve-3d;
+	transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.film-tracker-diary-leaf {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 50%;
+	height: 100%;
+	transform-origin: left center;
+	transform-style: preserve-3d;
+	transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+	z-index: var(--film-tracker-diary-z, 1);
+	cursor: pointer;
+}
+
+.film-tracker-diary-leaf.is-turned {
+	transform: rotateY(-180deg);
+}
+
+/* One page at a time: each page turns away over its left edge, the next one under it. */
+.film-tracker-diary-book.is-single {
+	width: var(--film-tracker-diary-page-w, 320px);
+}
+
+.film-tracker-diary-book.is-single .film-tracker-diary-leaf {
+	left: 0;
+	width: 100%;
+	transition:
+		transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1),
+		opacity 0.8s ease-in;
+}
+
+.film-tracker-diary-book.is-single .film-tracker-diary-leaf.is-turned {
+	transform: rotateY(-100deg);
+	opacity: 0;
+	pointer-events: none;
+}
+
+.film-tracker-diary-face {
+	position: absolute;
+	inset: 0;
+	overflow: hidden;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	background: var(--film-tracker-diary-paper);
+}
+
+/* A right-hand page: the spine's shadow on its left, the edge of the pages under it on its right. */
+.film-tracker-diary-front {
+	border-radius: 0 0.5em 0.5em 0;
+	box-shadow:
+		inset 2.6em 0 2.2em -2em rgba(0, 0, 0, 0.2),
+		inset -0.15em 0 0 var(--film-tracker-diary-paper-edge);
+}
+
+/* A left-hand page: the same, the other way round. */
+.film-tracker-diary-back {
+	transform: rotateY(180deg);
+	border-radius: 0.5em 0 0 0.5em;
+	box-shadow:
+		inset -2.6em 0 2.2em -2em rgba(0, 0, 0, 0.2),
+		inset 0.15em 0 0 var(--film-tracker-diary-paper-edge);
+}
+
+/* Only the page on top of each pile casts the book's shadow: every page under it would darken it again. */
+.film-tracker-diary-leaf.is-top > .film-tracker-diary-front {
+	box-shadow:
+		inset 2.6em 0 2.2em -2em rgba(0, 0, 0, 0.2),
+		inset -0.15em 0 0 var(--film-tracker-diary-paper-edge),
+		0.3em 0.5em 1.4em rgba(0, 0, 0, 0.2);
+}
+
+.film-tracker-diary-leaf.is-top > .film-tracker-diary-back {
+	box-shadow:
+		inset -2.6em 0 2.2em -2em rgba(0, 0, 0, 0.2),
+		inset 0.15em 0 0 var(--film-tracker-diary-paper-edge),
+		-0.3em 0.5em 1.4em rgba(0, 0, 0, 0.2);
+}
+
+.film-tracker-diary-leaf.is-top > .film-tracker-diary-board {
+	box-shadow: 0.3em 0.5em 1.4em rgba(0, 0, 0, 0.3);
+}
+
+.film-tracker-diary-sheet {
+	position: absolute;
+	inset: 0;
+	display: flex;
+	flex-direction: column;
+	padding: 3.2em 3em 3.6em 4em;
+}
+
+.film-tracker-diary-back .film-tracker-diary-sheet {
+	padding: 3.2em 4em 3.6em 3em;
+}
+
+.film-tracker-diary-folio {
+	position: absolute;
+	bottom: 1.5em;
+	font-size: 0.95em;
+	font-style: italic;
+	color: var(--film-tracker-diary-muted);
+}
+
+.film-tracker-diary-front .film-tracker-diary-folio { right: 2.6em; }
+.film-tracker-diary-back .film-tracker-diary-folio { left: 2.6em; }
+
+.film-tracker-diary-heading {
+	font-size: 2.4em;
+	margin-bottom: 0.8em;
+	font-weight: 500;
+	letter-spacing: 0.01em;
+}
+
+.film-tracker-diary-swatch {
+	display: inline-block;
+	flex-shrink: 0;
+	width: 0.75em;
+	height: 0.75em;
+	border-radius: 50%;
+	background: var(--film-tracker-diary-kind);
+}
+
+/* The boards: cloth over card, a gold rule round the cover. */
+.film-tracker-diary-board {
+	background:
+		radial-gradient(ellipse at 30% 20%, rgba(255, 255, 255, 0.08), transparent 60%),
+		linear-gradient(160deg, var(--film-tracker-diary-board), var(--film-tracker-diary-board-dark));
+	color: var(--film-tracker-diary-gold);
+}
+
+.film-tracker-diary-cover {
+	align-items: center;
+	text-align: center;
+	padding: 3.4em 3em 3em 3.6em;
+}
+
+.film-tracker-diary-cover::before {
+	content: "";
+	position: absolute;
+	inset: 1.4em 1.4em 1.4em 2em;
+	border: 0.12em solid var(--film-tracker-diary-gold);
+	border-radius: 0.3em;
+	opacity: 0.55;
+	pointer-events: none;
+}
+
+.film-tracker-diary-cover-kicker {
+	font-size: 1.1em;
+	letter-spacing: 0.5em;
+	text-transform: uppercase;
+	opacity: 0.85;
+}
+
+.film-tracker-diary-cover-year {
+	font-size: 6em;
+	line-height: 1.1;
+	margin-bottom: 0.25em;
+	text-shadow: 0 0.04em 0 rgba(0, 0, 0, 0.45);
+}
+
+/* Three covers a row, and a row of fewer centred under the others. */
+.film-tracker-diary-collage {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.6em;
+	width: 62%;
+}
+
+.film-tracker-diary-collage.is-empty {
+	display: none;
+}
+
+.film-tracker-diary-collage-cell {
+	width: calc((100% - 1.2em) / 3);
+	aspect-ratio: 2 / 3;
+	object-fit: cover;
+	border-radius: 0.2em;
+	box-shadow: 0 0.2em 0.5em rgba(0, 0, 0, 0.5);
+	outline: 0.08em solid rgba(217, 182, 109, 0.5);
+}
+
+.film-tracker-diary-cover-totals {
+	margin-top: auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	gap: 0.5em 1.2em;
+	font-size: 1em;
+}
+
+.film-tracker-diary-total {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.35em;
+}
+
+.film-tracker-diary-total svg,
+.film-tracker-diary-emblem svg {
+	width: 1.1em;
+	height: 1.1em;
+}
+
+.film-tracker-diary-back-cover {
+	justify-content: center;
+}
+
+/* The back cover is seen from behind: its spine on the right. */
+.film-tracker-diary-back .film-tracker-diary-cover {
+	padding: 3.4em 3.6em 3em 3em;
+}
+
+.film-tracker-diary-back .film-tracker-diary-cover::before {
+	inset: 1.4em 2em 1.4em 1.4em;
+}
+
+.film-tracker-diary-emblem svg {
+	width: 4em;
+	height: 4em;
+	opacity: 0.6;
+}
+
+/* Contents. */
+.film-tracker-diary-contents {
+	display: flex;
+	flex-direction: column;
+	gap: 0.55em;
+	font-size: 1.3em;
+}
+
+.film-tracker-diary-jump {
+	cursor: pointer;
+}
+
+.film-tracker-diary-contents .film-tracker-diary-jump {
+	display: flex;
+	align-items: baseline;
+	gap: 0.4em;
+}
+
+.film-tracker-diary-contents .film-tracker-diary-jump:hover {
+	color: var(--film-tracker-diary-board);
+}
+
+.theme-dark .film-tracker-diary-contents .film-tracker-diary-jump:hover {
+	color: var(--film-tracker-diary-gold);
+}
+
+.film-tracker-diary-contents-detail {
+	font-size: 0.7em;
+	color: var(--film-tracker-diary-muted);
+}
+
+.film-tracker-diary-contents-leader {
+	flex: 1;
+	border-bottom: 0.1em dotted var(--film-tracker-diary-muted);
+	opacity: 0.6;
+}
+
+.film-tracker-diary-contents-page {
+	font-style: italic;
+}
+
+/* The year at a glance: a column a month, its parts a kind each. */
+.film-tracker-diary-glance {
+	display: flex;
+	align-items: flex-end;
+	gap: 0.5em;
+	height: 22em;
+	padding-bottom: 0.4em;
+	border-bottom: 0.1em solid var(--film-tracker-diary-rule);
+}
+
+.film-tracker-diary-glance-column {
+	flex: 1;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-end;
+	gap: 0.3em;
+}
+
+.film-tracker-diary-glance-column.film-tracker-diary-jump:hover .film-tracker-diary-glance-bar {
+	filter: brightness(1.12);
+}
+
+.film-tracker-diary-glance-count {
+	font-size: 0.9em;
+	color: var(--film-tracker-diary-muted);
+	min-height: 1.2em;
+}
+
+.film-tracker-diary-glance-bar {
+	width: 70%;
+	flex: 1;
+	display: flex;
+	flex-direction: column-reverse;
+	border-radius: 0.3em;
+	overflow: hidden;
+}
+
+.film-tracker-diary-glance-part {
+	height: var(--part);
+	background: var(--film-tracker-diary-kind);
+}
+
+.film-tracker-diary-glance-month {
+	font-size: 1em;
+	color: var(--film-tracker-diary-muted);
+}
+
+.film-tracker-diary-legend {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5em 1.2em;
+	margin-top: 1.4em;
+	font-size: 1em;
+	color: var(--film-tracker-diary-muted);
+}
+
+.film-tracker-diary-legend-item {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+}
+
+/* A month's own page. */
+.film-tracker-diary-month-year {
+	font-size: 1.1em;
+	letter-spacing: 0.4em;
+	color: var(--film-tracker-diary-muted);
+}
+
+.film-tracker-diary-month-name {
+	font-size: 4.2em;
+	line-height: 1.05;
+	margin-bottom: 0.3em;
+}
+
+.film-tracker-diary-calendar {
+	display: grid;
+	grid-template-columns: repeat(7, 2.5em);
+	justify-content: space-between;
+	row-gap: 0.25em;
+	font-size: 1.05em;
+	text-align: center;
+}
+
+.film-tracker-diary-calendar-head {
+	color: var(--film-tracker-diary-muted);
+	font-size: 0.85em;
+	padding-bottom: 0.2em;
+}
+
+.film-tracker-diary-calendar-day {
+	height: 2.5em;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+}
+
+.film-tracker-diary-calendar-day.is-marked {
+	background: var(--film-tracker-diary-kind);
+	color: #fff;
+	font-weight: 600;
+}
+
+.film-tracker-diary-polaroids {
+	margin-top: auto;
+	display: flex;
+	justify-content: center;
+	padding-bottom: 0.4em;
+}
+
+.film-tracker-diary-polaroid {
+	background: #fdfbf6;
+	padding: 0.45em 0.45em 1.5em;
+	box-shadow: 0 0.25em 0.8em rgba(0, 0, 0, 0.3);
+	transform: rotate(-5deg);
+}
+
+.film-tracker-diary-polaroid + .film-tracker-diary-polaroid {
+	margin-left: -1.4em;
+	transform: rotate(3deg) translateY(-0.4em);
+}
+
+.film-tracker-diary-polaroid:nth-child(3) {
+	transform: rotate(-1deg) translateY(0.3em);
+}
+
+.film-tracker-diary-polaroid-image {
+	display: block;
+	width: 5.2em;
+	aspect-ratio: 2 / 3;
+	object-fit: cover;
+}
+
+/* A month's entries, day by day. */
+.film-tracker-diary-running-head {
+	text-align: center;
+	font-size: 0.95em;
+	letter-spacing: 0.3em;
+	text-transform: uppercase;
+	color: var(--film-tracker-diary-muted);
+	margin-bottom: 1.6em;
+}
+
+.film-tracker-diary-entries {
+	display: flex;
+	flex-direction: column;
+	gap: 0.9em;
+}
+
+.film-tracker-diary-entry {
+	display: grid;
+	grid-template-columns: 3em 4.2em 1fr;
+	align-items: center;
+	gap: 1em;
+	padding: 0.35em 0.5em;
+	border-radius: 0.4em;
+	cursor: pointer;
+}
+
+.film-tracker-diary-entry:hover {
+	background: var(--film-tracker-diary-rule);
+}
+
+.film-tracker-diary-entry-day {
+	text-align: center;
+	align-self: start;
+	padding-top: 0.4em;
+}
+
+.film-tracker-diary-entry-date {
+	font-size: 2.2em;
+	line-height: 1;
+}
+
+.film-tracker-diary-entry-weekday {
+	font-size: 0.85em;
+	color: var(--film-tracker-diary-muted);
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
+
+.film-tracker-diary-entry-cover {
+	width: 4.2em;
+	height: 6.3em;
+	border-radius: 0.25em;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--film-tracker-diary-rule);
+	color: var(--film-tracker-diary-muted);
+	box-shadow: 0 0.15em 0.4em rgba(0, 0, 0, 0.25);
+}
+
+.film-tracker-diary-entry-image {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.film-tracker-diary-entry-title {
+	font-size: 1.35em;
+	font-weight: 600;
+	line-height: 1.2;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.film-tracker-diary-entry-meta {
+	display: flex;
+	align-items: center;
+	gap: 0.45em;
+	margin-top: 0.3em;
+	font-family: var(--font-interface);
+	font-size: 0.95em;
+	color: var(--film-tracker-diary-muted);
+}
+
+/* The year in numbers. */
+.film-tracker-diary-numbers {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	gap: 1.4em 0.6em;
+	text-align: center;
+}
+
+.film-tracker-diary-number-icon {
+	width: 2.6em;
+	height: 2.6em;
+	margin: 0 auto 0.4em;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: var(--film-tracker-diary-kind);
+	color: #fff;
+}
+
+.film-tracker-diary-number-icon svg {
+	width: 1.3em;
+	height: 1.3em;
+}
+
+.film-tracker-diary-number-value {
+	font-size: 2.6em;
+	line-height: 1;
+}
+
+.film-tracker-diary-number-label {
+	color: var(--film-tracker-diary-muted);
+}
+
+.film-tracker-diary-facts {
+	margin-top: auto;
+	display: flex;
+	flex-direction: column;
+	gap: 0.6em;
+	font-size: 1.15em;
+	font-style: italic;
+	line-height: 1.4;
+}
+
+/* Paper with nothing on it: ruled, or the endpaper's pattern. */
+.film-tracker-diary-ruled {
+	background-image: linear-gradient(to bottom, transparent calc(100% - 1px), var(--film-tracker-diary-rule) calc(100% - 1px));
+	background-size: 100% 2.4em;
+	background-origin: content-box;
+	background-clip: content-box;
+}
+
+.film-tracker-diary-endpaper {
+	background-image:
+		radial-gradient(circle, var(--film-tracker-diary-rule) 0.16em, transparent 0.2em),
+		radial-gradient(circle, var(--film-tracker-diary-rule) 0.16em, transparent 0.2em);
+	background-size: 2.4em 2.4em;
+	background-position:
+		0 0,
+		1.2em 1.2em;
+}
+
+/* Under the book: back, where you are, forward. */
+.film-tracker-diary-bar {
+	flex-shrink: 0;
+	height: 52px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--size-4-3);
+	color: var(--text-muted);
+}
+
+.film-tracker-diary-label {
+	min-width: 12em;
+	text-align: center;
+	font-size: var(--font-ui-small);
+}
+
+.film-tracker-diary-year {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--size-2-1);
+	font-size: var(--font-ui-small);
+}
+
+.film-tracker-diary-year-icon svg {
+	width: var(--icon-xs);
+	height: var(--icon-xs);
+}

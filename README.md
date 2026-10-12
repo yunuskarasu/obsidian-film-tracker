@@ -12,6 +12,8 @@ Games come from IGDB, with where you are with each one — in your backlog, play
 
 Books and their authors come from Open Library, with no key either, and with where you are with each book kept in its note. See [Books](#books).
 
+Everything you finish, whatever it is, comes together in a diary: a book of the year, with a page for each month, that you turn like a real one. See [Diary](#diary).
+
 Anime and manga follow the same philosophy, sourced from MyAnimeList. The two even share a single note when they're the same series: search for either half and Film + Anime-Manga Tracker creates or merges into one **Series note**, with a separate panel below the properties for the manga side. See [Anime and manga](#anime-and-manga) for details.
 
 ## Design philosophy
@@ -84,6 +86,8 @@ Games work the same way too: run **Add game**, search IGDB and pick. A remake, a
 
 Books work the same way, with no key: run **Add book** or **Add author**, search Open Library and pick. See [Books](#books).
 
+To look back over your year, click the ribbon icon and pick **Open diary**, or run **Open diary**. See [Diary](#diary).
+
 Mangaka work a little differently: open the manga or Series note whose author you want to add, then run **Add mangaka** — it reads that note's own manga metadata to find the author on MyAnimeList directly, rather than opening a search box. One credited author adds straight away; more than one shows a quick pick list. See [Anime and manga](#anime-and-manga) for the MANGAGRAPHY panel it unlocks.
 
 ### Commands
@@ -124,6 +128,7 @@ Mangaka work a little differently: open the manga or Series note whose author yo
 | **Import from Letterboxd** | Bulk-create notes from a Letterboxd export. See below. |
 | **Import from MyAnimeList** | Bulk-create notes from a public MyAnimeList list, marking what you have completed. See below. |
 | **Import from Goodreads** | Bulk-create book notes from a Goodreads library export, with your shelves, read dates and editions. See below. |
+| **Open diary** | Opens the diary in a tab of its own: everything you finished this year, month by month. Also the first entry of the ribbon icon's menu. See [Diary](#diary). |
 
 ## Importing from Letterboxd
 
@@ -900,6 +905,36 @@ That mangaka note's properties get a **MANGAGRAPHY** panel — the mangaka equiv
 ### Mangaka links
 
 `mangaka` follows the exact same rule as a film's `directors` or `cast`: written as a plain name, and only turned into a `[[wikilink]]` once a note by that name already exists in your vault. Running **Add mangaka** creates that note and updates the manga side in the same step, so the wikilink appears immediately. If a mangaka note comes to exist some other way instead, run **Refresh anime/manga metadata from MAL** on the series afterwards to pick it up — **Relink directors and genres** is TMDB-only and doesn't touch anime/manga notes.
+
+## Diary
+
+The diary is a book of your year: every film, series, anime, manga, book, game and album you finished, by the day you finished it. Click the ribbon icon and pick **Open diary**, or run **Open diary** from the command palette. It opens in a tab of its own; running it again brings back the one already open.
+
+It writes nothing. It only reads the dates already in your notes, so a note you date fills it in, and one you delete or move takes its day with it — the diary keeps up while it is open.
+
+| A note | Shows on the day in |
+| --- | --- |
+| Film | `watch_date` |
+| TV series | each season's `watch_date`, as "Season 2"; and the series' own `watch_date` when no season was finished that day |
+| Anime | `watch_date` |
+| Manga | the manga side's `read_date`, under the manga's own title and cover — on a Series note too |
+| Book | `finished` |
+| Game | `completed` |
+| Album | `listen_date` |
+
+A note without a date isn't in it: `watched`, `read` and `listened` ticked on their own mean "I've seen it, but I don't know when", so they have no day to go on. **Watched today**, **Mark book as finished today** and the other *today* commands write the date for you. Only the first date is kept in a note, so a film seen again stays on the day you first saw it.
+
+The pages, in order:
+
+- **The cover**, with the year, the covers of the first things you finished and how many of each kind.
+- **Contents**, a line for each month with the page it starts on. Click one to go there.
+- **At a glance**, a bar for each month, coloured by kind. Click one to go to its month.
+- **Each month**: a calendar with the days you finished something marked in their colour, and a few of the month's covers; then its entries, four a page, each with its day, cover and kind. Click an entry to open its note in a new tab — or, holding **Ctrl** (**Cmd** on macOS), wherever Obsidian puts a link opened that way.
+- **The year in numbers**: how many of each kind, the busiest month, what the year began with and the latest.
+
+To turn a page, click it, or use the arrows below the book: **‹** and **›**, and the button left of them for the cover. On the keyboard, **←** and **→** (or **Page Up** and **Page Down**) turn a page, **Home** goes to the cover and **End** to the back. The diary opens on this year, or on the latest year with anything in it. When your notes span more than one year, the year to the right of the arrows picks another.
+
+In a narrow tab, and always on a phone, the diary shows one page at a time. Swipe, or tap a page to turn it: its left third goes back.
 
 ## Development
 

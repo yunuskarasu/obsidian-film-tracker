@@ -7,6 +7,8 @@ import {
 } from "./already-tracked-modal";
 import { ConfirmModal } from "./confirm-modal";
 import { BookActions } from "./book-actions";
+import { diaryEntriesOf, type DiaryEntry } from "./diary";
+import { DIARY_VIEW, DiaryView, type DiarySource } from "./diary-view";
 import { FilmActions } from "./film-actions";
 import { GameActions } from "./game-actions";
 import type { GameDlc } from "./game";
@@ -31,7 +33,7 @@ import { albumTracksOf } from "./music-note";
 import { LrclibClient } from "./lrclib";
 import { LyricsCache } from "./lyrics-cache";
 import { LyricsService, lyricsQueryOf } from "./lyrics-service";
-import { isFolderNote } from "./note";
+import { isFolderNote, parseLinkTarget } from "./note";
 import { MusicBrainzClient } from "./musicbrainz";
 import { canListen, canWatch, hasAnime, hasEpisodes, hasManga, isBook, isGame, type NoteKind } from "./note-kind";
 import { OpenLibraryClient } from "./openlibrary";
@@ -148,6 +150,13 @@ export default class FilmTrackerPlugin extends Plugin {
 		await this.loadSettings();
 		this.addSettingTab(new FilmTrackerSettingTab(this.app, this));
 		this.setUpLayout();
+		this.registerView(DIARY_VIEW, (leaf) => new DiaryView(leaf, this.diarySource()));
+
+		this.addCommand({
+			id: "open-diary",
+			name: "Open diary",
+			callback: () => void this.openDiary(),
+		});
 
 		this.addCommand({
 			id: "add-film",
@@ -496,6 +505,13 @@ export default class FilmTrackerPlugin extends Plugin {
 
 		this.addRibbonIcon("film", "Add film, TV series, anime, manga, music, game or book", (evt) => {
 			const menu = new Menu();
+			menu.addItem((item) =>
+				item
+					.setTitle("Open diary")
+					.setIcon("book-open-text")
+					.onClick(() => void this.openDiary()),
+			);
+			menu.addSeparator();
 			menu.addItem((item) =>
 				item
 					.setTitle("Add film")
@@ -1069,6 +1085,32 @@ export default class FilmTrackerPlugin extends Plugin {
 		openAnimeSearch(this.app, client, (result) => {
 			void this.anime.addAdaptation(client, result, file, mangaMalId);
 		});
+	}
+
+	/** The diary in a tab of its own: the one already open, if there is one. */
+	private async openDiary(): Promise<void> {
+		const { workspace } = this.app;
+		const open = workspace.getLeavesOfType(DIARY_VIEW)[0];
+		const leaf = open ?? workspace.getLeaf("tab");
+		if (open === undefined) await leaf.setViewState({ type: DIARY_VIEW, active: true });
+		workspace.setActiveLeaf(leaf, { focus: true });
+	}
+
+	/** What the diary reads: every note's days of finishing, and the covers they show. */
+	private diarySource(): DiarySource {
+		return {
+			entries: () =>
+				this.app.vault.getMarkdownFiles().flatMap((file): DiaryEntry[] => {
+					const kind = this.notes.kindOf(file);
+					const frontmatter = this.notes.frontmatterOf(file);
+					return kind === null || frontmatter === undefined ? [] : diaryEntriesOf(file.path, file.basename, kind, frontmatter);
+				}),
+			imageUrl: (entry) => {
+				const linkpath = parseLinkTarget(entry.poster);
+				const image = linkpath === null ? null : this.app.metadataCache.getFirstLinkpathDest(linkpath, entry.path);
+				return image === null ? null : this.app.vault.getResourcePath(image);
+			},
+		};
 	}
 
 	startImportFromLetterboxd(): void {
