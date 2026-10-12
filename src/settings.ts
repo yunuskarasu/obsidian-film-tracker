@@ -97,7 +97,13 @@ export interface FilmTrackerSettings {
 	linkBookGenres: boolean;
 	/** The BIBLIOGRAPHY panel under an author. */
 	showBibliography: boolean;
+	/** How large the library's covers are: picked over the shelf itself, not here. */
+	librarySize: LibrarySize;
+	/** The same on a phone, kept apart: a size picked there never changes a computer's. */
+	libraryPhoneSize: LibrarySize;
 }
+
+export type LibrarySize = "small" | "medium" | "large";
 
 export const DEFAULT_SETTINGS: FilmTrackerSettings = {
 	apiKey: "",
@@ -164,6 +170,8 @@ export const DEFAULT_SETTINGS: FilmTrackerSettings = {
 	linkAuthors: true,
 	linkBookGenres: false,
 	showBibliography: true,
+	librarySize: "medium",
+	libraryPhoneSize: "medium",
 };
 
 /** Added to a key's description once it lives in Obsidian's keychain. */

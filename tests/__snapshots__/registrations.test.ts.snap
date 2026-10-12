@@ -1,0 +1,4223 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`what each command and menu entry does > runs each command the same way 1`] = `
+{
+  "add-album, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-album, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-anime, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-anime, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-artist, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-artist, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-author, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-author, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-book, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-book, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-director, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-director, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-dlc on Games/Game (2018).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for DLCs of Game (2018)…",
+      "Could not reach IGDB. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-dlc on Games/Game (2018).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your IGDB client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-film, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-film, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-game, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-game, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your IGDB client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-manga, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-manga, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-mangaka on Anime/Both (2011).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach MyAnimeList. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-mangaka on Anime/Both (2011).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-mangaka on Manga/Manga (1989).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach MyAnimeList. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-mangaka on Manga/Manga (1989).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-mangaka on TV/Show with manga (2008).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach MyAnimeList. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-mangaka on TV/Show with manga (2008).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-song on Music/Albums/Album (2017)/Album (2017).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Every song on Album (2017) already has a note.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-song on Music/Albums/Album (2017)/Album (2017).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Every song on Album (2017) already has a note.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-song on Music/Loose album (2017).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Every song on Loose album (2017) already has a note.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-song on Music/Loose album (2017).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Every song on Loose album (2017) already has a note.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "add-tv, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "add-tv, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "change-artist-photo on Music/Artists/Artist.md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "change-artist-photo on Music/Artists/Artist.md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "choose-edition on Books/Book (1987).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Loading the editions of Book (1987)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "choose-edition on Books/Book (1987).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Loading the editions of Book (1987)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "completed-today on Games/Game (2018).md, with keys": {
+    "changed": {
+      "Games/Game (2018).md": "---
+title: Game
+igdb_id: 11
+play_status: completed
+completed: 2026-10-12
+completed_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Completed Game (2018) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "completed-today on Games/Game (2018).md, without keys": {
+    "changed": {
+      "Games/Game (2018).md": "---
+title: Game
+igdb_id: 11
+play_status: completed
+completed: 2026-10-12
+completed_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Completed Game (2018) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "find-soundtrack on Anime/Anime (2013).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Anime (2013)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "find-soundtrack on Anime/Anime (2013).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Anime (2013)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "find-soundtrack on Anime/Both (2011).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Both (2011)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "find-soundtrack on Anime/Both (2011).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Both (2011)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "find-soundtrack on Films/Film (2010).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Film (2010)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "find-soundtrack on Films/Film (2010).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Film (2010)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "find-soundtrack on Games/Game (2018).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Game (2018)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "find-soundtrack on Games/Game (2018).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Game (2018)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "find-soundtrack on TV/Show (2008).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Show (2008)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "find-soundtrack on TV/Show (2008).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Show (2008)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "find-soundtrack on TV/Show with manga (2008).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Show with manga (2008)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "find-soundtrack on TV/Show with manga (2008).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Show with manga (2008)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "finished-reading-today on Books/Book (1987).md, with keys": {
+    "changed": {
+      "Books/Book (1987).md": "---
+title: Book
+openlibrary_id: OL1W
+read_status: read
+finished: 2026-10-12
+read_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Finished Book (1987) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "finished-reading-today on Books/Book (1987).md, without keys": {
+    "changed": {
+      "Books/Book (1987).md": "---
+title: Book
+openlibrary_id: OL1W
+read_status: read
+finished: 2026-10-12
+read_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Finished Book (1987) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "import-goodreads, with keys": {
+    "changed": {},
+    "dialogs": [
+      "CsvFileModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "import-goodreads, without keys": {
+    "changed": {},
+    "dialogs": [
+      "CsvFileModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "import-letterboxd, with keys": {
+    "changed": {},
+    "dialogs": [
+      "CsvFileModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "import-letterboxd, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "import-mal, with keys": {
+    "changed": {},
+    "dialogs": [
+      "MalImportModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "import-mal, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "link-soundtrack-to-work on Music/Albums/Album (2017)/Album (2017).md, with keys": {
+    "changed": {},
+    "dialogs": [
+      "WorkPickerModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "link-soundtrack-to-work on Music/Albums/Album (2017)/Album (2017).md, without keys": {
+    "changed": {},
+    "dialogs": [
+      "WorkPickerModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "link-soundtrack-to-work on Music/Loose album (2017).md, with keys": {
+    "changed": {},
+    "dialogs": [
+      "WorkPickerModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "link-soundtrack-to-work on Music/Loose album (2017).md, without keys": {
+    "changed": {},
+    "dialogs": [
+      "WorkPickerModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "listened-today on Music/Albums/Album (2017)/Album (2017).md, with keys": {
+    "changed": {
+      "Music/Albums/Album (2017)/Album (2017).md": "---
+title: Album
+mb_album_id: a1
+listened: true
+listen_date: 2026-10-12
+listen_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Listened to Album (2017) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "listened-today on Music/Albums/Album (2017)/Album (2017).md, without keys": {
+    "changed": {
+      "Music/Albums/Album (2017)/Album (2017).md": "---
+title: Album
+mb_album_id: a1
+listened: true
+listen_date: 2026-10-12
+listen_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Listened to Album (2017) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "listened-today on Music/Loose album (2017).md, with keys": {
+    "changed": {
+      "Music/Loose album (2017).md": "---
+title: Loose album
+mb_album_id: a2
+listened: true
+listen_date: 2026-10-12
+listen_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Listened to Loose album (2017) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "listened-today on Music/Loose album (2017).md, without keys": {
+    "changed": {
+      "Music/Loose album (2017).md": "---
+title: Loose album
+mb_album_id: a2
+listened: true
+listen_date: 2026-10-12
+listen_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Listened to Loose album (2017) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "move-album-into-folder on Music/Loose album (2017).md, with keys": {
+    "changed": {
+      "Music/Loose album (2017).md": "(gone)",
+      "Music/Loose album (2017)/Loose album (2017).md": "---
+title: Loose album
+mb_album_id: a2
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Moved Loose album (2017) into its own folder.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "move-album-into-folder on Music/Loose album (2017).md, without keys": {
+    "changed": {
+      "Music/Loose album (2017).md": "(gone)",
+      "Music/Loose album (2017)/Loose album (2017).md": "---
+title: Loose album
+mb_album_id: a2
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Moved Loose album (2017) into its own folder.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "open-diary, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [
+      "film-tracker-diary",
+    ],
+  },
+  "open-diary, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [
+      "film-tracker-diary",
+    ],
+  },
+  "open-library, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [
+      "film-tracker-library",
+    ],
+  },
+  "open-library, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [
+      "film-tracker-library",
+    ],
+  },
+  "read-chapter on Anime/Both (2011).md, with keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+media_type: tv
+manga:
+  mal_id: 9
+  chapters_read: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Chapter 1 read.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "read-chapter on Anime/Both (2011).md, without keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+media_type: tv
+manga:
+  mal_id: 9
+  chapters_read: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Chapter 1 read.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "read-chapter on Manga/Manga (1989).md, with keys": {
+    "changed": {
+      "Manga/Manga (1989).md": "---
+title: Manga
+manga:
+  mal_id: 7
+  chapters_read: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Chapter 1 read.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "read-chapter on Manga/Manga (1989).md, without keys": {
+    "changed": {
+      "Manga/Manga (1989).md": "---
+title: Manga
+manga:
+  mal_id: 7
+  chapters_read: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Chapter 1 read.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "read-chapter on TV/Show with manga (2008).md, with keys": {
+    "changed": {
+      "TV/Show with manga (2008).md": "---
+title: Show with manga
+tmdb_tv_id: 4
+manga:
+  mal_id: 5
+  chapters_read: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Chapter 1 read.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "read-chapter on TV/Show with manga (2008).md, without keys": {
+    "changed": {
+      "TV/Show with manga (2008).md": "---
+title: Show with manga
+tmdb_tv_id: 4
+manga:
+  mal_id: 5
+  chapters_read: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Chapter 1 read.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "read-today on Anime/Both (2011).md, with keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+media_type: tv
+manga:
+  mal_id: 9
+  read: true
+  read_date: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked the manga as read today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "read-today on Anime/Both (2011).md, without keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+media_type: tv
+manga:
+  mal_id: 9
+  read: true
+  read_date: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked the manga as read today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "read-today on Manga/Manga (1989).md, with keys": {
+    "changed": {
+      "Manga/Manga (1989).md": "---
+title: Manga
+manga:
+  mal_id: 7
+  read: true
+  read_date: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked the manga as read today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "read-today on Manga/Manga (1989).md, without keys": {
+    "changed": {
+      "Manga/Manga (1989).md": "---
+title: Manga
+manga:
+  mal_id: 7
+  read: true
+  read_date: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked the manga as read today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "read-today on TV/Show with manga (2008).md, with keys": {
+    "changed": {
+      "TV/Show with manga (2008).md": "---
+title: Show with manga
+tmdb_tv_id: 4
+manga:
+  mal_id: 5
+  read: true
+  read_date: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked the manga as read today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "read-today on TV/Show with manga (2008).md, without keys": {
+    "changed": {
+      "TV/Show with manga (2008).md": "---
+title: Show with manga
+tmdb_tv_id: 4
+manga:
+  mal_id: 5
+  read: true
+  read_date: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked the manga as read today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-anime-metadata on Anime/Anime (2013).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach MyAnimeList. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-anime-metadata on Anime/Anime (2013).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-anime-metadata on Anime/Both (2011).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach MyAnimeList. Check your internet connection.",
+      "Could not reach MyAnimeList. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-anime-metadata on Anime/Both (2011).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-anime-metadata on Manga/Manga (1989).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach MyAnimeList. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-anime-metadata on Manga/Manga (1989).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-anime-metadata on Mangaka/Mangaka.md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach MyAnimeList. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-anime-metadata on Mangaka/Mangaka.md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-anime-metadata on TV/Show with manga (2008).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach MyAnimeList. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-anime-metadata on TV/Show with manga (2008).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-book-metadata on Authors/Author.md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-book-metadata on Authors/Author.md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-book-metadata on Books/Book (1987).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-book-metadata on Books/Book (1987).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach Open Library. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-film-metadata on Directors/Someone.md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach TMDB. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-film-metadata on Directors/Someone.md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-film-metadata on Films/Film (2010).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach TMDB. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-film-metadata on Films/Film (2010).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-film-metadata on TV/Show (2008).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach TMDB. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-film-metadata on TV/Show (2008).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-film-metadata on TV/Show with manga (2008).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach TMDB. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-film-metadata on TV/Show with manga (2008).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-game-metadata on Games/Game (2018).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach IGDB. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-game-metadata on Games/Game (2018).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your IGDB client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-music-metadata on Music/Albums/Album (2017)/Album (2017).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-music-metadata on Music/Albums/Album (2017)/Album (2017).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-music-metadata on Music/Albums/Album (2017)/Song.md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-music-metadata on Music/Albums/Album (2017)/Song.md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-music-metadata on Music/Artists/Artist.md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-music-metadata on Music/Artists/Artist.md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-music-metadata on Music/Loose album (2017).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "refresh-music-metadata on Music/Loose album (2017).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "relink-film-notes, with keys": {
+    "changed": {
+      "Films/Film (2010).md": "---
+title: Film
+directors:
+  - "[[Someone]]"
+tmdb_id: 1
+watch_date:
+watched: false
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Relinked 1 note.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "relink-film-notes, without keys": {
+    "changed": {
+      "Films/Film (2010).md": "---
+title: Film
+directors:
+  - "[[Someone]]"
+tmdb_id: 1
+watch_date:
+watched: false
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Relinked 1 note.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "remove-anime on Anime/Anime (2013).md, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ConfirmModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "remove-anime on Anime/Anime (2013).md, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ConfirmModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "remove-anime on Anime/Both (2011).md, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ConfirmModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "remove-anime on Anime/Both (2011).md, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ConfirmModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "start-playing on Games/Game (2018).md, with keys": {
+    "changed": {
+      "Games/Game (2018).md": "---
+title: Game
+igdb_id: 11
+play_status: playing
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Playing Game (2018).",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "start-playing on Games/Game (2018).md, without keys": {
+    "changed": {
+      "Games/Game (2018).md": "---
+title: Game
+igdb_id: 11
+play_status: playing
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Playing Game (2018).",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "start-reading on Books/Book (1987).md, with keys": {
+    "changed": {
+      "Books/Book (1987).md": "---
+title: Book
+openlibrary_id: OL1W
+read_status: reading
+started: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Reading Book (1987).",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "start-reading on Books/Book (1987).md, without keys": {
+    "changed": {
+      "Books/Book (1987).md": "---
+title: Book
+openlibrary_id: OL1W
+read_status: reading
+started: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Reading Book (1987).",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watch-episode on Anime/Anime (2013).md, with keys": {
+    "changed": {
+      "Anime/Anime (2013).md": "---
+title: Anime
+mal_id: 6
+media_type: tv
+episodes_watched: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Episode 1 watched.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watch-episode on Anime/Anime (2013).md, without keys": {
+    "changed": {
+      "Anime/Anime (2013).md": "---
+title: Anime
+mal_id: 6
+media_type: tv
+episodes_watched: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Episode 1 watched.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watch-episode on Anime/Both (2011).md, with keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+media_type: tv
+episodes_watched: 1
+manga:
+  mal_id: 9
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Episode 1 watched.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watch-episode on Anime/Both (2011).md, without keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+media_type: tv
+episodes_watched: 1
+manga:
+  mal_id: 9
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Episode 1 watched.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watch-episode on TV/Show (2008).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Show (2008) is watched up to its latest episode.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watch-episode on TV/Show (2008).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Show (2008) is watched up to its latest episode.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watch-episode on TV/Show with manga (2008).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Show with manga (2008) is watched up to its latest episode.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watch-episode on TV/Show with manga (2008).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Show with manga (2008) is watched up to its latest episode.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watched-today on Anime/Anime (2013).md, with keys": {
+    "changed": {
+      "Anime/Anime (2013).md": "---
+title: Anime
+mal_id: 6
+watch_date: 2026-10-12
+watched: true
+media_type: tv
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Anime (2013) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watched-today on Anime/Anime (2013).md, without keys": {
+    "changed": {
+      "Anime/Anime (2013).md": "---
+title: Anime
+mal_id: 6
+watch_date: 2026-10-12
+watched: true
+media_type: tv
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Anime (2013) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watched-today on Anime/Both (2011).md, with keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+watch_date: 2026-10-12
+watched: true
+media_type: tv
+manga:
+  mal_id: 9
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Both (2011) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watched-today on Anime/Both (2011).md, without keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+watch_date: 2026-10-12
+watched: true
+media_type: tv
+manga:
+  mal_id: 9
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Both (2011) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watched-today on Films/Film (2010).md, with keys": {
+    "changed": {
+      "Films/Film (2010).md": "---
+title: Film
+directors:
+  - Someone
+tmdb_id: 1
+watch_date: 2026-10-12
+watched: true
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Film (2010) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watched-today on Films/Film (2010).md, without keys": {
+    "changed": {
+      "Films/Film (2010).md": "---
+title: Film
+directors:
+  - Someone
+tmdb_id: 1
+watch_date: 2026-10-12
+watched: true
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Film (2010) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watched-today on TV/Show (2008).md, with keys": {
+    "changed": {
+      "TV/Show (2008).md": "---
+title: Show
+episodes_watched: 0
+tmdb_tv_id: 3
+watch_date: 2026-10-12
+watched: true
+seasons:
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Show (2008) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watched-today on TV/Show (2008).md, without keys": {
+    "changed": {
+      "TV/Show (2008).md": "---
+title: Show
+episodes_watched: 0
+tmdb_tv_id: 3
+watch_date: 2026-10-12
+watched: true
+seasons:
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Show (2008) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watched-today on TV/Show with manga (2008).md, with keys": {
+    "changed": {
+      "TV/Show with manga (2008).md": "---
+title: Show with manga
+episodes_watched: 0
+tmdb_tv_id: 4
+watch_date: 2026-10-12
+watched: true
+seasons:
+manga:
+  mal_id: 5
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Show with manga (2008) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "watched-today on TV/Show with manga (2008).md, without keys": {
+    "changed": {
+      "TV/Show with manga (2008).md": "---
+title: Show with manga
+episodes_watched: 0
+tmdb_tv_id: 4
+watch_date: 2026-10-12
+watched: true
+seasons:
+manga:
+  mal_id: 5
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Show with manga (2008) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+}
+`;
+
+exports[`what each command and menu entry does > runs each entry of a note's menu the same way 1`] = `
+{
+  "Add DLC on Games/Game (2018).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for DLCs of Game (2018)…",
+      "Could not reach IGDB. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add DLC on Games/Game (2018).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your IGDB client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add song on Music/Albums/Album (2017)/Album (2017).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Every song on Album (2017) already has a note.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add song on Music/Albums/Album (2017)/Album (2017).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Every song on Album (2017) already has a note.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add song on Music/Loose album (2017).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Every song on Loose album (2017) already has a note.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add song on Music/Loose album (2017).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Every song on Loose album (2017) already has a note.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Change photo on Music/Artists/Artist.md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Change photo on Music/Artists/Artist.md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Choose edition on Books/Book (1987).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Loading the editions of Book (1987)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Choose edition on Books/Book (1987).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Loading the editions of Book (1987)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Find soundtrack on Anime/Anime (2013).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Anime (2013)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Find soundtrack on Anime/Anime (2013).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Anime (2013)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Find soundtrack on Anime/Both (2011).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Both (2011)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Find soundtrack on Anime/Both (2011).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Both (2011)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Find soundtrack on Films/Film (2010).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Film (2010)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Find soundtrack on Films/Film (2010).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Film (2010)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Find soundtrack on Games/Game (2018).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Game (2018)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Find soundtrack on Games/Game (2018).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Game (2018)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Find soundtrack on TV/Show (2008).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Show (2008)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Find soundtrack on TV/Show (2008).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Show (2008)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Find soundtrack on TV/Show with manga (2008).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Show with manga (2008)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Find soundtrack on TV/Show with manga (2008).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Looking for the soundtrack of Show with manga (2008)…",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Link to a film, series or game on Music/Albums/Album (2017)/Album (2017).md, with keys": {
+    "changed": {},
+    "dialogs": [
+      "WorkPickerModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Link to a film, series or game on Music/Albums/Album (2017)/Album (2017).md, without keys": {
+    "changed": {},
+    "dialogs": [
+      "WorkPickerModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Link to a film, series or game on Music/Loose album (2017).md, with keys": {
+    "changed": {},
+    "dialogs": [
+      "WorkPickerModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Link to a film, series or game on Music/Loose album (2017).md, without keys": {
+    "changed": {},
+    "dialogs": [
+      "WorkPickerModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as completed today on Games/Game (2018).md, with keys": {
+    "changed": {
+      "Games/Game (2018).md": "---
+title: Game
+igdb_id: 11
+play_status: completed
+completed: 2026-10-12
+completed_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Completed Game (2018) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as completed today on Games/Game (2018).md, without keys": {
+    "changed": {
+      "Games/Game (2018).md": "---
+title: Game
+igdb_id: 11
+play_status: completed
+completed: 2026-10-12
+completed_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Completed Game (2018) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as listened today on Music/Albums/Album (2017)/Album (2017).md, with keys": {
+    "changed": {
+      "Music/Albums/Album (2017)/Album (2017).md": "---
+title: Album
+mb_album_id: a1
+listened: true
+listen_date: 2026-10-12
+listen_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Listened to Album (2017) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as listened today on Music/Albums/Album (2017)/Album (2017).md, without keys": {
+    "changed": {
+      "Music/Albums/Album (2017)/Album (2017).md": "---
+title: Album
+mb_album_id: a1
+listened: true
+listen_date: 2026-10-12
+listen_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Listened to Album (2017) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as listened today on Music/Loose album (2017).md, with keys": {
+    "changed": {
+      "Music/Loose album (2017).md": "---
+title: Loose album
+mb_album_id: a2
+listened: true
+listen_date: 2026-10-12
+listen_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Listened to Loose album (2017) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as listened today on Music/Loose album (2017).md, without keys": {
+    "changed": {
+      "Music/Loose album (2017).md": "---
+title: Loose album
+mb_album_id: a2
+listened: true
+listen_date: 2026-10-12
+listen_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Listened to Loose album (2017) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as watched today on Anime/Anime (2013).md, with keys": {
+    "changed": {
+      "Anime/Anime (2013).md": "---
+title: Anime
+mal_id: 6
+watch_date: 2026-10-12
+watched: true
+media_type: tv
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Anime (2013) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as watched today on Anime/Anime (2013).md, without keys": {
+    "changed": {
+      "Anime/Anime (2013).md": "---
+title: Anime
+mal_id: 6
+watch_date: 2026-10-12
+watched: true
+media_type: tv
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Anime (2013) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as watched today on Anime/Both (2011).md, with keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+watch_date: 2026-10-12
+watched: true
+media_type: tv
+manga:
+  mal_id: 9
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Both (2011) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as watched today on Anime/Both (2011).md, without keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+watch_date: 2026-10-12
+watched: true
+media_type: tv
+manga:
+  mal_id: 9
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Both (2011) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as watched today on Films/Film (2010).md, with keys": {
+    "changed": {
+      "Films/Film (2010).md": "---
+title: Film
+directors:
+  - Someone
+tmdb_id: 1
+watch_date: 2026-10-12
+watched: true
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Film (2010) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as watched today on Films/Film (2010).md, without keys": {
+    "changed": {
+      "Films/Film (2010).md": "---
+title: Film
+directors:
+  - Someone
+tmdb_id: 1
+watch_date: 2026-10-12
+watched: true
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Film (2010) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as watched today on TV/Show (2008).md, with keys": {
+    "changed": {
+      "TV/Show (2008).md": "---
+title: Show
+episodes_watched: 0
+tmdb_tv_id: 3
+watch_date: 2026-10-12
+watched: true
+seasons:
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Show (2008) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as watched today on TV/Show (2008).md, without keys": {
+    "changed": {
+      "TV/Show (2008).md": "---
+title: Show
+episodes_watched: 0
+tmdb_tv_id: 3
+watch_date: 2026-10-12
+watched: true
+seasons:
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Show (2008) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as watched today on TV/Show with manga (2008).md, with keys": {
+    "changed": {
+      "TV/Show with manga (2008).md": "---
+title: Show with manga
+episodes_watched: 0
+tmdb_tv_id: 4
+watch_date: 2026-10-12
+watched: true
+seasons:
+manga:
+  mal_id: 5
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Show with manga (2008) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark as watched today on TV/Show with manga (2008).md, without keys": {
+    "changed": {
+      "TV/Show with manga (2008).md": "---
+title: Show with manga
+episodes_watched: 0
+tmdb_tv_id: 4
+watch_date: 2026-10-12
+watched: true
+seasons:
+manga:
+  mal_id: 5
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked Show with manga (2008) as watched today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark book as finished today on Books/Book (1987).md, with keys": {
+    "changed": {
+      "Books/Book (1987).md": "---
+title: Book
+openlibrary_id: OL1W
+read_status: read
+finished: 2026-10-12
+read_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Finished Book (1987) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark book as finished today on Books/Book (1987).md, without keys": {
+    "changed": {
+      "Books/Book (1987).md": "---
+title: Book
+openlibrary_id: OL1W
+read_status: read
+finished: 2026-10-12
+read_count: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Finished Book (1987) today — the first time.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark manga as read today on Anime/Both (2011).md, with keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+media_type: tv
+manga:
+  mal_id: 9
+  read: true
+  read_date: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked the manga as read today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark manga as read today on Anime/Both (2011).md, without keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+media_type: tv
+manga:
+  mal_id: 9
+  read: true
+  read_date: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked the manga as read today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark manga as read today on Manga/Manga (1989).md, with keys": {
+    "changed": {
+      "Manga/Manga (1989).md": "---
+title: Manga
+manga:
+  mal_id: 7
+  read: true
+  read_date: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked the manga as read today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark manga as read today on Manga/Manga (1989).md, without keys": {
+    "changed": {
+      "Manga/Manga (1989).md": "---
+title: Manga
+manga:
+  mal_id: 7
+  read: true
+  read_date: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked the manga as read today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark manga as read today on TV/Show with manga (2008).md, with keys": {
+    "changed": {
+      "TV/Show with manga (2008).md": "---
+title: Show with manga
+tmdb_tv_id: 4
+manga:
+  mal_id: 5
+  read: true
+  read_date: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked the manga as read today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Mark manga as read today on TV/Show with manga (2008).md, without keys": {
+    "changed": {
+      "TV/Show with manga (2008).md": "---
+title: Show with manga
+tmdb_tv_id: 4
+manga:
+  mal_id: 5
+  read: true
+  read_date: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Marked the manga as read today.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Move album into its folder on Music/Loose album (2017).md, with keys": {
+    "changed": {
+      "Music/Loose album (2017).md": "(gone)",
+      "Music/Loose album (2017)/Loose album (2017).md": "---
+title: Loose album
+mb_album_id: a2
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Moved Loose album (2017) into its own folder.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Move album into its folder on Music/Loose album (2017).md, without keys": {
+    "changed": {
+      "Music/Loose album (2017).md": "(gone)",
+      "Music/Loose album (2017)/Loose album (2017).md": "---
+title: Loose album
+mb_album_id: a2
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Moved Loose album (2017) into its own folder.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Read one more chapter on Anime/Both (2011).md, with keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+media_type: tv
+manga:
+  mal_id: 9
+  chapters_read: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Chapter 1 read.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Read one more chapter on Anime/Both (2011).md, without keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+media_type: tv
+manga:
+  mal_id: 9
+  chapters_read: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Chapter 1 read.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Read one more chapter on Manga/Manga (1989).md, with keys": {
+    "changed": {
+      "Manga/Manga (1989).md": "---
+title: Manga
+manga:
+  mal_id: 7
+  chapters_read: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Chapter 1 read.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Read one more chapter on Manga/Manga (1989).md, without keys": {
+    "changed": {
+      "Manga/Manga (1989).md": "---
+title: Manga
+manga:
+  mal_id: 7
+  chapters_read: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Chapter 1 read.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Read one more chapter on TV/Show with manga (2008).md, with keys": {
+    "changed": {
+      "TV/Show with manga (2008).md": "---
+title: Show with manga
+tmdb_tv_id: 4
+manga:
+  mal_id: 5
+  chapters_read: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Chapter 1 read.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Read one more chapter on TV/Show with manga (2008).md, without keys": {
+    "changed": {
+      "TV/Show with manga (2008).md": "---
+title: Show with manga
+tmdb_tv_id: 4
+manga:
+  mal_id: 5
+  chapters_read: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Chapter 1 read.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Remove anime on Anime/Anime (2013).md, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ConfirmModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Remove anime on Anime/Anime (2013).md, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ConfirmModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Remove anime on Anime/Both (2011).md, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ConfirmModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Remove anime on Anime/Both (2011).md, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ConfirmModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Start playing on Games/Game (2018).md, with keys": {
+    "changed": {
+      "Games/Game (2018).md": "---
+title: Game
+igdb_id: 11
+play_status: playing
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Playing Game (2018).",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Start playing on Games/Game (2018).md, without keys": {
+    "changed": {
+      "Games/Game (2018).md": "---
+title: Game
+igdb_id: 11
+play_status: playing
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Playing Game (2018).",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Start reading on Books/Book (1987).md, with keys": {
+    "changed": {
+      "Books/Book (1987).md": "---
+title: Book
+openlibrary_id: OL1W
+read_status: reading
+started: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Reading Book (1987).",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Start reading on Books/Book (1987).md, without keys": {
+    "changed": {
+      "Books/Book (1987).md": "---
+title: Book
+openlibrary_id: OL1W
+read_status: reading
+started: 2026-10-12
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Reading Book (1987).",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Watch one more episode on Anime/Anime (2013).md, with keys": {
+    "changed": {
+      "Anime/Anime (2013).md": "---
+title: Anime
+mal_id: 6
+media_type: tv
+episodes_watched: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Episode 1 watched.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Watch one more episode on Anime/Anime (2013).md, without keys": {
+    "changed": {
+      "Anime/Anime (2013).md": "---
+title: Anime
+mal_id: 6
+media_type: tv
+episodes_watched: 1
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Episode 1 watched.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Watch one more episode on Anime/Both (2011).md, with keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+media_type: tv
+episodes_watched: 1
+manga:
+  mal_id: 9
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Episode 1 watched.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Watch one more episode on Anime/Both (2011).md, without keys": {
+    "changed": {
+      "Anime/Both (2011).md": "---
+title: Both
+mal_id: 8
+media_type: tv
+episodes_watched: 1
+manga:
+  mal_id: 9
+---
+",
+    },
+    "dialogs": [],
+    "notices": [
+      "Episode 1 watched.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Watch one more episode on TV/Show (2008).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Show (2008) is watched up to its latest episode.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Watch one more episode on TV/Show (2008).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Show (2008) is watched up to its latest episode.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Watch one more episode on TV/Show with manga (2008).md, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Show with manga (2008) is watched up to its latest episode.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Watch one more episode on TV/Show with manga (2008).md, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Show with manga (2008) is watched up to its latest episode.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+}
+`;
+
+exports[`what each command and menu entry does > runs each entry of the ribbon menu the same way 1`] = `
+{
+  "Add TV series, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add TV series, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add TV series, with no note open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add TV series, with no note open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add album, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add album, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add album, with no note open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add album, with no note open, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add anime, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add anime, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add anime, with no note open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add anime, with no note open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add artist, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add artist, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add artist, with no note open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add artist, with no note open, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add author, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add author, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add author, with no note open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add author, with no note open, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add book, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add book, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add book, with no note open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add book, with no note open, without keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add director, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add director, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add director, with no note open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add director, with no note open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add film, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add film, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add film, with no note open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add film, with no note open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your TMDB API key in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add game, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add game, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your IGDB client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add game, with no note open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add game, with no note open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your IGDB client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add manga, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add manga, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add manga, with no note open, with keys": {
+    "changed": {},
+    "dialogs": [
+      "ApiSearchModal",
+    ],
+    "notices": [],
+    "opened": [],
+    "views": [],
+  },
+  "Add manga, with no note open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add mangaka, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Could not reach MyAnimeList. Check your internet connection.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Add mangaka, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [
+      "Set your MyAnimeList client ID in Film + Anime-Manga Tracker settings.",
+    ],
+    "opened": [],
+    "views": [],
+  },
+  "Open diary, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [
+      "film-tracker-diary",
+    ],
+  },
+  "Open diary, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [
+      "film-tracker-diary",
+    ],
+  },
+  "Open diary, with no note open, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [
+      "film-tracker-diary",
+    ],
+  },
+  "Open diary, with no note open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [
+      "film-tracker-diary",
+    ],
+  },
+  "Open the library, with Manga/Manga (1989).md open, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [
+      "film-tracker-library",
+    ],
+  },
+  "Open the library, with Manga/Manga (1989).md open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [
+      "film-tracker-library",
+    ],
+  },
+  "Open the library, with no note open, with keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [
+      "film-tracker-library",
+    ],
+  },
+  "Open the library, with no note open, without keys": {
+    "changed": {},
+    "dialogs": [],
+    "notices": [],
+    "opened": [],
+    "views": [
+      "film-tracker-library",
+    ],
+  },
+}
+`;
+
+exports[`what the plugin registers > has the same ribbon icon and menu 1`] = `
+[
+  {
+    "icon": "film",
+    "menu": [
+      {
+        "icon": "book-open-text",
+        "title": "Open diary",
+      },
+      {
+        "icon": "library",
+        "title": "Open the library",
+      },
+      {
+        "icon": null,
+        "title": "---",
+      },
+      {
+        "icon": "film",
+        "title": "Add film",
+      },
+      {
+        "icon": "monitor",
+        "title": "Add TV series",
+      },
+      {
+        "icon": "user",
+        "title": "Add director",
+      },
+      {
+        "icon": "tv",
+        "title": "Add anime",
+      },
+      {
+        "icon": "book",
+        "title": "Add manga",
+      },
+      {
+        "disabled": true,
+        "icon": "user",
+        "title": "Add mangaka",
+      },
+      {
+        "icon": null,
+        "title": "---",
+      },
+      {
+        "icon": "disc",
+        "title": "Add album",
+      },
+      {
+        "icon": "mic",
+        "title": "Add artist",
+      },
+      {
+        "icon": null,
+        "title": "---",
+      },
+      {
+        "icon": "gamepad-2",
+        "title": "Add game",
+      },
+      {
+        "icon": null,
+        "title": "---",
+      },
+      {
+        "icon": "book-open",
+        "title": "Add book",
+      },
+      {
+        "icon": "pen-tool",
+        "title": "Add author",
+      },
+    ],
+    "shown": true,
+    "title": "Add film, TV series, anime, manga, music, game or book",
+  },
+]
+`;
+
+exports[`what the plugin registers > has the same right-click menu on each kind of note 1`] = `
+{
+  "(a folder)": {
+    "editorMenu": [],
+    "fileMenu": [],
+  },
+  "Anime/Anime (2013).md": {
+    "editorMenu": [
+      {
+        "icon": "check",
+        "title": "Mark as watched today",
+      },
+      {
+        "icon": "disc",
+        "title": "Find soundtrack",
+      },
+      {
+        "icon": "play",
+        "title": "Watch one more episode",
+      },
+      {
+        "icon": "trash-2",
+        "title": "Remove anime",
+      },
+    ],
+    "fileMenu": [
+      {
+        "icon": "check",
+        "title": "Mark as watched today",
+      },
+      {
+        "icon": "disc",
+        "title": "Find soundtrack",
+      },
+      {
+        "icon": "play",
+        "title": "Watch one more episode",
+      },
+      {
+        "icon": "trash-2",
+        "title": "Remove anime",
+      },
+    ],
+  },
+  "Anime/Both (2011).md": {
+    "editorMenu": [
+      {
+        "icon": "check",
+        "title": "Mark as watched today",
+      },
+      {
+        "icon": "disc",
+        "title": "Find soundtrack",
+      },
+      {
+        "icon": "play",
+        "title": "Watch one more episode",
+      },
+      {
+        "icon": "trash-2",
+        "title": "Remove anime",
+      },
+      {
+        "icon": "check",
+        "title": "Mark manga as read today",
+      },
+      {
+        "icon": "book-open",
+        "title": "Read one more chapter",
+      },
+    ],
+    "fileMenu": [
+      {
+        "icon": "check",
+        "title": "Mark as watched today",
+      },
+      {
+        "icon": "disc",
+        "title": "Find soundtrack",
+      },
+      {
+        "icon": "play",
+        "title": "Watch one more episode",
+      },
+      {
+        "icon": "trash-2",
+        "title": "Remove anime",
+      },
+      {
+        "icon": "check",
+        "title": "Mark manga as read today",
+      },
+      {
+        "icon": "book-open",
+        "title": "Read one more chapter",
+      },
+    ],
+  },
+  "Authors/Author.md": {
+    "editorMenu": [],
+    "fileMenu": [],
+  },
+  "Books/Book (1987).md": {
+    "editorMenu": [
+      {
+        "icon": "book-open",
+        "title": "Start reading",
+      },
+      {
+        "icon": "check",
+        "title": "Mark book as finished today",
+      },
+      {
+        "icon": "library",
+        "title": "Choose edition",
+      },
+    ],
+    "fileMenu": [
+      {
+        "icon": "book-open",
+        "title": "Start reading",
+      },
+      {
+        "icon": "check",
+        "title": "Mark book as finished today",
+      },
+      {
+        "icon": "library",
+        "title": "Choose edition",
+      },
+    ],
+  },
+  "Directors/Someone.md": {
+    "editorMenu": [],
+    "fileMenu": [],
+  },
+  "Films/Film (2010).md": {
+    "editorMenu": [
+      {
+        "icon": "check",
+        "title": "Mark as watched today",
+      },
+      {
+        "icon": "disc",
+        "title": "Find soundtrack",
+      },
+    ],
+    "fileMenu": [
+      {
+        "icon": "check",
+        "title": "Mark as watched today",
+      },
+      {
+        "icon": "disc",
+        "title": "Find soundtrack",
+      },
+    ],
+  },
+  "Games/Game (2018).md": {
+    "editorMenu": [
+      {
+        "icon": "play",
+        "title": "Start playing",
+      },
+      {
+        "icon": "check",
+        "title": "Mark as completed today",
+      },
+      {
+        "icon": "package-plus",
+        "title": "Add DLC",
+      },
+      {
+        "icon": "disc",
+        "title": "Find soundtrack",
+      },
+    ],
+    "fileMenu": [
+      {
+        "icon": "play",
+        "title": "Start playing",
+      },
+      {
+        "icon": "check",
+        "title": "Mark as completed today",
+      },
+      {
+        "icon": "package-plus",
+        "title": "Add DLC",
+      },
+      {
+        "icon": "disc",
+        "title": "Find soundtrack",
+      },
+    ],
+  },
+  "Manga/Manga (1989).md": {
+    "editorMenu": [
+      {
+        "icon": "check",
+        "title": "Mark manga as read today",
+      },
+      {
+        "icon": "book-open",
+        "title": "Read one more chapter",
+      },
+    ],
+    "fileMenu": [
+      {
+        "icon": "check",
+        "title": "Mark manga as read today",
+      },
+      {
+        "icon": "book-open",
+        "title": "Read one more chapter",
+      },
+    ],
+  },
+  "Mangaka/Mangaka.md": {
+    "editorMenu": [],
+    "fileMenu": [],
+  },
+  "Music/Albums/Album (2017)/Album (2017).md": {
+    "editorMenu": [
+      {
+        "icon": "headphones",
+        "title": "Mark as listened today",
+      },
+      {
+        "icon": "music",
+        "title": "Add song",
+      },
+      {
+        "icon": "clapperboard",
+        "title": "Link to a film, series or game",
+      },
+    ],
+    "fileMenu": [
+      {
+        "icon": "headphones",
+        "title": "Mark as listened today",
+      },
+      {
+        "icon": "music",
+        "title": "Add song",
+      },
+      {
+        "icon": "clapperboard",
+        "title": "Link to a film, series or game",
+      },
+    ],
+  },
+  "Music/Albums/Album (2017)/Song.md": {
+    "editorMenu": [],
+    "fileMenu": [],
+  },
+  "Music/Artists/Artist.md": {
+    "editorMenu": [
+      {
+        "icon": "image",
+        "title": "Change photo",
+      },
+    ],
+    "fileMenu": [
+      {
+        "icon": "image",
+        "title": "Change photo",
+      },
+    ],
+  },
+  "Music/Loose album (2017).md": {
+    "editorMenu": [
+      {
+        "icon": "headphones",
+        "title": "Mark as listened today",
+      },
+      {
+        "icon": "music",
+        "title": "Add song",
+      },
+      {
+        "icon": "clapperboard",
+        "title": "Link to a film, series or game",
+      },
+      {
+        "icon": "folder-input",
+        "title": "Move album into its folder",
+      },
+    ],
+    "fileMenu": [
+      {
+        "icon": "headphones",
+        "title": "Mark as listened today",
+      },
+      {
+        "icon": "music",
+        "title": "Add song",
+      },
+      {
+        "icon": "clapperboard",
+        "title": "Link to a film, series or game",
+      },
+      {
+        "icon": "folder-input",
+        "title": "Move album into its folder",
+      },
+    ],
+  },
+  "Notes/My own note.md": {
+    "editorMenu": [],
+    "fileMenu": [],
+  },
+  "TV/Show (2008).md": {
+    "editorMenu": [
+      {
+        "icon": "check",
+        "title": "Mark as watched today",
+      },
+      {
+        "icon": "disc",
+        "title": "Find soundtrack",
+      },
+      {
+        "icon": "play",
+        "title": "Watch one more episode",
+      },
+    ],
+    "fileMenu": [
+      {
+        "icon": "check",
+        "title": "Mark as watched today",
+      },
+      {
+        "icon": "disc",
+        "title": "Find soundtrack",
+      },
+      {
+        "icon": "play",
+        "title": "Watch one more episode",
+      },
+    ],
+  },
+  "TV/Show with manga (2008).md": {
+    "editorMenu": [
+      {
+        "icon": "check",
+        "title": "Mark as watched today",
+      },
+      {
+        "icon": "disc",
+        "title": "Find soundtrack",
+      },
+      {
+        "icon": "play",
+        "title": "Watch one more episode",
+      },
+      {
+        "icon": "check",
+        "title": "Mark manga as read today",
+      },
+      {
+        "icon": "book-open",
+        "title": "Read one more chapter",
+      },
+    ],
+    "fileMenu": [
+      {
+        "icon": "check",
+        "title": "Mark as watched today",
+      },
+      {
+        "icon": "disc",
+        "title": "Find soundtrack",
+      },
+      {
+        "icon": "play",
+        "title": "Watch one more episode",
+      },
+      {
+        "icon": "check",
+        "title": "Mark manga as read today",
+      },
+      {
+        "icon": "book-open",
+        "title": "Read one more chapter",
+      },
+    ],
+  },
+}
+`;
+
+exports[`what the plugin registers > offers each command on the same notes 1`] = `
+{
+  "(no note open)": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-tv",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "relink-film-notes",
+  ],
+  "Anime/Anime (2013).md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-tv",
+    "find-soundtrack",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "refresh-anime-metadata",
+    "relink-film-notes",
+    "remove-anime",
+    "watch-episode",
+    "watched-today",
+  ],
+  "Anime/Both (2011).md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-mangaka",
+    "add-tv",
+    "find-soundtrack",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "read-chapter",
+    "read-today",
+    "refresh-anime-metadata",
+    "relink-film-notes",
+    "remove-anime",
+    "watch-episode",
+    "watched-today",
+  ],
+  "Authors/Author.md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-tv",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "refresh-book-metadata",
+    "relink-film-notes",
+  ],
+  "Books/Book (1987).md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-tv",
+    "choose-edition",
+    "finished-reading-today",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "refresh-book-metadata",
+    "relink-film-notes",
+    "start-reading",
+  ],
+  "Directors/Someone.md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-tv",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "refresh-film-metadata",
+    "relink-film-notes",
+  ],
+  "Films/Film (2010).md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-tv",
+    "find-soundtrack",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "refresh-film-metadata",
+    "relink-film-notes",
+    "watched-today",
+  ],
+  "Games/Game (2018).md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-dlc",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-tv",
+    "completed-today",
+    "find-soundtrack",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "refresh-game-metadata",
+    "relink-film-notes",
+    "start-playing",
+  ],
+  "Manga/Manga (1989).md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-mangaka",
+    "add-tv",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "read-chapter",
+    "read-today",
+    "refresh-anime-metadata",
+    "relink-film-notes",
+  ],
+  "Mangaka/Mangaka.md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-tv",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "refresh-anime-metadata",
+    "relink-film-notes",
+  ],
+  "Music/Albums/Album (2017)/Album (2017).md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-song",
+    "add-tv",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "link-soundtrack-to-work",
+    "listened-today",
+    "open-diary",
+    "open-library",
+    "refresh-music-metadata",
+    "relink-film-notes",
+  ],
+  "Music/Albums/Album (2017)/Song.md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-tv",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "refresh-music-metadata",
+    "relink-film-notes",
+  ],
+  "Music/Artists/Artist.md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-tv",
+    "change-artist-photo",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "refresh-music-metadata",
+    "relink-film-notes",
+  ],
+  "Music/Loose album (2017).md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-song",
+    "add-tv",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "link-soundtrack-to-work",
+    "listened-today",
+    "move-album-into-folder",
+    "open-diary",
+    "open-library",
+    "refresh-music-metadata",
+    "relink-film-notes",
+  ],
+  "Notes/My own note.md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-tv",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "relink-film-notes",
+  ],
+  "TV/Show (2008).md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-tv",
+    "find-soundtrack",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "refresh-film-metadata",
+    "relink-film-notes",
+    "watch-episode",
+    "watched-today",
+  ],
+  "TV/Show with manga (2008).md": [
+    "add-album",
+    "add-anime",
+    "add-artist",
+    "add-author",
+    "add-book",
+    "add-director",
+    "add-film",
+    "add-game",
+    "add-manga",
+    "add-mangaka",
+    "add-tv",
+    "find-soundtrack",
+    "import-goodreads",
+    "import-letterboxd",
+    "import-mal",
+    "open-diary",
+    "open-library",
+    "read-chapter",
+    "read-today",
+    "refresh-anime-metadata",
+    "refresh-film-metadata",
+    "relink-film-notes",
+    "watch-episode",
+    "watched-today",
+  ],
+}
+`;
+
+exports[`what the plugin registers > registers the same commands, by id and name 1`] = `
+[
+  {
+    "id": "add-album",
+    "name": "Add album",
+    "shows": "always",
+  },
+  {
+    "id": "add-anime",
+    "name": "Add anime",
+    "shows": "always",
+  },
+  {
+    "id": "add-artist",
+    "name": "Add artist",
+    "shows": "always",
+  },
+  {
+    "id": "add-author",
+    "name": "Add author",
+    "shows": "always",
+  },
+  {
+    "id": "add-book",
+    "name": "Add book",
+    "shows": "always",
+  },
+  {
+    "id": "add-director",
+    "name": "Add director",
+    "shows": "always",
+  },
+  {
+    "id": "add-dlc",
+    "name": "Add DLC",
+    "shows": "on some notes",
+  },
+  {
+    "id": "add-film",
+    "name": "Add film",
+    "shows": "always",
+  },
+  {
+    "id": "add-game",
+    "name": "Add game",
+    "shows": "always",
+  },
+  {
+    "id": "add-manga",
+    "name": "Add manga",
+    "shows": "always",
+  },
+  {
+    "id": "add-mangaka",
+    "name": "Add mangaka",
+    "shows": "on some notes",
+  },
+  {
+    "id": "add-song",
+    "name": "Add song from this album",
+    "shows": "on some notes",
+  },
+  {
+    "id": "add-tv",
+    "name": "Add TV series",
+    "shows": "always",
+  },
+  {
+    "id": "change-artist-photo",
+    "name": "Change artist photo",
+    "shows": "on some notes",
+  },
+  {
+    "id": "choose-edition",
+    "name": "Choose edition",
+    "shows": "on some notes",
+  },
+  {
+    "id": "completed-today",
+    "name": "Mark as completed today",
+    "shows": "on some notes",
+  },
+  {
+    "id": "find-soundtrack",
+    "name": "Find soundtrack",
+    "shows": "on some notes",
+  },
+  {
+    "id": "finished-reading-today",
+    "name": "Mark book as finished today",
+    "shows": "on some notes",
+  },
+  {
+    "id": "import-goodreads",
+    "name": "Import from Goodreads",
+    "shows": "always",
+  },
+  {
+    "id": "import-letterboxd",
+    "name": "Import from Letterboxd",
+    "shows": "always",
+  },
+  {
+    "id": "import-mal",
+    "name": "Import from MyAnimeList",
+    "shows": "always",
+  },
+  {
+    "id": "link-soundtrack-to-work",
+    "name": "Link album to a film, series or game",
+    "shows": "on some notes",
+  },
+  {
+    "id": "listened-today",
+    "name": "Mark as listened today",
+    "shows": "on some notes",
+  },
+  {
+    "id": "move-album-into-folder",
+    "name": "Move album into its folder",
+    "shows": "on some notes",
+  },
+  {
+    "id": "open-diary",
+    "name": "Open diary",
+    "shows": "always",
+  },
+  {
+    "id": "open-library",
+    "name": "Open the library",
+    "shows": "always",
+  },
+  {
+    "id": "read-chapter",
+    "name": "Read one more chapter",
+    "shows": "on some notes",
+  },
+  {
+    "id": "read-today",
+    "name": "Mark manga as read today",
+    "shows": "on some notes",
+  },
+  {
+    "id": "refresh-anime-metadata",
+    "name": "Refresh anime/manga metadata from MAL",
+    "shows": "on some notes",
+  },
+  {
+    "id": "refresh-book-metadata",
+    "name": "Refresh book metadata from Open Library",
+    "shows": "on some notes",
+  },
+  {
+    "id": "refresh-film-metadata",
+    "name": "Refresh metadata from TMDB",
+    "shows": "on some notes",
+  },
+  {
+    "id": "refresh-game-metadata",
+    "name": "Refresh metadata from IGDB",
+    "shows": "on some notes",
+  },
+  {
+    "id": "refresh-music-metadata",
+    "name": "Refresh music metadata from MusicBrainz",
+    "shows": "on some notes",
+  },
+  {
+    "id": "relink-film-notes",
+    "name": "Relink directors and genres",
+    "shows": "always",
+  },
+  {
+    "id": "remove-anime",
+    "name": "Remove anime",
+    "shows": "on some notes",
+  },
+  {
+    "id": "start-playing",
+    "name": "Start playing",
+    "shows": "on some notes",
+  },
+  {
+    "id": "start-reading",
+    "name": "Start reading",
+    "shows": "on some notes",
+  },
+  {
+    "id": "watch-episode",
+    "name": "Watch one more episode",
+    "shows": "on some notes",
+  },
+  {
+    "id": "watched-today",
+    "name": "Mark as watched today",
+    "shows": "on some notes",
+  },
+]
+`;
+
+exports[`what the plugin registers > registers the same views, settings, and events 1`] = `
+{
+  "domEvents": [
+    "scroll",
+  ],
+  "events": [
+    "workspace: file-menu",
+    "workspace: editor-menu",
+    "workspace: layout-change",
+    "workspace: active-leaf-change",
+    "workspace: file-open",
+    "metadataCache: changed",
+    "metadataCache: resolved",
+  ],
+  "layoutReady": 1,
+  "settingTabs": 1,
+  "views": [
+    "film-tracker-diary",
+    "film-tracker-library",
+  ],
+}
+`;

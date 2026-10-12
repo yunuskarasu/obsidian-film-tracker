@@ -14,6 +14,8 @@ Books and their authors come from Open Library, with no key either, and with whe
 
 Everything you finish, whatever it is, comes together in a diary: a book of the year, with a page for each month, that you turn like a real one. See [Diary](#diary).
 
+And everything you track, finished or not, stands together in a library: a shelf of covers to browse, filter and search. See [Library](#library).
+
 Anime and manga follow the same philosophy, sourced from MyAnimeList. The two even share a single note when they're the same series: search for either half and Film + Anime-Manga Tracker creates or merges into one **Series note**, with a separate panel below the properties for the manga side. See [Anime and manga](#anime-and-manga) for details.
 
 ## Design philosophy
@@ -88,6 +90,8 @@ Books work the same way, with no key: run **Add book** or **Add author**, search
 
 To look back over your year, click the ribbon icon and pick **Open diary**, or run **Open diary**. See [Diary](#diary).
 
+To see everything at once, click the ribbon icon and pick **Open the library**, or run **Open the library**. See [Library](#library).
+
 Mangaka work a little differently: open the manga or Series note whose author you want to add, then run **Add mangaka** — it reads that note's own manga metadata to find the author on MyAnimeList directly, rather than opening a search box. One credited author adds straight away; more than one shows a quick pick list. See [Anime and manga](#anime-and-manga) for the MANGAGRAPHY panel it unlocks.
 
 ### Commands
@@ -129,6 +133,7 @@ Mangaka work a little differently: open the manga or Series note whose author yo
 | **Import from MyAnimeList** | Bulk-create notes from a public MyAnimeList list, marking what you have completed. See below. |
 | **Import from Goodreads** | Bulk-create book notes from a Goodreads library export, with your shelves, read dates and editions. See below. |
 | **Open diary** | Opens the diary in a tab of its own: everything you finished this year, month by month. Also the first entry of the ribbon icon's menu. See [Diary](#diary). |
+| **Open the library** | Opens the library in a tab of its own: every film, series, anime, manga, book, game and album in your vault as a shelf of covers. Also in the ribbon icon's menu, under **Open diary**. See [Library](#library). |
 
 ## Importing from Letterboxd
 
@@ -935,6 +940,37 @@ The pages, in order:
 To turn a page, click it, or use the arrows below the book: **‹** and **›**, and the button left of them for the cover. On the keyboard, **←** and **→** (or **Page Up** and **Page Down**) turn a page, **Home** goes to the cover and **End** to the back. The diary opens on this year, or on the latest year with anything in it. The year to the right of the arrows picks another, from the years your notes have anything in.
 
 In a narrow tab, and always on a phone, the diary shows one page at a time. Tap a page to turn it: its left third goes back. On a computer's touchscreen a swipe turns it too; a phone or a tablet keeps the swipe for Obsidian's sidebars. A phone on its side has the buttons either side of the book, to leave it all the height there is.
+
+## Library
+
+The library is a shelf of everything you track: every film, TV series, anime, manga, book, game and album in your vault, as covers, the newest first. Click the ribbon icon and pick **Open the library**, or run **Open the library** from the command palette. It opens in a tab of its own; running it again brings back the one already open.
+
+Like the diary, it writes nothing and only reads your notes, keeping up with them while it is open: a note added, marked or deleted shows on the shelf within a second. People — directors, mangaka, artists, authors — and songs aren't on it. A Series note with both an anime and its manga is on it twice, once for each, with its own cover and title.
+
+Each cover says where you are with it, in its kind's own words, with a coloured dot:
+
+| | Planned | In progress | Finished | Dropped |
+| --- | --- | --- | --- | --- |
+| Film | To watch | | Watched (`watched` ticked) | |
+| TV series, anime | To watch | Watching (an episode or more watched) | Watched | |
+| Manga | To read | Reading (a chapter or more read) | Read | |
+| Book | To read | Reading | Read | Dropped (`read_status`) |
+| Game | Backlog | Playing | Completed | Abandoned (`play_status`) |
+| Album | To listen | | Listened | |
+
+A series, an anime or a manga you've started also has a line along the foot of its cover, and how far you are under it: `13/26 ep`, `98/139 ch`, or just `1100 ch` for one still coming out.
+
+Over the shelf:
+
+- **Tabs**, one for each kind and **All**, each with how many it holds.
+- **Filters** for the four statuses above, each with how many it holds. A tab and a filter work together: **Games** and **In progress** show the games you're playing.
+- **Search**, through every name a work has in its note — its title, its English, Japanese or original title, and its aliases — whatever the case or the accents: `kurk` finds *Kürk Mantolu Madonna*. **Esc** clears it.
+- **Sort**: recently added, title, release year, or recently finished. A work with no year, or not finished, goes after the rest.
+- **Three sizes** of cover, on the right.
+
+Click a cover to open its note in the same tab — **Back** brings you to the shelf — or hold **Ctrl** (**Cmd** on macOS) to open it in another. Right-click a cover for the note's own menu, the one the file list shows. The library remembers its tab, its filter, its sort and its size; the search starts empty each time.
+
+On a phone, a size is how many covers fit across the screen held upright — four, three or two — and more fit on its side. A phone keeps a size of its own, so a size picked there never changes a computer's. The filters, the search and the sort sit over the tabs, slide away as you scroll down and come back as you scroll up. On a phone or a tablet, touch and hold a cover for the note's menu.
 
 ## Development
 

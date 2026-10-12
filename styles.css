@@ -1390,3 +1390,404 @@ body {
 	width: var(--icon-xs);
 	height: var(--icon-xs);
 }
+
+/* ---------- The library: every work in the vault as a cover on a shelf.
+   A card is as wide as the size picked over the shelf, and the grid fits as
+   many to a row as the tab has room for. Each kind keeps the colour the
+   diary gives it. */
+
+.film-tracker-library {
+	--film-tracker-library-card: 150px;
+	padding: 0 var(--size-4-4) var(--size-4-8);
+}
+
+/* Stuck, the bar rises over the tab's own margin at the top (Obsidian's padding
+   for a view), so no cover shows over it. */
+.film-tracker-library-toolbar {
+	position: sticky;
+	top: calc(-1 * var(--size-4-3));
+	z-index: 2;
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-4-2);
+	padding: var(--size-4-3) 0;
+	margin-bottom: var(--size-4-2);
+	background: var(--background-primary);
+	border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.film-tracker-library-row {
+	display: flex;
+	align-items: center;
+	gap: var(--size-4-2);
+	min-width: 0;
+}
+
+/* More tabs, or filters, than room: they scroll sideways, the buttons beside them stay put. */
+.film-tracker-library-tabs,
+.film-tracker-library-statuses {
+	display: flex;
+	flex: 1 1 auto;
+	min-width: 0;
+	gap: var(--size-2-2);
+	overflow-x: auto;
+	scrollbar-width: none;
+}
+
+.film-tracker-library-tabs::-webkit-scrollbar,
+.film-tracker-library-statuses::-webkit-scrollbar {
+	display: none;
+}
+
+/* Over Obsidian's own look for a button, which would give every tab a border. */
+.film-tracker-library .film-tracker-library-tab,
+.film-tracker-library .film-tracker-library-status {
+	display: inline-flex;
+	flex-shrink: 0;
+	align-items: center;
+	gap: var(--size-2-2);
+	height: auto;
+	padding: var(--size-2-2) var(--size-4-2);
+	border-radius: var(--radius-l);
+	background: transparent;
+	box-shadow: none;
+	color: var(--text-muted);
+	font-size: var(--font-ui-small);
+	cursor: var(--cursor);
+}
+
+.film-tracker-library .film-tracker-library-tab:hover,
+.film-tracker-library .film-tracker-library-status:hover {
+	background: var(--background-modifier-hover);
+	color: var(--text-normal);
+}
+
+.film-tracker-library .film-tracker-library-tab.is-active {
+	background: var(--interactive-accent);
+	color: var(--text-on-accent);
+}
+
+/* A filter is quieter than a tab: picked, it is outlined rather than filled. */
+.film-tracker-library .film-tracker-library-status {
+	padding: var(--size-2-1) var(--size-4-2);
+	font-size: var(--font-ui-smaller);
+}
+
+.film-tracker-library .film-tracker-library-status.is-active {
+	background: var(--background-modifier-hover);
+	box-shadow: inset 0 0 0 1px var(--background-modifier-border-hover, var(--background-modifier-border));
+	color: var(--text-normal);
+}
+
+/* Each status's colour, as on the pills. */
+.film-tracker-library-status:not(.is-all)::before {
+	content: "";
+	flex-shrink: 0;
+	width: 0.55em;
+	height: 0.55em;
+	border-radius: 50%;
+	background: var(--film-tracker-library-status);
+}
+
+.film-tracker-library-tab.is-none:not(.is-active),
+.film-tracker-library-status.is-none:not(.is-active) {
+	opacity: 0.55;
+}
+
+.film-tracker-library-tab-icon {
+	display: inline-flex;
+}
+
+.film-tracker-library-tab-icon svg {
+	width: var(--icon-xs);
+	height: var(--icon-xs);
+}
+
+.film-tracker-library-tab-count {
+	font-size: var(--font-ui-smaller);
+	font-variant-numeric: tabular-nums;
+	opacity: 0.75;
+}
+
+.film-tracker-library-sizes {
+	display: flex;
+	flex-shrink: 0;
+	gap: var(--size-2-1);
+}
+
+/* The filters first: with no room for them all, the search and the order go under them. */
+.film-tracker-library-row:last-child {
+	flex-wrap: wrap;
+}
+
+.film-tracker-library-row:last-child .film-tracker-library-statuses {
+	flex: 1 1 340px;
+}
+
+.film-tracker-library-find {
+	display: flex;
+	flex: 1 0 auto;
+	justify-content: flex-end;
+	gap: var(--size-4-2);
+}
+
+.film-tracker-library-search {
+	flex: 1 1 140px;
+	max-width: 220px;
+	min-width: 100px;
+	height: var(--input-height, 30px);
+	font-size: var(--font-ui-small);
+}
+
+.film-tracker-library-sort {
+	flex-shrink: 0;
+	font-size: var(--font-ui-small);
+}
+
+.film-tracker-library-sizes .clickable-icon.is-active {
+	background: var(--background-modifier-hover);
+	color: var(--text-normal);
+}
+
+.film-tracker-library-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(var(--film-tracker-library-card), 1fr));
+	gap: var(--size-4-6) var(--size-4-4);
+}
+
+.film-tracker-library-card {
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-2-2);
+	min-width: 0;
+	border-radius: var(--radius-m);
+	cursor: var(--cursor-link, pointer);
+	outline: none;
+}
+
+/* Every cover 2:3, whatever the kind. */
+.film-tracker-library-cover {
+	position: relative;
+	aspect-ratio: 2 / 3;
+	overflow: hidden;
+	border-radius: var(--radius-m);
+	background: var(--background-secondary);
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.12);
+	transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.film-tracker-library-card:hover .film-tracker-library-cover {
+	transform: translateY(-3px);
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.22), 0 10px 22px rgba(0, 0, 0, 0.18);
+}
+
+.film-tracker-library-card:focus-visible .film-tracker-library-cover {
+	box-shadow: 0 0 0 2px var(--interactive-accent);
+}
+
+.film-tracker-library-image,
+.film-tracker-library-backdrop {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/* An album: its square cover in the middle, the same cover blurred above and under it. */
+.film-tracker-library-cover.is-square .film-tracker-library-image {
+	top: 50%;
+	bottom: auto;
+	height: auto;
+	aspect-ratio: 1;
+	transform: translateY(-50%);
+	box-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);
+}
+
+.film-tracker-library-backdrop {
+	filter: blur(18px) saturate(1.3) brightness(0.8);
+	transform: scale(1.3);
+}
+
+.film-tracker-library-cover.is-empty {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: var(--text-faint);
+}
+
+.film-tracker-library-placeholder svg {
+	width: 36px;
+	height: 36px;
+}
+
+/* Where the user is with it, in the cover's corner: readable on any poster. */
+.film-tracker-library-pill {
+	position: absolute;
+	top: var(--size-4-2);
+	left: var(--size-4-2);
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4em;
+	max-width: calc(100% - var(--size-4-4));
+	padding: 0.15em 0.6em;
+	border-radius: 999px;
+	background: rgba(15, 15, 18, 0.72);
+	color: #fff;
+	font-size: var(--font-ui-smaller);
+	font-weight: 600;
+	line-height: 1.5;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	backdrop-filter: blur(4px);
+}
+
+.film-tracker-library-pill::before {
+	content: "";
+	flex-shrink: 0;
+	width: 0.55em;
+	height: 0.55em;
+	border-radius: 50%;
+	background: var(--film-tracker-library-status);
+}
+
+/* Small covers: a smaller pill, so the poster still shows. */
+.film-tracker-library.is-small .film-tracker-library-pill {
+	top: var(--size-4-1);
+	left: var(--size-4-1);
+	max-width: calc(100% - var(--size-4-2));
+	padding: 0.05em 0.5em;
+	font-size: 10px;
+}
+
+.film-tracker-library .is-planned { --film-tracker-library-status: #a3a3ad; }
+.film-tracker-library .is-progress { --film-tracker-library-status: #5b9cf0; }
+.film-tracker-library .is-finished { --film-tracker-library-status: #4cc27e; }
+.film-tracker-library .is-dropped { --film-tracker-library-status: #e0645c; }
+
+/* How far through it: a line along the cover's foot. */
+.film-tracker-library-progress {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 4px;
+	background: rgba(0, 0, 0, 0.55);
+}
+
+.film-tracker-library-progress-done {
+	width: var(--done);
+	height: 100%;
+	background: #5b9cf0;
+}
+
+.film-tracker-library-title {
+	display: -webkit-box;
+	overflow: hidden;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	font-size: var(--font-ui-small);
+	font-weight: 600;
+	line-height: 1.3;
+	color: var(--text-normal);
+}
+
+.film-tracker-library-meta {
+	display: flex;
+	align-items: center;
+	gap: 0.45em;
+	min-width: 0;
+	margin-top: calc(-1 * var(--size-2-1));
+	color: var(--text-muted);
+	font-size: var(--font-ui-smaller);
+	white-space: nowrap;
+}
+
+.film-tracker-library-meta > span:last-child {
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.film-tracker-library-swatch {
+	flex-shrink: 0;
+	width: 0.6em;
+	height: 0.6em;
+	border-radius: 50%;
+	background: var(--film-tracker-diary-kind);
+}
+
+.film-tracker-library-empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: var(--size-4-3);
+	max-width: 360px;
+	margin: 15vh auto 0;
+	color: var(--text-muted);
+	text-align: center;
+}
+
+.film-tracker-library-empty button {
+	margin-top: var(--size-4-1);
+}
+
+.film-tracker-library-empty-icon svg {
+	width: 40px;
+	height: 40px;
+	color: var(--text-faint);
+}
+
+/* ---------- The library on a phone or a tablet. Nothing here applies on a computer. */
+
+/* The last covers stay clear of Obsidian's floating navigation bar and the home indicator. */
+.is-mobile .workspace-leaf-content[data-type="film-tracker-library"] .view-content {
+	padding-bottom: calc(var(--size-4-8) + max(var(--view-bottom-spacing, 0px), var(--safe-area-inset-bottom, 0px)));
+}
+
+/* A finger held on a cover opens its menu: not the phone's own for the picture, nor a selection. */
+.is-mobile .film-tracker-library-card {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	user-select: none;
+	-webkit-tap-highlight-color: transparent;
+}
+
+/* No hover on a touchscreen: a tapped cover would stay lifted. It gives a little under the finger instead. */
+.is-mobile .film-tracker-library-card:hover .film-tracker-library-cover {
+	transform: none;
+	box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18), 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.is-mobile .film-tracker-library-card:active .film-tracker-library-cover {
+	transform: scale(0.97);
+}
+
+/* A phone: covers a size fits across (see PHONE_COLUMNS), closer together. */
+.is-phone .film-tracker-library-grid {
+	gap: var(--size-4-4) 10px;
+}
+
+/* A phone: the filters, the search and the order over the tabs. Scrolling down,
+   they slide up out of sight and the tabs stay; scrolling up, they come back. */
+.is-phone .film-tracker-library-row:last-child {
+	order: -1;
+}
+
+.is-phone .film-tracker-library-toolbar {
+	--film-tracker-library-tuck: 0px;
+	transition: top 200ms ease;
+}
+
+.is-phone .film-tracker-library-toolbar.is-tucked {
+	top: calc(-1 * var(--film-tracker-library-tuck));
+}
+
+/* A phone: the search and the order share a line of their own. */
+.is-phone .film-tracker-library-find {
+	flex-basis: 100%;
+}
+
+.is-phone .film-tracker-library-search {
+	max-width: none;
+}

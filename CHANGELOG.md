@@ -4,6 +4,18 @@ All notable changes to Film + Anime-Manga Tracker are recorded here. The format 
 
 ## [Unreleased]
 
+## [3.8.0] - 2026-10-13
+
+A library of everything you track. Nothing breaks: notes and settings from 3.7 carry over as they are.
+
+### Added
+
+- **Library.** **Open the library**, a command and an entry of the ribbon icon's menu under **Open diary**, opens a shelf of covers in a tab of its own: every film, TV series, anime, manga, book, game and album in your vault, the newest first. Each cover says where you are with it — to watch, watching, read, playing, abandoned, and so on — and a series, an anime or a manga you've started shows how far. Tabs for each kind; filters for planned, in progress, finished and dropped; a search through every name a work's note gives it, whatever the case or the accents; four ways to sort; three sizes of cover. A click opens the note, a right-click — or on a phone or a tablet, a touch and hold — shows its menu. It only reads your notes, writes nothing, and keeps up with them while it is open. On a phone, the covers fill the screen three across by default, the filters slide out of the way as you scroll, and the size is kept apart from a computer's.
+
+### Changed
+
+- Inside, the plugin is now put together from smaller parts, one for each kind of note. Nothing about what it does has changed: every command, menu and button works as before.
+
 ## [3.7.2] - 2026-10-12
 
 The diary on a phone and a tablet. On a computer it is exactly as it was.
@@ -268,7 +280,8 @@ Music joins films, TV series and anime-manga. Nothing breaks: notes and settings
 - Relinking of directors and genres.
 - Import from Letterboxd.
 
-[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.6.0...HEAD
+[Unreleased]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.8.0...HEAD
+[3.8.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.7.2...3.8.0
 [3.7.2]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.7.1...3.7.2
 [3.7.1]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.7.0...3.7.1
 [3.7.0]: https://github.com/yunuskarasu/obsidian-film-tracker/compare/3.6.0...3.7.0

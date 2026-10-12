@@ -73,6 +73,9 @@ describe("the setting definitions", () => {
 			"igdbClientIdSecretName",
 			"igdbClientSecret",
 			"igdbClientSecretSecretName",
+			// Picked over the library's shelf, by its own buttons.
+			"librarySize",
+			"libraryPhoneSize",
 		];
 		for (const key of Object.keys(DEFAULT_SETTINGS)) {
 			if (keys.includes(key)) continue;

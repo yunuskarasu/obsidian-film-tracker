@@ -11,7 +11,7 @@ export interface DiarySource {
 }
 
 /** How each kind is named and drawn. */
-const KIND_LOOK: Record<DiaryKind, { icon: string; one: string; many: string }> = {
+export const KIND_LOOK: Record<DiaryKind, { icon: string; one: string; many: string }> = {
 	film: { icon: "film", one: "film", many: "films" },
 	tv: { icon: "monitor", one: "season", many: "seasons" },
 	anime: { icon: "tv", one: "anime", many: "anime" },
